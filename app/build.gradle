@@ -13,26 +13,8 @@ android {
         versionCode version_code as int
         versionName version_name
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [
-                        //必须，告知RxHttp你依赖的okhttp版本，目前已适配 v3.12.0 - v4.7.2版本  (v4.3.0除外)
-                        rxhttp_okhttp : '4.7.2',
-                        //使用asXxx方法时必须，告知RxHttp你依赖的rxjava版本，可传入rxjava2、rxjava3
-                        rxhttp_rxjava : 'rxjava3',
-                        rxhttp_package: 'rxhttp'   //非必须，指定RxHttp相关类的生成路径，即包名
-                ]
-            }
-        }
-        multiDexEnabled true
     }
 
-    //必须，java 8或更高
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
     buildTypes {
         release {
@@ -47,136 +29,8 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "com.android.support:recyclerview-v7:27.1.1"
-    api 'androidx.appcompat:appcompat:1.1.0'
     api 'androidx.core:core-ktx:1.3.0'
     api 'androidx.constraintlayout:constraintlayout:1.1.3'
-    api 'junit:junit:4.12'
-    api 'androidx.test.ext:junit:1.1.1'
-    api 'androidx.test.espresso:espresso-core:3.2.0'
-
-
-    //<----------------------------  以下为基本第三方开源库 START----------------------------------->
-
-
-    //下拉上拉刷新
-    //https://github.com/scwang90/SmartRefreshLayout
-    api 'com.scwang.smart:refresh-layout-kernel:2.0.1'
-
-    //万能adapter适配器
-    //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
-
-    //图片加载库
-    //https://github.com/bumptech/glide
-    api 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    api 'com.github.bumptech.glide:okhttp3-integration:4.11.0'
-
-    //浏览图片显示(与BigImageViewPager二选一即可)
-    //https://github.com/chrisbanes/PhotoView
-    api 'com.github.chrisbanes:PhotoView:2.3.0'
-
-    //浏览图片显示 (与PhotoView二选一即可)
-    //https://github.com/SherlockGougou/BigImageViewPager
-    api 'com.github.SherlockGougou:BigImageViewPager:androidx-6.0.2'
-
-    //内存检测
-    //https://github.com/square/leakcanary
-    api 'com.squareup.leakcanary:leakcanary-android:2.4'
-
-    //事件通知
-    //https://github.com/greenrobot/eventbus
-    api 'org.greenrobot:eventbus:3.2.0'
-
-    //本地数据库
-    //https://github.com/guolindev/litepal
-    api 'org.litepal.guolindev:core:3.1.1'
-
-    //okhttp-RxHttp 以下3个为必须
-    //https://github.com/liujingxing/okhttp-RxHttp
-    api 'com.ljx.rxlife:rxlife-coroutine:2.0.0'
-    api "com.ljx.rxhttp:rxhttp:2.3.3"
-    api 'com.ljx.rxlife3:rxlife-rxjava:3.0.0'
-    kapt "com.ljx.rxhttp:rxhttp-compiler:2.3.3"
-
-    //okhttp3
-    //https://github.com/square/okhttp
-    api "com.squareup.okhttp3:okhttp:4.7.2"
-
-    //屏幕适配
-    //https://github.com/JessYanCoding/AndroidAutoSize
-    api 'me.jessyan:autosize:1.2.1'
-
-    //rxjava3
-    //https://github.com/ReactiveX/RxJava
-    api 'io.reactivex.rxjava3:rxjava:3.0.2'
-    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
-
-    //动态申请权限类
-    //https://github.com/guolindev/PermissionX
-    api 'com.permissionx.guolindev:permissionx:1.3.0'
-
-    //圆角，边框，Gradient背景渐变，控件State各个状态UI样式，阴影，水波纹 库
-    //https://github.com/RuffianZhong/RWidgetHelper
-    api 'com.ruffian.library:RWidgetHelper-AndroidX:0.0.4'
-
-    //图片选择库
-    //https://github.com/LuckSiege/PictureSelector
-    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.8'
-
-    //加载反馈页管理框架(处理加载中，重试，无数据界面显示等)
-    //https://github.com/KingJA/LoadSir
-    api 'com.kingja.loadsir:loadsir:1.3.8'
-
-    //网络加载中弹窗库
-    //https://github.com/Kaopiz/KProgressHUD
-    api 'com.kaopiz:kprogresshud:1.2.0'
-
-    //工具类
-    //https://github.com/Blankj/AndroidUtilCode
-    api 'com.blankj:utilcodex:1.29.0'
-
-    //各种TabIndicator
-    //https://github.com/hackware1993/MagicIndicator
-    api 'com.github.hackware1993:MagicIndicator:1.5.0'
-
-    //无需通知栏权限都不影响吐司的弹出吐司工具类
-    //https://github.com/getActivity/ToastUtils
-    api 'com.hjq:toast:8.6'
-
-    //多类型 ActionBar
-    //https://github.com/goweii/ActionBarEx
-    api 'com.github.goweii:ActionBarEx:3.2.2'
-
-    //应用升级
-    //https://github.com/teprinciple/UpdateAppUtils
-    api 'com.teprinciple:updateapputilsx:2.3.0'
-
-    //分包库
-    api 'com.android.support:multidex:1.0.3'
-
-    //环境切换器  正式环境还测试切换切换(打包不影响)
-    //https://github.com/CodeXiaoMai/EnvironmentSwitcher
-    api "com.xiaomai.environmentswitcher:environmentswitcher:1.5.2"
-    kaptDebug "com.xiaomai.environmentswitcher:environmentswitcher-compiler:1.5.3"
-    kaptRelease "com.xiaomai.environmentswitcher:environmentswitcher-compiler-release:1.5.3"
-
-    //在手机上显示闪退崩溃信息debug显示release不显示
-    //https://github.com/simplepeng/SpiderMan
-    debugImplementation "com.simple:spiderman:1.1.6"
-    releaseImplementation "com.simple:spiderman-no-op:1.1.4"
-
-    //banner
-    //https://github.com/zhpanvip/BannerViewPager
-    api 'com.github.zhpanvip:BannerViewPager:3.1.5'
-
-    //Spannable库
-    //https://github.com/iwgang/SimplifySpan
-    api 'com.github.iwgang:simplifyspan:2.1'
-
-    //引导操作库
-    //https://github.com/TakuSemba/Spotlight
-    api 'com.github.takusemba:spotlight:2.0.1'
-
-    //<----------------------------  以上为基本第三方开源库 EDN ----------------------------------->
+    //引入第三方开源库
+    implementation project(':opensourcelibrary')
 }

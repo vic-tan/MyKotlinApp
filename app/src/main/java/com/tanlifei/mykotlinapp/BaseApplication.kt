@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
 import com.hjq.toast.ToastUtils
-import com.simple.spiderman.SpiderMan
 import com.tanlifei.mykotlinapp.common.ComFun
 import com.tanlifei.mykotlinapp.core.http.TokenInterceptor
 import okhttp3.OkHttpClient
@@ -20,7 +19,6 @@ open class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        SpiderMan.init(this)//放在其他库初始化前
         //设置debug模式，默认为false，设置为true后，发请求，过滤"RxHttp"能看到请求日志
         RxHttp.init(getDefaultOkHttpClient(), true)
         RxHttp.setOnParamAssembly {
@@ -38,13 +36,9 @@ open class BaseApplication : Application() {
     }
 
      open fun getDefaultOkHttpClient(): OkHttpClient? {
-
         val  client =OkHttpClient.Builder()
             .addInterceptor(TokenInterceptor())
             .build()
-
-
-
         return client;
 
     }
