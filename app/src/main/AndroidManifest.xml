@@ -3,23 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tanlifei.mykotlinapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:maxAspectRatio="2.4"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:networkSecurityConfig="@xml/network_security_config"
-        tools:replace="android:label,networkSecurityConfig"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:label,networkSecurityConfig">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.desay_svautomotive.ACTION_CAR_SETTINGS_WIDGET_STATUS_SWITCH" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,12 +33,30 @@
         <activity android:name=".activity.BaseAdapterRecyclerActivity" />
         <activity android:name=".activity.SingleAdapterItemActivity" />
         <activity android:name=".activity.MultiAdapterItemActivity" />
+        <!-- 今日头条适配-->
         <meta-data
             android:name="design_width_in_px"
-            android:value="1080"/>
+            android:value="1080" />
         <meta-data
             android:name="design_height_in_px"
-            android:value="1920"/>
+            android:value="1920" />
+
+        <!--        全面屏与刘海适配 在manifest加入如下配置，四选其一，或者都写-->
+        <!--        ① 在manifest的Application节点下加入-->
+        <!--        ② 在manifest的Application节点中加入   android:resizeableActivity="true"-->
+        <!--        ③ 在manifest的Application节点中加入   android:maxAspectRatio="2.4"-->
+        <!--        ④ 升级targetSdkVersion为25以上版本-->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+        <!--适配华为（huawei）刘海屏-->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <!--适配小米（xiaomi）刘海屏-->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
     </application>
 
 </manifest>
