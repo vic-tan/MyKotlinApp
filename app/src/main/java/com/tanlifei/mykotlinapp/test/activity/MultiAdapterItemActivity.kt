@@ -1,20 +1,17 @@
-package com.tanlifei.mykotlinapp.activity
+package com.tanlifei.mykotlinapp.test.activity
 
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.ToastUtils
-import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.tanlifei.mykotlinapp.BaseActivity
+import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
-import com.tanlifei.mykotlinapp.adapter.UserAdapter
-import com.tanlifei.mykotlinapp.adapter.UserMuitiAdapter
-import com.tanlifei.mykotlinapp.adapter.UserSingleAdapter
+import com.tanlifei.mykotlinapp.test.adapter.UserMuitiAdapter
 import com.tanlifei.mykotlinapp.core.model.User
+import kotlinx.android.synthetic.main.activity_event_send.*
 import kotlinx.android.synthetic.main.activity_recycler.*
+import kotlinx.android.synthetic.main.activity_recycler.backBtn
 import java.util.ArrayList
 
 class MultiAdapterItemActivity : BaseActivity(), View.OnClickListener {
@@ -30,10 +27,11 @@ class MultiAdapterItemActivity : BaseActivity(), View.OnClickListener {
     internal lateinit var adapter: UserMuitiAdapter
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_single_adpate_item)
-        recyclerView = findViewById(R.id.recyclerView)
+    override fun layoutResId(): Int {
+        return R.layout.activity_single_adpate_item
+    }
+
+    override fun initView() {
         backBtn.setOnClickListener(this)
         initData()
         setupRecyclerView()

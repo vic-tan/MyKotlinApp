@@ -1,10 +1,8 @@
-package com.tanlifei.mykotlinapp.adapter
+package com.tanlifei.mykotlinapp.test.adapter
 
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView

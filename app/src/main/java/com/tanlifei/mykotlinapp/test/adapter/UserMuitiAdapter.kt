@@ -1,4 +1,4 @@
-package com.tanlifei.mykotlinapp.adapter
+package com.tanlifei.mykotlinapp.test.adapter
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder

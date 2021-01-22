@@ -1,4 +1,4 @@
-package com.tanlifei.mykotlinapp.activity
+package com.tanlifei.mykotlinapp.test.activity
 
 import android.os.Bundle
 import android.view.View
@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.tanlifei.mykotlinapp.BaseActivity
+import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
-import com.tanlifei.mykotlinapp.adapter.UserAdapter
+import com.tanlifei.mykotlinapp.test.adapter.UserAdapter
 import com.tanlifei.mykotlinapp.core.model.User
 import kotlinx.android.synthetic.main.activity_recycler.*
 import java.util.ArrayList
@@ -27,10 +27,11 @@ class RecyclerActivity : BaseActivity(), View.OnClickListener {
 
     internal lateinit var layoutManager: LinearLayoutManager
 
+    override fun layoutResId(): Int {
+        return R.layout.activity_recycler
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recycler)
+    override fun initView() {
         var bundle = this.intent.extras
         var key = bundle?.get("key").toString()
         ToastUtils.showShort(key)
@@ -41,6 +42,7 @@ class RecyclerActivity : BaseActivity(), View.OnClickListener {
         initData()
         setupRecyclerView()
     }
+
 
     private fun setupRecyclerView() {
         layoutManager = LinearLayoutManager(activity)

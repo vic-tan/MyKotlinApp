@@ -1,4 +1,4 @@
-package com.tanlifei.mykotlinapp.activity
+package com.tanlifei.mykotlinapp.test.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,14 +6,7 @@ import android.view.View
 import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.LogUtils
-import com.example.httpsender.kt.errorCode
-import com.example.httpsender.kt.errorMsg
-import com.example.httpsender.kt.show
-import com.example.httpsender.parser.ResponseParser
-import com.google.gson.Gson
-import com.kaopiz.kprogresshud.KProgressHUD
-import com.tanlifei.mykotlinapp.ActionBarActivity
-import com.tanlifei.mykotlinapp.BaseActivity
+import com.tanlifei.mykotlinapp.common.activity.ToolBarActivity
 import com.tanlifei.mykotlinapp.BuildConfig
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.http.*
@@ -24,15 +17,20 @@ import com.xiaomai.environmentswitcher.bean.EnvironmentBean
 import com.xiaomai.environmentswitcher.bean.ModuleBean
 import com.xiaomai.environmentswitcher.listener.OnEnvironmentChangeListener
 import kotlinx.android.synthetic.main.activity_category.*
-import rxhttp.*
+import rxhttp.RxHttp
+import rxhttp.toClass
 
 
-class CategoryActivity : ActionBarActivity(), View.OnClickListener, OnEnvironmentChangeListener {
+class CategoryActivity : ToolBarActivity(), View.OnClickListener, OnEnvironmentChangeListener {
 
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun layoutResId(): Int {
+        return R.layout.activity_category
+    }
+
+
+    override fun initView() {
         recyclerBtn.setOnClickListener(this)
         recyclerUtilsBtn.setOnClickListener(this)
         categoryBackBtn.setOnClickListener(this)
@@ -40,11 +38,6 @@ class CategoryActivity : ActionBarActivity(), View.OnClickListener, OnEnvironmen
         http1Btn.setOnClickListener(this)
         http2Btn.setOnClickListener(this)
         EnvironmentSwitcher.addOnEnvironmentChangeListener(this)
-
-    }
-
-    override fun layoutResId(): Int {
-        return R.layout.activity_category
     }
 
 

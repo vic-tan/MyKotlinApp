@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.tanlifei.mykotlinapp.common;
+package com.tanlifei.mykotlinapp.common.config;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -32,8 +32,6 @@ import android.text.TextUtils;
  * @since 17/2/15
  */
 public class ComFun {
-
-    public static boolean isDebug = false;
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;

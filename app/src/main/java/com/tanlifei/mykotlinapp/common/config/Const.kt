@@ -1,4 +1,4 @@
-package com.tanlifei.mykotlinapp.common
+package com.tanlifei.mykotlinapp.common.config
 
 /**
  * 项目所有全局通用常量的管理类。
@@ -6,6 +6,15 @@ package com.tanlifei.mykotlinapp.common
  * @author tanlifei
 */
 interface Const {
+
+    /**
+     * SharedPreferences KEY 常量
+     */
+    interface SPKey{
+        companion object {
+            const val GUIDE = "sp_guide"
+        }
+    }
 
     interface Auth {
         companion object {

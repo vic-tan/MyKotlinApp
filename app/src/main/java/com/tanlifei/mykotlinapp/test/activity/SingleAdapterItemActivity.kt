@@ -1,4 +1,4 @@
-package com.tanlifei.mykotlinapp.activity
+package com.tanlifei.mykotlinapp.test.activity
 
 import android.os.Bundle
 import android.view.View
@@ -6,11 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.tanlifei.mykotlinapp.BaseActivity
+import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
-import com.tanlifei.mykotlinapp.adapter.UserAdapter
-import com.tanlifei.mykotlinapp.adapter.UserSingleAdapter
+import com.tanlifei.mykotlinapp.test.adapter.UserSingleAdapter
 import com.tanlifei.mykotlinapp.core.model.User
 import kotlinx.android.synthetic.main.activity_recycler.*
 import java.util.ArrayList
@@ -27,11 +25,11 @@ class SingleAdapterItemActivity : BaseActivity(), View.OnClickListener {
 
     internal lateinit var adapter: UserSingleAdapter
 
+    override fun layoutResId(): Int {
+        return R.layout.activity_single_adpate_item
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_single_adpate_item)
-        recyclerView = findViewById(R.id.recyclerView)
+    override fun initView() {
         backBtn.setOnClickListener(this)
         initData()
         setupRecyclerView()
@@ -39,7 +37,7 @@ class SingleAdapterItemActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = UserSingleAdapter(R.layout.user_item,userList)
+        adapter = UserSingleAdapter(R.layout.user_item, userList)
         recyclerView.adapter = adapter
     }
 

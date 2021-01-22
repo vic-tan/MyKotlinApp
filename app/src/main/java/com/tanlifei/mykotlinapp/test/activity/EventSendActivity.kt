@@ -1,28 +1,29 @@
-package com.tanlifei.mykotlinapp.activity
+package com.tanlifei.mykotlinapp.test.activity
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.ToastUtils
-import com.tanlifei.mykotlinapp.BaseActivity
+import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.event.SendTestEvent
+import kotlinx.android.synthetic.main.activity_event.*
 import kotlinx.android.synthetic.main.activity_event_send.*
-import kotlinx.android.synthetic.main.activity_recycler.*
 import kotlinx.android.synthetic.main.activity_recycler.backBtn
 import org.greenrobot.eventbus.EventBus
 
 class EventSendActivity: BaseActivity(),View.OnClickListener{
 
 
+    override fun layoutResId(): Int {
+        return R.layout.activity_event_send
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_event_send)
+    override fun initView() {
         backBtn.setOnClickListener(this)
         sendBtn.setOnClickListener(this)
     }
+
+
 
     override fun onClick(v: View?) {
         when(v?.id){

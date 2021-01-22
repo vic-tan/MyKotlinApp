@@ -4,12 +4,11 @@ import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
 import com.hjq.toast.ToastUtils
-import com.tanlifei.mykotlinapp.common.ComFun
+import com.tanlifei.mykotlinapp.common.config.ComFun
 import com.tanlifei.mykotlinapp.core.http.TokenInterceptor
 import okhttp3.OkHttpClient
 import org.litepal.LitePal
 import rxhttp.RxHttp
-import rxhttp.wrapper.param.Method
 
 
 /**

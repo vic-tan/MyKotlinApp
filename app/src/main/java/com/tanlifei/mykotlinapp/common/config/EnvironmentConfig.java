@@ -1,4 +1,4 @@
-package com.tanlifei.mykotlinapp.common;
+package com.tanlifei.mykotlinapp.common.config;
 
 import com.xiaomai.environmentswitcher.annotation.Environment;
 import com.xiaomai.environmentswitcher.annotation.Module;

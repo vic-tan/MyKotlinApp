@@ -1,10 +1,9 @@
-package com.tanlifei.mykotlinapp.activity
+package com.tanlifei.mykotlinapp.test.activity
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
-import com.tanlifei.mykotlinapp.BaseActivity
+import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
 import kotlinx.android.synthetic.main.activity_base_adapter_recycler.*
 import kotlinx.android.synthetic.main.activity_recycler.backBtn
@@ -12,9 +11,11 @@ import kotlinx.android.synthetic.main.activity_recycler.backBtn
 class BaseAdapterRecyclerActivity : BaseActivity(), View.OnClickListener {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base_adapter_recycler)
+    override fun layoutResId(): Int {
+        return R.layout.activity_base_adapter_recycler
+    }
+
+    override fun initView() {
         backBtn.setOnClickListener(this)
         singleItemBtn.setOnClickListener(this)
         multiBtn.setOnClickListener(this)
@@ -24,10 +25,10 @@ class BaseAdapterRecyclerActivity : BaseActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.backBtn -> ActivityUtils.finishActivity(this)
             R.id.singleItemBtn -> {
-                ActivityUtils.startActivity(Intent(this,SingleAdapterItemActivity::class.java))
+                ActivityUtils.startActivity(Intent(this, SingleAdapterItemActivity::class.java))
             }
             R.id.multiBtn -> {
-                ActivityUtils.startActivity(Intent(this,MultiAdapterItemActivity::class.java))
+                ActivityUtils.startActivity(Intent(this, MultiAdapterItemActivity::class.java))
             }
 
         }
