@@ -21,7 +21,7 @@ class SingleAdapterItemActivity : BaseActivity(), View.OnClickListener {
      */
     private var userList: MutableList<User> = ArrayList()
 
-    internal lateinit var adapter: UserSingleAdapter
+    private lateinit var adapter: UserSingleAdapter
 
     override fun layoutResId(): Int {
         return R.layout.test_activity_single_adpate_item

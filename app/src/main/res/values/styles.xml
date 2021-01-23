@@ -16,4 +16,32 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <!-- 首页底部tabs 布局公用样式 -->
+    <style name="navigator_tab_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- 首页底部tabs 图片公用样式 -->
+    <style name="navigator_tab_image_style">
+        <item name="android:layout_width">27dp</item>
+        <item name="android:layout_height">27dp</item>
+    </style>
+
+    <!-- 首页底部tabs 字体公用样式 -->
+    <style name="navigator_tab_title_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/tab_txt_normal</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="split_line">
+        <item name="android:background">#F4F4F4</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
 </resources>

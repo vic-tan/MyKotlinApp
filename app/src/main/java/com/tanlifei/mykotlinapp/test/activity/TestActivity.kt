@@ -1,4 +1,4 @@
-package com.tanlifei.mykotlinapp.main.ui
+package com.tanlifei.mykotlinapp.test.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,11 +6,10 @@ import android.view.View
 import com.blankj.utilcode.util.LogUtils
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.activity.ToolBarActivity
-import com.tanlifei.mykotlinapp.test.activity.CategoryActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.test_activity_main.*
 
 
-class MainActivity : ToolBarActivity(), View.OnClickListener {
+class TestActivity : ToolBarActivity(), View.OnClickListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +19,7 @@ class MainActivity : ToolBarActivity(), View.OnClickListener {
     }
 
     override fun layoutResId(): Int {
-        return R.layout.activity_main
+        return R.layout.test_activity_main
     }
 
     override fun setToolbar(visibility: Int) {

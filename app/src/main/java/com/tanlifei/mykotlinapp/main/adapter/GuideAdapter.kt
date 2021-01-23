@@ -1,7 +1,6 @@
 package com.tanlifei.mykotlinapp.main.adapter
 
 import android.app.Activity
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,8 @@ import com.blankj.utilcode.util.SPUtils
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.config.Const
-import com.tanlifei.mykotlinapp.main.ui.MainActivity
+import com.tanlifei.mykotlinapp.home.ui.activity.HomeActivity
+import com.tanlifei.mykotlinapp.test.activity.TestActivity
 import com.youth.banner.adapter.BannerAdapter
 
 
@@ -45,7 +45,7 @@ open class GuideAdapter(activity: Activity, datas: MutableList<Int>) :
         holder.startBtn.visibility = if (position == mDatas.size - 1) View.VISIBLE else View.GONE
         holder.startBtn.setOnClickListener {
             SPUtils.getInstance().put(Const.SPKey.GUIDE, false)
-            ActivityUtils.startActivity(MainActivity::class.java)
+            ActivityUtils.startActivity(HomeActivity::class.java)
             ActivityUtils.finishActivity(mActivity)
         }
     }

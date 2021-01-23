@@ -29,11 +29,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.ui.MainActivity"
+            android:name=".test.activity.TestActivity"
             android:label="主界面" />
         <activity
             android:name=".main.ui.GuideActivity"
             android:label="引导页" />
+        <activity
+            android:name=".home.ui.activity.HomeActivity"
+            android:label="首页" />
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.RecyclerActivity" />
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.CategoryActivity" />
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.EventActivity" />

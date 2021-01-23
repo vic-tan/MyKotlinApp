@@ -6,6 +6,8 @@ import com.blankj.utilcode.util.SPUtils
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.common.config.Const
+import com.tanlifei.mykotlinapp.home.ui.activity.HomeActivity
+import com.tanlifei.mykotlinapp.test.activity.TestActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -39,7 +41,7 @@ class SplashActivity : BaseActivity() {
                     if (guide) {
                         ActivityUtils.startActivity(GuideActivity::class.java)
                     } else {
-                        ActivityUtils.startActivity(MainActivity::class.java)
+                        ActivityUtils.startActivity(HomeActivity::class.java)
                     }
                     subscribe.dispose()//取消订阅
                     ActivityUtils.finishActivity(this)
