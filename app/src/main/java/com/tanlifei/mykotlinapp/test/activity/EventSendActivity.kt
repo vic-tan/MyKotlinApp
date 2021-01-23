@@ -6,16 +6,16 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.event.SendTestEvent
-import kotlinx.android.synthetic.main.activity_event.*
-import kotlinx.android.synthetic.main.activity_event_send.*
-import kotlinx.android.synthetic.main.activity_recycler.backBtn
+import kotlinx.android.synthetic.main.test_activity_event.*
+import kotlinx.android.synthetic.main.test_activity_event.backBtn
+import kotlinx.android.synthetic.main.test_activity_event_send.*
 import org.greenrobot.eventbus.EventBus
 
 class EventSendActivity: BaseActivity(),View.OnClickListener{
 
 
     override fun layoutResId(): Int {
-        return R.layout.activity_event_send
+        return R.layout.test_activity_event_send
     }
 
     override fun initView() {

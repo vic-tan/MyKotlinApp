@@ -9,7 +9,7 @@ import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.test.adapter.UserAdapter
 import com.tanlifei.mykotlinapp.core.model.User
-import kotlinx.android.synthetic.main.activity_recycler.*
+import kotlinx.android.synthetic.main.test_activity_recycler.*
 import java.util.ArrayList
 
 class RecyclerActivity : BaseActivity(), View.OnClickListener {
@@ -27,7 +27,7 @@ class RecyclerActivity : BaseActivity(), View.OnClickListener {
     internal lateinit var layoutManager: LinearLayoutManager
 
     override fun layoutResId(): Int {
-        return R.layout.activity_recycler
+        return R.layout.test_activity_recycler
     }
 
     override fun initView() {

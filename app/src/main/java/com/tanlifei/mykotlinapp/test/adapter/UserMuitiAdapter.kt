@@ -9,8 +9,8 @@ class UserMuitiAdapter(data: MutableList<User>) :
     BaseMultiItemQuickAdapter<User, BaseViewHolder>(data) {
 
     init {
-        addItemType(User.TEXT, R.layout.user_item)
-        addItemType(User.IMG_TEXT, R.layout.user_img)
+        addItemType(User.TEXT, R.layout.test_user_item)
+        addItemType(User.IMG_TEXT, R.layout.test_user_img)
     }
 
     override fun convert(holder: BaseViewHolder, item: User) {

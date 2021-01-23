@@ -16,7 +16,7 @@ import com.xiaomai.environmentswitcher.EnvironmentSwitcher
 import com.xiaomai.environmentswitcher.bean.EnvironmentBean
 import com.xiaomai.environmentswitcher.bean.ModuleBean
 import com.xiaomai.environmentswitcher.listener.OnEnvironmentChangeListener
-import kotlinx.android.synthetic.main.activity_category.*
+import kotlinx.android.synthetic.main.test_activity_category.*
 import rxhttp.RxHttp
 import rxhttp.toClass
 
@@ -26,7 +26,7 @@ class CategoryActivity : ToolBarActivity(), View.OnClickListener, OnEnvironmentC
 
 
     override fun layoutResId(): Int {
-        return R.layout.activity_category
+        return R.layout.test_activity_category
     }
 
 

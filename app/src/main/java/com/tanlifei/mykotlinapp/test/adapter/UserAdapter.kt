@@ -31,7 +31,7 @@ class UserAdapter(private val userList: List<User>) :
     }
 
     private fun createUserHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.test_user_item, parent, false)
         val holder = UserViewHolder(view)
         holder.rootLayout.setOnClickListener {
             val position = holder.adapterPosition
@@ -40,7 +40,7 @@ class UserAdapter(private val userList: List<User>) :
     }
 
     private fun createEmptyHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_empty, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.test_user_empty, parent, false)
         val holder = EmptyViewHolder(view)
         holder.rootLayout.setOnClickListener {
             val position = holder.adapterPosition

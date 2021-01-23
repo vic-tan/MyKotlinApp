@@ -27,11 +27,8 @@ class SplashActivity : BaseActivity() {
         return R.layout.activity_splash
     }
 
-
-    override fun setLayoutBeforeParams() {
-        super.setLayoutBeforeParams()
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    override fun showFullScreen(): Boolean {
+        return true
     }
 
     override fun initView() {
@@ -51,11 +48,14 @@ class SplashActivity : BaseActivity() {
                     return@subscribe//使用标记跳出方法
                 }
             }
-        immersionBar {
-
-        }
     }
 
+    /**
+     * 不允许返回
+     */
+    override fun onBackPressed() {
+
+    }
 
     override fun onDestroy() {
         super.onDestroy()

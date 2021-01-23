@@ -5,14 +5,14 @@ import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
-import kotlinx.android.synthetic.main.activity_base_adapter_recycler.*
-import kotlinx.android.synthetic.main.activity_recycler.backBtn
+import kotlinx.android.synthetic.main.test_activity_base_adapter_recycler.*
+import kotlinx.android.synthetic.main.test_activity_event.backBtn
 
 class BaseAdapterRecyclerActivity : BaseActivity(), View.OnClickListener {
 
 
     override fun layoutResId(): Int {
-        return R.layout.activity_base_adapter_recycler
+        return R.layout.test_activity_base_adapter_recycler
     }
 
     override fun initView() {

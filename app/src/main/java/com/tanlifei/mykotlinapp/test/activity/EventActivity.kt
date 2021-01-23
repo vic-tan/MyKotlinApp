@@ -8,8 +8,7 @@ import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.event.MessageEvent
 import com.tanlifei.mykotlinapp.core.event.SendTestEvent
-import kotlinx.android.synthetic.main.activity_event.*
-import kotlinx.android.synthetic.main.activity_recycler.backBtn
+import kotlinx.android.synthetic.main.test_activity_event.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -18,7 +17,7 @@ class EventActivity : BaseActivity(), View.OnClickListener {
 
 
     override fun layoutResId(): Int {
-        return R.layout.activity_event
+        return R.layout.test_activity_event
     }
 
     override fun initView() {

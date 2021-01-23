@@ -8,7 +8,7 @@ import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.test.adapter.UserMuitiAdapter
 import com.tanlifei.mykotlinapp.core.model.User
-import kotlinx.android.synthetic.main.activity_recycler.backBtn
+import kotlinx.android.synthetic.main.test_activity_recycler.backBtn
 import java.util.ArrayList
 
 class MultiAdapterItemActivity : BaseActivity(), View.OnClickListener {
@@ -25,7 +25,7 @@ class MultiAdapterItemActivity : BaseActivity(), View.OnClickListener {
 
 
     override fun layoutResId(): Int {
-        return R.layout.activity_single_adpate_item
+        return R.layout.test_activity_single_adpate_item
     }
 
     override fun initView() {
