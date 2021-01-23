@@ -1,6 +1,5 @@
 package com.tanlifei.mykotlinapp.test.activity
 
-import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,7 +44,7 @@ class RecyclerActivity : BaseActivity(), View.OnClickListener {
 
 
     private fun setupRecyclerView() {
-        layoutManager = LinearLayoutManager(activity)
+        layoutManager = LinearLayoutManager(mActivity)
         recyclerView.layoutManager = layoutManager
         adapter = UserAdapter(userList)
         recyclerView.adapter = adapter

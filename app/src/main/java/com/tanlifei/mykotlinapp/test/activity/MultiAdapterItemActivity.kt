@@ -1,6 +1,5 @@
 package com.tanlifei.mykotlinapp.test.activity
 
-import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +8,6 @@ import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.test.adapter.UserMuitiAdapter
 import com.tanlifei.mykotlinapp.core.model.User
-import kotlinx.android.synthetic.main.activity_event_send.*
-import kotlinx.android.synthetic.main.activity_recycler.*
 import kotlinx.android.synthetic.main.activity_recycler.backBtn
 import java.util.ArrayList
 
@@ -38,7 +35,7 @@ class MultiAdapterItemActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setupRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = LinearLayoutManager(mActivity)
         adapter = UserMuitiAdapter(userList)
         recyclerView.adapter = adapter
     }

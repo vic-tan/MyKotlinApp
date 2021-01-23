@@ -5,7 +5,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.ActivityUtils
+import com.gyf.immersionbar.ktx.immersionBar
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.event.MessageEvent
@@ -25,14 +25,14 @@ open abstract class BaseActivity : AppCompatActivity() {
     /**
      * 当前Activity的实例。
      */
-    protected var activity: Activity? = null//?表示activity 可以为空
+    protected var mActivity: Activity? = null//?表示activity 可以为空
 
     protected lateinit var hud: KProgressHUD//加载框
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity = this
+        mActivity = this
         //事件总线注册
         EventBus.getDefault().register(this)
         hud = KProgressHUD.create(this)
@@ -42,13 +42,31 @@ open abstract class BaseActivity : AppCompatActivity() {
             .setAnimationSpeed(2)
             .setDimAmount(0.5f)
         view = View.inflate(this, R.layout.base_activity, null)
+        setLayoutBeforeParams()
         setContentView(view)
         initLayout()
         setToolbar(View.GONE)
         setOrientation()
+        initImmersionBar();
         initView()
     }
 
+    /**
+     * 在setContentView 设置前设置一些参数
+     */
+    open fun setLayoutBeforeParams() {
+    }
+
+    /**
+     * 沉浸式
+     */
+    open fun initImmersionBar() {
+        immersionBar()
+    }
+
+    /**
+     * 设置横竖屏
+     */
     open fun setOrientation() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
@@ -79,7 +97,7 @@ open abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        activity = null
+        mActivity = null
         EventBus.getDefault().unregister(this)
     }
 

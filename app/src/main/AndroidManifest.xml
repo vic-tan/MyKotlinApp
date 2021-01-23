@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,networkSecurityConfig">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.desay_svautomotive.ACTION_CAR_SETTINGS_WIDGET_STATUS_SWITCH" />
@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="SplashActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.RecyclerActivity" />
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.CategoryActivity" />
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.EventActivity" />

@@ -80,9 +80,9 @@ dependencies {
 
     //沉浸式实现
     //https://github.com/gyf-dev/ImmersionBar
-    implementation 'com.gyf.immersionbar:immersionbar:3.0.0' // 基础依赖包，必须要依赖
-    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0' // fragment快速实现（可选）
-    implementation 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'// kotlin扩展（可选）
+    api 'com.gyf.immersionbar:immersionbar:3.0.0' // 基础依赖包，必须要依赖
+    api 'com.gyf.immersionbar:immersionbar-components:3.0.0' // fragment快速实现（可选）
+    api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'// kotlin扩展（可选）
 
     //屏幕适配
     //https://github.com/JessYanCoding/AndroidAutoSize
@@ -137,12 +137,6 @@ dependencies {
     //分包库
     api 'com.android.support:multidex:1.0.3'
 
-
-
-    //在手机上显示闪退崩溃信息debug显示release不显示
-    //https://github.com/simplepeng/SpiderMan
-    debugImplementation "com.simple:spiderman:1.1.6"
-    releaseImplementation "com.simple:spiderman-no-op:1.1.4"
 
     //banner
     //https://github.com/zhpanvip/BannerViewPager

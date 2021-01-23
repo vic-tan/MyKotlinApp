@@ -1,11 +1,9 @@
 package com.tanlifei.mykotlinapp.test.activity
 
-import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.ToastUtils
 import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.test.adapter.UserSingleAdapter
@@ -36,7 +34,7 @@ class SingleAdapterItemActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setupRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = LinearLayoutManager(mActivity)
         adapter = UserSingleAdapter(R.layout.user_item, userList)
         recyclerView.adapter = adapter
     }
