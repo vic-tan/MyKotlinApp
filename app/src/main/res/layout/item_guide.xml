@@ -16,5 +16,23 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/startBtn"
+        android:layout_width="100dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="75dp"
+        android:gravity="center"
+        android:text="立即体验"
+        android:textColor="#a3F2323A"
+        android:textSize="15sp"
+        app:border_color_normal="#a3F2323A"
+        app:border_width_normal="0.5dp"
+        app:corner_radius="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:ripple="true"
+        app:ripple_color="#80F2323A" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

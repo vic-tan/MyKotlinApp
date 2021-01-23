@@ -1,9 +1,10 @@
-package com.tanlifei.mykotlinapp
+package com.tanlifei.mykotlinapp.main.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.blankj.utilcode.util.LogUtils
+import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.activity.ToolBarActivity
 import com.tanlifei.mykotlinapp.test.activity.CategoryActivity
 import kotlinx.android.synthetic.main.activity_main.*
