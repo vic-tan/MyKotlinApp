@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.blankj.utilcode.util.LogUtils
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.mykotlinapp.R
 
@@ -18,7 +17,7 @@ import com.tanlifei.mykotlinapp.R
  * @author: tanlifei
  * @date: 2021/1/23 16:23
  */
-abstract class BaseNavigatorView : LinearLayout {
+abstract class NavigatorView : LinearLayout {
     var mContext: Context
     private lateinit var view: View
     var listener: NavigatorListener? = null

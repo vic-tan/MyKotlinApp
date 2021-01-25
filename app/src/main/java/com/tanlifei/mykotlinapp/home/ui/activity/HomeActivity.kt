@@ -4,8 +4,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.activity.BaseActivity
-import com.tanlifei.mykotlinapp.core.navigator.BaseNavigatorView
-import com.tanlifei.mykotlinapp.core.navigator.FragmentNavigator
+import com.tanlifei.mykotlinapp.core.navigator.NavigatorView
+import com.tanlifei.mykotlinapp.core.navigator.NavigatorFragmentManager
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorAdapter
 import com.tanlifei.mykotlinapp.home.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_home.*
@@ -16,9 +16,9 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/1/23 16:07
  */
-open class HomeActivity : BaseActivity(), BaseNavigatorView.NavigatorListener {
+open class HomeActivity : BaseActivity(), NavigatorView.NavigatorListener {
     private var mFragments: MutableList<Fragment> = ArrayList()
-    private lateinit var mNavigator: FragmentNavigator
+    private lateinit var mNavigator: NavigatorFragmentManager
     var mCurrTabPosition: Int = 0 //当前选中tag
 
 
@@ -36,7 +36,7 @@ open class HomeActivity : BaseActivity(), BaseNavigatorView.NavigatorListener {
      * 初始化 Navigator
      */
     open fun initNavigator() {
-        mNavigator = FragmentNavigator(
+        mNavigator = NavigatorFragmentManager(
             supportFragmentManager,
             NavigatorAdapter(mFragments),
             R.id.container

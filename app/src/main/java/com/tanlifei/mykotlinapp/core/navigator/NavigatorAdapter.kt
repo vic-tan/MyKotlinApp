@@ -1,7 +1,6 @@
 package com.tanlifei.mykotlinapp.core.navigator
 
 import androidx.fragment.app.Fragment
-import java.util.*
 
 /**
  * @desc:

@@ -6,4 +6,5 @@
     <color name="com_red">#F2323A</color>
     <color name="tab_txt_press">#343434</color>
     <color name="tab_txt_normal">#9A9A9A</color>
+    <color name="base_bg">#EDEDED</color>
 </resources>

@@ -10,12 +10,11 @@ import com.blankj.utilcode.util.FragmentUtils
  * @author: tanlifei
  * @date: 2021/1/23 16:40
  */
-open class FragmentNavigator(
+open class NavigatorFragmentManager(
     fragmentManager: FragmentManager,
     adapter: INavigatorAdapter,
     @IdRes containerViewId: Int
 ) {
-
 
     private var mFragmentManager: FragmentManager = fragmentManager
 

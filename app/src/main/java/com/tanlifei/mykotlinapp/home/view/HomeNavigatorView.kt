@@ -3,14 +3,14 @@ package com.tanlifei.mykotlinapp.home.view
 import android.content.Context
 import android.util.AttributeSet
 import com.tanlifei.mykotlinapp.R
-import com.tanlifei.mykotlinapp.core.navigator.BaseNavigatorView
+import com.tanlifei.mykotlinapp.core.navigator.NavigatorView
 
 /**
  * @desc:
  * @author: tanlifei
  * @date: 2021/1/23 17:23
  */
-class NavigatorView : BaseNavigatorView {
+class HomeNavigatorView : NavigatorView {
 
 
     constructor(context: Context) : super(context) {}
@@ -47,6 +47,4 @@ class NavigatorView : BaseNavigatorView {
             R.mipmap.ic_tab_personal_press
         )
     }
-
-
 }
