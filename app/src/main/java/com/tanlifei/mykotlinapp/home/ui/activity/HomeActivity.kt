@@ -44,6 +44,8 @@ open class HomeActivity : BaseActivity(), BaseNavigatorView.NavigatorListener {
         if (navigatorTab != null) {
             navigatorTab.setNavigatorListener(this)
         }
+        mNavigator.showFragment(mCurrTabPosition) //显示点击Fargment
+        navigatorTab.select(mCurrTabPosition)
     }
 
     /**

@@ -16,13 +16,22 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment() {
 
     lateinit var mView: View
+
     companion object {
-        fun newInstance(): HomeFragment{
+        fun newInstance(): HomeFragment {
             val args = Bundle()
             val fragment = HomeFragment()
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+        txtBtn.text = "HOME"
     }
 
     override fun onCreateView(
@@ -31,7 +40,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mView = inflater.inflate(R.layout.fragment_home, container, false)
-        txtBtn.text = "HOME"
         return mView
     }
 

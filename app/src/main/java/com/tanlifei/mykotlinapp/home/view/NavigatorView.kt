@@ -1,6 +1,7 @@
 package com.tanlifei.mykotlinapp.home.view
 
 import android.content.Context
+import android.util.AttributeSet
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.navigator.BaseNavigatorView
 
@@ -12,7 +13,15 @@ import com.tanlifei.mykotlinapp.core.navigator.BaseNavigatorView
 class NavigatorView : BaseNavigatorView {
 
 
-    constructor(context: Context) : super(context) {
+    constructor(context: Context) : super(context) {}
+
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {}
+
+    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attributeSet,
+        defStyleAttr
+    ) {
     }
 
     override fun navigatorLayoutResId(): Int {

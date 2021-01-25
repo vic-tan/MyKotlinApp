@@ -26,13 +26,20 @@ class PersenalFragment : Fragment() {
         }
     }
 
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+        txtBtn.text = "PERSENAL"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mView = inflater.inflate(R.layout.fragment_home, container, false)
-        txtBtn.text = "PERSENAL"
         return mView
     }
 }

@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class ClassmateCircleFragment : Fragment() {
 
     lateinit var mView: View
+
     companion object {
         fun newInstance(): ClassmateCircleFragment {
             val args = Bundle()
@@ -25,13 +26,20 @@ class ClassmateCircleFragment : Fragment() {
         }
     }
 
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+        txtBtn.text = "CLASSMATECIRCLE"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mView = inflater.inflate(R.layout.fragment_home, container, false)
-        txtBtn.text = "CLASSMATECIRCLE"
         return mView
     }
 }

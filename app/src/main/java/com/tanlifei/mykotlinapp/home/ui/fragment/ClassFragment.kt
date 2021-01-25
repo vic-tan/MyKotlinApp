@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class ClassFragment : Fragment() {
 
     lateinit var mView: View
+
     companion object {
         fun newInstance(): ClassFragment {
             val args = Bundle()
@@ -25,13 +26,21 @@ class ClassFragment : Fragment() {
         }
     }
 
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+        txtBtn.text = "CLASS"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mView = inflater.inflate(R.layout.fragment_home, container, false)
-        txtBtn.text = "CLASS"
+
         return mView
     }
 }

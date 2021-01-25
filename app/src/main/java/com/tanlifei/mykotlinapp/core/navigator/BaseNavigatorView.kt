@@ -3,11 +3,13 @@ package com.tanlifei.mykotlinapp.core.navigator
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
+import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.blankj.utilcode.util.LogUtils
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.mykotlinapp.R
 
@@ -26,11 +28,24 @@ abstract class BaseNavigatorView : LinearLayout {
         init()
     }
 
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
+        mContext = context
+        init()
+    }
+
+    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attributeSet,
+        defStyleAttr
+    ) {
+        mContext = context
+        init()
+    }
+
     /**
      * 初始化数据
      */
     private fun init() {
-        orientation = HORIZONTAL
         view = View.inflate(context, navigatorLayoutResId(), this)
         for (i in 0 until childCount) {
             val view = getChildAt(i)
@@ -113,8 +128,6 @@ abstract class BaseNavigatorView : LinearLayout {
      * @return
      */
     abstract fun pressImageArray(): IntArray?
-
-
 
 
     interface NavigatorListener {
