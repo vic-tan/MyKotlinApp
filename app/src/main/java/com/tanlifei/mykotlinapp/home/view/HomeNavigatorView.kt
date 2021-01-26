@@ -2,8 +2,10 @@ package com.tanlifei.mykotlinapp.home.view
 
 import android.content.Context
 import android.util.AttributeSet
+import com.ruffian.library.widget.RTextView
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorView
+import kotlinx.android.synthetic.main.navigator_home_tab.view.*
 
 /**
  * @desc:
@@ -46,5 +48,12 @@ class HomeNavigatorView : NavigatorView {
             R.mipmap.ic_tab_msg_press,
             R.mipmap.ic_tab_personal_press
         )
+    }
+
+    /**
+     * 显示学习数
+     */
+    open fun getMsgBadge(): RTextView{
+        return msgBadge
     }
 }

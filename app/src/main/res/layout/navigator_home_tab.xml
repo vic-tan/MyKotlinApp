@@ -63,7 +63,7 @@
                 android:tag="3" />
 
             <com.ruffian.library.widget.RTextView
-                android:id="@+id/msg_badge"
+                android:id="@+id/msgBadge"
                 android:layout_width="6dp"
                 android:layout_height="6dp"
                 android:layout_gravity="center_horizontal"

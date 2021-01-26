@@ -37,6 +37,8 @@
         <activity
             android:name=".home.ui.activity.HomeActivity"
             android:label="首页" />
+
+
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.RecyclerActivity" />
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.CategoryActivity" />
         <activity android:name="com.tanlifei.mykotlinapp.test.activity.EventActivity" />
