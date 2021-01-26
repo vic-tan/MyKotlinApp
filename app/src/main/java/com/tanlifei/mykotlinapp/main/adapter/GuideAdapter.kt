@@ -13,6 +13,7 @@ import com.ruffian.library.widget.RTextView
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.config.Const
 import com.tanlifei.mykotlinapp.home.ui.activity.HomeActivity
+import com.tanlifei.mykotlinapp.main.ui.LoginAtivity
 import com.tanlifei.mykotlinapp.test.activity.TestActivity
 import com.youth.banner.adapter.BannerAdapter
 
@@ -45,7 +46,7 @@ open class GuideAdapter(activity: Activity, datas: MutableList<Int>) :
         holder.startBtn.visibility = if (position == mDatas.size - 1) View.VISIBLE else View.GONE
         holder.startBtn.setOnClickListener {
             SPUtils.getInstance().put(Const.SPKey.GUIDE, false)
-            ActivityUtils.startActivity(HomeActivity::class.java)
+            ActivityUtils.startActivity(LoginAtivity::class.java)
             ActivityUtils.finishActivity(mActivity)
         }
     }

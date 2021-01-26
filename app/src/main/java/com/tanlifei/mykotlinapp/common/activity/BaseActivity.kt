@@ -8,6 +8,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.gyf.immersionbar.ktx.immersionBar
+import com.hjq.bar.TitleBar
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.event.MessageEvent
@@ -23,6 +24,8 @@ import org.greenrobot.eventbus.ThreadMode
 open abstract class BaseActivity : AppCompatActivity() {
 
     protected lateinit var view: View
+    protected lateinit var titleBar: TitleBar
+
 
     /**
      * 当前Activity的实例。
@@ -36,6 +39,7 @@ open abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mActivity = this
         view = View.inflate(this, R.layout.activity_base, null)
+        titleBar = view.findViewById(R.id.toolbar)
         hud = KProgressHUD.create(this)
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
             .setLabel("正在加载...")

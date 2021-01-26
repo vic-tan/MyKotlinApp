@@ -1,5 +1,6 @@
 package com.tanlifei.mykotlinapp.common.activity
 
+import android.os.Bundle
 import android.view.View
 
 /**
@@ -8,14 +9,9 @@ import android.view.View
 open abstract class ToolBarActivity : BaseActivity() {
 
 
-    override fun layoutResId(): Int {
-        return -1
-    }
-
-    override fun initView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setToolbar(View.VISIBLE)
     }
-
-
 
 }

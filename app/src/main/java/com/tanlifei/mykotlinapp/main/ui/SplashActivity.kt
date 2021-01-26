@@ -41,7 +41,7 @@ class SplashActivity : BaseActivity() {
                     if (guide) {
                         ActivityUtils.startActivity(GuideActivity::class.java)
                     } else {
-                        ActivityUtils.startActivity(HomeActivity::class.java)
+                        ActivityUtils.startActivity(LoginAtivity::class.java)
                     }
                     subscribe.dispose()//取消订阅
                     ActivityUtils.finishActivity(this)

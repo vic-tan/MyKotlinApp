@@ -22,9 +22,10 @@ class TestActivity : ToolBarActivity(), View.OnClickListener {
         return R.layout.test_activity_main
     }
 
-    override fun setToolbar(visibility: Int) {
-        super.setToolbar(View.GONE)
+    override fun initView() {
+        TODO("Not yet implemented")
     }
+
 
 
     override fun onClick(v: View?) {
