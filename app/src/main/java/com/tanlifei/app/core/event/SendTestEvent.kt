@@ -1,6 +1,8 @@
 package com.tanlifei.app.core.event
 
-class SendTestEvent : MessageEvent() {
+import com.common.base.event.BaseEvent
+
+class SendTestEvent : BaseEvent() {
     var name: String? = ""
 
     var isLogin = false

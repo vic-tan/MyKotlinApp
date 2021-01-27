@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.tanlifei.app.core.event
+package com.common.base.event
 
 /**
  * EventBus的消息基类。
@@ -23,4 +23,4 @@ package com.tanlifei.app.core.event
  * @author tanlifei
  * @since 20/7/15
  */
-open class MessageEvent
+open class BaseEvent

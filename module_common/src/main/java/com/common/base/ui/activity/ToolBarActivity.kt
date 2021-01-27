@@ -1,4 +1,4 @@
-package com.tanlifei.app.common.activity
+package com.common.base.ui.activity
 
 import android.os.Bundle
 import android.view.View

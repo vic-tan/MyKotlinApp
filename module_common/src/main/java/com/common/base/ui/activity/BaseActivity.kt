@@ -1,4 +1,4 @@
-package com.tanlifei.app.common.activity
+package com.common.base.ui.activity
 
 import android.app.Activity
 import android.content.pm.ActivityInfo
@@ -8,11 +8,11 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.common.base.event.BaseEvent
+import com.common.databinding.ActivityBaseBinding
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.kaopiz.kprogresshud.KProgressHUD
-import com.tanlifei.app.core.event.MessageEvent
-import com.tanlifei.app.databinding.ActivityBaseBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -134,7 +134,7 @@ open abstract class BaseActivity<T : ViewBinding>  : AppCompatActivity() {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    open fun onMessageEvent(event: MessageEvent) {
+    open fun onMessageEvent(event: BaseEvent) {
 
     }
 

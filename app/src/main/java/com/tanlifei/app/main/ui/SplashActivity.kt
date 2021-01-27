@@ -4,8 +4,8 @@ import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
+import com.common.base.ui.activity.BaseActivity
 import com.tanlifei.app.R
-import com.tanlifei.app.common.activity.BaseActivity
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
