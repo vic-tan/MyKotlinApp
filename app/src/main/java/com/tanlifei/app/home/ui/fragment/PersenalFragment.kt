@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.common.base.ui.fragment.BaseFragment
+import com.common.base.ui.fragment.BaseLazyFragment
 import com.tanlifei.app.databinding.FragmentHomeBinding
 
 /**
@@ -12,10 +14,8 @@ import com.tanlifei.app.databinding.FragmentHomeBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class PersenalFragment : Fragment() {
+class PersenalFragment : BaseLazyFragment<FragmentHomeBinding>() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
 
     companion object {
         fun newInstance(): PersenalFragment {
@@ -26,25 +26,18 @@ class PersenalFragment : Fragment() {
         }
     }
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun createBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        attachToRoot: Boolean
+    ): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(inflater, container, attachToRoot)
+    }
+
+
+    override fun onFirstVisibleToUser() {
         binding.txtBtn.text = "PERSENAL"
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
