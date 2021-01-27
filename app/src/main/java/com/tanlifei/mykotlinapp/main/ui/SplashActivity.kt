@@ -1,5 +1,6 @@
 package com.tanlifei.mykotlinapp.main.ui
 
+import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
@@ -17,9 +18,8 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/22 16:26
  */
-class SplashActivity : BaseActivity() {
+class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
-    private lateinit var binding: ActivitySplashBinding
     var count: Int = 3
     lateinit var subscribe: Disposable//保存订阅者
 
@@ -27,9 +27,11 @@ class SplashActivity : BaseActivity() {
         return R.layout.activity_splash
     }
 
-    override fun bindView() {
-        binding = ActivitySplashBinding.bind(containerView)
+    override fun createBinding(layoutView: View): ActivitySplashBinding {
+       return ActivitySplashBinding.bind(layoutView)
     }
+
+
 
     override fun showFullScreen(): Boolean {
         return true
@@ -67,4 +69,6 @@ class SplashActivity : BaseActivity() {
             subscribe.dispose()//取消订阅
         }
     }
+
+
 }

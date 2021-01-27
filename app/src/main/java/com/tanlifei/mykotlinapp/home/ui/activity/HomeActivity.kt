@@ -10,6 +10,7 @@ import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorAdapter
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorFragmentManager
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorView
+import com.tanlifei.mykotlinapp.databinding.ActivityGuideBinding
 import com.tanlifei.mykotlinapp.databinding.ActivityHomeBinding
 import com.tanlifei.mykotlinapp.home.ui.fragment.*
 import java.util.*
@@ -20,9 +21,8 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/1/23 16:07
  */
-open class HomeActivity : BaseActivity(), NavigatorView.NavigatorListener {
+open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.NavigatorListener {
 
-    private lateinit var binding: ActivityHomeBinding
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mNavigator: NavigatorFragmentManager
     var mCurrTabPosition: Int = 0 //当前选中tag
@@ -32,9 +32,10 @@ open class HomeActivity : BaseActivity(), NavigatorView.NavigatorListener {
         return R.layout.activity_home
     }
 
-    override fun bindView() {
-        binding = ActivityHomeBinding.bind(containerView)
+    override fun createBinding(layoutView: View): ActivityHomeBinding {
+        return ActivityHomeBinding.bind(layoutView)
     }
+
 
     override fun initView() {
         bindFragments()

@@ -1,9 +1,9 @@
 package com.tanlifei.mykotlinapp.main.ui
 
+import android.view.View
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.databinding.ActivityGuideBinding
-import com.tanlifei.mykotlinapp.databinding.ActivitySplashBinding
 import com.tanlifei.mykotlinapp.main.adapter.GuideAdapter
 import com.youth.banner.indicator.CircleIndicator
 
@@ -13,16 +13,15 @@ import com.youth.banner.indicator.CircleIndicator
  * @author: tanlifei
  * @date: 2021/1/22 16:26
  */
-class GuideActivity : BaseActivity() {
+class GuideActivity : BaseActivity<ActivityGuideBinding>() {
 
-    private lateinit var binding: ActivityGuideBinding
     var guideList: MutableList<Int> = ArrayList()
     override fun layoutResId(): Int {
         return R.layout.activity_guide
     }
 
-    override fun bindView() {
-        binding = ActivityGuideBinding.bind(containerView)
+    override fun createBinding(layoutView: View): ActivityGuideBinding {
+        return ActivityGuideBinding.bind(layoutView)
     }
 
 
