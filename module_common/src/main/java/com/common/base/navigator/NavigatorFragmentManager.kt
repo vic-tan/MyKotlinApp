@@ -1,8 +1,9 @@
-package com.tanlifei.app.core.navigator
+package com.common.base.navigator
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
 import com.blankj.utilcode.util.FragmentUtils
+import com.common.base.navigator.INavigatorAdapter
 
 /**
  * @desc:

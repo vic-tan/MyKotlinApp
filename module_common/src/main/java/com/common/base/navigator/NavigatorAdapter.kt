@@ -1,4 +1,4 @@
-package com.tanlifei.app.core.navigator
+package com.common.base.navigator
 
 import androidx.fragment.app.Fragment
 

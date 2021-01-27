@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="com_red">#F2323A</color>
-    <color name="com_80F2323A">#80F2323A</color>
+    <color name="theme_color">#F2323A</color>
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryDark">@color/white</color>
+    <color name="colorAccent">@color/theme_color</color>
+
+    <color name="base_layout_bg">#EDEDED</color>
+
+    <color name="com_C0F2323A">#C0F2323A</color>
     <color name="tab_txt_press">#343434</color>
     <color name="tab_txt_normal">#9A9A9A</color>
-    <color name="base_bg">#EDEDED</color>
+
     <color name="color_333333">#333333</color>
     <color name="color_F5F6FA">#F5F6FA</color>
     <color name="color_999999">#999999</color>

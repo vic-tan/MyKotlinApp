@@ -1,4 +1,4 @@
-package com.tanlifei.app.core.navigator
+package com.common.base.navigator
 
 import android.annotation.TargetApi
 import android.content.Context
@@ -10,8 +10,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.viewbinding.ViewBinding
+import com.common.R
 import com.ruffian.library.widget.RTextView
-import com.tanlifei.app.R
 
 /**
  * @desc:

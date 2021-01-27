@@ -7,9 +7,9 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseActivity
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
-import com.tanlifei.app.core.navigator.NavigatorAdapter
-import com.tanlifei.app.core.navigator.NavigatorFragmentManager
-import com.tanlifei.app.core.navigator.NavigatorView
+import com.common.base.navigator.NavigatorAdapter
+import com.common.base.navigator.NavigatorFragmentManager
+import com.common.base.navigator.NavigatorView
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.ui.fragment.*
 import java.util.*
