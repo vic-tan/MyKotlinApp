@@ -4,11 +4,13 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.viewbinding.ViewBinding
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.mykotlinapp.R
 
@@ -17,9 +19,9 @@ import com.tanlifei.mykotlinapp.R
  * @author: tanlifei
  * @date: 2021/1/23 16:23
  */
-abstract class NavigatorView : LinearLayout {
+abstract class NavigatorView<T : ViewBinding> : LinearLayout {
     var mContext: Context
-    private lateinit var view: View
+    protected lateinit var binding: T
     var listener: NavigatorListener? = null
 
     constructor(context: Context) : super(context) {
@@ -45,7 +47,7 @@ abstract class NavigatorView : LinearLayout {
      * 初始化数据
      */
     private fun init() {
-        view = View.inflate(context, navigatorLayoutResId(), this)
+        binding = createBinding()
         for (i in 0 until childCount) {
             val view = getChildAt(i)
             view.setOnClickListener { v: View? ->
@@ -53,6 +55,8 @@ abstract class NavigatorView : LinearLayout {
             }
         }
     }
+
+    abstract fun createBinding(): T
 
     open fun select(position: Int) {
         for (i in 0 until childCount) {
@@ -107,12 +111,6 @@ abstract class NavigatorView : LinearLayout {
         }
     }
 
-    /**
-     * tab 布局
-     *
-     * @return
-     */
-    abstract fun navigatorLayoutResId(): Int
 
     /**
      * 平常显示的图片

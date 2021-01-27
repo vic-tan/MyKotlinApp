@@ -7,15 +7,16 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.kaopiz.kprogresshud.KProgressHUD
-import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.event.MessageEvent
-import kotlinx.android.synthetic.main.activity_base.*
+import com.tanlifei.mykotlinapp.databinding.ActivityBaseBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+
 
 /**
  * 这是activity基类
@@ -23,7 +24,8 @@ import org.greenrobot.eventbus.ThreadMode
  */
 open abstract class BaseActivity : AppCompatActivity() {
 
-    protected lateinit var view: View
+    protected lateinit var baseBinding: ActivityBaseBinding
+    protected lateinit var containerView: View;
     protected lateinit var titleBar: TitleBar
 
 
@@ -38,8 +40,8 @@ open abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mActivity = this
-        view = View.inflate(this, R.layout.activity_base, null)
-        titleBar = view.findViewById(R.id.toolbar)
+        baseBinding = ActivityBaseBinding.inflate(layoutInflater)
+        titleBar = baseBinding.toolbar
         hud = KProgressHUD.create(this)
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
             .setLabel("正在加载...")
@@ -60,7 +62,7 @@ open abstract class BaseActivity : AppCompatActivity() {
         if (showFullScreen()) {
             setFullScreen()
         }
-        setContentView(view)
+        setContentView(baseBinding.root)
         initLayout()
         setToolbar(View.GONE)
         setOrientation()
@@ -93,7 +95,7 @@ open abstract class BaseActivity : AppCompatActivity() {
      */
 
     open fun setToolbar(visibility: Int) {
-        toolbar.visibility = visibility
+        titleBar.visibility = visibility
     }
 
 
@@ -124,10 +126,12 @@ open abstract class BaseActivity : AppCompatActivity() {
      */
     private fun initLayout() {
         if (layoutResId() != -1) {
-            val containerView: View = View.inflate(this, layoutResId(), null)
-            container.addView(containerView)
+            containerView = View.inflate(this, layoutResId(), null)
+            baseBinding.container.addView(containerView)
+            bindView()
         }
     }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onMessageEvent(event: MessageEvent) {
@@ -148,6 +152,11 @@ open abstract class BaseActivity : AppCompatActivity() {
      * 设置布局文件
      */
     abstract fun layoutResId(): Int
+
+    /**
+     * 绑定View
+     */
+    abstract fun bindView()
 
     /**
      * 初始化View

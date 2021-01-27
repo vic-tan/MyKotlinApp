@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tanlifei.mykotlinapp.R
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.tanlifei.mykotlinapp.databinding.FragmentHomeBinding
 
 /**
  * @desc:
@@ -15,7 +14,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class StudyFragment : Fragment() {
 
-    lateinit var mView: View
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         fun newInstance(): StudyFragment {
@@ -31,7 +31,7 @@ class StudyFragment : Fragment() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        txtBtn.text = "STUDY"
+        binding.txtBtn.text = "STUDY"
     }
 
     override fun onCreateView(
@@ -39,7 +39,12 @@ class StudyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mView = inflater.inflate(R.layout.fragment_home, container, false)
-        return mView
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

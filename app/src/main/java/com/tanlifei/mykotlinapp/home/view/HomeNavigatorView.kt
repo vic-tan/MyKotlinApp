@@ -2,33 +2,30 @@ package com.tanlifei.mykotlinapp.home.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorView
-import kotlinx.android.synthetic.main.navigator_home_tab.view.*
+import com.tanlifei.mykotlinapp.databinding.NavigatorHomeTabBinding
 
 /**
  * @desc:
  * @author: tanlifei
  * @date: 2021/1/23 17:23
  */
-class HomeNavigatorView : NavigatorView {
+class HomeNavigatorView : NavigatorView<NavigatorHomeTabBinding> {
 
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {}
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
 
     constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(
         context,
         attributeSet,
         defStyleAttr
-    ) {
-    }
+    )
 
-    override fun navigatorLayoutResId(): Int {
-        return R.layout.navigator_home_tab
-    }
 
     override fun normalImageArray(): IntArray? {
         return intArrayOf(
@@ -53,7 +50,12 @@ class HomeNavigatorView : NavigatorView {
     /**
      * 显示学习数
      */
-    open fun getMsgBadge(): RTextView{
-        return msgBadge
+    open fun getMsgBadge(): RTextView {
+        return binding.msgBadge
+    }
+
+    override fun createBinding(): NavigatorHomeTabBinding {
+        var view = View.inflate(context, R.layout.navigator_home_tab, this)
+        return NavigatorHomeTabBinding.bind(view)
     }
 }

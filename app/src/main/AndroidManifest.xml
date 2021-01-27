@@ -28,9 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".test.activity.TestActivity"
-            android:label="主界面" />
+
         <activity
             android:name=".main.ui.GuideActivity"
             android:label="引导页" />
@@ -41,14 +39,6 @@
             android:name=".main.ui.LoginAtivity"
             android:label="登录" />
 
-
-        <activity android:name="com.tanlifei.mykotlinapp.test.activity.RecyclerActivity" />
-        <activity android:name="com.tanlifei.mykotlinapp.test.activity.CategoryActivity" />
-        <activity android:name="com.tanlifei.mykotlinapp.test.activity.EventActivity" />
-        <activity android:name="com.tanlifei.mykotlinapp.test.activity.EventSendActivity" />
-        <activity android:name="com.tanlifei.mykotlinapp.test.activity.BaseAdapterRecyclerActivity" />
-        <activity android:name="com.tanlifei.mykotlinapp.test.activity.SingleAdapterItemActivity" />
-        <activity android:name="com.tanlifei.mykotlinapp.test.activity.MultiAdapterItemActivity" />
         <!-- 今日头条适配-->
         <meta-data
             android:name="design_width_in_px"

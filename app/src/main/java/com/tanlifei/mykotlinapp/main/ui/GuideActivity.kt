@@ -2,9 +2,10 @@ package com.tanlifei.mykotlinapp.main.ui
 
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.activity.BaseActivity
+import com.tanlifei.mykotlinapp.databinding.ActivityGuideBinding
+import com.tanlifei.mykotlinapp.databinding.ActivitySplashBinding
 import com.tanlifei.mykotlinapp.main.adapter.GuideAdapter
 import com.youth.banner.indicator.CircleIndicator
-import kotlinx.android.synthetic.main.activity_guide.*
 
 
 /**
@@ -14,10 +15,14 @@ import kotlinx.android.synthetic.main.activity_guide.*
  */
 class GuideActivity : BaseActivity() {
 
-
+    private lateinit var binding: ActivityGuideBinding
     var guideList: MutableList<Int> = ArrayList()
     override fun layoutResId(): Int {
         return R.layout.activity_guide
+    }
+
+    override fun bindView() {
+        binding = ActivityGuideBinding.bind(containerView)
     }
 
 
@@ -28,9 +33,9 @@ class GuideActivity : BaseActivity() {
 
     override fun initView() {
         addGuideData()
-        banner.adapter = GuideAdapter(this, guideList)
-        banner.indicator = CircleIndicator(this)
-        banner.isAutoLoop(false)
+        binding.banner.adapter = GuideAdapter(this, guideList)
+        binding.banner.indicator = CircleIndicator(this)
+        binding.banner.isAutoLoop(false)
     }
 
     private fun addGuideData() {

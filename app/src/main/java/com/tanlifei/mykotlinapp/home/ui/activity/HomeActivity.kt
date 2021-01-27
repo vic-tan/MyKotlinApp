@@ -10,8 +10,8 @@ import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorAdapter
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorFragmentManager
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorView
+import com.tanlifei.mykotlinapp.databinding.ActivityHomeBinding
 import com.tanlifei.mykotlinapp.home.ui.fragment.*
-import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 
 
@@ -21,6 +21,8 @@ import java.util.*
  * @date: 2021/1/23 16:07
  */
 open class HomeActivity : BaseActivity(), NavigatorView.NavigatorListener {
+
+    private lateinit var binding: ActivityHomeBinding
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mNavigator: NavigatorFragmentManager
     var mCurrTabPosition: Int = 0 //当前选中tag
@@ -28,6 +30,10 @@ open class HomeActivity : BaseActivity(), NavigatorView.NavigatorListener {
 
     override fun layoutResId(): Int {
         return R.layout.activity_home
+    }
+
+    override fun bindView() {
+        binding = ActivityHomeBinding.bind(containerView)
     }
 
     override fun initView() {
@@ -46,8 +52,8 @@ open class HomeActivity : BaseActivity(), NavigatorView.NavigatorListener {
             R.id.container
         )
         defaultSelectNavTabPosition()
-        if (navigatorTab != null) {
-            navigatorTab.setNavigatorListener(this)
+        if (binding.navigatorTab != null) {
+            binding.navigatorTab.setNavigatorListener(this)
         }
     }
 
@@ -56,8 +62,8 @@ open class HomeActivity : BaseActivity(), NavigatorView.NavigatorListener {
      */
     private fun defaultSelectNavTabPosition() {
         mNavigator.showFragment(mCurrTabPosition) //显示点击Fargment
-        navigatorTab.select(mCurrTabPosition)
-        navigatorTab.getMsgBadge().visibility = View.VISIBLE
+        binding.navigatorTab.select(mCurrTabPosition)
+        binding.navigatorTab.getMsgBadge().visibility = View.VISIBLE
     }
 
     /**
@@ -73,7 +79,7 @@ open class HomeActivity : BaseActivity(), NavigatorView.NavigatorListener {
 
     override fun onNavigatorItemClick(position: Int, view: View?) {
         mCurrTabPosition = position
-        navigatorTab.select(mCurrTabPosition)
+        binding.navigatorTab.select(mCurrTabPosition)
         mNavigator.showFragment(mCurrTabPosition) //显示点击Fargment
 
     }

@@ -6,8 +6,7 @@ import com.blankj.utilcode.util.SPUtils
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.common.activity.BaseActivity
 import com.tanlifei.mykotlinapp.common.config.Const
-import com.tanlifei.mykotlinapp.home.ui.activity.HomeActivity
-import com.tanlifei.mykotlinapp.test.activity.TestActivity
+import com.tanlifei.mykotlinapp.databinding.ActivitySplashBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -20,11 +19,16 @@ import java.util.concurrent.TimeUnit
  */
 class SplashActivity : BaseActivity() {
 
+    private lateinit var binding: ActivitySplashBinding
     var count: Int = 3
     lateinit var subscribe: Disposable//保存订阅者
 
     override fun layoutResId(): Int {
         return R.layout.activity_splash
+    }
+
+    override fun bindView() {
+        binding = ActivitySplashBinding.bind(containerView)
     }
 
     override fun showFullScreen(): Boolean {
