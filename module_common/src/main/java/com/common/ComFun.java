@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.tanlifei.app.common.config;
+package com.common;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

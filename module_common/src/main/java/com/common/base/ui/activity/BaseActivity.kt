@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.ThreadMode
  * 这是activity基类
  * open 表示该类可以被继承 ,kotlin中默认类是不可以被继承
  */
-open abstract class BaseActivity<T : ViewBinding>  : AppCompatActivity() {
+open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     private lateinit var baseBinding: ActivityBaseBinding
     protected lateinit var binding: T
@@ -32,7 +32,7 @@ open abstract class BaseActivity<T : ViewBinding>  : AppCompatActivity() {
     /**
      * 当前Activity的实例。
      */
-    private var mActivity: Activity? = null//?表示activity 可以为空
+    protected var mActivity: Activity? = null
 
     private lateinit var hud: KProgressHUD//加载框
 
@@ -157,7 +157,6 @@ open abstract class BaseActivity<T : ViewBinding>  : AppCompatActivity() {
      * 绑定binding
      */
     abstract fun createBinding(layoutView: View): T
-
 
 
     /**

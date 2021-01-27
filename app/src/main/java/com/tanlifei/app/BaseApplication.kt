@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
 import com.hjq.toast.ToastUtils
-import com.tanlifei.app.common.config.ComFun
+import com.common.ComFun
 import com.tanlifei.app.core.http.TokenInterceptor
 import okhttp3.OkHttpClient
 import org.litepal.LitePal
