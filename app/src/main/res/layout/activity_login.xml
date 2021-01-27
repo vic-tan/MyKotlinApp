@@ -38,7 +38,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logo" />
 
-        <com.tanlifei.mykotlinapp.common.widget.ClearEditText
+        <com.common.widget.ClearEditText
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -72,7 +72,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/app_title" />
 
-        <com.tanlifei.mykotlinapp.common.widget.ClearEditText
+        <com.common.widget.ClearEditText
             android:id="@+id/code"
             android:layout_width="match_parent"
             android:layout_height="50dp"

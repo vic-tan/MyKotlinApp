@@ -6,7 +6,7 @@ android {
     compileSdkVersion compile_sdk_version as int
 
     defaultConfig {
-        applicationId "com.tanlifei.mykotlinapp"
+        applicationId "com.tanlifei.app"
         minSdkVersion min_sdk_version as int
         targetSdkVersion target_sdk_version as int
         versionCode version_code as int
