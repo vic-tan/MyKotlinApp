@@ -26,7 +26,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     private lateinit var baseBinding: ActivityBaseBinding
     protected lateinit var binding: T
-    private lateinit var titleBar: TitleBar
+    protected lateinit var titleBar: TitleBar
 
 
     /**
