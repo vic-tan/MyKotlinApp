@@ -47,7 +47,8 @@ abstract class NavigatorView<T : ViewBinding> : LinearLayout {
      * 初始化数据
      */
     private fun init() {
-        binding = createBinding()
+        var view = View.inflate(context, navigatorLayoutResId(), this)
+        binding = createBinding(view)
         for (i in 0 until childCount) {
             val view = getChildAt(i)
             view.setOnClickListener { v: View? ->
@@ -56,7 +57,6 @@ abstract class NavigatorView<T : ViewBinding> : LinearLayout {
         }
     }
 
-    abstract fun createBinding(): T
 
     open fun select(position: Int) {
         for (i in 0 until childCount) {
@@ -111,6 +111,17 @@ abstract class NavigatorView<T : ViewBinding> : LinearLayout {
         }
     }
 
+    /**
+     * tab 布局
+     *
+     * @return
+     */
+    abstract fun navigatorLayoutResId(): Int
+
+    /**
+     * 绑定binding
+     */
+    abstract fun createBinding(layoutView: View): T
 
     /**
      * 平常显示的图片

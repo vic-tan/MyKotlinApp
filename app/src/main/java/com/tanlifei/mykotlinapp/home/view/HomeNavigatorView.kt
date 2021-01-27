@@ -2,7 +2,10 @@ package com.tanlifei.mykotlinapp.home.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.NonNull
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.mykotlinapp.R
 import com.tanlifei.mykotlinapp.core.navigator.NavigatorView
@@ -26,6 +29,13 @@ class HomeNavigatorView : NavigatorView<NavigatorHomeTabBinding> {
         defStyleAttr
     )
 
+    override fun navigatorLayoutResId(): Int {
+        return R.layout.navigator_home_tab
+    }
+
+    override fun createBinding(layoutView: View): NavigatorHomeTabBinding {
+        return NavigatorHomeTabBinding.bind(layoutView)
+    }
 
     override fun normalImageArray(): IntArray? {
         return intArrayOf(
@@ -54,8 +64,5 @@ class HomeNavigatorView : NavigatorView<NavigatorHomeTabBinding> {
         return binding.msgBadge
     }
 
-    override fun createBinding(): NavigatorHomeTabBinding {
-        var view = View.inflate(context, R.layout.navigator_home_tab, this)
-        return NavigatorHomeTabBinding.bind(view)
-    }
+
 }
