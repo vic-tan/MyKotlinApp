@@ -8,7 +8,10 @@
     <com.hjq.bar.TitleBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:paddingTop="30dp"
+        app:titleSize="21sp"
+        app:titleColor="@color/color_333333"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
