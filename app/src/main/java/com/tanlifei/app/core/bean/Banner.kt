@@ -1,6 +1,8 @@
-package com.tanlifei.app.core.model
+package com.tanlifei.app.core.bean
 
-class Banner : Model(){
+import com.tanlifei.app.common.bean.BaseLitePalBean
+
+class Banner : BaseLitePalBean(){
 //    {
 //        "desc":"享学~",
 //        "id":29,

@@ -1,8 +1,9 @@
-package com.tanlifei.app.core.model
+package com.tanlifei.app.core.bean
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.tanlifei.app.common.bean.BaseLitePalBean
 
-class User constructor() : Model(), MultiItemEntity {
+class UserTest constructor() : BaseLitePalBean(), MultiItemEntity {
 
     override val modelId: Long
         get() = userId

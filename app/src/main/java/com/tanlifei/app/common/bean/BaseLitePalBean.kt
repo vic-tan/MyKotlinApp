@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tanlifei.app.core.model
+package com.tanlifei.app.common.bean
 
 import org.litepal.crud.LitePalSupport
 
@@ -25,7 +25,7 @@ import org.litepal.crud.LitePalSupport
  * @author tanlifei
  * @since 2020/7/20
  */
-abstract class Model : LitePalSupport() {
+abstract class BaseLitePalBean : LitePalSupport() {
 
     /**
      * 获取当前实体类的实体数据id。比如User类就获取userId，Comment类就获取commentId。

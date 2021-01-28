@@ -1,9 +1,12 @@
 package com.tanlifei.app.main.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
 import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.customspan.CustomClickableSpan
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
@@ -16,14 +19,19 @@ import com.common.utils.ResUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
+import com.tanlifei.app.main.model.LoginViewModel
+import com.tanlifei.app.main.model.LoginViewModel.Companion.AGREEMENT
+import com.tanlifei.app.main.model.LoginViewModel.Companion.REGISTER_AGREEMENT
 
 /**
  * @desc:
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>() {
+open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
+    LoginViewModel.OnIntervalListener {
 
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun layoutResId(): Int {
         return R.layout.activity_login
@@ -37,6 +45,11 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>() {
     override fun initView() {
         setProtocolTxt()
         binding.login.setOnClickListener { ActivityUtils.startActivity(HomeActivity::class.java) }
+        loginViewModel = ViewModelProvider(this, NewInstanceFactory()).get(
+            LoginViewModel::class.java
+        )
+        loginViewModel.setOnIntervalListener(this)
+        binding.codeBtn.setOnClickListener { loginViewModel.startInterval() }
     }
 
     private fun setProtocolTxt() {
@@ -83,7 +96,22 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>() {
         return intArrayOf(R.id.phone, R.id.code)
     }
 
-    companion object {
-        const val REGISTER_AGREEMENT = "https://www.9bao.tv/mod/static/registerAgreementNew.html"
-        const val AGREEMENT = "https://www.9bao.tv/webview/app/shop/agreement?active=2" }
+
+    override fun onIntervalStart() {
+        binding.codeBtn.isClickable = false //在发送数据的时候设置为不能点击
+        binding.codeBtn.setTextColor(ResUtils.getColor(R.color.color_999999))
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onIntervalChanged(second: Long) {
+        binding.codeBtn.text = "${second}s"
+    }
+
+    override fun onIntervalComplete() {
+        binding.codeBtn.isClickable = true
+        binding.codeBtn.setTextColor(ResUtils.getColor(R.color.theme_color))
+        binding.codeBtn.text = "点击获取"
+    }
 }
+
+

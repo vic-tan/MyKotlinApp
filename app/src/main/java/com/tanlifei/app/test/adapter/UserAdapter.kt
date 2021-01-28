@@ -7,9 +7,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tanlifei.app.R
-import com.tanlifei.app.core.model.User
+import com.tanlifei.app.core.bean.UserTest
 
-class UserAdapter(private val userList: List<User>) :
+class UserAdapter(private val userList: List<UserTest>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
