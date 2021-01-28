@@ -1,5 +1,7 @@
 package com.tanlifei.app.main.model
 
+import com.blankj.utilcode.util.RegexUtils
+import com.hjq.toast.ToastUtils
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -37,6 +39,27 @@ class LoginViewModel : BaseViewModel() {
                     intervalListener?.onIntervalComplete() //回复原来初始状态
                 }
             })
+    }
+
+    /**
+     * 校验表单信息
+     */
+    open fun regexForm(phone: String, code: String): Boolean {
+        if (phone.isEmpty()) {
+            ToastUtils.show("请输入手机号")
+            return false
+        } else if (!RegexUtils.isMobileSimple(phone)) {
+            ToastUtils.show("请输入正确的手机号码")
+            return false
+        }
+        if (code.isEmpty()) {
+            ToastUtils.show("请输入验证码")
+            return false
+        } else if (code.length < 4) {
+            ToastUtils.show("请输入4位验证码")
+            return false
+        }
+        return true
     }
 
     interface OnIntervalListener {

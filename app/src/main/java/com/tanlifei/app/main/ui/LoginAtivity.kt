@@ -17,6 +17,7 @@ import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.utils.ResUtils
 import com.tanlifei.app.R
+import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.model.LoginViewModel
@@ -49,7 +50,13 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
             LoginViewModel::class.java
         )
         loginViewModel.setOnIntervalListener(this)
-        binding.codeBtn.setOnClickListener { loginViewModel.startInterval() }
+        binding.codeBtn.setOnClickListener {
+            if (loginViewModel.regexForm(
+                    binding.phone.toString(),
+                    binding.code.toString()
+                )
+            ) loginViewModel.startInterval()
+        }
     }
 
     private fun setProtocolTxt() {
@@ -111,6 +118,10 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         binding.codeBtn.isClickable = true
         binding.codeBtn.setTextColor(ResUtils.getColor(R.color.theme_color))
         binding.codeBtn.text = "点击获取"
+    }
+
+    override fun onBackPressed() {
+        AppUtils.exitApp()
     }
 }
 

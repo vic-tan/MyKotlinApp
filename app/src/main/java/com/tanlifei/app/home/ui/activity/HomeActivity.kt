@@ -10,6 +10,7 @@ import com.tanlifei.app.R
 import com.common.base.navigator.NavigatorAdapter
 import com.common.base.navigator.NavigatorFragmentManager
 import com.common.base.navigator.NavigatorView
+import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.ui.fragment.*
 import java.util.*
@@ -25,7 +26,6 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mNavigator: NavigatorFragmentManager
     var mCurrTabPosition: Int = 0 //当前选中tag
-    private var isExit = false
 
     override fun layoutResId(): Int {
         return R.layout.activity_home
@@ -85,28 +85,8 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
     }
 
     override fun onBackPressed() {
-        exitApp()
+        AppUtils.exitApp()
     }
 
-    /**
-     * 退出App
-     */
-    protected open fun exitApp() {
-        var tExit: Timer? = null
-        if (!isExit) {
-            isExit = true // 准备退出
-            ToastUtils.show(getString(R.string.app_exit))
-            tExit = Timer()
-            tExit.schedule(object : TimerTask() {
-                override fun run() {
-                    isExit = false // 取消退出
-                }
-            }, 2000) // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
-        } else {
-            //finish所有页面和kill app
-            ToastUtils.cancel()
-            ActivityUtils.finishAllActivities()
-        }
-    }
 
 }
