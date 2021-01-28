@@ -10,7 +10,7 @@ import cn.iwgang.simplifyspan.other.OnClickableSpanListener
 import cn.iwgang.simplifyspan.unit.SpecialClickableUnit
 import cn.iwgang.simplifyspan.unit.SpecialTextUnit
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.base.ui.activity.BaseActivity
+import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.utils.ResUtils
 import com.tanlifei.app.R
@@ -22,7 +22,7 @@ import com.tanlifei.app.home.ui.activity.HomeActivity
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-open class LoginAtivity : BaseActivity<ActivityLoginBinding>() {
+open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>() {
 
 
     override fun layoutResId(): Int {
@@ -77,6 +77,10 @@ open class LoginAtivity : BaseActivity<ActivityLoginBinding>() {
         bundle.putString(BaseWebViewActivity.EXTRAS_TITLE, title)
         intent.putExtras(bundle)
         startActivity(intent)
+    }
+
+    override fun showSoftByEditViewIds(): IntArray {
+        return intArrayOf(R.id.phone, R.id.code)
     }
 
     companion object {
