@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.ThreadMode
  */
 open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
-    private lateinit var baseBinding: ActivityBaseBinding
+    protected lateinit var baseBinding: ActivityBaseBinding
     protected lateinit var binding: T
     protected lateinit var titleBar: TitleBar
 
@@ -32,14 +32,15 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     /**
      * 当前Activity的实例。
      */
-    protected var mActivity: Activity? = null
+    private var _mActivity: Activity? = null
+    protected val mActivity get() = _mActivity!!
 
     private lateinit var hud: KProgressHUD//加载框
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mActivity = this
+        _mActivity = this
         baseBinding = ActivityBaseBinding.inflate(layoutInflater)
         titleBar = baseBinding.toolbar
         hud = KProgressHUD.create(this)
@@ -80,7 +81,10 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
      * 沉浸式
      */
     open fun initImmersionBar() {
-        immersionBar()
+        baseBinding.statusBarView.visibility = View.GONE
+        immersionBar() {
+            statusBarDarkFont(true, 0.2f)
+        }
     }
 
     /**
@@ -141,7 +145,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mActivity = null
+        _mActivity = null
         if (registerEventBus()) {
             EventBus.getDefault().unregister(this)
         }

@@ -14,7 +14,7 @@ import com.common.databinding.ActivityComWebBinding
  * @author: tanlifei
  * @date: 2021/1/27 16:14
  */
-open class BaseWebViewActivity : ToolBarActivity<ActivityComWebBinding>() {
+class BaseWebViewActivity : ToolBarActivity<ActivityComWebBinding>() {
 
     lateinit var url: String
     var title: String? = null

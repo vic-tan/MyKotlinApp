@@ -104,6 +104,7 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
             }, 2000) // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
         } else {
             //finish所有页面和kill app
+            ToastUtils.cancel()
             ActivityUtils.finishAllActivities()
         }
     }
