@@ -27,6 +27,10 @@ import com.tanlifei.app.main.model.LoginViewModel
 import com.tanlifei.app.main.model.LoginViewModel.Companion.AGREEMENT
 import com.tanlifei.app.main.model.LoginViewModel.Companion.REGISTER_AGREEMENT
 import com.tanlifei.app.main.utils.LoginUtils
+import com.xiaomai.environmentswitcher.EnvironmentSwitchActivity
+import com.xiaomai.environmentswitcher.bean.EnvironmentBean
+import com.xiaomai.environmentswitcher.bean.ModuleBean
+import com.xiaomai.environmentswitcher.listener.OnEnvironmentChangeListener
 
 /**
  * @desc:
@@ -50,7 +54,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
 
     override fun initView() {
         setProtocolTxt()
-        binding.login.setOnClickListener { ActivityUtils.startActivity(HomeActivity::class.java) }
+
         loginViewModel = ViewModelProvider(this, NewInstanceFactory()).get(
             LoginViewModel::class.java
         )
@@ -64,7 +68,9 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         }
         initTextInputHelper()
         binding.phone.addTextChangedListener(this)
-
+        binding.login.setOnClickListener { ActivityUtils.startActivity(HomeActivity::class.java) }
+        loginViewModel.initEnvironmentSwitcher()//初始化环境切换器
+        binding.changeEnvironment.setOnClickListener { EnvironmentSwitchActivity.launch(this) }
     }
 
     private fun initTextInputHelper() {
@@ -152,8 +158,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         LoginUtils.phoneFormatTextChanged(binding.phone, s, count)
     }
-
-
 }
 
 

@@ -4,13 +4,13 @@ package com.tanlifei.app.common.config
  * 项目所有全局通用常量的管理类。
  *
  * @author tanlifei
-*/
+ */
 interface Const {
 
     /**
      * SharedPreferences KEY 常量
      */
-    interface SPKey{
+    interface SPKey {
         companion object {
             const val GUIDE = "sp_guide"
         }
@@ -28,17 +28,5 @@ interface Const {
 
     }
 
-    interface User {
-        companion object {
 
-            const val NICKNAME = "nk"
-
-            const val AVATAR = "ar"
-
-            const val BG_IMAGE = "bi"
-
-            const val DESCRIPTION = "de"
-        }
-
-    }
 }

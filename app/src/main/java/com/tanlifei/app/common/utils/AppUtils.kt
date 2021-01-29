@@ -1,6 +1,9 @@
 package com.tanlifei.app.common.utils
 
-import android.app.Activity
+import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
+import android.text.TextUtils
 import com.blankj.utilcode.util.ActivityUtils
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
@@ -34,4 +37,24 @@ object AppUtils {
             ActivityUtils.finishAllActivities()
         }
     }
+
+    /**
+     * 获取默认渠道
+     */
+     fun getDefaultChannel(context: Context): String? {
+        var appInfo: ApplicationInfo? = null
+        var channelIdStr = ""
+        try {
+            appInfo = context.packageManager
+                .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
+            val channelId = appInfo.metaData["UMENG_CHANNEL"]
+            channelIdStr =
+                if (TextUtils.isEmpty(channelId.toString())) "qa" else channelId.toString()
+        } catch (e: Exception) {
+            channelIdStr = "qa"
+            e.printStackTrace()
+        }
+        return channelIdStr
+    }
+
 }

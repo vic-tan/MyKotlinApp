@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="gradient_com_btn" tools:ignore="ExtraTranslation">
+        <item>#FF5259</item>
+        <item>#EE1E26</item>
+    </string-array>
+</resources>

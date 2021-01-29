@@ -10,41 +10,30 @@ public class EnvironmentConfig {
     /**
      * 整个应用程序环境
      */
-    @Module
+    @Module(alias = "接口环境")
     private class App {
-        @Environment(url = "https://www.wanandroid.com", isRelease = true)
-        private String online;
-        @Environment(url = "https://wanandroid.com/wxarticle/chapters/json")
-        private String test;
+        @Environment(url = UrlConst.URL_BASE_PRO, alias = "正式环境")
+        private String pro;// # 正式环境
+        @Environment(url = UrlConst.URL_BASE_DEV, alias = "开发环境")
+        private String dev;// # 开发环境
+        @Environment(url = UrlConst.URL_BASE_TEST, alias = "测试环境", isRelease = true)
+        private String test;// # 测试环境
     }
 
     /**
-     * Special module Music environment
+     * 分享区分环境
      */
-    @Module
-    private class Music {
-        @Environment(url = "https://www.codexiaomai.top/api/", isRelease = true)
-        private String online;
+    @Module(alias = "分享环境")
+    private class Share {
+        @Environment(url = UrlConst.URL_BASE_PRO, alias = "正式环境")
+        private String pro;// # 正式环境
 
-        @Environment(url = "http://test.codexiaomai.top/api/")
-        private String test;
+        @Environment(url = UrlConst.URL_BASE_DEV, alias = "开发环境")
+        private String dev;// # 开发环境
+
+        @Environment(url = UrlConst.URL_BASE_TEST, alias = "测试环境", isRelease = true)
+        private String test;// # 测试环境
     }
 
-    /**
-     * Special module News environment
-     */
-    @Module
-    private class News {
-        @Environment(url = "http://news/release/", isRelease = true)
-        private String release;
 
-        @Environment(url = "http://news/test/")
-        private String test;
-
-        @Environment(url = "http://news/test1/")
-        private String test1;
-
-        @Environment(url = "http://news/sandbox/")
-        private String sandbox;
-    }
 }
