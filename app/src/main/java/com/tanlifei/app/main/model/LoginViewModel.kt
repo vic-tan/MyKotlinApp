@@ -1,5 +1,6 @@
 package com.tanlifei.app.main.model
 
+import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.common.bean.BaseViewModel

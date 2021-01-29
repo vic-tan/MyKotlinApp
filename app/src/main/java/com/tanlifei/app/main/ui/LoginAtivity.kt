@@ -3,8 +3,12 @@ package com.tanlifei.app.main.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
 import cn.iwgang.simplifyspan.SimplifySpanBuild
@@ -16,6 +20,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.utils.ResUtils
+import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
@@ -30,9 +35,10 @@ import com.tanlifei.app.main.model.LoginViewModel.Companion.REGISTER_AGREEMENT
  * @date: 2021/1/26 17:37
  */
 open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
-    LoginViewModel.OnIntervalListener {
+    LoginViewModel.OnIntervalListener, TextWatcher {
 
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var mInputHelper: TextInputHelper
 
     override fun layoutResId(): Int {
         return R.layout.activity_login
@@ -52,11 +58,19 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         loginViewModel.setOnIntervalListener(this)
         binding.codeBtn.setOnClickListener {
             if (loginViewModel.regexForm(
-                    binding.phone.toString(),
-                    binding.code.toString()
+                    binding.phone.text.toString().trim(),
+                    binding.code.text.toString().trim()
                 )
             ) loginViewModel.startInterval()
         }
+        initTextInputHelper()
+        binding.phone.addTextChangedListener(this)
+
+    }
+
+    private fun initTextInputHelper() {
+        mInputHelper = TextInputHelper(binding.login)
+        mInputHelper.addViews(binding.phone, binding.code)
     }
 
     private fun setProtocolTxt() {
@@ -122,6 +136,51 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
 
     override fun onBackPressed() {
         AppUtils.exitApp()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.mInputHelper?.removeViews()
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+        binding.phone.setSelection(binding.phone.text.toString().length)
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        val length = s.toString().length
+        //删除数字
+        if (count == 0) {
+            if (length == 4) {
+                binding.phone.setText(s!!.subSequence(0, 3))
+            }
+            if (length == 9) {
+                binding.phone.setText(s!!.subSequence(0, 8))
+            }
+        }
+        //添加数字
+        if (count == 1) {
+            if (length == 4) {
+                val part1 = s!!.subSequence(0, 3).toString()
+                val part2 = s.subSequence(3, length).toString()
+                binding.phone.setText("$part1 $part2")
+            }
+            if (length == 9) {
+                val part1 = s!!.subSequence(0, 8).toString()
+                val part2 = s.subSequence(8, length).toString()
+                binding.phone.setText("$part1 $part2")
+            }
+        }
+        //复制粘贴
+        if (count == 11) {
+            val part1 = s!!.subSequence(0, 3).toString()
+            val part2 = s.subSequence(3, 7).toString()
+            val part3 = s.subSequence(7, length).toString()
+            binding.phone.setText("$part1 $part2 $part3")
+        }
     }
 }
 

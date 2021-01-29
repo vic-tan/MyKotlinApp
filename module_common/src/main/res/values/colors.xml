@@ -10,6 +10,8 @@
     <color name="com_C0F2323A">#C0F2323A</color>
     <color name="tab_txt_press">#343434</color>
     <color name="tab_txt_normal">#9A9A9A</color>
+    <!--按钮禁用背景色-->
+    <color name="enabled_color">#66F2323A</color>
 
     <color name="color_333333">#333333</color>
     <color name="color_F5F6FA">#F5F6FA</color>
