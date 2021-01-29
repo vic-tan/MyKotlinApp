@@ -34,11 +34,9 @@ class TextInputHelper(view: RTextView) : TextWatcher {
      * @param views 传入单个或者多个EditText或者TextView对象
      */
     fun addViews(vararg views: TextView) {
-        if (ObjectUtils.isNotEmpty(views)) {
-            if (ObjectUtils.isEmpty(mViewSet)) {
-                mViewSet = ArrayList(views.size - 1)
-            }
-            for (view in views) {
+        views?.let {
+            if (ObjectUtils.isEmpty(mViewSet)) mViewSet = ArrayList(it.size - 1)
+            for (view in it) {
                 view.addTextChangedListener(this)
                 mViewSet!!.add(view)
             }
@@ -51,22 +49,19 @@ class TextInputHelper(view: RTextView) : TextWatcher {
      * 移除EditText监听，避免内存泄露
      */
     fun removeViews() {
-        if (ObjectUtils.isNotEmpty(mViewSet)) {
-            for (view in mViewSet!!) {
-                view.removeTextChangedListener(this)
-            }
-            mViewSet!!.clear()
+        mViewSet?.let {
+            for (view in it) view.removeTextChangedListener(this)
+            it.clear()
         }
     }
 
     override fun afterTextChanged(s: Editable?) {
-        if (ObjectUtils.isNotEmpty(mViewSet)) {
-            for (view in mViewSet!!) {
+        mViewSet?.let {
+            for (view in it)
                 if ("" == view.text.toString()) {
                     setEnabled(false)
                     return
                 }
-            }
             setEnabled(true)
         }
     }

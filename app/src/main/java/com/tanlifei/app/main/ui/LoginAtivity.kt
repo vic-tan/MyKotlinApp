@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
 import cn.iwgang.simplifyspan.SimplifySpanBuild
@@ -57,9 +55,9 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         )
         loginViewModel.setOnIntervalListener(this)
         binding.codeBtn.setOnClickListener {
-            if (loginViewModel.regexForm(
-                    binding.phone.text.toString().trim(),
-                    binding.code.text.toString().trim()
+            if (loginViewModel.checkFormInfo(
+                    getPhone(binding.phone.text.toString()),
+                    binding.code.text.trim().toString()
                 )
             ) loginViewModel.startInterval()
         }
@@ -181,6 +179,16 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
             val part3 = s.subSequence(7, length).toString()
             binding.phone.setText("$part1 $part2 $part3")
         }
+    }
+
+    /**
+     * 去手机号344格式空格
+     *
+     * @param str
+     * @return
+     */
+    open fun getPhone(str: String): String {
+        return str.replace(12288.toChar(), ' ').replace(" ", "").trim { it <= ' ' }
     }
 }
 

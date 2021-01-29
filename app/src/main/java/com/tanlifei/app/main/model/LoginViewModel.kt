@@ -45,11 +45,11 @@ class LoginViewModel : BaseViewModel() {
     /**
      * 校验表单信息
      */
-    open fun regexForm(phone: String, code: String): Boolean {
+    open fun checkFormInfo(phone: String, code: String): Boolean {
         if (phone.isEmpty()) {
             ToastUtils.show("请输入手机号")
             return false
-        } else if (!RegexUtils.isMobileSimple(phone)) {
+        } else if (!RegexUtils.isMobileSimple(phone.trim())) {
             ToastUtils.show("请输入正确的手机号码")
             return false
         }
