@@ -10,7 +10,7 @@ import rxhttp.wrapper.annotation.DefaultDomain
 object UrlConst {
 
     @DefaultDomain //设置为默认域名
-    @JvmField var URL_BASE = "https://gatewaytest.jinlingkeji.cn/v9/"
+    @JvmField var URL_BASE = "https://gateway.jinlingkeji.cn/"
 
     /**
      * 正式环境

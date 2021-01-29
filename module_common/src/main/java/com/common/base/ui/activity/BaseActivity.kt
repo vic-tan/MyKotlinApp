@@ -35,7 +35,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     private var _mActivity: Activity? = null
     protected val mActivity get() = _mActivity!!
 
-    private lateinit var hud: KProgressHUD//加载框
+    protected lateinit var hud: KProgressHUD//加载框
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

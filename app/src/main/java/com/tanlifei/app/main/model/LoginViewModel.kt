@@ -68,6 +68,20 @@ class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
         return true
     }
 
+    /**
+     * 校验手机号
+     */
+    fun checkPhone(phone: String): Boolean {
+        if (phone.isEmpty()) {
+            ToastUtils.show("请输入手机号")
+            return false
+        } else if (!RegexUtils.isMobileSimple(phone)) {
+            ToastUtils.show("请输入正确的手机号码")
+            return false
+        }
+        return true
+    }
+
     interface OnIntervalListener {
         fun onIntervalStart()
         fun onIntervalChanged(second: Long)
