@@ -49,7 +49,7 @@ class LoginViewModel : BaseViewModel() {
         if (phone.isEmpty()) {
             ToastUtils.show("请输入手机号")
             return false
-        } else if (!RegexUtils.isMobileSimple(phone.trim())) {
+        } else if (!RegexUtils.isMobileSimple(phone)) {
             ToastUtils.show("请输入正确的手机号码")
             return false
         }

@@ -26,6 +26,7 @@ import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.model.LoginViewModel
 import com.tanlifei.app.main.model.LoginViewModel.Companion.AGREEMENT
 import com.tanlifei.app.main.model.LoginViewModel.Companion.REGISTER_AGREEMENT
+import com.tanlifei.app.main.utils.LoginUtils
 
 /**
  * @desc:
@@ -56,7 +57,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         loginViewModel.setOnIntervalListener(this)
         binding.codeBtn.setOnClickListener {
             if (loginViewModel.checkFormInfo(
-                    getPhone(binding.phone.text.toString()),
+                    LoginUtils.getPhone(binding.phone.text.toString()),
                     binding.code.text.trim().toString()
                 )
             ) loginViewModel.startInterval()
@@ -149,47 +150,10 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        val length = s.toString().length
-        //删除数字
-        if (count == 0) {
-            if (length == 4) {
-                binding.phone.setText(s!!.subSequence(0, 3))
-            }
-            if (length == 9) {
-                binding.phone.setText(s!!.subSequence(0, 8))
-            }
-        }
-        //添加数字
-        if (count == 1) {
-            if (length == 4) {
-                val part1 = s!!.subSequence(0, 3).toString()
-                val part2 = s.subSequence(3, length).toString()
-                binding.phone.setText("$part1 $part2")
-            }
-            if (length == 9) {
-                val part1 = s!!.subSequence(0, 8).toString()
-                val part2 = s.subSequence(8, length).toString()
-                binding.phone.setText("$part1 $part2")
-            }
-        }
-        //复制粘贴
-        if (count == 11) {
-            val part1 = s!!.subSequence(0, 3).toString()
-            val part2 = s.subSequence(3, 7).toString()
-            val part3 = s.subSequence(7, length).toString()
-            binding.phone.setText("$part1 $part2 $part3")
-        }
+        LoginUtils.phoneFormatTextChanged(binding.phone, s, count)
     }
 
-    /**
-     * 去手机号344格式空格
-     *
-     * @param str
-     * @return
-     */
-    open fun getPhone(str: String): String {
-        return str.replace(12288.toChar(), ' ').replace(" ", "").trim { it <= ' ' }
-    }
+
 }
 
 
