@@ -12,10 +12,8 @@ import com.common.base.event.BaseEvent
 import com.common.databinding.ActivityBaseBinding
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
-import com.kaopiz.kprogresshud.KProgressHUD
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
-import com.lxj.xpopup.impl.LoadingPopupView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

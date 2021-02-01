@@ -1,7 +1,6 @@
 package com.tanlifei.app.core.http
 
 import androidx.lifecycle.LifecycleOwner
-import com.kaopiz.kprogresshud.KProgressHUD
 import com.rxjava.rxlife.BaseScope
 import com.rxlife.coroutine.RxLifeScope
 import com.tanlifei.app.common.config.UrlConst
@@ -17,12 +16,11 @@ import rxhttp.toClass
 class RequestManager(owner: LifecycleOwner) : BaseScope(owner) {
 
     private inline fun <reified T : Any> requestBean(
-        hud: KProgressHUD,
         rxLifeScope: RxLifeScope,
         url: String,
         params: Map<String, String>
     ) {
-        RxHttpUtils.start(hud, rxLifeScope) {
+        RxHttpUtils.start(rxLifeScope) {
             RxHttp.get(url)
                 .addAll(params)
                 .toClass<T>().await()
@@ -30,17 +28,17 @@ class RequestManager(owner: LifecycleOwner) : BaseScope(owner) {
     }
 
 
-    fun requestSendSms(hud: KProgressHUD, rxLifeScope: RxLifeScope, phone: String) {
+    fun requestSendSms( rxLifeScope: RxLifeScope, phone: String) {
         val params = mutableMapOf<String, String>()
         params["phone"] = phone
-        requestBean<SmsCodeBean>(hud, rxLifeScope, UrlConst.URL_SEND_SMS, params)
+        requestBean<SmsCodeBean>( rxLifeScope, UrlConst.URL_SEND_SMS, params)
     }
 
-    fun requestLogin(hud: KProgressHUD, rxLifeScope: RxLifeScope, phone: String, code: String) {
+    fun requestLogin(rxLifeScope: RxLifeScope, phone: String, code: String) {
         val params = mutableMapOf<String, String>()
         params["phone"] = phone
         params["code"] = code
-        requestBean<String>(hud, rxLifeScope, UrlConst.URL_LOGIN, params)
+        requestBean<String>(rxLifeScope, UrlConst.URL_LOGIN, params)
     }
 
 }

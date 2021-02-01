@@ -1,6 +1,8 @@
 package com.tanlifei.app.main.model
 
 import android.app.Activity
+import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.RegexUtils
@@ -32,7 +34,8 @@ import java.util.concurrent.TimeUnit
  * @date: 2021/1/28 15:50
  */
 class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
-    val user: UserBean? = null
+    lateinit var user: MutableList<UserBean>
+    var isLoading = MutableLiveData<Boolean>()
     private var intervalListener: OnIntervalListener? = null
 
     fun startInterval() {
@@ -92,30 +95,36 @@ class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
         return true
     }
 
-    fun getCode(hud: BasePopupView, activity: Activity, phone: String) = rxLifeScope.launch({
+    fun getCode(phone: String) = launch {
         val params = mutableMapOf<String, String>()
         params["phone"] = phone
-        val pageList = RxHttp.get(UrlConst.URL_SEND_SMS)
+        RxHttp.get(UrlConst.URL_SEND_SMS)
             .addAll(params)
             .toClass<SmsCodeBean>().await()
-    }, {
-        it.show(it.errorCode, it.errorMsg)
-    }, {
-        hud.show()
-    }, {
-        hud.dismiss()
-    })
+    }
 
-    fun login(phone: String, code: String) = rxLifeScope.launch({
+
+    fun login(phone: String, code: String) = launch {
         val params = mutableMapOf<String, String>()
         params["phone"] = phone
         params["code"] = code
-        val pageList = RxHttp.get(UrlConst.URL_LOGIN)
+        RxHttp.get(UrlConst.URL_LOGIN)
             .addAll(params)
             .toClass<SmsCodeBean>().await()
+    }
+
+    private fun launch(block: suspend () -> Unit) = rxLifeScope.launch({
+        isLoading.value = true
+        block()
     }, {
         it.show(it.errorCode, it.errorMsg)
+        isLoading.value = false
+    }, {
+        isLoading.value = true
+    }, {
+        isLoading.value = false
     })
+
 
     interface OnIntervalListener {
         fun onIntervalStart()

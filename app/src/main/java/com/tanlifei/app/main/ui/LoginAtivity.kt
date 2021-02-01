@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
 import androidx.lifecycle.rxLifeScope
@@ -61,9 +62,13 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                 )
             ) {
                 loginViewModel.startInterval()
-                loginViewModel.getCode(hud,this,LoginUtils.getPhone(binding.phone.text.toString()))
+                loginViewModel.getCode(LoginUtils.getPhone(binding.phone.text.toString()))
             }
         }
+        loginViewModel.isLoading.observe(this, Observer { isLoading ->
+            if (isLoading) hud.show()
+            else hud.dismiss()
+        })
         initTextInputHelper()
         binding.phone.addTextChangedListener(this)
         binding.login.setOnClickListener {
