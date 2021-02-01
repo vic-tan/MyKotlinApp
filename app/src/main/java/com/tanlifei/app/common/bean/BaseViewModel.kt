@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
  */
 open class BaseViewModel : ViewModel() {
 
+
     /**
      * 由于屏幕旋转导致的Activity重建，该方法不会被调用
      *

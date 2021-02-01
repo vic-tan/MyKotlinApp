@@ -34,8 +34,11 @@ import java.util.concurrent.TimeUnit
  * @date: 2021/1/28 15:50
  */
 class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
-    lateinit var user: MutableList<UserBean>
+
     var isLoading = MutableLiveData<Boolean>()
+
+    lateinit var user: MutableList<UserBean>
+
     private var intervalListener: OnIntervalListener? = null
 
     fun startInterval() {
@@ -114,17 +117,19 @@ class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
     }
 
     private fun launch(block: suspend () -> Unit) = rxLifeScope.launch({
-        isLoading.value = true
-        block()
+        try {
+            isLoading.value = true
+            block()
+        } catch (e: Exception) {
+            isLoading.value = false
+        }
     }, {
-        it.show(it.errorCode, it.errorMsg)
         isLoading.value = false
     }, {
         isLoading.value = true
     }, {
         isLoading.value = false
     })
-
 
     interface OnIntervalListener {
         fun onIntervalStart()
@@ -136,10 +141,6 @@ class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
         this.intervalListener = intervalListener
     }
 
-    companion object {
-        const val REGISTER_AGREEMENT = "https://www.9bao.tv/mod/static/registerAgreementNew.html"
-        const val AGREEMENT = "https://www.9bao.tv/webview/app/shop/agreement?active=2"
-    }
 
     /**
      * 初始化环境切换器

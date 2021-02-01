@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
-import androidx.lifecycle.rxLifeScope
 import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.customspan.CustomClickableSpan
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
@@ -21,12 +20,11 @@ import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
+import com.tanlifei.app.common.config.UrlConst.AGREEMENT
+import com.tanlifei.app.common.config.UrlConst.REGISTER_AGREEMENT
 import com.tanlifei.app.common.utils.AppUtils
-import com.tanlifei.app.core.http.RequestManager
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.main.model.LoginViewModel
-import com.tanlifei.app.main.model.LoginViewModel.Companion.AGREEMENT
-import com.tanlifei.app.main.model.LoginViewModel.Companion.REGISTER_AGREEMENT
 import com.tanlifei.app.main.utils.LoginUtils
 import com.xiaomai.environmentswitcher.EnvironmentSwitchActivity
 

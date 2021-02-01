@@ -10,7 +10,8 @@ import rxhttp.wrapper.annotation.DefaultDomain
 object UrlConst {
 
     @DefaultDomain //设置为默认域名
-    @JvmField var URL_BASE = "https://gateway.jinlingkeji.cn/"
+    @JvmField
+    var URL_BASE = "https://gateway.jinlingkeji.cn/"
 
     /**
      * 正式环境
@@ -37,4 +38,14 @@ object UrlConst {
      * 验证验证码登录
      */
     const val URL_LOGIN = "auth/login"
+
+    /**
+     * 用户协议
+     */
+    const val REGISTER_AGREEMENT = "https://www.9bao.tv/mod/static/registerAgreementNew.html"
+
+    /**
+     * 隐私政策
+     */
+    const val AGREEMENT = "https://www.9bao.tv/webview/app/shop/agreement?active=2"
 }
