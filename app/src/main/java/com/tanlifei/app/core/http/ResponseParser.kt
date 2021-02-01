@@ -7,6 +7,7 @@ import rxhttp.wrapper.annotation.Parser
 import rxhttp.wrapper.entity.ParameterizedTypeImpl
 import rxhttp.wrapper.exception.ParseException
 import rxhttp.wrapper.parse.AbstractParser
+import rxhttp.wrapper.utils.convert
 import java.io.IOException
 import java.lang.reflect.Type
 
@@ -41,8 +42,8 @@ open class ResponseParser<T> : AbstractParser<T> {
     @Throws(IOException::class)
     override fun onParse(response: okhttp3.Response): T {
         val type: Type = ParameterizedTypeImpl[Response::class.java, mType] //获取泛型类型
-        val data: Response<T> = convert(response, type)
-        LogUtils.json("RxHttp",  data)
+        val data: Response<T> = response.convert(type)
+        LogUtils.json("RxHttp", data)
         var t = data.data //获取data字段
         if (t == null && mType === String::class.java) {
             /*
@@ -51,10 +52,10 @@ open class ResponseParser<T> : AbstractParser<T> {
              * 所以，判断泛型为String类型时，重新赋值，并确保赋值不为null
              */
             @Suppress("UNCHECKED_CAST")
-            t = data.errorMsg as T
+            t = data.msg as T
         }
-        if (data.errorCode != 0 || t == null) { //code不等于0，说明数据不正确，抛出异常
-            throw ParseException(data.errorCode.toString(), data.errorMsg, response)
+        if (data.status != 0 || t == null) { //code不等于0，说明数据不正确，抛出异常
+            throw ParseException(data.status.toString(), data.msg, response)
 
         }
         return t

@@ -8,12 +8,16 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.blankj.utilcode.util.ConvertUtils
 import com.common.base.event.BaseEvent
 import com.common.databinding.ActivityBaseBinding
+import com.common.widget.CustomLoadingView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.animator.EmptyAnimator
 import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.enums.PopupAnimation
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -46,11 +50,13 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         baseBinding = ActivityBaseBinding.inflate(layoutInflater)
         titleBar = baseBinding.toolbar
         hud = XPopup.Builder(this)
+            .hasShadowBg(false)
             .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
             .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true
-            .asLoading("加载中...")
+            .asCustom(CustomLoadingView(this))
         initSet()
     }
+
 
     /**
      * 初始化

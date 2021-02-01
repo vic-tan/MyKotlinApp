@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
 import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.customspan.CustomClickableSpan
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
@@ -19,12 +18,15 @@ import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
+import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.UrlConst.AGREEMENT
 import com.tanlifei.app.common.config.UrlConst.REGISTER_AGREEMENT
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
+import com.tanlifei.app.main.fra.LoginModelFactory
 import com.tanlifei.app.main.model.LoginViewModel
+import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
 import com.xiaomai.environmentswitcher.EnvironmentSwitchActivity
 
@@ -50,16 +52,16 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
 
     override fun initView() {
         setProtocolTxt()
-        loginViewModel = ViewModelProvider(this, NewInstanceFactory()).get(
+        loginViewModel = ViewModelProvider(this, LoginModelFactory(LoginNetwork.getInstance())).get(
             LoginViewModel::class.java
         )
         loginViewModel.setOnIntervalListener(this)
         binding.codeBtn.setOnClickListener {
+
             if (loginViewModel.checkPhone(
                     LoginUtils.getPhone(binding.phone.text.toString())
                 )
             ) {
-                loginViewModel.startInterval()
                 loginViewModel.getCode(LoginUtils.getPhone(binding.phone.text.toString()))
             }
         }
@@ -67,6 +69,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
             if (isLoading) hud.show()
             else hud.dismiss()
         })
+
         initTextInputHelper()
         binding.phone.addTextChangedListener(this)
         binding.login.setOnClickListener {

@@ -1,7 +1,5 @@
 package com.tanlifei.app.main.model
 
-import android.app.Activity
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
@@ -11,11 +9,11 @@ import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
 import com.hjq.toast.ToastUtils
-import com.lxj.xpopup.core.BasePopupView
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.UrlConst
 import com.tanlifei.app.main.bean.SmsCodeBean
+import com.tanlifei.app.main.network.LoginNetwork
 import com.xiaomai.environmentswitcher.EnvironmentSwitcher
 import com.xiaomai.environmentswitcher.bean.EnvironmentBean
 import com.xiaomai.environmentswitcher.bean.ModuleBean
@@ -33,7 +31,8 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
+class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
+    OnEnvironmentChangeListener {
 
     var isLoading = MutableLiveData<Boolean>()
 
@@ -99,11 +98,7 @@ class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
     }
 
     fun getCode(phone: String) = launch {
-        val params = mutableMapOf<String, String>()
-        params["phone"] = phone
-        RxHttp.get(UrlConst.URL_SEND_SMS)
-            .addAll(params)
-            .toClass<SmsCodeBean>().await()
+        repository.getCode(phone)
     }
 
 
@@ -117,14 +112,12 @@ class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
     }
 
     private fun launch(block: suspend () -> Unit) = rxLifeScope.launch({
-        try {
-            isLoading.value = true
-            block()
-        } catch (e: Exception) {
-            isLoading.value = false
-        }
+        isLoading.value = true
+        block()
+        isLoading.value = false
     }, {
         isLoading.value = false
+        it.show(it.errorCode, it.errorMsg)
     }, {
         isLoading.value = true
     }, {
