@@ -74,7 +74,7 @@ private fun <T> handleNetworkException(throwable: T): String? {
         } else {
             -1
         }
-    return if (stringId == -1) null else Utils.getApp().getResources().getString(stringId)
+    return if (stringId == -1) null else Utils.getApp().resources.getString(stringId)
 }
 
 

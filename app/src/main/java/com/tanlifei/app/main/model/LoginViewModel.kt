@@ -1,12 +1,19 @@
 package com.tanlifei.app.main.model
 
+import android.app.Activity
+import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.utils.LogTools
+import com.example.httpsender.kt.errorCode
+import com.example.httpsender.kt.errorMsg
+import com.example.httpsender.kt.show
 import com.hjq.toast.ToastUtils
+import com.lxj.xpopup.core.BasePopupView
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.UrlConst
+import com.tanlifei.app.main.bean.SmsCodeBean
 import com.xiaomai.environmentswitcher.EnvironmentSwitcher
 import com.xiaomai.environmentswitcher.bean.EnvironmentBean
 import com.xiaomai.environmentswitcher.bean.ModuleBean
@@ -15,6 +22,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
+import rxhttp.RxHttp
+import rxhttp.toClass
 import java.util.concurrent.TimeUnit
 
 /**
@@ -46,6 +55,7 @@ class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
                 }
             })
     }
+
 
     /**
      * 校验表单信息
@@ -81,6 +91,31 @@ class LoginViewModel : BaseViewModel(), OnEnvironmentChangeListener {
         }
         return true
     }
+
+    fun getCode(hud: BasePopupView, activity: Activity, phone: String) = rxLifeScope.launch({
+        val params = mutableMapOf<String, String>()
+        params["phone"] = phone
+        val pageList = RxHttp.get(UrlConst.URL_SEND_SMS)
+            .addAll(params)
+            .toClass<SmsCodeBean>().await()
+    }, {
+        it.show(it.errorCode, it.errorMsg)
+    }, {
+        hud.show()
+    }, {
+        hud.dismiss()
+    })
+
+    fun login(phone: String, code: String) = rxLifeScope.launch({
+        val params = mutableMapOf<String, String>()
+        params["phone"] = phone
+        params["code"] = code
+        val pageList = RxHttp.get(UrlConst.URL_LOGIN)
+            .addAll(params)
+            .toClass<SmsCodeBean>().await()
+    }, {
+        it.show(it.errorCode, it.errorMsg)
+    })
 
     interface OnIntervalListener {
         fun onIntervalStart()

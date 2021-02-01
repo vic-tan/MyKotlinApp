@@ -33,4 +33,8 @@ object UrlConst {
      */
     const val URL_SEND_SMS = "auth/sendsms"
 
+    /**
+     * 验证验证码登录
+     */
+    const val URL_LOGIN = "auth/login"
 }

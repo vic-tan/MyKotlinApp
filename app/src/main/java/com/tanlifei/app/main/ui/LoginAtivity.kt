@@ -15,30 +15,19 @@ import cn.iwgang.simplifyspan.customspan.CustomClickableSpan
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
 import cn.iwgang.simplifyspan.unit.SpecialClickableUnit
 import cn.iwgang.simplifyspan.unit.SpecialTextUnit
-import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
-import com.common.utils.LogTools
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
-import com.tanlifei.app.common.config.UrlConst
 import com.tanlifei.app.common.utils.AppUtils
-import com.tanlifei.app.core.http.RxHttpUtils
+import com.tanlifei.app.core.http.RequestManager
 import com.tanlifei.app.databinding.ActivityLoginBinding
-import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.main.bean.SmsCodeBean
 import com.tanlifei.app.main.model.LoginViewModel
 import com.tanlifei.app.main.model.LoginViewModel.Companion.AGREEMENT
 import com.tanlifei.app.main.model.LoginViewModel.Companion.REGISTER_AGREEMENT
 import com.tanlifei.app.main.utils.LoginUtils
 import com.xiaomai.environmentswitcher.EnvironmentSwitchActivity
-import com.xiaomai.environmentswitcher.bean.EnvironmentBean
-import com.xiaomai.environmentswitcher.bean.ModuleBean
-import com.xiaomai.environmentswitcher.listener.OnEnvironmentChangeListener
-import com.youth.banner.Banner
-import rxhttp.RxHttp
-import rxhttp.toClass
 
 /**
  * @desc:
@@ -70,23 +59,30 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
             if (loginViewModel.checkPhone(
                     LoginUtils.getPhone(binding.phone.text.toString())
                 )
-            ) loginViewModel.startInterval()
-            getCode()
+            ) {
+                loginViewModel.startInterval()
+                loginViewModel.getCode(hud,this,LoginUtils.getPhone(binding.phone.text.toString()))
+            }
         }
         initTextInputHelper()
         binding.phone.addTextChangedListener(this)
-        binding.login.setOnClickListener { ActivityUtils.startActivity(HomeActivity::class.java) }
+        binding.login.setOnClickListener {
+            if (loginViewModel.checkFormInfo(
+                    LoginUtils.getPhone(binding.phone.text.toString()),
+                    binding.code.toString()
+                )
+            ) {
+                loginViewModel.login(
+                    LoginUtils.getPhone(binding.phone.text.toString()),
+                    binding.code.toString()
+                )
+//                ActivityUtils.startActivity(HomeActivity::class.java)
+            }
+        }
         loginViewModel.initEnvironmentSwitcher()//初始化环境切换器
         binding.changeEnvironment.setOnClickListener { EnvironmentSwitchActivity.launch(this) }
     }
 
-    private fun getCode() {
-        RxHttpUtils.start(hud, rxLifeScope) {
-            val smsCode = RxHttp.get(UrlConst.URL_SEND_SMS)
-                .add("phone", LoginUtils.getPhone(binding.phone.text.toString()))
-                .toClass<SmsCodeBean>().await()
-        }
-    }
 
     private fun initTextInputHelper() {
         mInputHelper = TextInputHelper(binding.login)

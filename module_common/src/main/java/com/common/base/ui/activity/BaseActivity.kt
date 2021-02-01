@@ -13,6 +13,9 @@ import com.common.databinding.ActivityBaseBinding
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.kaopiz.kprogresshud.KProgressHUD
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.impl.LoadingPopupView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -35,7 +38,8 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     private var _mActivity: Activity? = null
     protected val mActivity get() = _mActivity!!
 
-    protected lateinit var hud: KProgressHUD//加载框
+    //    protected lateinit var hud: KProgressHUD//加载框
+    protected lateinit var hud: BasePopupView//加载框
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,12 +47,10 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         _mActivity = this
         baseBinding = ActivityBaseBinding.inflate(layoutInflater)
         titleBar = baseBinding.toolbar
-        hud = KProgressHUD.create(this)
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-            .setLabel("正在加载...")
-            .setCancellable(true)
-            .setAnimationSpeed(2)
-            .setDimAmount(0.5f)
+        hud = XPopup.Builder(this)
+            .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
+            .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true
+            .asLoading("加载中...")
         initSet()
     }
 
@@ -145,10 +147,14 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (null != hud && hud.isShow) {
+            hud.dismiss()
+        }
         _mActivity = null
         if (registerEventBus()) {
             EventBus.getDefault().unregister(this)
         }
+
     }
 
 

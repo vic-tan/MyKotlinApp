@@ -6,6 +6,7 @@ import androidx.multidex.MultiDex
 import com.hjq.toast.ToastUtils
 import com.common.ComFun
 import com.tanlifei.app.common.utils.AppUtils
+import com.tanlifei.app.core.http.RxHttpManager
 import com.tanlifei.app.core.http.TokenInterceptor
 import okhttp3.OkHttpClient
 import org.litepal.LitePal
@@ -28,6 +29,7 @@ open class BaseApplication : Application() {
                     AppUtils.getDefaultChannel(this)
                 )//添加公共请求头
         }
+        RxHttpManager().init(this)
         ComFun.initialize(this)
         ToastUtils.init(this)
         LitePal.initialize(this)//初始化数据库
