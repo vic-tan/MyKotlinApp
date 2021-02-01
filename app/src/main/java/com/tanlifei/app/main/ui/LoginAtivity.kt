@@ -14,17 +14,20 @@ import cn.iwgang.simplifyspan.customspan.CustomClickableSpan
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
 import cn.iwgang.simplifyspan.unit.SpecialClickableUnit
 import cn.iwgang.simplifyspan.unit.SpecialTextUnit
+import com.blankj.utilcode.util.ActivityUtils
+import com.common.ComApplication
 import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
-import com.hjq.toast.ToastUtils
+import com.tanlifei.app.BaseApplication
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.UrlConst.AGREEMENT
 import com.tanlifei.app.common.config.UrlConst.REGISTER_AGREEMENT
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
-import com.tanlifei.app.main.fra.LoginModelFactory
+import com.tanlifei.app.home.ui.activity.HomeActivity
+import com.tanlifei.app.main.model.factory.LoginModelFactory
 import com.tanlifei.app.main.model.LoginViewModel
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
@@ -52,7 +55,10 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
 
     override fun initView() {
         setProtocolTxt()
-        loginViewModel = ViewModelProvider(this, LoginModelFactory(LoginNetwork.getInstance())).get(
+        loginViewModel = ViewModelProvider(
+            this,
+            LoginModelFactory(LoginNetwork.getInstance())
+        ).get(
             LoginViewModel::class.java
         )
         loginViewModel.setOnIntervalListener(this)
@@ -70,6 +76,12 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
             else hud.dismiss()
         })
 
+        loginViewModel.isToken.observe(this, Observer {
+            if (it) {
+                ComApplication.token = loginViewModel.token
+                ActivityUtils.startActivity(HomeActivity::class.java)
+            }
+        })
         initTextInputHelper()
         binding.phone.addTextChangedListener(this)
         binding.login.setOnClickListener {
@@ -82,7 +94,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                     LoginUtils.getPhone(binding.phone.text.toString()),
                     binding.code.toString()
                 )
-//                ActivityUtils.startActivity(HomeActivity::class.java)
             }
         }
         loginViewModel.initEnvironmentSwitcher()//初始化环境切换器

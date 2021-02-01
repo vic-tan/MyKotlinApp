@@ -1,4 +1,4 @@
-package com.tanlifei.app.main.fra
+package com.tanlifei.app.main.model.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

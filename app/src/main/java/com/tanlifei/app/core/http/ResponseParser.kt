@@ -54,7 +54,7 @@ open class ResponseParser<T> : AbstractParser<T> {
             @Suppress("UNCHECKED_CAST")
             t = data.msg as T
         }
-        if (data.status != 0 || t == null) { //code不等于0，说明数据不正确，抛出异常
+        if (data.status != 200 || t == null) { //code不等于0，说明数据不正确，抛出异常
             throw ParseException(data.status.toString(), data.msg, response)
 
         }

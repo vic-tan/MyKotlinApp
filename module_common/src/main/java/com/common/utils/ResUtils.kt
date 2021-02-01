@@ -1,7 +1,7 @@
 package com.common.utils
 
 import androidx.core.content.ContextCompat
-import com.common.ComFun
+import com.common.ComApplication
 
 /**
  * @desc:
@@ -18,7 +18,7 @@ open class ResUtils {
          * @return
          */
         fun getColor(resId: Int): Int {
-            return ContextCompat.getColor(ComFun.getContext(), resId)
+            return ContextCompat.getColor(ComApplication.context, resId)
         }
     }
 }

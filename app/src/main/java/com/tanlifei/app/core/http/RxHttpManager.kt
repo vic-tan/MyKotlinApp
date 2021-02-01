@@ -1,7 +1,8 @@
 package com.tanlifei.app.core.http
 
 import android.app.Application
-import com.common.ComFun
+import com.common.ComApplication
+import com.tanlifei.app.BaseApplication
 import com.tanlifei.app.common.utils.AppUtils
 import okhttp3.OkHttpClient
 import rxhttp.RxHttp
@@ -26,7 +27,7 @@ class RxHttpManager {
         //设置公共参数，非必须
         RxHttp.setOnParamAssembly { p: Param<*>? ->
             p!!.add("versionName", "1.0.0") //添加公共参数
-                .addHeader("Authorization", "Bearer " + ComFun.getToken())
+                .addHeader("Authorization", "Bearer " + ComApplication.token)
                 .addHeader("channel_code", "" + AppUtils.getDefaultChannel(context))
                 .addHeader("deviceType", "android") //添加公共请求头
         }

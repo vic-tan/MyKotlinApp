@@ -10,7 +10,7 @@ import com.common.BuildConfig
  */
 open class LogTools {
     companion object {
-        private const val TAG = "tlf_app_log"
+        private const val TAG = "tlf_log"
         fun show(content: String) {
             if (BuildConfig.DEBUG) {
                 LogUtils.dTag(TAG, content)

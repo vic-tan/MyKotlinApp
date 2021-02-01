@@ -9,10 +9,10 @@ import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
 import com.hjq.toast.ToastUtils
+import com.tanlifei.app.BaseApplication
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.UrlConst
-import com.tanlifei.app.main.bean.SmsCodeBean
 import com.tanlifei.app.main.network.LoginNetwork
 import com.xiaomai.environmentswitcher.EnvironmentSwitcher
 import com.xiaomai.environmentswitcher.bean.EnvironmentBean
@@ -22,8 +22,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
-import rxhttp.RxHttp
-import rxhttp.toClass
 import java.util.concurrent.TimeUnit
 
 /**
@@ -35,6 +33,9 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
     OnEnvironmentChangeListener {
 
     var isLoading = MutableLiveData<Boolean>()
+    var isToken = MutableLiveData<Boolean>()
+
+    var token: String? = null
 
     lateinit var user: MutableList<UserBean>
 
@@ -99,16 +100,13 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
 
     fun getCode(phone: String) = launch {
         repository.getCode(phone)
+        startInterval()
     }
 
 
     fun login(phone: String, code: String) = launch {
-        val params = mutableMapOf<String, String>()
-        params["phone"] = phone
-        params["code"] = code
-        RxHttp.get(UrlConst.URL_LOGIN)
-            .addAll(params)
-            .toClass<SmsCodeBean>().await()
+        token = repository.getLogin(phone, code)
+        isToken.value = ObjectUtils.isNotEmpty(token)
     }
 
     private fun launch(block: suspend () -> Unit) = rxLifeScope.launch({
