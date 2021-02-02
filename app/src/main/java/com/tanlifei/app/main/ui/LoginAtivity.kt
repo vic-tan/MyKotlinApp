@@ -1,19 +1,9 @@
 package com.tanlifei.app.main.ui
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
-import android.os.Build
-import android.os.Environment
-import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,8 +21,8 @@ import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
-import com.tanlifei.app.common.config.UrlConst.AGREEMENT
-import com.tanlifei.app.common.config.UrlConst.REGISTER_AGREEMENT
+import com.tanlifei.app.common.config.UrlConst.URL_AGREEMENT
+import com.tanlifei.app.common.config.UrlConst.URL_REGISTER_AGREEMENT
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
@@ -41,7 +31,6 @@ import com.tanlifei.app.main.model.factory.LoginModelFactory
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
 import com.xiaomai.environmentswitcher.EnvironmentSwitchActivity
-import java.io.*
 
 
 /**
@@ -136,7 +125,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                 SpecialClickableUnit(binding.protocolTxt,
                     OnClickableSpanListener { _: TextView?, _: CustomClickableSpan? ->
                         gotoWeb(
-                            REGISTER_AGREEMENT,
+                            URL_REGISTER_AGREEMENT,
                             "用户协议"
                         )
                     }
@@ -149,7 +138,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                 SpecialClickableUnit(binding.protocolTxt,
                     OnClickableSpanListener { _: TextView?, _: CustomClickableSpan? ->
                         gotoWeb(
-                            AGREEMENT,
+                            URL_AGREEMENT,
                             "隐私政策"
                         )
                     }

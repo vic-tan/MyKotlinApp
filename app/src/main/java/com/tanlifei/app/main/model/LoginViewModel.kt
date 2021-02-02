@@ -3,13 +3,11 @@ package com.tanlifei.app.main.model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
-import com.blankj.utilcode.util.RegexUtils
 import com.common.utils.LogTools
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
 import com.hjq.toast.ToastUtils
-import com.tanlifei.app.BaseApplication
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.UrlConst
@@ -66,12 +64,14 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
 
 
     fun getCode(phone: String) = launch {
+        ToastUtils.show(UrlConst.BASE_URL)
         repository.getCode(phone)
         startInterval()
     }
 
 
     fun login(phone: String, code: String) = launch {
+        ToastUtils.show(UrlConst.BASE_URL)
         token = repository.getLogin(phone, code)
         isToken.value = ObjectUtils.isNotEmpty(token)
     }
@@ -117,9 +117,10 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
                 module?.name + "oleEnvironment=" + oldEnvironment?.name + "，oldUrl=" + oldEnvironment?.url
                         + ",newNevironment=" + newEnvironment?.name + "，newUrl=" + newEnvironment?.url
             )
+            ToastUtils.show(newEnvironment?.name)
             if (module?.equals(EnvironmentSwitcher.MODULE_APP)!!) {
                 if (ObjectUtils.isNotEmpty(newEnvironment?.url)) {
-                    UrlConst.URL_BASE = newEnvironment?.url.toString()
+                    UrlConst.BASE_URL = newEnvironment?.url.toString()
                 }
             }
         } catch (e: Exception) {

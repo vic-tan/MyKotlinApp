@@ -1,5 +1,6 @@
 package com.tanlifei.app.common.config
 
+import com.tanlifei.app.BuildConfig
 import rxhttp.wrapper.annotation.DefaultDomain
 
 /**
@@ -11,23 +12,25 @@ object UrlConst {
 
     @DefaultDomain //设置为默认域名
     @JvmField
-    var URL_BASE = "https://gateway.jinlingkeji.cn/"
+    var BASE_URL = BuildConfig.BASE_URL
 
-    /**
-     * 正式环境
-     */
-    const val URL_BASE_PRO = "https://jlkjapp.jinlingkeji.cn/v9/"
 
     /**
      * 开发环境
      */
-    const val URL_BASE_DEV = "https://gateway.jinlingkeji.cn/"
+    const val BASE_URL_DEV = BuildConfig.BASE_URL_DEV
 
     /**
      * 测试环境
      */
 
-    const val URL_BASE_TEST = "https://gatewaytest.jinlingkeji.cn/v9/"
+    const val BASE_URL_TEST = BuildConfig.BASE_URL_TEST
+
+    /**
+     * 正式环境
+     */
+    const val BASE_URL_PRO = BuildConfig.BASE_URL_PRO
+
 
     /**
      * 发送短信验证码
@@ -42,10 +45,10 @@ object UrlConst {
     /**
      * 用户协议
      */
-    const val REGISTER_AGREEMENT = "https://www.9bao.tv/mod/static/registerAgreementNew.html"
+    const val URL_REGISTER_AGREEMENT = "https://www.9bao.tv/mod/static/registerAgreementNew.html"
 
     /**
      * 隐私政策
      */
-    const val AGREEMENT = "https://www.9bao.tv/webview/app/shop/agreement?active=2"
+    const val URL_AGREEMENT = "https://www.9bao.tv/webview/app/shop/agreement?active=2"
 }

@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'//使用kapt依赖rxhttp-compiler，需要导入kapt插件
 
 android {
-    compileSdkVersion compile_sdk_version as int
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.tanlifei.app"
-        minSdkVersion min_sdk_version as int
-        targetSdkVersion target_sdk_version as int
-        versionCode version_code as int
-        versionName version_name
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -20,6 +20,10 @@ android {
             }
         }
         multiDexEnabled true
+        //此三个URL是用来做切换环境用的
+        buildConfigField 'String', 'BASE_URL_DEV', rootProject.ext.configField['BASE_URL_DEV']
+        buildConfigField 'String', 'BASE_URL_TEST', rootProject.ext.configField['BASE_URL_TEST']
+        buildConfigField 'String', 'BASE_URL_PRO', rootProject.ext.configField['BASE_URL_PRO']
 
     }
     //必须，java 8或更高
@@ -53,26 +57,26 @@ android {
 
         //开发环境
         dev {
-            manifestPlaceholders = [CHANNEL_VALUE: "dev",
-                                    app_icon     : "@mipmap/ic_launcher_dev"]
+            manifestPlaceholders = rootProject.ext.dev
+            buildConfigField 'String', 'BASE_URL', rootProject.ext.configField['BASE_URL_DEV']
         }
         //测试环境(因为不允许命名为test)
         beta {
-            manifestPlaceholders = [CHANNEL_VALUE: "test",
-                                    app_icon     : "@mipmap/ic_launcher_test"]
+            manifestPlaceholders = rootProject.ext.test
+            buildConfigField 'String', 'BASE_URL', rootProject.ext.configField['BASE_URL_TEST']
         }
 
         //正式环境
         pro {
-            manifestPlaceholders = [CHANNEL_VALUE: "pro",
-                                    app_icon     : "@mipmap/ic_launcher"]
+            manifestPlaceholders = rootProject.ext.pro
+            buildConfigField 'String', 'BASE_URL', rootProject.ext.configField['BASE_URL_PRO']
         }
 
     }
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            def moduleName = rootProject.getName()
+            def moduleName = "app"
             if (variant.buildType.name == 'debug') {
                 outputFileName = "${moduleName}_${defaultConfig.versionName}_${variant.flavorName}Debug.apk"
             } else if (variant.buildType.name == 'release') {
