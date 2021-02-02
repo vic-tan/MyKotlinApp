@@ -1,6 +1,9 @@
 package com.tanlifei.app.main.ui
 
+import android.content.Context
+import android.content.Intent
 import android.view.View
+import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseActivity
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityGuideBinding
@@ -18,6 +21,12 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
     var guideList: MutableList<Int> = ArrayList()
     override fun layoutResId(): Int {
         return R.layout.activity_guide
+    }
+
+    companion object {
+        fun actionStart() {
+            ActivityUtils.startActivity(GuideActivity::class.java)
+        }
     }
 
     override fun createBinding(layoutView: View): ActivityGuideBinding {

@@ -13,6 +13,7 @@ import com.common.base.navigator.NavigatorView
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.ui.fragment.*
+import com.tanlifei.app.main.ui.LoginAtivity
 import java.util.*
 
 
@@ -26,6 +27,12 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mNavigator: NavigatorFragmentManager
     var mCurrTabPosition: Int = 0 //当前选中tag
+
+    companion object {
+        fun actionStart() {
+            ActivityUtils.startActivity(HomeActivity::class.java)
+        }
+    }
 
     override fun layoutResId(): Int {
         return R.layout.activity_home

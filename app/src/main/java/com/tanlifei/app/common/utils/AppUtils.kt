@@ -35,15 +35,16 @@ object AppUtils {
             //finish所有页面和kill app
             ToastUtils.cancel()
             ActivityUtils.finishAllActivities()
+            android.os.Process.killProcess(android.os.Process.myPid())
         }
     }
 
     /**
      * 获取默认渠道
      */
-     fun getDefaultChannel(context: Context): String? {
-        var appInfo: ApplicationInfo? = null
-        var channelIdStr = ""
+    fun getDefaultChannel(context: Context): String? {
+        var appInfo: ApplicationInfo?
+        var channelIdStr: String?
         try {
             appInfo = context.packageManager
                 .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)

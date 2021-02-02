@@ -41,7 +41,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
 
     private var intervalListener: OnIntervalListener? = null
 
-    fun startInterval() {
+    private fun startInterval() {
         var count = 60
         Observable.interval(0, 1, TimeUnit.SECONDS)
             .take((count + 1).toLong())
@@ -63,40 +63,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
     }
 
 
-    /**
-     * 校验表单信息
-     */
-    fun checkFormInfo(phone: String, code: String): Boolean {
-        if (phone.isEmpty()) {
-            ToastUtils.show("请输入手机号")
-            return false
-        } else if (!RegexUtils.isMobileSimple(phone)) {
-            ToastUtils.show("请输入正确的手机号码")
-            return false
-        }
-        if (code.isEmpty()) {
-            ToastUtils.show("请输入验证码")
-            return false
-        } else if (code.length < 4) {
-            ToastUtils.show("请输入4位验证码")
-            return false
-        }
-        return true
-    }
 
-    /**
-     * 校验手机号
-     */
-    fun checkPhone(phone: String): Boolean {
-        if (phone.isEmpty()) {
-            ToastUtils.show("请输入手机号")
-            return false
-        } else if (!RegexUtils.isMobileSimple(phone)) {
-            ToastUtils.show("请输入正确的手机号码")
-            return false
-        }
-        return true
-    }
 
     fun getCode(phone: String) = launch {
         repository.getCode(phone)

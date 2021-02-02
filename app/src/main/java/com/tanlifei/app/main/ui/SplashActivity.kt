@@ -28,9 +28,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     }
 
     override fun createBinding(layoutView: View): ActivitySplashBinding {
-       return ActivitySplashBinding.bind(layoutView)
+        return ActivitySplashBinding.bind(layoutView)
     }
-
 
 
     override fun showFullScreen(): Boolean {
@@ -45,9 +44,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                 if (show < 0.toLong()) {//当倒计时小于0,计时结束
                     var guide = SPUtils.getInstance().getBoolean(Const.SPKey.GUIDE, true)
                     if (guide) {
-                        ActivityUtils.startActivity(GuideActivity::class.java)
+                        GuideActivity.actionStart()
                     } else {
-                        ActivityUtils.startActivity(LoginAtivity::class.java)
+                        LoginAtivity.actionStart()
                     }
                     subscribe.dispose()//取消订阅
                     ActivityUtils.finishActivity(this)
