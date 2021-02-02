@@ -24,7 +24,6 @@ android {
         buildConfigField 'String', 'BASE_URL_DEV', rootProject.ext.configField['BASE_URL_DEV']
         buildConfigField 'String', 'BASE_URL_TEST', rootProject.ext.configField['BASE_URL_TEST']
         buildConfigField 'String', 'BASE_URL_PRO', rootProject.ext.configField['BASE_URL_PRO']
-
     }
     //必须，java 8或更高
     compileOptions {
@@ -78,9 +77,9 @@ android {
         variant.outputs.all {
             def moduleName = "app"
             if (variant.buildType.name == 'debug') {
-                outputFileName = "${moduleName}_${defaultConfig.versionName}_${variant.flavorName}Debug.apk"
+                outputFileName = "${moduleName}_${defaultConfig.versionName}_${variant.flavorName}_debug.apk"
             } else if (variant.buildType.name == 'release') {
-                outputFileName = "${moduleName}_${defaultConfig.versionName}_${variant.flavorName}Release.apk"
+                outputFileName = "${moduleName}_${defaultConfig.versionName}_${variant.flavorName}_release.apk"
             }
         }
     }
@@ -115,9 +114,4 @@ dependencies {
     api 'com.github.linger1216:labelview:v1.1.2'
 
 
-    //环境切换器  正式环境还测试切换切换(打包不影响)
-    //https://github.com/CodeXiaoMai/EnvironmentSwitcher
-    api "com.xiaomai.environmentswitcher:environmentswitcher:1.5.2"
-    kaptDebug "com.xiaomai.environmentswitcher:environmentswitcher-compiler:1.5.3"
-    kaptRelease "com.xiaomai.environmentswitcher:environmentswitcher-compiler-release:1.5.3"
 }

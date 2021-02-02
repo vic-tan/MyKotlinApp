@@ -17,6 +17,7 @@ import com.blankj.utilcode.util.RegexUtils
 import com.common.ComApplication
 import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
+import com.common.base.ui.activity.EnvironmentSwitchActivity
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
@@ -30,7 +31,6 @@ import com.tanlifei.app.main.model.LoginViewModel
 import com.tanlifei.app.main.model.factory.LoginModelFactory
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
-import com.xiaomai.environmentswitcher.EnvironmentSwitchActivity
 
 
 /**
@@ -103,7 +103,12 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         }
 
         loginViewModel.initEnvironmentSwitcher()//初始化环境切换器
-        binding.changeEnvironment.setOnClickListener { EnvironmentSwitchActivity.launch(this) }
+        binding.changeEnvironment.setOnClickListener {
+            EnvironmentSwitchActivity.actionStart(
+                this,
+                loginViewModel.environmentList
+            )
+        }
     }
 
     /**

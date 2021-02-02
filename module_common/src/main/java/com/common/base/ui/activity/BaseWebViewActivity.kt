@@ -1,31 +1,29 @@
 package com.common.base.ui.activity
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.webkit.*
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
-import com.common.databinding.ActivityComWebBinding
+import com.common.databinding.ActivityBaseWebBinding
 
 /**
  * @desc:
  * @author: tanlifei
  * @date: 2021/1/27 16:14
  */
-class BaseWebViewActivity : ToolBarActivity<ActivityComWebBinding>() {
+class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding>() {
 
     lateinit var url: String
     var title: String? = null
 
     companion object {
-        const val EXTRAS_URL = "extras_url"
-        const val EXTRAS_TITLE = "extras_title"
+        private const val EXTRAS_URL = "extras_url"
+        private const val EXTRAS_TITLE = "extras_title"
         fun actionStart(context: Context, url: String, title: String?) {
             var intent = Intent(context, BaseWebViewActivity::class.java).apply {
                 putExtra(EXTRAS_URL, url)
@@ -37,11 +35,11 @@ class BaseWebViewActivity : ToolBarActivity<ActivityComWebBinding>() {
 
 
     override fun layoutResId(): Int {
-        return R.layout.activity_com_web
+        return R.layout.activity_base_web
     }
 
-    override fun createBinding(layoutView: View): ActivityComWebBinding {
-        return ActivityComWebBinding.bind(layoutView)
+    override fun createBinding(layoutView: View): ActivityBaseWebBinding {
+        return ActivityBaseWebBinding.bind(layoutView)
     }
 
     override fun initView() {

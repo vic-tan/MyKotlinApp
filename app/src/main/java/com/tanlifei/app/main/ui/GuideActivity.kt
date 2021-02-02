@@ -19,15 +19,17 @@ import com.youth.banner.indicator.CircleIndicator
 class GuideActivity : BaseActivity<ActivityGuideBinding>() {
 
     var guideList: MutableList<Int> = ArrayList()
-    override fun layoutResId(): Int {
-        return R.layout.activity_guide
-    }
 
     companion object {
         fun actionStart() {
             ActivityUtils.startActivity(GuideActivity::class.java)
         }
     }
+
+    override fun layoutResId(): Int {
+        return R.layout.activity_guide
+    }
+
 
     override fun createBinding(layoutView: View): ActivityGuideBinding {
         return ActivityGuideBinding.bind(layoutView)

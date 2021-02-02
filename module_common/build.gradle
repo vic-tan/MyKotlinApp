@@ -10,12 +10,6 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        multiDexEnabled true
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     //必须，java 8或更高
@@ -23,6 +17,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
 
 
     buildTypes {
@@ -74,7 +70,7 @@ dependencies {
 
     //内存检测
     //https://github.com/square/leakcanary
-    api 'com.squareup.leakcanary:leakcanary-android:2.4'
+    debugApi 'com.squareup.leakcanary:leakcanary-android:2.4'
 
     //事件通知
     //https://github.com/greenrobot/eventbus
@@ -83,6 +79,9 @@ dependencies {
     //本地数据库
     //https://github.com/guolindev/litepal
     api 'org.litepal.guolindev:core:3.1.1'
+
+
+    api  'com.google.code.gson:gson:2.8.6'
 
 
     //沉浸式实现

@@ -58,6 +58,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     }
 
 
+
     /**
      * 初始化
      */

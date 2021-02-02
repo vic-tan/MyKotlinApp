@@ -3,19 +3,19 @@ package com.tanlifei.app.main.model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.environment.EnvironmentBean
+import com.common.environment.ModuleBean
 import com.common.utils.LogTools
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
 import com.hjq.toast.ToastUtils
+import com.tanlifei.app.BuildConfig
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.UrlConst
 import com.tanlifei.app.main.network.LoginNetwork
-import com.xiaomai.environmentswitcher.EnvironmentSwitcher
-import com.xiaomai.environmentswitcher.bean.EnvironmentBean
-import com.xiaomai.environmentswitcher.bean.ModuleBean
-import com.xiaomai.environmentswitcher.listener.OnEnvironmentChangeListener
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
@@ -27,8 +27,7 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
-    OnEnvironmentChangeListener {
+class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
 
     var isLoading = MutableLiveData<Boolean>()
     var isToken = MutableLiveData<Boolean>()
@@ -36,6 +35,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
     var token: String? = null
 
     lateinit var user: MutableList<UserBean>
+    lateinit var environmentList: MutableList<ModuleBean>
 
     private var intervalListener: OnIntervalListener? = null
 
@@ -59,8 +59,6 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
                 }
             })
     }
-
-
 
 
     fun getCode(phone: String) = launch {
@@ -104,28 +102,39 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel(),
      * 初始化环境切换器
      */
     fun initEnvironmentSwitcher() {
-        EnvironmentSwitcher.addOnEnvironmentChangeListener(this)
+        environmentList = ArrayList()
+        val apiList: MutableList<EnvironmentBean> = ArrayList()
+        apiList.add(EnvironmentBean("开发环境", BuildConfig.BASE_URL_DEV, true))
+        apiList.add(EnvironmentBean("测试环境", BuildConfig.BASE_URL_TEST, false))
+        apiList.add(EnvironmentBean("正式环境", BuildConfig.BASE_URL_PRO, false))
+        environmentList.add(ModuleBean("接口环境", apiList))
+
+        val shareList: MutableList<EnvironmentBean> = ArrayList()
+        shareList.add(EnvironmentBean("开发分享", BuildConfig.BASE_URL_DEV + "devShare/", true))
+        shareList.add(EnvironmentBean("测试分享", BuildConfig.BASE_URL_TEST + "testShare/", false))
+        shareList.add(EnvironmentBean("正式分享", BuildConfig.BASE_URL_PRO + "proShare/", false))
+        environmentList.add(ModuleBean("分享环境", shareList))
     }
 
-    override fun onEnvironmentChanged(
+    fun onEnvironmentChanged(
         module: ModuleBean?,
         oldEnvironment: EnvironmentBean?,
         newEnvironment: EnvironmentBean?
     ) {
-        try {
-            LogTools.show(
-                module?.name + "oleEnvironment=" + oldEnvironment?.name + "，oldUrl=" + oldEnvironment?.url
-                        + ",newNevironment=" + newEnvironment?.name + "，newUrl=" + newEnvironment?.url
-            )
-            ToastUtils.show(newEnvironment?.name)
-            if (module?.equals(EnvironmentSwitcher.MODULE_APP)!!) {
-                if (ObjectUtils.isNotEmpty(newEnvironment?.url)) {
-                    UrlConst.BASE_URL = newEnvironment?.url.toString()
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+//        try {
+//            LogTools.show(
+//                module?.name + "oleEnvironment=" + oldEnvironment?.name + "，oldUrl=" + oldEnvironment?.url
+//                        + ",newNevironment=" + newEnvironment?.name + "，newUrl=" + newEnvironment?.url
+//            )
+//            ToastUtils.show(newEnvironment?.name)
+//            if (module?.equals(EnvironmentSwitcher.MODULE_APP)!!) {
+//                if (ObjectUtils.isNotEmpty(newEnvironment?.url)) {
+//                    UrlConst.BASE_URL = newEnvironment?.url.toString()
+//                }
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
 
     }
 

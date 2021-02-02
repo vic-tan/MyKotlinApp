@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.multidex.MultiDex
 import com.hjq.toast.ToastUtils
+import com.tencent.bugly.crashreport.CrashReport
 import org.litepal.LitePal
 
 
@@ -19,6 +20,7 @@ open class ComApplication : Application() {
         super.onCreate()
         context = this
         ToastUtils.init(this)
+        CrashReport.initCrashReport(this)
         handler = Handler(Looper.getMainLooper())
     }
 
