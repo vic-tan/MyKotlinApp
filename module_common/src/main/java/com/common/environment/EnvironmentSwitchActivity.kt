@@ -1,21 +1,16 @@
-package com.common.base.ui.activity
+package com.common.environment
 
 import android.app.Activity
 import android.content.Intent
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.GsonUtils
 import com.common.R
+import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.databinding.ActivityEnvironmentSwitchBinding
-import com.common.environment.EnvironmentBean
-import com.common.environment.ModuleBean
-import com.common.environment.OnEnvironmentChangeListener
 import com.common.utils.LogTools
 import com.google.gson.Gson
 import com.hjq.bar.OnTitleBarListener
-import org.json.JSONException
-import org.json.JSONObject
-
 
 /**
  * @desc:环境切换acitity
@@ -23,7 +18,8 @@ import org.json.JSONObject
  * @date: 2021/2/2 15:21
  */
 class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchBinding>() {
-    lateinit var environmentList: MutableList<ModuleBean>
+    lateinit var environmentList: MutableList<EnvironmentBean>
+    internal lateinit var adapter: EnvironmentAdapter
 
     companion object {
         private const val EXTRAS_DATA = "extras_data"
@@ -33,7 +29,10 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
             var intent = Intent(activity, EnvironmentSwitchActivity::class.java).apply {
                 putExtra(EXTRAS_DATA, mapStr)
             }
-            ActivityUtils.startActivityForResult(activity, intent, REQUEST_CODE)
+            ActivityUtils.startActivityForResult(
+                activity, intent,
+                REQUEST_CODE
+            )
         }
     }
 
@@ -64,17 +63,33 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
     }
 
     override fun initView() {
+        environmentList = ArrayList()
         val mapJsonStr: String = intent.getStringExtra(EXTRAS_DATA)
         if (mapJsonStr.isNotEmpty()) {
-            environmentList =
+            val environmentModuleList: MutableList<ModuleBean> =
                 Gson().fromJson<Array<ModuleBean>>(mapJsonStr, Array<ModuleBean>::class.java)
                     .toMutableList()
+
+            for ((i, modulelist) in environmentModuleList.withIndex()) {                                  //遍历
+                val moduleBean: EnvironmentBean = EnvironmentBean(modulelist.alias, "", false)
+                moduleBean.type = EnvironmentBean.TITLE
+                moduleBean.group = i
+                environmentList.add(moduleBean)
+                for (environmentBean in modulelist.list) {
+                    environmentBean.type = EnvironmentBean.CONTENT
+                    environmentBean.group = i
+                    environmentList.add(environmentBean)
+                }
+            }
         }
-        for (list in environmentList) {                                 //遍历
-            LogTools.show(list.alias + "-----》" + list.list.size)
-        }
+        initRecyclerView()
     }
 
+    private fun initRecyclerView() {
+        binding.recycler.layoutManager = LinearLayoutManager(mActivity)
+        adapter = EnvironmentAdapter(environmentList)
+        binding.recycler.adapter = adapter
+    }
 
 }
 

@@ -107,13 +107,13 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
         apiList.add(EnvironmentBean("开发环境", BuildConfig.BASE_URL_DEV, true))
         apiList.add(EnvironmentBean("测试环境", BuildConfig.BASE_URL_TEST, false))
         apiList.add(EnvironmentBean("正式环境", BuildConfig.BASE_URL_PRO, false))
-        environmentList.add(ModuleBean("接口环境", apiList))
+        environmentList.add(ModuleBean("接口", apiList))
 
         val shareList: MutableList<EnvironmentBean> = ArrayList()
         shareList.add(EnvironmentBean("开发分享", BuildConfig.BASE_URL_DEV + "devShare/", true))
         shareList.add(EnvironmentBean("测试分享", BuildConfig.BASE_URL_TEST + "testShare/", false))
         shareList.add(EnvironmentBean("正式分享", BuildConfig.BASE_URL_PRO + "proShare/", false))
-        environmentList.add(ModuleBean("分享环境", shareList))
+        environmentList.add(ModuleBean("分享", shareList))
     }
 
     fun onEnvironmentChanged(

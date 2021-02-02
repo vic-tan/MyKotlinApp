@@ -1,5 +1,6 @@
 package com.common.environment
 
+import com.chad.library.adapter.base.entity.MultiItemEntity
 import java.io.Serializable
 
 /**
@@ -8,6 +9,19 @@ import java.io.Serializable
  * @date: 2021/2/2 15:57
  */
 data class EnvironmentBean(val alias: String, val url: String, val check: Boolean) :
-    Serializable {
+    Serializable, MultiItemEntity {
+    var type: Int = 0
+    var group: Int = 0
 
+    init {
+        type = 0;
+    }
+
+    override val itemType: Int
+        get() = type
+
+    companion object {
+        val TITLE = 1
+        val CONTENT = 2
+    }
 }

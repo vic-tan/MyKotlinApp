@@ -17,7 +17,7 @@ import com.blankj.utilcode.util.RegexUtils
 import com.common.ComApplication
 import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
-import com.common.base.ui.activity.EnvironmentSwitchActivity
+import com.common.environment.EnvironmentSwitchActivity
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils

@@ -16,7 +16,7 @@
             android:name=".base.ui.activity.BaseWebViewActivity"
             android:label="加载中.." />
         <activity
-            android:name=".base.ui.activity.EnvironmentSwitchActivity"
+            android:name=".environment.EnvironmentSwitchActivity"
             android:label="切换环境" />
     </application>
 </manifest>
