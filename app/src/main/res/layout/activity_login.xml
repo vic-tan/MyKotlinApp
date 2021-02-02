@@ -16,14 +16,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.ruffian.library.widget.RImageView
             android:id="@+id/logo"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:background="@mipmap/ic_launcher_round"
+            android:src="@mipmap/ic_launcher"
+            app:corner_radius="15dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/app_title"
@@ -47,7 +49,6 @@
             android:layout_marginEnd="30dp"
             android:background="@null"
             android:digits="1234567890"
-            android:text="138 0010 0500"
             android:hint="请输入手机号"
             android:imeOptions="actionNext"
             android:inputType="phone|number"
@@ -55,6 +56,7 @@
             android:maxLines="1"
             android:paddingStart="40dp"
             android:paddingEnd="8dp"
+            android:text="138 0010 0500"
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_999999"
             android:textSize="18sp"
@@ -170,12 +172,12 @@
         android:text="切换\n环境"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:corner_radius="35dp"
         app:background_normal="@array/gradient_com_btn"
+        app:corner_radius="35dp"
         app:gradient_orientation="TOP_BOTTOM"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:shadow_color="#EE1E26"
-        app:shadow_radius="4dp"/>
+        app:shadow_radius="4dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

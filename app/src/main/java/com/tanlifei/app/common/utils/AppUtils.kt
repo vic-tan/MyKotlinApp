@@ -48,9 +48,9 @@ object AppUtils {
         try {
             appInfo = context.packageManager
                 .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
-            val channelId = appInfo.metaData["UMENG_CHANNEL"]
+            val channelId = appInfo.metaData["CHANNEL"]
             channelIdStr =
-                if (TextUtils.isEmpty(channelId.toString())) "qa" else channelId.toString()
+                if (TextUtils.isEmpty(channelId.toString())) "dev" else channelId.toString()
         } catch (e: Exception) {
             channelIdStr = "qa"
             e.printStackTrace()

@@ -1,11 +1,19 @@
 package com.tanlifei.app.main.ui
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Intent
-import android.os.Bundle
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
+import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,18 +30,19 @@ import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
-import com.tanlifei.app.BaseApplication
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.UrlConst.AGREEMENT
 import com.tanlifei.app.common.config.UrlConst.REGISTER_AGREEMENT
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.main.model.factory.LoginModelFactory
 import com.tanlifei.app.main.model.LoginViewModel
+import com.tanlifei.app.main.model.factory.LoginModelFactory
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
 import com.xiaomai.environmentswitcher.EnvironmentSwitchActivity
+import java.io.*
+
 
 /**
  * @desc:
@@ -71,7 +80,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         )
         loginViewModel.setOnIntervalListener(this)
         binding.codeBtn.setOnClickListener {
-
             if (checkPhone(
                     LoginUtils.getPhone(binding.phone.text.toString())
                 )
@@ -104,10 +112,10 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                 )
             }
         }
+
         loginViewModel.initEnvironmentSwitcher()//初始化环境切换器
         binding.changeEnvironment.setOnClickListener { EnvironmentSwitchActivity.launch(this) }
     }
-
 
     /**
      * 初始化输入框内容是否禁用按钮监听

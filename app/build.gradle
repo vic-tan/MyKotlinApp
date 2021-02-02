@@ -28,11 +28,56 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'jiubao'
+            keyPassword 'qweqwe123'
+            storeFile file('./jiubaozhibo.jks')
+            storePassword 'qweqwe123'
+        }
+    }
 
     buildTypes {
         release {
             minifyEnabled false
+            multiDexEnabled true
+            zipAlignEnabled true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+
+        //开发环境
+        dev {
+            manifestPlaceholders = [CHANNEL_VALUE: "dev",
+                                    app_icon     : "@mipmap/ic_launcher_dev"]
+        }
+        //测试环境(因为不允许命名为test)
+        beta {
+            manifestPlaceholders = [CHANNEL_VALUE: "test",
+                                    app_icon     : "@mipmap/ic_launcher_test"]
+        }
+
+        //正式环境
+        pro {
+            manifestPlaceholders = [CHANNEL_VALUE: "pro",
+                                    app_icon     : "@mipmap/ic_launcher"]
+        }
+
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def moduleName = rootProject.getName()
+            if (variant.buildType.name == 'debug') {
+                outputFileName = "${moduleName}_${defaultConfig.versionName}_${variant.flavorName}Debug.apk"
+            } else if (variant.buildType.name == 'release') {
+                outputFileName = "${moduleName}_${defaultConfig.versionName}_${variant.flavorName}Release.apk"
+            }
         }
     }
 
@@ -63,6 +108,7 @@ dependencies {
     api 'io.reactivex.rxjava3:rxjava:3.0.6'
     api 'io.reactivex.rxjava3:rxandroid:3.0.0'
     api 'com.ljx.rxlife3:rxlife-rxjava:3.0.0'
+    api 'com.github.linger1216:labelview:v1.1.2'
 
 
     //环境切换器  正式环境还测试切换切换(打包不影响)
