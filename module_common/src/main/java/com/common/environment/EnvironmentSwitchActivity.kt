@@ -5,12 +5,14 @@ import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.common.R
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.databinding.ActivityEnvironmentSwitchBinding
 import com.common.utils.LogTools
 import com.google.gson.Gson
 import com.hjq.bar.OnTitleBarListener
+import com.hjq.toast.ToastUtils
 
 /**
  * @desc:环境切换acitity
@@ -36,23 +38,6 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
         }
     }
 
-    override fun setTitleBarListener() {
-        titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(v: View) {
-                val intent = Intent()
-                intent.putExtra("room", 1)
-                intent.putExtra("roomId", 2)
-                setResult(REQUEST_CODE, intent)
-                ActivityUtils.finishActivity(mActivity)
-            }
-
-            override fun onTitleClick(v: View) {
-            }
-
-            override fun onRightClick(v: View) {
-            }
-        })
-    }
 
     override fun layoutResId(): Int {
         return R.layout.activity_environment_switch
@@ -73,11 +58,10 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
             for ((i, modulelist) in environmentModuleList.withIndex()) {                                  //遍历
                 val moduleBean: EnvironmentBean = EnvironmentBean(modulelist.alias, "", false)
                 moduleBean.type = EnvironmentBean.TITLE
-                moduleBean.group = i
                 environmentList.add(moduleBean)
                 for (environmentBean in modulelist.list) {
                     environmentBean.type = EnvironmentBean.CONTENT
-                    environmentBean.group = i
+                    environmentBean.group = modulelist.type
                     environmentList.add(environmentBean)
                 }
             }
@@ -89,8 +73,16 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
         binding.recycler.layoutManager = LinearLayoutManager(mActivity)
         adapter = EnvironmentAdapter(environmentList)
         binding.recycler.adapter = adapter
-    }
+        adapter.addChildClickViewIds(R.id.title, R.id.url, R.id.radio)
+        adapter.setOnItemClickListener { _, view, position ->
+            adapter.setSelect(
+                environmentList[position].group,
+                position
+            )
 
+        }
+
+    }
 }
 
 

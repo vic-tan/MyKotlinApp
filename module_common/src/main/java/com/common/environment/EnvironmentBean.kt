@@ -8,13 +8,13 @@ import java.io.Serializable
  * @author: tanlifei
  * @date: 2021/2/2 15:57
  */
-data class EnvironmentBean(val alias: String, val url: String, val check: Boolean) :
+data class EnvironmentBean(val alias: String, val url: String, var check: Boolean) :
     Serializable, MultiItemEntity {
     var type: Int = 0
-    var group: Int = 0
+    var group: String = ""
 
     init {
-        type = 0;
+        type = 0
     }
 
     override val itemType: Int
