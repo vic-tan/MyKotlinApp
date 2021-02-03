@@ -49,7 +49,7 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
                 Gson().fromJson<Array<ModuleBean>>(mapJsonStr, Array<ModuleBean>::class.java)
                     .toMutableList()
 
-            for ((i, modules) in environmentModuleList.withIndex()) {                                  //遍历
+            for ((i, modules) in environmentModuleList.withIndex()) {//遍历
                 val moduleBean: EnvironmentBean =
                     EnvironmentBean(modules.alias, "", defaultCheck = false)
                 moduleBean.type = EnvironmentBean.TITLE

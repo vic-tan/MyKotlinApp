@@ -9,7 +9,7 @@ import com.common.utils.MyLogTools
 import org.litepal.LitePal
 
 /**
- * @desc:
+ * @desc:切换应用图标类
  * @author: tanlifei
  * @date: 2021/2/3 14:49
  */
