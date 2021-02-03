@@ -14,6 +14,7 @@ import kotlin.random.Random
 data class EnvironmentBean(
     val alias: String,
     val url: String,
+    val activityAlias: String = "",//切换图片key 跟EnvironmentChangeManager保持一致
     @Column(ignore = true)
     var defaultCheck: Boolean = false
 ) :
@@ -33,9 +34,10 @@ data class EnvironmentBean(
         get() = type
 
     companion object {
+        const val DB_GROUP = "group"//数据库中的分组字段
         const val TITLE = 1
         const val CONTENT = 2
-        const val GROUP_API = 100L//api 分组标识
+        const val GROUP_API = 100L//api 分组标识,这个尽量不要改变
         const val GROUP_SHARE = 200L//分享API标识
     }
 }

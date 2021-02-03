@@ -5,15 +5,10 @@ import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.ObjectUtils
-import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.common.R
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.databinding.ActivityEnvironmentSwitchBinding
-import com.common.utils.LogTools
 import com.google.gson.Gson
-import com.hjq.bar.OnTitleBarListener
-import com.hjq.toast.ToastUtils
 import org.greenrobot.eventbus.EventBus
 import org.litepal.LitePal
 
@@ -54,13 +49,14 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
                 Gson().fromJson<Array<ModuleBean>>(mapJsonStr, Array<ModuleBean>::class.java)
                     .toMutableList()
 
-            for ((i, modulelist) in environmentModuleList.withIndex()) {                                  //遍历
-                val moduleBean: EnvironmentBean = EnvironmentBean(modulelist.alias, "", false)
+            for ((i, modules) in environmentModuleList.withIndex()) {                                  //遍历
+                val moduleBean: EnvironmentBean =
+                    EnvironmentBean(modules.alias, "", defaultCheck = false)
                 moduleBean.type = EnvironmentBean.TITLE
                 environmentList.add(moduleBean)
-                for (environmentBean in modulelist.list) {
+                for (environmentBean in modules.list) {
                     environmentBean.type = EnvironmentBean.CONTENT
-                    environmentBean.group = modulelist.groupId
+                    environmentBean.group = modules.groupId
                     environmentList.add(environmentBean)
                 }
             }

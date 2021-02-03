@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,networkSecurityConfig">
-        <activity android:name="com.tanlifei.app.main.ui.SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.desay_svautomotive.ACTION_CAR_SETTINGS_WIDGET_STATUS_SWITCH" />
@@ -23,6 +25,45 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--    AndroidManifest.xml文件中添加过activity-alias标签之后，下一版本不能删除，可能会导致应用升级异常：
+            以工程中的activity（MainActivity），activity-alias（activity618、activity1225）为例，
+            且在升级包中删除了activity-alias（activity1225），则会有以下两种情况：
+            情况一：已安装应用的enable activity非activity1225，为MainActivity或activity618，则能正常升级；
+            情况二：已安装应用的enable activity为activity1225，升级完成后桌面上将找不到该应用，通过设置界面可以搜索到该应用的应用信息。
+            结论：一旦在AndroidManifest.xml文件中定义过activity-alias，建议不要删除。-->
+        <activity-alias
+            android:name="environment_dev"
+            android:enabled="false"
+            android:icon="@mipmap/ic_launcher_dev"
+            android:roundIcon="@mipmap/ic_launcher_dev"
+            android:targetActivity=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="environment_test"
+            android:enabled="false"
+            android:icon="@mipmap/ic_launcher_test"
+            android:roundIcon="@mipmap/ic_launcher_test"
+            android:targetActivity=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="environment_pro"
+            android:enabled="false"
+            android:icon="@mipmap/ic_launcher_pro"
+            android:roundIcon="@mipmap/ic_launcher_pro"
+            android:targetActivity=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
 
         <activity
             android:name="com.tanlifei.app.main.ui.GuideActivity"

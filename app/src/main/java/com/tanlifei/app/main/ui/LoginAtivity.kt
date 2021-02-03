@@ -19,9 +19,9 @@ import com.common.base.event.BaseEvent
 import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.environment.EnvironmentBean
+import com.common.environment.EnvironmentChangeManager
 import com.common.environment.EnvironmentEvent
 import com.common.environment.EnvironmentSwitchActivity
-import com.common.utils.LogTools
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
@@ -134,6 +134,11 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
     override fun onMessageEvent(event: BaseEvent) {
         if (event is EnvironmentEvent) {
             LitePal.delete(EnvironmentBean::class.java, event.environment.group)
+            LitePal.deleteAll(
+                EnvironmentBean::class.java,
+                "${EnvironmentBean.DB_GROUP} = ? ",
+                "${EnvironmentBean.GROUP_API}"
+            )
             event.environment.save()
             loginViewModel.onEnvironmentChanged(event.environment)
         }
@@ -251,6 +256,11 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
     override fun onDestroy() {
         super.onDestroy()
         this.mInputHelper?.removeViews()
+        try {
+            EnvironmentChangeManager.startEnvironmentIcon()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun afterTextChanged(s: Editable?) {

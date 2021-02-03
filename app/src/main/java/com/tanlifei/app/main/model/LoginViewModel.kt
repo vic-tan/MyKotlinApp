@@ -1,15 +1,20 @@
 package com.tanlifei.app.main.model
 
+import android.content.ComponentName
+import android.content.pm.PackageManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.ComApplication
 import com.common.environment.EnvironmentBean
+import com.common.environment.EnvironmentChangeManager
 import com.common.environment.ModuleBean
-import com.common.utils.LogTools
+import com.common.utils.MyLogTools
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
 import com.hjq.toast.ToastUtils
+import com.tanlifei.app.BaseApplication
 import com.tanlifei.app.BuildConfig
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
@@ -104,23 +109,26 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     fun initEnvironmentSwitcher() {
         environmentList = ArrayList()
         val apiList: MutableList<EnvironmentBean> = ArrayList()
-        apiList.add(EnvironmentBean("开发环境", BuildConfig.BASE_URL_DEV, true))
-        apiList.add(EnvironmentBean("测试环境", BuildConfig.BASE_URL_TEST))
-        apiList.add(EnvironmentBean("正式环境", BuildConfig.BASE_URL_PRO))
+        apiList.add(EnvironmentBean("开发环境", BuildConfig.BASE_URL_DEV, "environment_dev", true))
+        apiList.add(EnvironmentBean("测试环境", BuildConfig.BASE_URL_TEST, "environment_test"))
+        apiList.add(EnvironmentBean("正式环境", BuildConfig.BASE_URL_PRO, "environment_pro"))
         environmentList.add(ModuleBean("接口", EnvironmentBean.GROUP_API, apiList))
 
         val shareList: MutableList<EnvironmentBean> = ArrayList()
-        shareList.add(EnvironmentBean("开发分享", BuildConfig.BASE_URL_DEV + "devShare/", true))
+        shareList.add(
+            EnvironmentBean(
+                "开发分享",
+                BuildConfig.BASE_URL_DEV + "devShare/",
+                defaultCheck = true
+            )
+        )
         shareList.add(EnvironmentBean("测试分享", BuildConfig.BASE_URL_TEST + "testShare/"))
         shareList.add(EnvironmentBean("正式分享", BuildConfig.BASE_URL_PRO + "proShare/"))
         environmentList.add(ModuleBean("分享", EnvironmentBean.GROUP_SHARE, shareList))
     }
 
-    fun onEnvironmentChanged(
-        environment: EnvironmentBean
-    ) {
+    fun onEnvironmentChanged(environment: EnvironmentBean) {
         try {
-            LogTools.show(environment.toString() + "group=" + environment.group)
             if (environment.group == EnvironmentBean.GROUP_API) {
                 if (ObjectUtils.isNotEmpty(environment.url)) {
                     UrlConst.BASE_URL = environment.url
