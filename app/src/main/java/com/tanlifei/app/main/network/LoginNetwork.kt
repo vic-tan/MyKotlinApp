@@ -1,9 +1,7 @@
 package com.tanlifei.app.main.network
 
 import com.tanlifei.app.common.config.UrlConst
-import com.tanlifei.app.main.bean.SmsCodeBean
 import rxhttp.RxHttp
-import rxhttp.toClass
 import rxhttp.toResponse
 
 

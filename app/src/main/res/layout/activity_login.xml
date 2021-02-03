@@ -172,7 +172,7 @@
         android:text="切换\n环境"
         android:textColor="@color/white"
         android:textSize="12sp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:background_normal="@array/gradient_com_btn"
         app:corner_radius="35dp"
         app:gradient_orientation="TOP_BOTTOM"
