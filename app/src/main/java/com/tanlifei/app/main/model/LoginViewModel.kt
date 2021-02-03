@@ -105,36 +105,30 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
         environmentList = ArrayList()
         val apiList: MutableList<EnvironmentBean> = ArrayList()
         apiList.add(EnvironmentBean("开发环境", BuildConfig.BASE_URL_DEV, true))
-        apiList.add(EnvironmentBean("测试环境", BuildConfig.BASE_URL_TEST, false))
-        apiList.add(EnvironmentBean("正式环境", BuildConfig.BASE_URL_PRO, false))
-        environmentList.add(ModuleBean("接口", "api", apiList))
+        apiList.add(EnvironmentBean("测试环境", BuildConfig.BASE_URL_TEST))
+        apiList.add(EnvironmentBean("正式环境", BuildConfig.BASE_URL_PRO))
+        environmentList.add(ModuleBean("接口", EnvironmentBean.GROUP_API, apiList))
 
         val shareList: MutableList<EnvironmentBean> = ArrayList()
         shareList.add(EnvironmentBean("开发分享", BuildConfig.BASE_URL_DEV + "devShare/", true))
-        shareList.add(EnvironmentBean("测试分享", BuildConfig.BASE_URL_TEST + "testShare/", false))
-        shareList.add(EnvironmentBean("正式分享", BuildConfig.BASE_URL_PRO + "proShare/", false))
-        environmentList.add(ModuleBean("分享", "share", shareList))
+        shareList.add(EnvironmentBean("测试分享", BuildConfig.BASE_URL_TEST + "testShare/"))
+        shareList.add(EnvironmentBean("正式分享", BuildConfig.BASE_URL_PRO + "proShare/"))
+        environmentList.add(ModuleBean("分享", EnvironmentBean.GROUP_SHARE, shareList))
     }
 
     fun onEnvironmentChanged(
-        module: ModuleBean?,
-        oldEnvironment: EnvironmentBean?,
-        newEnvironment: EnvironmentBean?
+        environment: EnvironmentBean
     ) {
-//        try {
-//            LogTools.show(
-//                module?.name + "oleEnvironment=" + oldEnvironment?.name + "，oldUrl=" + oldEnvironment?.url
-//                        + ",newNevironment=" + newEnvironment?.name + "，newUrl=" + newEnvironment?.url
-//            )
-//            ToastUtils.show(newEnvironment?.name)
-//            if (module?.equals(EnvironmentSwitcher.MODULE_APP)!!) {
-//                if (ObjectUtils.isNotEmpty(newEnvironment?.url)) {
-//                    UrlConst.BASE_URL = newEnvironment?.url.toString()
-//                }
-//            }
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
+        try {
+            LogTools.show(environment.toString() + "group=" + environment.group)
+            if (environment.group == EnvironmentBean.GROUP_API) {
+                if (ObjectUtils.isNotEmpty(environment.url)) {
+                    UrlConst.BASE_URL = environment.url
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
     }
 

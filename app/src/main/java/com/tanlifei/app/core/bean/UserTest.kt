@@ -1,7 +1,7 @@
 package com.tanlifei.app.core.bean
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.tanlifei.app.common.bean.BaseLitePalBean
+import com.common.base.bean.BaseLitePalBean
 
 class UserTest constructor() : BaseLitePalBean(), MultiItemEntity {
 

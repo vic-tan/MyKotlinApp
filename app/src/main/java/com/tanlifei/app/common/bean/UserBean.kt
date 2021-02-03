@@ -1,5 +1,7 @@
 package com.tanlifei.app.common.bean
 
+import com.common.base.bean.BaseLitePalBean
+
 /**
  * @desc:用户信息
  * @author: tanlifei

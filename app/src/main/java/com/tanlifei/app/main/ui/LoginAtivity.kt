@@ -15,9 +15,13 @@ import cn.iwgang.simplifyspan.unit.SpecialTextUnit
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.ComApplication
+import com.common.base.event.BaseEvent
 import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
+import com.common.environment.EnvironmentBean
+import com.common.environment.EnvironmentEvent
 import com.common.environment.EnvironmentSwitchActivity
+import com.common.utils.LogTools
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
@@ -31,6 +35,9 @@ import com.tanlifei.app.main.model.LoginViewModel
 import com.tanlifei.app.main.model.factory.LoginModelFactory
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.litepal.LitePal
 
 
 /**
@@ -111,12 +118,25 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         }
     }
 
+    override fun registerEventBus(): Boolean {
+        return true
+    }
+
     /**
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
         mInputHelper = TextInputHelper(binding.login)
         mInputHelper.addViews(binding.phone, binding.code)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    override fun onMessageEvent(event: BaseEvent) {
+        if (event is EnvironmentEvent) {
+            LitePal.delete(EnvironmentBean::class.java, event.environment.group)
+            event.environment.save()
+            loginViewModel.onEnvironmentChanged(event.environment)
+        }
     }
 
     /**

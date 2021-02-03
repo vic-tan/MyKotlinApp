@@ -21,6 +21,7 @@ open class ComApplication : Application() {
         context = this
         ToastUtils.init(this)
         CrashReport.initCrashReport(this)
+        LitePal.initialize(context)
         handler = Handler(Looper.getMainLooper())
     }
 

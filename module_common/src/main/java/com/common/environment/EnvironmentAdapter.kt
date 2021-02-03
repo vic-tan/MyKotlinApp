@@ -26,18 +26,18 @@ class EnvironmentAdapter(data: MutableList<EnvironmentBean>) :
                 holder.setText(R.id.title, item.alias)
                 holder.setText(R.id.url, item.url)
                 holder.getView<ImageView>(R.id.radio)
-                    .setImageResource(if (item.check) R.mipmap.icon_select else R.mipmap.icon_unselect)
+                    .setImageResource(if (item.defaultCheck) R.mipmap.icon_select else R.mipmap.icon_unselect)
             }
         }
     }
 
-    open fun setSelect(group: String, pos: Int) {
+    open fun setSelect(group: Long, pos: Int) {
         for (lst in data) {
-            if (lst.group == group && lst.check) {
-                lst.check = false
+            if (lst.group == group && lst.defaultCheck) {
+                lst.defaultCheck = false
             }
         }
-        data[pos].check = true
+        data[pos].defaultCheck = true
         notifyDataSetChanged()
     }
 }

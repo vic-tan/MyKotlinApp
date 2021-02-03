@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.ObjectUtils
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.common.R
 import com.common.base.ui.activity.BaseToolBarActivity
@@ -13,6 +14,8 @@ import com.common.utils.LogTools
 import com.google.gson.Gson
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.toast.ToastUtils
+import org.greenrobot.eventbus.EventBus
+import org.litepal.LitePal
 
 /**
  * @desc:环境切换acitity
@@ -25,16 +28,12 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
 
     companion object {
         private const val EXTRAS_DATA = "extras_data"
-        const val REQUEST_CODE = 1000
         fun actionStart(activity: Activity, list: MutableList<ModuleBean>) {
             val mapStr = Gson().toJson(list)
             var intent = Intent(activity, EnvironmentSwitchActivity::class.java).apply {
                 putExtra(EXTRAS_DATA, mapStr)
             }
-            ActivityUtils.startActivityForResult(
-                activity, intent,
-                REQUEST_CODE
-            )
+            ActivityUtils.startActivity(intent)
         }
     }
 
@@ -61,12 +60,28 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
                 environmentList.add(moduleBean)
                 for (environmentBean in modulelist.list) {
                     environmentBean.type = EnvironmentBean.CONTENT
-                    environmentBean.group = modulelist.type
+                    environmentBean.group = modulelist.groupId
                     environmentList.add(environmentBean)
                 }
             }
+            setDefaultCheck()
         }
         initRecyclerView()
+    }
+
+    private fun setDefaultCheck() {
+        val saveEnvironmentList: List<EnvironmentBean> =
+            LitePal.findAll(EnvironmentBean::class.java)
+        if (saveEnvironmentList.isEmpty()) {
+            return
+        }
+        for (lt in saveEnvironmentList) {
+            for (list in environmentList) {
+                if (list.group == lt.group) {
+                    list.defaultCheck = list.url == lt.url
+                }
+            }
+        }
     }
 
     private fun initRecyclerView() {
@@ -74,11 +89,14 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
         adapter = EnvironmentAdapter(environmentList)
         binding.recycler.adapter = adapter
         adapter.addChildClickViewIds(R.id.title, R.id.url, R.id.radio)
-        adapter.setOnItemClickListener { _, view, position ->
-            adapter.setSelect(
-                environmentList[position].group,
-                position
-            )
+        adapter.setOnItemClickListener { _, _, position ->
+            run {
+                adapter.setSelect(
+                    environmentList[position].group,
+                    position
+                )
+                EventBus.getDefault().post(EnvironmentEvent(environmentList[position]))
+            }
 
         }
 

@@ -1,6 +1,6 @@
 package com.tanlifei.app.core.bean
 
-import com.tanlifei.app.common.bean.BaseLitePalBean
+import com.common.base.bean.BaseLitePalBean
 
 class Banner : BaseLitePalBean(){
 //    {

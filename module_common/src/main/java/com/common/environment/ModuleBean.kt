@@ -7,6 +7,6 @@ import java.io.Serializable
  * @author: tanlifei
  * @date: 2021/2/2 15:57
  */
-class ModuleBean(val alias: String, var type: String, val list: List<EnvironmentBean>) :
+class ModuleBean(val alias: String, var groupId: Long, val list: List<EnvironmentBean>) :
     Serializable {
 }
