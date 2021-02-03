@@ -69,6 +69,9 @@
             android:name="com.tanlifei.app.main.ui.GuideActivity"
             android:label="引导页" />
         <activity
+            android:name="com.tanlifei.app.main.ui.AdsActivity"
+            android:label="广告页" />
+        <activity
             android:name="com.tanlifei.app.home.ui.activity.HomeActivity"
             android:label="首页" />
         <activity

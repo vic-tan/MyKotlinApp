@@ -1,7 +1,5 @@
 package com.tanlifei.app.main.ui
 
-import android.content.Context
-import android.content.Intent
 import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseActivity

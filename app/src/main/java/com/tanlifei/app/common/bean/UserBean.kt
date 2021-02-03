@@ -11,4 +11,5 @@ class UserBean : BaseLitePalBean() {
     override val modelId: Long
         get() = userId
     var userId: Long = 0
+    var token: String = ""
 }

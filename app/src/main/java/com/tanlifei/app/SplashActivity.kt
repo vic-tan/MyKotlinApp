@@ -4,14 +4,21 @@ import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
+import com.common.ComApplication
 import com.common.base.ui.activity.BaseActivity
 import com.common.environment.EnvironmentChangeManager
 import com.common.utils.MyLogTools
+import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.common.config.UrlConst
+import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySplashBinding
+import com.tanlifei.app.home.ui.activity.HomeActivity
+import com.tanlifei.app.main.bean.AdsBean
+import com.tanlifei.app.main.ui.AdsActivity
 import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
+import com.tanlifei.app.main.utils.AdsUtils
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -51,7 +58,19 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                     if (guide) {
                         GuideActivity.actionStart()
                     } else {
-                        LoginAtivity.actionStart()
+                        val adsBean = AdsUtils.getAds()
+                        if (ObjectUtils.isNotEmpty(adsBean) && (ObjectUtils.isNotEmpty(adsBean) && adsBean?.status == 1)) {
+                            AdsActivity.actionStart(this, adsBean!!)
+                        } else {
+                            val token = UserInfoUtils.getToken()
+                            //已经登录过了
+                            if (ObjectUtils.isNotEmpty(token)) {
+                                ComApplication.token = token
+                                HomeActivity.actionStart()
+                            } else {//未登录
+                                LoginAtivity.actionStart()
+                            }
+                        }
                     }
                     subscribe.dispose()//取消订阅
                     ActivityUtils.finishActivity(this)
