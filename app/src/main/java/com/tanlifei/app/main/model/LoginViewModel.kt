@@ -1,5 +1,6 @@
 package com.tanlifei.app.main.model
 
+import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.rxLifeScope
@@ -15,12 +16,12 @@ import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.UrlConst
 import com.tanlifei.app.main.network.LoginNetwork
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.concurrent.TimeUnit
+
 
 /**
  * @desc:登录ViewModel
@@ -37,12 +38,19 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     val isToken: LiveData<Boolean> get() = _isToken
     private val _isToken = MutableLiveData<Boolean>()
 
+    val isContinuousClick: LiveData<Boolean> get() = _isContinuousClick
+    private val _isContinuousClick = MutableLiveData<Boolean>()
+
     var token: String? = null
 
     lateinit var user: MutableList<UserBean>
     lateinit var environmentList: MutableList<ModuleBean>
 
     private var intervalListener: OnIntervalListener? = null
+
+    private val counts = 10 // 点击次数
+    private val totalDuration: Long = 10000 // 规定有效时间
+    var mHits: LongArray = LongArray(counts)
 
 
     private fun startInterval() {
@@ -103,6 +111,19 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
         this.intervalListener = intervalListener
     }
 
+    /**
+     * 是否连续点击
+     */
+    fun continuousClick() {
+        //每次点击时，数组向前移动一位
+        System.arraycopy(mHits, 1, mHits, 0, mHits.size - 1)
+        //为数组最后一位赋值
+        mHits[mHits.size - 1] = SystemClock.uptimeMillis()
+        if (mHits[0] >= SystemClock.uptimeMillis() - totalDuration) {
+            mHits = LongArray(counts) //重新初始化数组
+            _isContinuousClick.value = true
+        }
+    }
 
     /**
      * 初始化环境切换器

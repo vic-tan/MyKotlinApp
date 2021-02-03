@@ -116,6 +116,14 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                 loginViewModel.environmentList
             )
         }
+
+        //是否连续点击显示切换环境
+        binding.logo.setOnClickListener {
+            loginViewModel.continuousClick()
+        }
+        loginViewModel.isContinuousClick.observe(this, Observer {
+            binding.changeEnvironment.visibility = if (it) View.VISIBLE else View.GONE
+        })
     }
 
     override fun registerEventBus(): Boolean {
