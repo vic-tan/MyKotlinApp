@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.common.environment.EnvironmentChangeManager
-import com.common.utils.MyLogTools
 import com.hjq.toast.ToastUtils
 import com.tencent.bugly.crashreport.CrashReport
 import org.litepal.LitePal
@@ -50,11 +49,8 @@ open class ComApplication : Application() {
              */
             mFinalCount--
             if (mFinalCount == 0) { //如果mFinalCount ==0，说明是前台到后台
-                try {
-                    EnvironmentChangeManager.startEnvironmentIcon()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+                EnvironmentChangeManager.startEnvironmentSwitchIcon()
+
             }
         }
 

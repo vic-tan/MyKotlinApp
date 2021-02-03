@@ -4,9 +4,7 @@ package com.tanlifei.app.home.ui.activity
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.ComApplication
 import com.common.base.ui.activity.BaseActivity
-import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
 import com.common.base.navigator.NavigatorAdapter
 import com.common.base.navigator.NavigatorFragmentManager
@@ -15,7 +13,6 @@ import com.common.environment.EnvironmentChangeManager
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.ui.fragment.*
-import com.tanlifei.app.main.ui.LoginAtivity
 import java.util.*
 
 
@@ -99,11 +96,7 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
 
     override fun onDestroy() {
         super.onDestroy()
-        try {
-            EnvironmentChangeManager.startEnvironmentIcon()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        EnvironmentChangeManager.startEnvironmentSwitchIcon()
     }
 
 }

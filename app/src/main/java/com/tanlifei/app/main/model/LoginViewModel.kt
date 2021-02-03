@@ -1,20 +1,15 @@
 package com.tanlifei.app.main.model
 
-import android.content.ComponentName
-import android.content.pm.PackageManager
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.ComApplication
 import com.common.environment.EnvironmentBean
-import com.common.environment.EnvironmentChangeManager
 import com.common.environment.ModuleBean
-import com.common.utils.MyLogTools
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
 import com.hjq.toast.ToastUtils
-import com.tanlifei.app.BaseApplication
 import com.tanlifei.app.BuildConfig
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.bean.UserBean
@@ -33,9 +28,14 @@ import java.util.concurrent.TimeUnit
  * @date: 2021/1/28 15:50
  */
 class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
+    /**
+     * 永远暴露不可变LiveData给外部，防止外部可以修改LoginViewModel，保证LoginViewModel独立性
+     */
+    val isLoading: LiveData<Boolean> get() = _isLoading
+    private val _isLoading = MutableLiveData<Boolean>()
 
-    var isLoading = MutableLiveData<Boolean>()
-    var isToken = MutableLiveData<Boolean>()
+    val isToken: LiveData<Boolean> get() = _isToken
+    private val _isToken = MutableLiveData<Boolean>()
 
     var token: String? = null
 
@@ -43,6 +43,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     lateinit var environmentList: MutableList<ModuleBean>
 
     private var intervalListener: OnIntervalListener? = null
+
 
     private fun startInterval() {
         var count = 60
@@ -76,20 +77,20 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     fun login(phone: String, code: String) = launch {
         ToastUtils.show(UrlConst.BASE_URL)
         token = repository.getLogin(phone, code)
-        isToken.value = ObjectUtils.isNotEmpty(token)
+        _isToken.value = ObjectUtils.isNotEmpty(token)
     }
 
     private fun launch(block: suspend () -> Unit) = rxLifeScope.launch({
-        isLoading.value = true
+        _isLoading.value = true
         block()
-        isLoading.value = false
+        _isLoading.value = false
     }, {
-        isLoading.value = false
+        _isLoading.value = false
         it.show(it.errorCode, it.errorMsg)
     }, {
-        isLoading.value = true
+        _isLoading.value = true
     }, {
-        isLoading.value = false
+        _isLoading.value = false
     })
 
     interface OnIntervalListener {

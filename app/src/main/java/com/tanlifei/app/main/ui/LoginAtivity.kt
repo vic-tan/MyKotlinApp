@@ -257,7 +257,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         super.onDestroy()
         this.mInputHelper?.removeViews()
         try {
-            EnvironmentChangeManager.startEnvironmentIcon()
+            EnvironmentChangeManager.startEnvironmentSwitchIcon()
         } catch (e: Exception) {
             e.printStackTrace()
         }

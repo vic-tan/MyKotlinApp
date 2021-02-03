@@ -5,7 +5,10 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.base.ui.activity.BaseActivity
+import com.common.environment.EnvironmentChangeManager
+import com.common.utils.MyLogTools
 import com.tanlifei.app.common.config.Const
+import com.tanlifei.app.common.config.UrlConst
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
@@ -38,6 +41,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     }
 
     override fun initView() {
+        setBaseApiUrl()
         subscribe = Observable.interval(1, TimeUnit.SECONDS)//按时间间隔发送整数的Observable
             .observeOn(AndroidSchedulers.mainThread())//切换到主线程修改UI
             .subscribe {
@@ -54,6 +58,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                     return@subscribe//使用标记跳出方法
                 }
             }
+    }
+
+    /**
+     * 初始化环境
+     */
+    private fun setBaseApiUrl() {
+        val apiUrl = EnvironmentChangeManager.initEnvironment()
+        if (ObjectUtils.isNotEmpty(apiUrl)) {
+            UrlConst.BASE_URL = apiUrl!!
+        }
+        MyLogTools.show("UrlConst.BASE_URL = ${UrlConst.BASE_URL}")
     }
 
     /**

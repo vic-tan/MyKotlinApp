@@ -102,19 +102,51 @@ object EnvironmentChangeManager {
         return false
     }
 
-    fun startEnvironmentIcon() {
-        val saveEnvironmentList =
-            LitePal.where("${EnvironmentBean.DB_GROUP} = ? ", "${EnvironmentBean.GROUP_API}")
-                .find(EnvironmentBean::class.java)
+    /**
+     * 开始修改应用图标
+     */
+    fun startEnvironmentSwitchIcon() {
+        try {
+            val saveEnvironmentList =
+                LitePal.where("${EnvironmentBean.DB_GROUP} = ? ", "${EnvironmentBean.GROUP_API}")
+                    .find(EnvironmentBean::class.java)
 
-        if (ObjectUtils.isEmpty(saveEnvironmentList)) {
-            return
-        }
-        val bean: EnvironmentBean = saveEnvironmentList[saveEnvironmentList.size - 1]
-        if (bean.activityAlias.isNotEmpty()) {
-            if (ObjectUtils.isNotEmpty(bean.activityAlias)) {
-                changeIcon(ComApplication.context, bean.activityAlias)
+            if (ObjectUtils.isEmpty(saveEnvironmentList)) {
+                return
             }
+            val bean: EnvironmentBean = saveEnvironmentList[saveEnvironmentList.size - 1]
+            if (bean.activityAlias.isNotEmpty()) {
+                if (ObjectUtils.isNotEmpty(bean.activityAlias)) {
+                    changeIcon(ComApplication.context, bean.activityAlias)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
+
+    /**
+     * 初始化环境切换器，一般在应用启动设置
+     */
+    fun initEnvironment(): String? {
+        try {
+            val saveEnvironmentList =
+                LitePal.where("${EnvironmentBean.DB_GROUP} = ? ", "${EnvironmentBean.GROUP_API}")
+                    .find(EnvironmentBean::class.java)
+            if (ObjectUtils.isEmpty(saveEnvironmentList)) {
+                return null
+            }
+            val environment: EnvironmentBean = saveEnvironmentList[saveEnvironmentList.size - 1]
+            if (environment.group == EnvironmentBean.GROUP_API) {
+                if (ObjectUtils.isNotEmpty(environment.url)) {
+                    return environment.url
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+
 }
