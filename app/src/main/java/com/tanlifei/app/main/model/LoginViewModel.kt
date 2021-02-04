@@ -3,17 +3,11 @@ package com.tanlifei.app.main.model
 import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.environment.EnvironmentBean
 import com.common.environment.ModuleBean
-import com.example.httpsender.kt.errorCode
-import com.example.httpsender.kt.errorMsg
-import com.example.httpsender.kt.show
-import com.hjq.toast.ToastUtils
 import com.tanlifei.app.BuildConfig
 import com.tanlifei.app.common.bean.BaseViewModel
-import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.UrlConst
 import com.tanlifei.app.main.network.LoginNetwork
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -64,8 +58,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     /**
      * 短信60s倒计时
      */
-    private fun startInterval() {
-        var count = 60
+    private fun startInterval(count: Long = 60) {
         Observable.interval(0, 1, TimeUnit.SECONDS)
             .take((count + 1).toLong())
             .map { aLong -> count - aLong }
@@ -89,7 +82,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     /**
      * 请求短信码
      */
-    fun requestSmsCode(phone: String) = launch {
+    fun requestSmsCode(phone: String) = launchByLoading {
         repository.requestSmsCode(phone)
         startInterval()
     }
@@ -97,7 +90,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     /**
      * 请求登录
      */
-    fun requestLogin(phone: String, code: String) = launch {
+    fun requestLogin(phone: String, code: String) = launchByLoading {
         token = repository.requestLogin(phone, code)
         _isToken.value = ObjectUtils.isNotEmpty(token)
     }

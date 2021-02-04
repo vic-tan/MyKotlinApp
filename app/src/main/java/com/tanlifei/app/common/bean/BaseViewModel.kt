@@ -9,7 +9,7 @@ import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
 
 /**
- * @desc:
+ * @desc:ViewModel基类
  * @author: tanlifei
  * @date: 2021/1/28 15:55
  */
@@ -21,7 +21,11 @@ open class BaseViewModel : ViewModel() {
     val isLoading: LiveData<Boolean> get() = _isLoading
     private val _isLoading = MutableLiveData<Boolean>()
 
-    protected fun launch(block: suspend () -> Unit) = rxLifeScope.launch({
+
+    /**
+     * 加载框请求
+     */
+    protected fun launchByLoading(block: suspend () -> Unit) = rxLifeScope.launch({
         _isLoading.value = true
         block()
         _isLoading.value = false
@@ -33,6 +37,14 @@ open class BaseViewModel : ViewModel() {
     }, {
         _isLoading.value = false
     })
+
+
+    /**
+     * 静默加载
+     */
+    protected fun launchBySilence(block: suspend () -> Unit) = rxLifeScope.launch {
+        block()
+    }
 
     /**
      * 由于屏幕旋转导致的Activity重建，该方法不会被调用

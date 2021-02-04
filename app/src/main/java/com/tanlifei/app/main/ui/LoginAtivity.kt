@@ -1,6 +1,5 @@
 package com.tanlifei.app.main.ui
 
-import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
