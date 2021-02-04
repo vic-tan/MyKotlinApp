@@ -45,8 +45,7 @@ import org.litepal.LitePal
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
-    LoginViewModel.OnIntervalListener, TextWatcher {
+open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var mInputHelper: TextInputHelper
@@ -70,9 +69,9 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         setProtocolTxt()
         initTextInputHelper()
         initViewModel()
-        initEnvironmentSwitcher()
-        initListener()
         initViewModelObserve()
+        initListener()
+        initEnvironmentSwitcher()
     }
 
     /**
@@ -103,6 +102,14 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
             }
         })
 
+        loginViewModel.smsCodeInterval.observe(this, Observer {
+            when (it) {
+                -1L -> onIntervalStart()
+                -2L -> onIntervalComplete()
+                else -> onIntervalChanged(it)
+            }
+        })
+
         loginViewModel.isContinuousClick.observe(this, Observer {
             binding.changeEnvironment.visibility = if (it) View.VISIBLE else View.GONE
         })
@@ -112,14 +119,13 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
      * 初始化监听
      */
     private fun initListener() {
-        loginViewModel.setOnIntervalListener(this)
         binding.phone.addTextChangedListener(this)
         binding.codeBtn.setOnClickListener {
             if (checkPhone(
                     LoginUtils.getPhone(binding.phone.text.toString())
                 )
             ) {
-                loginViewModel.getCode(LoginUtils.getPhone(binding.phone.text.toString()))
+                loginViewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
             }
         }
         binding.login.setOnClickListener {
@@ -128,7 +134,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                     binding.code.toString()
                 )
             ) {
-                loginViewModel.login(
+                loginViewModel.requestLogin(
                     LoginUtils.getPhone(binding.phone.text.toString()),
                     binding.code.toString()
                 )
@@ -272,7 +278,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
     /**
      * 倒计时开始时显示
      */
-    override fun onIntervalStart() {
+    fun onIntervalStart() {
         binding.codeBtn.isClickable = false //在发送数据的时候设置为不能点击
         binding.codeBtn.setTextColor(ResUtils.getColor(R.color.color_999999))
     }
@@ -280,15 +286,15 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
     /**
      * 倒计时正行中显示
      */
-    @SuppressLint("SetTextI18n")
-    override fun onIntervalChanged(second: Long) {
+
+    fun onIntervalChanged(second: Long) {
         binding.codeBtn.text = "${second}s"
     }
 
     /**
      * 倒计时结束后显示
      */
-    override fun onIntervalComplete() {
+    fun onIntervalComplete() {
         binding.codeBtn.isClickable = true
         binding.codeBtn.setTextColor(ResUtils.getColor(R.color.theme_color))
         binding.codeBtn.text = "点击获取"
