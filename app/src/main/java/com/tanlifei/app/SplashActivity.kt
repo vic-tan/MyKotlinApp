@@ -15,6 +15,8 @@ import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.bean.AdsBean
+import com.tanlifei.app.main.model.LoginViewModel
+import com.tanlifei.app.main.model.SplashViewModel
 import com.tanlifei.app.main.ui.AdsActivity
 import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
@@ -31,6 +33,7 @@ import java.util.concurrent.TimeUnit
  */
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
+    private lateinit var viewModel: SplashViewModel
     var count: Int = 3
     lateinit var subscribe: Disposable//保存订阅者
 

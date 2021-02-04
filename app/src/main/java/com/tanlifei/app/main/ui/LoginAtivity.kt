@@ -68,21 +68,29 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
 
     override fun initView() {
         setProtocolTxt()
+        initTextInputHelper()
+        initViewModel()
+        initEnvironmentSwitcher()
+        initListener()
+        initViewModelObserve()
+    }
+
+    /**
+     * 初始化ViewModel
+     */
+    private fun initViewModel() {
         loginViewModel = ViewModelProvider(
             this,
             LoginModelFactory(LoginNetwork.getInstance())
         ).get(
             LoginViewModel::class.java
         )
-        loginViewModel.setOnIntervalListener(this)
-        binding.codeBtn.setOnClickListener {
-            if (checkPhone(
-                    LoginUtils.getPhone(binding.phone.text.toString())
-                )
-            ) {
-                loginViewModel.getCode(LoginUtils.getPhone(binding.phone.text.toString()))
-            }
-        }
+    }
+
+    /**
+     * 设置ViewModel的observe
+     */
+    private fun initViewModelObserve() {
         loginViewModel.isLoading.observe(this, Observer { isLoading ->
             if (isLoading) hud.show()
             else hud.dismiss()
@@ -94,8 +102,26 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                 HomeActivity.actionStart()
             }
         })
-        initTextInputHelper()
+
+        loginViewModel.isContinuousClick.observe(this, Observer {
+            binding.changeEnvironment.visibility = if (it) View.VISIBLE else View.GONE
+        })
+    }
+
+    /**
+     * 初始化监听
+     */
+    private fun initListener() {
+        loginViewModel.setOnIntervalListener(this)
         binding.phone.addTextChangedListener(this)
+        binding.codeBtn.setOnClickListener {
+            if (checkPhone(
+                    LoginUtils.getPhone(binding.phone.text.toString())
+                )
+            ) {
+                loginViewModel.getCode(LoginUtils.getPhone(binding.phone.text.toString()))
+            }
+        }
         binding.login.setOnClickListener {
             if (checkFormInfo(
                     LoginUtils.getPhone(binding.phone.text.toString()),
@@ -108,8 +134,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
                 )
             }
         }
-
-        loginViewModel.initEnvironmentSwitcher()//初始化环境切换器
         binding.changeEnvironment.setOnClickListener {
             EnvironmentSwitchActivity.actionStart(
                 this,
@@ -121,11 +145,18 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         binding.logo.setOnClickListener {
             loginViewModel.continuousClick()
         }
-        loginViewModel.isContinuousClick.observe(this, Observer {
-            binding.changeEnvironment.visibility = if (it) View.VISIBLE else View.GONE
-        })
     }
 
+    /**
+     * 初始化环境切换器
+     */
+    private fun initEnvironmentSwitcher() {
+        loginViewModel.initEnvironmentSwitcher()
+    }
+
+    /**
+     * 开启监听事件总线
+     */
     override fun registerEventBus(): Boolean {
         return true
     }
@@ -138,6 +169,9 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         mInputHelper.addViews(binding.phone, binding.code)
     }
 
+    /**
+     * 环境切换后回传
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     override fun onMessageEvent(event: BaseEvent) {
         if (event is EnvironmentEvent) {
@@ -227,6 +261,9 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
         BaseWebViewActivity.actionStart(this, url, title)
     }
 
+    /**
+     * 设置触摸不收起键盘控件
+     */
     override fun showSoftByEditViewIds(): IntArray {
         return intArrayOf(R.id.phone, R.id.code)
     }
@@ -278,6 +315,9 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(),
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
     }
 
+    /**
+     * 格式化手机号格式（三四四格式） 如：138 2132 3435
+     */
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         LoginUtils.phoneFormatTextChanged(binding.phone, s, count)
     }
