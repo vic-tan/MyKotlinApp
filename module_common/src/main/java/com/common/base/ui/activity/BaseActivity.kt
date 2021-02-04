@@ -7,8 +7,11 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isNotEmpty
+import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.event.BaseEvent
 import com.common.databinding.ActivityBaseBinding
 import com.common.widget.CustomLoadingView
@@ -27,7 +30,7 @@ import org.greenrobot.eventbus.ThreadMode
  * 这是activity基类
  * open 表示该类可以被继承 ,kotlin中默认类是不可以被继承
  */
-open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
+open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observer<Boolean> {
 
     protected lateinit var baseBinding: ActivityBaseBinding
     protected lateinit var binding: T
@@ -56,7 +59,6 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
             .asCustom(CustomLoadingView(this))
         initSet()
     }
-
 
 
     /**
@@ -109,6 +111,15 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         titleBar.visibility = visibility
     }
 
+    /**
+     * 是否显示加载框
+     */
+    open fun loadingView(isLoading: Boolean) {
+        if (ObjectUtils.isNotEmpty(hud)) {
+            if (isLoading && hud.isDismiss) hud.show()
+            else if (!isLoading && hud.isShow) hud.dismiss()
+        }
+    }
 
     /**
      * 是否显示全屏
@@ -187,5 +198,12 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     companion object {
         //const 可见性为public final static const 必须修饰val const 只允许在top-level级别和object中声明
         private const val TAG = "BaseActivity"
+    }
+
+    /**
+     * 加载框显示
+     */
+    override fun onChanged(isLoading: Boolean) {
+        loadingView(isLoading)
     }
 }

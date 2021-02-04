@@ -90,10 +90,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        loginViewModel.isLoading.observe(this, Observer { isLoading ->
-            if (isLoading) hud.show()
-            else hud.dismiss()
-        })
+        loginViewModel.isLoading.observe(this, this)
 
         loginViewModel.isToken.observe(this, Observer {
             if (it) {
@@ -278,7 +275,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
     /**
      * 倒计时开始时显示
      */
-    fun onIntervalStart() {
+    private fun onIntervalStart() {
         binding.codeBtn.isClickable = false //在发送数据的时候设置为不能点击
         binding.codeBtn.setTextColor(ResUtils.getColor(R.color.color_999999))
     }
@@ -287,14 +284,14 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
      * 倒计时正行中显示
      */
 
-    fun onIntervalChanged(second: Long) {
+    private fun onIntervalChanged(second: Long) {
         binding.codeBtn.text = "${second}s"
     }
 
     /**
      * 倒计时结束后显示
      */
-    fun onIntervalComplete() {
+    private fun onIntervalComplete() {
         binding.codeBtn.isClickable = true
         binding.codeBtn.setTextColor(ResUtils.getColor(R.color.theme_color))
         binding.codeBtn.text = "点击获取"

@@ -1,6 +1,12 @@
 package com.tanlifei.app.common.bean
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.rxLifeScope
+import com.example.httpsender.kt.errorCode
+import com.example.httpsender.kt.errorMsg
+import com.example.httpsender.kt.show
 
 /**
  * @desc:
@@ -9,6 +15,24 @@ import androidx.lifecycle.ViewModel
  */
 open class BaseViewModel : ViewModel() {
 
+    /**
+     * 请求网络是否正在加载的LveData
+     */
+    val isLoading: LiveData<Boolean> get() = _isLoading
+    private val _isLoading = MutableLiveData<Boolean>()
+
+    protected fun launch(block: suspend () -> Unit) = rxLifeScope.launch({
+        _isLoading.value = true
+        block()
+        _isLoading.value = false
+    }, {
+        _isLoading.value = false
+        it.show(it.errorCode, it.errorMsg)
+    }, {
+        _isLoading.value = true
+    }, {
+        _isLoading.value = false
+    })
 
     /**
      * 由于屏幕旋转导致的Activity重建，该方法不会被调用

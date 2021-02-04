@@ -32,11 +32,6 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
 
     /* 永远暴露不可变LiveData给外部，防止外部可以修改LoginViewModel，保证LoginViewModel独立性 */
 
-    /**
-     * 请求网络是否正在加载的LveData
-     */
-    val isLoading: LiveData<Boolean> get() = _isLoading
-    private val _isLoading = MutableLiveData<Boolean>()
 
     /**
      * 登录成功获取到token 的LveData
@@ -106,19 +101,6 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
         token = repository.requestLogin(phone, code)
         _isToken.value = ObjectUtils.isNotEmpty(token)
     }
-
-    private fun launch(block: suspend () -> Unit) = rxLifeScope.launch({
-        _isLoading.value = true
-        block()
-        _isLoading.value = false
-    }, {
-        _isLoading.value = false
-        it.show(it.errorCode, it.errorMsg)
-    }, {
-        _isLoading.value = true
-    }, {
-        _isLoading.value = false
-    })
 
 
     /**
