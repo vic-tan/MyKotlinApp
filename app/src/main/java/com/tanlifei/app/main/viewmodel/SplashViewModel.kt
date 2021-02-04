@@ -50,7 +50,6 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
             LitePal.deleteAll(AdsBean::class.java)
             requestAdsBean.save()
         }
-        MyLogTools.show(requestAdsBean.toString())
     }
 
     /**

@@ -83,13 +83,11 @@ object EnvironmentChangeManager {
                 if (value == activityPath) {
                     continue
                 }
-                MyLogTools.show(context.packageName)
                 packageManager.setComponentEnabledSetting(
                     ComponentName(context, context.packageName + value),
                     PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP
                 )
             }
-            MyLogTools.show(context.packageName + "再启用需要启用的组件")
             // 再启用需要启用的组件
             packageManager.setComponentEnabledSetting(
                 ComponentName(context, context.packageName + activityPath),

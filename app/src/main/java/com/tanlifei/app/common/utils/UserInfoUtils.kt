@@ -1,5 +1,7 @@
 package com.tanlifei.app.common.utils
 
+import com.blankj.utilcode.util.ObjectUtils
+import com.common.ComApplication
 import com.tanlifei.app.common.bean.UserBean
 import org.litepal.LitePal
 
@@ -17,5 +19,21 @@ object UserInfoUtils {
     /**
      * 获用户token
      */
-    fun getToken(): String? = getUser()?.token
+    fun getToken(): String? {
+        return if (ObjectUtils.isNotEmpty(ComApplication.token)) {
+            ComApplication.token
+        } else {
+            getUser()?.token
+        }
+    }
+
+    /**
+     * 保存Token
+     */
+    fun saveToken(token: String) {
+        LitePal.deleteAll(UserBean::class.java)
+        var user: UserBean = UserBean()
+        user.token = token
+        user.save()
+    }
 }

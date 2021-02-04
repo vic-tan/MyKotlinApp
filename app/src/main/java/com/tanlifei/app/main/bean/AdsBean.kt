@@ -3,7 +3,6 @@ package com.tanlifei.app.main.bean
 import android.os.Parcel
 import android.os.Parcelable
 import com.common.base.bean.BaseLitePalBean
-import java.io.Serializable
 
 /**
  * @desc:广告实体

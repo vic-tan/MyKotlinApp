@@ -28,6 +28,7 @@ import com.tanlifei.app.R
 import com.tanlifei.app.common.config.UrlConst.URL_AGREEMENT
 import com.tanlifei.app.common.config.UrlConst.URL_REGISTER_AGREEMENT
 import com.tanlifei.app.common.utils.AppUtils
+import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.viewmodel.LoginViewModel
@@ -94,6 +95,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
         loginViewModel.isToken.observe(this, Observer {
             if (it) {
                 ComApplication.token = loginViewModel.token
+                loginViewModel.token?.let { it -> UserInfoUtils.saveToken(it) }
                 HomeActivity.actionStart()
             }
         })
