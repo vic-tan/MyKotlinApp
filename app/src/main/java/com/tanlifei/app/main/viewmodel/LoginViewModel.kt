@@ -1,4 +1,4 @@
-package com.tanlifei.app.main.model
+package com.tanlifei.app.main.viewmodel
 
 import android.os.SystemClock
 import androidx.lifecycle.LiveData

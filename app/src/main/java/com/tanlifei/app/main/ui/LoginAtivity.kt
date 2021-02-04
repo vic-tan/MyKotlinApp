@@ -30,8 +30,8 @@ import com.tanlifei.app.common.config.UrlConst.URL_REGISTER_AGREEMENT
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.main.model.LoginViewModel
-import com.tanlifei.app.main.model.factory.LoginModelFactory
+import com.tanlifei.app.main.viewmodel.LoginViewModel
+import com.tanlifei.app.main.viewmodel.factory.LoginModelFactory
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
 import org.greenrobot.eventbus.Subscribe

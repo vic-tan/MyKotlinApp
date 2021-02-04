@@ -1,4 +1,4 @@
-package com.tanlifei.app.main.model
+package com.tanlifei.app.main.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,6 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
 import com.common.environment.EnvironmentChangeManager
-import com.common.environment.ModuleBean
 import com.common.utils.MyLogTools
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.config.Const
@@ -23,6 +22,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
+import org.litepal.LitePal
 import java.util.concurrent.TimeUnit
 
 
@@ -40,6 +40,18 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
     private val _jump = MutableLiveData<Class<*>>()
 
     var adsBean: AdsBean? = null
+
+    /**
+     * 请求短信码
+     */
+    fun requestAds() = launchBySilence {
+        val requestAdsBean: AdsBean = repository.requestAds()
+        if (ObjectUtils.isNotEmpty(requestAdsBean)) {
+            LitePal.deleteAll(AdsBean::class.java)
+            requestAdsBean.save()
+        }
+        MyLogTools.show(requestAdsBean.toString())
+    }
 
     /**
      * 启动页3s倒计时

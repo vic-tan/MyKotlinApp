@@ -1,6 +1,7 @@
 package com.tanlifei.app.main.network
 
 import com.tanlifei.app.common.config.UrlConst
+import com.tanlifei.app.main.bean.AdsBean
 import rxhttp.RxHttp
 import rxhttp.toResponse
 
@@ -12,14 +13,12 @@ import rxhttp.toResponse
  */
 class SplashNetwork {
 
-    suspend fun getCode(phone: String) = RxHttp.get(UrlConst.URL_SEND_SMS)
-        .add("phone", phone)
-        .toResponse<String>().await()
+    /**
+     * 广告接口请求
+     */
+    suspend fun requestAds() = RxHttp.postJson(UrlConst.URL_ADS)
+        .toResponse<AdsBean>().await()
 
-    suspend fun getLogin(phone: String, code: String) = RxHttp.get(UrlConst.URL_LOGIN)
-        .add("phone", phone)
-        .add("code", code)
-        .toResponse<String>().await()
 
     companion object {
         private var network: SplashNetwork? = null

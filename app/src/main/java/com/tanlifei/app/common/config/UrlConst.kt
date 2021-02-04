@@ -33,6 +33,17 @@ object UrlConst {
 
 
     /**
+     * 用户协议
+     */
+    const val URL_REGISTER_AGREEMENT = "https://www.9bao.tv/mod/static/registerAgreementNew.html"
+
+    /**
+     * 隐私政策
+     */
+    const val URL_AGREEMENT = "https://www.9bao.tv/webview/app/shop/agreement?active=2"
+
+
+    /**
      * 发送短信验证码
      */
     const val URL_SEND_SMS = "auth/sendsms"
@@ -42,13 +53,9 @@ object UrlConst {
      */
     const val URL_LOGIN = "auth/login"
 
-    /**
-     * 用户协议
-     */
-    const val URL_REGISTER_AGREEMENT = "https://www.9bao.tv/mod/static/registerAgreementNew.html"
 
     /**
-     * 隐私政策
+     * 开屏广告
      */
-    const val URL_AGREEMENT = "https://www.9bao.tv/webview/app/shop/agreement?active=2"
+    const val URL_ADS = "message/api/ads/open/screen"
 }
