@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.text.TextUtils
 import com.blankj.utilcode.util.ActivityUtils
+import com.common.environment.EnvironmentChangeManager
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
 import java.util.*
@@ -34,6 +35,7 @@ object AppUtils {
         } else {
             //finish所有页面和kill app
             ToastUtils.cancel()
+            EnvironmentChangeManager.startEnvironmentSwitchIcon()
             ActivityUtils.finishAllActivities()
             android.os.Process.killProcess(android.os.Process.myPid())
         }

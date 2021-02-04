@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.common.base.ui.activity.BaseActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.tanlifei.app.R
@@ -105,7 +104,7 @@ class AdsActivity : BaseActivity<ActivityAdsBinding>() {
             adsViewModel.doJump()
         }
     }
-    
+
     private fun onIntervalChanged(second: Long) {
         binding.into.text = "跳过 ${second}s"
     }

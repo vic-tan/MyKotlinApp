@@ -303,11 +303,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
     override fun onDestroy() {
         super.onDestroy()
         this.mInputHelper?.removeViews()
-        try {
-            EnvironmentChangeManager.startEnvironmentSwitchIcon()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
 
     override fun afterTextChanged(s: Editable?) {
