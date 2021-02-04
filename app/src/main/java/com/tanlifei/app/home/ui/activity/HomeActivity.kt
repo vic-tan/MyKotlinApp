@@ -2,18 +2,17 @@ package com.tanlifei.app.home.ui.activity
 
 
 import android.view.View
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseActivity
 import com.tanlifei.app.R
-import com.common.base.navigator.NavigatorAdapter
-import com.common.base.navigator.NavigatorFragmentManager
 import com.common.base.navigator.NavigatorView
-import com.common.environment.EnvironmentChangeManager
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
-import com.tanlifei.app.home.ui.fragment.*
-import java.util.*
+import com.tanlifei.app.home.network.HomeNetwork
+import com.tanlifei.app.home.viewmodel.HomeViewModel
+import com.tanlifei.app.home.viewmodel.factory.HomeModelFactory
 
 
 /**
@@ -23,9 +22,7 @@ import java.util.*
  */
 open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.NavigatorListener {
 
-    private var mFragments: MutableList<Fragment> = ArrayList()
-    private lateinit var mNavigator: NavigatorFragmentManager
-    var mCurrTabPosition: Int = 0 //当前选中tag
+    private lateinit var homeViewModel: HomeViewModel
 
     companion object {
         fun actionStart() {
@@ -43,60 +40,52 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
 
 
     override fun initView() {
-        bindFragments()
-        initNavigator()
+        initViewModel()
+        initViewModelObserve()
+        initListener()
+        binding.navigatorTab.getMsgBadge().visibility = View.VISIBLE
     }
 
+    /**
+     * 初始化ViewModel
+     */
+    private fun initViewModel() {
+        homeViewModel = ViewModelProvider(
+            this,
+            HomeModelFactory(HomeNetwork.getInstance())
+        ).get(
+            HomeViewModel::class.java
+        )
+        homeViewModel.bindFragments()
+        homeViewModel.initNavigator(supportFragmentManager)
+    }
 
     /**
-     * 初始化 Navigator
+     * 设置ViewModel的observe
      */
-    open fun initNavigator() {
-        mNavigator = NavigatorFragmentManager(
-            supportFragmentManager,
-            NavigatorAdapter(mFragments),
-            R.id.container
-        )
-        defaultSelectNavTabPosition()
+    private fun initViewModelObserve() {
+        homeViewModel.currTabPosition.observe(this, Observer {
+            binding.navigatorTab.select(it)
+        })
+    }
+
+    /**
+     * 初始化监听
+     */
+    private fun initListener() {
         if (binding.navigatorTab != null) {
             binding.navigatorTab.setNavigatorListener(this)
         }
     }
 
-    /**
-     * 设置默认选择TAB， 第一次时显示
-     */
-    private fun defaultSelectNavTabPosition() {
-        mNavigator.showFragment(mCurrTabPosition) //显示点击Fargment
-        binding.navigatorTab.select(mCurrTabPosition)
-        binding.navigatorTab.getMsgBadge().visibility = View.VISIBLE
-    }
-
-    /**
-     * 绑定tab 中各对应的Fragment
-     */
-    open fun bindFragments() {
-        mFragments.add(HomeFragment.newInstance())
-        mFragments.add(ClassFragment.newInstance())
-        mFragments.add(ClassmateCircleFragment.newInstance())
-        mFragments.add(StudyFragment.newInstance())
-        mFragments.add(PersenalFragment.newInstance())
-    }
 
     override fun onNavigatorItemClick(position: Int, view: View?) {
-        mCurrTabPosition = position
-        binding.navigatorTab.select(mCurrTabPosition)
-        mNavigator.showFragment(mCurrTabPosition) //显示点击Fargment
-
+        homeViewModel.showFragment(position)
     }
+
 
     override fun onBackPressed() {
         AppUtils.exitApp()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        EnvironmentChangeManager.startEnvironmentSwitchIcon()
     }
 
 }
