@@ -199,8 +199,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
                 SpecialClickableUnit(binding.protocolTxt,
                     OnClickableSpanListener { _: TextView?, _: CustomClickableSpan? ->
                         gotoWeb(
-                            URL_REGISTER_AGREEMENT,
-                            "用户协议"
+                            "用户协议",
+                            URL_REGISTER_AGREEMENT
                         )
                     }
                 )
@@ -212,8 +212,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
                 SpecialClickableUnit(binding.protocolTxt,
                     OnClickableSpanListener { _: TextView?, _: CustomClickableSpan? ->
                         gotoWeb(
-                            URL_AGREEMENT,
-                            "隐私政策"
+                            "隐私政策",
+                            URL_AGREEMENT
                         )
                     }
                 )
@@ -259,8 +259,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
     /**
      * webView查看协议
      */
-    private fun gotoWeb(url: String, title: String) {
-        BaseWebViewActivity.actionStart(this, url, title)
+    private fun gotoWeb(title: String, url: String) {
+        BaseWebViewActivity.actionStart(this, title, url)
     }
 
     /**
