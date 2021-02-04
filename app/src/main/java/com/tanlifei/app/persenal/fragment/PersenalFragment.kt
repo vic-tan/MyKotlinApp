@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.common.base.ui.fragment.BaseLazyFragment
 import com.tanlifei.app.databinding.FragmentHomeBinding
+import com.tanlifei.app.databinding.FragmentPersenalBinding
 
 /**
  * @desc:我的
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class PersenalFragment : BaseLazyFragment<FragmentHomeBinding>() {
+class PersenalFragment : BaseLazyFragment<FragmentPersenalBinding>() {
 
 
     companion object {
@@ -27,13 +28,12 @@ class PersenalFragment : BaseLazyFragment<FragmentHomeBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         attachToRoot: Boolean
-    ): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(inflater, container, attachToRoot)
+    ): FragmentPersenalBinding {
+        return FragmentPersenalBinding.inflate(inflater, container, attachToRoot)
     }
 
 
     override fun onFirstVisibleToUser() {
-        binding.txtBtn.text = "PERSENAL"
     }
 
 

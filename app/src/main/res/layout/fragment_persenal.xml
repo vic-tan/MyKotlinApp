@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/persenalBg"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/bg_persenal_default"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ruffian.library.widget.RImageView
+            android:id="@+id/userCover"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="70dp"
+            android:src="@mipmap/default_header"
+            app:is_circle="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/userCover"
+            app:layout_constraintLeft_toRightOf="@id/userCover"
+            app:layout_constraintRight_toLeftOf="@id/arrow"
+            app:layout_constraintTop_toTopOf="@id/userCover">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:text="天飞丽谭" />
+
+            <TextView
+                android:id="@+id/university"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="深圳老年大学" />
+
+        </LinearLayout>
+
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginEnd="15dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:scaleType="centerCrop"
+            android:text="个人主页"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:background_normal="#80000000"
+            app:corner_radius="30dp"
+            app:icon_direction="right"
+            app:icon_height="12dp"
+            app:icon_src_normal="@mipmap/arrow_right_white"
+            app:icon_width="7dp"
+            app:layout_constraintBottom_toBottomOf="@id/userCover"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/userCover" />
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/studyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:background_normal="@array/gradient_persenal_study_bg"
+            app:corner_radius="8dp"
+            app:gradient_orientation="LEFT_RIGHT"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/persenalBg">
+
+            <ImageView
+                android:id="@+id/studyIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="15dp"
+                android:src="@mipmap/icon_persenal_study"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/studyLable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="学习卡"
+                android:textColor="#804C14"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/studyIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/study"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="立即开通"
+                android:textColor="#986B35"
+                android:textSize="14sp"
+                app:border_color_normal="#986B35"
+                app:border_width_normal="0.4dp"
+                app:corner_radius="13dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.ruffian.library.widget.RConstraintLayout>
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/infoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:background_normal="@color/white"
+            app:corner_radius="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/studyLayout">
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/msg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="我的消息"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_msg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/friend"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/friend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="邀请好友"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_friend"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/msg"
+                app:layout_constraintRight_toLeftOf="@id/credit"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/credit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="学分兑换"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_credit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/friend"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </com.ruffian.library.widget.RConstraintLayout>
+
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/accountLayout"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:background_normal="@color/white"
+            app:corner_radius="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/infoLayout">
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/accountTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:paddingStart="15dp"
+                android:text="我的账户"
+                android:textColor="@color/color_999999"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/wallet"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="我的订单"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_order"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/wallet"
+                app:layout_constraintTop_toBottomOf="@id/accountTitle" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/wallet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="我的钱包"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_wallet"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/order"
+                app:layout_constraintRight_toLeftOf="@id/discountCenter"
+                app:layout_constraintTop_toBottomOf="@id/accountTitle"
+                tools:ignore="RtlSymmetry" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/discountCenter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="优惠中心"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_discount_center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/wallet"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/accountTitle" />
+
+
+        </com.ruffian.library.widget.RConstraintLayout>
+
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/serviceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:background_normal="@color/white"
+            app:corner_radius="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/accountLayout">
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/serviceTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:paddingStart="15dp"
+                android:text="我的服务"
+                android:textColor="@color/color_999999"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/wallet"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/gameCenter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="游戏中心"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_digame_center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/collect"
+                app:layout_constraintTop_toBottomOf="@id/serviceTitle" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/collect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="我的收藏"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_collect"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/gameCenter"
+                app:layout_constraintRight_toLeftOf="@id/customerService"
+                app:layout_constraintTop_toBottomOf="@id/serviceTitle"
+                tools:ignore="RtlSymmetry" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/customerService"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="联系客服"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:icon_direction="top"
+                app:icon_src_normal="@mipmap/icon_persenal_customer_service"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/collect"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/serviceTitle" />
+
+
+        </com.ruffian.library.widget.RConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

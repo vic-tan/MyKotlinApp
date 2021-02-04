@@ -4,4 +4,8 @@
         <item>#FF5259</item>
         <item>#EE1E26</item>
     </string-array>
+    <string-array name="gradient_persenal_study_bg" tools:ignore="ExtraTranslation">
+        <item>#FFF5DE</item>
+        <item>#FCD89A</item>
+    </string-array>
 </resources>
