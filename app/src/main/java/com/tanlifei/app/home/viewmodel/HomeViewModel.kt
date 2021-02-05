@@ -13,7 +13,7 @@ import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.ClassmateCircleFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
 import com.tanlifei.app.home.ui.fragment.StudyFragment
-import com.tanlifei.app.persenal.fragment.PersenalFragment
+import com.tanlifei.app.persenal.fragment.PersonalFragment
 import java.util.ArrayList
 
 /**
@@ -62,6 +62,6 @@ class HomeViewModel(private val repository: HomeNetwork) : BaseViewModel() {
         mFragments.add(ClassFragment.newInstance())
         mFragments.add(ClassmateCircleFragment.newInstance())
         mFragments.add(StudyFragment.newInstance())
-        mFragments.add(PersenalFragment.newInstance())
+        mFragments.add(PersonalFragment.newInstance())
     }
 }

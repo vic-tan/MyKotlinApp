@@ -5,22 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.common.base.ui.fragment.BaseLazyFragment
-import com.common.utils.MyLogTools
 import com.hjq.toast.ToastUtils
-import com.tanlifei.app.databinding.FragmentPersenalBinding
+import com.tanlifei.app.databinding.FragmentPersonalBinding
 
 /**
  * @desc:我的
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class PersenalFragment : BaseLazyFragment<FragmentPersenalBinding>() {
+class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>() {
 
 
     companion object {
-        fun newInstance(): PersenalFragment {
+        fun newInstance(): PersonalFragment {
             val args = Bundle()
-            val fragment = PersenalFragment()
+            val fragment = PersonalFragment()
             fragment.arguments = args
             return fragment
         }
@@ -30,8 +29,8 @@ class PersenalFragment : BaseLazyFragment<FragmentPersenalBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         attachToRoot: Boolean
-    ): FragmentPersenalBinding {
-        return FragmentPersenalBinding.inflate(inflater, container, attachToRoot)
+    ): FragmentPersonalBinding {
+        return FragmentPersonalBinding.inflate(inflater, container, attachToRoot)
     }
 
 
