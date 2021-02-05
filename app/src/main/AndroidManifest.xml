@@ -25,6 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--—————————————————————————————————————————————————— 切换环境更改app图标 ——————————————————————————————————————-->
+        
         <!--    AndroidManifest.xml文件中添加过activity-alias标签之后，下一版本不能删除，可能会导致应用升级异常：
             以工程中的activity（MainActivity），activity-alias（activity618、activity1225）为例，
             且在升级包中删除了activity-alias（activity1225），则会有以下两种情况：
@@ -64,7 +67,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-
+        <!--—————————————————————————————————————————————————— Main ——————————————————————————————————————————————————-->
         <activity
             android:name="com.tanlifei.app.main.ui.GuideActivity"
             android:label="引导页" />
@@ -78,7 +81,12 @@
             android:name="com.tanlifei.app.main.ui.LoginAtivity"
             android:label="登录" />
 
-        <!-- 今日头条适配-->
+        <!--—————————————————————————————————————————————————— 我的 ——————————————————————————————————————————————————-->
+        <activity
+            android:name=".persenal.activity.SettingActivity"
+            android:label="个人设置" />
+
+        <!--—————————————————————————————————————————————————— 今日头条全适配 —————————————————————————————————————————-->
         <meta-data
             android:name="design_width_in_px"
             android:value="1080" />
@@ -86,6 +94,7 @@
             android:name="design_height_in_px"
             android:value="1920" />
 
+        <!--—————————————————————————————————————————————————— 全面屏与刘海适配 —————————————————————————————————————————-->
         <!--        全面屏与刘海适配 在manifest加入如下配置，四选其一，或者都写-->
         <!--        ① 在manifest的Application节点下加入-->
         <!--        ② 在manifest的Application节点中加入   android:resizeableActivity="true"-->
@@ -107,13 +116,17 @@
             android:name="CHANNEL"
             android:value="${CHANNEL_VALUE}" />
 
+        <!--—————————————————————————————————————————————————— bugly环境适配 —————————————————————————————————————————-->
+
         <!-- 配置APP版本号 -->
         <meta-data
             android:name="BUGLY_APPID"
             android:value="${BUGLY_APPID}" />
+        <!-- 配置版本号 -->
         <meta-data
             android:name="BUGLY_APP_VERSION"
-            android:value="${VERSION_NAME}" /> <!-- 配置APP渠道号 -->
+            android:value="${VERSION_NAME}" />
+        <!-- 配置APP渠道号 -->
         <meta-data
             android:name="BUGLY_APP_CHANNEL"
             android:value="${CHANNEL_VALUE}" />

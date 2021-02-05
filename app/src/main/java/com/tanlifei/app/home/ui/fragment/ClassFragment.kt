@@ -20,9 +20,6 @@ class ClassFragment : BaseLazyFragment<FragmentHomeBinding>() {
         }
     }
 
-
-
-
     override fun onFirstVisibleToUser() {
         binding.txtBtn.text = "CLASS"
     }

@@ -1,10 +1,9 @@
 package com.tanlifei.app.persenal.fragment
 
 import android.os.Bundle
-import android.view.View
 import com.common.base.ui.fragment.BaseLazyFragment
-import com.hjq.toast.ToastUtils
 import com.tanlifei.app.databinding.FragmentPersonalBinding
+import com.tanlifei.app.persenal.activity.SettingActivity
 
 /**
  * @desc:我的
@@ -24,9 +23,9 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>() {
     }
 
     override fun onFirstVisibleToUser() {
-        binding.msg.setOnClickListener(View.OnClickListener {
-            ToastUtils.show("消息")
-        })
+        binding.setting.setOnClickListener {
+            SettingActivity.actionStart()
+        }
     }
 
 

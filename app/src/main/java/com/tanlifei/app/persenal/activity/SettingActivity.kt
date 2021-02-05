@@ -1,5 +1,6 @@
 package com.tanlifei.app.persenal.activity
 
+import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.tanlifei.app.databinding.ActivitySettingBinding
 
@@ -9,6 +10,12 @@ import com.tanlifei.app.databinding.ActivitySettingBinding
  * @date: 2021/2/5 10:15
  */
 class SettingActivity:BaseToolBarActivity<ActivitySettingBinding>() {
+
+    companion object {
+        fun actionStart() {
+            ActivityUtils.startActivity(SettingActivity::class.java)
+        }
+    }
 
     override fun initView() {
     }
