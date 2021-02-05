@@ -113,6 +113,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         binding.into.setOnClickListener {
             splashViewModel.doAdsJump()
         }
+        binding.splash.setOnClickListener {}
     }
 
     private fun onIntervalChanged(second: Long) {
