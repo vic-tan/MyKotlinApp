@@ -145,13 +145,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
 
 
     /**
-     * 开启监听事件总线
-     */
-    override fun registerEventBus(): Boolean {
-        return true
-    }
-
-    /**
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
@@ -159,22 +152,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
         mInputHelper.addViews(binding.phone, binding.code)
     }
 
-    /**
-     * 环境切换后回传
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    override fun onMessageEvent(event: BaseEvent) {
-        if (event is EnvironmentEvent) {
-            LitePal.delete(EnvironmentBean::class.java, event.environment.group)
-            LitePal.deleteAll(
-                EnvironmentBean::class.java,
-                "${EnvironmentBean.DB_GROUP} = ? ",
-                "${EnvironmentBean.GROUP_API}"
-            )
-            event.environment.save()
-            EnvironmentUtils.onEnvironmentChanged(event.environment)
-        }
-    }
 
     /**
      * 登录即代表您已同意《用户协议》和《隐私政策》

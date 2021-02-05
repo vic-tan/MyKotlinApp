@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
+import com.common.cofing.constant.ApiEnvironmentConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.databinding.ActivityEnvironmentSwitchBinding
 import com.google.gson.Gson
@@ -64,6 +65,11 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
         val saveEnvironmentList: List<EnvironmentBean> =
             LitePal.findAll(EnvironmentBean::class.java)
         if (saveEnvironmentList.isEmpty()) {
+            for (list in environmentList) {
+                if (list.group == EnvironmentBean.GROUP_API) {
+                    list.defaultCheck = list.url == ApiEnvironmentConst.BASE_URL
+                }
+            }
             return
         }
         for (lt in saveEnvironmentList) {
@@ -86,6 +92,15 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
                     environmentList[position].group,
                     position
                 )
+                var environment: EnvironmentBean = environmentList[position]
+                LitePal.delete(EnvironmentBean::class.java, environment.group)
+                LitePal.deleteAll(
+                    EnvironmentBean::class.java,
+                    "${EnvironmentBean.DB_GROUP} = ? ",
+                    "${EnvironmentBean.GROUP_API}"
+                )
+                environment.save()
+                EnvironmentUtils.onEnvironmentChanged(environment)
                 EventBus.getDefault().post(EnvironmentEvent(environmentList[position]))
             }
 

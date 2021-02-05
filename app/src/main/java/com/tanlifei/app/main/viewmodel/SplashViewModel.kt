@@ -93,15 +93,4 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
             }
         }
     }
-
-    /**
-     * 初始化环境
-     */
-    fun initBaseApiUrl() {
-        val apiUrl = EnvironmentChangeManager.initEnvironment()
-        if (ObjectUtils.isNotEmpty(apiUrl)) {
-            ApiEnvironmentConst.BASE_URL = apiUrl!!
-        }
-        MyLogTools.show("UrlConst.BASE_URL = ${ApiEnvironmentConst.BASE_URL}")
-    }
 }
