@@ -66,12 +66,12 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding>(), View.OnClickL
             /*充值购买协议*/
             binding.rechargeAgreement -> {
                 title = binding.rechargeAgreementTitle.text.toString()
-                url = ApiConst.URL_PRIVATE_AGREEMENT
+                url = ApiConst.URL_RECHARGE_AGREEMENT
             }
             /*讲师入驻协议*/
             binding.lecturerAgreement -> {
                 title = binding.lecturerAgreementTitle.text.toString()
-                url = ApiConst.URL_PRIVATE_AGREEMENT
+                url = ApiConst.URL_LECTURER_AGREEMENT
             }
         }
         url?.let { gotoWeb(title, it) }

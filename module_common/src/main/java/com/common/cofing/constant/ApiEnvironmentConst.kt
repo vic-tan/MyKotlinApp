@@ -15,21 +15,33 @@ object ApiEnvironmentConst {
     @JvmField
     var BASE_URL = BuildConfig.BASE_URL_TEST
 
+    val URL_BASE_HELPER = getBaseHelperUrl()
+
+
     /**————————————————————————————————————————————————— 开发（DEV）环境  —————————————————————————————————————————*/
 
     /* 开发环境H5地址 */
-    const val URL_BASE_DEV_HELPER = "https://globalh5dev.jinlingkeji.cn/helper#"
+    private const val URL_BASE_DEV_HELPER = "https://globalh5dev.jinlingkeji.cn/helper#"
 
 
     /**————————————————————————————————————————————————— 测试（TEST）环境 —————————————————————————————————————————*/
 
     /* 测试环境H5地址 */
-    const val URL_BASE_TEST_HELPER = "https://globalh5pro.jinlingkeji.cn/helper#"
+    private const val URL_BASE_TEST_HELPER = "https://globalh5pro.jinlingkeji.cn/helper#"
 
     /**————————————————————————————————————————————————— 正式（PRO）环境  —————————————————————————————————————————*/
 
     /* 正式环境H5地址 */
-    const val URL_BASE_PRO_HELPER = "https://globalh5test.jinlingkeji.cn/helper#"
+    private const val URL_BASE_PRO_HELPER = "https://globalh5test.jinlingkeji.cn/helper#"
 
+
+    private fun getBaseHelperUrl(): String {
+        return when (BASE_URL) {
+            BuildConfig.BASE_URL_DEV -> URL_BASE_DEV_HELPER
+            BuildConfig.BASE_URL_TEST -> URL_BASE_TEST_HELPER
+            BuildConfig.BASE_URL_PRO -> URL_BASE_PRO_HELPER
+            else -> URL_BASE_PRO_HELPER
+        }
+    }
 
 }

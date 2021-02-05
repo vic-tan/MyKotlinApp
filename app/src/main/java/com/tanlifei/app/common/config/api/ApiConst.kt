@@ -25,7 +25,7 @@ object ApiConst {
     const val URL_RECHARGE_AGREEMENT = "${URL_AGREEMENT}payMode"
 
     /* 讲师入驻协议 */
-    const val URL_LECTURER_AGREEMENT = "${URL_AGREEMENT}WebPage"
+    val URL_LECTURER_AGREEMENT = "${ApiEnvironmentConst.URL_BASE_HELPER}/lecturer/agreement"
 
     /* 发送短信验证码 */
     const val URL_SEND_SMS = "auth/sendsms"

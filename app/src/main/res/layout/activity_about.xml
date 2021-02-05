@@ -39,11 +39,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="30dp"
             android:text="当前版本1.0.0"
             android:textColor="@color/color_333333"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <include layout="@layout/layout_line_setting" />
