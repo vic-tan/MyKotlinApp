@@ -1,4 +1,4 @@
-package com.common.http
+package com.common.core.http
 
 import android.app.Application
 import com.common.ComApplication

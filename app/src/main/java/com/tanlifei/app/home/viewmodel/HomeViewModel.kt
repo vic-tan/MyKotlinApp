@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.common.base.navigator.NavigatorAdapter
-import com.common.base.navigator.NavigatorFragmentManager
+import com.common.core.base.navigator.NavigatorAdapter
+import com.common.core.base.navigator.NavigatorFragmentManager
 import com.tanlifei.app.R
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.home.network.HomeNetwork

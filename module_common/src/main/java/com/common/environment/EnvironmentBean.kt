@@ -1,10 +1,9 @@
 package com.common.environment
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.common.base.bean.BaseLitePalBean
+import com.common.core.base.bean.BaseLitePalBean
 import org.litepal.annotation.Column
 import java.io.Serializable
-import kotlin.random.Random
 
 /**
  * @desc:组成员实体

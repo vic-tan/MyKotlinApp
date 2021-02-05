@@ -1,6 +1,6 @@
 package com.common.environment
 
-import com.common.base.event.BaseEvent
+import com.common.core.base.event.BaseEvent
 
 /**
  * @desc:切换了环境通知调用者

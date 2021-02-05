@@ -1,4 +1,4 @@
-package com.common.base.ui.activity
+package com.common.core.base.ui.activity
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,6 @@ import android.view.View
 import android.webkit.*
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.R
 import com.common.databinding.ActivityBaseWebBinding
 
 /**

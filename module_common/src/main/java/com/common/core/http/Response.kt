@@ -1,4 +1,4 @@
-package com.common.http
+package com.common.core.http
 
 class Response<T> {
     val status = 0

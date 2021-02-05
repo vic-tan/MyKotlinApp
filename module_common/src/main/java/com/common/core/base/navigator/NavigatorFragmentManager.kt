@@ -1,9 +1,8 @@
-package com.common.base.navigator
+package com.common.core.base.navigator
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.FragmentManager
 import com.blankj.utilcode.util.FragmentUtils
-import com.common.base.navigator.INavigatorAdapter
 
 /**
  * @desc:

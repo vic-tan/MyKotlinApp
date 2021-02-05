@@ -1,4 +1,4 @@
-package com.common.base.ui.activity
+package com.common.core.base.ui.activity
 
 import android.view.MotionEvent
 import android.view.View

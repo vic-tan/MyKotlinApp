@@ -5,10 +5,8 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.base.ui.activity.BaseActivity
-import com.tanlifei.app.R
-import com.common.base.navigator.NavigatorView
-import com.hjq.toast.ToastUtils
+import com.common.core.base.ui.activity.BaseActivity
+import com.common.core.base.navigator.NavigatorView
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.network.HomeNetwork

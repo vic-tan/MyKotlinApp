@@ -1,4 +1,4 @@
-package com.common.base.navigator
+package com.common.core.base.navigator
 
 import androidx.fragment.app.Fragment
 

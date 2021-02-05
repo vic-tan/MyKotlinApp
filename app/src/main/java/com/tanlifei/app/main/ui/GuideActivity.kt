@@ -1,8 +1,7 @@
 package com.tanlifei.app.main.ui
 
-import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.base.ui.activity.BaseActivity
+import com.common.core.base.ui.activity.BaseActivity
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityGuideBinding
 import com.tanlifei.app.main.adapter.GuideAdapter

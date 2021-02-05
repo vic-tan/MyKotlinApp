@@ -13,7 +13,7 @@
     <application>
 
         <activity
-            android:name=".base.ui.activity.BaseWebViewActivity"
+            android:name="com.common.core.base.ui.activity.BaseWebViewActivity"
             android:label="加载中.." />
         <activity
             android:name=".environment.EnvironmentSwitchActivity"

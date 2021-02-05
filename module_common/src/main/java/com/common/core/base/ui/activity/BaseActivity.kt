@@ -1,4 +1,4 @@
-package com.common.base.ui.activity
+package com.common.core.base.ui.activity
 
 import android.app.Activity
 import android.content.pm.ActivityInfo
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.base.event.BaseEvent
+import com.common.core.base.event.BaseEvent
 import com.common.databinding.ActivityBaseBinding
 import com.common.widget.CustomLoadingView
 import com.gyf.immersionbar.ktx.immersionBar

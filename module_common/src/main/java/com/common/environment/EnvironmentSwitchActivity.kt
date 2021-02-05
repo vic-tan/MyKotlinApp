@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
-import com.common.base.ui.activity.BaseToolBarActivity
+import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.databinding.ActivityEnvironmentSwitchBinding
 import com.google.gson.Gson
 import org.greenrobot.eventbus.EventBus

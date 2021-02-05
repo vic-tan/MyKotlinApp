@@ -1,4 +1,4 @@
-package com.common.base.holder
+package com.common.core.base.holder
 
 import android.view.LayoutInflater
 import android.view.View

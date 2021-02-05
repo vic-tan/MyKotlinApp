@@ -14,9 +14,9 @@ import cn.iwgang.simplifyspan.unit.SpecialTextUnit
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.ComApplication
-import com.common.base.event.BaseEvent
-import com.common.base.ui.activity.BaseFormActivity
-import com.common.base.ui.activity.BaseWebViewActivity
+import com.common.core.base.event.BaseEvent
+import com.common.core.base.ui.activity.BaseFormActivity
+import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.environment.EnvironmentBean
 import com.common.environment.EnvironmentEvent
 import com.common.environment.EnvironmentSwitchActivity

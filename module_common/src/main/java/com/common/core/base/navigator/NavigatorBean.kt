@@ -1,4 +1,4 @@
-package com.common.base.navigator
+package com.common.core.base.navigator
 
 class NavigatorBean constructor() {
 

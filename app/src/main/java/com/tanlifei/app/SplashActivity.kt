@@ -1,10 +1,9 @@
 package com.tanlifei.app
 
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.base.ui.activity.BaseActivity
+import com.common.core.base.ui.activity.BaseActivity
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.viewmodel.SplashViewModel

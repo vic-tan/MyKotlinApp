@@ -3,7 +3,7 @@ package com.tanlifei.app
 import android.content.Context
 import androidx.multidex.MultiDex
 import com.common.ComApplication
-import com.common.http.RxHttpManager
+import com.common.core.http.RxHttpManager
 
 
 /**

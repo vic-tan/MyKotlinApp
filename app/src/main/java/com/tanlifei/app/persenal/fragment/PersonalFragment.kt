@@ -1,7 +1,7 @@
 package com.tanlifei.app.persenal.fragment
 
 import android.os.Bundle
-import com.common.base.ui.fragment.BaseLazyFragment
+import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.tanlifei.app.databinding.FragmentPersonalBinding
 import com.tanlifei.app.persenal.activity.SettingActivity
 

@@ -3,8 +3,8 @@ package com.tanlifei.app.persenal.activity
 import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
-import com.common.base.ui.activity.BaseToolBarActivity
-import com.common.base.ui.activity.BaseWebViewActivity
+import com.common.core.base.ui.activity.BaseToolBarActivity
+import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.tanlifei.app.common.config.api.ApiUrlConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
 

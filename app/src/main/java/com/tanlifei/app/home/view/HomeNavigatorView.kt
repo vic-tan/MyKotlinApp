@@ -3,8 +3,7 @@ package com.tanlifei.app.home.view
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.common.base.navigator.NavigatorView
-import com.common.utils.MyLogTools
+import com.common.core.base.navigator.NavigatorView
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.NavigatorHomeTabBinding

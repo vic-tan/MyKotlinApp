@@ -2,7 +2,7 @@ package com.tanlifei.app.persenal.activity
 
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
-import com.common.base.ui.activity.BaseToolBarActivity
+import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.tanlifei.app.databinding.ActivitySettingBinding
 
 /**

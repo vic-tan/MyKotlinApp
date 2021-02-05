@@ -1,7 +1,6 @@
-package com.common.base.ui.fragment
+package com.common.core.base.ui.fragment
 
 import android.os.Bundle
-import android.view.View
 import androidx.viewbinding.ViewBinding
 
 /**
