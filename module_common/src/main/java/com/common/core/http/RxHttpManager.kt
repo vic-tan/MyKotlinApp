@@ -2,6 +2,7 @@ package com.common.core.http
 
 import android.app.Application
 import com.common.ComApplication
+import com.common.utils.AppUtils
 import okhttp3.OkHttpClient
 import rxhttp.RxHttp
 import rxhttp.wrapper.param.Param
@@ -26,7 +27,7 @@ class RxHttpManager {
         RxHttp.setOnParamAssembly { p: Param<*>? ->
             p!!.add("versionName", "1.0.0") //添加公共参数
                 .addHeader("Authorization", "Bearer " + ComApplication.token)
-//                .addHeader("channel_code", "" + AppUtils.getDefaultChannel(context))
+                .addHeader("channel_code", "" + AppUtils.getDefaultChannel(context))
                 .addHeader("deviceType", "android") //添加公共请求头
         }
     }
