@@ -32,7 +32,7 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
     }
 
 
-    override fun initView() {
+    override fun init() {
         initViewModel()
         initViewModelObserve()
         initListener()

@@ -37,7 +37,7 @@ class AdsActivity : BaseActivity<ActivityAdsBinding>() {
     }
 
 
-    override fun initView() {
+    override fun init() {
         initViewModel()
         initViewModelObserve()
         initListener()

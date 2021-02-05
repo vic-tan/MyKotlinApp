@@ -32,7 +32,7 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
     }
 
 
-    override fun initView() {
+    override fun init() {
         addGuideData()
         binding.banner.adapter = GuideAdapter(this, guideList)
         binding.banner.indicator = CircleIndicator(this)

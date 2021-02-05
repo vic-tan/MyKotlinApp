@@ -33,7 +33,7 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding>() {
         }
     }
 
-    override fun initView() {
+    override fun init() {
         var bundle = this.intent.extras
         url = bundle?.get(EXTRAS_URL).toString()
         title = bundle?.get(EXTRAS_TITLE).toString()

@@ -18,7 +18,6 @@ import com.common.base.event.BaseEvent
 import com.common.base.ui.activity.BaseFormActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.environment.EnvironmentBean
-import com.common.environment.EnvironmentChangeManager
 import com.common.environment.EnvironmentEvent
 import com.common.environment.EnvironmentSwitchActivity
 import com.common.utils.ResUtils
@@ -57,13 +56,17 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
     }
 
 
-    override fun initView() {
+    override fun init() {
         setProtocolTxt()
         initTextInputHelper()
         initViewModel()
         initViewModelObserve()
         initListener()
         initEnvironmentSwitcher()
+        initData()
+    }
+
+    private fun initData() {
     }
 
     /**

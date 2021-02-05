@@ -33,7 +33,7 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
 
 
 
-    override fun initView() {
+    override fun init() {
         environmentList = ArrayList()
         val mapJsonStr: String = intent.getStringExtra(EXTRAS_DATA)
         if (mapJsonStr.isNotEmpty()) {

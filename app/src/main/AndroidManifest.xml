@@ -27,7 +27,7 @@
         </activity>
 
         <!--—————————————————————————————————————————————————— 切换环境更改app图标 ——————————————————————————————————————-->
-        
+
         <!--    AndroidManifest.xml文件中添加过activity-alias标签之后，下一版本不能删除，可能会导致应用升级异常：
             以工程中的activity（MainActivity），activity-alias（activity618、activity1225）为例，
             且在升级包中删除了activity-alias（activity1225），则会有以下两种情况：
@@ -85,6 +85,10 @@
         <activity
             android:name=".persenal.activity.SettingActivity"
             android:label="个人设置" />
+
+        <activity
+            android:name=".persenal.activity.AboutActivity"
+            android:label="关于网上老年大学" />
 
         <!--—————————————————————————————————————————————————— 今日头条全适配 —————————————————————————————————————————-->
         <meta-data

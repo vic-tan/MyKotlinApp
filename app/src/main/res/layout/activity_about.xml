@@ -5,29 +5,56 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.ruffian.library.widget.RConstraintLayout
-        android:id="@+id/recruitingLecturers"
-        style="@style/setting_list_style"
-        android:layout_marginTop="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <com.ruffian.library.widget.RImageView
+            android:id="@+id/logo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/ic_launcher"
+            app:corner_radius="15dp" />
+
 
         <TextView
-            style="@style/setting_list_item_title_text_style"
-            android:text="账号与安全" />
+            android:id="@+id/appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/color_333333"
+            android:textSize="21sp"
+            android:textStyle="bold" />
 
-        <ImageView
-            style="@style/setting_list_item_arrow_right_style"
-            android:background="@mipmap/arrow_right_grey" />
-    </com.ruffian.library.widget.RConstraintLayout>
+        <TextView
+            android:id="@+id/versionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:text="当前版本1.0.0"
+            android:textColor="@color/color_333333"
+            android:textSize="13sp" />
+    </LinearLayout>
 
     <include layout="@layout/layout_line_setting" />
 
     <com.ruffian.library.widget.RConstraintLayout
-        android:id="@+id/clearCache"
+        android:id="@+id/schoolLeaders"
         style="@style/setting_list_style">
 
         <TextView
             style="@style/setting_list_item_title_text_style"
-            android:text="清理缓存" />
+            android:text="学校领导" />
 
         <ImageView
             style="@style/setting_list_item_arrow_right_style"
@@ -37,12 +64,12 @@
     <include layout="@layout/layout_line_setting" />
 
     <com.ruffian.library.widget.RConstraintLayout
-        android:id="@+id/about"
+        android:id="@+id/userAgreement"
         style="@style/setting_list_style">
 
         <TextView
             style="@style/setting_list_item_title_text_style"
-            android:text="关于网上老年大学" />
+            android:text="用户协议" />
 
         <ImageView
             style="@style/setting_list_item_arrow_right_style"
@@ -51,14 +78,29 @@
 
     <include layout="@layout/layout_line_setting" />
 
-
     <com.ruffian.library.widget.RConstraintLayout
-        android:id="@+id/feedback"
+        android:id="@+id/privacyPolicy"
         style="@style/setting_list_style">
 
         <TextView
             style="@style/setting_list_item_title_text_style"
-            android:text="意见反馈" />
+            android:text="隐私政策" />
+
+        <ImageView
+            style="@style/setting_list_item_arrow_right_style"
+            android:background="@mipmap/arrow_right_grey" />
+    </com.ruffian.library.widget.RConstraintLayout>
+
+    <include layout="@layout/layout_line_setting" />
+
+
+    <com.ruffian.library.widget.RConstraintLayout
+        android:id="@+id/privacyRights"
+        style="@style/setting_list_style">
+
+        <TextView
+            style="@style/setting_list_item_title_text_style"
+            android:text="隐私权限" />
 
         <ImageView
             style="@style/setting_list_item_arrow_right_style"
@@ -68,37 +110,35 @@
     <include layout="@layout/layout_line_setting" />
 
     <com.ruffian.library.widget.RConstraintLayout
-        android:id="@+id/versionLayout"
+        android:id="@+id/rechargeAgreemen"
         style="@style/setting_list_style">
 
         <TextView
             android:id="@+id/versionTitle"
             style="@style/setting_list_item_title_text_style"
-            android:text="当前版本" />
+            android:text="充值购买协议" />
 
-        <TextView
-            android:id="@+id/versionName"
-            style="@style/setting_list_item_desc_text_style"
-            app:layout_constraintLeft_toRightOf="@id/versionTitle"
-            app:layout_constraintRight_toLeftOf="@id/versionArrow" />
 
         <ImageView
-            android:id="@+id/versionArrow"
             style="@style/setting_list_item_arrow_right_style"
             android:background="@mipmap/arrow_right_grey" />
     </com.ruffian.library.widget.RConstraintLayout>
 
     <include layout="@layout/layout_line_setting" />
 
-    <TextView
-        android:id="@+id/exit"
-        style="@style/setting_list_style"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:text="退出登录"
-        android:textColor="@color/color_333333"
-        android:textSize="18sp" />
+    <com.ruffian.library.widget.RConstraintLayout
+        android:id="@+id/lecturerAgreement"
+        style="@style/setting_list_style">
+
+        <TextView
+            style="@style/setting_list_item_title_text_style"
+            android:text="讲师入驻协议" />
+
+
+        <ImageView
+            style="@style/setting_list_item_arrow_right_style"
+            android:background="@mipmap/arrow_right_grey" />
+    </com.ruffian.library.widget.RConstraintLayout>
 
 
 </LinearLayout>

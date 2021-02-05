@@ -28,7 +28,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         return true
     }
 
-    override fun initView() {
+    override fun init() {
         initViewModel()
         initViewModelObserve()
     }
