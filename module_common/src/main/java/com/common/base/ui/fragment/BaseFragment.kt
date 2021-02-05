@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import java.lang.reflect.InvocationTargetException
+import java.lang.reflect.ParameterizedType
+
 
 /**
  * @desc:
@@ -21,7 +24,24 @@ open abstract class BaseFragment<T : ViewBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = createBinding(inflater, container, false)
+        val type =
+            javaClass.genericSuperclass as ParameterizedType
+        val cls = type.actualTypeArguments[0] as Class<*>
+        try {
+            val inflate = cls.getDeclaredMethod(
+                "inflate",
+                LayoutInflater::class.java,
+                ViewGroup::class.java,
+                Boolean::class.javaPrimitiveType
+            )
+            _binding = inflate.invoke(null, inflater, container, false) as T
+        } catch (e: NoSuchMethodException) {
+            e.printStackTrace()
+        } catch (e: IllegalAccessException) {
+            e.printStackTrace()
+        } catch (e: InvocationTargetException) {
+            e.printStackTrace()
+        }
         return binding.root
     }
 
@@ -33,11 +53,6 @@ open abstract class BaseFragment<T : ViewBinding> : Fragment() {
         initView()
     }
 
-    abstract fun createBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        attachToRoot: Boolean
-    ): T
 
     abstract fun initView()
 

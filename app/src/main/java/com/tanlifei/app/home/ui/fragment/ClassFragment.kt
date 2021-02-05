@@ -1,8 +1,6 @@
 package com.tanlifei.app.home.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.common.base.ui.fragment.BaseLazyFragment
 import com.tanlifei.app.databinding.FragmentHomeBinding
 
@@ -22,13 +20,7 @@ class ClassFragment : BaseLazyFragment<FragmentHomeBinding>() {
         }
     }
 
-    override fun createBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        attachToRoot: Boolean
-    ): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(inflater, container, attachToRoot)
-    }
+
 
 
     override fun onFirstVisibleToUser() {
