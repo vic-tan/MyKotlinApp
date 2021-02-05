@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseActivity
 import com.tanlifei.app.R
 import com.common.base.navigator.NavigatorView
+import com.hjq.toast.ToastUtils
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.network.HomeNetwork

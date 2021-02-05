@@ -8,13 +8,14 @@ import androidx.fragment.app.Fragment
 import com.common.base.ui.fragment.BaseFragment
 import com.common.base.ui.fragment.BaseLazyFragment
 import com.tanlifei.app.databinding.FragmentHomeBinding
+import com.tanlifei.app.databinding.FragmentStudyBinding
 
 /**
  * @desc:
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class StudyFragment : BaseLazyFragment<FragmentHomeBinding>() {
+class StudyFragment : BaseFragment<FragmentStudyBinding>() {
 
 
     companion object {
@@ -30,13 +31,14 @@ class StudyFragment : BaseLazyFragment<FragmentHomeBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         attachToRoot: Boolean
-    ): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(inflater, container, attachToRoot)
+    ): FragmentStudyBinding {
+        return FragmentStudyBinding.inflate(inflater, container, attachToRoot)
     }
 
 
-    override fun onFirstVisibleToUser() {
-        binding.txtBtn.text = "STUDY"
+
+
+    override fun initView() {
     }
 
 

@@ -2,9 +2,11 @@ package com.tanlifei.app.persenal.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.common.base.ui.fragment.BaseLazyFragment
-import com.tanlifei.app.databinding.FragmentHomeBinding
+import com.common.utils.MyLogTools
+import com.hjq.toast.ToastUtils
 import com.tanlifei.app.databinding.FragmentPersenalBinding
 
 /**
@@ -34,6 +36,9 @@ class PersenalFragment : BaseLazyFragment<FragmentPersenalBinding>() {
 
 
     override fun onFirstVisibleToUser() {
+        binding.msg.setOnClickListener(View.OnClickListener {
+            ToastUtils.show("消息")
+        })
     }
 
 

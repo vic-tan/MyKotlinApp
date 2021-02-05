@@ -21,7 +21,7 @@ import com.ruffian.library.widget.RTextView
 abstract class NavigatorView<T : ViewBinding> : LinearLayout {
     var mContext: Context
     protected lateinit var binding: T
-    var listener: NavigatorListener? = null
+     lateinit var listener: NavigatorListener
 
     constructor(context: Context) : super(context) {
         mContext = context
@@ -51,11 +51,10 @@ abstract class NavigatorView<T : ViewBinding> : LinearLayout {
         for (i in 0 until childCount) {
             val view = getChildAt(i)
             view.setOnClickListener { v: View? ->
-                listener?.onNavigatorItemClick(i, v)
+                listener.onNavigatorItemClick(i, v)
             }
         }
     }
-
 
     open fun select(position: Int) {
         for (i in 0 until childCount) {
@@ -68,7 +67,6 @@ abstract class NavigatorView<T : ViewBinding> : LinearLayout {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     open fun selectChild(
         child: View,
         forI: Int,
@@ -141,7 +139,8 @@ abstract class NavigatorView<T : ViewBinding> : LinearLayout {
         fun onNavigatorItemClick(position: Int, view: View?)
     }
 
-    open fun setNavigatorListener(listener: NavigatorListener?) {
+    open fun setNavigatorListener(listener: NavigatorListener) {
         this.listener = listener
+
     }
 }

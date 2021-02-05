@@ -150,7 +150,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observe
         if (layoutResId() != -1) {
             var view = View.inflate(this, layoutResId(), null)
             binding = createBinding(view)
-            baseBinding.container.addView(view.rootView)
+            baseBinding.baseContainer.addView(view.rootView)
         }
     }
 

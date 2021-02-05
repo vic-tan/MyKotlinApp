@@ -43,7 +43,7 @@ class HomeViewModel(private val repository: HomeNetwork) : BaseViewModel() {
         mNavigator = NavigatorFragmentManager(
             fragmentManager,
             NavigatorAdapter(mFragments),
-            R.id.container
+            R.id.tabContainer
         )
         showFragment(0)
     }
