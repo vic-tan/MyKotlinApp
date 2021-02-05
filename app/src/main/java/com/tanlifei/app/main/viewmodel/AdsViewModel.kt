@@ -26,14 +26,14 @@ class AdsViewModel(adsBean: AdsBean) : BaseViewModel() {
     /**
      * 倒计时结束LveData
      */
-    val jump: LiveData<Class<*>> get() = _jump
-    private val _jump = MutableLiveData<Class<*>>()
+    val adsJump: LiveData<Class<*>> get() = _adsJump
+    private val _adsJump = MutableLiveData<Class<*>>()
 
     /**
      * 短信倒计时LveData
      */
-    val interval: LiveData<Long> get() = _interval
-    private val _interval = MutableLiveData<Long>()
+    val adsInterval: LiveData<Long> get() = _adsInterval
+    private val _adsInterval = MutableLiveData<Long>()
 
     var bean: AdsBean = adsBean
 
@@ -50,15 +50,15 @@ class AdsViewModel(adsBean: AdsBean) : BaseViewModel() {
             .take((count + 1).toLong())
             .map { aLong -> count - aLong }
             .observeOn(AndroidSchedulers.mainThread()) //ui线程中进行控件更新
-            .doOnSubscribe{}.subscribe(object : Observer<Long> {
+            .doOnSubscribe {}.subscribe(object : Observer<Long> {
                 override fun onSubscribe(d: Disposable?) {}
                 override fun onNext(t: Long) {
-                    _interval.value = t//倒计时
+                    _adsInterval.value = t//倒计时
                 }
 
                 override fun onError(e: Throwable?) {}
                 override fun onComplete() {
-                    _interval.value = -1L//回复原来初始状态
+                    _adsInterval.value = -1L//回复原来初始状态
                 }
             })
     }
@@ -66,14 +66,14 @@ class AdsViewModel(adsBean: AdsBean) : BaseViewModel() {
     /**
      * 跳转到指定activity
      */
-     fun doJump() {
+    fun doJump() {
         val token = UserInfoUtils.getToken()
         //已经登录过了
         if (ObjectUtils.isNotEmpty(token)) {
             ComApplication.token = token
-            _jump.value = HomeActivity::class.java
+            _adsJump.value = HomeActivity::class.java
         } else {//未登录
-            _jump.value = LoginAtivity::class.java
+            _adsJump.value = LoginAtivity::class.java
         }
     }
 

@@ -5,17 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
-import com.common.cofing.constant.ApiEnvironmentConst
-import com.common.core.environment.EnvironmentChangeManager
-import com.common.utils.MyLogTools
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.common.utils.UserInfoUtils
-import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.main.network.SplashNetwork
-import com.tanlifei.app.main.ui.AdsActivity
-import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
 import com.tanlifei.app.main.utils.AdsUtils
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -33,11 +27,26 @@ import java.util.concurrent.TimeUnit
  */
 class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
 
+    companion object {
+        const val JUMP_TYPE_GUIDE = 1 //表示去引导页
+        const val JUMP_TYPE_LOGIN = 2 //登录界面
+        const val JUMP_TYPE_HOME = 3 //首页
+        const val JUMP_TYPE_REQUEST_ADS = 4 //广告界面（接口请求完成）
+        const val JUMP_TYPE_ADS = 5 //广告界面（启动界面完成）
+    }
+
     /**
      * 3s结束倒计时LveData
      */
-    val jump: LiveData<Class<*>> get() = _jump
-    private val _jump = MutableLiveData<Class<*>>()
+    val jump: LiveData<Int> get() = _jump
+    private val _jump = MutableLiveData<Int>()
+
+
+    /**
+     * 广告倒计时LveData
+     */
+    val adsInterval: LiveData<Long> get() = _adsInterval
+    private val _adsInterval = MutableLiveData<Long>()
 
     var adsBean: AdsBean? = null
 
@@ -45,10 +54,11 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
      * 请求短信码
      */
     fun requestAds() = launchBySilence {
-        val requestAdsBean: AdsBean = repository.requestAds()
-        if (ObjectUtils.isNotEmpty(requestAdsBean)) {
+        adsBean = repository.requestAds()
+        if (ObjectUtils.isNotEmpty(adsBean)) {
             LitePal.deleteAll(AdsBean::class.java)
-            requestAdsBean.save()
+            adsBean!!.save()
+            _jump.value = JUMP_TYPE_REQUEST_ADS
         }
     }
 
@@ -73,24 +83,66 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
     /**
      * 跳转到指定activity
      */
-    private fun doJump() {
+    fun doJump() {
         var guide = SPUtils.getInstance().getBoolean(Const.SPKey.GUIDE, true)
         if (guide) {
-            _jump.value = GuideActivity::class.java
+            _jump.value = JUMP_TYPE_GUIDE
         } else {
-            adsBean = AdsUtils.getAds()
+            if (ObjectUtils.isNotEmpty(adsBean)) {
+                adsBean = AdsUtils.getAds()
+            }
             if (ObjectUtils.isNotEmpty(adsBean) && (ObjectUtils.isNotEmpty(adsBean) && adsBean?.status == 1)) {
-                _jump.value = AdsActivity::class.java
+                _jump.value = JUMP_TYPE_ADS
             } else {
                 val token = UserInfoUtils.getToken()
                 //已经登录过了
                 if (ObjectUtils.isNotEmpty(token)) {
                     ComApplication.token = token
-                    _jump.value = HomeActivity::class.java
+                    _jump.value = JUMP_TYPE_HOME
                 } else {//未登录
-                    _jump.value = LoginAtivity::class.java
+                    _jump.value = JUMP_TYPE_LOGIN
                 }
             }
+        }
+    }
+
+
+    /**
+     * 启动页3s倒计时
+     */
+    fun startAdsInterval() {
+        var count = 3
+        if (ObjectUtils.isNotEmpty(adsBean)) {
+            count = adsBean!!.duration
+        }
+        Observable.interval(0, 1, TimeUnit.SECONDS)
+            .take((count + 1).toLong())
+            .map { aLong -> count - aLong }
+            .observeOn(AndroidSchedulers.mainThread()) //ui线程中进行控件更新
+            .doOnSubscribe {}.subscribe(object : Observer<Long> {
+                override fun onSubscribe(d: Disposable?) {}
+                override fun onNext(t: Long) {
+                    _adsInterval.value = t//倒计时
+                }
+
+                override fun onError(e: Throwable?) {}
+                override fun onComplete() {
+                    _adsInterval.value = -1L//回复原来初始状态
+                }
+            })
+    }
+
+    /**
+     * 跳转到指定activity
+     */
+    fun doAdsJump() {
+        val token = UserInfoUtils.getToken()
+        //已经登录过了
+        if (ObjectUtils.isNotEmpty(token)) {
+            ComApplication.token = token
+            _jump.value = JUMP_TYPE_HOME
+        } else {//未登录
+            _jump.value = JUMP_TYPE_LOGIN
         }
     }
 }
