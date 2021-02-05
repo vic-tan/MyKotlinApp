@@ -33,15 +33,6 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding>() {
         }
     }
 
-
-    override fun layoutResId(): Int {
-        return R.layout.activity_base_web
-    }
-
-    override fun createBinding(layoutView: View): ActivityBaseWebBinding {
-        return ActivityBaseWebBinding.bind(layoutView)
-    }
-
     override fun initView() {
         var bundle = this.intent.extras
         url = bundle?.get(EXTRAS_URL).toString()

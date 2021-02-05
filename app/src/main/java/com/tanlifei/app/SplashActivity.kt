@@ -22,13 +22,6 @@ import com.tanlifei.app.main.ui.LoginAtivity
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     private lateinit var splashViewModel: SplashViewModel
-    override fun layoutResId(): Int {
-        return R.layout.activity_splash
-    }
-
-    override fun createBinding(layoutView: View): ActivitySplashBinding {
-        return ActivitySplashBinding.bind(layoutView)
-    }
 
 
     override fun showFullScreen(): Boolean {

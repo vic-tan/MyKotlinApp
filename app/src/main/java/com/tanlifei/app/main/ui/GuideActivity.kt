@@ -24,14 +24,7 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
         }
     }
 
-    override fun layoutResId(): Int {
-        return R.layout.activity_guide
-    }
 
-
-    override fun createBinding(layoutView: View): ActivityGuideBinding {
-        return ActivityGuideBinding.bind(layoutView)
-    }
 
 
     override fun showFullScreen(): Boolean {

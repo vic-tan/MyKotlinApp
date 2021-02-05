@@ -2,7 +2,6 @@ package com.common.environment
 
 import android.app.Activity
 import android.content.Intent
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
@@ -33,13 +32,6 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
     }
 
 
-    override fun layoutResId(): Int {
-        return R.layout.activity_environment_switch
-    }
-
-    override fun createBinding(layoutView: View): ActivityEnvironmentSwitchBinding {
-        return ActivityEnvironmentSwitchBinding.bind(layoutView)
-    }
 
     override fun initView() {
         environmentList = ArrayList()

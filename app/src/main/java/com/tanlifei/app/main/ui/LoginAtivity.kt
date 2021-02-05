@@ -56,14 +56,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
         }
     }
 
-    override fun layoutResId(): Int {
-        return R.layout.activity_login
-    }
-
-    override fun createBinding(layoutView: View): ActivityLoginBinding {
-        return ActivityLoginBinding.bind(layoutView)
-    }
-
 
     override fun initView() {
         setProtocolTxt()

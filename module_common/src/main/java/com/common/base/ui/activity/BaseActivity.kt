@@ -3,14 +3,13 @@ package com.common.base.ui.activity
 import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isNotEmpty
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
-import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.event.BaseEvent
 import com.common.databinding.ActivityBaseBinding
@@ -18,12 +17,13 @@ import com.common.widget.CustomLoadingView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.animator.EmptyAnimator
 import com.lxj.xpopup.core.BasePopupView
-import com.lxj.xpopup.enums.PopupAnimation
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.lang.reflect.InvocationTargetException
+import java.lang.reflect.Method
+import java.lang.reflect.ParameterizedType
 
 
 /**
@@ -147,10 +147,18 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observe
      * 初始化View
      */
     private fun initLayout() {
-        if (layoutResId() != -1) {
-            var view = View.inflate(this, layoutResId(), null)
-            binding = createBinding(view)
-            baseBinding.baseContainer.addView(view.rootView)
+        val type: ParameterizedType = javaClass.genericSuperclass as ParameterizedType
+        val cls = type.actualTypeArguments[0] as Class<*>
+        try {
+            val inflate: Method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java)
+            binding = inflate.invoke(null, layoutInflater) as T
+            baseBinding.baseContainer.addView(binding.root)
+        } catch (e: NoSuchMethodException) {
+            e.printStackTrace()
+        } catch (e: IllegalAccessException) {
+            e.printStackTrace()
+        } catch (e: InvocationTargetException) {
+            e.printStackTrace()
         }
     }
 
@@ -172,17 +180,6 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observe
         }
 
     }
-
-
-    /**
-     * 设置布局文件
-     */
-    abstract fun layoutResId(): Int
-
-    /**
-     * 绑定binding
-     */
-    abstract fun createBinding(layoutView: View): T
 
 
     /**

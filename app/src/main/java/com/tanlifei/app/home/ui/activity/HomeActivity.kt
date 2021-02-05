@@ -31,14 +31,6 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
         }
     }
 
-    override fun layoutResId(): Int {
-        return R.layout.activity_home
-    }
-
-    override fun createBinding(layoutView: View): ActivityHomeBinding {
-        return ActivityHomeBinding.bind(layoutView)
-    }
-
 
     override fun initView() {
         initViewModel()

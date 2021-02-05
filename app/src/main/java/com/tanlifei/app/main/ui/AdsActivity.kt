@@ -36,13 +36,6 @@ class AdsActivity : BaseActivity<ActivityAdsBinding>() {
         }
     }
 
-    override fun layoutResId(): Int {
-        return R.layout.activity_ads
-    }
-
-    override fun createBinding(layoutView: View): ActivityAdsBinding {
-        return ActivityAdsBinding.bind(layoutView)
-    }
 
     override fun initView() {
         initViewModel()
