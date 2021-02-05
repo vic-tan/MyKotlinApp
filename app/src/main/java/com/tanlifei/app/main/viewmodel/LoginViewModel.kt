@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.BuildConfig
-import com.common.cofing.constant.BaseApiConst
+import com.common.cofing.constant.ApiEnvironmentConst
 import com.common.environment.EnvironmentBean
 import com.common.environment.ModuleBean
 import com.tanlifei.app.common.bean.BaseViewModel
@@ -141,7 +141,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
         try {
             if (environment.group == EnvironmentBean.GROUP_API) {
                 if (ObjectUtils.isNotEmpty(environment.url)) {
-                    BaseApiConst.BASE_URL = environment.url
+                    ApiEnvironmentConst.BASE_URL = environment.url
                 }
             }
         } catch (e: Exception) {

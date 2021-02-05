@@ -8,7 +8,7 @@ import rxhttp.wrapper.annotation.DefaultDomain
  * @author: tanlifei
  * @date: 2021/2/5 14:40
  */
-object BaseApiConst {
+object ApiEnvironmentConst {
 
     /**————————————————————————————————————————————————— 当前运行环境 ——————————————————————————————————————————————*/
     @DefaultDomain //设置为默认域名

@@ -1,6 +1,6 @@
 package com.tanlifei.app.common.config.api
 
-import com.common.cofing.constant.BaseApiConst
+import com.common.cofing.constant.ApiEnvironmentConst
 
 /**
  * @desc:
@@ -13,27 +13,27 @@ object ApiUrlConst {
     /**
      * 用户协议
      */
-    const val URL_USER_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}xieyi"
+    const val URL_USER_AGREEMENT = "${ApiEnvironmentConst.URL_AGREEMENT}xieyi"
 
     /**
      * 隐私政策
      */
-    const val URL_PRIVATE_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}yinsi"
+    const val URL_PRIVATE_AGREEMENT = "${ApiEnvironmentConst.URL_AGREEMENT}yinsi"
 
     /**
      * 学校领导协议
      */
-    const val URL_SCHOOL_LEADERS_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}leader"
+    const val URL_SCHOOL_LEADERS_AGREEMENT = "${ApiEnvironmentConst.URL_AGREEMENT}leader"
 
     /**
      * 充值购买协议
      */
-    const val URL_RECHARGE_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}payMode"
+    const val URL_RECHARGE_AGREEMENT = "${ApiEnvironmentConst.URL_AGREEMENT}payMode"
 
     /**
      * 讲师入驻协议
      */
-    const val URL_LECTURER_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}WebPage"
+    const val URL_LECTURER_AGREEMENT = "${ApiEnvironmentConst.URL_AGREEMENT}WebPage"
 
 
     /**

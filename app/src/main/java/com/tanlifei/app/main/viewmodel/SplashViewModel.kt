@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
-import com.common.cofing.constant.BaseApiConst
+import com.common.cofing.constant.ApiEnvironmentConst
 import com.common.environment.EnvironmentChangeManager
 import com.common.utils.MyLogTools
 import com.tanlifei.app.common.bean.BaseViewModel
@@ -100,8 +100,8 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
     fun initBaseApiUrl() {
         val apiUrl = EnvironmentChangeManager.initEnvironment()
         if (ObjectUtils.isNotEmpty(apiUrl)) {
-            BaseApiConst.BASE_URL = apiUrl!!
+            ApiEnvironmentConst.BASE_URL = apiUrl!!
         }
-        MyLogTools.show("UrlConst.BASE_URL = ${BaseApiConst.BASE_URL}")
+        MyLogTools.show("UrlConst.BASE_URL = ${ApiEnvironmentConst.BASE_URL}")
     }
 }
