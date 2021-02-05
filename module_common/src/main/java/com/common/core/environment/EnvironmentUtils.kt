@@ -2,6 +2,7 @@ package com.common.core.environment
 
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.BuildConfig
+import com.common.R
 import com.common.cofing.constant.ApiEnvironmentConst
 import com.common.utils.MyLogTools
 
@@ -70,5 +71,14 @@ object EnvironmentUtils {
                 }
         }
         MyLogTools.show("BASE_URL = ${ApiEnvironmentConst.BASE_URL}")
+    }
+
+    /**
+     * 获取appLogo
+     */
+    fun appLogo(): Int = when (ApiEnvironmentConst.BASE_URL) {
+        BuildConfig.BASE_URL_DEV -> R.mipmap.ic_launcher_dev
+        BuildConfig.BASE_URL_TEST -> R.mipmap.ic_launcher_test
+        else -> R.mipmap.ic_launcher_pro
     }
 }

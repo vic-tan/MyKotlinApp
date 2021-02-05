@@ -67,6 +67,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
     }
 
     private fun initData() {
+        binding.logo.setImageResource(EnvironmentUtils.appLogo())
     }
 
     /**

@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
+import com.common.core.environment.EnvironmentUtils
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
 
@@ -29,6 +30,7 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding>(), View.OnClickL
         binding.privacyRights.setOnClickListener(this)
         binding.rechargeAgreement.setOnClickListener(this)
         binding.lecturerAgreement.setOnClickListener(this)
+        binding.logo.setImageResource(EnvironmentUtils.appLogo())
     }
 
 
