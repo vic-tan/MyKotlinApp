@@ -11,7 +11,7 @@
         android:layout_marginTop="10dp">
 
         <TextView
-            style="@style/setting_list_item_text_style"
+            style="@style/setting_list_item_title_text_style"
             android:text="账号与安全" />
 
         <ImageView
@@ -26,7 +26,7 @@
         style="@style/setting_list_style">
 
         <TextView
-            style="@style/setting_list_item_text_style"
+            style="@style/setting_list_item_title_text_style"
             android:text="清理缓存" />
 
         <ImageView
@@ -41,7 +41,7 @@
         style="@style/setting_list_style">
 
         <TextView
-            style="@style/setting_list_item_text_style"
+            style="@style/setting_list_item_title_text_style"
             android:text="关于网上老年大学" />
 
         <ImageView
@@ -57,7 +57,7 @@
         style="@style/setting_list_style">
 
         <TextView
-            style="@style/setting_list_item_text_style"
+            style="@style/setting_list_item_title_text_style"
             android:text="意见反馈" />
 
         <ImageView
@@ -68,22 +68,32 @@
     <include layout="@layout/layout_line_setting" />
 
     <com.ruffian.library.widget.RConstraintLayout
-        android:id="@+id/versionName"
+        android:id="@+id/versionLayout"
         style="@style/setting_list_style">
 
         <TextView
-            style="@style/setting_list_item_text_style"
+            android:id="@+id/versionTitle"
+            style="@style/setting_list_item_title_text_style"
             android:text="当前版本" />
 
+        <TextView
+            android:id="@+id/versionName"
+            style="@style/setting_list_item_desc_text_style"
+            app:layout_constraintRight_toLeftOf="@id/versionArrow"
+            app:layout_constraintLeft_toRightOf="@id/versionTitle" />
+
         <ImageView
+            android:id="@+id/versionArrow"
             style="@style/setting_list_item_arrow_right_style"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:background="@mipmap/arrow_right_grey" />
     </com.ruffian.library.widget.RConstraintLayout>
 
     <include layout="@layout/layout_line_setting" />
 
     <TextView
-        android:id="@+id/eixt"
+        android:id="@+id/exit"
         style="@style/setting_list_style"
         android:layout_marginTop="10dp"
         android:background="@color/white"

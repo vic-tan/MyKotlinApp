@@ -395,7 +395,7 @@
                 app:corner_radius_top_right="8dp">
 
                 <TextView
-                    style="@style/setting_list_item_text_style"
+                    style="@style/setting_list_item_title_text_style"
                     android:text="招募讲师" />
 
                 <ImageView
@@ -410,7 +410,7 @@
                 style="@style/setting_list_style">
 
                 <TextView
-                    style="@style/setting_list_item_text_style"
+                    style="@style/setting_list_item_title_text_style"
                     android:text="我要评分" />
 
                 <ImageView
@@ -426,7 +426,7 @@
                 style="@style/setting_list_style">
 
                 <TextView
-                    style="@style/setting_list_item_text_style"
+                    style="@style/setting_list_item_title_text_style"
                     android:text="校长信箱" />
 
                 <ImageView
@@ -441,7 +441,7 @@
                 style="@style/setting_list_style">
 
                 <TextView
-                    style="@style/setting_list_item_text_style"
+                    style="@style/setting_list_item_title_text_style"
                     android:text="操作手册" />
 
                 <ImageView
@@ -458,7 +458,7 @@
                 app:corner_radius_bottom_right="8dp">
 
                 <TextView
-                    style="@style/setting_list_item_text_style"
+                    style="@style/setting_list_item_title_text_style"
                     android:text="个人设置" />
 
                 <ImageView

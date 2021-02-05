@@ -39,23 +39,42 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
-    <!-- 设置列表字体样式 -->
-    <style name="setting_list_item_text_style">
+    <!-- 设置列表标题字体样式 -->
+    <style name="setting_list_item_title_text_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/color_333333</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+    </style>
+
+    <!-- 设置列表标题描述字体样式 -->
+    <style name="setting_list_item_desc_text_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:textColor">@color/color_999999</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_gravity">center_vertical|right</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
     </style>
 
     <!-- 设置列表右箭头样式 -->
     <style name="setting_list_item_arrow_right_style">
         <item name="android:layout_width">8dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_height">12dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">15dp</item>
         <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+
     </style>
 
 </resources>
