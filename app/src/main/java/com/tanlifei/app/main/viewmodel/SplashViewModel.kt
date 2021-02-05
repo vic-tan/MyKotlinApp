@@ -9,7 +9,7 @@ import com.common.environment.EnvironmentChangeManager
 import com.common.utils.MyLogTools
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.config.Const
-import com.tanlifei.app.common.config.api.ApiUrlConst
+import com.tanlifei.app.common.config.api.BaseApiConst
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.bean.AdsBean
@@ -100,8 +100,8 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
     fun initBaseApiUrl() {
         val apiUrl = EnvironmentChangeManager.initEnvironment()
         if (ObjectUtils.isNotEmpty(apiUrl)) {
-            ApiUrlConst.BASE_URL = apiUrl!!
+            BaseApiConst.BASE_URL = apiUrl!!
         }
-        MyLogTools.show("UrlConst.BASE_URL = ${ApiUrlConst.BASE_URL}")
+        MyLogTools.show("UrlConst.BASE_URL = ${BaseApiConst.BASE_URL}")
     }
 }

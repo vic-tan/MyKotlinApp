@@ -20,10 +20,7 @@ android {
             }
         }
         multiDexEnabled true
-        //此三个URL是用来做切换环境用的
-        buildConfigField 'String', 'BASE_URL_DEV', rootProject.ext.configField['BASE_URL_DEV']
-        buildConfigField 'String', 'BASE_URL_TEST', rootProject.ext.configField['BASE_URL_TEST']
-        buildConfigField 'String', 'BASE_URL_PRO', rootProject.ext.configField['BASE_URL_PRO']
+
     }
     //必须，java 8或更高
     compileOptions {

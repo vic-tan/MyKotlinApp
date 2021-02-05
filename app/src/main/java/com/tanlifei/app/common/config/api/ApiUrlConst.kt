@@ -1,8 +1,5 @@
 package com.tanlifei.app.common.config.api
 
-import com.tanlifei.app.BuildConfig
-import rxhttp.wrapper.annotation.DefaultDomain
-
 /**
  * @desc:
  * @author: tanlifei
@@ -10,46 +7,31 @@ import rxhttp.wrapper.annotation.DefaultDomain
  */
 object ApiUrlConst {
 
-    @DefaultDomain //设置为默认域名
-    @JvmField
-    var BASE_URL = BuildConfig.BASE_URL
-
 
     /**
      * 用户协议
      */
-    private const val URL_BASE_TEST_HELPER = "https://globalh5test.jinlingkeji.cn/helper#"
-
-    /**
-     * 用户协议
-     */
-    private const val URL_AGREEMENT = "https://appoffice.jinlingkeji.cn/#/"
-
-
-    /**
-     * 用户协议
-     */
-    const val URL_USER_AGREEMENT = "${URL_AGREEMENT}xieyi"
+    const val URL_USER_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}xieyi"
 
     /**
      * 隐私政策
      */
-    const val URL_PRIVATE_AGREEMENT = "${URL_AGREEMENT}yinsi"
+    const val URL_PRIVATE_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}yinsi"
 
     /**
      * 学校领导协议
      */
-    const val URL_SCHOOL_LEADERS_AGREEMENT = "${URL_AGREEMENT}leader"
+    const val URL_SCHOOL_LEADERS_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}leader"
 
     /**
      * 充值购买协议
      */
-    const val URL_RECHARGE_AGREEMENT = "${URL_AGREEMENT}payMode"
+    const val URL_RECHARGE_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}payMode"
 
     /**
      * 讲师入驻协议
      */
-    const val URL_LECTURER_AGREEMENT = "${URL_AGREEMENT}WebPage"
+    const val URL_LECTURER_AGREEMENT = "${BaseApiConst.URL_AGREEMENT}WebPage"
 
 
     /**
