@@ -1,10 +1,5 @@
 package com.tanlifei.app.home.network
 
-import com.tanlifei.app.common.config.UrlConst
-import com.tanlifei.app.main.bean.AdsBean
-import rxhttp.RxHttp
-import rxhttp.toResponse
-
 
 /**
  * @desc:

@@ -24,8 +24,8 @@ import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
-import com.tanlifei.app.common.config.UrlConst.URL_AGREEMENT
-import com.tanlifei.app.common.config.UrlConst.URL_REGISTER_AGREEMENT
+import com.tanlifei.app.common.config.api.ApiUrlConst.URL_PRIVATE_AGREEMENT
+import com.tanlifei.app.common.config.api.ApiUrlConst.URL_USER_AGREEMENT
 import com.tanlifei.app.common.utils.AppUtils
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
@@ -197,7 +197,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
                     OnClickableSpanListener { _: TextView?, _: CustomClickableSpan? ->
                         gotoWeb(
                             "用户协议",
-                            URL_REGISTER_AGREEMENT
+                            URL_USER_AGREEMENT
                         )
                     }
                 )
@@ -210,7 +210,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
                     OnClickableSpanListener { _: TextView?, _: CustomClickableSpan? ->
                         gotoWeb(
                             "隐私政策",
-                            URL_AGREEMENT
+                            URL_PRIVATE_AGREEMENT
                         )
                     }
                 )

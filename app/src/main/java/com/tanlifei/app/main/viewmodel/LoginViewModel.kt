@@ -8,7 +8,7 @@ import com.common.environment.EnvironmentBean
 import com.common.environment.ModuleBean
 import com.tanlifei.app.BuildConfig
 import com.tanlifei.app.common.bean.BaseViewModel
-import com.tanlifei.app.common.config.UrlConst
+import com.tanlifei.app.common.config.api.ApiUrlConst
 import com.tanlifei.app.main.network.LoginNetwork
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -141,7 +141,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
         try {
             if (environment.group == EnvironmentBean.GROUP_API) {
                 if (ObjectUtils.isNotEmpty(environment.url)) {
-                    UrlConst.BASE_URL = environment.url
+                    ApiUrlConst.BASE_URL = environment.url
                 }
             }
         } catch (e: Exception) {

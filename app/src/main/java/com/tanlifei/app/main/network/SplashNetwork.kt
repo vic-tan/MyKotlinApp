@@ -1,6 +1,6 @@
 package com.tanlifei.app.main.network
 
-import com.tanlifei.app.common.config.UrlConst
+import com.tanlifei.app.common.config.api.ApiUrlConst
 import com.tanlifei.app.main.bean.AdsBean
 import rxhttp.RxHttp
 import rxhttp.toResponse
@@ -16,7 +16,7 @@ class SplashNetwork {
     /**
      * 广告接口请求
      */
-    suspend fun requestAds() = RxHttp.postJson(UrlConst.URL_ADS)
+    suspend fun requestAds() = RxHttp.postJson(ApiUrlConst.URL_ADS)
         .toResponse<AdsBean>().await()
 
 

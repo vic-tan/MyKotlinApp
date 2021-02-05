@@ -53,6 +53,7 @@
         style="@style/setting_list_style">
 
         <TextView
+            android:id="@+id/schoolLeadersTitle"
             style="@style/setting_list_item_title_text_style"
             android:text="学校领导" />
 
@@ -68,6 +69,7 @@
         style="@style/setting_list_style">
 
         <TextView
+            android:id="@+id/userAgreementTitle"
             style="@style/setting_list_item_title_text_style"
             android:text="用户协议" />
 
@@ -79,10 +81,11 @@
     <include layout="@layout/layout_line_setting" />
 
     <com.ruffian.library.widget.RConstraintLayout
-        android:id="@+id/privacyPolicy"
+        android:id="@+id/privateAgreement"
         style="@style/setting_list_style">
 
         <TextView
+            android:id="@+id/privateAgreementTitle"
             style="@style/setting_list_item_title_text_style"
             android:text="隐私政策" />
 
@@ -99,6 +102,7 @@
         style="@style/setting_list_style">
 
         <TextView
+            android:id="@+id/privacyRightsTitle"
             style="@style/setting_list_item_title_text_style"
             android:text="隐私权限" />
 
@@ -110,11 +114,11 @@
     <include layout="@layout/layout_line_setting" />
 
     <com.ruffian.library.widget.RConstraintLayout
-        android:id="@+id/rechargeAgreemen"
+        android:id="@+id/rechargeAgreement"
         style="@style/setting_list_style">
 
         <TextView
-            android:id="@+id/versionTitle"
+            android:id="@+id/rechargeAgreementTitle"
             style="@style/setting_list_item_title_text_style"
             android:text="充值购买协议" />
 
@@ -131,6 +135,7 @@
         style="@style/setting_list_style">
 
         <TextView
+            android:id="@+id/lecturerAgreementTitle"
             style="@style/setting_list_item_title_text_style"
             android:text="讲师入驻协议" />
 

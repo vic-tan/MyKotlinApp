@@ -25,7 +25,7 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding>() {
         }
         binding.exit.setOnClickListener {
 
-            
+
         }
     }
 

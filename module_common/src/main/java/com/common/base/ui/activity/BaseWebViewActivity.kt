@@ -47,6 +47,7 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding>() {
     private fun initWebSettings() {
         val settings: WebSettings = binding.webView.settings
         settings.javaScriptEnabled = true
+        settings.domStorageEnabled = true
         settings.blockNetworkImage = false // 解决图片不显示
         binding.webView.loadUrl(url)
     }

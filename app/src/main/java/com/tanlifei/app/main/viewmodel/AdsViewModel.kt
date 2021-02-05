@@ -3,26 +3,16 @@ package com.tanlifei.app.main.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
-import com.common.environment.EnvironmentChangeManager
-import com.common.utils.MyLogTools
 import com.tanlifei.app.common.bean.BaseViewModel
-import com.tanlifei.app.common.config.Const
-import com.tanlifei.app.common.config.UrlConst
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.bean.AdsBean
-import com.tanlifei.app.main.network.SplashNetwork
-import com.tanlifei.app.main.ui.AdsActivity
-import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
-import com.tanlifei.app.main.utils.AdsUtils
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
-import org.litepal.LitePal
 import java.util.concurrent.TimeUnit
 
 
