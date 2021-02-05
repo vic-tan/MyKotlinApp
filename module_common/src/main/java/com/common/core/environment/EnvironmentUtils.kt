@@ -45,7 +45,7 @@ object EnvironmentUtils {
             if (environment.group == EnvironmentBean.GROUP_API) {
                 if (ObjectUtils.isNotEmpty(environment.url)) {
                     ApiEnvironmentConst.BASE_URL = environment.url
-                    MyLogTools.show(ApiEnvironmentConst.BASE_URL)
+                    MyLogTools.show("BASE_URL = ${ApiEnvironmentConst.BASE_URL}")
                 }
             }
         } catch (e: Exception) {
@@ -69,6 +69,6 @@ object EnvironmentUtils {
                     else -> BuildConfig.BASE_URL_PRO
                 }
         }
-        MyLogTools.show("UrlConst.BASE_URL = ${ApiEnvironmentConst.BASE_URL}")
+        MyLogTools.show("BASE_URL = ${ApiEnvironmentConst.BASE_URL}")
     }
 }
