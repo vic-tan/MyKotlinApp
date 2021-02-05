@@ -1,11 +1,10 @@
-package com.common.environment
+package com.common.core.environment
 
 import android.content.ComponentName
 import android.content.Context
 import android.content.pm.PackageManager
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComApplication
-import com.common.utils.MyLogTools
 import org.litepal.LitePal
 
 /**

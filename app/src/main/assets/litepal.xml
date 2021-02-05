@@ -30,7 +30,7 @@
     	</list>
     -->
     <list>
-        <mapping class="com.common.environment.EnvironmentBean" />
+        <mapping class="com.common.core.environment.EnvironmentBean" />
         <mapping class="com.tanlifei.app.common.bean.UserBean" />
         <mapping class="com.tanlifei.app.main.bean.AdsBean" />
     </list>

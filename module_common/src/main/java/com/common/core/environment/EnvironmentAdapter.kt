@@ -1,4 +1,4 @@
-package com.common.environment
+package com.common.core.environment
 
 import android.widget.ImageView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter

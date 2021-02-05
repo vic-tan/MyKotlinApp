@@ -17,9 +17,10 @@ import com.common.ComApplication
 import com.common.core.base.event.BaseEvent
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
-import com.common.environment.EnvironmentBean
-import com.common.environment.EnvironmentEvent
-import com.common.environment.EnvironmentSwitchActivity
+import com.common.core.environment.EnvironmentBean
+import com.common.core.environment.EnvironmentEvent
+import com.common.core.environment.EnvironmentSwitchActivity
+import com.common.core.environment.EnvironmentUtils
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
@@ -62,7 +63,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
         initViewModel()
         initViewModelObserve()
         initListener()
-        initEnvironmentSwitcher()
         initData()
     }
 
@@ -134,10 +134,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
             }
         }
         binding.changeEnvironment.setOnClickListener {
-            EnvironmentSwitchActivity.actionStart(
-                this,
-                loginViewModel.environmentList
-            )
+            EnvironmentSwitchActivity.actionStart(this)
         }
 
         //是否连续点击显示切换环境
@@ -146,12 +143,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
         }
     }
 
-    /**
-     * 初始化环境切换器
-     */
-    private fun initEnvironmentSwitcher() {
-        loginViewModel.initEnvironmentSwitcher()
-    }
 
     /**
      * 开启监听事件总线
@@ -181,7 +172,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
                 "${EnvironmentBean.GROUP_API}"
             )
             event.environment.save()
-            loginViewModel.onEnvironmentChanged(event.environment)
+            EnvironmentUtils.onEnvironmentChanged(event.environment)
         }
     }
 

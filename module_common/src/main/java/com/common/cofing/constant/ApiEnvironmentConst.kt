@@ -13,8 +13,9 @@ object ApiEnvironmentConst {
     /**————————————————————————————————————————————————— 当前运行环境 ——————————————————————————————————————————————*/
     @DefaultDomain //设置为默认域名
     @JvmField
-    var BASE_URL = BuildConfig.BASE_URL_TEST
+    var BASE_URL = BuildConfig.BASE_URL_PRO
 
+    /* H5地址 */
     val URL_BASE_HELPER = getBaseHelperUrl()
 
 
@@ -27,14 +28,17 @@ object ApiEnvironmentConst {
     /**————————————————————————————————————————————————— 测试（TEST）环境 —————————————————————————————————————————*/
 
     /* 测试环境H5地址 */
-    private const val URL_BASE_TEST_HELPER = "https://globalh5pro.jinlingkeji.cn/helper#"
+    private const val URL_BASE_TEST_HELPER = "https://globalh5test.jinlingkeji.cn/helper#"
 
     /**————————————————————————————————————————————————— 正式（PRO）环境  —————————————————————————————————————————*/
 
     /* 正式环境H5地址 */
-    private const val URL_BASE_PRO_HELPER = "https://globalh5test.jinlingkeji.cn/helper#"
+    private const val URL_BASE_PRO_HELPER = "https://globalh5pro.jinlingkeji.cn/helper#"
 
 
+    /**
+     * 根据BASE_URL 获取对应的H5地址
+     */
     private fun getBaseHelperUrl(): String {
         return when (BASE_URL) {
             BuildConfig.BASE_URL_DEV -> URL_BASE_DEV_HELPER

@@ -45,18 +45,18 @@ android {
         //开发环境
         dev {
             manifestPlaceholders = rootProject.ext.dev
-            buildConfigField 'String', 'BASE_URL', rootProject.ext.configField['BASE_URL_DEV']
+            buildConfigField 'String', 'CURRENTE_URL', rootProject.ext.configField['BASE_URL_DEV']
         }
         //测试环境(因为不允许命名为test)
         beta {
             manifestPlaceholders = rootProject.ext.test
-            buildConfigField 'String', 'BASE_URL', rootProject.ext.configField['BASE_URL_TEST']
+            buildConfigField 'String', 'CURRENT_URL', rootProject.ext.configField['BASE_URL_TEST']
         }
 
         //正式环境
         pro {
             manifestPlaceholders = rootProject.ext.pro
-            buildConfigField 'String', 'BASE_URL', rootProject.ext.configField['BASE_URL_PRO']
+            buildConfigField 'String', 'CURRENT_URL', rootProject.ext.configField['BASE_URL_PRO']
         }
 
     }

@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
 import com.common.cofing.constant.ApiEnvironmentConst
-import com.common.environment.EnvironmentChangeManager
+import com.common.core.environment.EnvironmentChangeManager
 import com.common.utils.MyLogTools
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.config.Const

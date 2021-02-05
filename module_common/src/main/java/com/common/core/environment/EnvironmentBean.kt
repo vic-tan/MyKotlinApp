@@ -1,4 +1,4 @@
-package com.common.environment
+package com.common.core.environment
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.common.core.base.bean.BaseLitePalBean

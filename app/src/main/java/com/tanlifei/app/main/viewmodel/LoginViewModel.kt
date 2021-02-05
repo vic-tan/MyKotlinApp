@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.BuildConfig
 import com.common.cofing.constant.ApiEnvironmentConst
-import com.common.environment.EnvironmentBean
-import com.common.environment.ModuleBean
+import com.common.core.environment.EnvironmentBean
+import com.common.core.environment.ModuleBean
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.main.network.LoginNetwork
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -47,7 +47,7 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
 
 
     var token: String? = null
-    lateinit var environmentList: MutableList<ModuleBean>
+
 
 
     private val counts = 10 // 点击次数
@@ -108,46 +108,6 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
             mHits = LongArray(counts) //重新初始化数组
             _isContinuousClick.value = true
         }
-    }
-
-    /**
-     * 初始化环境切换器
-     */
-    fun initEnvironmentSwitcher() {
-        environmentList = ArrayList()
-        val apiList: MutableList<EnvironmentBean> = ArrayList()
-        apiList.add(EnvironmentBean("开发环境", BuildConfig.BASE_URL_DEV, "environment_dev", true))
-        apiList.add(EnvironmentBean("测试环境", BuildConfig.BASE_URL_TEST, "environment_test"))
-        apiList.add(EnvironmentBean("正式环境", BuildConfig.BASE_URL_PRO, "environment_pro"))
-        environmentList.add(ModuleBean("接口", EnvironmentBean.GROUP_API, apiList))
-
-        val shareList: MutableList<EnvironmentBean> = ArrayList()
-        shareList.add(
-            EnvironmentBean(
-                "开发分享",
-                BuildConfig.BASE_URL_DEV + "devShare/",
-                defaultCheck = true
-            )
-        )
-        shareList.add(EnvironmentBean("测试分享", BuildConfig.BASE_URL_TEST + "testShare/"))
-        shareList.add(EnvironmentBean("正式分享", BuildConfig.BASE_URL_PRO + "proShare/"))
-        environmentList.add(ModuleBean("分享", EnvironmentBean.GROUP_SHARE, shareList))
-    }
-
-    /**
-     * 环境切换修改请求接口路径
-     */
-    fun onEnvironmentChanged(environment: EnvironmentBean) {
-        try {
-            if (environment.group == EnvironmentBean.GROUP_API) {
-                if (ObjectUtils.isNotEmpty(environment.url)) {
-                    ApiEnvironmentConst.BASE_URL = environment.url
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
     }
 
 }

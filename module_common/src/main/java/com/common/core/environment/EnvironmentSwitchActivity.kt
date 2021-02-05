@@ -1,4 +1,4 @@
-package com.common.environment
+package com.common.core.environment
 
 import android.app.Activity
 import android.content.Intent
@@ -23,14 +23,17 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
     companion object {
         private const val EXTRAS_DATA = "extras_data"
         fun actionStart(activity: Activity, list: MutableList<ModuleBean>) {
-            val mapStr = Gson().toJson(list)
+            val mapStr = Gson().toJson(EnvironmentUtils.initEnvironmentSwitcher())
             var intent = Intent(activity, EnvironmentSwitchActivity::class.java).apply {
                 putExtra(EXTRAS_DATA, mapStr)
             }
             ActivityUtils.startActivity(intent)
         }
-    }
 
+        fun actionStart(activity: Activity) {
+            actionStart(activity, EnvironmentUtils.initEnvironmentSwitcher())
+        }
+    }
 
 
     override fun init() {

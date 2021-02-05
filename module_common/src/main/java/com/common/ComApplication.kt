@@ -7,7 +7,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.common.environment.EnvironmentChangeManager
+import com.common.core.environment.EnvironmentChangeManager
 import com.hjq.toast.ToastUtils
 import com.tencent.bugly.crashreport.CrashReport
 import org.litepal.LitePal
