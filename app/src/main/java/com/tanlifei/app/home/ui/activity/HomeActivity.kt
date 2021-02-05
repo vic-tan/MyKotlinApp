@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.ui.activity.BaseActivity
 import com.common.core.base.navigator.NavigatorView
-import com.tanlifei.app.common.utils.AppUtils
+import com.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.network.HomeNetwork
 import com.tanlifei.app.home.viewmodel.HomeViewModel

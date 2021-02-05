@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
+import com.common.cofing.constant.BaseApiConst
 import com.common.environment.EnvironmentChangeManager
 import com.common.utils.MyLogTools
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.config.Const
-import com.tanlifei.app.common.config.api.BaseApiConst
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.bean.AdsBean

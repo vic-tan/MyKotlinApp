@@ -1,5 +1,7 @@
 package com.tanlifei.app.common.config.api
 
+import com.common.cofing.constant.BaseApiConst
+
 /**
  * @desc:
  * @author: tanlifei

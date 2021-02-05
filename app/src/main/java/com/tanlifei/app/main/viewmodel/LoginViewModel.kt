@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.BuildConfig
+import com.common.cofing.constant.BaseApiConst
 import com.common.environment.EnvironmentBean
 import com.common.environment.ModuleBean
 import com.tanlifei.app.common.bean.BaseViewModel
-import com.tanlifei.app.common.config.api.BaseApiConst
 import com.tanlifei.app.main.network.LoginNetwork
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable

@@ -1,6 +1,6 @@
-package com.tanlifei.app.common.config.api
+package com.common.cofing.constant
 
-import com.tanlifei.app.BuildConfig
+import com.common.BuildConfig
 import rxhttp.wrapper.annotation.DefaultDomain
 
 /**
@@ -13,8 +13,7 @@ object BaseApiConst {
     /**————————————————————————————————————————————————— 当前运行环境 ——————————————————————————————————————————————*/
     @DefaultDomain //设置为默认域名
     @JvmField
-    var BASE_URL = BuildConfig.BASE_URL
-
+    var BASE_URL = BuildConfig.BASE_URL_TEST
 
     /**————————————————————————————————————————————————— 开发（DEV）环境  —————————————————————————————————————————*/
 
