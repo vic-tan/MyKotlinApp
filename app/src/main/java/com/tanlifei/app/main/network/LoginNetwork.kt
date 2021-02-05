@@ -1,6 +1,6 @@
 package com.tanlifei.app.main.network
 
-import com.tanlifei.app.common.config.api.ApiUrlConst
+import com.tanlifei.app.common.config.api.ApiConst
 import rxhttp.RxHttp
 import rxhttp.toResponse
 
@@ -12,11 +12,11 @@ import rxhttp.toResponse
  */
 class LoginNetwork {
 
-    suspend fun requestSmsCode(phone: String) = RxHttp.get(ApiUrlConst.URL_SEND_SMS)
+    suspend fun requestSmsCode(phone: String) = RxHttp.get(ApiConst.URL_SEND_SMS)
         .add("phone", phone)
         .toResponse<String>().await()
 
-    suspend fun requestLogin(phone: String, code: String) = RxHttp.get(ApiUrlConst.URL_LOGIN)
+    suspend fun requestLogin(phone: String, code: String) = RxHttp.get(ApiConst.URL_LOGIN)
         .add("phone", phone)
         .add("code", code)
         .toResponse<String>().await()

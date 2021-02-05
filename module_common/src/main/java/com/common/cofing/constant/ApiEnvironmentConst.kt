@@ -4,7 +4,7 @@ import com.common.BuildConfig
 import rxhttp.wrapper.annotation.DefaultDomain
 
 /**
- * @desc:
+ * @desc: 各环境域名定义
  * @author: tanlifei
  * @date: 2021/2/5 14:40
  */
@@ -32,8 +32,4 @@ object ApiEnvironmentConst {
     const val URL_BASE_PRO_HELPER = "https://globalh5test.jinlingkeji.cn/helper#"
 
 
-    /**
-     * 用户协议
-     */
-    const val URL_AGREEMENT = "https://appoffice.jinlingkeji.cn/#/"
 }
