@@ -1,8 +1,8 @@
 package com.example.httpsender.parser
 
 import com.blankj.utilcode.util.LogUtils
-import com.tanlifei.app.core.http.PageList
-import com.tanlifei.app.core.http.Response
+import com.common.http.PageList
+import com.common.http.Response
 import rxhttp.wrapper.annotation.Parser
 import rxhttp.wrapper.entity.ParameterizedTypeImpl
 import rxhttp.wrapper.exception.ParseException

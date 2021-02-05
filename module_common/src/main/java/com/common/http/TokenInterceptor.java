@@ -1,4 +1,4 @@
-package com.tanlifei.app.core.http;
+package com.common.http;
 
 
 import java.io.IOException;

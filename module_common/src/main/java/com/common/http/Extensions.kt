@@ -2,9 +2,9 @@ package com.example.httpsender.kt
 
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.Utils
+import com.common.R
 import com.google.gson.JsonSyntaxException
 import com.hjq.toast.ToastUtils
-import com.tanlifei.app.R
 import rxhttp.wrapper.exception.HttpStatusCodeException
 import rxhttp.wrapper.exception.ParseException
 import java.net.ConnectException
