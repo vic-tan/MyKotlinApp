@@ -42,8 +42,11 @@ open abstract class BaseFragment<T : ViewBinding> : Fragment() {
         } catch (e: InvocationTargetException) {
             e.printStackTrace()
         }
+        initBefore()
         return binding.root
     }
+
+    open fun initBefore(){}
 
     override fun onViewCreated(
         view: View,

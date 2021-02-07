@@ -2,6 +2,7 @@ package com.tanlifei.app.classmatecircle.frgment
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.classmatecircle.network.FollowNetwork
@@ -13,8 +14,7 @@ import com.tanlifei.app.databinding.FragmentFollowBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class FollowFragment : BaseLazyFragment<FragmentFollowBinding>() {
-    private lateinit var viewModel: FollowViewModel
+class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>() {
 
     companion object {
         fun newInstance(): FollowFragment {
@@ -28,17 +28,12 @@ class FollowFragment : BaseLazyFragment<FragmentFollowBinding>() {
 
 
     override fun onFirstVisibleToUser() {
-        initViewModel()
         viewModel.requestFollowList()
     }
 
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(
-            this,
-            BaseViewModel.createViewModelFactory(FollowViewModel(FollowNetwork.getInstance()))
-        ).get(
-            FollowViewModel::class.java
-        )
+
+    override fun createViewModel(): FollowViewModel {
+        return FollowViewModel(FollowNetwork.getInstance())
     }
 
 }

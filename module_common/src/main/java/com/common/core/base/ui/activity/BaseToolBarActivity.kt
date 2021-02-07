@@ -13,7 +13,8 @@ import com.hjq.bar.OnTitleBarListener
 /**
  * 需要ActionBar的activity都必须继承本类
  */
-open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> : BaseBVMActivity<T,VM>() {
+open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
+    BaseBVMActivity<T, VM>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,7 @@ open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> : B
     }
 
 
-    open fun setTitleBarListener(){
+    open fun setTitleBarListener() {
         titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(v: View) {
                 ActivityUtils.finishActivity(mActivity)
