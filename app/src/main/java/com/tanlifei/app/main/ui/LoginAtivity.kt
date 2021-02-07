@@ -23,6 +23,7 @@ import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
+import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.config.api.ApiConst.URL_PRIVATE_AGREEMENT
 import com.tanlifei.app.common.config.api.ApiConst.URL_USER_AGREEMENT
 import com.tanlifei.app.common.utils.UserInfoUtils
@@ -31,7 +32,6 @@ import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
 import com.tanlifei.app.main.viewmodel.LoginViewModel
-import com.tanlifei.app.main.viewmodel.factory.LoginModelFactory
 
 
 /**
@@ -71,7 +71,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
     private fun initViewModel() {
         loginViewModel = ViewModelProvider(
             this,
-            LoginModelFactory(LoginNetwork.getInstance())
+            BaseViewModel.createViewModelFactory(LoginViewModel(LoginNetwork.getInstance()))
         ).get(
             LoginViewModel::class.java
         )

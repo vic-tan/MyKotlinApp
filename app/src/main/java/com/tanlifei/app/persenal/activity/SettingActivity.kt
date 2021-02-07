@@ -8,10 +8,10 @@ import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.ComDialogUtils
 import com.lxj.xpopup.interfaces.OnConfirmListener
+import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding
 import com.tanlifei.app.main.ui.LoginAtivity
-import com.tanlifei.app.main.viewmodel.factory.SettingModelFactory
 import com.tanlifei.app.persenal.network.SettingNetwork
 import com.tanlifei.app.persenal.viewmodel.SettingViewModel
 
@@ -44,7 +44,7 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding>() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(
             this,
-            SettingModelFactory(SettingNetwork.getInstance())
+            BaseViewModel.createViewModelFactory(SettingViewModel(SettingNetwork.getInstance()))
         ).get(
             SettingViewModel::class.java
         )

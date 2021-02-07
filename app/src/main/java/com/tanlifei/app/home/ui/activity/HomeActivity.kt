@@ -8,10 +8,10 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.navigator.NavigatorView
 import com.common.core.base.ui.activity.BaseActivity
 import com.common.utils.AppUtils
+import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.network.HomeNetwork
 import com.tanlifei.app.home.viewmodel.HomeViewModel
-import com.tanlifei.app.home.viewmodel.factory.HomeModelFactory
 
 
 /**
@@ -43,7 +43,7 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
     private fun initViewModel() {
         homeViewModel = ViewModelProvider(
             this,
-            HomeModelFactory(HomeNetwork.getInstance())
+            BaseViewModel.createViewModelFactory(HomeViewModel(HomeNetwork.getInstance()))
         ).get(
             HomeViewModel::class.java
         )

@@ -9,13 +9,13 @@ import com.bumptech.glide.Glide
 import com.common.core.base.ui.activity.BaseActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentUtils
+import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.network.SplashNetwork
 import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
 import com.tanlifei.app.main.viewmodel.SplashViewModel
-import com.tanlifei.app.main.viewmodel.factory.SplashModelFactory
 
 /**
  * @desc: 启动界面 这个类要放到包名下，因为更换icon时不放在包目录下面无法更换
@@ -44,7 +44,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     private fun initViewModel() {
         splashViewModel = ViewModelProvider(
             this,
-            SplashModelFactory(SplashNetwork.getInstance())
+            BaseViewModel.createViewModelFactory(SplashViewModel(SplashNetwork.getInstance()))
         ).get(
             SplashViewModel::class.java
         )
