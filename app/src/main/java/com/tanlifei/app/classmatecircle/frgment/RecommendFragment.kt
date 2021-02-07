@@ -2,7 +2,6 @@ package com.tanlifei.app.classmatecircle.frgment
 
 import android.os.Bundle
 import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
 import com.tanlifei.app.databinding.FragmentRecommendBinding
 
 /**

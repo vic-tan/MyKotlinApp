@@ -18,20 +18,19 @@ import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.EnvironmentUtils
+import com.common.utils.AppUtils
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst.URL_PRIVATE_AGREEMENT
 import com.tanlifei.app.common.config.api.ApiConst.URL_USER_AGREEMENT
-import com.common.utils.AppUtils
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.main.viewmodel.LoginViewModel
-import com.tanlifei.app.main.viewmodel.factory.SettingModelFactory
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
+import com.tanlifei.app.main.viewmodel.LoginViewModel
 import com.tanlifei.app.main.viewmodel.factory.LoginModelFactory
 
 

@@ -4,10 +4,6 @@ import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.BuildConfig
-import com.common.cofing.constant.ApiEnvironmentConst
-import com.common.core.environment.EnvironmentBean
-import com.common.core.environment.ModuleBean
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.main.network.LoginNetwork
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers

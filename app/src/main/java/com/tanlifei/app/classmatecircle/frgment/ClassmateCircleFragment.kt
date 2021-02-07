@@ -1,16 +1,11 @@
 package com.tanlifei.app.classmatecircle.frgment
 
 import android.os.Bundle
-import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.BarUtils
-import com.common.R
 import com.common.core.adapter.ComFragPagerAdapter
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.magicindicator.MagicIndicatorUtils
-import com.common.utils.MyLogTools
-import com.common.utils.ResUtils
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
 import java.util.*
 
@@ -37,8 +32,7 @@ class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>
 
 
     override fun onFirstVisibleToUser() {
-        MyLogTools.show("${BarUtils.getActionBarHeight()}")
-        BarUtils.addMarginTopEqualStatusBarHeight(binding.tabIndicator)
+        BarUtils.addMarginTopEqualStatusBarHeight(binding.tabIndicator)//为 view 增加 MarginTop 为状态栏高度
         bindFragments()
         MagicIndicatorUtils.initComMagicIndicator(
             activity,

@@ -11,10 +11,10 @@ import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentUtils
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.main.viewmodel.SplashViewModel
 import com.tanlifei.app.main.network.SplashNetwork
 import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
+import com.tanlifei.app.main.viewmodel.SplashViewModel
 import com.tanlifei.app.main.viewmodel.factory.SplashModelFactory
 
 /**

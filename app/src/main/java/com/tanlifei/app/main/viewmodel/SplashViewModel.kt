@@ -10,7 +10,6 @@ import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.main.network.SplashNetwork
-import com.tanlifei.app.main.ui.LoginAtivity
 import com.tanlifei.app.main.utils.AdsUtils
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
