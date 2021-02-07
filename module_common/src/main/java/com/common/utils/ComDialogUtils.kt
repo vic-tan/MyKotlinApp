@@ -15,6 +15,14 @@ object ComDialogUtils {
 
     fun comConfirm(
         context: Context,
+        content: String,
+        confirmListener: OnConfirmListener
+    ): BasePopupView {
+        return comConfirm(context, content = content, confirmListener = confirmListener)
+    }
+
+    fun comConfirm(
+        context: Context,
         title: String? = "",
         content: String,
         confirmListener: OnConfirmListener
