@@ -16,11 +16,6 @@ import com.tanlifei.app.main.viewmodel.factory.SplashModelFactory
 import com.tanlifei.app.main.network.SplashNetwork
 import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
-import com.tanlifei.app.main.viewmodel.SplashViewModel.Companion.JUMP_TYPE_ADS
-import com.tanlifei.app.main.viewmodel.SplashViewModel.Companion.JUMP_TYPE_GUIDE
-import com.tanlifei.app.main.viewmodel.SplashViewModel.Companion.JUMP_TYPE_HOME
-import com.tanlifei.app.main.viewmodel.SplashViewModel.Companion.JUMP_TYPE_LOGIN
-import com.tanlifei.app.main.viewmodel.SplashViewModel.Companion.JUMP_TYPE_REQUEST_ADS
 
 /**
  * @desc: 启动界面 这个类要放到包名下，因为更换icon时不放在包目录下面无法更换
@@ -63,25 +58,25 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     private fun initViewModelObserve() {
         splashViewModel.jump.observe(this, Observer {
             when (it) {
-                JUMP_TYPE_GUIDE -> {
+                SplashViewModel.JumpType.GUIDE -> {
                     GuideActivity.actionStart()
                     ActivityUtils.finishActivity(this)
                 }
-                JUMP_TYPE_LOGIN -> {
+                SplashViewModel.JumpType.LOGIN -> {
                     LoginAtivity.actionStart()
                     ActivityUtils.finishActivity(this)
                 }
-                JUMP_TYPE_HOME -> {
+                SplashViewModel.JumpType.HOME -> {
                     HomeActivity.actionStart()
                     ActivityUtils.finishActivity(this)
                 }
-                JUMP_TYPE_REQUEST_ADS -> {
+                SplashViewModel.JumpType.REQUEST_ADS -> {
                     if (ObjectUtils.isNotEmpty(splashViewModel.adsBean)) {
                         Glide.with(this)
                             .load(splashViewModel.adsBean!!.poster).into(binding.adsImg)
                     }
                 }
-                JUMP_TYPE_ADS -> {
+                SplashViewModel.JumpType.ADS -> {
                     splashViewModel.adsBean?.let {
                         binding.splash.visibility = View.GONE
                         splashViewModel.startAdsInterval()

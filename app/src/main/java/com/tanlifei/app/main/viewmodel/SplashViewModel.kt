@@ -27,19 +27,20 @@ import java.util.concurrent.TimeUnit
  */
 class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
 
-    companion object {
-        const val JUMP_TYPE_GUIDE = 1 //表示去引导页
-        const val JUMP_TYPE_LOGIN = 2 //登录界面
-        const val JUMP_TYPE_HOME = 3 //首页
-        const val JUMP_TYPE_REQUEST_ADS = 4 //广告界面（接口请求完成）
-        const val JUMP_TYPE_ADS = 5 //广告界面（启动界面完成）
+    enum class JumpType {
+        GUIDE,//表示去引导页
+        LOGIN,//登录界面
+        HOME,//首页
+        REQUEST_ADS, //广告界面（接口请求完成
+        ADS//广告界面（启动界面完成）
     }
+
 
     /**
      * 3s结束倒计时LveData
      */
-    val jump: LiveData<Int> get() = _jump
-    private val _jump = MutableLiveData<Int>()
+    val jump: LiveData<JumpType> get() = _jump
+    private val _jump = MutableLiveData<JumpType>()
 
 
     /**
@@ -59,7 +60,7 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
         if (ObjectUtils.isNotEmpty(adsBean)) {
             LitePal.deleteAll(AdsBean::class.java)
             adsBean!!.save()
-            _jump.value = JUMP_TYPE_REQUEST_ADS
+            _jump.value = JumpType.REQUEST_ADS
         }
     }, {
         findAdsByDB()
@@ -72,7 +73,7 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
         if (ObjectUtils.isEmpty(adsBean)) {
             adsBean = AdsUtils.getAds()
             if (ObjectUtils.isNotEmpty(adsBean)) {
-                _jump.value = JUMP_TYPE_REQUEST_ADS
+                _jump.value = JumpType.REQUEST_ADS
             }
         }
     }
@@ -101,19 +102,19 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
     fun doJump() {
         var guide = SPUtils.getInstance().getBoolean(Const.SPKey.GUIDE, true)
         if (guide) {
-            _jump.value = JUMP_TYPE_GUIDE
+            _jump.value = JumpType.GUIDE
         } else {
             findAdsByDB()
             if (ObjectUtils.isNotEmpty(adsBean) && (ObjectUtils.isNotEmpty(adsBean) && adsBean?.status == 1)) {
-                _jump.value = JUMP_TYPE_ADS
+                _jump.value = JumpType.ADS
             } else {
                 val token = UserInfoUtils.getToken()
                 //已经登录过了
                 if (ObjectUtils.isNotEmpty(token)) {
                     ComApplication.token = token
-                    _jump.value = JUMP_TYPE_HOME
+                    _jump.value = JumpType.HOME
                 } else {//未登录
-                    _jump.value = JUMP_TYPE_LOGIN
+                    _jump.value = JumpType.LOGIN
                 }
             }
         }
@@ -153,9 +154,9 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
         //已经登录过了
         if (ObjectUtils.isNotEmpty(token)) {
             ComApplication.token = token
-            _jump.value = JUMP_TYPE_HOME
+            _jump.value = JumpType.HOME
         } else {//未登录
-            _jump.value = JUMP_TYPE_LOGIN
+            _jump.value = JumpType.LOGIN
         }
     }
 }
