@@ -50,15 +50,30 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
 
     var adsBean: AdsBean? = null
 
+
     /**
      * 请求短信码
      */
-    fun requestAds() = launchBySilence {
+    fun requestAds() = launchBySilence({
         adsBean = repository.requestAds()
         if (ObjectUtils.isNotEmpty(adsBean)) {
             LitePal.deleteAll(AdsBean::class.java)
             adsBean!!.save()
             _jump.value = JUMP_TYPE_REQUEST_ADS
+        }
+    }, {
+        findAdsByDB()
+    })
+
+    /**
+     * 查找数据库中是否保存广告
+     */
+    private fun findAdsByDB() {
+        if (ObjectUtils.isEmpty(adsBean)) {
+            adsBean = AdsUtils.getAds()
+            if (ObjectUtils.isNotEmpty(adsBean)) {
+                _jump.value = JUMP_TYPE_REQUEST_ADS
+            }
         }
     }
 
@@ -88,9 +103,7 @@ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
         if (guide) {
             _jump.value = JUMP_TYPE_GUIDE
         } else {
-            if (ObjectUtils.isNotEmpty(adsBean)) {
-                adsBean = AdsUtils.getAds()
-            }
+            findAdsByDB()
             if (ObjectUtils.isNotEmpty(adsBean) && (ObjectUtils.isNotEmpty(adsBean) && adsBean?.status == 1)) {
                 _jump.value = JUMP_TYPE_ADS
             } else {

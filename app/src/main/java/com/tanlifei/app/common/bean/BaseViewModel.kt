@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.rxLifeScope
+import com.blankj.utilcode.util.ObjectUtils
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
@@ -23,15 +24,27 @@ open class BaseViewModel : ViewModel() {
 
 
     /**
-     * 加载框请求
+     * 加载框请求不需要处理异常，直接提示异常
      */
-    protected fun launchByLoading(block: suspend () -> Unit) = rxLifeScope.launch({
+    protected fun launchByLoading(block: suspend () -> Unit) = launchByLoading(block, null)
+
+    /**
+     * 加载框请求，需要自己处理异常，不提示异常
+     */
+    protected fun launchByLoading(
+        block: suspend () -> Unit,
+        onError: ((Throwable) -> Unit)? = null
+    ) = rxLifeScope.launch({
         _isLoading.value = true
         block()
         _isLoading.value = false
     }, {
         _isLoading.value = false
-        it.show(it.errorCode, it.errorMsg)
+        if (ObjectUtils.isNotEmpty(onError)) {
+            onError
+        } else {
+            it.show(it.errorCode, it.errorMsg)
+        }
     }, {
         _isLoading.value = true
     }, {
@@ -42,9 +55,10 @@ open class BaseViewModel : ViewModel() {
     /**
      * 静默加载
      */
-    protected fun launchBySilence(block: suspend () -> Unit) = rxLifeScope.launch {
-        block()
-    }
+    protected fun launchBySilence(
+        block: suspend () -> Unit,
+        onError: ((Throwable) -> Unit)? = null
+    ) = rxLifeScope.launch({ block() }, onError)
 
     /**
      * 由于屏幕旋转导致的Activity重建，该方法不会被调用
