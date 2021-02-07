@@ -21,6 +21,9 @@ class LoginNetwork {
         .add("code", code)
         .toResponse<String>().await()
 
+    suspend fun requestLoginOut() = RxHttp.get(ApiConst.URL_LOGIN_OUT)
+        .toResponse<String>().await()
+
     companion object {
         private var network: LoginNetwork? = null
         fun getInstance(): LoginNetwork {

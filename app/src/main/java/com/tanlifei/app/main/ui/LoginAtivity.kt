@@ -14,11 +14,8 @@ import cn.iwgang.simplifyspan.unit.SpecialTextUnit
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.ComApplication
-import com.common.core.base.event.BaseEvent
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
-import com.common.core.environment.EnvironmentBean
-import com.common.core.environment.EnvironmentEvent
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.EnvironmentUtils
 import com.common.utils.ResUtils
@@ -32,12 +29,10 @@ import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.viewmodel.LoginViewModel
-import com.tanlifei.app.main.viewmodel.factory.LoginModelFactory
+import com.tanlifei.app.main.viewmodel.factory.SettingModelFactory
 import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
-import org.litepal.LitePal
+import com.tanlifei.app.main.viewmodel.factory.LoginModelFactory
 
 
 /**
@@ -53,6 +48,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
     companion object {
         fun actionStart() {
             ActivityUtils.startActivity(LoginAtivity::class.java)
+            ActivityUtils.finishOtherActivities(LoginAtivity::class.java)
         }
     }
 

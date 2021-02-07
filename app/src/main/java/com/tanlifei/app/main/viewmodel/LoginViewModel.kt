@@ -49,7 +49,6 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     var token: String? = null
 
 
-
     private val counts = 10 // 点击次数
     private val totalDuration: Long = 10000 // 规定有效时间
     var mHits: LongArray = LongArray(counts)
@@ -93,6 +92,14 @@ class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
     fun requestLogin(phone: String, code: String) = launchByLoading {
         token = repository.requestLogin(phone, code)
         _isToken.value = ObjectUtils.isNotEmpty(token)
+    }
+
+    /**
+     * 退出登录
+     */
+    fun requestLogin() = launchByLoading {
+        token = repository.requestLoginOut()
+        _isToken.value = false
     }
 
 

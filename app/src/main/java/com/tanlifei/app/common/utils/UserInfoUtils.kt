@@ -28,6 +28,12 @@ object UserInfoUtils {
     }
 
     /**
+     * 删除
+     */
+    fun clear(){
+        LitePal.deleteAll(UserBean::class.java)
+    }
+    /**
      * 保存Token
      */
     fun saveToken(token: String) {

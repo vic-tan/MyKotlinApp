@@ -33,6 +33,9 @@ object ApiConst {
     /* 验证验证码登录 */
     const val URL_LOGIN = "auth/login"
 
+    /* 退出登录 */
+    const val URL_LOGIN_OUT = "auth/loginOut"
+
     /* 开屏广告 */
     const val URL_ADS = "message/api/ads/open/screen"
 }
