@@ -152,7 +152,7 @@ dependencies {
 
     //各种TabIndicator
     //https://github.com/hackware1993/MagicIndicator
-    api 'com.github.hackware1993:MagicIndicator:1.5.0'
+    api 'com.github.hackware1993:MagicIndicator:1.7.0'
 
     //无需通知栏权限都不影响吐司的弹出吐司工具类
     //https://github.com/getActivity/ToastUtils

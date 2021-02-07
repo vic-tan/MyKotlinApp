@@ -17,6 +17,7 @@
         tools:replace="android:label,networkSecurityConfig">
         <activity
             android:name=".SplashActivity"
+            android:theme="@style/SplashActivityThemes"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

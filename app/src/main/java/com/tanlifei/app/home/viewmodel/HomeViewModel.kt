@@ -10,7 +10,7 @@ import com.tanlifei.app.R
 import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.home.network.HomeNetwork
 import com.tanlifei.app.home.ui.fragment.ClassFragment
-import com.tanlifei.app.home.ui.fragment.ClassmateCircleFragment
+import com.tanlifei.app.classmatecircle.frgment.ClassmateCircleFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
 import com.tanlifei.app.home.ui.fragment.StudyFragment
 import com.tanlifei.app.persenal.fragment.PersonalFragment
