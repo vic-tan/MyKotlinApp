@@ -1,15 +1,14 @@
 package com.common.core.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 /**
- * @desc:
+ * @desc:Viewpage 2 在Fragment 中用该类
  * @author: tanlifei
- * @date: 2021/2/7 13:12
+ * @date: 2021/2/7 13:11
  */
-class ComViewPagerActAdapter (fm: FragmentActivity, private val fragments: List<Fragment>) :
+class ComFragPagerAdapter(fm: Fragment, private val fragments: List<Fragment>) :
     FragmentStateAdapter(fm) {
     override fun getItemCount(): Int {
         return fragments.size

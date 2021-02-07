@@ -1,28 +1,11 @@
 package com.tanlifei.app.classmatecircle.frgment
 
-import android.content.Context
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.DecelerateInterpolator
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import com.blankj.utilcode.util.ConvertUtils
-import com.common.core.adapter.ComViewPagerFragAdapter
-import com.common.core.magicindicator.ViewPager2Helper
+import com.common.core.adapter.ComFragPagerAdapter
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.magicindicator.MagicIndicatorUtils
-import com.common.utils.ResUtils
-import com.common.core.magicindicator.ScalePagerTitleView
-import com.tanlifei.app.R
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.badge.BadgePagerTitleView
 import java.util.*
 
 /**
@@ -32,7 +15,7 @@ import java.util.*
  */
 class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>() {
     private val mTitleData = listOf("关注", "推荐")
-    private lateinit var fragmentAdapter: ComViewPagerFragAdapter
+    private lateinit var fragmentAdapter: ComFragPagerAdapter
     private var mFragments: MutableList<Fragment> = ArrayList()
 
     companion object {
@@ -48,7 +31,7 @@ class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>
 
     override fun onFirstVisibleToUser() {
         bindFragments()
-        MagicIndicatorUtils.initMagicIndicator(
+        MagicIndicatorUtils.initComMagicIndicator(
             activity,
             binding.tabIndicator,
             binding.viewPager,
@@ -62,7 +45,7 @@ class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>
     private fun bindFragments() {
         mFragments.add(FollowFragment.newInstance())
         mFragments.add(RecommendFragment.newInstance())
-        fragmentAdapter = ComViewPagerFragAdapter(this, mFragments)
+        fragmentAdapter = ComFragPagerAdapter(this, mFragments)
         binding.viewPager.adapter = fragmentAdapter
     }
 

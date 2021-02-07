@@ -24,7 +24,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.badge.
  * @date: 2021/2/7 14:02
  */
 object MagicIndicatorUtils {
-    private fun getCommonNavigatorAdapter(
+    private fun initComNavigatorAdapter(
         viewPager2: ViewPager2,
         mTitleData: List<String>
     ): CommonNavigatorAdapter {
@@ -34,7 +34,6 @@ object MagicIndicatorUtils {
             }
 
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
-                val badgePagerTitleView = BadgePagerTitleView(context)
                 val simplePagerTitleView: SimplePagerTitleView =
                     ScalePagerTitleView(
                         context
@@ -43,9 +42,10 @@ object MagicIndicatorUtils {
                 simplePagerTitleView.selectedColor = ResUtils.getColor(R.color.color_333333)
                 simplePagerTitleView.text = mTitleData[index]
                 simplePagerTitleView.textSize = 19f
-                simplePagerTitleView.setOnClickListener { viewPager2.currentItem = index }
-                badgePagerTitleView.innerPagerTitleView = simplePagerTitleView
-                return badgePagerTitleView
+                simplePagerTitleView.setOnClickListener {
+                    viewPager2.currentItem = index
+                }
+                return simplePagerTitleView
             }
 
 
@@ -65,14 +65,14 @@ object MagicIndicatorUtils {
         }
     }
 
-    fun initMagicIndicator(
+    fun initComMagicIndicator(
         context: Context?,
         magicIndicator: MagicIndicator,
         viewPager2: ViewPager2,
         mTitleData: List<String>
     ) {
         var commonNavigator = CommonNavigator(context)
-        commonNavigator.adapter = getCommonNavigatorAdapter(viewPager2, mTitleData)
+        commonNavigator.adapter = initComNavigatorAdapter(viewPager2, mTitleData)
         magicIndicator.navigator = commonNavigator
         ViewPager2Helper.bind(magicIndicator, viewPager2)
         val titleContainer =
