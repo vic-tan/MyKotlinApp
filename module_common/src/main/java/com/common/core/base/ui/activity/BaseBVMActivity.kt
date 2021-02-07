@@ -14,7 +14,7 @@ abstract class BaseBVMActivity<T : ViewBinding, VM : BaseViewModel> : BaseActivi
         private set
 
     protected abstract fun createViewModel(): VM
-    
+
     override fun initBefore() {
         injectViewModel()
     }
