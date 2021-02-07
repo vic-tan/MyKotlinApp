@@ -5,13 +5,14 @@ import android.view.View
 import android.widget.EditText
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.KeyboardUtils
+import com.common.core.base.viewmodel.BaseViewModel
 
 /**
  * @desc: 有表单输入基类 主要是点输入显示键盘，点其它的地方收起键盘
  * @author: tanlifei
  * @date: 2021/1/28 13:51
  */
-open abstract class BaseFormActivity<T : ViewBinding> : BaseActivity<T>() {
+open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> : BaseBVMActivity<T,VM>() {
 
     //region软键盘的处理
     /**

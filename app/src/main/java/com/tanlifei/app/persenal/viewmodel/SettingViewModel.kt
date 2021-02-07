@@ -2,7 +2,7 @@ package com.tanlifei.app.persenal.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tanlifei.app.common.bean.BaseViewModel
+import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.persenal.network.SettingNetwork
 
 

@@ -8,18 +8,24 @@ import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentUtils
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
+import com.tanlifei.app.persenal.viewmodel.AboutViewModel
 
 /**
  * @desc:关于界面
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class AboutActivity : BaseToolBarActivity<ActivityAboutBinding>(), View.OnClickListener {
+class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(),
+    View.OnClickListener {
 
     companion object {
         fun actionStart() {
             ActivityUtils.startActivity(AboutActivity::class.java)
         }
+    }
+
+    override fun createViewModel(): AboutViewModel {
+        return AboutViewModel()
     }
 
     override fun init() {
@@ -78,6 +84,8 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding>(), View.OnClickL
         }
         url?.let { gotoWeb(title, it) }
     }
+
+
 
 
 }

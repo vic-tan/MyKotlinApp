@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
-import com.tanlifei.app.common.bean.BaseViewModel
+import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.main.bean.AdsBean
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
+ class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
 
     enum class JumpType {
         GUIDE,//表示去引导页

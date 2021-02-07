@@ -1,8 +1,8 @@
 package com.tanlifei.app.classmatecircle.viewmodel
 
+import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.MyLogTools
 import com.tanlifei.app.classmatecircle.network.FollowNetwork
-import com.tanlifei.app.common.bean.BaseViewModel
 
 /**
  * @desc:

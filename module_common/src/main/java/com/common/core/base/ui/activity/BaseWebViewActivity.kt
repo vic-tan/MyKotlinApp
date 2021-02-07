@@ -8,6 +8,7 @@ import android.view.View
 import android.webkit.*
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.core.base.ui.viewmodel.BaseWebViewModel
 import com.common.databinding.ActivityBaseWebBinding
 
 /**
@@ -15,7 +16,7 @@ import com.common.databinding.ActivityBaseWebBinding
  * @author: tanlifei
  * @date: 2021/1/27 16:14
  */
-class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding>() {
+class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding,BaseWebViewModel>() {
 
     lateinit var url: String
     var title: String? = null
@@ -104,6 +105,10 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding>() {
             startActivity(intent)
         })
 
+    }
+
+    override fun createViewModel(): BaseWebViewModel {
+        return BaseWebViewModel()
     }
 
 

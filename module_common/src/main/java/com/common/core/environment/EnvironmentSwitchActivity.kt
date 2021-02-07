@@ -17,7 +17,8 @@ import org.litepal.LitePal
  * @author: tanlifei
  * @date: 2021/2/2 15:21
  */
-class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchBinding>() {
+class EnvironmentSwitchActivity :
+    BaseToolBarActivity<ActivityEnvironmentSwitchBinding, EnvironmentSwitchViewModel>() {
     lateinit var environmentList: MutableList<EnvironmentBean>
     internal lateinit var adapter: EnvironmentAdapter
 
@@ -36,6 +37,9 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
         }
     }
 
+    override fun createViewModel(): EnvironmentSwitchViewModel {
+        return EnvironmentSwitchViewModel()
+    }
 
     override fun init() {
         environmentList = ArrayList()
@@ -107,6 +111,8 @@ class EnvironmentSwitchActivity : BaseToolBarActivity<ActivityEnvironmentSwitchB
         }
 
     }
+
+
 }
 
 

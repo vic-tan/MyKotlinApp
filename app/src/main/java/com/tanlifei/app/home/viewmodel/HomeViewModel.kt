@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.core.base.navigator.NavigatorAdapter
 import com.common.core.base.navigator.NavigatorFragmentManager
+import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.frgment.ClassmateCircleFragment
-import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.home.network.HomeNetwork
 import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment

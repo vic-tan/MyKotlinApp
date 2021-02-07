@@ -5,7 +5,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.customspan.CustomClickableSpan
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
@@ -23,7 +22,6 @@ import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
-import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.config.api.ApiConst.URL_PRIVATE_AGREEMENT
 import com.tanlifei.app.common.config.api.ApiConst.URL_USER_AGREEMENT
 import com.tanlifei.app.common.utils.UserInfoUtils
@@ -39,9 +37,8 @@ import com.tanlifei.app.main.viewmodel.LoginViewModel
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher {
+open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>(), TextWatcher {
 
-    private lateinit var loginViewModel: LoginViewModel
     private lateinit var mInputHelper: TextInputHelper
 
     companion object {
@@ -51,11 +48,13 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
         }
     }
 
+    override fun createViewModel(): LoginViewModel {
+        return LoginViewModel(LoginNetwork.getInstance())
+    }
 
     override fun init() {
         setProtocolTxt()
         initTextInputHelper()
-        initViewModel()
         initViewModelObserve()
         initListener()
         initData()
@@ -65,33 +64,22 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
         binding.logo.setImageResource(EnvironmentUtils.appLogo())
     }
 
-    /**
-     * 初始化ViewModel
-     */
-    private fun initViewModel() {
-        loginViewModel = ViewModelProvider(
-            this,
-            BaseViewModel.createViewModelFactory(LoginViewModel(LoginNetwork.getInstance()))
-        ).get(
-            LoginViewModel::class.java
-        )
-    }
 
     /**
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        loginViewModel.isLoading.observe(this, this)
+        viewModel.isLoading.observe(this, this)
 
-        loginViewModel.isToken.observe(this, Observer {
+        viewModel.isToken.observe(this, Observer {
             if (it) {
-                ComApplication.token = loginViewModel.token
-                loginViewModel.token?.let { it -> UserInfoUtils.saveToken(it) }
+                ComApplication.token = viewModel.token
+                viewModel.token?.let { it -> UserInfoUtils.saveToken(it) }
                 HomeActivity.actionStart()
             }
         })
 
-        loginViewModel.smsCodeInterval.observe(this, Observer {
+        viewModel.smsCodeInterval.observe(this, Observer {
             when (it) {
                 -1L -> onIntervalStart()
                 -2L -> onIntervalComplete()
@@ -99,7 +87,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
             }
         })
 
-        loginViewModel.isContinuousClick.observe(this, Observer {
+        viewModel.isContinuousClick.observe(this, Observer {
             binding.changeEnvironment.visibility = if (it) View.VISIBLE else View.GONE
         })
     }
@@ -114,7 +102,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
                     LoginUtils.getPhone(binding.phone.text.toString())
                 )
             ) {
-                loginViewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
+                viewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
             }
         }
         binding.login.setOnClickListener {
@@ -123,7 +111,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
                     binding.code.toString()
                 )
             ) {
-                loginViewModel.requestLogin(
+                viewModel.requestLogin(
                     LoginUtils.getPhone(binding.phone.text.toString()),
                     binding.code.toString()
                 )
@@ -135,7 +123,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
 
         //是否连续点击显示切换环境
         binding.logo.setOnClickListener {
-            loginViewModel.continuousClick()
+            viewModel.continuousClick()
         }
     }
 
@@ -279,6 +267,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding>(), TextWatcher 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         LoginUtils.phoneFormatTextChanged(binding.phone, s, count)
     }
+
+
 }
 
 

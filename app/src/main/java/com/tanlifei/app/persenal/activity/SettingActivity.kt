@@ -8,7 +8,6 @@ import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.ComDialogUtils
 import com.lxj.xpopup.interfaces.OnConfirmListener
-import com.tanlifei.app.common.bean.BaseViewModel
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding
 import com.tanlifei.app.main.ui.LoginAtivity
@@ -21,9 +20,8 @@ import com.tanlifei.app.persenal.viewmodel.SettingViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class SettingActivity : BaseToolBarActivity<ActivitySettingBinding>() {
+class SettingActivity : BaseToolBarActivity<ActivitySettingBinding,SettingViewModel>() {
 
-    private lateinit var viewModel: SettingViewModel
 
     companion object {
         fun actionStart() {
@@ -31,25 +29,16 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding>() {
         }
     }
 
+    override fun createViewModel(): SettingViewModel {
+        return SettingViewModel(SettingNetwork.getInstance())
+    }
+
     override fun init() {
-        initViewModel()
         initViewModelObserve()
         initListener()
         initData()
     }
 
-    /**
-     * 初始化ViewModel
-     */
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(
-            this,
-            BaseViewModel.createViewModelFactory(SettingViewModel(SettingNetwork.getInstance()))
-        ).get(
-            SettingViewModel::class.java
-        )
-
-    }
 
     /**
      * 设置ViewModel的observe
@@ -83,6 +72,8 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding>() {
     private fun initData() {
         binding.versionName.text = "V${AppUtils.getAppVersionName()}"
     }
+
+
 
 
 }

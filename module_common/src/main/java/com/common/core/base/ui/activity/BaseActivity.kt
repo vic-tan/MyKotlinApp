@@ -77,6 +77,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observe
         setToolbar(View.GONE)
         setOrientation()
         initImmersionBar()
+        initBefore()
         init()
     }
 
@@ -181,6 +182,9 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observe
 
     }
 
+    open fun initBefore() {
+
+    }
 
     /**
      * 初始化View
