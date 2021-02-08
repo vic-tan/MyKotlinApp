@@ -15,6 +15,6 @@ class CustomLoadingView(context: Context) :
 
     // 返回自定义弹窗的布局
     override fun getImplLayoutId(): Int {
-        return R.layout.layout_loading
+        return R.layout.layout_dailog_loading
     }
 }

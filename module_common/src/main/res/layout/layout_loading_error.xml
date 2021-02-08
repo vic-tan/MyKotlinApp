@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="30dp">
+
+    <ImageView
+        android:id="@id/error_image"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/no_network_bg" />
+
+    <TextView
+        android:id="@id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        tools:text="无法连接网络，请检查"
+        tools:textColor="@color/color_666666"
+        tools:textSize="16sp" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@id/retry_button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:minWidth="120dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:text="点击重试"
+        android:textColor="@color/theme_color"
+        app:background_normal="@android:color/transparent"
+        app:border_color_normal="@color/theme_color"
+        app:border_width_normal="0.5dp"
+        app:corner_radius="5dp"
+        tools:textSize="16sp" />
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="30dp">
+
+    <ImageView
+        android:id="@id/empty_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:id="@id/empty_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:lines="1"
+        tools:text="暂无内容"
+        tools:textColor="@color/color_333333"
+        tools:textSize="16sp" />
+
+    <TextView
+        android:id="@id/empty_desc_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:lines="1"
+        tools:text="可以去看下有哪些想买的"
+        tools:textColor="@color/color_999999"
+        tools:textSize="13sp" />
+</LinearLayout>
