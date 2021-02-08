@@ -26,7 +26,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
  */
 object MagicIndicatorUtils {
     private fun initComNavigatorAdapter(
-        viewPager2: ViewPager2,
+        viewPager: ViewPager,
         mTitleData: List<String>
     ): CommonNavigatorAdapter {
         return object : CommonNavigatorAdapter() {
@@ -44,7 +44,7 @@ object MagicIndicatorUtils {
                 simplePagerTitleView.text = mTitleData[index]
                 simplePagerTitleView.textSize = 19f
                 simplePagerTitleView.setOnClickListener {
-                    viewPager2.currentItem = index
+                    viewPager.currentItem = index
                 }
                 return simplePagerTitleView
             }
@@ -69,13 +69,13 @@ object MagicIndicatorUtils {
     fun initComMagicIndicator(
         context: Context?,
         magicIndicator: MagicIndicator,
-        viewPager2: ViewPager2,
+        viewPager: ViewPager,
         mTitleData: List<String>
     ) {
         var commonNavigator = CommonNavigator(context)
-        commonNavigator.adapter = initComNavigatorAdapter(viewPager2, mTitleData)
+        commonNavigator.adapter = initComNavigatorAdapter(viewPager, mTitleData)
         magicIndicator.navigator = commonNavigator
-        ViewPager2Helper.bind(magicIndicator, viewPager2)
+        ViewPagerHelper.bind(magicIndicator,viewPager)
         val titleContainer =
             commonNavigator.titleContainer // must after setNavigator
         titleContainer.showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE

@@ -3,7 +3,7 @@ package com.tanlifei.app.classmatecircle.frgment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.BarUtils
-import com.common.core.adapter.ComFragPagerAdapter
+import com.common.core.adapter.BasePagerAdapter
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
@@ -17,7 +17,7 @@ import java.util.*
  */
 class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>() {
     private val mTitleData = listOf("关注", "推荐")
-    private lateinit var fragmentAdapter: ComFragPagerAdapter
+    private lateinit var fragmentAdapter: BasePagerAdapter
     private var mFragments: MutableList<Fragment> = ArrayList()
 
     companion object {
@@ -48,7 +48,7 @@ class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>
     private fun bindFragments() {
         mFragments.add(FollowFragment.newInstance())
         mFragments.add(RecommendFragment.newInstance())
-        fragmentAdapter = ComFragPagerAdapter(this, mFragments)
+        fragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
         binding.viewPager.adapter = fragmentAdapter
     }
 
