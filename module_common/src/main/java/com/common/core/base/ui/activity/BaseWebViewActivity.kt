@@ -12,7 +12,7 @@ import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.databinding.ActivityBaseWebBinding
 
 /**
- * @desc:
+ * @desc:公用的WebView
  * @author: tanlifei
  * @date: 2021/1/27 16:14
  */
@@ -110,8 +110,6 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
         }
 
     }
-
-
 
 
 }
