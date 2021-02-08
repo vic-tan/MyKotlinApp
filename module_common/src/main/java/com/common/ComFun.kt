@@ -1,9 +1,5 @@
 package com.common
 
-import android.content.Context
-import android.os.Handler
-import android.os.Looper
-
 /**
  * @desc:
  * @author: tanlifei

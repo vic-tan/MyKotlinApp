@@ -1,9 +1,11 @@
-package com.common.core.environment
+package com.common.core.environment.utils
 
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.BuildConfig
 import com.common.R
 import com.common.cofing.constant.ApiEnvironmentConst
+import com.common.core.environment.bean.EnvironmentBean
+import com.common.core.environment.bean.ModuleBean
 import com.common.utils.MyLogTools
 
 /**
@@ -19,10 +21,34 @@ object EnvironmentUtils {
     fun initEnvironmentSwitcher(): MutableList<ModuleBean> {
         var environmentList: MutableList<ModuleBean> = ArrayList()
         val apiList: MutableList<EnvironmentBean> = ArrayList()
-        apiList.add(EnvironmentBean("开发环境", BuildConfig.BASE_URL_DEV, "environment_dev"))
-        apiList.add(EnvironmentBean("测试环境", BuildConfig.BASE_URL_TEST, "environment_test"))
-        apiList.add(EnvironmentBean("正式环境", BuildConfig.BASE_URL_PRO, "environment_pro"))
-        environmentList.add(ModuleBean("接口", EnvironmentBean.GROUP_API, apiList))
+        apiList.add(
+            EnvironmentBean(
+                "开发环境",
+                BuildConfig.BASE_URL_DEV,
+                "environment_dev"
+            )
+        )
+        apiList.add(
+            EnvironmentBean(
+                "测试环境",
+                BuildConfig.BASE_URL_TEST,
+                "environment_test"
+            )
+        )
+        apiList.add(
+            EnvironmentBean(
+                "正式环境",
+                BuildConfig.BASE_URL_PRO,
+                "environment_pro"
+            )
+        )
+        environmentList.add(
+            ModuleBean(
+                "接口",
+                EnvironmentBean.GROUP_API,
+                apiList
+            )
+        )
 
         val shareList: MutableList<EnvironmentBean> = ArrayList()
         shareList.add(
@@ -32,9 +58,25 @@ object EnvironmentUtils {
                 defaultCheck = true
             )
         )
-        shareList.add(EnvironmentBean("测试分享", BuildConfig.BASE_URL_TEST + "testShare/"))
-        shareList.add(EnvironmentBean("正式分享", BuildConfig.BASE_URL_PRO + "proShare/"))
-        environmentList.add(ModuleBean("分享", EnvironmentBean.GROUP_SHARE, shareList))
+        shareList.add(
+            EnvironmentBean(
+                "测试分享",
+                BuildConfig.BASE_URL_TEST + "testShare/"
+            )
+        )
+        shareList.add(
+            EnvironmentBean(
+                "正式分享",
+                BuildConfig.BASE_URL_PRO + "proShare/"
+            )
+        )
+        environmentList.add(
+            ModuleBean(
+                "分享",
+                EnvironmentBean.GROUP_SHARE,
+                shareList
+            )
+        )
         return environmentList
     }
 
@@ -59,7 +101,8 @@ object EnvironmentUtils {
      * 初始化环境
      */
     fun initBaseApiUrl(currentUrl: String) {
-        val apiUrl = EnvironmentChangeManager.initEnvironment()
+        val apiUrl =
+            EnvironmentChangeManager.initEnvironment()
         if (ObjectUtils.isNotEmpty(apiUrl)) {
             ApiEnvironmentConst.BASE_URL = apiUrl!!
         } else {

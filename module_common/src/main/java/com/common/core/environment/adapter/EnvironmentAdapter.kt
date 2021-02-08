@@ -1,9 +1,10 @@
-package com.common.core.environment
+package com.common.core.environment.adapter
 
 import android.widget.ImageView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.common.R
+import com.common.core.environment.bean.EnvironmentBean
 
 /**
  * @desc:

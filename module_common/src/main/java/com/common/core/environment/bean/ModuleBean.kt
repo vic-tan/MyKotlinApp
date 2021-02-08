@@ -1,4 +1,4 @@
-package com.common.core.environment
+package com.common.core.environment.bean
 
 import java.io.Serializable
 

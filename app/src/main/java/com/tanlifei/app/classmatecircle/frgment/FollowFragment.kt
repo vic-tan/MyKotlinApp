@@ -1,10 +1,7 @@
 package com.tanlifei.app.classmatecircle.frgment
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import com.common.core.base.ui.fragment.BaseBVMFragment
-import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.classmatecircle.network.FollowNetwork
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
 import com.tanlifei.app.databinding.FragmentFollowBinding

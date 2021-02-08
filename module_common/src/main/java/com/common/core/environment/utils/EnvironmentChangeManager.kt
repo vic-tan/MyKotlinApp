@@ -1,10 +1,11 @@
-package com.common.core.environment
+package com.common.core.environment.utils
 
 import android.content.ComponentName
 import android.content.Context
 import android.content.pm.PackageManager
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComApplication
+import com.common.core.environment.bean.EnvironmentBean
 import org.litepal.LitePal
 
 /**
@@ -34,7 +35,11 @@ object EnvironmentChangeManager {
          */
         return if (context == null) {
             false
-        } else enableComponent(context, false, iconType)
+        } else enableComponent(
+            context,
+            false,
+            iconType
+        )
 
     }
 
@@ -71,7 +76,11 @@ object EnvironmentChangeManager {
             return false
         }
         val activityPath = environmentMap[iconType]
-        if (componentEnabled(context, activityPath)) {
+        if (componentEnabled(
+                context,
+                activityPath
+            )
+        ) {
             return false
         }
         val enableFlag = if (force) 0 else PackageManager.DONT_KILL_APP
@@ -114,7 +123,10 @@ object EnvironmentChangeManager {
             val bean: EnvironmentBean = saveEnvironmentList[saveEnvironmentList.size - 1]
             if (bean.activityAlias.isNotEmpty()) {
                 if (ObjectUtils.isNotEmpty(bean.activityAlias)) {
-                    changeIcon(ComApplication.context, bean.activityAlias)
+                    changeIcon(
+                        ComApplication.context,
+                        bean.activityAlias
+                    )
                 }
             }
         } catch (e: Exception) {

@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
 import com.common.core.base.viewmodel.BaseViewModel
 
 /**
- * @desc:
+ * @desc:自动ViewBinding 和ViewModel基类
  * @author: tanlifei
  * @date: 2021/2/7 18:17
  */

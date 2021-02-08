@@ -1,7 +1,6 @@
 package com.tanlifei.app.classmatecircle.network
 
 import com.tanlifei.app.common.config.api.ApiConst
-import com.tanlifei.app.main.network.SplashNetwork
 import rxhttp.RxHttp
 import rxhttp.toResponse
 

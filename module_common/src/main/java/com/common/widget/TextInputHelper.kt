@@ -2,7 +2,6 @@ package com.common.widget
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.EditText
 import android.widget.TextView
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R

@@ -7,7 +7,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.bumptech.glide.Glide
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
-import com.common.core.environment.EnvironmentUtils
+import com.common.core.environment.utils.EnvironmentUtils
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.network.SplashNetwork

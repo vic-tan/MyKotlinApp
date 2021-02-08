@@ -1,7 +1,6 @@
 package com.tanlifei.app.persenal.activity
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.ComApplication

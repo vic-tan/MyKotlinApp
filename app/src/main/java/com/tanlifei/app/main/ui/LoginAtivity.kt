@@ -16,7 +16,7 @@ import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
-import com.common.core.environment.EnvironmentUtils
+import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.AppUtils
 import com.common.utils.ResUtils
 import com.common.widget.TextInputHelper

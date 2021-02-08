@@ -6,7 +6,7 @@ import android.content.pm.PackageManager
 import android.text.TextUtils
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
-import com.common.core.environment.EnvironmentChangeManager
+import com.common.core.environment.utils.EnvironmentChangeManager
 import com.hjq.toast.ToastUtils
 import java.util.*
 
