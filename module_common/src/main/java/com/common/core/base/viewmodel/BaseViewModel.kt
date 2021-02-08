@@ -19,7 +19,7 @@ open class BaseViewModel : ViewModel() {
      * 请求网络是否正在加载的LveData
      */
     val isLoading: LiveData<Boolean> get() = _isLoading
-    private val _isLoading = MutableLiveData<Boolean>()
+    protected val _isLoading = MutableLiveData<Boolean>()
 
     @SuppressLint("StaticFieldLeak")
     lateinit var application: Application

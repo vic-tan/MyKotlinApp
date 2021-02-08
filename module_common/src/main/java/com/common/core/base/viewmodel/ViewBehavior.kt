@@ -24,4 +24,10 @@ interface ViewBehavior {
      */
     fun showNotMoreDataUI()
 
+
+    /**
+     * 错误界面
+     */
+    fun  showErrorUI()
+
 }

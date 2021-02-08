@@ -1,5 +1,6 @@
 package com.tanlifei.app.classmatecircle.network
 
+import com.common.cofing.constant.GlobalConst
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.config.api.ApiConst
 import rxhttp.RxHttp
@@ -14,8 +15,8 @@ class FollowNetwork {
 
     suspend fun requestFriendsEntertainmentList(pageNum: Int) =
         RxHttp.postJson(ApiConst.URL_FRIENDS_ENTERTAINMENT_LIST)
-            .add("pageNum", pageNum)
-            .add("pageSize", 20)
+            .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
+            .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .toResponse<List<ClassmateCircleBean>>().await()
 
     companion object {

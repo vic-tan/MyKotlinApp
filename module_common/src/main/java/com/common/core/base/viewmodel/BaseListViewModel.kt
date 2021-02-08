@@ -2,6 +2,8 @@ package com.common.core.base.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.common.cofing.constant.GlobalConst
+import com.example.httpsender.kt.errorCode
 
 /**
  * @desc:列表加载
@@ -22,6 +24,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         LOADING,//加载中
         EMPTYDATA,//空列表
         NOTMOREDATA,//没有一下页数据
+        ERROR,//报错界面
     }
 
 
@@ -75,6 +78,22 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         }
     }
 
+    /**
+     * 错误处理
+     */
+    fun onError(dataChangedType: DataChagedType, it: Throwable) {
+        _isLoading.value = false
+        //没有下一页
+        if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
+            showNotMoreDataUI()
+        } else {
+            //下拉刷新时才显示错误界面，上拉不处理
+            if (dataChangedType == DataChagedType.REFRESH) {
+                showErrorUI()
+            }
+        }
+    }
+
     override fun showLoadingUI() {
         _uiBehavior.value = UIType.LOADING
     }
@@ -86,6 +105,10 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
 
     override fun showNotMoreDataUI() {
         _uiBehavior.value = UIType.NOTMOREDATA
+    }
+
+    override fun showErrorUI() {
+        _uiBehavior.value = UIType.ERROR
     }
 
 
