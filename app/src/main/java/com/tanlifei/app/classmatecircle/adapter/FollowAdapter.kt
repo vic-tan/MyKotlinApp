@@ -20,6 +20,7 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
         return ItemFollowBinding.inflate(inflater, parent, false)
     }
 
+
     override fun convert(holder: BaseVBViewHolder<ItemFollowBinding>, item: ClassmateCircleBean) {
         holder.vb.name.text = item.nickName
         holder.vb.school.text =
@@ -28,6 +29,5 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
             .load(item.avatar).into(holder.vb.userHead)
         Glide.with(context)
             .load(item.image?.url).into(holder.vb.banner)
-
     }
 }

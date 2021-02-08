@@ -12,11 +12,10 @@ import rxhttp.toResponse
  */
 class FollowNetwork {
 
-
     suspend fun requestFriendsEntertainmentList(pageNum: Int) =
         RxHttp.postJson(ApiConst.URL_FRIENDS_ENTERTAINMENT_LIST)
             .add("pageNum", pageNum)
-            .add("pageSize", 10)
+            .add("pageSize", 20)
             .toResponse<List<ClassmateCircleBean>>().await()
 
     companion object {

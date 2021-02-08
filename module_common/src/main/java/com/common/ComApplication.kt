@@ -26,7 +26,6 @@ open class ComApplication : Application() {
         //设置全局默认配置（优先级最低，会被其他设置覆盖）
         SmartRefreshLayout.setDefaultRefreshInitializer { _, layout -> //开始设置全局的基本参数（可以被下面的DefaultRefreshHeaderCreator覆盖）
             //全局设置（优先级最低）
-            layout.setEnableAutoLoadMore(true)
             layout.setEnableOverScrollDrag(false)
             layout.setEnableOverScrollBounce(true)
             layout.setEnableLoadMoreWhenContentNotFull(true)

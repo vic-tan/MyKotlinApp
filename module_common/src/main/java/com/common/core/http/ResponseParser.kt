@@ -1,6 +1,7 @@
 package com.example.httpsender.parser
 
 import com.blankj.utilcode.util.LogUtils
+import com.common.cofing.constant.GlobalConst
 import com.common.core.http.PageList
 import com.common.core.http.Response
 import rxhttp.wrapper.annotation.Parser
@@ -19,6 +20,8 @@ import java.lang.reflect.Type
  */
 @Parser(name = "Response", wrappers = [MutableList::class, PageList::class])
 open class ResponseParser<T> : AbstractParser<T> {
+
+
     /**
      * 此构造方法适用于任意Class对象，但更多用于带泛型的Class对象，如：List<Student>
      *
@@ -56,7 +59,11 @@ open class ResponseParser<T> : AbstractParser<T> {
         }
         if (data.status != 200 || t == null) { //code不等于0，说明数据不正确，抛出异常
             throw ParseException(data.status.toString(), data.msg, response)
-
+        }
+        if (data.status == 200 && data.pageNum > 0) {
+            if (data.pageNum * data.pageSize >= data.total) {
+                throw ParseException(GlobalConst.Http.NOT_LOAD_DATA.toString(), "没有更多数据了", response)
+            }
         }
         return t
     }

@@ -1,8 +1,9 @@
 package com.tanlifei.app.classmatecircle.viewmodel
 
+import com.common.cofing.constant.GlobalConst
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.MyLogTools
+import com.example.httpsender.kt.errorCode
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.network.FollowNetwork
 
@@ -13,35 +14,15 @@ import com.tanlifei.app.classmatecircle.network.FollowNetwork
  */
 class FollowViewModel(private val repository: FollowNetwork) : BaseListViewModel() {
 
-    var mData: MutableList<ClassmateCircleBean> = ArrayList()
-    var pageNum: Int = 0
-
-    /**
-     * 请求短信码
-     */
-    private fun requestFollowList() = launchByLoading {
-        var lt = repository.requestFriendsEntertainmentList(pageNum)
-        if (lt.isNotEmpty()) {
-            mData.addAll(lt)
-        }
-        notifyDataSetChanged()
+    override fun requestList(dataChangedType: DataChagedType) {
+        launchByLoading({
+            addList(repository.requestFriendsEntertainmentList(pageNum), dataChangedType)
+        }, {
+            if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
+                showNotMoreDataUI()
+            }
+        })
     }
 
-    /**
-     * 下拉刷新
-     */
-    fun refresh() {
-        pageNum = 1
-        mData.clear()
-        requestFollowList()
-    }
-
-    /**
-     * 加载更多
-     */
-    fun loadMore() {
-        pageNum++
-        requestFollowList()
-    }
 
 }

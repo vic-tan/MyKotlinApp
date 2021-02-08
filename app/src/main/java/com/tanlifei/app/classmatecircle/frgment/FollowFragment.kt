@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.core.base.ui.fragment.BaseBVMFragment
+import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
+import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.network.FollowNetwork
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
 import com.tanlifei.app.databinding.FragmentFollowBinding
@@ -17,7 +19,7 @@ import com.tanlifei.app.databinding.FragmentFollowBinding
  */
 class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>() {
 
-    lateinit var adapter: FollowAdapter
+    private lateinit var adapter: FollowAdapter
 
     companion object {
         fun newInstance(): FollowFragment {
@@ -34,25 +36,44 @@ class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>()
     }
 
     override fun onFirstVisibleToUser() {
-        adapter = FollowAdapter(viewModel.mData)
+        initViewModelObserve()
+        initListener()
+        initData()
+    }
+
+
+    override fun initView() {
+        adapter = FollowAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
         binding.refreshLayout.refreshRecycler.layoutManager = LinearLayoutManager(activity)
         binding.refreshLayout.refreshRecycler.adapter = adapter
-        viewModel.dataChanged.observe(this, Observer {
-            adapter.notifyDataSetChanged()
-        })
-        initSmartRefreshConfig()
-        smartRefreshListener()
+    }
+
+    private fun initData() {
         viewModel.refresh()
     }
 
 
-    private fun initSmartRefreshConfig() {
-//        binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false)
-//        binding.refreshLayout.smartRefreshLayout.setEnableScrollContentWhenLoaded(false)
-//        binding.refreshLayout.smartRefreshLayout.setEnableFooterTranslationContent(false)
+    /**
+     * 设置ViewModel的observe
+     */
+    private fun initViewModelObserve() {
+        viewModel.dataChanged.observe(this, Observer {
+            adapter.notifyDataSetChanged()
+        })
+        viewModel.uiBehavior.observe(this, Observer {
+            when (it) {
+                BaseListViewModel.UIType.NOTMOREDATA -> {
+                    binding.refreshLayout.smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
+                }
+            }
+
+        })
     }
 
-    private fun smartRefreshListener() {
+    /**
+     * 初始化监听
+     */
+    private fun initListener() {
         binding.refreshLayout.smartRefreshLayout.setOnRefreshListener {
             viewModel.refresh()
             it.finishRefresh()
@@ -62,5 +83,6 @@ class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>()
             it.finishLoadMore()
         }
     }
+
 
 }

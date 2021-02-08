@@ -40,14 +40,7 @@ open class BaseViewModel : ViewModel() {
         _isLoading.value = true
         block()
         _isLoading.value = false
-    }, {
-        _isLoading.value = false
-        if (ObjectUtils.isNotEmpty(onError)) {
-            onError
-        } else {
-            it.show(it.errorCode, it.errorMsg)
-        }
-    }, {
+    },onError, {
         _isLoading.value = true
     }, {
         _isLoading.value = false

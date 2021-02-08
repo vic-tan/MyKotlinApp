@@ -11,21 +11,17 @@ interface ViewBehavior {
     /**
      * 是否显示Loading视图
      */
-    fun showLoadingUI(isShow: Boolean)
+    fun showLoadingUI()
 
     /**
      * 是否显示空白视图
      */
-    fun showEmptyUI(isShow: Boolean)
+    fun showEmptyUI()
+
 
     /**
-     * 弹出Toast提示
+     * 没有一下页数据
      */
-    fun showToast(map: Map<String, *>)
-
-    /**
-     * 不带参数的页面跳转
-     */
-    fun navigateTo(page: Any)
+    fun showNotMoreDataUI()
 
 }

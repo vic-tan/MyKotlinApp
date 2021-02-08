@@ -44,7 +44,7 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
             }
         }
         environmentList[pos].defaultCheck = true
-        notifyDataSetChanged()
+        notifyDataSetChanged(DataChagedType.NOTIFY)
     }
 
     /**
@@ -96,5 +96,8 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
             }
             setDefaultCheck()
         }
+    }
+
+    override fun requestList(dataChangedType: DataChagedType) {
     }
 }

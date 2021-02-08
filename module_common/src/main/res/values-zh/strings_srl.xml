@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="srl_header_pulling" tools:ignore="ExtraTranslation">下拉刷新</string>
+    <string name="srl_header_refreshing" tools:ignore="ExtraTranslation">正在刷新</string>
+    <string name="srl_header_loading" tools:ignore="ExtraTranslation">正在加载</string>
+    <string name="srl_header_release" tools:ignore="ExtraTranslation">释放刷新</string>
+    <string name="srl_header_finish" tools:ignore="ExtraTranslation">刷新完成</string>
+    <string name="srl_header_failed" tools:ignore="ExtraTranslation">刷新失败</string>
+    <string name="srl_header_update" tools:ignore="ExtraTranslation">上次更新 HH:mm</string>
+    <string name="srl_header_secondary" tools:ignore="ExtraTranslation">进入二楼</string>
+
+    <string name="srl_footer_pulling" tools:ignore="ExtraTranslation">上拉加载更多</string>
+    <string name="srl_footer_release" tools:ignore="ExtraTranslation">释放加载更多</string>
+    <string name="srl_footer_loading" tools:ignore="ExtraTranslation">正在加载更多</string>
+    <string name="srl_footer_refreshing" tools:ignore="ExtraTranslation">正在刷新</string>
+    <string name="srl_footer_finish" tools:ignore="ExtraTranslation">加载完成</string>
+    <string name="srl_footer_failed" tools:ignore="ExtraTranslation">加载失败</string>
+    <string name="srl_footer_nothing" tools:ignore="ExtraTranslation">—— 我是有底线的 ——</string>
+
+</resources>
