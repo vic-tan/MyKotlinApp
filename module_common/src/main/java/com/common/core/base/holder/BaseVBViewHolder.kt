@@ -14,28 +14,17 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
  * @author: tanlifei
  * @date: 2021/2/3 9:42
  */
-class VBViewHolder<VB : ViewBinding>(val vb: VB, view: View) : BaseViewHolder(view)
+class BaseVBViewHolder<VB : ViewBinding>(val vb: VB, view: View) : BaseViewHolder(view)
 
 abstract class BaseBindingAdapter<T, VB : ViewBinding>(data: MutableList<T>? = null) :
-    BaseQuickAdapter<T, VBViewHolder<VB>>(0, data) {
+    BaseQuickAdapter<T, BaseVBViewHolder<VB>>(0, data) {
 
     abstract fun createViewBinding(inflater: LayoutInflater, parent: ViewGroup): VB
 
-    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): VBViewHolder<VB> {
+    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseVBViewHolder<VB> {
         val viewBinding = createViewBinding(LayoutInflater.from(parent.context), parent)
-        return VBViewHolder(viewBinding, viewBinding.root)
+        return BaseVBViewHolder(viewBinding, viewBinding.root)
     }
 
 }
 
-abstract class BaseBindingMultiItemAdapter<T : MultiItemEntity, VB : ViewBinding>(data: MutableList<T>? = null) :
-    BaseQuickAdapter<T, VBViewHolder<VB>>(0, data) {
-
-    abstract fun createViewBinding(inflater: LayoutInflater, parent: ViewGroup): VB
-
-    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): VBViewHolder<VB> {
-        val viewBinding = createViewBinding(LayoutInflater.from(parent.context), parent)
-        return VBViewHolder(viewBinding, viewBinding.root)
-    }
-
-}

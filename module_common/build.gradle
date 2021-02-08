@@ -32,8 +32,6 @@ android {
     }
 
 
-
-
     buildTypes {
         release {
             minifyEnabled false
@@ -76,7 +74,9 @@ dependencies {
 
     //下拉上拉刷新
     //https://github.com/scwang90/SmartRefreshLayout
-    api 'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    api 'com.scwang.smart:refresh-layout-kernel:2.0.3'
+    api  'com.scwang.smart:refresh-header-classics:2.0.3'    //经典刷新头
+    api 'com.scwang.smart:refresh-footer-classics:2.0.3'    //经典加载
 
     //万能adapter适配器
     //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
@@ -109,7 +109,7 @@ dependencies {
     api 'org.litepal.guolindev:core:3.2.3'
 
 
-    api  'com.google.code.gson:gson:2.8.6'
+    api 'com.google.code.gson:gson:2.8.6'
 
 
     //沉浸式实现

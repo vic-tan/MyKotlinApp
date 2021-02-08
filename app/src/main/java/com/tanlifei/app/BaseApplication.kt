@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import com.common.ComApplication
 import com.common.core.http.RxHttpManager
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 
 /**
