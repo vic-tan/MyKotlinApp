@@ -8,7 +8,7 @@ import android.view.View
 import android.webkit.*
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.ui.viewmodel.BaseWebViewModel
+import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.databinding.ActivityBaseWebBinding
 
 /**
@@ -16,7 +16,7 @@ import com.common.databinding.ActivityBaseWebBinding
  * @author: tanlifei
  * @date: 2021/1/27 16:14
  */
-class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding,BaseWebViewModel>() {
+class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyViewModel>() {
 
     lateinit var url: String
     var title: String? = null
@@ -31,6 +31,10 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding,BaseWebVi
             }
             ActivityUtils.startActivity(intent)
         }
+    }
+
+    override fun createViewModel(): EmptyViewModel {
+        return EmptyViewModel()
     }
 
     override fun init() {
@@ -97,19 +101,17 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding,BaseWebVi
         }
         //链接中有需要跳转下载的链接时跳转浏览器下载
 
-        binding.webView.setDownloadListener(DownloadListener { url, _, _, _, _ ->
+        binding.webView.setDownloadListener { url, _, _, _, _ ->
             val intent = Intent(Intent.ACTION_VIEW)
             val uri = Uri.parse(url)
             intent.addCategory(Intent.CATEGORY_BROWSABLE)
             intent.data = uri
             startActivity(intent)
-        })
+        }
 
     }
 
-    override fun createViewModel(): BaseWebViewModel {
-        return BaseWebViewModel()
-    }
+
 
 
 }
