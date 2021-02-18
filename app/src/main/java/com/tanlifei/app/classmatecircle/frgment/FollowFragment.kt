@@ -1,10 +1,9 @@
 package com.tanlifei.app.classmatecircle.frgment
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.common.core.base.ui.fragment.BaseBVMFragment
-import com.common.core.base.viewmodel.BaseListViewModel
+import androidx.recyclerview.widget.RecyclerView
+import com.common.core.base.ui.fragment.BaseListBVMFragment
+import com.common.core.base.ui.fragment.BaseSingleListBVMFragment
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
@@ -16,7 +15,7 @@ import com.tanlifei.app.databinding.FragmentFollowBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>() {
+class FollowFragment : BaseListBVMFragment<FragmentFollowBinding, FollowViewModel>() {
 
     private lateinit var adapter: FollowAdapter
 
@@ -35,59 +34,20 @@ class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>()
     }
 
     override fun onFirstVisibleToUser() {
-        initViewModelObserve()
-        initListener()
-        initData()
+        super.onFirstVisibleToUser()
     }
 
 
     override fun initView() {
+        super.initView()
+        smartRefreshLayout = binding.refreshLayout.smartRefreshLayout
+        refreshLoadingLayout = binding.refreshLayout.refreshLoadingLayout
+        refreshRecycler = binding.refreshLayout.refreshRecycler
         adapter = FollowAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
-        binding.refreshLayout.refreshRecycler.layoutManager = LinearLayoutManager(activity)
-        binding.refreshLayout.refreshRecycler.adapter = adapter
     }
 
-    private fun initData() {
-        viewModel.refresh()
-    }
-
-
-    /**
-     * 设置ViewModel的observe
-     */
-    private fun initViewModelObserve() {
-        viewModel.dataChanged.observe(this, Observer {
-            adapter.notifyDataSetChanged()
-        })
-        viewModel.uiBehavior.observe(this, Observer {
-            when (it) {
-                BaseListViewModel.UIType.NOTMOREDATA -> {
-                    binding.refreshLayout.smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
-                }
-                BaseListViewModel.UIType.EMPTYDATA -> binding.refreshLayout.refreshLoadingLayout.showEmpty()
-                BaseListViewModel.UIType.ERROR -> binding.refreshLayout.refreshLoadingLayout.showError()
-                BaseListViewModel.UIType.CONTENT -> {
-                    binding.refreshLayout.refreshLoadingLayout.showContent()
-                    binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
-                }
-            }
-
-        })
-    }
-
-    /**
-     * 初始化监听
-     */
-    private fun initListener() {
-        binding.refreshLayout.smartRefreshLayout.setOnRefreshListener {
-            viewModel.refresh()
-            it.finishRefresh()
-        }
-        binding.refreshLayout.smartRefreshLayout.setOnLoadMoreListener {
-            viewModel.loadMore()
-            it.finishLoadMore()
-        }
-        binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false)
+    override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
+        return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
 
