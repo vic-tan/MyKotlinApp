@@ -35,6 +35,7 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
         initViewModelObserve()
         initListener()
         binding.navigatorTab.getMsgBadge().visibility = View.VISIBLE
+
     }
 
     /**

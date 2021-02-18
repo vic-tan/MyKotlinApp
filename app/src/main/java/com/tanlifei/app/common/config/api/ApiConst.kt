@@ -36,6 +36,9 @@ object ApiConst {
     /* 退出登录 */
     const val URL_LOGIN_OUT = "auth/loginOut"
 
+    /* 获取用户资料 */
+    const val URL_USER_INFO = "major/api/user/getUser"
+
     /* 关注人文娱列表 */
     const val URL_FRIENDS_ENTERTAINMENT_LIST = "major/api/entertainment/getFriendsEntertainmentList"
 

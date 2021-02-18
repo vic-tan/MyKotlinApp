@@ -2,8 +2,10 @@ package com.tanlifei.app.common.network
 
 import com.common.cofing.constant.GlobalConst
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
+import com.tencent.bugly.crashreport.biz.UserInfoBean
 import rxhttp.RxHttp
 import rxhttp.toResponse
 
@@ -43,6 +45,12 @@ class ApiNetwork {
         .toResponse<String>().await()
 
     /**
+     * 获取用户资料
+     */
+    suspend fun requestUserInfo() = RxHttp.postJson(ApiConst.URL_USER_INFO)
+        .toResponse<UserBean>().await()
+
+    /**
      * 请求关注列表
      */
     suspend fun requestFriendsEntertainmentList(pageNum: Int) =
@@ -50,7 +58,6 @@ class ApiNetwork {
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .toResponse<List<ClassmateCircleBean>>().await()
-
 
 
     companion object {

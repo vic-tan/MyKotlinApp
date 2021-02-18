@@ -27,7 +27,7 @@
             android:layout_height="65dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="70dp"
-            android:src="@mipmap/default_header"
+            android:background="@mipmap/default_header"
             app:is_circle="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
