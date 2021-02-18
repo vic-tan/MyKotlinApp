@@ -22,13 +22,13 @@
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:lines="1"
         tools:text="暂无内容"
         tools:textColor="@color/color_333333"
-        tools:textSize="16sp" />
+        tools:textSize="17sp" />
 
     <TextView
         android:id="@id/empty_desc_text"
@@ -37,11 +37,11 @@
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:lines="1"
         tools:text="可以去看下有哪些想买的"
         tools:textColor="@color/color_999999"
-        tools:textSize="13sp" />
+        tools:textSize="15sp" />
 </LinearLayout>

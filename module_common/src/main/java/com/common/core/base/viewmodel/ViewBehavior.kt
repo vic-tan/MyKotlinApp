@@ -20,6 +20,11 @@ interface ViewBehavior {
 
 
     /**
+     * 显示内容
+     */
+    fun showContentUI()
+
+    /**
      * 没有一下页数据
      */
     fun showNotMoreDataUI()

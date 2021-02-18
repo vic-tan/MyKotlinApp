@@ -21,6 +21,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     enum class UIType {
         REFRESH,//下拉改变刷新
         LOADMORE,//上拉加载刷新
+        CONTENT,//有内容
         LOADING,//加载中
         EMPTYDATA,//空列表
         NOTMOREDATA,//没有一下页数据
@@ -75,6 +76,8 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         notifyDataSetChanged(dataChangedType)
         if (mData.isEmpty()) {
             showEmptyUI()
+        }else{
+            showContentUI()
         }
     }
 
@@ -102,6 +105,10 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         _uiBehavior.value = UIType.EMPTYDATA
     }
 
+
+    override fun showContentUI() {
+        _uiBehavior.value = UIType.CONTENT
+    }
 
     override fun showNotMoreDataUI() {
         _uiBehavior.value = UIType.NOTMOREDATA

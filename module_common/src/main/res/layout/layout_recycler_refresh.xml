@@ -9,12 +9,17 @@
     app:srlEnableFooterFollowWhenLoadFinished="true">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/refreshRecycler"
+    <com.common.widget.LoadingLayout
+        android:id="@+id/refreshLoadingLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/refreshRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.common.widget.LoadingLayout>
 </com.scwang.smart.refresh.layout.SmartRefreshLayout>

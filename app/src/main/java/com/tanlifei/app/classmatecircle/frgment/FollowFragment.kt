@@ -8,7 +8,6 @@ import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
-import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.databinding.FragmentFollowBinding
 
 
@@ -65,6 +64,12 @@ class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>()
                 BaseListViewModel.UIType.NOTMOREDATA -> {
                     binding.refreshLayout.smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
                 }
+                BaseListViewModel.UIType.EMPTYDATA -> binding.refreshLayout.refreshLoadingLayout.showEmpty()
+                BaseListViewModel.UIType.ERROR -> binding.refreshLayout.refreshLoadingLayout.showError()
+                BaseListViewModel.UIType.CONTENT -> {
+                    binding.refreshLayout.refreshLoadingLayout.showContent()
+                    binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
+                }
             }
 
         })
@@ -82,6 +87,7 @@ class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>()
             viewModel.loadMore()
             it.finishLoadMore()
         }
+        binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false)
     }
 
 
