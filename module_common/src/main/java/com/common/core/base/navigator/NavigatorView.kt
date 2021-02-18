@@ -2,14 +2,19 @@ package com.common.core.base.navigator
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
 import com.common.R
 import com.ruffian.library.widget.RTextView
+import java.lang.reflect.InvocationTargetException
+import java.lang.reflect.Method
+import java.lang.reflect.ParameterizedType
 
 /**
  * @desc:
@@ -19,7 +24,7 @@ import com.ruffian.library.widget.RTextView
 abstract class NavigatorView<T : ViewBinding> : LinearLayout {
     var mContext: Context
     protected lateinit var binding: T
-     lateinit var listener: NavigatorListener
+    lateinit var listener: NavigatorListener
 
     constructor(context: Context) : super(context) {
         mContext = context
@@ -97,9 +102,9 @@ abstract class NavigatorView<T : ViewBinding> : LinearLayout {
             if (child is TextView) {
                 if (child !is RTextView) {
                     if (select) {
-                        child.setTextColor(context.resources.getColor(R.color.tab_txt_press))
+                        child.setTextColor(ContextCompat.getColor(context,R.color.tab_txt_press))
                     } else {
-                        child.setTextColor(context.resources.getColor(R.color.tab_txt_normal))
+                        child.setTextColor(ContextCompat.getColor(context,R.color.tab_txt_normal))
                     }
                 }
             }
