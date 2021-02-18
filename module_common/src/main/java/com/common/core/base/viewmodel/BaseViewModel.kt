@@ -3,10 +3,6 @@ package com.common.core.base.viewmodel
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
-import com.blankj.utilcode.util.ObjectUtils
-import com.example.httpsender.kt.errorCode
-import com.example.httpsender.kt.errorMsg
-import com.example.httpsender.kt.show
 
 /**
  * @desc:ViewModel基类
@@ -23,6 +19,8 @@ open class BaseViewModel : ViewModel() {
 
     @SuppressLint("StaticFieldLeak")
     lateinit var application: Application
+
+
 
 
     /**

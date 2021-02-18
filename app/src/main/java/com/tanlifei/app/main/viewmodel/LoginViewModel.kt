@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseViewModel
-import com.tanlifei.app.main.network.LoginNetwork
+import com.tanlifei.app.common.network.ApiNetwork
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
@@ -18,10 +18,11 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class LoginViewModel(private val repository: LoginNetwork) : BaseViewModel() {
+class LoginViewModel() : BaseViewModel() {
 
     /* 永远暴露不可变LiveData给外部，防止外部可以修改LoginViewModel，保证LoginViewModel独立性 */
 
+    private val repository: ApiNetwork = ApiNetwork.getInstance()
 
     /**
      * 登录成功获取到token 的LveData

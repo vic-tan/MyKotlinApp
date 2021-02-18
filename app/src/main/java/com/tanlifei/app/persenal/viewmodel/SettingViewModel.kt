@@ -3,7 +3,7 @@ package com.tanlifei.app.persenal.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.core.base.viewmodel.BaseViewModel
-import com.tanlifei.app.persenal.network.SettingNetwork
+import com.tanlifei.app.common.network.ApiNetwork
 
 
 /**
@@ -11,7 +11,7 @@ import com.tanlifei.app.persenal.network.SettingNetwork
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class SettingViewModel(private val repository: SettingNetwork) : BaseViewModel() {
+class SettingViewModel() : BaseViewModel() {
 
     /**
      * 登录成功获取到token 的LveData
@@ -19,6 +19,7 @@ class SettingViewModel(private val repository: SettingNetwork) : BaseViewModel()
     val isToken: LiveData<Boolean> get() = _isToken
     private val _isToken = MutableLiveData<Boolean>()
 
+    private val repository: ApiNetwork = ApiNetwork.getInstance()
 
     /**
      * 退出登录

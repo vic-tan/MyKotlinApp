@@ -8,9 +8,9 @@ import com.bumptech.glide.Glide
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
+import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.main.network.SplashNetwork
 import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
 import com.tanlifei.app.main.viewmodel.SplashViewModel
@@ -113,7 +113,7 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
     }
 
     override fun createViewModel(): SplashViewModel {
-        return SplashViewModel(SplashNetwork.getInstance())
+        return SplashViewModel()
     }
 
 }

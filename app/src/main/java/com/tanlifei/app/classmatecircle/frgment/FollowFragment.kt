@@ -7,8 +7,8 @@ import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
-import com.tanlifei.app.classmatecircle.network.FollowNetwork
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
+import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.databinding.FragmentFollowBinding
 
 
@@ -32,7 +32,7 @@ class FollowFragment : BaseBVMFragment<FragmentFollowBinding, FollowViewModel>()
     }
 
     override fun createViewModel(): FollowViewModel {
-        return FollowViewModel(FollowNetwork.getInstance())
+        return FollowViewModel()
     }
 
     override fun onFirstVisibleToUser() {

@@ -7,10 +7,10 @@ import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.ComDialogUtils
 import com.lxj.xpopup.interfaces.OnConfirmListener
+import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding
 import com.tanlifei.app.main.ui.LoginAtivity
-import com.tanlifei.app.persenal.network.SettingNetwork
 import com.tanlifei.app.persenal.viewmodel.SettingViewModel
 
 
@@ -19,7 +19,7 @@ import com.tanlifei.app.persenal.viewmodel.SettingViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class SettingActivity : BaseToolBarActivity<ActivitySettingBinding,SettingViewModel>() {
+class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewModel>() {
 
 
     companion object {
@@ -29,7 +29,7 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding,SettingViewMo
     }
 
     override fun createViewModel(): SettingViewModel {
-        return SettingViewModel(SettingNetwork.getInstance())
+        return SettingViewModel()
     }
 
     override fun init() {
@@ -71,8 +71,6 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding,SettingViewMo
     private fun initData() {
         binding.versionName.text = "V${AppUtils.getAppVersionName()}"
     }
-
-
 
 
 }

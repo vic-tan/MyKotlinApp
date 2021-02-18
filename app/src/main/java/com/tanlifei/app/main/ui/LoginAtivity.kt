@@ -24,10 +24,10 @@ import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst.URL_PRIVATE_AGREEMENT
 import com.tanlifei.app.common.config.api.ApiConst.URL_USER_AGREEMENT
+import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.main.network.LoginNetwork
 import com.tanlifei.app.main.utils.LoginUtils
 import com.tanlifei.app.main.viewmodel.LoginViewModel
 
@@ -49,7 +49,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     }
 
     override fun createViewModel(): LoginViewModel {
-        return LoginViewModel(LoginNetwork.getInstance())
+        return LoginViewModel()
     }
 
     override fun init() {

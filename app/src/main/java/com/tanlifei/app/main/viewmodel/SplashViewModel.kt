@@ -7,9 +7,9 @@ import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.config.Const
+import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.main.bean.AdsBean
-import com.tanlifei.app.main.network.SplashNetwork
 import com.tanlifei.app.main.utils.AdsUtils
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
- class SplashViewModel(private val repository: SplashNetwork) : BaseViewModel() {
+ class SplashViewModel() : BaseViewModel() {
 
     enum class JumpType {
         GUIDE,//表示去引导页
@@ -34,6 +34,7 @@ import java.util.concurrent.TimeUnit
         ADS//广告界面（启动界面完成）
     }
 
+    private val repository: ApiNetwork = ApiNetwork.getInstance()
 
     /**
      * 3s结束倒计时LveData

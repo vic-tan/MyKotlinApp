@@ -9,7 +9,7 @@ import com.common.core.base.navigator.NavigatorFragmentManager
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.frgment.ClassmateCircleFragment
-import com.tanlifei.app.home.network.HomeNetwork
+import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
 import com.tanlifei.app.home.ui.fragment.StudyFragment
@@ -21,7 +21,9 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/4 15:01
  */
-class HomeViewModel(private val repository: HomeNetwork) : BaseViewModel() {
+class HomeViewModel() : BaseViewModel() {
+
+    private val repository: ApiNetwork = ApiNetwork.getInstance()
 
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mNavigator: NavigatorFragmentManager

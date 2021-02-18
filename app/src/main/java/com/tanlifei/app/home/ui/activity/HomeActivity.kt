@@ -9,8 +9,8 @@ import com.common.core.base.navigator.NavigatorView
 import com.common.core.base.ui.activity.BaseActivity
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.AppUtils
+import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.databinding.ActivityHomeBinding
-import com.tanlifei.app.home.network.HomeNetwork
 import com.tanlifei.app.home.viewmodel.HomeViewModel
 
 
@@ -43,7 +43,7 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
     private fun initViewModel() {
         homeViewModel = ViewModelProvider(
             this,
-            BaseViewModel.createViewModelFactory(HomeViewModel(HomeNetwork.getInstance()))
+            BaseViewModel.createViewModelFactory(HomeViewModel())
         ).get(
             HomeViewModel::class.java
         )
