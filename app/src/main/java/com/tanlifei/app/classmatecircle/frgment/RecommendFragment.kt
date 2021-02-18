@@ -1,7 +1,11 @@
 package com.tanlifei.app.classmatecircle.frgment
 
 import android.os.Bundle
-import com.common.core.base.ui.fragment.BaseLazyFragment
+import androidx.recyclerview.widget.RecyclerView
+import com.common.core.base.ui.fragment.BaseListBVMFragment
+import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
+import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
 import com.tanlifei.app.databinding.FragmentRecommendBinding
 
 /**
@@ -9,7 +13,8 @@ import com.tanlifei.app.databinding.FragmentRecommendBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class RecommendFragment : BaseLazyFragment<FragmentRecommendBinding>() {
+class RecommendFragment : BaseListBVMFragment<FragmentRecommendBinding, RecommendViewModel>() {
+    private lateinit var adapter: FollowAdapter
 
     companion object {
         fun newInstance(): RecommendFragment {
@@ -23,6 +28,24 @@ class RecommendFragment : BaseLazyFragment<FragmentRecommendBinding>() {
 
 
     override fun onFirstVisibleToUser() {
+        super.onFirstVisibleToUser()
+    }
+
+    override fun createViewModel(): RecommendViewModel {
+        return RecommendViewModel()
+    }
+
+    override fun initView() {
+        initListView(
+            binding.refreshLayout.smartRefreshLayout,
+            binding.refreshLayout.refreshLoadingLayout,
+            binding.refreshLayout.refreshRecycler
+        )
+        adapter = FollowAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
+    }
+
+    override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
+        return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
 

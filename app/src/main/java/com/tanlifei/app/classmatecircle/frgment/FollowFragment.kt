@@ -3,7 +3,6 @@ package com.tanlifei.app.classmatecircle.frgment
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.common.core.base.ui.fragment.BaseListBVMFragment
-import com.common.core.base.ui.fragment.BaseSingleListBVMFragment
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
@@ -40,9 +39,11 @@ class FollowFragment : BaseListBVMFragment<FragmentFollowBinding, FollowViewMode
 
     override fun initView() {
         super.initView()
-        smartRefreshLayout = binding.refreshLayout.smartRefreshLayout
-        refreshLoadingLayout = binding.refreshLayout.refreshLoadingLayout
-        refreshRecycler = binding.refreshLayout.refreshRecycler
+        initListView(
+            binding.refreshLayout.smartRefreshLayout,
+            binding.refreshLayout.refreshLoadingLayout,
+            binding.refreshLayout.refreshRecycler
+        )
         adapter = FollowAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
     }
 

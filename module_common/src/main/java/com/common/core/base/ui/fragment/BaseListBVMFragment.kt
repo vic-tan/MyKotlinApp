@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.common.core.base.holder.BaseVBViewHolder
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.widget.LoadingLayout
@@ -59,6 +58,16 @@ abstract class BaseListBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
         initListener()
         initRecyclerView()
         initData()
+    }
+
+    protected fun initListView(
+        smartRefreshLayout: SmartRefreshLayout,
+        refreshLoadingLayout: LoadingLayout,
+        refreshRecycler: RecyclerView
+    ) {
+        this.smartRefreshLayout = smartRefreshLayout
+        this.refreshLoadingLayout = refreshLoadingLayout
+        this.refreshRecycler = refreshRecycler
     }
 
     /**
