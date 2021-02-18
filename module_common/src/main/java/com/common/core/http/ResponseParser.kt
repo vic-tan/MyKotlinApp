@@ -46,7 +46,7 @@ open class ResponseParser<T> : AbstractParser<T> {
     override fun onParse(response: okhttp3.Response): T {
         val type: Type = ParameterizedTypeImpl[Response::class.java, mType] //获取泛型类型
         val data: Response<T> = response.convert(type)
-        LogUtils.json("RxHttp", data)
+//        LogUtils.json("RxHttp", data)
         var t = data.data //获取data字段
         if (t == null && mType === String::class.java) {
             /*

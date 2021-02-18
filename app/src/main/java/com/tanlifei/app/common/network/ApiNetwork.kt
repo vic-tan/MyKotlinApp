@@ -39,7 +39,7 @@ class ApiNetwork {
     /**
      * 退出登录
      */
-    suspend fun requestLoginOut() = RxHttp.postForm(ApiConst.URL_LOGIN_OUT)
+    suspend fun requestLoginOut() = RxHttp.postJson(ApiConst.URL_LOGIN_OUT)
         .toResponse<String>().await()
 
     /**
@@ -50,6 +50,7 @@ class ApiNetwork {
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .toResponse<List<ClassmateCircleBean>>().await()
+
 
 
     companion object {
