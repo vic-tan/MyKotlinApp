@@ -1,11 +1,13 @@
 package com.common.core.base.ui.activity
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
 import android.view.View
-import android.webkit.*
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.ui.viewmodel.EmptyViewModel

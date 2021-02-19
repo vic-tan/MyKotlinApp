@@ -4,7 +4,6 @@ import android.content.Context
 import android.widget.ImageView
 import com.blankj.utilcode.util.ObjectUtils
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
 import com.common.R
 import jp.wasabeef.glide.transformations.BlurTransformation

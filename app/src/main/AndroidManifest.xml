@@ -17,8 +17,8 @@
         tools:replace="android:label,networkSecurityConfig">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashActivityThemes"
-            android:enabled="true">
+            android:enabled="true"
+            android:theme="@style/SplashActivityThemes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.desay_svautomotive.ACTION_CAR_SETTINGS_WIDGET_STATUS_SWITCH" />
@@ -90,6 +90,9 @@
         <activity
             android:name=".persenal.activity.AboutActivity"
             android:label="关于网上老年大学" />
+        <activity
+            android:name=".persenal.activity.ManualActivity"
+            android:label="操作手册" />
 
         <!--—————————————————————————————————————————————————— 今日头条全适配 —————————————————————————————————————————-->
         <meta-data

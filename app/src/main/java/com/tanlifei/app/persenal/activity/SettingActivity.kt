@@ -1,13 +1,14 @@
 package com.tanlifei.app.persenal.activity
 
+import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.ComDialogUtils
+import com.common.utils.ViewUtils
 import com.lxj.xpopup.interfaces.OnConfirmListener
-import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding
 import com.tanlifei.app.main.ui.LoginAtivity
@@ -19,7 +20,8 @@ import com.tanlifei.app.persenal.viewmodel.SettingViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewModel>() {
+class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewModel>(),
+    View.OnClickListener {
 
 
     companion object {
@@ -55,21 +57,25 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
      * 初始化监听
      */
     private fun initListener() {
-        binding.about.setOnClickListener {
-            AboutActivity.actionStart()
-        }
-        binding.exit.setOnClickListener {
-            ComDialogUtils.comConfirm(
-                this,
-                "您确定要退出应用吗?",
-                OnConfirmListener {
-                    viewModel.requestLogin()
-                })
-        }
+        ViewUtils.setOnClickListener(this, binding.about, binding.exit)
     }
 
     private fun initData() {
         binding.versionName.text = "V${AppUtils.getAppVersionName()}"
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            binding.about -> AboutActivity.actionStart()
+            binding.exit -> {
+                ComDialogUtils.comConfirm(
+                    this,
+                    "您确定要退出应用吗?",
+                    OnConfirmListener {
+                        viewModel.requestLogin()
+                    })
+            }
+        }
     }
 
 

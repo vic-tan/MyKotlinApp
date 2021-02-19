@@ -4,12 +4,11 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.bumptech.glide.Glide
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.GlideUtils
-import com.tanlifei.app.common.network.ApiNetwork
+import com.common.utils.ViewUtils
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.ui.GuideActivity
@@ -22,7 +21,8 @@ import com.tanlifei.app.main.viewmodel.SplashViewModel.JumpType.*
  * @author: tanlifei
  * @date: 2021/1/22 16:26
  */
-class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>() {
+class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>(),
+    View.OnClickListener {
 
     override fun showFullScreen(): Boolean {
         return true
@@ -87,17 +87,12 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
      * 初始化监听
      */
     private fun initListener() {
-        binding.adsImg.setOnClickListener {
-            viewModel.adsBean?.url?.let { it1 ->
-                BaseWebViewActivity.actionStart(viewModel.adsBean!!.name,
-                    it1
-                )
-            }
-        }
-        binding.into.setOnClickListener {
-            viewModel.doAdsJump()
-        }
-        binding.splash.setOnClickListener {}
+        ViewUtils.setOnClickListener(
+            this,
+            binding.adsImg,
+            binding.into,
+            binding.splash
+        )
     }
 
     private fun onIntervalChanged(second: Long) {
@@ -113,6 +108,22 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
 
     override fun createViewModel(): SplashViewModel {
         return SplashViewModel()
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            binding.adsImg -> {
+                viewModel.adsBean?.url?.let { it1 ->
+                    BaseWebViewActivity.actionStart(
+                        viewModel.adsBean!!.name,
+                        it1
+                    )
+                }
+            }
+            binding.into -> viewModel.doAdsJump()
+            binding.splash -> {
+            }
+        }
     }
 
 }

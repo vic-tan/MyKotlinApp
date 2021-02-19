@@ -2,7 +2,6 @@ package com.common.core.base.navigator
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,9 +11,6 @@ import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
 import com.common.R
 import com.ruffian.library.widget.RTextView
-import java.lang.reflect.InvocationTargetException
-import java.lang.reflect.Method
-import java.lang.reflect.ParameterizedType
 
 /**
  * @desc:

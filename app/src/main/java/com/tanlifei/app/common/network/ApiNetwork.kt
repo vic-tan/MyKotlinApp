@@ -2,10 +2,10 @@ package com.tanlifei.app.common.network
 
 import com.common.cofing.constant.GlobalConst
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.common.bean.ManualBean
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
-import com.tencent.bugly.crashreport.biz.UserInfoBean
 import rxhttp.RxHttp
 import rxhttp.toResponse
 
@@ -15,6 +15,8 @@ import rxhttp.toResponse
  * @date: 2021/2/7 16:17
  */
 class ApiNetwork {
+
+    /**—————————————————————————————————————————————————— 我的相关  ——————————————————————————————————————————————*/
 
     /**
      * 获取验证码
@@ -31,12 +33,6 @@ class ApiNetwork {
         .add("code", code)
         .toResponse<String>().await()
 
-    /**
-     * 广告接口请求
-     */
-    suspend fun requestAds() = RxHttp.postJson(ApiConst.URL_ADS)
-        .toResponse<AdsBean>().await()
-
 
     /**
      * 退出登录
@@ -51,6 +47,16 @@ class ApiNetwork {
         .toResponse<UserBean>().await()
 
     /**
+     * 操作手册列表
+     */
+    suspend fun requestManualList(pageNum: Int) = RxHttp.postJson(ApiConst.URL_MANUAL_LIST)
+        .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
+        .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
+        .toResponse<List<ManualBean>>().await()
+
+    /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
+
+    /**
      * 请求关注列表
      */
     suspend fun requestFriendsEntertainmentList(pageNum: Int) =
@@ -58,6 +64,14 @@ class ApiNetwork {
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .toResponse<List<ClassmateCircleBean>>().await()
+
+    /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
+
+    /**
+     * 广告接口请求
+     */
+    suspend fun requestAds() = RxHttp.postJson(ApiConst.URL_ADS)
+        .toResponse<AdsBean>().await()
 
 
     companion object {

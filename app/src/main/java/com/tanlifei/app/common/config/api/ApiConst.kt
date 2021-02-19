@@ -9,6 +9,8 @@ import com.common.cofing.constant.ApiEnvironmentConst
  */
 object ApiConst {
 
+    /**—————————————————————————————————————————————————— H5地址  ——————————————————————————————————————————————*/
+
     /* 固定地址（各环境都一样） */
     private const val URL_AGREEMENT = "https://appoffice.jinlingkeji.cn/#/"
 
@@ -30,6 +32,9 @@ object ApiConst {
     /* 讲师入驻入口 */
     val URL_LECTURER_ASKFOR = "${ApiEnvironmentConst.URL_BASE_HELPER}/rank/rankrule"
 
+
+    /**—————————————————————————————————————————————————— 我的相关  ——————————————————————————————————————————————*/
+
     /* 发送短信验证码 */
     const val URL_SEND_SMS = "auth/sendsms"
 
@@ -42,9 +47,21 @@ object ApiConst {
     /* 获取用户资料 */
     const val URL_USER_INFO = "major/api/user/getUser"
 
+    /* 操作手册列表 */
+    const val URL_MANUAL_LIST = "major/api/manual/list"
+
+    /* 操作手册详情 */
+    const val URL_MANUAL_DETAIL = "major/api/manual/detail"
+
+    /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
+
     /* 关注人文娱列表 */
     const val URL_FRIENDS_ENTERTAINMENT_LIST = "major/api/entertainment/getFriendsEntertainmentList"
 
+
+    /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
+
     /* 开屏广告 */
     const val URL_ADS = "message/api/ads/open/screen"
+
 }

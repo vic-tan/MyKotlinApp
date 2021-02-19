@@ -19,12 +19,12 @@ import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.AppUtils
 import com.common.utils.ResUtils
+import com.common.utils.ViewUtils
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst.URL_PRIVATE_AGREEMENT
 import com.tanlifei.app.common.config.api.ApiConst.URL_USER_AGREEMENT
-import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
@@ -37,7 +37,8 @@ import com.tanlifei.app.main.viewmodel.LoginViewModel
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>(), TextWatcher {
+open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>(), TextWatcher,
+    View.OnClickListener {
 
     private lateinit var mInputHelper: TextInputHelper
 
@@ -97,33 +98,39 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun initListener() {
         binding.phone.addTextChangedListener(this)
-        binding.codeBtn.setOnClickListener {
-            if (checkPhone(
-                    LoginUtils.getPhone(binding.phone.text.toString())
-                )
-            ) {
-                viewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
-            }
-        }
-        binding.login.setOnClickListener {
-            if (checkFormInfo(
-                    LoginUtils.getPhone(binding.phone.text.toString()),
-                    binding.code.toString()
-                )
-            ) {
-                viewModel.requestLogin(
-                    LoginUtils.getPhone(binding.phone.text.toString()),
-                    binding.code.toString()
-                )
-            }
-        }
-        binding.changeEnvironment.setOnClickListener {
-            EnvironmentSwitchActivity.actionStart()
-        }
+        ViewUtils.setOnClickListener(
+            this,
+            binding.codeBtn,
+            binding.login,
+            binding.changeEnvironment,
+            binding.logo
+        )
+    }
 
-        //是否连续点击显示切换环境
-        binding.logo.setOnClickListener {
-            viewModel.continuousClick()
+    override fun onClick(v: View?) {
+        when (v) {
+            binding.codeBtn -> {
+                if (checkPhone(
+                        LoginUtils.getPhone(binding.phone.text.toString())
+                    )
+                ) {
+                    viewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
+                }
+            }
+            binding.login -> {
+                if (checkFormInfo(
+                        LoginUtils.getPhone(binding.phone.text.toString()),
+                        binding.code.toString()
+                    )
+                ) {
+                    viewModel.requestLogin(
+                        LoginUtils.getPhone(binding.phone.text.toString()),
+                        binding.code.toString()
+                    )
+                }
+            }
+            binding.changeEnvironment -> EnvironmentSwitchActivity.actionStart()
+            binding.logo -> viewModel.continuousClick()
         }
     }
 
@@ -169,6 +176,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
                     .setPressBgColor(ResUtils.getColor(R.color.white))))
         binding.protocolTxt.text = protocolBuild.build()
     }
+
 
     /**
      * 校验表单信息

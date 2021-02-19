@@ -3,11 +3,9 @@ package com.tanlifei.app.persenal.fragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.blankj.utilcode.util.AppUtils
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.base.viewmodel.BaseViewModel
@@ -17,6 +15,7 @@ import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.FragmentPersonalBinding
 import com.tanlifei.app.home.viewmodel.HomeViewModel
+import com.tanlifei.app.persenal.activity.ManualActivity
 import com.tanlifei.app.persenal.activity.SettingActivity
 
 
@@ -39,15 +38,23 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>(), View.OnCli
     }
 
     override fun onFirstVisibleToUser() {
-        ViewUtils.setOnClickListener(
-            this, binding.setting,
-            binding.recruitingLecturers,
-            binding.score
-        )
         initViewModel()
         initViewModelObserve()
+        initListener()
     }
 
+    /**
+     * 初始化监听
+     */
+    private fun initListener() {
+        ViewUtils.setOnClickListener(
+            this,
+            binding.setting,
+            binding.recruitingLecturers,
+            binding.score,
+            binding.optManual
+        )
+    }
 
     /**
      * 初始化ViewModel
@@ -84,7 +91,8 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>(), View.OnCli
         when (v) {
             binding.setting -> SettingActivity.actionStart()
             binding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)
-            binding.score -> launchAppDetail("")
+            binding.score -> launchAppDetail()
+            binding.optManual -> ManualActivity.actionStart()
         }
     }
 

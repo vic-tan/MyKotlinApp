@@ -17,11 +17,7 @@ import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
 import com.tanlifei.app.home.ui.fragment.StudyFragment
-import com.tanlifei.app.main.bean.AdsBean
-import com.tanlifei.app.main.utils.AdsUtils
-import com.tanlifei.app.main.viewmodel.SplashViewModel
 import com.tanlifei.app.persenal.fragment.PersonalFragment
-import com.tencent.bugly.crashreport.biz.UserInfoBean
 import org.litepal.LitePal
 import java.util.*
 

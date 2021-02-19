@@ -6,7 +6,6 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.LinearLayout
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.ConvertUtils
 import com.common.R
 import com.common.utils.ResUtils
