@@ -76,6 +76,11 @@ abstract class BaseListBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
     private fun initViewModelObserve() {
         viewModel.dataChanged.observe(this, Observer {
             setAdapter().notifyDataSetChanged()
+            //请求数据完成
+            when (it) {
+                BaseListViewModel.DataChagedType.REFRESH -> smartRefreshLayout.finishRefresh()
+                BaseListViewModel.DataChagedType.LOADMORE -> smartRefreshLayout.finishLoadMore()
+            }
         })
         viewModel.uiBehavior.observe(this, Observer {
             when (it) {
@@ -99,14 +104,12 @@ abstract class BaseListBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
     private fun initListener() {
         smartRefreshLayout.setOnRefreshListener {
             viewModel.refresh()
-            it.finishRefresh()
+
         }
         smartRefreshLayout.setOnLoadMoreListener {
             viewModel.loadMore()
-            it.finishLoadMore()
         }
         smartRefreshLayout.setEnableLoadMore(false)
-
     }
 
     private fun initData() {

@@ -76,7 +76,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         notifyDataSetChanged(dataChangedType)
         if (mData.isEmpty()) {
             showEmptyUI()
-        }else{
+        } else {
             showContentUI()
         }
     }
@@ -86,6 +86,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
      */
     fun onError(dataChangedType: DataChagedType, it: Throwable) {
         _isLoading.value = false
+        notifyDataSetChanged(dataChangedType)
         //没有下一页
         if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
             showNotMoreDataUI()
