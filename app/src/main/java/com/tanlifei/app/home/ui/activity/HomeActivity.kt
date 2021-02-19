@@ -20,7 +20,7 @@ import com.tanlifei.app.home.viewmodel.HomeViewModel
  */
 open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.NavigatorListener {
 
-    private lateinit var homeViewModel: HomeViewModel
+    public lateinit var homeViewModel: HomeViewModel
 
     companion object {
         fun actionStart() {
@@ -50,6 +50,7 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
         homeViewModel.bindFragments()
         homeViewModel.initNavigator(supportFragmentManager)
         homeViewModel.requestUser()
+        homeViewModel.requestVersion()
     }
 
     /**

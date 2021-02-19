@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.tanlifei.app.common.bean.ManualBean
-import com.tanlifei.app.common.bean.UserBean
+import com.tanlifei.app.persenal.bean.ManualBean
 import com.tanlifei.app.common.network.ApiNetwork
 
 /**

@@ -64,4 +64,7 @@ object ApiConst {
     /* 开屏广告 */
     const val URL_ADS = "message/api/ads/open/screen"
 
+    /* 版本管理控制器 */
+    const val URL_VERSION = "major/api/version/getVersion"
+
 }

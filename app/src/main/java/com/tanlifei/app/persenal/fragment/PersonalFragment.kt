@@ -14,6 +14,7 @@ import com.common.utils.ViewUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.FragmentPersonalBinding
+import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.persenal.activity.ManualActivity
 import com.tanlifei.app.persenal.activity.SettingActivity
@@ -60,12 +61,7 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>(), View.OnCli
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        homeViewModel = ViewModelProvider(
-            this,
-            BaseViewModel.createViewModelFactory(HomeViewModel())
-        ).get(
-            HomeViewModel::class.java
-        )
+        homeViewModel = (activity as HomeActivity).homeViewModel
         homeViewModel.getUser()
     }
 

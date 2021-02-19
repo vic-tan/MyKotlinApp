@@ -70,6 +70,11 @@ class HomeViewModel() : BaseViewModel() {
         mNavigator.showFragment(position) //显示点击Fargment
     }
 
+     fun requestVersion() = launchBySilence({
+       val updateAppBean = repository.requestVersion()
+     })
+
+
     /**
      * 请求用户信息
      */

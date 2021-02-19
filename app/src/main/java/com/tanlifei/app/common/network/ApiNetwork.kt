@@ -1,8 +1,10 @@
 package com.tanlifei.app.common.network
 
+import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
-import com.tanlifei.app.common.bean.ManualBean
+import com.tanlifei.app.common.bean.UpdateAppBean
+import com.tanlifei.app.persenal.bean.ManualBean
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
@@ -57,8 +59,8 @@ class ApiNetwork {
     /**
      * 操作手册列表
      */
-    suspend fun requestManualDetail(manualId:Long) = RxHttp.postJson(ApiConst.URL_MANUAL_DETAIL)
-        .add("manualId",manualId)
+    suspend fun requestManualDetail(manualId: Long) = RxHttp.postJson(ApiConst.URL_MANUAL_DETAIL)
+        .add("manualId", manualId)
         .toResponse<ManualBean>().await()
 
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
@@ -79,6 +81,15 @@ class ApiNetwork {
      */
     suspend fun requestAds() = RxHttp.postJson(ApiConst.URL_ADS)
         .toResponse<AdsBean>().await()
+
+    /**
+     * 获取用户资料
+     */
+    suspend fun requestVersion() = RxHttp.postJson(ApiConst.URL_VERSION)
+        .add("systemType", "1")
+        .add("appId", AppUtils.getAppPackageName())
+        .add("clientVersion", AppUtils.getAppVersionCode())
+        .toResponse<UpdateAppBean>().await()
 
 
     companion object {
