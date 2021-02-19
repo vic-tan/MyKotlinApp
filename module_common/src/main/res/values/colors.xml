@@ -21,4 +21,5 @@
     <color name="color_F5F6FA">#F5F6FA</color>
     <color name="color_BEBEC0">#BEBEC0</color>
     <color name="line_E9E9E9">#E9E9E9</color>
+    <color name="com_blur_shadow">#80000000</color>
 </resources>

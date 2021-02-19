@@ -21,6 +21,17 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/persenalBgShadow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:background_normal="@color/com_blur_shadow"
+            app:layout_constraintBottom_toBottomOf="@id/persenalBg"
+            app:layout_constraintLeft_toLeftOf="@id/persenalBg"
+            app:layout_constraintRight_toRightOf="@id/persenalBg"
+            app:layout_constraintTop_toTopOf="@id/persenalBg" />
+
         <com.ruffian.library.widget.RImageView
             android:id="@+id/userCover"
             android:layout_width="65dp"

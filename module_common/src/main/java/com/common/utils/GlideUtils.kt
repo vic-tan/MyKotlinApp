@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.ImageView
 import com.blankj.utilcode.util.ObjectUtils
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
 import com.common.R
 import jp.wasabeef.glide.transformations.BlurTransformation
@@ -38,14 +39,37 @@ class GlideUtils {
                 && ObjectUtils.isNotEmpty(view)
                 && ObjectUtils.isNotEmpty(url)
             ) {
-                Glide.with(context!!).apply {
-                    RequestOptions.placeholderOf(R.mipmap.default_avatar)
-                        .dontAnimate()//去掉glide 自带的效果，防止加载自定义控件时只显示替换图
-                }.load(url).into(view)
+                Glide.with(context!!)
+                    .load(url)
+                    .apply(RequestOptions.placeholderOf(R.mipmap.default_avatar))
+                    .dontAnimate()
+                    .into(view)
             }
         }
 
-
+        /**
+         * 加载高斯模糊图片处理
+         */
+        fun loadBlur(
+            context: Context?,
+            url: String,
+            view: ImageView,
+            defaultBlurId: Int,
+            radius: Int = 24,
+            sampling: Int = 5
+        ) {
+            if (ObjectUtils.isNotEmpty(context)
+                && ObjectUtils.isNotEmpty(view)
+                && ObjectUtils.isNotEmpty(url)
+            ) {
+                Glide.with(context!!)
+                    .load(url)
+                    .apply(RequestOptions.bitmapTransform(BlurTransformation(radius, sampling)))
+                    .apply(RequestOptions.placeholderOf(defaultBlurId))
+                    .dontAnimate()
+                    .into(view)
+            }
+        }
 
         /**
          * 恢复请求，一般在停止滚动的时候
