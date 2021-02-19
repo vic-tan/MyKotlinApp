@@ -90,11 +90,10 @@
 
     <include layout="@layout/layout_line_setting" />
 
-    <TextView
+    <com.ruffian.library.widget.RTextView
         android:id="@+id/exit"
         style="@style/setting_list_style"
         android:layout_marginTop="10dp"
-        android:background="@color/white"
         android:gravity="center"
         android:text="退出登录"
         android:textColor="@color/color_333333"

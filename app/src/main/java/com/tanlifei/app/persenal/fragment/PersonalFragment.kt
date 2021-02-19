@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.base.viewmodel.BaseViewModel
+import com.common.utils.GlideUtils
+import com.tanlifei.app.R
 import com.tanlifei.app.databinding.FragmentPersonalBinding
 import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.persenal.activity.SettingActivity
@@ -58,9 +60,7 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>() {
         homeViewModel.refreshUserInfo.observe(this, Observer {
             binding.name.text = it.nickname
             binding.university.text = it.universityName
-            Glide.with(this)
-                .load(it.avatar).into(binding.userCover)
-
+            GlideUtils.loadAvatar(this.context, it.avatar, binding.userCover)
         })
     }
 

@@ -74,7 +74,10 @@ class HomeViewModel() : BaseViewModel() {
         mNavigator.showFragment(position) //显示点击Fargment
     }
 
-    fun getUser() = launchBySilence({
+    /**
+     * 请求用户信息
+     */
+    fun requestUser() = launchBySilence({
         userBean = repository.requestUserInfo()
         if (ObjectUtils.isNotEmpty(userBean)) {
             userBean!!.token = ComApplication.token.toString()
@@ -85,6 +88,17 @@ class HomeViewModel() : BaseViewModel() {
     }, {
         findUserByDB()
     })
+
+    /**
+     * 获取用户信息
+     */
+    fun getUser() {
+        if (ObjectUtils.isNotEmpty(userBean)) {
+            _refreshUserInfo.value = userBean
+        } else {
+            requestUser()
+        }
+    }
 
     /**
      * 查找数据库中是否保存广告

@@ -8,7 +8,7 @@ import com.common.BuildConfig
  * @author: tanlifei
  * @date: 2021/1/27 15:26
  */
-open class MyLogTools {
+class MyLogTools {
     companion object {
         private const val TAG = "tlf_log"
         fun show(content: String) {

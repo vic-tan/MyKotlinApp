@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
+import com.common.utils.GlideUtils
 import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
@@ -62,8 +63,7 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
                 }
                 REQUEST_ADS -> {
                     if (ObjectUtils.isNotEmpty(viewModel.adsBean)) {
-                        Glide.with(this)
-                            .load(viewModel.adsBean!!.poster).into(binding.adsImg)
+                        GlideUtils.load(this, viewModel.adsBean!!.poster, binding.adsImg)
                     }
                 }
                 ADS -> {

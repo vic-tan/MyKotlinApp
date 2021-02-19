@@ -8,7 +8,7 @@ import com.common.ComApplication
  * @author: tanlifei
  * @date: 2021/1/27 16:06
  */
-open class ResUtils {
+class ResUtils {
 
     companion object {
         /**
