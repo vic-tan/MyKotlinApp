@@ -13,7 +13,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
  * @author: tanlifei
  * @date: 2021/2/3 9:42
  */
-class BaseVBViewHolder<VB : ViewBinding>(val vb: VB, view: View) : BaseViewHolder(view)
+class BaseVBViewHolder<VB : ViewBinding>(val binding: VB, view: View) : BaseViewHolder(view)
 
 abstract class BaseBindingAdapter<T, VB : ViewBinding>(data: MutableList<T>? = null) :
     BaseQuickAdapter<T, BaseVBViewHolder<VB>>(0, data) {

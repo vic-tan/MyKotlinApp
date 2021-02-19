@@ -1,8 +1,11 @@
 package com.tanlifei.app.persenal.activity
 
+import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.core.base.ui.activity.BaseToolBarActivity
+import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
+import com.tanlifei.app.common.bean.ManualBean
+import com.tanlifei.app.persenal.adapter.ManualAdapter
 import com.tanlifei.app.persenal.viewmodel.ManualViewModel
 
 
@@ -11,8 +14,8 @@ import com.tanlifei.app.persenal.viewmodel.ManualViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class ManualActivity : BaseToolBarActivity<LayoutRecyclerRefreshBinding, ManualViewModel>() {
-
+class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, ManualViewModel>() {
+    private lateinit var adapter: ManualAdapter
 
     companion object {
         fun actionStart() {
@@ -45,7 +48,16 @@ class ManualActivity : BaseToolBarActivity<LayoutRecyclerRefreshBinding, ManualV
     }
 
     private fun initData() {
+        adapter = ManualAdapter(viewModel.mData as MutableList<ManualBean>)
+        initRefreshView(
+            binding.smartRefreshLayout,
+            binding.refreshLoadingLayout,
+            binding.refreshRecycler
+        )
     }
 
+    override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
+        return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+    }
 
 }

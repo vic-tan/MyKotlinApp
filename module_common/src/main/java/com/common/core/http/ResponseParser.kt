@@ -60,7 +60,7 @@ open class ResponseParser<T> : AbstractParser<T> {
             throw ParseException(data.status.toString(), data.msg, response)
         }
         if (data.status == 200 && data.pageNum > 0) {
-            if (data.pageNum * data.pageSize >= data.total) {
+            if (data.pageNum * data.pageSize >= data.total && data.pageNum > 1) {
                 throw ParseException(GlobalConst.Http.NOT_LOAD_DATA.toString(), "没有更多数据了", response)
             }
         }

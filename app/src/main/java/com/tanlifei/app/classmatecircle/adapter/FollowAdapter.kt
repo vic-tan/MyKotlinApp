@@ -10,7 +10,7 @@ import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.ItemFollowBinding
 
 /**
- * @desc:
+ * @desc:关注适配器
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
@@ -22,12 +22,12 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
 
 
     override fun convert(holder: BaseVBViewHolder<ItemFollowBinding>, item: ClassmateCircleBean) {
-        holder.vb.name.text = item.nickName
-        holder.vb.school.text =
+        holder.binding.name.text = item.nickName
+        holder.binding.school.text =
             if (ObjectUtils.isNotEmpty(item.createtimeStr)) item.universityName else "${item.createtimeStr}  ${item.universityName}"
         Glide.with(context)
-            .load(item.avatar).into(holder.vb.userHead)
+            .load(item.avatar).into(holder.binding.userHead)
         Glide.with(context)
-            .load(item.image?.url).into(holder.vb.banner)
+            .load(item.image?.url).into(holder.binding.banner)
     }
 }

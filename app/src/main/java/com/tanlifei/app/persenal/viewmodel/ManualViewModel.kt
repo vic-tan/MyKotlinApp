@@ -14,7 +14,7 @@ class ManualViewModel() : BaseListViewModel() {
 
     override fun requestList(dataChangedType: DataChagedType) {
         launchByLoading({
-            addList(repository.requestFriendsEntertainmentList(pageNum), dataChangedType)
+            addList(repository.requestManualList(pageNum), dataChangedType)
         }, {
             onError(dataChangedType,it)
         })
