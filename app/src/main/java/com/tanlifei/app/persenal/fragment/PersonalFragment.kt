@@ -1,25 +1,31 @@
 package com.tanlifei.app.persenal.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.blankj.utilcode.util.AppUtils
+import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.GlideUtils
+import com.common.utils.ViewUtils
 import com.tanlifei.app.R
+import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.FragmentPersonalBinding
 import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.persenal.activity.SettingActivity
-import jp.wasabeef.glide.transformations.BlurTransformation
+
 
 /**
  * @desc:我的
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>() {
+class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>(), View.OnClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -33,9 +39,11 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>() {
     }
 
     override fun onFirstVisibleToUser() {
-        binding.setting.setOnClickListener {
-            SettingActivity.actionStart()
-        }
+        ViewUtils.setOnClickListener(
+            this, binding.setting,
+            binding.recruitingLecturers,
+            binding.score
+        )
         initViewModel()
         initViewModelObserve()
     }
@@ -70,6 +78,37 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>() {
             )
             GlideUtils.loadAvatar(this.context, it.avatar, binding.userCover)
         })
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            binding.setting -> SettingActivity.actionStart()
+            binding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)
+            binding.score -> launchAppDetail("")
+        }
+    }
+
+    /**
+     * 启动到应用商店app详情界面
+     * 某些应用商店可能会失败
+     */
+    private fun launchAppDetail() {
+        try {
+            val uri: Uri = Uri.parse("market://details?id=com.onlineaginguniversity")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
+    /**
+     * webView查看协议
+     */
+    private fun gotoWeb(title: String?, url: String) {
+        BaseWebViewActivity.actionStart(title, url)
     }
 
 }

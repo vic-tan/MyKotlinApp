@@ -118,7 +118,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
             }
         }
         binding.changeEnvironment.setOnClickListener {
-            EnvironmentSwitchActivity.actionStart(this)
+            EnvironmentSwitchActivity.actionStart()
         }
 
         //是否连续点击显示切换环境
@@ -209,7 +209,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * webView查看协议
      */
     private fun gotoWeb(title: String, url: String) {
-        BaseWebViewActivity.actionStart(this, title, url)
+        BaseWebViewActivity.actionStart(title, url)
     }
 
     /**

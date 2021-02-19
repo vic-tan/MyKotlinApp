@@ -24,8 +24,8 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
     companion object {
         private const val EXTRAS_URL = "extras_url"
         private const val EXTRAS_TITLE = "extras_title"
-        fun actionStart(context: Context, title: String?, url: String) {
-            var intent = Intent(context, BaseWebViewActivity::class.java).apply {
+        fun actionStart(title: String?, url: String) {
+            var intent = Intent(ActivityUtils.getTopActivity(), BaseWebViewActivity::class.java).apply {
                 putExtra(EXTRAS_URL, url)
                 putExtra(EXTRAS_TITLE, title)
             }

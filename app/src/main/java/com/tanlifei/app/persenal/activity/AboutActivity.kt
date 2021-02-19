@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
+import com.common.utils.ViewUtils
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
 import com.tanlifei.app.persenal.viewmodel.AboutViewModel
@@ -30,13 +31,16 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
 
     override fun init() {
         binding.versionName.text = "当前版本V${AppUtils.getAppVersionName()}"
-        binding.schoolLeaders.setOnClickListener(this)
-        binding.userAgreement.setOnClickListener(this)
-        binding.privateAgreement.setOnClickListener(this)
-        binding.privacyRights.setOnClickListener(this)
-        binding.rechargeAgreement.setOnClickListener(this)
-        binding.lecturerAgreement.setOnClickListener(this)
         binding.logo.setImageResource(EnvironmentUtils.appLogo())
+        ViewUtils.setOnClickListener(
+            this,
+            binding.schoolLeaders,
+            binding.userAgreement,
+            binding.privateAgreement,
+            binding.privacyRights,
+            binding.rechargeAgreement,
+            binding.lecturerAgreement
+        )
     }
 
 
@@ -44,7 +48,7 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
      * webView查看协议
      */
     private fun gotoWeb(title: String?, url: String) {
-        BaseWebViewActivity.actionStart(this, title, url)
+        BaseWebViewActivity.actionStart(title, url)
     }
 
     override fun onClick(v: View) {
@@ -84,8 +88,6 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
         }
         url?.let { gotoWeb(title, it) }
     }
-
-
 
 
 }

@@ -27,6 +27,9 @@ object ApiConst {
     /* 讲师入驻协议 */
     val URL_LECTURER_AGREEMENT = "${ApiEnvironmentConst.URL_BASE_HELPER}/lecturer/agreement"
 
+    /* 讲师入驻入口 */
+    val URL_LECTURER_ASKFOR = "${ApiEnvironmentConst.URL_BASE_HELPER}/rank/rankrule"
+
     /* 发送短信验证码 */
     const val URL_SEND_SMS = "auth/sendsms"
 

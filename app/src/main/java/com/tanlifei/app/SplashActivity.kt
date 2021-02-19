@@ -89,8 +89,7 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
     private fun initListener() {
         binding.adsImg.setOnClickListener {
             viewModel.adsBean?.url?.let { it1 ->
-                BaseWebViewActivity.actionStart(
-                    this, viewModel.adsBean!!.name,
+                BaseWebViewActivity.actionStart(viewModel.adsBean!!.name,
                     it1
                 )
             }

@@ -25,16 +25,16 @@ class EnvironmentSwitchActivity :
 
     companion object {
         private const val EXTRAS_DATA = "extras_data"
-        private fun actionStart(activity: Activity, list: MutableList<ModuleBean>) {
+        private fun actionStart(list: MutableList<ModuleBean>) {
             val mapStr = Gson().toJson(list)
-            var intent = Intent(activity, EnvironmentSwitchActivity::class.java).apply {
+            var intent = Intent(ActivityUtils.getTopActivity(), EnvironmentSwitchActivity::class.java).apply {
                 putExtra(EXTRAS_DATA, mapStr)
             }
             ActivityUtils.startActivity(intent)
         }
 
-        fun actionStart(activity: Activity) {
-            actionStart(activity, EnvironmentUtils.initEnvironmentSwitcher())
+        fun actionStart() {
+            actionStart( EnvironmentUtils.initEnvironmentSwitcher())
         }
     }
 
