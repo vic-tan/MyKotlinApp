@@ -3,6 +3,10 @@ package com.common.core.base.viewmodel
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
+import com.example.httpsender.kt.errorCode
+import com.example.httpsender.kt.errorMsg
+import com.example.httpsender.kt.show
+import com.hjq.toast.ToastUtils
 
 /**
  * @desc:ViewModel基类
@@ -26,7 +30,14 @@ open class BaseViewModel : ViewModel() {
     /**
      * 加载框请求不需要处理异常，直接提示异常
      */
-    protected fun launchByLoading(block: suspend () -> Unit) = launchByLoading(block, null)
+    protected fun launchByLoading(block: suspend () -> Unit) = launchByLoading(block, {
+        _isLoading.value = false
+        it.show(it.errorCode,it.errorMsg)
+    })
+
+
+
+
 
     /**
      * 加载框请求，需要自己处理异常，不提示异常

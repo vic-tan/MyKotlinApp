@@ -73,9 +73,6 @@
             android:name="com.tanlifei.app.main.ui.GuideActivity"
             android:label="引导页" />
         <activity
-            android:name="com.tanlifei.app.main.ui.AdsActivity"
-            android:label="广告页" />
-        <activity
             android:name="com.tanlifei.app.home.ui.activity.HomeActivity"
             android:label="首页" />
         <activity
@@ -92,6 +89,9 @@
             android:label="关于网上老年大学" />
         <activity
             android:name=".persenal.activity.ManualActivity"
+            android:label="操作手册" />
+        <activity
+            android:name=".persenal.activity.ManualDetailActivity"
             android:label="操作手册" />
 
         <!--—————————————————————————————————————————————————— 今日头条全适配 —————————————————————————————————————————-->

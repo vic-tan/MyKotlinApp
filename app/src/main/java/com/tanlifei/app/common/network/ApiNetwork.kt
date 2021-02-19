@@ -54,6 +54,13 @@ class ApiNetwork {
         .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
         .toResponse<List<ManualBean>>().await()
 
+    /**
+     * 操作手册列表
+     */
+    suspend fun requestManualDetail(manualId:Long) = RxHttp.postJson(ApiConst.URL_MANUAL_DETAIL)
+        .add("manualId",manualId)
+        .toResponse<ManualBean>().await()
+
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
 
     /**

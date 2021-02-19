@@ -120,12 +120,12 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
             binding.login -> {
                 if (checkFormInfo(
                         LoginUtils.getPhone(binding.phone.text.toString()),
-                        binding.code.toString()
+                        binding.code.text.toString()
                     )
                 ) {
                     viewModel.requestLogin(
                         LoginUtils.getPhone(binding.phone.text.toString()),
-                        binding.code.toString()
+                        binding.code.text.toString()
                     )
                 }
             }

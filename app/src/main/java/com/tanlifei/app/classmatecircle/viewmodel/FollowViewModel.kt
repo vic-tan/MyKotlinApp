@@ -15,8 +15,6 @@ class FollowViewModel() : BaseListViewModel() {
     override fun requestList(dataChangedType: DataChagedType) {
         launchByLoading({
             addList(repository.requestFriendsEntertainmentList(pageNum), dataChangedType)
-        }, {
-            onError(dataChangedType,it)
-        })
+        },dataChangedType)
     }
 }

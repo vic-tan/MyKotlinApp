@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.cofing.constant.GlobalConst
 import com.example.httpsender.kt.errorCode
+import com.example.httpsender.kt.errorMsg
+import com.example.httpsender.kt.show
 
 /**
  * @desc:列表加载
@@ -27,6 +29,15 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         NOTMOREDATA,//没有一下页数据
         ERROR,//报错界面
     }
+
+    /**
+     * 列表加载显示处理异常
+     */
+    protected fun launchByLoading(block: suspend () -> Unit, dataChangedType: DataChagedType) =
+        launchByLoading(block, {
+            _isLoading.value = false
+            onError(dataChangedType, it)
+        })
 
 
     /**
@@ -94,6 +105,8 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
             //下拉刷新时才显示错误界面，上拉不处理
             if (dataChangedType == DataChagedType.REFRESH) {
                 showErrorUI()
+            } else {
+                it.show(it.errorCode, it.errorMsg)
             }
         }
     }

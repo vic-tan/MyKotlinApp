@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
+import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter
 import com.common.core.environment.bean.ModuleBean
@@ -23,11 +24,10 @@ class EnvironmentSwitchActivity :
     internal lateinit var adapter: EnvironmentAdapter
 
     companion object {
-        private const val EXTRAS_DATA = "extras_data"
         private fun actionStart(list: MutableList<ModuleBean>) {
             val mapStr = Gson().toJson(list)
             var intent = Intent(ActivityUtils.getTopActivity(), EnvironmentSwitchActivity::class.java).apply {
-                putExtra(EXTRAS_DATA, mapStr)
+                putExtra(GlobalConst.Extras.JSON, mapStr)
             }
             ActivityUtils.startActivity(intent)
         }
@@ -42,7 +42,7 @@ class EnvironmentSwitchActivity :
     }
 
     override fun init() {
-        val mapJsonStr: String = intent.getStringExtra(EXTRAS_DATA)
+        val mapJsonStr: String = intent.getStringExtra(GlobalConst.Extras.JSON)
         viewModel.initListData(mapJsonStr)
         initRecyclerView()
         viewModel.dataChanged.observe(this, Observer {
