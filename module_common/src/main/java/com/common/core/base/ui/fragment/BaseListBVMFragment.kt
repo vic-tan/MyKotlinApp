@@ -23,9 +23,9 @@ abstract class BaseListBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
     BaseLazyFragment<T>() {
     protected lateinit var viewModel: VM
         private set
-    protected lateinit var smartRefreshLayout: SmartRefreshLayout
-    protected lateinit var refreshLoadingLayout: LoadingLayout
-    protected lateinit var refreshRecycler: RecyclerView
+    lateinit var smartRefreshLayout: SmartRefreshLayout
+    lateinit var refreshLoadingLayout: LoadingLayout
+    lateinit var refreshRecycler: RecyclerView
 
     protected abstract fun createViewModel(): VM
 
@@ -49,10 +49,16 @@ abstract class BaseListBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
         viewModel.application = requireActivity().application
     }
 
+    /**
+     * 懒加载第一次显示加载
+     */
     override fun onFirstVisibleToUser() {
         init()
     }
 
+    /**
+     * 初始化
+     */
     protected fun init() {
         initViewModelObserve()
         initListener()
@@ -60,6 +66,9 @@ abstract class BaseListBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
         initData()
     }
 
+    /**
+     * 初始化列表控件
+     */
     protected fun initListView(
         smartRefreshLayout: SmartRefreshLayout,
         refreshLoadingLayout: LoadingLayout,
@@ -112,20 +121,32 @@ abstract class BaseListBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
         smartRefreshLayout.setEnableLoadMore(false)
     }
 
+    /**
+     * 初化第一次请求数据
+     */
     private fun initData() {
         viewModel.refresh()
     }
 
+    /**
+     * 初始化Recycler
+     */
     private fun initRecyclerView() {
         refreshRecycler.layoutManager = setLinearLayoutManager()
         refreshRecycler.adapter = setAdapter()
     }
 
 
+    /**
+     * 设置 RecyclerView LayoutManager
+     */
     protected fun setLinearLayoutManager(): RecyclerView.LayoutManager {
         return LinearLayoutManager(activity)
     }
 
+    /**
+     * 子类设置Adapter
+     */
     protected abstract fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 }
