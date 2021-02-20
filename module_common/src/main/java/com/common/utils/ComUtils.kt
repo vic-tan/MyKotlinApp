@@ -15,7 +15,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/1/28 17:33
  */
-object AppUtils {
+object ComUtils {
     private var isExit = false
 
     /**

@@ -17,7 +17,7 @@ import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
-import com.common.utils.AppUtils
+import com.common.utils.ComUtils
 import com.common.utils.ResUtils
 import com.common.utils.ViewUtils
 import com.common.widget.TextInputHelper
@@ -254,7 +254,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     }
 
     override fun onBackPressed() {
-        AppUtils.exitApp()
+        ComUtils.exitApp()
     }
 
     override fun onDestroy() {

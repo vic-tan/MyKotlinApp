@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.navigator.NavigatorView
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.viewmodel.BaseViewModel
-import com.common.utils.AppUtils
+import com.common.utils.ComUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
@@ -84,7 +84,7 @@ open class HomeActivity : BaseBVMActivity<ActivityHomeBinding, HomeViewModel>(),
 
 
     override fun onBackPressed() {
-        AppUtils.exitApp()
+        ComUtils.exitApp()
     }
 
 

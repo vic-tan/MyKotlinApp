@@ -86,9 +86,9 @@ object ApiNetwork {
      * 获取用户资料
      */
     suspend fun requestVersion() = RxHttp.postJson(ApiConst.URL_VERSION)
-        .add("systemType", "1")
-        .add("appId", AppUtils.getAppPackageName())
-        .add("clientVersion", AppUtils.getAppVersionCode())
+        .add("systemType", 1)
+        .add("appId", "com.onlineaginguniversity")
+        .add("clientVersion", AppUtils.getAppVersionName())
         .toResponse<UpdateAppBean>().await()
 
 }
