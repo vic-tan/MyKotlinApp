@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.customspan.CustomClickableSpan
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
@@ -15,6 +16,7 @@ import com.blankj.utilcode.util.RegexUtils
 import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
+import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.ComUtils
@@ -30,6 +32,7 @@ import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.utils.LoginUtils
 import com.tanlifei.app.main.viewmodel.LoginViewModel
+import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
 
 
 /**
@@ -61,6 +64,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         initData()
     }
 
+
     private fun initData() {
         binding.logo.setImageResource(EnvironmentUtils.appLogo())
     }
@@ -91,6 +95,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         viewModel.isContinuousClick.observe(this, Observer {
             binding.changeEnvironment.visibility = if (it) View.VISIBLE else View.GONE
         })
+
     }
 
     /**

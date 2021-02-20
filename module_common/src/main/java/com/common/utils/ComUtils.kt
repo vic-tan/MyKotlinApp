@@ -13,6 +13,7 @@ import com.common.core.bean.UpdateAppBean
 import com.common.core.environment.utils.EnvironmentChangeManager
 import com.hjq.toast.ToastUtils
 import constant.UiType
+import listener.OnBtnClickListener
 import listener.OnInitUiListener
 import model.UiConfig
 import model.UpdateConfig
@@ -73,6 +74,7 @@ object ComUtils {
         // 更新配置
         val updateConfig = UpdateConfig().apply {
             force = updateAppBean.updateInstall == 1
+            showDownloadingToast = false
             notifyImgRes = R.mipmap.ic_launcher
             apkSaveName = "update_app_${updateAppBean.updateVersion}_${System.currentTimeMillis()}"
         }
@@ -89,10 +91,17 @@ object ComUtils {
                     updateConfig: UpdateConfig,
                     uiConfig: UiConfig
                 ) {
-                    view?.findViewById<TextView>(R.id.tv_version_name)?.text = "V${updateAppBean.clientVersion}"
+                    view?.findViewById<TextView>(R.id.tv_version_name)?.text =
+                        "V${updateAppBean.clientVersion}"
                 }
             })
-
+            // 设置 立即更新 按钮点击事件
+            .setUpdateBtnClickListener(object : OnBtnClickListener {
+                override fun onClick(): Boolean {
+                    ToastUtils.show("正在下载中...")
+                    return false // 事件是否消费，是否需要传递下去。false-会执行原有点击逻辑，true-只执行本次设置的点击逻辑
+                }
+            })
             .update()
     }
 
