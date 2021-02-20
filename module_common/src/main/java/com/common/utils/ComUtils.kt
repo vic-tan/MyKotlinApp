@@ -70,6 +70,9 @@ object ComUtils {
         return channelIdStr
     }
 
+    /**
+     * 应用升级显示
+     */
     fun udpateApp(updateAppBean: UpdateAppBean) {
         // 更新配置
         val updateConfig = UpdateConfig().apply {

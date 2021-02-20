@@ -18,26 +18,31 @@ import org.litepal.LitePal
 class EnvironmentSwitchViewModel : BaseListViewModel() {
 
     var environmentList: MutableList<EnvironmentBean> = ArrayList()
+    private var isUpdate: Boolean = false//内容是否修改过
 
-    fun itemClickListener(position: Int) {
-        setSelect(environmentList[position].group, position)
-        var environment: EnvironmentBean = environmentList[position]
-        LitePal.delete(EnvironmentBean::class.java, environment.group)
+    /**
+     * 保存选中的到数据库
+     */
+    private fun saveDB(
+        environment: EnvironmentBean
+    ) {
         LitePal.deleteAll(
             EnvironmentBean::class.java,
             "${EnvironmentBean.DB_GROUP} = ? ",
-            "${EnvironmentBean.GROUP_API}"
+            "${environment.group}"
         )
         environment.save()
         EnvironmentUtils.onEnvironmentChanged(environment)
         EventBus.getDefault().post(
             EnvironmentEvent(
-                environmentList[position]
+                environment
             )
         )
     }
 
-    private fun setSelect(group: Long, pos: Int) {
+    fun setSelect(pos: Int) {
+        isUpdate = true
+        val group: Long = environmentList[pos].group
         for (lst in environmentList) {
             if (lst.group == group && lst.defaultCheck) {
                 lst.defaultCheck = false
@@ -46,6 +51,18 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
         environmentList[pos].defaultCheck = true
         notifyDataSetChanged(DataChagedType.NOTIFY)
     }
+
+
+    fun saveAllSelect() {
+        if (!isUpdate)
+            return
+        for (lst in environmentList) {
+            if (lst.defaultCheck) {
+                saveDB(lst)
+            }
+        }
+    }
+
 
     /**
      * 设置默认选择
