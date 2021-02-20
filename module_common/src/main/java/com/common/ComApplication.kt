@@ -14,6 +14,7 @@ import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.bugly.crashreport.CrashReport
 import org.litepal.LitePal
+import update.UpdateAppUtils
 
 
 /**
@@ -56,6 +57,7 @@ open class ComApplication : Application() {
         context = this
         ToastUtils.init(this)
         CrashReport.initCrashReport(this)
+        UpdateAppUtils.init(this)//app升级
         LitePal.initialize(context)
         handler = Handler(Looper.getMainLooper())
         registerActivityLifecycleCallbacks(StatisticActivityLifecycleCallback())

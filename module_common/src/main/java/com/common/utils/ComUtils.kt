@@ -3,11 +3,20 @@ package com.common.utils
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.text.TextUtils
+import android.view.View
+import android.widget.TextView
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
+import com.common.core.bean.UpdateAppBean
 import com.common.core.environment.utils.EnvironmentChangeManager
 import com.hjq.toast.ToastUtils
+import constant.UiType
+import listener.OnInitUiListener
+import model.UiConfig
+import model.UpdateConfig
+import update.UpdateAppUtils
 import java.util.*
 
 /**
@@ -58,6 +67,33 @@ object ComUtils {
             e.printStackTrace()
         }
         return channelIdStr
+    }
+
+    fun udpateApp(updateAppBean: UpdateAppBean) {
+        // 更新配置
+        val updateConfig = UpdateConfig().apply {
+            force = updateAppBean.updateInstall == 1
+            notifyImgRes = R.mipmap.ic_launcher
+            apkSaveName = "update_app_${updateAppBean.updateVersion}_${System.currentTimeMillis()}"
+        }
+        UpdateAppUtils
+            .getInstance()
+            .apkUrl(updateAppBean.downloadUrl)
+            .updateTitle("版本更新啦")
+            .updateConfig(updateConfig)
+            .updateContent(updateAppBean.updateLog)
+            .uiConfig(UiConfig(uiType = UiType.CUSTOM, customLayoutId = R.layout.update_app_dialog))
+            .setOnInitUiListener(object : OnInitUiListener {
+                override fun onInitUpdateUi(
+                    view: View?,
+                    updateConfig: UpdateConfig,
+                    uiConfig: UiConfig
+                ) {
+                    view?.findViewById<TextView>(R.id.tv_version_name)?.text = "V${updateAppBean.clientVersion}"
+                }
+            })
+
+            .update()
     }
 
 }

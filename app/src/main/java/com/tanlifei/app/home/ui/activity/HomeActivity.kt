@@ -1,6 +1,7 @@
 package com.tanlifei.app.home.ui.activity
 
 
+import android.graphics.Color
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -9,9 +10,15 @@ import com.common.core.base.navigator.NavigatorView
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.ComUtils
+import com.common.utils.ResUtils
+import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
+import constant.UiType
+import model.UiConfig
+import model.UpdateConfig
+import update.UpdateAppUtils
 
 
 /**
@@ -65,6 +72,10 @@ open class HomeActivity : BaseBVMActivity<ActivityHomeBinding, HomeViewModel>(),
     private fun initViewModelObserve() {
         viewModel.currTabPosition.observe(this, Observer {
             binding.navigatorTab.select(it)
+        })
+
+        updateAppViewModel.updateApp.observe(this, Observer {
+            ComUtils.udpateApp(it)
         })
     }
 
