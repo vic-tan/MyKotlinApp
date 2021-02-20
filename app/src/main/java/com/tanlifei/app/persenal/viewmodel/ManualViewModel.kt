@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.tanlifei.app.persenal.bean.ManualBean
 import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.persenal.bean.ManualBean
 
 /**
  * @desc:
@@ -14,7 +14,6 @@ import com.tanlifei.app.common.network.ApiNetwork
  */
 class ManualViewModel() : BaseListViewModel() {
 
-    private val repository: ApiNetwork = ApiNetwork.getInstance()
 
     /**
      * 详情
@@ -24,13 +23,13 @@ class ManualViewModel() : BaseListViewModel() {
 
     override fun requestList(dataChangedType: DataChagedType) {
         launchByLoading({
-            addList(repository.requestManualList(pageNum), dataChangedType)
+            addList(ApiNetwork.requestManualList(pageNum), dataChangedType)
         }, dataChangedType)
     }
 
     fun requestManualDetail(manualId: Long) {
         launchByLoading {
-            var manualBean = repository.requestManualDetail(manualId)
+            var manualBean = ApiNetwork.requestManualDetail(manualId)
             if (ObjectUtils.isNotEmpty(manualBean)) {
                 _bean.value = manualBean
             }

@@ -34,7 +34,6 @@ import java.util.concurrent.TimeUnit
         ADS//广告界面（启动界面完成）
     }
 
-    private val repository: ApiNetwork = ApiNetwork.getInstance()
 
     /**
      * 3s结束倒计时LveData
@@ -56,7 +55,7 @@ import java.util.concurrent.TimeUnit
      * 请求短信码
      */
     fun requestAds() = launchBySilence({
-        adsBean = repository.requestAds()
+        adsBean = ApiNetwork.requestAds()
         if (ObjectUtils.isNotEmpty(adsBean)) {
             LitePal.deleteAll(AdsBean::class.java)
             adsBean!!.save()

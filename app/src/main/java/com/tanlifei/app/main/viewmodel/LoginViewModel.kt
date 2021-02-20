@@ -22,8 +22,6 @@ class LoginViewModel() : BaseViewModel() {
 
     /* 永远暴露不可变LiveData给外部，防止外部可以修改LoginViewModel，保证LoginViewModel独立性 */
 
-    private val repository: ApiNetwork = ApiNetwork.getInstance()
-
     /**
      * 登录成功获取到token 的LveData
      */
@@ -79,7 +77,7 @@ class LoginViewModel() : BaseViewModel() {
      * 请求短信码
      */
     fun requestSmsCode(phone: String) = launchByLoading {
-        repository.requestSmsCode(phone)
+        ApiNetwork.requestSmsCode(phone)
         startInterval()
     }
 
@@ -87,7 +85,7 @@ class LoginViewModel() : BaseViewModel() {
      * 请求登录
      */
     fun requestLogin(phone: String, code: String) = launchByLoading {
-        token = repository.requestLogin(phone, code)
+        token = ApiNetwork.requestLogin(phone, code)
         _isToken.value = ObjectUtils.isNotEmpty(token)
     }
 
@@ -95,7 +93,7 @@ class LoginViewModel() : BaseViewModel() {
      * 退出登录
      */
     fun requestLogin() = launchByLoading {
-        token = repository.requestLoginOut()
+        token = ApiNetwork.requestLoginOut()
         _isToken.value = false
     }
 

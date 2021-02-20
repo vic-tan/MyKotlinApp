@@ -28,8 +28,6 @@ import java.util.*
  */
 class HomeViewModel() : BaseViewModel() {
 
-    private val repository: ApiNetwork = ApiNetwork.getInstance()
-
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mNavigator: NavigatorFragmentManager
 
@@ -70,16 +68,13 @@ class HomeViewModel() : BaseViewModel() {
         mNavigator.showFragment(position) //显示点击Fargment
     }
 
-     fun requestVersion() = launchBySilence({
-       val updateAppBean = repository.requestVersion()
-     })
 
 
     /**
      * 请求用户信息
      */
     fun requestUser() = launchBySilence({
-        userBean = repository.requestUserInfo()
+        userBean = ApiNetwork.requestUserInfo()
         if (ObjectUtils.isNotEmpty(userBean)) {
             userBean!!.token = ComApplication.token.toString()
             LitePal.deleteAll(UserBean::class.java)

@@ -5,10 +5,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.GlideUtils
 import com.common.utils.ViewUtils
 import com.tanlifei.app.R
@@ -61,7 +59,7 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>(), View.OnCli
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        homeViewModel = (activity as HomeActivity).homeViewModel
+        homeViewModel = (activity as HomeActivity).viewModel
         homeViewModel.getUser()
     }
 

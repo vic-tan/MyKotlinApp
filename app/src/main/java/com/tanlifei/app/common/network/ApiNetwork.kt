@@ -4,10 +4,10 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.bean.UpdateAppBean
-import com.tanlifei.app.persenal.bean.ManualBean
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
+import com.tanlifei.app.persenal.bean.ManualBean
 import rxhttp.RxHttp
 import rxhttp.toResponse
 
@@ -16,7 +16,7 @@ import rxhttp.toResponse
  * @author: tanlifei
  * @date: 2021/2/7 16:17
  */
-class ApiNetwork {
+object ApiNetwork {
 
     /**—————————————————————————————————————————————————— 我的相关  ——————————————————————————————————————————————*/
 
@@ -91,19 +91,4 @@ class ApiNetwork {
         .add("clientVersion", AppUtils.getAppVersionCode())
         .toResponse<UpdateAppBean>().await()
 
-
-    companion object {
-        private var network: ApiNetwork? = null
-        fun getInstance(): ApiNetwork {
-            if (network == null) {
-                synchronized(ApiNetwork::class.java) {
-                    if (network == null) {
-                        network = ApiNetwork()
-                    }
-                }
-            }
-            return network!!
-        }
-
-    }
 }

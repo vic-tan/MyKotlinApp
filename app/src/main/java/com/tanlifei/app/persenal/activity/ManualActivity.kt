@@ -5,8 +5,8 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
 import com.tanlifei.app.R
-import com.tanlifei.app.persenal.bean.ManualBean
 import com.tanlifei.app.persenal.adapter.ManualAdapter
+import com.tanlifei.app.persenal.bean.ManualBean
 import com.tanlifei.app.persenal.viewmodel.ManualViewModel
 
 

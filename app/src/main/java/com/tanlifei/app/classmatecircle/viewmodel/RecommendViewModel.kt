@@ -10,11 +10,10 @@ import com.tanlifei.app.common.network.ApiNetwork
  */
 class RecommendViewModel() : BaseListViewModel() {
 
-    private val repository: ApiNetwork = ApiNetwork.getInstance()
 
     override fun requestList(dataChangedType: DataChagedType) {
         launchByLoading({
-            addList(repository.requestFriendsEntertainmentList(pageNum), dataChangedType)
+            addList(ApiNetwork.requestFriendsEntertainmentList(pageNum), dataChangedType)
         },dataChangedType)
     }
 }

@@ -19,13 +19,12 @@ class SettingViewModel() : BaseViewModel() {
     val isToken: LiveData<Boolean> get() = _isToken
     private val _isToken = MutableLiveData<Boolean>()
 
-    private val repository: ApiNetwork = ApiNetwork.getInstance()
 
     /**
      * 退出登录
      */
     fun requestLogin() = launchByLoading {
-        repository.requestLoginOut()
+        ApiNetwork.requestLoginOut()
         _isToken.value = false
     }
 

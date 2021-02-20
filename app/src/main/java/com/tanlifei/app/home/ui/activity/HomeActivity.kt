@@ -6,11 +6,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.navigator.NavigatorView
-import com.common.core.base.ui.activity.BaseActivity
+import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.AppUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.viewmodel.HomeViewModel
+import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
 
 
 /**
@@ -18,14 +19,19 @@ import com.tanlifei.app.home.viewmodel.HomeViewModel
  * @author: tanlifei
  * @date: 2021/1/23 16:07
  */
-open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.NavigatorListener {
+open class HomeActivity : BaseBVMActivity<ActivityHomeBinding, HomeViewModel>(),
+    NavigatorView.NavigatorListener {
 
-    public lateinit var homeViewModel: HomeViewModel
+    lateinit var updateAppViewModel: UpdateAppViewModel
 
     companion object {
         fun actionStart() {
             ActivityUtils.startActivity(HomeActivity::class.java)
         }
+    }
+
+    override fun createViewModel(): HomeViewModel {
+        return HomeViewModel()
     }
 
 
@@ -41,23 +47,23 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        homeViewModel = ViewModelProvider(
+        updateAppViewModel = ViewModelProvider(
             this,
-            BaseViewModel.createViewModelFactory(HomeViewModel())
+            BaseViewModel.createViewModelFactory(UpdateAppViewModel())
         ).get(
-            HomeViewModel::class.java
+            UpdateAppViewModel::class.java
         )
-        homeViewModel.bindFragments()
-        homeViewModel.initNavigator(supportFragmentManager)
-        homeViewModel.requestUser()
-        homeViewModel.requestVersion()
+        viewModel.bindFragments()
+        viewModel.initNavigator(supportFragmentManager)
+        viewModel.requestUser()
+        updateAppViewModel.requestVersion()
     }
 
     /**
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        homeViewModel.currTabPosition.observe(this, Observer {
+        viewModel.currTabPosition.observe(this, Observer {
             binding.navigatorTab.select(it)
         })
     }
@@ -73,12 +79,13 @@ open class HomeActivity : BaseActivity<ActivityHomeBinding>(), NavigatorView.Nav
 
 
     override fun onNavigatorItemClick(position: Int, view: View?) {
-        homeViewModel.showFragment(position)
+        viewModel.showFragment(position)
     }
 
 
     override fun onBackPressed() {
         AppUtils.exitApp()
     }
+
 
 }
