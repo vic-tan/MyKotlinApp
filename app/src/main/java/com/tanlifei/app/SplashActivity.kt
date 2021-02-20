@@ -15,6 +15,7 @@ import com.tanlifei.app.main.ui.GuideActivity
 import com.tanlifei.app.main.ui.LoginAtivity
 import com.tanlifei.app.main.viewmodel.SplashViewModel
 import com.tanlifei.app.main.viewmodel.SplashViewModel.JumpType.*
+import com.taobao.sophix.SophixManager
 
 /**
  * @desc: 启动界面 这个类要放到包名下，因为更换icon时不放在包目录下面无法更换
@@ -33,6 +34,12 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
         initViewModel()
         initViewModelObserve()
         initListener()
+        initSophixManager()
+    }
+
+    private fun initSophixManager() {
+        // queryAndLoadNewPatch不可放在attachBaseContext 中，否则无网络权限，建议放在后面任意时刻，如onCreate中
+        SophixManager.getInstance().queryAndLoadNewPatch()
     }
 
     /**

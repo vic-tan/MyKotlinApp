@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.navigator.NavigatorView
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.viewmodel.BaseViewModel
+import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
 import com.tanlifei.app.databinding.ActivityHomeBinding
 import com.tanlifei.app.home.viewmodel.HomeViewModel
@@ -36,11 +37,11 @@ open class HomeActivity : BaseBVMActivity<ActivityHomeBinding, HomeViewModel>(),
 
 
     override fun init() {
+        RxHttpManager.addToken()
         initViewModel()
         initViewModelObserve()
         initListener()
         binding.navigatorTab.getMsgBadge().visibility = View.VISIBLE
-
     }
 
     /**

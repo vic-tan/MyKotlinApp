@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author: tanlifei
  * @date: 2021/2/1 10:35
  */
-class RxHttpManager {
+object RxHttpManager {
     fun init(context: Application) {
         val client: OkHttpClient = OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -30,6 +30,12 @@ class RxHttpManager {
                 .addHeader("Authorization", "Bearer " + ComApplication.token)
                 .addHeader("channel_code", "" + ComUtils.getDefaultChannel(context))
                 .addHeader("deviceType", "android") //添加公共请求头
+        }
+    }
+
+    fun addToken() {
+        RxHttp.setOnParamAssembly { p: Param<*>? ->
+            p!!.addHeader("Authorization", "Bearer " + ComApplication.token)
         }
     }
 }

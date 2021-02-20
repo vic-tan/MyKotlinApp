@@ -33,7 +33,6 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
     }
 
 
-
     private fun initData() {
         adapter = ManualAdapter(viewModel.mData as MutableList<ManualBean>)
         initRefreshView(
@@ -51,6 +50,5 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
     override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
-
 
 }

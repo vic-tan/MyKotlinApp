@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.common">
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
@@ -18,5 +19,18 @@
         <activity
             android:name="com.common.core.environment.EnvironmentSwitchActivity"
             android:label="切换环境" />
+        <!--—————————————————————————————————————————————————— Sophix 热修复配置 —————————————————————————————————————————-->
+
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="333379611" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="13fb85715a1c444d854e52ab8b93bea8" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCcw7Qpfp6UmhgNp3QZj7YU4nGETs5cJopL9F8Pq+Rpm8MS7OjuXwXSGntRGUa/d8WdLFXFn646FymQD1kEh6DGjYECvxxJKTZLPIdiqOkujg1Z/RUR07PSHxRCP6abAEYOIwNe4t9Gx/zv1VSY7OiYscdgS7soqNRf7dToEnRUawIDAQAB" />
+
     </application>
 </manifest>

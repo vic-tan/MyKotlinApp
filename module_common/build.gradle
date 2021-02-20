@@ -189,6 +189,9 @@ dependencies {
     //捕捉错误日志用
     api 'com.tencent.bugly:crashreport:latest.release'
 
+    //Sophix 未开源，商业收费，实时生效/冷启动修复
+    api 'com.aliyun.ams:alicloud-android-hotfix:3.2.17'
+
     //<----------------------------  以上为基本第三方开源库 EDN ----------------------------------->
 
 }

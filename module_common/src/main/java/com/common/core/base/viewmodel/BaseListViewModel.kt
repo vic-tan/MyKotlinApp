@@ -105,9 +105,8 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
             //下拉刷新时才显示错误界面，上拉不处理
             if (dataChangedType == DataChagedType.REFRESH) {
                 showErrorUI()
-            } else {
-                it.show(it.errorCode, it.errorMsg)
             }
+            it.show(it.errorCode, it.errorMsg)
         }
     }
 
