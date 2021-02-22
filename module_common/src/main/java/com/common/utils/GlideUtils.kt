@@ -15,34 +15,41 @@ import jp.wasabeef.glide.transformations.BlurTransformation
  */
 class GlideUtils {
     companion object {
+
+
         /**
          * 默认glide，不做任何处理，glide 从字符串中加载图片（网络地址或者本地地址）
          *
          * @param resId
          * @return
          */
-        fun load(context: Context?, url: String?, view: ImageView) {
-            if (ObjectUtils.isNotEmpty(context)
-                && ObjectUtils.isNotEmpty(view)
-                && ObjectUtils.isNotEmpty(url)
-            ) {
-                Glide.with(context!!).load(url).into(view)
-            }
-        }
-
-        /**
-         * 加载头像,Glide 不做圆角，让控件做圆角
-         */
-        fun loadAvatar(context: Context?, url: String, view: ImageView) {
+        fun load(
+            context: Context?,
+            url: String?,
+            view: ImageView,
+            defaultId: Int = R.mipmap.default_img
+        ) {
             if (ObjectUtils.isNotEmpty(context)
                 && ObjectUtils.isNotEmpty(view)
                 && ObjectUtils.isNotEmpty(url)
             ) {
                 Glide.with(context!!)
                     .load(url)
-                    .apply(RequestOptions.placeholderOf(R.mipmap.default_avatar))
+                    .apply(RequestOptions.placeholderOf(defaultId))
                     .dontAnimate()
                     .into(view)
+            }
+        }
+
+        /**
+         * 加载头像,Glide 不做圆角，让控件做圆角
+         */
+        fun loadAvatar(context: Context?, url: String?, view: ImageView) {
+            if (ObjectUtils.isNotEmpty(context)
+                && ObjectUtils.isNotEmpty(view)
+                && ObjectUtils.isNotEmpty(url)
+            ) {
+                load(context, url, view, R.mipmap.default_avatar)
             }
         }
 

@@ -19,7 +19,6 @@ import java.util.*
  */
 class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewModel() {
 
-    var mTabTitleData: MutableList<String> = ArrayList()
     var mData: MutableList<CategoryBean> = ArrayList()
 
     /**
@@ -46,7 +45,6 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
     private fun addFragment() {
         if (ObjectUtils.isNotEmpty(mData)) {
             for (categoryBean in mData) {
-                mTabTitleData.add(categoryBean.name)
                 mFragments.add(RecommendFragment.newInstance(categoryBean.categoryId))
             }
         }
