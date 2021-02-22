@@ -19,9 +19,8 @@
         <activity
             android:name="com.common.core.environment.EnvironmentSwitchActivity"
             android:label="切换环境" />
+
         <!--—————————————————————————————————————————————————— Sophix 热修复配置 —————————————————————————————————————————-->
-
-
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="333379611" />

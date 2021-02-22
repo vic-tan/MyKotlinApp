@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.common.core.environment.utils.EnvironmentChangeManager
+import com.common.core.http.RxHttpManager
 import com.hjq.toast.ToastUtils
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
@@ -55,6 +56,7 @@ open class ComApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
+        RxHttpManager.init(this)
         ToastUtils.init(this)
         CrashReport.initCrashReport(this)
         UpdateAppUtils.init(this)//app升级

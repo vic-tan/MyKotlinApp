@@ -17,6 +17,7 @@ android {
         }
 
     }
+
     //必须，java 8或更高
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -73,6 +74,12 @@ android {
             } else if (variant.buildType.name == 'release') {
                 outputFileName = "${moduleName}_${defaultConfig.versionName}_${variant.flavorName}_release.apk"
             }
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
         }
     }
 
