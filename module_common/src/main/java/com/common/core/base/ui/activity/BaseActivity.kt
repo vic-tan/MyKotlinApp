@@ -12,12 +12,14 @@ import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.event.BaseEvent
+import com.common.core.base.viewmodel.BaseViewModel
 import com.common.databinding.ActivityBaseBinding
 import com.common.widget.CustomLoadingView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
+import com.permissionx.guolindev.PermissionX
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -30,7 +32,8 @@ import java.lang.reflect.ParameterizedType
  * 这是activity基类
  * open 表示该类可以被继承 ,kotlin中默认类是不可以被继承
  */
-open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observer<Boolean> {
+open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
+    Observer<BaseViewModel.LoadType> {
 
     protected lateinit var baseBinding: ActivityBaseBinding
     protected lateinit var binding: T
@@ -115,10 +118,12 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observe
     /**
      * 是否显示加载框
      */
-    open fun loadingView(isLoading: Boolean) {
+    open fun loadingView(loadingState: BaseViewModel.LoadType) {
         if (ObjectUtils.isNotEmpty(hud)) {
-            if (isLoading && hud.isDismiss) hud.show()
-            else if (!isLoading && hud.isShow) hud.dismiss()
+            when (loadingState) {
+                BaseViewModel.LoadType.LOADING -> if (hud.isDismiss) hud.show()
+                else -> if (hud.isShow) hud.dismiss()
+            }
         }
     }
 
@@ -182,6 +187,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observe
 
     }
 
+
     open fun initBefore() {
 
     }
@@ -204,7 +210,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), Observe
     /**
      * 加载框显示
      */
-    override fun onChanged(isLoading: Boolean) {
-        loadingView(isLoading)
+    override fun onChanged(loadingState: BaseViewModel.LoadType) {
+        loadingView(loadingState)
     }
 }

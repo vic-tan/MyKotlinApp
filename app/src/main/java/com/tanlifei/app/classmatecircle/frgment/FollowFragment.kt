@@ -20,9 +20,8 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
 
     companion object {
         fun newInstance(): FollowFragment {
+            val fragment = FollowFragment()
             val args = Bundle()
-            val fragment =
-                FollowFragment()
             fragment.arguments = args
             return fragment
         }

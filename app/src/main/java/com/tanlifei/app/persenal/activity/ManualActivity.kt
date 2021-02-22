@@ -1,9 +1,11 @@
 package com.tanlifei.app.persenal.activity
 
+import android.Manifest
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
+import com.common.utils.PermissionUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.persenal.adapter.ManualAdapter
 import com.tanlifei.app.persenal.bean.ManualBean
@@ -40,10 +42,12 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
             binding.refreshLoadingLayout,
             binding.refreshRecycler
         )
+        binding.refreshLoadingLayout.setOnClickListener {
+
+        }
         adapter.addChildClickViewIds(R.id.item)
         adapter.setOnItemClickListener { _, _, position ->
             ManualDetailActivity.actionStart((viewModel.mData[position] as ManualBean).id)
-
         }
     }
 

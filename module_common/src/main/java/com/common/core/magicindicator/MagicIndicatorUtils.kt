@@ -69,7 +69,7 @@ object MagicIndicatorUtils {
         context: Context?,
         magicIndicator: MagicIndicator,
         viewPager: ViewPager,
-        mTitleData: List<String>
+        mTitleData: MutableList<String>
     ) {
         var commonNavigator = CommonNavigator(context)
         commonNavigator.adapter = initComNavigatorAdapter(viewPager, mTitleData)

@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
@@ -28,7 +31,7 @@
             android:name="design_height_in_px"
             android:value="1920" />
 
-        <!--—————————————————————————————————————————————————— 全面屏与刘海适配 —————————————————————————————————————————-->
+        <!--———————————————————————————————————————————— 沉浸式ImmersionBar全面屏与刘海适配 —————————————————————————-->
         <!--        全面屏与刘海适配 在manifest加入如下配置，四选其一，或者都写-->
         <!--        ① 在manifest的Application节点下加入-->
         <!--        ② 在manifest的Application节点中加入   android:resizeableActivity="true"-->
@@ -37,18 +40,16 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.4" />
+
         <!--适配华为（huawei）刘海屏-->
         <meta-data
             android:name="android.notch_support"
             android:value="true" />
+
         <!--适配小米（xiaomi）刘海屏-->
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
-
-        <meta-data
-            android:name="CHANNEL"
-            android:value="${CHANNEL_VALUE}" />
 
 
         <!--—————————————————————————————————————————————————— bugly环境适配 —————————————————————————————————————————-->
@@ -77,6 +78,13 @@
         <meta-data
             android:name="com.taobao.android.hotfix.RSASECRET"
             android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC1o4YirvuYM6cRKlaW74Iiw/BP3IbwbUPK4OtcZSOjxGjAA/1C2uonkSHjXsz5LtaJb60XEROBe/t/QT9V336oEqIyoLiaxrXojBYPfLI82IykGkkeLVDdgWnlQr+R9HSJaq8OEaPurXHsicZWKrc8+zZmCiE9Y9vrSsCmMjqKfA3+a0gX7EaEACQ+dIfchtggiYbEoh1hObJSeJwuQZaKD+uMhIx5YWzYkhkG/qO934EU5dRNyZxrv+e2BTofAHT4g9z7nLgtRUFP01+eeJ68BYR9JE4p/4q3O/g3pPKfUmx1h+FvMKCgU/FiRu01qkmlCHIFAQDIFk3csunUhPM3AgMBAAECggEAHcIRqsMCQzhLKbvG/el1Z560U1Es5lzwW1+oD7YeNalrA/JjXr2g2SSk6axRZo2u5ktej0Xj7TXTyVB2QOphxMVwv1yngewGR3gT8Subw+4ydHw9+GyyL+gQ4leiLRZgtVa+IU7wjZzq6jbUQK+034/EpMkKExW2JQFVOKVIBAHySKurCQ+4r/LiuLm7TtDp4OuWDx5t1ayz3URh73D2V+WNefcXyqKIRqk7QlQPq9PzetDyIH9OD2JSG00O7Kknzon2ycu5uu6mUoKwbvWueNvKe1ko7KwqN6s8M3lMdcTqusJb+IFM+uDHviEagzR7+4ORW/vtE3JswtSDLZzuOQKBgQDiBpsM4D6WjFsmlWjZS4jOv0wmiimAPLpZz57DRho/UvxaOmIuqnk9srAan29ne0RZ5ZF6agK7GwgmQJj55sS8XfoSZ/f+x/5d/p1TvnuslpC+5VyFAfJdVQgGRtz4Ol8kZDKQh6hzAcilx109TOQDO1ERubxC9jw0IUaCHsQInQKBgQDNugOYfzZuhtq9iFKQ0kTC+d7EqUfhWrQAaarG3LAPc6O8cKnMnLXOdfuB6HIryZbObHnhi23Wf4MZYEU2/8umG+QNY9OQD3UpJiB+bI/5W5jKSV66WqTL0qiWS7q/NwUm1q2KcLeEtnbSy78cyruQrus2oKSKVZJH9QuCAW2Q4wKBgEcnGzJfeXR9NMidqkcVfzjOgdN0FQJ4m5VgRbNlYyfiIOzqijP0mHwyvztyS2jBJlBCc5ycuMVcCiG4ni+1VOOTlgCrWCeNn+bJG4/cXCSFtYVSwOBiL4DwHrmTH0bJYWAcZsqW2hFyU07UxuZgSTs3NhslZD2UNHmYrBCUTNQFAoGAb6RLgT0/37klCYfqLpc9I4YP4y9uR5g+aJ7vQ13N2YTKzV9idhxw+SrDoxruol6SjVEGz2Qn5ihqj6HTzeYAsRMfrjiHPf11ejAroA/wDcUsZFJuqri4B7g5Lt7H6C7Gh+4mXSOQI+AVGY3iF5DZOsoB8TI6OKv5Zz1O0m1N9TsCgYBC325qJx9A1y3FQoH3Skxr+Bdm6NnAcqS9ACSOsYoCxXEnR7dWKYPovmgiYaQRVj/Bcq8/fx9BGgfnKva5jmOhcKhgREnFvogkZ3V/OVbYbuFwjw+0k5YfpNxVQiHpQxIjDXyEjmPhzHQ8hKccCRV38N/ktdp8xTAJPTwQuToEGA==" />
+
+
+        <!--—————————————————————————————————————————————————— 其它配置 —————————————————————————————————————————-->
+        <meta-data
+            android:name="CHANNEL"
+            android:value="${CHANNEL_VALUE}" />
+
 
     </application>
 </manifest>

@@ -8,6 +8,7 @@ import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -16,15 +17,14 @@ import java.util.*
  * @date: 2021/1/23 17:41
  */
 class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>() {
-    private val mTitleData = listOf("关注", "推荐")
+    private val mTitleData = mutableListOf("关注", "推荐")
     private lateinit var fragmentAdapter: BasePagerAdapter
     private var mFragments: MutableList<Fragment> = ArrayList()
 
     companion object {
         fun newInstance(): ClassmateCircleFragment {
+            val fragment = ClassmateCircleFragment()
             val args = Bundle()
-            val fragment =
-                ClassmateCircleFragment()
             fragment.arguments = args
             return fragment
         }
@@ -47,7 +47,7 @@ class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>
      */
     private fun bindFragments() {
         mFragments.add(FollowFragment.newInstance())
-        mFragments.add(RecommendFragment.newInstance())
+        mFragments.add(RecommendTabFragment.newInstance())
         fragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
         binding.viewPager.adapter = fragmentAdapter
     }

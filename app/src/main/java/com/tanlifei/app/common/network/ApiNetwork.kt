@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.common.core.bean.UpdateAppBean
+import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.common.bean.UserBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
@@ -54,7 +55,7 @@ object ApiNetwork {
     suspend fun requestManualList(pageNum: Int) = RxHttp.postJson(ApiConst.URL_MANUAL_LIST)
         .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
         .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
-        .toResponse<List<ManualBean>>().await()
+        .toResponse<MutableList<ManualBean>>().await()
 
     /**
      * 操作手册列表
@@ -69,10 +70,17 @@ object ApiNetwork {
      * 请求关注列表
      */
     suspend fun requestFriendsEntertainmentList(pageNum: Int) =
-        RxHttp.postJson(ApiConst.URL_FRIENDS_ENTERTAINMENT_LIST)
+        RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_LIST)
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
-            .toResponse<List<ClassmateCircleBean>>().await()
+            .toResponse<MutableList<ClassmateCircleBean>>().await()
+
+    /**
+     * 请求关注列表
+     */
+    suspend fun requestEntertainmentCategoryList() =
+        RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_CATEGORY_LIST)
+            .toResponse<MutableList<CategoryBean>>().await()
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 

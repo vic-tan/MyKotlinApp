@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.bumptech.glide.Glide
 import com.common.core.base.holder.BaseBindingAdapter
 import com.common.core.base.holder.BaseVBViewHolder
+import com.common.utils.MyLogTools
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.ItemFollowBinding
 
@@ -24,7 +25,7 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
     override fun convert(holder: BaseVBViewHolder<ItemFollowBinding>, item: ClassmateCircleBean) {
         holder.binding.name.text = item.nickName
         holder.binding.school.text =
-            if (ObjectUtils.isNotEmpty(item.createtimeStr)) item.universityName else "${item.createtimeStr}  ${item.universityName}"
+            if (ObjectUtils.isEmpty(item.createtimeStr)) item.universityName else "${item.createtimeStr}  ${item.universityName}"
         Glide.with(context)
             .load(item.avatar).into(holder.binding.userHead)
         Glide.with(context)

@@ -1,7 +1,9 @@
 package com.tanlifei.app.main.ui
 
+import android.Manifest
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.ui.activity.BaseActivity
+import com.common.utils.PermissionUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityGuideBinding
 import com.tanlifei.app.main.adapter.GuideAdapter
@@ -24,8 +26,6 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
     }
 
 
-
-
     override fun showFullScreen(): Boolean {
         return true
     }
@@ -36,6 +36,14 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
         binding.banner.adapter = GuideAdapter(this, guideList)
         binding.banner.indicator = CircleIndicator(this)
         binding.banner.isAutoLoop(false)
+        PermissionUtils.requestPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            callback = object : PermissionUtils.PermissionCallback {
+                override fun allGranted() {}
+            }
+        )
     }
 
     private fun addGuideData() {

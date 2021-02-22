@@ -125,7 +125,7 @@ dependencies {
 
     //动态申请权限类
     //https://github.com/guolindev/PermissionX
-    api 'com.permissionx.guolindev:permissionx:1.3.0'
+    api 'com.permissionx.guolindev:permissionx:1.4.0'
 
     //圆角，边框，Gradient背景渐变，控件State各个状态UI样式，阴影，水波纹 库
     //https://github.com/RuffianZhong/RWidgetHelper

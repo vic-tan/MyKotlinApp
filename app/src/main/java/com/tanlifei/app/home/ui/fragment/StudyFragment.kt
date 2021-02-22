@@ -14,8 +14,8 @@ class StudyFragment : BaseLazyFragment<FragmentStudyBinding>() {
 
     companion object {
         fun newInstance(): StudyFragment {
-            val args = Bundle()
             val fragment = StudyFragment()
+            val args = Bundle()
             fragment.arguments = args
             return fragment
         }

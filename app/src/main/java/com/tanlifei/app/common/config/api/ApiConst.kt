@@ -56,7 +56,11 @@ object ApiConst {
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
 
     /* 关注人文娱列表 */
-    const val URL_FRIENDS_ENTERTAINMENT_LIST = "major/api/entertainment/getFriendsEntertainmentList"
+    const val URL_ENTERTAINMENT_LIST = "major/api/entertainment/getFriendsEntertainmentList"
+
+
+    /* 获取文娱类型列表 */
+    const val URL_ENTERTAINMENT_CATEGORY_LIST = "major/api/entertainment/getEntertainmentCategoryList"
 
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/

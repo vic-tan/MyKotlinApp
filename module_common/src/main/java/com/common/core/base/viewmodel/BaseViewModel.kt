@@ -6,7 +6,6 @@ import androidx.lifecycle.*
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
-import com.hjq.toast.ToastUtils
 
 /**
  * @desc:ViewModel基类
@@ -16,27 +15,30 @@ import com.hjq.toast.ToastUtils
 open class BaseViewModel : ViewModel() {
 
     /**
+     * UI加载框状态显示
+     */
+    enum class LoadType {
+        LOADING,//加载中
+        DISMISS,//完成
+        ERROR,//报错界面
+    }
+
+    /**
      * 请求网络是否正在加载的LveData
      */
-    val isLoading: LiveData<Boolean> get() = _isLoading
-    protected val _isLoading = MutableLiveData<Boolean>()
+    val loadingState: LiveData<LoadType> get() = _loadingState
+    protected val _loadingState = MutableLiveData<LoadType>()
 
     @SuppressLint("StaticFieldLeak")
     lateinit var application: Application
-
-
-
 
     /**
      * 加载框请求不需要处理异常，直接提示异常
      */
     protected fun launchByLoading(block: suspend () -> Unit) = launchByLoading(block, {
-        _isLoading.value = false
-        it.show(it.errorCode,it.errorMsg)
+        _loadingState.value = LoadType.ERROR
+        it.show(it.errorCode, it.errorMsg)
     })
-
-
-
 
 
     /**
@@ -46,13 +48,13 @@ open class BaseViewModel : ViewModel() {
         block: suspend () -> Unit,
         onError: ((Throwable) -> Unit)? = null
     ) = rxLifeScope.launch({
-        _isLoading.value = true
+        _loadingState.value = LoadType.LOADING
         block()
-        _isLoading.value = false
-    },onError, {
-        _isLoading.value = true
+        _loadingState.value = LoadType.DISMISS
+    }, onError, {
+        _loadingState.value = LoadType.LOADING
     }, {
-        _isLoading.value = false
+        _loadingState.value = LoadType.DISMISS
     })
 
 

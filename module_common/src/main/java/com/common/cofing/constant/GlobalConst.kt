@@ -1,7 +1,5 @@
 package com.common.cofing.constant
 
-import android.icu.text.Transliterator
-
 /**
  * 项目所有全局通用常量的管理类。
  *

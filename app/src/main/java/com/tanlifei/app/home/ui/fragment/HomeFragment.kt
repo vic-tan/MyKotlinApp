@@ -14,8 +14,8 @@ class HomeFragment : BaseLazyFragment<FragmentHomeBinding>() {
 
     companion object {
         fun newInstance(): HomeFragment {
-            val args = Bundle()
             val fragment = HomeFragment()
+            val args = Bundle()
             fragment.arguments = args
             return fragment
         }

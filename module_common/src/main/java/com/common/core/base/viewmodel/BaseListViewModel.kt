@@ -6,6 +6,7 @@ import com.common.cofing.constant.GlobalConst
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
+import java.lang.Error
 
 /**
  * @desc:列表加载
@@ -35,7 +36,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
      */
     protected fun launchByLoading(block: suspend () -> Unit, dataChangedType: DataChagedType) =
         launchByLoading(block, {
-            _isLoading.value = false
+            _loadingState.value = LoadType.ERROR
             onError(dataChangedType, it)
         })
 
@@ -96,7 +97,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
      * 错误处理
      */
     fun onError(dataChangedType: DataChagedType, it: Throwable) {
-        _isLoading.value = false
+        _loadingState.value = LoadType.ERROR
         notifyDataSetChanged(dataChangedType)
         //没有下一页
         if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {

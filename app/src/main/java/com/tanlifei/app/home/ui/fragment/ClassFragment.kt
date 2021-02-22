@@ -13,8 +13,8 @@ class ClassFragment : BaseLazyFragment<FragmentHomeBinding>() {
 
     companion object {
         fun newInstance(): ClassFragment {
-            val args = Bundle()
             val fragment = ClassFragment()
+            val args = Bundle()
             fragment.arguments = args
             return fragment
         }

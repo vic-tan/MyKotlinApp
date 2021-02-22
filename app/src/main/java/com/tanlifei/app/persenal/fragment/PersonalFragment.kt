@@ -29,8 +29,8 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>(), View.OnCli
 
     companion object {
         fun newInstance(): PersonalFragment {
-            val args = Bundle()
             val fragment = PersonalFragment()
+            val args = Bundle()
             fragment.arguments = args
             return fragment
         }

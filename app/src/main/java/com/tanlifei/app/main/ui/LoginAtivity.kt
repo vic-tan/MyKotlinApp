@@ -5,7 +5,6 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.customspan.CustomClickableSpan
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
@@ -16,7 +15,6 @@ import com.blankj.utilcode.util.RegexUtils
 import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
-import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.ComUtils
@@ -32,7 +30,6 @@ import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.utils.LoginUtils
 import com.tanlifei.app.main.viewmodel.LoginViewModel
-import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
 
 
 /**
@@ -74,7 +71,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.isLoading.observe(this, this)
+        viewModel.loadingState.observe(this,this)
 
         viewModel.isToken.observe(this, Observer {
             if (it) {
@@ -280,7 +277,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         LoginUtils.phoneFormatTextChanged(binding.phone, s, count)
     }
-
 
 }
 

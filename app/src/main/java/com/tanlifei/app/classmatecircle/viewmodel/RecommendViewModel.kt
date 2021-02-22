@@ -14,6 +14,7 @@ class RecommendViewModel() : BaseListViewModel() {
     override fun requestList(dataChangedType: DataChagedType) {
         launchByLoading({
             addList(ApiNetwork.requestFriendsEntertainmentList(pageNum), dataChangedType)
-        },dataChangedType)
+        }, dataChangedType)
     }
+
 }

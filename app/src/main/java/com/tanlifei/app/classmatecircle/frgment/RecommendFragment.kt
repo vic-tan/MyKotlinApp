@@ -1,46 +1,53 @@
 package com.tanlifei.app.classmatecircle.frgment
 
 import android.os.Bundle
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
+import com.common.databinding.LayoutRecyclerRefreshBinding
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
-import com.tanlifei.app.databinding.FragmentRecommendBinding
+
 
 /**
  * @desc:同学圈推荐
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class RecommendFragment : BaseRecyclerBVMFragment<FragmentRecommendBinding, RecommendViewModel>() {
+class RecommendFragment() :
+    BaseRecyclerBVMFragment<LayoutRecyclerRefreshBinding, RecommendViewModel>() {
+
     private lateinit var adapter: FollowAdapter
 
     companion object {
-        fun newInstance(): RecommendFragment {
+        fun newInstance(id: Long): RecommendFragment {
+            val fragment = RecommendFragment()
             val args = Bundle()
-            val fragment =
-                RecommendFragment()
+            args.putLong(GlobalConst.Extras.ID, id)
             fragment.arguments = args
             return fragment
         }
-    }
-
-
-    override fun onFirstVisibleToUser() {
-        super.onFirstVisibleToUser()
     }
 
     override fun createViewModel(): RecommendViewModel {
         return RecommendViewModel()
     }
 
+    override fun onFirstVisibleToUser() {
+        super.onFirstVisibleToUser()
+    }
+
+
     override fun initView() {
+        super.initView()
         adapter = FollowAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
         initRefreshView(
-            binding.refreshLayout.smartRefreshLayout,
-            binding.refreshLayout.refreshLoadingLayout,
-            binding.refreshLayout.refreshRecycler
+            binding.smartRefreshLayout,
+            binding.refreshLoadingLayout,
+            binding.refreshRecycler
         )
     }
 
