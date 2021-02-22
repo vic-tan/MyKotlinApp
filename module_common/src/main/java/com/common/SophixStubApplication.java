@@ -23,7 +23,7 @@ import com.taobao.sophix.listener.PatchLoadStatusListener;
  * @author: tanlifei
  * @date: 2021/2/22 9:28
  */
-class SophixStubApplication extends SophixApplication {
+public class SophixStubApplication extends SophixApplication {
     private final String TAG = "SophixStubApplication";
 
     // 此处SophixEntry应指定真正的Application，并且保证RealApplicationStub类名不被混淆。

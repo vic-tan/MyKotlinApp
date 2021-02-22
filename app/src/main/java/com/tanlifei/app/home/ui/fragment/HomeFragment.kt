@@ -23,7 +23,7 @@ class HomeFragment : BaseLazyFragment<FragmentHomeBinding>() {
 
 
     override fun onFirstVisibleToUser() {
-        binding.txtBtn.text = "HOME"
+        binding.txtBtn.text = "HOME...Sophix"
     }
 
 
