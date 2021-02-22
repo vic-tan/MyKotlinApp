@@ -11,7 +11,7 @@
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
 
-    <application>
+    <application android:maxAspectRatio="2.4">
 
         <activity
             android:name="com.common.core.base.ui.activity.BaseWebViewActivity"
@@ -20,7 +20,54 @@
             android:name="com.common.core.environment.EnvironmentSwitchActivity"
             android:label="切换环境" />
 
-        <!--—————————————————————————————————————————————————— Sophix 热修复配置 —————————————————————————————————————————-->
+        <!--—————————————————————————————————————————————————— 今日头条全适配 —————————————————————————————————————————-->
+        <meta-data
+            android:name="design_width_in_px"
+            android:value="1080" />
+        <meta-data
+            android:name="design_height_in_px"
+            android:value="1920" />
+
+        <!--—————————————————————————————————————————————————— 全面屏与刘海适配 —————————————————————————————————————————-->
+        <!--        全面屏与刘海适配 在manifest加入如下配置，四选其一，或者都写-->
+        <!--        ① 在manifest的Application节点下加入-->
+        <!--        ② 在manifest的Application节点中加入   android:resizeableActivity="true"-->
+        <!--        ③ 在manifest的Application节点中加入   android:maxAspectRatio="2.4"-->
+        <!--        ④ 升级targetSdkVersion为25以上版本-->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+        <!--适配华为（huawei）刘海屏-->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <!--适配小米（xiaomi）刘海屏-->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+
+        <meta-data
+            android:name="CHANNEL"
+            android:value="${CHANNEL_VALUE}" />
+
+
+        <!--—————————————————————————————————————————————————— bugly环境适配 —————————————————————————————————————————-->
+
+        <!-- 配置APP版本号 -->
+        <meta-data
+            android:name="BUGLY_APPID"
+            android:value="${BUGLY_APPID}" />
+        <!-- 配置版本号 -->
+        <meta-data
+            android:name="BUGLY_APP_VERSION"
+            android:value="${VERSION_NAME}" />
+        <!-- 配置APP渠道号 -->
+        <meta-data
+            android:name="BUGLY_APP_CHANNEL"
+            android:value="${CHANNEL_VALUE}" />
+
+        <!--——————————————————————————————————————————————————阿里Sophix热修复配置 —————————————————————————————————————————-->
+
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="333379611" />
@@ -29,7 +76,7 @@
             android:value="13fb85715a1c444d854e52ab8b93bea8" />
         <meta-data
             android:name="com.taobao.android.hotfix.RSASECRET"
-            android:value="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCcw7Qpfp6UmhgNp3QZj7YU4nGETs5cJopL9F8Pq+Rpm8MS7OjuXwXSGntRGUa/d8WdLFXFn646FymQD1kEh6DGjYECvxxJKTZLPIdiqOkujg1Z/RUR07PSHxRCP6abAEYOIwNe4t9Gx/zv1VSY7OiYscdgS7soqNRf7dToEnRUawIDAQAB" />
+            android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC1o4YirvuYM6cRKlaW74Iiw/BP3IbwbUPK4OtcZSOjxGjAA/1C2uonkSHjXsz5LtaJb60XEROBe/t/QT9V336oEqIyoLiaxrXojBYPfLI82IykGkkeLVDdgWnlQr+R9HSJaq8OEaPurXHsicZWKrc8+zZmCiE9Y9vrSsCmMjqKfA3+a0gX7EaEACQ+dIfchtggiYbEoh1hObJSeJwuQZaKD+uMhIx5YWzYkhkG/qO934EU5dRNyZxrv+e2BTofAHT4g9z7nLgtRUFP01+eeJ68BYR9JE4p/4q3O/g3pPKfUmx1h+FvMKCgU/FiRu01qkmlCHIFAQDIFk3csunUhPM3AgMBAAECggEAHcIRqsMCQzhLKbvG/el1Z560U1Es5lzwW1+oD7YeNalrA/JjXr2g2SSk6axRZo2u5ktej0Xj7TXTyVB2QOphxMVwv1yngewGR3gT8Subw+4ydHw9+GyyL+gQ4leiLRZgtVa+IU7wjZzq6jbUQK+034/EpMkKExW2JQFVOKVIBAHySKurCQ+4r/LiuLm7TtDp4OuWDx5t1ayz3URh73D2V+WNefcXyqKIRqk7QlQPq9PzetDyIH9OD2JSG00O7Kknzon2ycu5uu6mUoKwbvWueNvKe1ko7KwqN6s8M3lMdcTqusJb+IFM+uDHviEagzR7+4ORW/vtE3JswtSDLZzuOQKBgQDiBpsM4D6WjFsmlWjZS4jOv0wmiimAPLpZz57DRho/UvxaOmIuqnk9srAan29ne0RZ5ZF6agK7GwgmQJj55sS8XfoSZ/f+x/5d/p1TvnuslpC+5VyFAfJdVQgGRtz4Ol8kZDKQh6hzAcilx109TOQDO1ERubxC9jw0IUaCHsQInQKBgQDNugOYfzZuhtq9iFKQ0kTC+d7EqUfhWrQAaarG3LAPc6O8cKnMnLXOdfuB6HIryZbObHnhi23Wf4MZYEU2/8umG+QNY9OQD3UpJiB+bI/5W5jKSV66WqTL0qiWS7q/NwUm1q2KcLeEtnbSy78cyruQrus2oKSKVZJH9QuCAW2Q4wKBgEcnGzJfeXR9NMidqkcVfzjOgdN0FQJ4m5VgRbNlYyfiIOzqijP0mHwyvztyS2jBJlBCc5ycuMVcCiG4ni+1VOOTlgCrWCeNn+bJG4/cXCSFtYVSwOBiL4DwHrmTH0bJYWAcZsqW2hFyU07UxuZgSTs3NhslZD2UNHmYrBCUTNQFAoGAb6RLgT0/37klCYfqLpc9I4YP4y9uR5g+aJ7vQ13N2YTKzV9idhxw+SrDoxruol6SjVEGz2Qn5ihqj6HTzeYAsRMfrjiHPf11ejAroA/wDcUsZFJuqri4B7g5Lt7H6C7Gh+4mXSOQI+AVGY3iF5DZOsoB8TI6OKv5Zz1O0m1N9TsCgYBC325qJx9A1y3FQoH3Skxr+Bdm6NnAcqS9ACSOsYoCxXEnR7dWKYPovmgiYaQRVj/Bcq8/fx9BGgfnKva5jmOhcKhgREnFvogkZ3V/OVbYbuFwjw+0k5YfpNxVQiHpQxIjDXyEjmPhzHQ8hKccCRV38N/ktdp8xTAJPTwQuToEGA==" />
 
     </application>
 </manifest>

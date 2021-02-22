@@ -21,7 +21,7 @@ class ClassFragment : BaseLazyFragment<FragmentHomeBinding>() {
     }
 
     override fun onFirstVisibleToUser() {
-        binding.txtBtn.text = "CLASS"
+        binding.txtBtn.text = "CLASS...Sophix"
     }
 
 

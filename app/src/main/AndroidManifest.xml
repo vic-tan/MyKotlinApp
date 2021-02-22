@@ -8,7 +8,6 @@
         android:allowBackup="true"
         android:icon="${APP_ICON}"
         android:label="@string/app_name"
-        android:maxAspectRatio="2.4"
         android:networkSecurityConfig="@xml/network_security_config"
         android:resizeableActivity="true"
         android:roundIcon="${APP_ICON}"
@@ -94,50 +93,6 @@
             android:name=".persenal.activity.ManualDetailActivity"
             android:label="操作手册" />
 
-        <!--—————————————————————————————————————————————————— 今日头条全适配 —————————————————————————————————————————-->
-        <meta-data
-            android:name="design_width_in_px"
-            android:value="1080" />
-        <meta-data
-            android:name="design_height_in_px"
-            android:value="1920" />
-
-        <!--—————————————————————————————————————————————————— 全面屏与刘海适配 —————————————————————————————————————————-->
-        <!--        全面屏与刘海适配 在manifest加入如下配置，四选其一，或者都写-->
-        <!--        ① 在manifest的Application节点下加入-->
-        <!--        ② 在manifest的Application节点中加入   android:resizeableActivity="true"-->
-        <!--        ③ 在manifest的Application节点中加入   android:maxAspectRatio="2.4"-->
-        <!--        ④ 升级targetSdkVersion为25以上版本-->
-        <meta-data
-            android:name="android.max_aspect"
-            android:value="2.4" />
-        <!--适配华为（huawei）刘海屏-->
-        <meta-data
-            android:name="android.notch_support"
-            android:value="true" />
-        <!--适配小米（xiaomi）刘海屏-->
-        <meta-data
-            android:name="notch.config"
-            android:value="portrait|landscape" />
-
-        <meta-data
-            android:name="CHANNEL"
-            android:value="${CHANNEL_VALUE}" />
-
-        <!--—————————————————————————————————————————————————— bugly环境适配 —————————————————————————————————————————-->
-
-        <!-- 配置APP版本号 -->
-        <meta-data
-            android:name="BUGLY_APPID"
-            android:value="${BUGLY_APPID}" />
-        <!-- 配置版本号 -->
-        <meta-data
-            android:name="BUGLY_APP_VERSION"
-            android:value="${VERSION_NAME}" />
-        <!-- 配置APP渠道号 -->
-        <meta-data
-            android:name="BUGLY_APP_CHANNEL"
-            android:value="${CHANNEL_VALUE}" />
 
     </application>
 

@@ -57,6 +57,7 @@ public class SophixStubApplication extends SophixApplication {
                 .setPatchLoadStatusStub(new PatchLoadStatusListener() {
                     @Override
                     public void onLoad(final int mode, final int code, final String info, final int handlePatchVersion) {
+                        Log.i(TAG, "sophix code" + code);
                         if (code == PatchStatus.CODE_LOAD_SUCCESS) {
                             Log.i(TAG, "sophix load patch success!");
                         } else if (code == PatchStatus.CODE_LOAD_RELAUNCH) {

@@ -24,6 +24,7 @@ class StudyFragment : BaseLazyFragment<FragmentStudyBinding>() {
 
 
     override fun onFirstVisibleToUser() {
+        binding.txtBtn.text = "Study..Sophix"
     }
 
 
