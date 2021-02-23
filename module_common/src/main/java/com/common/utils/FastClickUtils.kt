@@ -1,7 +1,7 @@
 package com.common.utils
 
 /**
- * @desc:
+ * @desc:防重复点击工具类
  * @author: tanlifei
  * @date: 2021/2/23 15:59
  */

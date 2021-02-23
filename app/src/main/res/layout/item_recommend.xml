@@ -69,46 +69,53 @@
 
     <com.ruffian.library.widget.RLinearLayout
         android:id="@+id/topic_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="24dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:background_normal="#FFF5F5"
-        app:corner_radius="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cover">
 
-
-        <com.ruffian.library.widget.RTextView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:gravity="center"
-            android:text="#"
-            android:textColor="@color/white"
-            android:textSize="11sp"
-            app:background_normal="@color/theme_color"
-            app:corner_radius="8dp" />
-
-        <TextView
-            android:id="@+id/topic_txt"
+        <com.ruffian.library.widget.RLinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:ellipsize="end"
+            android:layout_height="match_parent"
             android:gravity="center_vertical|left"
-            android:lines="1"
-            android:singleLine="true"
-            android:text=""
-            android:textColor="@color/color_666666"
-            android:textSize="15sp"
-            tools:text="左奇葩奇葩" />
+            android:orientation="horizontal"
+            app:background_normal="#FFF5F5"
+            app:corner_radius="5dp">
+
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:text="#"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                app:background_normal="@color/theme_color"
+                app:corner_radius="8dp" />
+
+            <TextView
+                android:id="@+id/topic_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical|left"
+                android:lines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/color_666666"
+                android:textSize="15sp"
+                tools:text="左奇葩奇葩" />
+        </com.ruffian.library.widget.RLinearLayout>
 
     </com.ruffian.library.widget.RLinearLayout>
 

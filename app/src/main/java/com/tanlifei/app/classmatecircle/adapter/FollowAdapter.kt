@@ -11,8 +11,12 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.common.core.base.holder.BaseBindingAdapter
 import com.common.core.base.holder.BaseVBViewHolder
 import com.common.utils.GlideUtils
+import com.common.utils.ResUtils
 import com.common.widget.ExpandTextView
+import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.common.utils.AutoHeightUtils
+import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ItemFollowBinding
 
 /**
@@ -33,6 +37,10 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
 
 
     override fun convert(holder: BaseVBViewHolder<ItemFollowBinding>, item: ClassmateCircleBean) {
+        holder.binding.banner.layoutParams.width = screenWidth
+        holder.binding.banner.layoutParams.height =
+            AutoHeightUtils.getHeightParams(screenWidth, item.image)
+
         holder.binding.name.text = item.nickName
         holder.binding.school.text =
             if (ObjectUtils.isEmpty(item.createtimeStr)) item.universityName else "${item.createtimeStr}  ${item.universityName}"
@@ -56,5 +64,11 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
         )
         holder.binding.expandTextView.visibility =
             if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
+
+        holder.binding.praiseCount.text = NumberUtils.setPraiseCount(item.star)
+        holder.binding.praiseIcon.setImageResource(if (item.isStar) R.mipmap.icon_cc_praise_pre else R.mipmap.icon_cc_praise)
+
+
+        holder.binding.commentCount.text = NumberUtils.setCommentCount(item.comment)
     }
 }
