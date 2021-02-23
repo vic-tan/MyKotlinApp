@@ -5,7 +5,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.common.cofing.constant.GlobalConst
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -29,11 +28,22 @@ class RecyclerUtils {
             adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
         ) {
             viewModel.dataChanged.observe(owner, Observer {
-                adapter.notifyDataSetChanged()
                 //请求数据完成
                 when (it) {
-                    BaseListViewModel.DataChagedType.REFRESH -> smartRefreshLayout.finishRefresh()
-                    BaseListViewModel.DataChagedType.LOADMORE -> smartRefreshLayout.finishLoadMore()
+                    BaseListViewModel.DataChagedType.REFRESH -> {
+                        smartRefreshLayout.finishRefresh()
+                        adapter.notifyItemRangeChanged(0, viewModel.mData.size)
+                    }
+                    BaseListViewModel.DataChagedType.LOADMORE -> {
+                        smartRefreshLayout.finishLoadMore()
+                        adapter.notifyItemRangeInserted(
+                            viewModel.loadMoreStartPos,
+                            viewModel.mData.size
+                        )
+                    }
+                    else -> {
+                        adapter.notifyDataSetChanged()
+                    }
                 }
             })
             viewModel.uiBehavior.observe(owner, Observer {
@@ -83,5 +93,9 @@ class RecyclerUtils {
         fun setLinearLayoutManager(context: Context?): RecyclerView.LayoutManager {
             return LinearLayoutManager(context)
         }
+
+
     }
+
+
 }

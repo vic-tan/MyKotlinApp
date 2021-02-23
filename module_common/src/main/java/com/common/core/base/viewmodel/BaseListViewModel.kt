@@ -6,7 +6,6 @@ import com.common.cofing.constant.GlobalConst
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
-import java.lang.Error
 
 /**
  * @desc:列表加载
@@ -30,6 +29,8 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         NOTMOREDATA,//没有一下页数据
         ERROR,//报错界面
     }
+
+    var loadMoreStartPos = 0
 
     /**
      * 列表加载显示处理异常
@@ -56,7 +57,8 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     val dataChanged: LiveData<DataChagedType> get() = _dataChanged
     protected var _dataChanged = MutableLiveData<DataChagedType>()
 
-    fun notifyDataSetChanged(dataChangedType: DataChagedType) {
+    fun notifyDataSetChanged(dataChangedType: DataChagedType, startPos: Int = 0) {
+        loadMoreStartPos = startPos
         _dataChanged.value = dataChangedType
     }
 
@@ -79,13 +81,23 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     fun addList(list: List<Any>, dataChangedType: DataChagedType) {
         if (list.isNotEmpty()) {
             when (dataChangedType) {
-                DataChagedType.REFRESH -> mData.clear()
-            }
-            if (list.isNotEmpty()) {
-                mData.addAll(list)
+                DataChagedType.REFRESH -> {
+                    mData.clear()
+                    mData.addAll(list)
+                    notifyDataSetChanged(dataChangedType)
+                }
+                DataChagedType.LOADMORE -> {
+                    val startPos = mData.size - 1
+                    mData.addAll(list)
+                    notifyDataSetChanged(dataChangedType, startPos)
+
+                }
+                else -> {
+                    notifyDataSetChanged(dataChangedType)
+                }
             }
         }
-        notifyDataSetChanged(dataChangedType)
+
         if (mData.isEmpty()) {
             showEmptyUI()
         } else {

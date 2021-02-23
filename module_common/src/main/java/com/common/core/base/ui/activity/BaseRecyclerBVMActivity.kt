@@ -13,7 +13,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  * @date: 2021/2/7 17:14
  */
 abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> :
-    BaseToolBarActivity<T, VM>() {
+    BaseToolBarActivity<T, VM>(){
     lateinit var smartRefreshLayout: SmartRefreshLayout
     lateinit var refreshLoadingLayout: LoadingLayout
     lateinit var refreshRecycler: RecyclerView

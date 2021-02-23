@@ -70,6 +70,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
         RecyclerUtils.initData(viewModel)
     }
 
+
     /**
      * 初始化列表控件
      */
