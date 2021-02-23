@@ -73,7 +73,6 @@
     </LinearLayout>
 
 
-
     <ImageView
         android:id="@+id/banner"
         android:layout_width="match_parent"
@@ -83,6 +82,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userInfo" />
+
 
     <com.common.widget.ExpandTextView
         android:id="@+id/expand_text_view"
@@ -103,6 +103,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/banner" />
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/line_E9E9E9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expand_text_view" />
+
     <com.ruffian.library.widget.RConstraintLayout
         android:id="@+id/infoLayout"
         android:layout_width="match_parent"
@@ -111,18 +121,18 @@
         app:corner_radius="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/expand_text_view">
+        app:layout_constraintTop_toBottomOf="@id/line">
 
         <com.ruffian.library.widget.RTextView
             android:id="@+id/praise"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawablePadding="6dp"
-            android:gravity="center"
-            android:text="点赞"
             android:ellipsize="end"
+            android:gravity="center"
             android:maxLength="6"
             android:maxLines="1"
+            android:text="点赞"
             android:textColor="@color/color_333333"
             android:textSize="16sp"
             app:icon_direction="left"
@@ -133,6 +143,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/comment"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/line_E9E9E9"
+            app:layout_constraintLeft_toLeftOf="@id/praise"
+            app:layout_constraintRight_toRightOf="@id/comment"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.ruffian.library.widget.RTextView
@@ -156,6 +175,15 @@
             app:layout_constraintRight_toLeftOf="@id/share"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlSymmetry" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="17dp"
+            android:background="@color/line_E9E9E9"
+            app:layout_constraintLeft_toLeftOf="@id/comment"
+            app:layout_constraintRight_toRightOf="@id/share"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.ruffian.library.widget.RTextView
             android:id="@+id/share"
