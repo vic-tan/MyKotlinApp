@@ -64,6 +64,8 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
         )
         holder.binding.expandTextView.visibility =
             if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
+        holder.binding.marginView.visibility =
+            if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
 
         holder.binding.praiseCount.text = NumberUtils.setPraiseCount(item.star)
         holder.binding.praiseIcon.setImageResource(if (item.isStar) R.mipmap.icon_cc_praise_pre else R.mipmap.icon_cc_praise)
