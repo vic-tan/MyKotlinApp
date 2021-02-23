@@ -129,7 +129,7 @@ dependencies {
 
     //圆角，边框，Gradient背景渐变，控件State各个状态UI样式，阴影，水波纹 库
     //https://github.com/RuffianZhong/RWidgetHelper
-    api 'com.ruffian.library:RWidgetHelper-AndroidX:0.0.4'
+    api 'com.ruffian.library:RWidgetHelper-AndroidX:0.0.8'
 
     //图片选择库
     //https://github.com/LuckSiege/PictureSelector

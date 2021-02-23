@@ -1,16 +1,16 @@
 package com.tanlifei.app.classmatecircle.frgment
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
-import com.common.databinding.LayoutRecyclerRefreshBinding
-import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
+import com.tanlifei.app.classmatecircle.adapter.GridItemDecoration
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
-import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
+import com.tanlifei.app.databinding.FragmentRecommendBinding
 
 
 /**
@@ -19,7 +19,7 @@ import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
  * @date: 2021/1/23 17:41
  */
 class RecommendFragment() :
-    BaseRecyclerBVMFragment<LayoutRecyclerRefreshBinding, RecommendViewModel>() {
+    BaseRecyclerBVMFragment<FragmentRecommendBinding, RecommendViewModel>() {
 
     private lateinit var adapter: RecommendAdapter
 
@@ -34,11 +34,19 @@ class RecommendFragment() :
     }
 
     override fun createViewModel(): RecommendViewModel {
-        return RecommendViewModel()
+        return RecommendViewModel(
+            if (ObjectUtils.isEmpty(arguments)) 0 else arguments!!.getLong(
+                GlobalConst.Extras.ID,
+                0
+            )
+        )
     }
+
 
     override fun onFirstVisibleToUser() {
         super.onFirstVisibleToUser()
+        refreshRecycler.itemAnimator = null
+        refreshRecycler.addItemDecoration(GridItemDecoration(8))  //间距
     }
 
 
@@ -50,6 +58,13 @@ class RecommendFragment() :
             binding.refreshLoadingLayout,
             binding.refreshRecycler
         )
+    }
+
+    /**
+     * 设置 RecyclerView LayoutManager
+     */
+    override fun setLinearLayoutManager(): RecyclerView.LayoutManager {
+        return StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
     override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {

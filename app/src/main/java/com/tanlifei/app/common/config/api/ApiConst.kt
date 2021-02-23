@@ -59,6 +59,10 @@ object ApiConst {
     const val URL_ENTERTAINMENT_LIST = "major/api/entertainment/getFriendsEntertainmentList"
 
 
+    /* 文娱推荐列表 */
+    const val URL_ENTERTAINMENT_LIST_BY_TYPE = "major/api/entertainment/getEntertainmentListByType"
+
+
     /* 获取文娱类型列表 */
     const val URL_ENTERTAINMENT_CATEGORY_LIST = "major/api/entertainment/getEntertainmentCategoryList"
 

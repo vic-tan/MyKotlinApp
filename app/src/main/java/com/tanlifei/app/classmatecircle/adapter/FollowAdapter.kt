@@ -56,6 +56,5 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
         )
         holder.binding.expandTextView.visibility =
             if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
-
     }
 }

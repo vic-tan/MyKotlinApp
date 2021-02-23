@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string-array name="gradient_com_btn" tools:ignore="ExtraTranslation">
+    <string-array name="com_btn" tools:ignore="ExtraTranslation">
         <item>#FF5259</item>
         <item>#EE1E26</item>
     </string-array>
-    <string-array name="gradient_persenal_study_bg" tools:ignore="ExtraTranslation">
+    <string-array name="persenal_study_bg" tools:ignore="ExtraTranslation">
         <item>#FFF5DE</item>
         <item>#FCD89A</item>
+    </string-array>
+
+    <string-array name="classmate_circle_tag" tools:ignore="ExtraTranslation">
+        <item>#FF6010</item>
+        <item>#FF8242</item>
     </string-array>
 </resources>

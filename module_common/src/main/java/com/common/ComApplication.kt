@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.common.core.base.bean.UserBean
 import com.common.core.environment.utils.EnvironmentChangeManager
 import com.common.core.http.RxHttpManager
 import com.hjq.toast.ToastUtils
@@ -14,6 +15,7 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.bugly.crashreport.CrashReport
+import com.tencent.bugly.crashreport.biz.UserInfoBean
 import org.litepal.LitePal
 import update.UpdateAppUtils
 
@@ -103,6 +105,7 @@ open class ComApplication : Application() {
         lateinit var context: Context
         lateinit var handler: Handler
         var token: String? = null
+        var user: UserBean? = null
         var mFinalCount = 0
     }
 }

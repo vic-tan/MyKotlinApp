@@ -11,7 +11,7 @@ import com.common.core.base.navigator.NavigatorFragmentManager
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.frgment.ClassmateCircleFragment
-import com.tanlifei.app.common.bean.UserBean
+import com.common.core.base.bean.UserBean
 import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.fragment.ClassFragment

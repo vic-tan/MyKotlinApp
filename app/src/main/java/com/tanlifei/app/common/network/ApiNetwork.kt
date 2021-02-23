@@ -5,7 +5,7 @@ import com.common.cofing.constant.GlobalConst
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.common.core.bean.UpdateAppBean
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
-import com.tanlifei.app.common.bean.UserBean
+import com.common.core.base.bean.UserBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.persenal.bean.ManualBean
@@ -76,7 +76,17 @@ object ApiNetwork {
             .toResponse<MutableList<ClassmateCircleBean>>().await()
 
     /**
-     * 请求关注列表
+     * 文娱推荐列表
+     */
+    suspend fun requestFriendsEntertainmentListByType(pageNum: Int, categoryId: Long) =
+        RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_LIST_BY_TYPE)
+            .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
+            .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
+            .add("categoryId", categoryId)
+            .toResponse<MutableList<ClassmateCircleBean>>().await()
+
+    /**
+     * 请求推荐分类列表
      */
     suspend fun requestEntertainmentCategoryList() =
         RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_CATEGORY_LIST)

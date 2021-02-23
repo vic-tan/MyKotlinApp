@@ -1,5 +1,6 @@
 package com.common.utils
 
+import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.common.ComApplication
 
@@ -19,6 +20,16 @@ class ResUtils {
          */
         fun getColor(resId: Int): Int {
             return ContextCompat.getColor(ComApplication.context, resId)
+        }
+
+        /**
+         * 获取颜色
+         *
+         * @param resId
+         * @return
+         */
+        fun getDrawable(resId: Int): Drawable? {
+            return ContextCompat.getDrawable(ComApplication.context, resId)
         }
     }
 }

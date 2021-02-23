@@ -8,12 +8,15 @@ import com.tanlifei.app.common.network.ApiNetwork
  * @author: tanlifei
  * @date: 2021/2/7 15:41
  */
-class RecommendViewModel() : BaseListViewModel() {
+class RecommendViewModel(private val categoryId: Long = 0) : BaseListViewModel() {
 
 
     override fun requestList(dataChangedType: DataChagedType) {
         launchByLoading({
-            addList(ApiNetwork.requestFriendsEntertainmentList(pageNum), dataChangedType)
+            addList(
+                ApiNetwork.requestFriendsEntertainmentListByType(pageNum, categoryId),
+                dataChangedType
+            )
         }, dataChangedType)
     }
 

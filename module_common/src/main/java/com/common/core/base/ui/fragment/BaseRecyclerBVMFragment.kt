@@ -95,9 +95,10 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 设置 RecyclerView LayoutManager
      */
-    protected fun setLinearLayoutManager(): RecyclerView.LayoutManager {
+    protected open fun setLinearLayoutManager(): RecyclerView.LayoutManager {
         return RecyclerUtils.setLinearLayoutManager(context)
     }
+
 
     /**
      * 子类设置Adapter

@@ -1,6 +1,4 @@
-package com.tanlifei.app.common.bean
-
-import com.common.core.base.bean.BaseLitePalBean
+package com.common.core.base.bean
 
 /**
  * @desc:用户信息

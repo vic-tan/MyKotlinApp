@@ -52,7 +52,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 设置 RecyclerView LayoutManager
      */
-    protected fun setLinearLayoutManager(): RecyclerView.LayoutManager {
+    protected open fun setLinearLayoutManager(): RecyclerView.LayoutManager {
         return RecyclerUtils.setLinearLayoutManager(this)
     }
 
@@ -60,5 +60,6 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
      * 子类设置Adapter
      */
     protected abstract fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>
+
 
 }
