@@ -13,18 +13,12 @@ import com.tanlifei.app.databinding.NavigatorHomeTabBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:23
  */
-class HomeNavigatorView : NavigatorView<NavigatorHomeTabBinding> {
+class HomeNavigatorView @JvmOverloads constructor(
+    context: Context,
+    attributeSet: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : NavigatorView<NavigatorHomeTabBinding>(context, attributeSet, defStyleAttr) {
 
-
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
-
-    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attributeSet,
-        defStyleAttr
-    )
 
     override fun navigatorLayoutResId(): Int {
         return R.layout.navigator_home_tab
