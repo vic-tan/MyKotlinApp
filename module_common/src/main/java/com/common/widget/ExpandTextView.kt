@@ -10,35 +10,39 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 
 /**
- * @desc:
+ * @desc:TextView 收起/展开View
  * @author: tanlifei
  * @date: 2021/2/22 17:01
  */
-class ExpandTextView(
+class ExpandTextView @JvmOverloads constructor(
     context: Context,
-    private val attrs: AttributeSet? = null,
-    style: Int = 0
-) : androidx.appcompat.widget.AppCompatTextView(context, attrs, style) {
-    private val STATE_SHRINK = 0
-    private val STATE_EXPAND = 1
+    attrs: AttributeSet? = null,
+    style: Int = android.R.attr.textStyle
+) : AppCompatTextView(context, attrs, style) {
 
-    private val CLASS_NAME_VIEW = "android.view.View"
-    private val CLASS_NAME_LISTENER_INFO = "android.view.View\$ListenerInfo"
-    private var ELLIPSIS_HINT = "..."
-    private val GAP_TO_EXPAND_HINT = " "
-    private val GAP_TO_SHRINK_HINT = " "
-    private val MAX_LINES_ON_SHRINK = 3
-    private val TO_EXPAND_HINT_COLOR = -0xcb6725
-    private val TO_SHRINK_HINT_COLOR = -0x18b3c4
-    private val TO_EXPAND_HINT_COLOR_BG_PRESSED = 0x55999999
-    private val TO_SHRINK_HINT_COLOR_BG_PRESSED = 0x55999999
-    private val TOGGLE_ENABLE = true
-    private val SHOW_TO_EXPAND_HINT = true
-    private val SHOW_TO_SHRINK_HINT = true
+    companion object {
+        const val STATE_SHRINK = 0
+        const val STATE_EXPAND = 1
+        const val CLASS_NAME_VIEW = "android.view.View"
+        const val CLASS_NAME_LISTENER_INFO = "android.view.View\$ListenerInfo"
+        const val ELLIPSIS_HINT = "..."
+        const val GAP_TO_EXPAND_HINT = " "
+        const val GAP_TO_SHRINK_HINT = " "
+        const val MAX_LINES_ON_SHRINK = 3
+        const val TO_EXPAND_HINT_COLOR = -0xcb6725
+        const val TO_SHRINK_HINT_COLOR = -0x18b3c4
+        const val TO_EXPAND_HINT_COLOR_BG_PRESSED = 0x55999999
+        const val TO_SHRINK_HINT_COLOR_BG_PRESSED = 0x55999999
+        const val TOGGLE_ENABLE = true
+        const val SHOW_TO_EXPAND_HINT = true
+        const val SHOW_TO_SHRINK_HINT = true
+    }
+
 
     private var mEllipsisHint: String? = null
     private var mToExpandHint: String? = null
@@ -59,7 +63,7 @@ class ExpandTextView(
     private var mTouchableSpan: TouchableSpan? = null
     private var mBufferType = BufferType.NORMAL
     private lateinit var mTextPaint: TextPaint
-    private lateinit var mLayout: Layout
+    private var mLayout1: Layout? = null
     private var mTextLineCount = -1
     private var mLayoutWidth = 0
     private var mFutureTextViewWidth = 0
@@ -73,47 +77,62 @@ class ExpandTextView(
     lateinit var mOnExpandListener: OnExpandListener
 
     init {
-        initView()
+        initView(attrs)
     }
 
 
-    private fun initView() {
+    private fun initView(attrs: AttributeSet? = null) {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.ExpandTextView)
             if (a != null) {
                 val n = a.indexCount
                 for (i in 0 until n) {
                     val attr = a.getIndex(i)
-                    if (attr == R.styleable.ExpandTextView_etv_MaxLinesOnShrink) {
-                        mMaxLinesOnShrink = a.getInteger(attr, MAX_LINES_ON_SHRINK)
-                    } else if (attr == R.styleable.ExpandTextView_etv_EllipsisHint) {
-                        mEllipsisHint = a.getString(attr)
-                    } else if (attr == R.styleable.ExpandTextView_etv_ToExpandHint) {
-                        mToExpandHint = a.getString(attr)
-                    } else if (attr == R.styleable.ExpandTextView_etv_ToShrinkHint) {
-                        mToShrinkHint = a.getString(attr)
-                    } else if (attr == R.styleable.ExpandTextView_etv_EnableToggle) {
-                        mToggleEnable = a.getBoolean(attr, TOGGLE_ENABLE)
-                    } else if (attr == R.styleable.ExpandTextView_etv_ToExpandHintShow) {
-                        mShowToExpandHint = a.getBoolean(attr, SHOW_TO_EXPAND_HINT)
-                    } else if (attr == R.styleable.ExpandTextView_etv_ToShrinkHintShow) {
-                        mShowToShrinkHint = a.getBoolean(attr, SHOW_TO_SHRINK_HINT)
-                    } else if (attr == R.styleable.ExpandTextView_etv_ToExpandHintColor) {
-                        mToExpandHintColor = a.getInteger(attr, TO_EXPAND_HINT_COLOR)
-                    } else if (attr == R.styleable.ExpandTextView_etv_ToShrinkHintColor) {
-                        mToShrinkHintColor = a.getInteger(attr, TO_SHRINK_HINT_COLOR)
-                    } else if (attr == R.styleable.ExpandTextView_etv_ToExpandHintColorBgPressed) {
-                        mToExpandHintColorBgPressed =
-                            a.getInteger(attr, TO_EXPAND_HINT_COLOR_BG_PRESSED)
-                    } else if (attr == R.styleable.ExpandTextView_etv_ToShrinkHintColorBgPressed) {
-                        mToShrinkHintColorBgPressed =
-                            a.getInteger(attr, TO_SHRINK_HINT_COLOR_BG_PRESSED)
-                    } else if (attr == R.styleable.ExpandTextView_etv_InitState) {
-                        mCurrState = a.getInteger(attr, STATE_SHRINK)
-                    } else if (attr == R.styleable.ExpandTextView_etv_GapToExpandHint) {
-                        mGapToExpandHint = a.getString(attr)!!
-                    } else if (attr == R.styleable.ExpandTextView_etv_GapToShrinkHint) {
-                        mGapToShrinkHint = a.getString(attr)!!
+                    when (attr) {
+                        R.styleable.ExpandTextView_etv_MaxLinesOnShrink -> {
+                            mMaxLinesOnShrink = a.getInteger(attr, MAX_LINES_ON_SHRINK)
+                        }
+                        R.styleable.ExpandTextView_etv_EllipsisHint -> {
+                            mEllipsisHint = a.getString(attr)
+                        }
+                        R.styleable.ExpandTextView_etv_ToExpandHint -> {
+                            mToExpandHint = a.getString(attr)
+                        }
+                        R.styleable.ExpandTextView_etv_ToShrinkHint -> {
+                            mToShrinkHint = a.getString(attr)
+                        }
+                        R.styleable.ExpandTextView_etv_EnableToggle -> {
+                            mToggleEnable = a.getBoolean(attr, TOGGLE_ENABLE)
+                        }
+                        R.styleable.ExpandTextView_etv_ToExpandHintShow -> {
+                            mShowToExpandHint = a.getBoolean(attr, SHOW_TO_EXPAND_HINT)
+                        }
+                        R.styleable.ExpandTextView_etv_ToShrinkHintShow -> {
+                            mShowToShrinkHint = a.getBoolean(attr, SHOW_TO_SHRINK_HINT)
+                        }
+                        R.styleable.ExpandTextView_etv_ToExpandHintColor -> {
+                            mToExpandHintColor = a.getInteger(attr, TO_EXPAND_HINT_COLOR)
+                        }
+                        R.styleable.ExpandTextView_etv_ToShrinkHintColor -> {
+                            mToShrinkHintColor = a.getInteger(attr, TO_SHRINK_HINT_COLOR)
+                        }
+                        R.styleable.ExpandTextView_etv_ToExpandHintColorBgPressed -> {
+                            mToExpandHintColorBgPressed =
+                                a.getInteger(attr, TO_EXPAND_HINT_COLOR_BG_PRESSED)
+                        }
+                        R.styleable.ExpandTextView_etv_ToShrinkHintColorBgPressed -> {
+                            mToShrinkHintColorBgPressed =
+                                a.getInteger(attr, TO_SHRINK_HINT_COLOR_BG_PRESSED)
+                        }
+                        R.styleable.ExpandTextView_etv_InitState -> {
+                            mCurrState = a.getInteger(attr, STATE_SHRINK)
+                        }
+                        R.styleable.ExpandTextView_etv_GapToExpandHint -> {
+                            mGapToExpandHint = a.getString(attr)!!
+                        }
+                        R.styleable.ExpandTextView_etv_GapToShrinkHint -> {
+                            mGapToShrinkHint = a.getString(attr)!!
+                        }
                     }
                 }
                 a.recycle()
@@ -201,9 +220,9 @@ class ExpandTextView(
         if (TextUtils.isEmpty(mOrigText)) {
             return mOrigText!!
         }
-        mLayout = layout
-        if (mLayout != null) {
-            mLayoutWidth = mLayout!!.getWidth()
+        mLayout1 = layout
+        if (mLayout1 != null) {
+            mLayoutWidth = mLayout1!!.width
         }
         if (mLayoutWidth <= 0) {
             mLayoutWidth = if (width == 0) {
@@ -221,7 +240,7 @@ class ExpandTextView(
         val line = getLineCount(mOrigText!!)
         when (mCurrState) {
             STATE_SHRINK -> {
-                mLayout = DynamicLayout(
+                mLayout1 = DynamicLayout(
                     mOrigText!!,
                     mTextPaint,
                     mLayoutWidth,
@@ -230,7 +249,7 @@ class ExpandTextView(
                     0.0f,
                     false
                 )
-                mTextLineCount = mLayout.getLineCount() + line
+                mTextLineCount = mLayout1!!.lineCount + line
                 if (mTextLineCount <= mMaxLinesOnShrink) {
                     return mOrigText!!
                 }
@@ -360,7 +379,7 @@ class ExpandTextView(
                 if (!mShowToShrinkHint) {
                     return mOrigText!!
                 }
-                mLayout = DynamicLayout(
+                mLayout1 = DynamicLayout(
                     mOrigText!!,
                     mTextPaint,
                     mLayoutWidth,
@@ -369,7 +388,7 @@ class ExpandTextView(
                     0.0f,
                     false
                 )
-                mTextLineCount = mLayout.getLineCount() + getLineCount(mOrigText!!)
+                mTextLineCount = mLayout1!!.lineCount + getLineCount(mOrigText!!)
                 if (mTextLineCount <= mMaxLinesOnShrink) {
                     return mOrigText!!
                 }
@@ -419,7 +438,7 @@ class ExpandTextView(
     }
 
     private fun getValidLayout(): Layout {
-        return if (mLayout != null) mLayout else layout
+        return if (mLayout1 != null) mLayout1!! else layout
     }
 
     fun toggle() {

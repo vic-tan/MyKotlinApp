@@ -23,9 +23,9 @@ import com.tanlifei.app.databinding.ItemFollowBinding
 class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
     BaseBindingAdapter<ClassmateCircleBean, ItemFollowBinding>(data) {
 
-//    private var screenWidth = ScreenUtils.getScreenWidth()
-//    private var textViewWidth = screenWidth - ConvertUtils.dp2px(30f)
-//    private var mPositionsAndStates: SparseArray<Int> = SparseArray()
+    private var screenWidth = ScreenUtils.getScreenWidth()
+    private var textViewWidth = screenWidth - ConvertUtils.dp2px(30f)
+    private var mPositionsAndStates: SparseArray<Int> = SparseArray()
 
     override fun createViewBinding(inflater: LayoutInflater, parent: ViewGroup): ItemFollowBinding {
         return ItemFollowBinding.inflate(inflater, parent, false)
@@ -38,24 +38,24 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
             if (ObjectUtils.isEmpty(item.createtimeStr)) item.universityName else "${item.createtimeStr}  ${item.universityName}"
         GlideUtils.load(context, item.image?.url, holder.binding.banner)
         GlideUtils.loadAvatar(context, item.avatar, holder.binding.userHead)
-//        holder.binding.expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
-//            override fun onExpand(view: ExpandTextView) {
-//                mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
-//            }
-//
-//            override fun onShrink(view: ExpandTextView) {
-//                mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
-//            }
-//
-//        })
-//        val state: Int = mPositionsAndStates.get(holder.adapterPosition)
-//        holder.binding.expandTextView.updateForRecyclerView(
-//            item.content,
-//            textViewWidth,
-//            state ?: 0
-//        )
-//        holder.binding.expandTextView.visibility =
-//            if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
+        holder.binding.expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
+            override fun onExpand(view: ExpandTextView) {
+                mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
+            }
+
+            override fun onShrink(view: ExpandTextView) {
+                mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
+            }
+
+        })
+        val state: Int? = mPositionsAndStates.get(holder.adapterPosition)
+        holder.binding.expandTextView.updateForRecyclerView(
+            item.content,
+            textViewWidth,
+            state ?: 0
+        )
+        holder.binding.expandTextView.visibility =
+            if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
 
     }
 }
