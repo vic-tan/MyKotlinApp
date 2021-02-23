@@ -30,7 +30,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Common
 class RecommendTabFragment :
     BaseBVMFragment<FragmentClassmatecircleRecommendBinding, RecommendTabViewModel>() {
 
-
     companion object {
         fun newInstance(): RecommendTabFragment {
             val fragment = RecommendTabFragment()

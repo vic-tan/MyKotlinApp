@@ -62,6 +62,4 @@ class HomeNavigatorView : NavigatorView<NavigatorHomeTabBinding> {
     }
 
 
-
-
 }

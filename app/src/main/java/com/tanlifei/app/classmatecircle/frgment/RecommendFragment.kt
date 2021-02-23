@@ -7,6 +7,7 @@ import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.databinding.LayoutRecyclerRefreshBinding
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
+import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
@@ -20,7 +21,7 @@ import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
 class RecommendFragment() :
     BaseRecyclerBVMFragment<LayoutRecyclerRefreshBinding, RecommendViewModel>() {
 
-    private lateinit var adapter: FollowAdapter
+    private lateinit var adapter: RecommendAdapter
 
     companion object {
         fun newInstance(id: Long): RecommendFragment {
@@ -43,7 +44,7 @@ class RecommendFragment() :
 
     override fun initView() {
         super.initView()
-        adapter = FollowAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
+        adapter = RecommendAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
         initRefreshView(
             binding.smartRefreshLayout,
             binding.refreshLoadingLayout,

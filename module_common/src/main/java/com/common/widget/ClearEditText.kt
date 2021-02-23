@@ -16,24 +16,21 @@ import com.ruffian.library.widget.REditText
  * @author: tanlifei
  * @date: 2021/1/26 18:23
  */
-open class ClearEditText : REditText, OnFocusChangeListener,
+open class ClearEditText(
+    context: Context,
+    attrs: AttributeSet? = null
+) : REditText(context, attrs), OnFocusChangeListener,
     TextWatcher {
-    var mContext: Context
+
+    init {
+        init()
+    }
 
     /*
      * 删除按钮的引用
      */
     private var mClearDrawable: Drawable? = null
 
-    constructor(context: Context) : super(context) {
-        mContext = context
-        init()
-    }
-
-    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-        mContext = context
-        init()
-    }
 
     private fun init() {
         // 获取EditText的DrawableRight,假如没有设置我们就使用默认的图片

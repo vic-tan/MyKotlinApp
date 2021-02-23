@@ -14,17 +14,12 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/1/28 17:40
  */
-class TextInputHelper(view: RTextView) : TextWatcher {
+class TextInputHelper(
+    private val mBtnView: RTextView,
+    private val mColorNormal: Int = R.color.theme_color,
+    private val mEnabledColor: Int = R.color.enabled_color
+) : TextWatcher {
     private var mViewSet: MutableList<TextView>? = null //TextView集合，子类也可以（EditText、TextView、Button）
-    private var mBtnView: RTextView = view//操作按钮的View
-    private var mColorNormal = R.color.theme_color
-    private var mEnabledColor = R.color.enabled_color
-
-    constructor(view: RTextView, colorNormal: Int, enabledColor: Int) : this(view) {
-        mBtnView = view
-        mColorNormal = colorNormal
-        mEnabledColor = enabledColor
-    }
 
 
     /**
