@@ -6,6 +6,7 @@ import com.common.cofing.constant.GlobalConst
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
+import com.scwang.smart.refresh.layout.constant.RefreshState
 
 /**
  * @desc:列表加载
@@ -31,6 +32,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     }
 
     var loadMoreStartPos = 0//用于上接刷新里开始刷新的下标
+    var state: RefreshState = RefreshState.None
 
     /**
      * 列表加载显示处理异常
@@ -103,16 +105,18 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         } else {
             showContentUI()
         }
+        state = RefreshState.None
     }
 
     /**
      * 错误处理
      */
-    fun onError(dataChangedType: DataChagedType, it: Throwable) {
+    private fun onError(dataChangedType: DataChagedType, it: Throwable) {
         _loadingState.value = LoadType.ERROR
         notifyDataSetChanged(dataChangedType)
         //没有下一页
         if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
+            state = RefreshState.RefreshFinish
             showNotMoreDataUI()
         } else {
             //下拉刷新时才显示错误界面，上拉不处理
@@ -120,7 +124,9 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
                 showErrorUI()
             }
             it.show(it.errorCode, it.errorMsg)
+            state = RefreshState.None
         }
+
     }
 
     override fun showLoadingUI() {

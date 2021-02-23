@@ -3,11 +3,17 @@ package com.common.utils
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.blankj.utilcode.util.ObjectUtils
+import com.common.cofing.constant.GlobalConst
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.constant.RefreshState
+import java.util.*
 
 /**
  * @desc:
@@ -16,6 +22,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  */
 class RecyclerUtils {
     companion object {
+        private const val PRELOAD_COUNT = 5 //预加载阈值
 
         /**
          * 设置ViewModel的observe
@@ -67,6 +74,7 @@ class RecyclerUtils {
          */
         fun initListener(
             smartRefreshLayout: SmartRefreshLayout,
+            refreshRecycler: RecyclerView,
             viewModel: BaseListViewModel
         ) {
             smartRefreshLayout.setOnRefreshListener {
@@ -77,6 +85,51 @@ class RecyclerUtils {
                 viewModel.loadMore()
             }
             smartRefreshLayout.setEnableLoadMore(false)
+
+            refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    // 获取 LayoutManger
+                    val layoutManager = recyclerView.layoutManager
+                    if (ObjectUtils.isNotEmpty(layoutManager)) {
+                        if (FastClickUtils.isFastClick()) return
+                        // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
+                        if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
+                            && getOutLast(layoutManager) >= getLoadCount(layoutManager)
+                            && viewModel.state == RefreshState.None
+                        ) {
+                            viewModel.state = RefreshState.Loading
+                            viewModel.loadMore()
+                        }
+                    }
+                }
+            })
+        }
+
+        fun getLoadCount(layoutManager: RecyclerView.LayoutManager): Int {
+            var count = layoutManager.itemCount - 1 - PRELOAD_COUNT
+            if (layoutManager.itemCount - 1 - PRELOAD_COUNT > 0) {
+                return count
+            }
+            return Int.MAX_VALUE
+        }
+
+        fun getOutLast(layoutManager: RecyclerView.LayoutManager): Int {
+            return when (layoutManager) {
+                is StaggeredGridLayoutManager -> {
+                    val last = IntArray(layoutManager.spanCount)
+                    layoutManager.findLastVisibleItemPositions(last)
+                    Arrays.sort(last)
+                    last[last.size - 1]
+                }
+                is LinearLayoutManager -> {
+                    layoutManager.findLastVisibleItemPosition()
+                }
+                is GridLayoutManager -> {
+                    layoutManager.findLastVisibleItemPosition()
+                }
+                else -> layoutManager.itemCount - 1
+            }
         }
 
         /**
