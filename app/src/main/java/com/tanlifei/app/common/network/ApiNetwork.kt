@@ -8,7 +8,7 @@ import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.common.core.base.bean.UserBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
-import com.tanlifei.app.persenal.bean.ManualBean
+import com.tanlifei.app.profile.bean.ManualBean
 import rxhttp.RxHttp
 import rxhttp.toResponse
 

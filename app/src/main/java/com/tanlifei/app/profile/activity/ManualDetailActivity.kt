@@ -1,4 +1,4 @@
-package com.tanlifei.app.persenal.activity
+package com.tanlifei.app.profile.activity
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.tanlifei.app.databinding.ActivityManualDetailBinding
-import com.tanlifei.app.persenal.viewmodel.ManualViewModel
+import com.tanlifei.app.profile.viewmodel.ManualViewModel
 import java.net.URL
 
 

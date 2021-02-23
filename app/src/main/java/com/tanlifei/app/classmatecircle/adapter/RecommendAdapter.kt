@@ -65,7 +65,7 @@ class RecommendAdapter(data: MutableList<ClassmateCircleBean>) :
 
         holder.binding.praiseCount.text = NumberUtils.setPraiseCount(item.star)
         holder.binding.praiseCount.helper.iconNormalLeft =
-            ResUtils.getDrawable(if (item.isStar) R.mipmap.icon_cc_praise_pre else R.mipmap.icon_cc_praise)
+            ResUtils.getDrawable(if (item.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise)
 
         GlideUtils.load(context, item.image?.url, holder.binding.cover)
         holder.binding.cover.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT

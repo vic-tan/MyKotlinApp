@@ -50,7 +50,7 @@
         app:background_normal="@color/theme_color"
         app:icon_direction="left"
         app:icon_height="16dp"
-        app:icon_src_normal="@mipmap/icon_caveat"
+        app:icon_src_normal="@mipmap/ic_caveat"
         app:icon_width="16dp"
         app:icon_with_text="true" />
 
@@ -62,7 +62,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="14dp"
         android:layout_marginRight="10dp"
-        android:src="@mipmap/icon_play"
+        android:src="@mipmap/ic_play"
         android:visibility="gone"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -141,7 +141,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/default_avatar"
+        android:src="@mipmap/ic_default_avatar"
         app:corner_radius="13dp"
         app:is_circle="true"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -176,7 +176,7 @@
         android:textSize="14sp"
         app:icon_direction="left"
         app:icon_height="16dp"
-        app:icon_src_normal="@mipmap/icon_cc_praise"
+        app:icon_src_normal="@mipmap/ic_praise"
         app:icon_width="16dp"
         app:icon_with_text="true"
         app:layout_constraintBaseline_toBaselineOf="@id/user_name"

@@ -47,10 +47,10 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
     }
 
     private fun addGuideData() {
-        guideList.add(R.mipmap.icon_guide_one)
-        guideList.add(R.mipmap.icon_guide_two)
-        guideList.add(R.mipmap.icon_guide_three)
-        guideList.add(R.mipmap.icon_guide_four)
+        guideList.add(R.mipmap.bg_guide_one)
+        guideList.add(R.mipmap.bg_guide_two)
+        guideList.add(R.mipmap.bg_guide_three)
+        guideList.add(R.mipmap.bg_guide_four)
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.tanlifei.app.persenal.fragment
+package com.tanlifei.app.profile.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -11,11 +11,11 @@ import com.common.utils.GlideUtils
 import com.common.utils.ViewUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst
-import com.tanlifei.app.databinding.FragmentPersonalBinding
+import com.tanlifei.app.databinding.FragmentProfileBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.home.viewmodel.HomeViewModel
-import com.tanlifei.app.persenal.activity.ManualActivity
-import com.tanlifei.app.persenal.activity.SettingActivity
+import com.tanlifei.app.profile.activity.ManualActivity
+import com.tanlifei.app.profile.activity.SettingActivity
 
 
 /**
@@ -23,13 +23,13 @@ import com.tanlifei.app.persenal.activity.SettingActivity
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>(), View.OnClickListener {
+class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
 
     companion object {
-        fun newInstance(): PersonalFragment {
-            val fragment = PersonalFragment()
+        fun newInstance(): ProfileFragment {
+            val fragment = ProfileFragment()
             val args = Bundle()
             fragment.arguments = args
             return fragment
@@ -75,7 +75,7 @@ class PersonalFragment : BaseLazyFragment<FragmentPersonalBinding>(), View.OnCli
                 this.context,
                 it.avatar,
                 binding.persenalBg,
-                R.mipmap.default_persenal_bg
+                R.mipmap.bg_profile_default
             )
             GlideUtils.loadAvatar(this.context, it.avatar, binding.userCover)
         })

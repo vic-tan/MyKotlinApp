@@ -80,17 +80,17 @@
 
         <!--—————————————————————————————————————————————————— 我的 ——————————————————————————————————————————————————-->
         <activity
-            android:name=".persenal.activity.SettingActivity"
+            android:name=".profile.activity.SettingActivity"
             android:label="个人设置" />
 
         <activity
-            android:name=".persenal.activity.AboutActivity"
+            android:name=".profile.activity.AboutActivity"
             android:label="关于网上老年大学" />
         <activity
-            android:name=".persenal.activity.ManualActivity"
+            android:name=".profile.activity.ManualActivity"
             android:label="操作手册" />
         <activity
-            android:name=".persenal.activity.ManualDetailActivity"
+            android:name=".profile.activity.ManualDetailActivity"
             android:label="操作手册" />
 
 

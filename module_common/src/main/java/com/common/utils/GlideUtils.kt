@@ -27,7 +27,7 @@ class GlideUtils {
             context: Context?,
             url: String?,
             view: ImageView,
-            defaultId: Int = R.mipmap.default_img
+            defaultId: Int = R.mipmap.bg_default_img
         ) {
             if (ObjectUtils.isNotEmpty(context)
                 && ObjectUtils.isNotEmpty(view)
@@ -49,7 +49,7 @@ class GlideUtils {
                 && ObjectUtils.isNotEmpty(view)
                 && ObjectUtils.isNotEmpty(url)
             ) {
-                load(context, url, view, R.mipmap.default_avatar)
+                load(context, url, view, R.mipmap.ic_default_avatar)
             }
         }
 

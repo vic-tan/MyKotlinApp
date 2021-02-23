@@ -1,4 +1,4 @@
-package com.tanlifei.app.persenal.viewmodel
+package com.tanlifei.app.profile.viewmodel
 
 import com.common.core.base.viewmodel.BaseViewModel
 

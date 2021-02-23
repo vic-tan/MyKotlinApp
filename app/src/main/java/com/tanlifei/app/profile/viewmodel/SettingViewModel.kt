@@ -1,4 +1,4 @@
-package com.tanlifei.app.persenal.viewmodel
+package com.tanlifei.app.profile.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

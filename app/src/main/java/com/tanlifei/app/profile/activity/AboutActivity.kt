@@ -1,4 +1,4 @@
-package com.tanlifei.app.persenal.activity
+package com.tanlifei.app.profile.activity
 
 import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
@@ -9,7 +9,7 @@ import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.ViewUtils
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
-import com.tanlifei.app.persenal.viewmodel.AboutViewModel
+import com.tanlifei.app.profile.viewmodel.AboutViewModel
 
 /**
  * @desc:关于界面

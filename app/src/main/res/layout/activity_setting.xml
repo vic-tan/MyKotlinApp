@@ -16,7 +16,7 @@
 
         <ImageView
             style="@style/setting_list_item_arrow_right_style"
-            android:background="@mipmap/arrow_right_grey" />
+            android:background="@mipmap/ic_arrow_right_grey" />
     </com.ruffian.library.widget.RConstraintLayout>
 
     <include layout="@layout/layout_line_setting" />
@@ -31,7 +31,7 @@
 
         <ImageView
             style="@style/setting_list_item_arrow_right_style"
-            android:background="@mipmap/arrow_right_grey" />
+            android:background="@mipmap/ic_arrow_right_grey" />
     </com.ruffian.library.widget.RConstraintLayout>
 
     <include layout="@layout/layout_line_setting" />
@@ -46,7 +46,7 @@
 
         <ImageView
             style="@style/setting_list_item_arrow_right_style"
-            android:background="@mipmap/arrow_right_grey" />
+            android:background="@mipmap/ic_arrow_right_grey" />
     </com.ruffian.library.widget.RConstraintLayout>
 
     <include layout="@layout/layout_line_setting" />
@@ -62,7 +62,7 @@
 
         <ImageView
             style="@style/setting_list_item_arrow_right_style"
-            android:background="@mipmap/arrow_right_grey" />
+            android:background="@mipmap/ic_arrow_right_grey" />
     </com.ruffian.library.widget.RConstraintLayout>
 
     <include layout="@layout/layout_line_setting" />
@@ -85,7 +85,7 @@
         <ImageView
             android:id="@+id/versionArrow"
             style="@style/setting_list_item_arrow_right_style"
-            android:background="@mipmap/arrow_right_grey" />
+            android:background="@mipmap/ic_arrow_right_grey" />
     </com.ruffian.library.widget.RConstraintLayout>
 
     <include layout="@layout/layout_line_setting" />

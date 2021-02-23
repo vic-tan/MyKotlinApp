@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/bg_persenal_default"
+            android:src="@mipmap/bg_profile_default"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
             android:layout_height="65dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="70dp"
-            android:src="@mipmap/default_avatar"
+            android:src="@mipmap/ic_default_avatar"
             app:is_circle="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +91,7 @@
             app:corner_radius="30dp"
             app:icon_direction="right"
             app:icon_height="12dp"
-            app:icon_src_normal="@mipmap/arrow_right_white"
+            app:icon_src_normal="@mipmap/ic_arrow_right_white"
             app:icon_width="7dp"
             app:layout_constraintBottom_toBottomOf="@id/userCover"
             app:layout_constraintRight_toRightOf="parent"
@@ -116,7 +116,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="15dp"
-                android:src="@mipmap/icon_persenal_study"
+                android:src="@mipmap/ic_study"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -177,7 +177,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_msg"
+                app:icon_src_normal="@mipmap/ic_msg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/friend"
@@ -195,7 +195,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_friend"
+                app:icon_src_normal="@mipmap/ic_friend"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/msg"
                 app:layout_constraintRight_toLeftOf="@id/credit"
@@ -212,7 +212,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_credit"
+                app:icon_src_normal="@mipmap/ic_credit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/friend"
                 app:layout_constraintRight_toRightOf="parent"
@@ -259,7 +259,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_order"
+                app:icon_src_normal="@mipmap/ic_order"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/wallet"
@@ -277,7 +277,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_wallet"
+                app:icon_src_normal="@mipmap/ic_wallet"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/order"
                 app:layout_constraintRight_toLeftOf="@id/discountCenter"
@@ -294,7 +294,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_discount_center"
+                app:icon_src_normal="@mipmap/ic_discount_center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/wallet"
                 app:layout_constraintRight_toRightOf="parent"
@@ -341,7 +341,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_digame_center"
+                app:icon_src_normal="@mipmap/ic_digame_center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/collect"
@@ -359,7 +359,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_collect"
+                app:icon_src_normal="@mipmap/ic_collect"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/gameCenter"
                 app:layout_constraintRight_toLeftOf="@id/customerService"
@@ -376,7 +376,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="16sp"
                 app:icon_direction="top"
-                app:icon_src_normal="@mipmap/icon_persenal_customer_service"
+                app:icon_src_normal="@mipmap/ic_customer_service"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/collect"
                 app:layout_constraintRight_toRightOf="parent"
@@ -411,7 +411,7 @@
 
                 <ImageView
                     style="@style/setting_list_item_arrow_right_style"
-                    android:background="@mipmap/arrow_right_grey" />
+                    android:background="@mipmap/ic_arrow_right_grey" />
             </com.ruffian.library.widget.RConstraintLayout>
 
             <include layout="@layout/layout_line_setting" />
@@ -426,7 +426,7 @@
 
                 <ImageView
                     style="@style/setting_list_item_arrow_right_style"
-                    android:background="@mipmap/arrow_right_grey" />
+                    android:background="@mipmap/ic_arrow_right_grey" />
             </com.ruffian.library.widget.RConstraintLayout>
 
             <include layout="@layout/layout_line_setting" />
@@ -442,7 +442,7 @@
 
                 <ImageView
                     style="@style/setting_list_item_arrow_right_style"
-                    android:background="@mipmap/arrow_right_grey" />
+                    android:background="@mipmap/ic_arrow_right_grey" />
             </com.ruffian.library.widget.RConstraintLayout>
 
             <include layout="@layout/layout_line_setting" />
@@ -457,7 +457,7 @@
 
                 <ImageView
                     style="@style/setting_list_item_arrow_right_style"
-                    android:background="@mipmap/arrow_right_grey" />
+                    android:background="@mipmap/ic_arrow_right_grey" />
             </com.ruffian.library.widget.RConstraintLayout>
 
             <include layout="@layout/layout_line_setting" />
@@ -474,7 +474,7 @@
 
                 <ImageView
                     style="@style/setting_list_item_arrow_right_style"
-                    android:background="@mipmap/arrow_right_grey" />
+                    android:background="@mipmap/ic_arrow_right_grey" />
             </com.ruffian.library.widget.RConstraintLayout>
 
         </com.ruffian.library.widget.RLinearLayout>

@@ -27,7 +27,7 @@ class EnvironmentAdapter(data: MutableList<EnvironmentBean>) :
                 holder.setText(R.id.title, item.alias)
                 holder.setText(R.id.url, item.url)
                 holder.getView<ImageView>(R.id.radio)
-                    .setImageResource(if (item.defaultCheck) R.mipmap.icon_select else R.mipmap.icon_unselect)
+                    .setImageResource(if (item.defaultCheck) R.mipmap.ic_select_pre else R.mipmap.ic_select)
             }
         }
     }

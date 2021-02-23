@@ -1,11 +1,11 @@
-package com.tanlifei.app.persenal.viewmodel
+package com.tanlifei.app.profile.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.common.network.ApiNetwork
-import com.tanlifei.app.persenal.bean.ManualBean
+import com.tanlifei.app.profile.bean.ManualBean
 
 /**
  * @desc:

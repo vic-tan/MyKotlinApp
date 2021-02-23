@@ -11,7 +11,6 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.common.core.base.holder.BaseBindingAdapter
 import com.common.core.base.holder.BaseVBViewHolder
 import com.common.utils.GlideUtils
-import com.common.utils.ResUtils
 import com.common.widget.ExpandTextView
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -68,7 +67,7 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
             if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
 
         holder.binding.praiseCount.text = NumberUtils.setPraiseCount(item.star)
-        holder.binding.praiseIcon.setImageResource(if (item.isStar) R.mipmap.icon_cc_praise_pre else R.mipmap.icon_cc_praise)
+        holder.binding.praiseIcon.setImageResource(if (item.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise)
 
 
         holder.binding.commentCount.text = NumberUtils.setCommentCount(item.comment)

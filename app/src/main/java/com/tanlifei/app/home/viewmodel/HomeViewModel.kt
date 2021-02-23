@@ -17,7 +17,7 @@ import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
 import com.tanlifei.app.home.ui.fragment.StudyFragment
-import com.tanlifei.app.persenal.fragment.PersonalFragment
+import com.tanlifei.app.profile.fragment.ProfileFragment
 import org.litepal.LitePal
 import java.util.*
 
@@ -116,6 +116,6 @@ class HomeViewModel() : BaseViewModel() {
         mFragments.add(ClassFragment.newInstance())
         mFragments.add(ClassmateCircleFragment.newInstance())
         mFragments.add(StudyFragment.newInstance())
-        mFragments.add(PersonalFragment.newInstance())
+        mFragments.add(ProfileFragment.newInstance())
     }
 }

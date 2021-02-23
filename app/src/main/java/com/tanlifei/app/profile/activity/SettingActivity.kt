@@ -1,4 +1,4 @@
-package com.tanlifei.app.persenal.activity
+package com.tanlifei.app.profile.activity
 
 import android.view.View
 import androidx.lifecycle.Observer
@@ -12,7 +12,7 @@ import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding
 import com.tanlifei.app.main.ui.LoginAtivity
-import com.tanlifei.app.persenal.viewmodel.SettingViewModel
+import com.tanlifei.app.profile.viewmodel.SettingViewModel
 
 
 /**

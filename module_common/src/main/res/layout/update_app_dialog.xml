@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/custom_update_dialog_bg"
+        android:background="@mipmap/bg_custom_update_dialog"
         android:paddingBottom="15dp">
 
         <TextView
@@ -89,6 +89,6 @@
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@mipmap/icon_update_close" />
+        android:src="@mipmap/ic_close_white" />
 
 </LinearLayout>

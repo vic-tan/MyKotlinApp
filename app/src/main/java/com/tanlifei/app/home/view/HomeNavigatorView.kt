@@ -30,21 +30,21 @@ class HomeNavigatorView @JvmOverloads constructor(
 
     override fun normalImageArray(): IntArray? {
         return intArrayOf(
-            R.mipmap.ic_tab_one_normal,
-            R.mipmap.ic_tab_live_normal,
-            R.mipmap.ic_tab_video_normal,
-            R.mipmap.ic_tab_msg_normal,
-            R.mipmap.ic_tab_personal_normal
+            R.mipmap.ic_tab_home,
+            R.mipmap.ic_tab_class,
+            R.mipmap.ic_tab_classmate_circle,
+            R.mipmap.ic_tab_study,
+            R.mipmap.ic_tab_profile
         )
     }
 
     override fun pressImageArray(): IntArray? {
         return intArrayOf(
-            R.mipmap.ic_tab_one_press,
-            R.mipmap.ic_tab_live_press,
-            R.mipmap.ic_tab_video_press,
-            R.mipmap.ic_tab_msg_press,
-            R.mipmap.ic_tab_personal_press
+            R.mipmap.ic_tab_home_pre,
+            R.mipmap.ic_tab_class_pre,
+            R.mipmap.ic_tab_classmate_circle_pre,
+            R.mipmap.ic_tab_study_pre,
+            R.mipmap.ic_tab_profile_pre
         )
     }
 

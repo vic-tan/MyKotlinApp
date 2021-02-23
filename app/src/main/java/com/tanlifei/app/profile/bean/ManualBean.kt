@@ -1,4 +1,4 @@
-package com.tanlifei.app.persenal.bean
+package com.tanlifei.app.profile.bean
 
 /**
  * @desc:操作手册

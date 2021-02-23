@@ -9,7 +9,7 @@
     </style>
 
     <style name="SplashActivityThemes" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@mipmap/splash</item>
+        <item name="android:windowBackground">@mipmap/bg_splash</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 

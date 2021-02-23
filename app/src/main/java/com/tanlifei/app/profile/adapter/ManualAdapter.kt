@@ -1,11 +1,11 @@
-package com.tanlifei.app.persenal.adapter
+package com.tanlifei.app.profile.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.common.core.base.holder.BaseBindingAdapter
 import com.common.core.base.holder.BaseVBViewHolder
 import com.tanlifei.app.databinding.ItemManualBinding
-import com.tanlifei.app.persenal.bean.ManualBean
+import com.tanlifei.app.profile.bean.ManualBean
 
 /**
  * @desc:操作手册适配器
