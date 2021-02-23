@@ -47,7 +47,6 @@ class RecommendFragment() :
 
     override fun onFirstVisibleToUser() {
         super.onFirstVisibleToUser()
-        refreshRecycler.itemAnimator = null
         refreshRecycler.addItemDecoration(
             GridItemDecoration(
                 8

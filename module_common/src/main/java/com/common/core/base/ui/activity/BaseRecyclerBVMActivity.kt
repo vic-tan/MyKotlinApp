@@ -47,6 +47,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
     private fun initRecyclerView() {
         refreshRecycler.layoutManager = setLinearLayoutManager()
         refreshRecycler.adapter = setAdapter()
+        refreshRecycler.itemAnimator = null
     }
 
     /**

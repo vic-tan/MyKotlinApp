@@ -30,7 +30,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         ERROR,//报错界面
     }
 
-    var loadMoreStartPos = 0
+    var loadMoreStartPos = 0//用于上接刷新里开始刷新的下标
 
     /**
      * 列表加载显示处理异常

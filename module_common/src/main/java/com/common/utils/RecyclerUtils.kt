@@ -32,13 +32,13 @@ class RecyclerUtils {
                 when (it) {
                     BaseListViewModel.DataChagedType.REFRESH -> {
                         smartRefreshLayout.finishRefresh()
-                        adapter.notifyItemRangeChanged(0, viewModel.mData.size)
+                        adapter.notifyItemRangeChanged(0, viewModel.mData.size - 1)
                     }
                     BaseListViewModel.DataChagedType.LOADMORE -> {
                         smartRefreshLayout.finishLoadMore()
                         adapter.notifyItemRangeInserted(
                             viewModel.loadMoreStartPos,
-                            viewModel.mData.size
+                            viewModel.mData.size - 1
                         )
                     }
                     else -> {
