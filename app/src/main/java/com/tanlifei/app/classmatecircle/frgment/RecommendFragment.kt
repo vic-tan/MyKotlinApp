@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
-import com.tanlifei.app.classmatecircle.adapter.GridItemDecoration
+import com.common.utils.MyLogTools
+import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
@@ -25,6 +26,7 @@ class RecommendFragment() :
 
     companion object {
         fun newInstance(id: Long): RecommendFragment {
+            MyLogTools.log("--------->${id}")
             val fragment = RecommendFragment()
             val args = Bundle()
             args.putLong(GlobalConst.Extras.ID, id)
@@ -46,7 +48,11 @@ class RecommendFragment() :
     override fun onFirstVisibleToUser() {
         super.onFirstVisibleToUser()
         refreshRecycler.itemAnimator = null
-        refreshRecycler.addItemDecoration(GridItemDecoration(8))  //间距
+        refreshRecycler.addItemDecoration(
+            GridItemDecoration(
+                8
+            )
+        )  //间距
     }
 
 

@@ -39,7 +39,10 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
 
     private fun initSophixManager() {
         // queryAndLoadNewPatch不可放在attachBaseContext 中，否则无网络权限，建议放在后面任意时刻，如onCreate中
-        SophixManager.getInstance().queryAndLoadNewPatch()
+        //引用了热修复，也有可能会引发这种情况Androidstudio中，修改代码之后运行不生效，需要卸载后重新安装才生效问题的解决
+        if (!BuildConfig.DEBUG) {
+            SophixManager.getInstance().queryAndLoadNewPatch()
+        }
     }
 
     /**

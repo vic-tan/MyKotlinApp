@@ -11,7 +11,7 @@ import com.common.BuildConfig
 class MyLogTools {
     companion object {
         private const val TAG = "tlf_log"
-        fun show(content: String) {
+        fun log(content: String) {
             if (BuildConfig.DEBUG) {
                 LogUtils.dTag(TAG, content)
             }

@@ -1,4 +1,4 @@
-package com.tanlifei.app.classmatecircle.adapter
+package com.tanlifei.app.classmatecircle.adapter.itemdecoration
 
 import android.graphics.Rect
 import android.view.View

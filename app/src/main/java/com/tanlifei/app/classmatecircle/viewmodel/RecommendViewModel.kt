@@ -8,7 +8,7 @@ import com.tanlifei.app.common.network.ApiNetwork
  * @author: tanlifei
  * @date: 2021/2/7 15:41
  */
-class RecommendViewModel(private val categoryId: Long = 0) : BaseListViewModel() {
+class RecommendViewModel(private var categoryId: Long = 0) : BaseListViewModel() {
 
 
     override fun requestList(dataChangedType: DataChagedType) {
