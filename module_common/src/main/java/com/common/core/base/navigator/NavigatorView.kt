@@ -17,29 +17,19 @@ import com.ruffian.library.widget.RTextView
  * @author: tanlifei
  * @date: 2021/1/23 16:23
  */
-abstract class NavigatorView<T : ViewBinding> : LinearLayout {
-    var mContext: Context
+abstract class NavigatorView<T : ViewBinding> @JvmOverloads constructor(
+    context: Context,
+    attributeSet: AttributeSet? = null,
+    defStyleAttr: Int =  0
+) : LinearLayout(context, attributeSet, defStyleAttr) {
+
     protected lateinit var binding: T
     lateinit var listener: NavigatorListener
 
-    constructor(context: Context) : super(context) {
-        mContext = context
+    init {
         init()
     }
 
-    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-        mContext = context
-        init()
-    }
-
-    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attributeSet,
-        defStyleAttr
-    ) {
-        mContext = context
-        init()
-    }
 
     /**
      * 初始化数据
@@ -98,9 +88,9 @@ abstract class NavigatorView<T : ViewBinding> : LinearLayout {
             if (child is TextView) {
                 if (child !is RTextView) {
                     if (select) {
-                        child.setTextColor(ContextCompat.getColor(context,R.color.tab_txt_press))
+                        child.setTextColor(ContextCompat.getColor(context, R.color.tab_txt_press))
                     } else {
-                        child.setTextColor(ContextCompat.getColor(context,R.color.tab_txt_normal))
+                        child.setTextColor(ContextCompat.getColor(context, R.color.tab_txt_normal))
                     }
                 }
             }
