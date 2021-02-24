@@ -1,5 +1,6 @@
 package com.common.core.base.ui.activity
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.viewmodel.BaseListViewModel
@@ -13,7 +14,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  * @date: 2021/2/7 17:14
  */
 abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> :
-    BaseToolBarActivity<T, VM>(){
+    BaseToolBarActivity<T, VM>() {
     lateinit var smartRefreshLayout: SmartRefreshLayout
     lateinit var refreshLoadingLayout: LoadingLayout
     lateinit var refreshRecycler: RecyclerView
@@ -37,10 +38,14 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
             this,
             setAdapter()
         )
-        RecyclerUtils.initListener(smartRefreshLayout,refreshRecycler, viewModel)
+        RecyclerUtils.initListener(smartRefreshLayout, refreshRecycler, viewModel)
         initRecyclerView()
         RecyclerUtils.initData(viewModel)
+        refreshLoadingLayout.setRetryListener(View.OnClickListener {
+            viewModel.refresh()
+        })
     }
+
     /**
      * 初始化Recycler
      */
