@@ -12,7 +12,7 @@ import com.common.R
 class AntiShakeUtils {
     companion object {
         // 两次点击按钮之间的点击间隔不能少于1000毫秒
-        private val INTERNAL_TIME: Long = 500
+        private const val INTERNAL_TIME: Long = 500
 
 
         /**

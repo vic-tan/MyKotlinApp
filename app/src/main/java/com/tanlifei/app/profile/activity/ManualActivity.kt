@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
+import com.common.utils.AntiShakeUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.profile.adapter.ManualAdapter
 import com.tanlifei.app.profile.bean.ManualBean
@@ -49,7 +50,8 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
         adapter.setOnItemChildClickListener(object :
             OnItemListener {
             override fun onItemClick(v: View, position: Int) {
-                when (v?.id) {
+                if (AntiShakeUtils.isInvalidClick(v)) return
+                when (v.id) {
                     R.id.item -> ManualDetailActivity.actionStart((viewModel.mData[position] as ManualBean).id)
                 }
             }

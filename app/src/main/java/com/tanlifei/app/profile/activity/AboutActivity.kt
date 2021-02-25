@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
+import com.common.utils.AntiShakeUtils
 import com.common.utils.ViewUtils
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
@@ -52,6 +53,7 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
     }
 
     override fun onClick(v: View) {
+        if (AntiShakeUtils.isInvalidClick(v)) return
         var title: String? = ""
         var url: String? = ""
         when (v) {

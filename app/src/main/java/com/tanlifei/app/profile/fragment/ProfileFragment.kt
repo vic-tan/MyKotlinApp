@@ -7,6 +7,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.base.ui.fragment.BaseLazyFragment
+import com.common.utils.AntiShakeUtils
 import com.common.utils.GlideUtils
 import com.common.utils.ViewUtils
 import com.tanlifei.app.R
@@ -81,7 +82,8 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClick
         })
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
+        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.setting -> SettingActivity.actionStart()
             binding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)

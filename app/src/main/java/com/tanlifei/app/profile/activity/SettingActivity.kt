@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseToolBarActivity
+import com.common.utils.AntiShakeUtils
 import com.common.utils.ComDialogUtils
 import com.common.utils.ViewUtils
 import com.lxj.xpopup.interfaces.OnConfirmListener
@@ -64,7 +65,8 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
         binding.versionName.text = "V${AppUtils.getAppVersionName()}"
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
+        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.about -> AboutActivity.actionStart()
             binding.exit -> {
