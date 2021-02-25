@@ -5,6 +5,7 @@ import android.view.View
 import com.common.R
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
+import com.common.utils.AntiShakeUtils
 import com.common.utils.ViewUtils
 import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.core.BottomPopupView
@@ -66,8 +67,9 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
     }
 
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
+    override fun onClick(v: View) {
+        if (AntiShakeUtils.isInvalidClick(v)) return
+        when (v.id) {
             R.id.wx -> {
                 if (isWeixinAvilible()) {
                     dismiss()
@@ -90,14 +92,14 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
                 dismiss()
                 mlistener.onItemClick(
                     v,
-                    ShareType.WX_CIRCLE
+                    ShareType.REPORT
                 )
             }
             R.id.credit -> {
                 dismiss()
                 mlistener.onItemClick(
                     v,
-                    ShareType.WX_CIRCLE
+                    ShareType.CREDIT
                 )
             }
             R.id.cancel -> dismiss()

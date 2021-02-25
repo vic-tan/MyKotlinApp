@@ -17,6 +17,7 @@ import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
+import com.common.utils.AntiShakeUtils
 import com.common.utils.ComUtils
 import com.common.utils.ResUtils
 import com.common.utils.ViewUtils
@@ -71,7 +72,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.loadingState.observe(this,this)
+        viewModel.loadingState.observe(this, this)
 
         viewModel.isToken.observe(this, Observer {
             if (it) {
@@ -109,7 +110,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         )
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
+        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.codeBtn -> {
                 if (checkPhone(
@@ -155,7 +157,9 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         protocolBuild.append(SpecialTextUnit("《用户协议》").setTextColor(ResUtils.getColor(R.color.color_A47E68))
             .setClickableUnit(
                 SpecialClickableUnit(binding.protocolTxt,
-                    OnClickableSpanListener { _: TextView?, _: CustomClickableSpan? ->
+
+                    OnClickableSpanListener { v: TextView, _: CustomClickableSpan? ->
+                        if (AntiShakeUtils.isInvalidClick(v)) return@OnClickableSpanListener
                         gotoWeb(
                             "用户协议",
                             URL_USER_AGREEMENT
@@ -168,7 +172,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         protocolBuild.append(SpecialTextUnit("《隐私政策》").setTextColor(ResUtils.getColor(R.color.color_A47E68))
             .setClickableUnit(
                 SpecialClickableUnit(binding.protocolTxt,
-                    OnClickableSpanListener { _: TextView?, _: CustomClickableSpan? ->
+                    OnClickableSpanListener { v: TextView, _: CustomClickableSpan? ->
+                        if (AntiShakeUtils.isInvalidClick(v)) return@OnClickableSpanListener
                         gotoWeb(
                             "隐私政策",
                             URL_PRIVATE_AGREEMENT

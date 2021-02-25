@@ -7,6 +7,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
+import com.common.utils.AntiShakeUtils
 import com.common.utils.GlideUtils
 import com.common.utils.ViewUtils
 import com.tanlifei.app.databinding.ActivitySplashBinding
@@ -120,7 +121,8 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
         return SplashViewModel()
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
+        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.adsImg -> {
                 viewModel.adsBean?.url?.let { it1 ->
