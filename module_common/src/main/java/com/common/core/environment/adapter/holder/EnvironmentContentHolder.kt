@@ -8,8 +8,7 @@ import com.common.databinding.ItemEnvironmentContentBinding
  * @author: tanlifei
  * @date: 2021/2/25 10:41
  */
-class EnvironmentContentHolder(binding: ItemEnvironmentContentBinding) : CommonRvMultiHolder(binding.root) {
+class EnvironmentContentHolder(binding: ItemEnvironmentContentBinding) :
+    CommonRvMultiHolder(binding.root) {
     var binding: ItemEnvironmentContentBinding = binding
-
-
 }

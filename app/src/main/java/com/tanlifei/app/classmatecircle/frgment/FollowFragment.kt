@@ -5,7 +5,10 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
-import com.common.widget.ShareView
+import com.common.core.share.ShareBean
+import com.common.core.share.listener.OnShareListener
+import com.common.core.share.ui.ShareView
+import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.XPopup
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
@@ -56,7 +59,21 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
                     R.id.more,
                     R.id.share_layout -> {
                         context?.let {
-                            XPopup.Builder(it).asCustom(ShareView(it)).show()
+                            XPopup.Builder(it).asCustom(
+                                ShareView(
+                                    it,
+                                    ShareBean("网上老年大学", "https://www.baidu.com", "test 分享", ""),
+                                    object :
+                                        OnShareListener {
+                                        override fun onItemClick(
+                                            v: View,
+                                            type: ShareView.ShareType
+                                        ) {
+                                            ToastUtils.show(type.name)
+                                        }
+
+                                    })
+                            ).show()
                         }
                     }
                 }
@@ -67,5 +84,6 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
     override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
+
 
 }

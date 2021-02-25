@@ -1,6 +1,9 @@
 package com.common.utils
 
+import android.content.Context
 import android.view.View
+import android.widget.TextView
+import com.common.R
 
 /**
  * @desc:
@@ -14,5 +17,13 @@ class ViewUtils {
                 views[i].setOnClickListener(clickListener)
             }
         }
+
+        fun setOnClickListener(v: View, clickListener: View.OnClickListener, vararg views: Int) {
+            for (i in views.indices) {
+                v.findViewById<TextView>(views[i]).setOnClickListener(clickListener)
+            }
+        }
+
+
     }
 }
