@@ -5,7 +5,6 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.common.core.base.adapter.OnItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
-import com.common.utils.MyLogTools
 import com.common.widget.ShareView
 import com.lxj.xpopup.XPopup
 import com.tanlifei.app.R

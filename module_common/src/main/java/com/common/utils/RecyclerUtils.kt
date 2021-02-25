@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.widget.LoadingLayout
@@ -92,6 +93,8 @@ class RecyclerUtils {
             refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
+                    if (!NetworkUtils.isConnected())//没有网不加载，让用户手动加载
+                        return
                     // 获取 LayoutManger
                     val layoutManager = recyclerView.layoutManager
                     if (ObjectUtils.isNotEmpty(layoutManager)) {

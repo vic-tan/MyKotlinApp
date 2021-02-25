@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.utils.AntiShakeUtils
 import java.util.LinkedHashSet
 
@@ -33,19 +34,17 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
      */
     private val childClickViews = LinkedHashSet<View>()
 
-    private fun getChildClickViews(): LinkedHashSet<View> {
-        return childClickViews
-    }
-
 
     /**
      * 设置需要点击事件的子view
      * @param views viewArray
      */
-    fun addChildClickViewIds(vararg views: View) {
-        for (viewId in views) {
-            childClickViews.add(viewId)
+    private fun addViewList(views: LinkedHashSet<View>) {
+        childClickViews.clear()
+        if (ObjectUtils.isNotEmpty(views)) {
+            childClickViews.addAll(views)
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<V> {
@@ -65,14 +64,16 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
             holder.binding,
             mData[holder.adapterPosition]
         )
-
-        onItemListener?.let {
-            for (v in getChildClickViews()) {
-                v?.let {
-                    it.setOnClickListener {
-                        if (AntiShakeUtils.isInvalidClick(v))
-                            return@setOnClickListener
-                        setOnItemChildClick(v, holder.adapterPosition)
+        addViewList(addChildClickViewIds(holder.binding))
+        if (ObjectUtils.isNotEmpty(childClickViews)) {
+            onItemListener?.let {
+                for (v in childClickViews) {
+                    v?.let {
+                        it.setOnClickListener {
+                            if (AntiShakeUtils.isInvalidClick(v))
+                                return@setOnClickListener
+                            setOnItemChildClick(v, holder.adapterPosition)
+                        }
                     }
                 }
             }
@@ -87,6 +88,8 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
     ): CommonRvHolder<V>
 
     abstract fun onBindViewHolder(holder: CommonRvHolder<V>, position: Int, binding: V, bean: T)
+
+    abstract fun addChildClickViewIds(binding: V): LinkedHashSet<View>
 
 
     protected open fun setOnItemChildClick(v: View, position: Int) {

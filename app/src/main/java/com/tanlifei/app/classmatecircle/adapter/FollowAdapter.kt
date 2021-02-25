@@ -18,6 +18,7 @@ import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ItemFollowBinding
+import java.util.LinkedHashSet
 
 /**
  * @desc:
@@ -87,8 +88,11 @@ class FollowAdapter : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() 
 
         holder.binding.commentCount.text = NumberUtils.setCommentCount(item.comment)
 
-        addChildClickViewIds(binding.more,binding.shareLayout)
+
     }
 
+    override fun addChildClickViewIds(binding: ItemFollowBinding): LinkedHashSet<View> {
+        return linkedSetOf(binding.more, binding.shareLayout)
+    }
 
 }
