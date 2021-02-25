@@ -2,10 +2,10 @@ package com.tanlifei.app.common.network
 
 import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.common.core.base.bean.UserBean
 import com.common.core.bean.UpdateAppBean
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
-import com.common.core.base.bean.UserBean
+import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.profile.bean.ManualBean

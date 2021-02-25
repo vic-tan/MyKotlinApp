@@ -15,7 +15,6 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.bugly.crashreport.CrashReport
-import com.tencent.bugly.crashreport.biz.UserInfoBean
 import org.litepal.LitePal
 import update.UpdateAppUtils
 

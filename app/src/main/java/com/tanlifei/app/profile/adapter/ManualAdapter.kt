@@ -7,7 +7,7 @@ import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.bean.ManualBean
-import java.util.LinkedHashSet
+import java.util.*
 
 /**
  * @desc:操作手册适配器

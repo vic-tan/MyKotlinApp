@@ -18,7 +18,7 @@ import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ItemFollowBinding
-import java.util.LinkedHashSet
+import java.util.*
 
 /**
  * @desc:

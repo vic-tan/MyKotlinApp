@@ -7,7 +7,6 @@ import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
-import kotlin.collections.ArrayList
 
 
 /**

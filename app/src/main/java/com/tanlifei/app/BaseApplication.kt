@@ -1,7 +1,6 @@
 package com.tanlifei.app
 
 import com.common.ComApplication
-import com.common.core.http.RxHttpManager
 
 
 /**

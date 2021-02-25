@@ -19,7 +19,6 @@ import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
-import com.permissionx.guolindev.PermissionX
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

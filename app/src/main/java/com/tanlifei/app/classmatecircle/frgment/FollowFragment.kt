@@ -3,7 +3,7 @@ package com.tanlifei.app.classmatecircle.frgment
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.common.core.base.adapter.OnItemListener
+import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.widget.ShareView
 import com.lxj.xpopup.XPopup
@@ -49,7 +49,8 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         super.initView()
         adapter = FollowAdapter()
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
-        adapter.setOnItemChildClickListener(object : OnItemListener {
+        adapter.setOnItemChildClickListener(object :
+            OnItemListener {
             override fun onItemClick(v: View, position: Int) {
                 when (v?.id) {
                     R.id.more,

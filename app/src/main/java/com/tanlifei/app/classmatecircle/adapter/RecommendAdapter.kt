@@ -17,7 +17,7 @@ import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ItemRecommendBinding
-import java.util.LinkedHashSet
+import java.util.*
 
 /**
  * @desc:推荐适配器

@@ -6,7 +6,6 @@ import com.common.R
 import com.common.cofing.constant.ApiEnvironmentConst
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.core.environment.bean.ModuleBean
-import com.common.utils.MyLogTools
 
 /**
  * @desc:环境切换器设置

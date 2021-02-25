@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.core.base.listener.OnItemListener
 import com.common.utils.AntiShakeUtils
 import java.util.*
 
