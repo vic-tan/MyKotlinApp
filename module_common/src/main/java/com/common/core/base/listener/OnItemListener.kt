@@ -3,7 +3,7 @@ package com.common.core.base.listener
 import android.view.View
 
 /**
- * @desc:
+ * @desc:Rv item 点击事件回调接口
  * @author: tanlifei
  * @date: 2021/2/24 16:55
  */
@@ -17,7 +17,7 @@ interface OnItemListener {
      * will be a view provided by the adapter)
      * @param position The position of the view in the adapter.
      */
-    fun  onItemClick(
+    fun onItemClick(
         v: View,
         position: Int
     )

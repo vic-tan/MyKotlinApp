@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.common.core.base.adapter.CommonRvMultiHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
-import com.common.core.environment.adapter.holder.ContentViewHolder
-import com.common.core.environment.adapter.holder.TitleViewHolder
+import com.common.core.environment.adapter.holder.EnvironmentContentHolder
+import com.common.core.environment.adapter.holder.EnvironmentTitleHolder
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.databinding.ItemEnvironmentContentBinding
 import com.common.databinding.ItemEnvironmentTitleBinding
@@ -14,11 +14,11 @@ import java.util.*
 
 
 /**
- * @desc:
+ * @desc:环境切换器适配器
  * @author: tanlifei
  * @date: 2021/2/2 17:58
  */
-class EnvironmentAdapter() :
+class EnvironmentAdapter :
     CommonRvMultiItemAdapter<EnvironmentBean>() {
 
     override fun onCreateViewHolder(
@@ -28,18 +28,16 @@ class EnvironmentAdapter() :
     ): CommonRvMultiHolder {
         return when (viewType) {
             EnvironmentBean.TITLE ->
-                TitleViewHolder(
+                EnvironmentTitleHolder(
                     ItemEnvironmentTitleBinding.inflate(
-                        LayoutInflater.from(parent.context),
+                        inflater,
                         parent,
                         false
                     )
                 )
-            else -> ContentViewHolder(
+            else -> EnvironmentContentHolder(
                 ItemEnvironmentContentBinding.inflate(
-                    LayoutInflater.from(
-                        parent.context
-                    ), parent, false
+                    inflater, parent, false
                 )
             )
 
@@ -52,13 +50,13 @@ class EnvironmentAdapter() :
         bean: EnvironmentBean
     ) {
         when (holder) {
-            is TitleViewHolder -> {
-                holder.binding().title.text = bean.alias
+            is EnvironmentTitleHolder -> {
+                holder.binding.title.text = bean.alias
             }
-            is ContentViewHolder -> {
-                holder.binding().title.text = bean.alias
-                holder.binding().url.text = bean.url
-                holder.binding().radio.setImageResource(if (bean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
+            is EnvironmentContentHolder -> {
+                holder.binding.title.text = bean.alias
+                holder.binding.url.text = bean.url
+                holder.binding.radio.setImageResource(if (bean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
             }
         }
     }
@@ -69,11 +67,11 @@ class EnvironmentAdapter() :
 
     override fun addChildClickViewIds(holder: CommonRvMultiHolder): LinkedHashSet<View> {
         return when (holder) {
-            is TitleViewHolder -> {
+            is EnvironmentTitleHolder -> {
                 linkedSetOf()
             }
-            is ContentViewHolder -> {
-                linkedSetOf(holder.binding().layout)
+            is EnvironmentContentHolder -> {
+                linkedSetOf(holder.binding.layout)
             }
             else -> {
                 linkedSetOf()

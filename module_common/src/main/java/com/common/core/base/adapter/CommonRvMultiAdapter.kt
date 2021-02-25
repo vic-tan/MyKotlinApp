@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnItemListener
 import com.common.utils.AntiShakeUtils
@@ -106,9 +107,8 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     }
 }
 
-open class CommonRvMultiHolder(itemView: View) :
-    RecyclerView.ViewHolder(itemView) {
-
+open class CommonRvMultiHolder(holder: View) :
+    RecyclerView.ViewHolder(holder) {
 }
 
 
