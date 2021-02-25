@@ -1,24 +1,43 @@
 package com.tanlifei.app.profile.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import com.common.core.base.adapter.CommonRvAdapter
+import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.holder.BaseBindingAdapter
 import com.common.core.base.holder.BaseVBViewHolder
+import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.bean.ManualBean
+import java.util.LinkedHashSet
 
 /**
  * @desc:操作手册适配器
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class ManualAdapter(data: MutableList<ManualBean>) :
-    BaseBindingAdapter<ManualBean, ItemManualBinding>(data) {
-    override fun createViewBinding(inflater: LayoutInflater, parent: ViewGroup): ItemManualBinding {
-        return ItemManualBinding.inflate(inflater, parent, false)
+class ManualAdapter() :
+    CommonRvAdapter<ManualBean, ItemManualBinding>() {
+
+    override fun onCreateViewHolder(
+        inflater: LayoutInflater,
+        parent: ViewGroup,
+        viewType: Int
+    ): CommonRvHolder<ItemManualBinding> {
+        return CommonRvHolder(ItemManualBinding.inflate(inflater, parent, false))
     }
 
-    override fun convert(holder: BaseVBViewHolder<ItemManualBinding>, item: ManualBean) {
-        holder.binding.title.text = item.title
+    override fun onBindViewHolder(
+        holder: CommonRvHolder<ItemManualBinding>,
+        position: Int,
+        binding: ItemManualBinding,
+        bean: ManualBean
+    ) {
+        holder.binding.title.text = bean.title
+    }
+
+    override fun addChildClickViewIds(binding: ItemManualBinding): LinkedHashSet<View> {
+        return linkedSetOf(binding.item)
     }
 }
