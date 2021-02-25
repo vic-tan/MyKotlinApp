@@ -21,9 +21,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
     BaseLazyFragment<T>() {
     protected lateinit var viewModel: VM
-    lateinit var smartRefreshLayout: SmartRefreshLayout
-    lateinit var refreshLoadingLayout: LoadingLayout
-    lateinit var refreshRecycler: RecyclerView
+
 
     protected abstract fun createViewModel(): VM
 
@@ -48,16 +46,13 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
     }
 
     /**
-     * 懒加载第一次显示加载
-     */
-    override fun onFirstVisibleToUser() {
-        initRecycler()
-    }
-
-    /**
      * 初始化
      */
-    private fun initRecycler() {
+    fun initRecycler(
+        smartRefreshLayout: SmartRefreshLayout,
+        refreshLoadingLayout: LoadingLayout,
+        refreshRecycler: RecyclerView
+    ) {
         RecyclerUtils.initViewModelObserve(
             smartRefreshLayout,
             refreshLoadingLayout,
@@ -66,7 +61,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
             setAdapter()
         )
         RecyclerUtils.initListener(smartRefreshLayout, refreshRecycler, viewModel)
-        initRecyclerView()
+        initRecyclerView(refreshRecycler)
         RecyclerUtils.initData(viewModel)
         refreshLoadingLayout.setRetryListener(View.OnClickListener {
             viewModel.refresh()
@@ -75,22 +70,9 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
 
 
     /**
-     * 初始化列表控件
-     */
-    protected fun initRefreshView(
-        smartRefreshLayout: SmartRefreshLayout,
-        refreshLoadingLayout: LoadingLayout,
-        refreshRecycler: RecyclerView
-    ) {
-        this.smartRefreshLayout = smartRefreshLayout
-        this.refreshLoadingLayout = refreshLoadingLayout
-        this.refreshRecycler = refreshRecycler
-    }
-
-    /**
      * 初始化Recycler
      */
-    private fun initRecyclerView() {
+    private fun initRecyclerView(refreshRecycler: RecyclerView) {
         refreshRecycler.layoutManager = setLinearLayoutManager()
         refreshRecycler.adapter = setAdapter()
         refreshRecycler.itemAnimator = null

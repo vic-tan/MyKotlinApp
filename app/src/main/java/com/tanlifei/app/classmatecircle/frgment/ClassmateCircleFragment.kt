@@ -3,11 +3,10 @@ package com.tanlifei.app.classmatecircle.frgment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.BarUtils
-import com.common.core.adapter.BasePagerAdapter
+import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
-import java.util.*
 import kotlin.collections.ArrayList
 
 

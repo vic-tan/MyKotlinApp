@@ -15,10 +15,6 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  */
 abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> :
     BaseToolBarActivity<T, VM>() {
-    lateinit var smartRefreshLayout: SmartRefreshLayout
-    lateinit var refreshLoadingLayout: LoadingLayout
-    lateinit var refreshRecycler: RecyclerView
-
 
     /**
      * 初始化列表控件
@@ -28,9 +24,6 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
         refreshLoadingLayout: LoadingLayout,
         refreshRecycler: RecyclerView
     ) {
-        this.smartRefreshLayout = smartRefreshLayout
-        this.refreshLoadingLayout = refreshLoadingLayout
-        this.refreshRecycler = refreshRecycler
         RecyclerUtils.initViewModelObserve(
             smartRefreshLayout,
             refreshLoadingLayout,
@@ -39,7 +32,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
             setAdapter()
         )
         RecyclerUtils.initListener(smartRefreshLayout, refreshRecycler, viewModel)
-        initRecyclerView()
+        initRecyclerView(refreshRecycler)
         RecyclerUtils.initData(viewModel)
         refreshLoadingLayout.setRetryListener(View.OnClickListener {
             viewModel.refresh()
@@ -49,7 +42,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 初始化Recycler
      */
-    private fun initRecyclerView() {
+    private fun initRecyclerView(refreshRecycler: RecyclerView) {
         refreshRecycler.layoutManager = setLinearLayoutManager()
         refreshRecycler.adapter = setAdapter()
         refreshRecycler.itemAnimator = null

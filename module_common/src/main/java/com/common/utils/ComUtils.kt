@@ -3,7 +3,6 @@ package com.common.utils
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
@@ -87,7 +86,7 @@ object ComUtils {
             .updateTitle("版本更新啦")
             .updateConfig(updateConfig)
             .updateContent(updateAppBean.updateLog)
-            .uiConfig(UiConfig(uiType = UiType.CUSTOM, customLayoutId = R.layout.update_app_dialog))
+            .uiConfig(UiConfig(uiType = UiType.CUSTOM, customLayoutId = R.layout.dialog_update_app))
             .setOnInitUiListener(object : OnInitUiListener {
                 override fun onInitUpdateUi(
                     view: View?,

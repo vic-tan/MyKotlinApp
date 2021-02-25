@@ -19,6 +19,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         REFRESH,//下拉改变刷新
         LOADMORE,//上拉加载刷新
         NOTIFY,//数据改变刷新
+        ERROE,//请求报错时不刷新数据，但上下拉要关闭
     }
 
     enum class UIType {
@@ -50,14 +51,14 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     val uiBehavior: LiveData<UIType> get() = _uiBehavior
     private val _uiBehavior = MutableLiveData<UIType>()
 
-    var mData: MutableList<Any> = ArrayList()
-    var pageNum: Int = 0
+    var mData: MutableList<Any> = mutableListOf()
+    var pageNum: Int = 1
 
     /**
      * 列表数据改变的LveData
      */
     val dataChanged: LiveData<DataChagedType> get() = _dataChanged
-    protected var _dataChanged = MutableLiveData<DataChagedType>()
+    private var _dataChanged = MutableLiveData<DataChagedType>()
 
     fun notifyDataSetChanged(dataChangedType: DataChagedType, startPos: Int = 0) {
         loadMoreStartPos = startPos
@@ -76,11 +77,11 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
      * 加载更多
      */
     fun loadMore() {
-        pageNum++
         requestList(DataChagedType.LOADMORE)
     }
 
     fun addList(list: List<Any>, dataChangedType: DataChagedType) {
+        pageNum++
         if (list.isNotEmpty()) {
             when (dataChangedType) {
                 DataChagedType.REFRESH -> {
@@ -113,11 +114,11 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
      */
     private fun onError(dataChangedType: DataChagedType, it: Throwable) {
         _loadingState.value = LoadType.ERROR
-        notifyDataSetChanged(dataChangedType)
         //没有下一页
         if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
             state = RefreshState.RefreshFinish
             showNotMoreDataUI()
+            notifyDataSetChanged(dataChangedType)
         } else {
             //下拉刷新时才显示错误界面，上拉不处理
             if (dataChangedType == DataChagedType.REFRESH) {
@@ -125,6 +126,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
             }
             it.show(it.errorCode, it.errorMsg)
             state = RefreshState.None
+            notifyDataSetChanged(DataChagedType.ERROE)
         }
 
     }

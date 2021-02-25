@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.adapter.BasePagerAdapter
+import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.classmatecircle.frgment.RecommendFragment

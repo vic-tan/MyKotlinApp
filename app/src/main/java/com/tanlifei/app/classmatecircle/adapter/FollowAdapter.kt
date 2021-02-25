@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.common.core.base.holder.BaseBindingAdapter
-import com.common.core.base.holder.BaseVBViewHolder
+import com.common.ComApplication.Companion.context
+import com.common.core.base.adapter.CommonRvAdapter
+import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
 import com.common.widget.ExpandTextView
 import com.tanlifei.app.R
@@ -19,23 +20,37 @@ import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ItemFollowBinding
 
 /**
- * @desc:关注适配器
+ * @desc:
  * @author: tanlifei
- * @date: 2021/2/8 10:41
+ * @date: 2021/2/24 16:02
  */
-class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
-    BaseBindingAdapter<ClassmateCircleBean, ItemFollowBinding>(data) {
+class FollowAdapter : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() {
 
     private var screenWidth = ScreenUtils.getScreenWidth()
     private var textViewWidth = screenWidth - ConvertUtils.dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
 
-    override fun createViewBinding(inflater: LayoutInflater, parent: ViewGroup): ItemFollowBinding {
-        return ItemFollowBinding.inflate(inflater, parent, false)
+    override fun onCreateViewHolder(
+        inflater: LayoutInflater,
+        parent: ViewGroup,
+        viewType: Int
+    ): CommonRvHolder<ItemFollowBinding> {
+
+        return CommonRvHolder(
+            ItemFollowBinding.inflate(
+                inflater,
+                parent,
+                false
+            )
+        )
     }
 
-
-    override fun convert(holder: BaseVBViewHolder<ItemFollowBinding>, item: ClassmateCircleBean) {
+    override fun onBindViewHolder(
+        holder: CommonRvHolder<ItemFollowBinding>,
+        position: Int,
+        binding: ItemFollowBinding,
+        item: ClassmateCircleBean
+    ) {
         holder.binding.banner.layoutParams.width = screenWidth
         holder.binding.banner.layoutParams.height =
             AutoHeightUtils.getHeightParams(screenWidth, item.image)
@@ -71,5 +86,9 @@ class FollowAdapter(data: MutableList<ClassmateCircleBean>) :
 
 
         holder.binding.commentCount.text = NumberUtils.setCommentCount(item.comment)
+
+        addChildClickViewIds(binding.more,binding.shareLayout)
     }
+
+
 }

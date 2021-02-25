@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.cofing.constant.GlobalConst
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -47,6 +46,10 @@ class RecyclerUtils {
                             viewModel.loadMoreStartPos,
                             viewModel.mData.size - 1
                         )
+                    }
+                    BaseListViewModel.DataChagedType.ERROE -> {
+                        smartRefreshLayout.finishRefresh()
+                        smartRefreshLayout.finishLoadMore()
                     }
                     else -> {
                         adapter.notifyDataSetChanged()
@@ -92,7 +95,7 @@ class RecyclerUtils {
                     // 获取 LayoutManger
                     val layoutManager = recyclerView.layoutManager
                     if (ObjectUtils.isNotEmpty(layoutManager)) {
-                        if (FastClickUtils.isFastClick()) return
+                        if (AntiShakeUtils.isInvalidClick(recyclerView)) return
                         // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
                         if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
                             && getOutLast(layoutManager) >= getLoadCount(layoutManager)

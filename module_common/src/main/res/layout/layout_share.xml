@@ -1,0 +1,149 @@
+<com.ruffian.library.widget.RConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    app:background_normal="@color/white"
+    app:corner_radius_top_left="@dimen/dialog_corner_radius"
+    app:corner_radius_top_right="@dimen/dialog_corner_radius">
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="分享到"
+        android:textColor="@color/color_333333"
+        android:textSize="19sp"
+        app:corner_radius_top_left="@dimen/dialog_corner_radius"
+        app:corner_radius_top_right="@dimen/dialog_corner_radius"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <View
+        android:id="@+id/title_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/line_E9E9E9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <com.ruffian.library.widget.RConstraintLayout
+        android:id="@+id/share_type_layout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_line">
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/wx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="微信"
+            android:textColor="@color/color_999999"
+            android:textSize="14sp"
+            app:icon_direction="top"
+            app:icon_height="40dp"
+            app:icon_src_normal="@mipmap/ic_wx"
+            app:icon_width="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/wx_circle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/wx_circle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="朋友圈"
+            android:textColor="@color/color_999999"
+            android:textSize="14sp"
+            app:icon_direction="top"
+            app:icon_height="40dp"
+            app:icon_src_normal="@mipmap/ic_wx_circle"
+            app:icon_width="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/wx"
+            app:layout_constraintRight_toLeftOf="@id/report"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/report"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="举报"
+            android:textColor="@color/color_999999"
+            android:textSize="14sp"
+            app:icon_direction="top"
+            app:icon_height="40dp"
+            app:icon_src_normal="@mipmap/ic_report"
+            app:icon_width="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/wx_circle"
+            app:layout_constraintRight_toLeftOf="@id/credit"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/credit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/color_999999"
+            android:textSize="14sp"
+            app:icon_direction="top"
+            app:icon_height="40dp"
+            app:icon_src_normal="@mipmap/ic_delete"
+            app:icon_width="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/report"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </com.ruffian.library.widget.RConstraintLayout>
+
+
+    <View
+        android:id="@+id/cancel_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/line_E9E9E9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/share_type_layout" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/color_333333"
+        android:textSize="18sp"
+        app:corner_radius_top_left="@dimen/dialog_corner_radius"
+        app:corner_radius_top_right="@dimen/dialog_corner_radius"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cancel_line"
+        app:ripple="true"
+        app:ripple_color="@color/item_ripple_color" />
+
+
+</com.ruffian.library.widget.RConstraintLayout>

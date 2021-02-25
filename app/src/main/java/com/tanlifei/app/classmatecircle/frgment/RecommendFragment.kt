@@ -46,8 +46,13 @@ class RecommendFragment() :
 
 
     override fun onFirstVisibleToUser() {
-        super.onFirstVisibleToUser()
-        refreshRecycler.addItemDecoration(
+        adapter = RecommendAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
+        initRecycler(
+            binding.smartRefreshLayout,
+            binding.refreshLoadingLayout,
+            binding.refreshRecycler
+        )
+        binding.refreshRecycler.addItemDecoration(
             GridItemDecoration(
                 8
             )
@@ -57,14 +62,7 @@ class RecommendFragment() :
 
     override fun initView() {
         super.initView()
-        adapter = RecommendAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
-        initRefreshView(
-            binding.smartRefreshLayout,
-            binding.refreshLoadingLayout,
-            binding.refreshRecycler
-        )
     }
-
 
 
     /**

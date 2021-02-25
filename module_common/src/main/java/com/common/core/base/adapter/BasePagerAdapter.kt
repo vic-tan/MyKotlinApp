@@ -1,4 +1,4 @@
-package com.common.core.adapter
+package com.common.core.base.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
