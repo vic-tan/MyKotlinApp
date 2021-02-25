@@ -17,7 +17,6 @@ import org.litepal.LitePal
  */
 class EnvironmentSwitchViewModel : BaseListViewModel() {
 
-    var environmentList: MutableList<EnvironmentBean> = ArrayList()
     private var isUpdate: Boolean = false//内容是否修改过
 
     /**
@@ -42,13 +41,13 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
 
     fun setSelect(pos: Int) {
         isUpdate = true
-        val group: Long = environmentList[pos].group
-        for (lst in environmentList) {
+        val group: Long = (mData as MutableList<EnvironmentBean>)[pos].group
+        for (lst in mData as MutableList<EnvironmentBean>) {
             if (lst.group == group && lst.defaultCheck) {
                 lst.defaultCheck = false
             }
         }
-        environmentList[pos].defaultCheck = true
+        (mData as MutableList<EnvironmentBean>)[pos].defaultCheck = true
         notifyDataSetChanged(DataChagedType.NOTIFY)
     }
 
@@ -56,7 +55,7 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
     fun saveAllSelect() {
         if (!isUpdate)
             return
-        for (lst in environmentList) {
+        for (lst in mData as MutableList<EnvironmentBean>) {
             if (lst.defaultCheck) {
                 saveDB(lst)
             }
@@ -71,7 +70,7 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
         val saveEnvironmentList: List<EnvironmentBean> =
             LitePal.findAll(EnvironmentBean::class.java)
         if (saveEnvironmentList.isEmpty()) {
-            for (list in environmentList) {
+            for (list in mData as MutableList<EnvironmentBean>) {
                 if (list.group == EnvironmentBean.GROUP_API) {
                     list.defaultCheck = list.url == ApiEnvironmentConst.BASE_URL
                 }
@@ -79,7 +78,7 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
             return
         }
         for (lt in saveEnvironmentList) {
-            for (list in environmentList) {
+            for (list in mData as MutableList<EnvironmentBean>) {
                 if (list.group == lt.group) {
                     list.defaultCheck = list.url == lt.url
                 }
@@ -103,12 +102,12 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
                         "",
                         defaultCheck = false
                     )
-                moduleBean.type = EnvironmentBean.TITLE
-                environmentList.add(moduleBean)
+                moduleBean.itemType = EnvironmentBean.TITLE
+                mData.add(moduleBean)
                 for (environmentBean in modules.list) {
-                    environmentBean.type = EnvironmentBean.CONTENT
+                    environmentBean.itemType = EnvironmentBean.CONTENT
                     environmentBean.group = modules.groupId
-                    environmentList.add(environmentBean)
+                    mData.add(environmentBean)
                 }
             }
             setDefaultCheck()

@@ -1,6 +1,6 @@
 package com.common.core.environment.bean
 
-import com.chad.library.adapter.base.entity.MultiItemEntity
+
 import com.common.core.base.bean.BaseLitePalBean
 import org.litepal.annotation.Column
 import java.io.Serializable
@@ -17,20 +17,18 @@ data class EnvironmentBean(
     @Column(ignore = true)
     var defaultCheck: Boolean = false
 ) :
-    Serializable, MultiItemEntity, BaseLitePalBean() {
+    Serializable, BaseLitePalBean() {
     override val modelId: Long
         get() = group
 
     @Column(ignore = true)
-    var type: Int = 0
+    var itemType: Int = 0
     var group: Long = 0
 
     init {
-        type = 0
+        itemType = 0
     }
 
-    override val itemType: Int
-        get() = type
 
     companion object {
         const val DB_GROUP = "group"//数据库中的分组字段

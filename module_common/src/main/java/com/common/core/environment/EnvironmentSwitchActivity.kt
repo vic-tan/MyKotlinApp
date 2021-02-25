@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
 import com.common.cofing.constant.GlobalConst
+import com.common.core.base.adapter.OnItemListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter
-import com.common.core.environment.adapter.EnvironmentMultiAdapter
+import com.common.core.environment.bean.EnvironmentBean
 import com.common.core.environment.bean.ModuleBean
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.core.environment.viewmodel.EnvironmentSwitchViewModel
@@ -24,7 +25,7 @@ import com.hjq.bar.OnTitleBarListener
  */
 class EnvironmentSwitchActivity :
     BaseToolBarActivity<ActivityEnvironmentSwitchBinding, EnvironmentSwitchViewModel>() {
-    internal lateinit var adapter: EnvironmentMultiAdapter
+    internal lateinit var adapter: EnvironmentAdapter
 
     companion object {
         private fun actionStart(list: MutableList<ModuleBean>) {
@@ -79,13 +80,18 @@ class EnvironmentSwitchActivity :
 
     private fun initRecyclerView() {
         binding.recycler.layoutManager = LinearLayoutManager(mActivity)
-        adapter = EnvironmentMultiAdapter(viewModel.environmentList)
+        adapter = EnvironmentAdapter()
+        adapter.mData = viewModel.mData as MutableList<EnvironmentBean>
         binding.recycler.adapter = adapter
-//        adapter.addChildClickViewIds(R.id.title, R.id.url, R.id.radio)
-//        adapter.setOnItemClickListener { _, _, position ->
-//            viewModel.setSelect(position)
-//        }
-
+        adapter.setOnItemChildClickListener(object : OnItemListener {
+            override fun onItemClick(v: View, position: Int) {
+                when (v?.id) {
+                    R.id.layout-> {
+                        viewModel.setSelect(position)
+                    }
+                }
+            }
+        })
     }
 
 

@@ -5,9 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
-import com.common.core.base.holder.BaseBindingAdapter
-import com.common.core.base.holder.BaseVBViewHolder
-import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.bean.ManualBean
 import java.util.LinkedHashSet

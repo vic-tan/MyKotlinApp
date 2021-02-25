@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
-import com.common.core.base.viewmodel.BaseListViewModel
-import com.common.utils.MyLogTools
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -46,7 +44,8 @@ class RecommendFragment() :
 
 
     override fun onFirstVisibleToUser() {
-        adapter = RecommendAdapter(viewModel.mData as MutableList<ClassmateCircleBean>)
+        adapter = RecommendAdapter()
+        adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
         initRecycler(
             binding.smartRefreshLayout,
             binding.refreshLoadingLayout,

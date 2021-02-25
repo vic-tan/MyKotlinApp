@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.utils.AntiShakeUtils
-import java.util.LinkedHashSet
+import java.util.*
 
 
 /**
@@ -15,8 +14,8 @@ import java.util.LinkedHashSet
  * @author: tanlifei
  * @date: 2021/2/24 15:50
  */
-abstract class CommonRvMultiItemAdapter<T : Any, V : ViewBinding> :
-    RecyclerView.Adapter<CommonRvHolder<V>>() {
+abstract class CommonRvMultiItemAdapter<T : Any> :
+    RecyclerView.Adapter<CommonRvMultiHolder>() {
 
     /**
      * 数据源
@@ -47,7 +46,12 @@ abstract class CommonRvMultiItemAdapter<T : Any, V : ViewBinding> :
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<V> {
+    override fun getItemViewType(position: Int): Int {
+        return setItemViewType(mData[position])
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvMultiHolder {
         return onCreateViewHolder(
             LayoutInflater.from(parent.context),
             parent,
@@ -57,14 +61,13 @@ abstract class CommonRvMultiItemAdapter<T : Any, V : ViewBinding> :
 
     override fun getItemCount(): Int = mData.size
 
-    override fun onBindViewHolder(holder: CommonRvHolder<V>, position: Int) {
+    override fun onBindViewHolder(holder: CommonRvMultiHolder, position: Int) {
         onBindViewHolder(
             holder,
             holder.adapterPosition,
-            holder.binding,
             mData[holder.adapterPosition]
         )
-        addViewList(addChildClickViewIds(holder.binding))
+        addViewList(addChildClickViewIds(holder))
         if (ObjectUtils.isNotEmpty(childClickViews)) {
             onItemListener?.let {
                 for (v in childClickViews) {
@@ -85,11 +88,12 @@ abstract class CommonRvMultiItemAdapter<T : Any, V : ViewBinding> :
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<V>
+    ): CommonRvMultiHolder
 
-    abstract fun onBindViewHolder(holder: CommonRvHolder<V>, position: Int, binding: V, bean: T)
+    abstract fun onBindViewHolder(holder: CommonRvMultiHolder, position: Int, bean: T)
+    abstract fun setItemViewType(bean: T): Int
 
-    abstract fun addChildClickViewIds(binding: V): LinkedHashSet<View>
+    abstract fun addChildClickViewIds(holder: CommonRvMultiHolder): LinkedHashSet<View>
 
 
     protected open fun setOnItemChildClick(v: View, position: Int) {
@@ -99,10 +103,12 @@ abstract class CommonRvMultiItemAdapter<T : Any, V : ViewBinding> :
     fun setOnItemChildClickListener(listener: OnItemListener) {
         this.onItemListener = listener
     }
-
-
 }
 
+open class CommonRvMultiHolder(itemView: View) :
+    RecyclerView.ViewHolder(itemView) {
+
+}
 
 
 

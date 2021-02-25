@@ -1,16 +1,15 @@
-package com.common.core.base.adapter.viewholder
+package com.common.core.environment.adapter.holder
 
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
+import com.common.core.base.adapter.CommonRvMultiHolder
 import com.common.databinding.ItemEnvironmentContentBinding
-import com.common.databinding.ItemEnvironmentTitleBinding
 
 /**
  * @desc:
  * @author: tanlifei
  * @date: 2021/2/25 10:41
  */
-class ContentViewHolder(holder: View) : RecyclerView.ViewHolder(holder) {
+class ContentViewHolder(holder: View) : CommonRvMultiHolder(holder) {
     private lateinit var binding: ItemEnvironmentContentBinding
 
     constructor(binding: ItemEnvironmentContentBinding) : this(binding.root) {

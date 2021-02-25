@@ -1,8 +1,6 @@
 package com.common.core.base.adapter
 
 import android.view.View
-import androidx.viewbinding.ViewBinding
-import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
  * @desc:
