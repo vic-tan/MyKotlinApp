@@ -18,7 +18,7 @@ open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setToolbar(View.VISIBLE)
+        setToolbar(if (hideToolbar()) View.GONE else View.VISIBLE)
         setTitleBarListener()
     }
 
@@ -47,6 +47,10 @@ open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
             statusBarView(baseBinding.statusBarView)
             statusBarColor(R.color.white)
         }
+    }
+
+    open fun hideToolbar(): Boolean {
+        return false
     }
 
 

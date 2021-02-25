@@ -54,6 +54,10 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         return LoginViewModel()
     }
 
+    override fun hideToolbar(): Boolean {
+        return true
+    }
+
     override fun init() {
         setProtocolTxt()
         initTextInputHelper()

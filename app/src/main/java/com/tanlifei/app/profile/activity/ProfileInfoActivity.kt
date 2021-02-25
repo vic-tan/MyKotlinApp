@@ -6,12 +6,15 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.ComApplication
 import com.common.core.base.ui.activity.BaseBVMActivity
+import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.AntiShakeUtils
 import com.common.utils.ComDialogUtils
 import com.common.utils.ViewUtils
 import com.lxj.xpopup.interfaces.OnConfirmListener
+import com.tanlifei.app.R
 import com.tanlifei.app.common.utils.UserInfoUtils
+import com.tanlifei.app.databinding.ActivityProfileUpdateBinding
 import com.tanlifei.app.databinding.ActivitySettingBinding
 import com.tanlifei.app.main.ui.LoginAtivity
 import com.tanlifei.app.profile.viewmodel.SettingViewModel
@@ -22,7 +25,7 @@ import com.tanlifei.app.profile.viewmodel.SettingViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class ProfileInfoActivity : BaseBVMActivity<ActivitySettingBinding, SettingViewModel>(),
+class ProfileInfoActivity : BaseFormActivity<ActivityProfileUpdateBinding, SettingViewModel>(),
     View.OnClickListener {
 
 
@@ -40,6 +43,7 @@ class ProfileInfoActivity : BaseBVMActivity<ActivitySettingBinding, SettingViewM
         initViewModelObserve()
         initListener()
         initData()
+        titleBar.rightTitle = "保存"
     }
 
 
@@ -59,16 +63,15 @@ class ProfileInfoActivity : BaseBVMActivity<ActivitySettingBinding, SettingViewM
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(this, binding.about, binding.exit)
+        ViewUtils.setOnClickListener(this)
     }
 
     private fun initData() {
-        binding.versionName.text = "V${AppUtils.getAppVersionName()}"
     }
 
     override fun onClick(v: View) {
         if (AntiShakeUtils.isInvalidClick(v)) return
-        when (v) {
+        /*when (v) {
             binding.about -> AboutActivity.actionStart()
             binding.exit -> {
                 ComDialogUtils.comConfirm(
@@ -78,7 +81,11 @@ class ProfileInfoActivity : BaseBVMActivity<ActivitySettingBinding, SettingViewM
                         viewModel.requestLogin()
                     })
             }
-        }
+        }*/
+    }
+
+    override fun showSoftByEditViewIds(): IntArray {
+        return return intArrayOf(R.id.nickname, R.id.introduction)
     }
 
 
