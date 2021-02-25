@@ -18,7 +18,7 @@ import com.tanlifei.app.databinding.FragmentRecommendBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class RecommendFragment() :
+class RecommendFragment :
     BaseRecyclerBVMFragment<FragmentRecommendBinding, RecommendViewModel>() {
 
     private lateinit var adapter: RecommendAdapter

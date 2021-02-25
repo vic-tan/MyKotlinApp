@@ -2,8 +2,7 @@
 <com.ruffian.library.widget.RConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/match_wrap"
     app:background_normal="@color/white"
     app:background_pressed="@color/white"
     app:corner_radius="5dp">
@@ -81,8 +80,7 @@
         app:layout_constraintTop_toBottomOf="@id/cover">
 
         <com.ruffian.library.widget.RLinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            style="@style/wrap_match"
             android:gravity="center_vertical|left"
             android:orientation="horizontal"
             app:background_normal="#FFF5F5"
@@ -103,8 +101,7 @@
 
             <TextView
                 android:id="@+id/topic_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/wrap_wrap"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
@@ -121,8 +118,7 @@
 
     <TextView
         android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/match_wrap"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"

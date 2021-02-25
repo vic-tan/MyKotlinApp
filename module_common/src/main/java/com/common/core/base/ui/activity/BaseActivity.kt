@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.R
 import com.common.core.base.event.BaseEvent
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.databinding.ActivityBaseBinding
@@ -54,6 +55,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
         _mActivity = this
         baseBinding = ActivityBaseBinding.inflate(layoutInflater)
         titleBar = baseBinding.toolbar
+        titleBar.setLeftIcon(R.mipmap.ic_back_black)
         hud = XPopup.Builder(this)
             .hasShadowBg(false)
             .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true

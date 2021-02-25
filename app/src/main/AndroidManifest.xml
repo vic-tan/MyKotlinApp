@@ -82,6 +82,9 @@
         <activity
             android:name=".profile.activity.SettingActivity"
             android:label="个人设置" />
+        <activity
+            android:name=".profile.activity.ProfileInfoActivity"
+            android:label="个人资料" />
 
         <activity
             android:name=".profile.activity.AboutActivity"

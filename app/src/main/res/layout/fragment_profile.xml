@@ -2,14 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/match_match"
     android:fillViewport="true"
     android:scrollbars="horizontal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/match_match">
 
         <ImageView
             android:id="@+id/persenalBg"
@@ -56,16 +54,14 @@
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/wrap_wrap"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 tools:text="天飞丽谭" />
 
             <TextView
                 android:id="@+id/university"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/wrap_wrap"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -123,8 +119,7 @@
 
             <TextView
                 android:id="@+id/studyLable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/wrap_wrap"
                 android:layout_marginStart="10dp"
                 android:text="学习卡"
                 android:textColor="#804C14"
@@ -237,8 +232,7 @@
 
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/accountTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/match_wrap"
                 android:layout_marginTop="15dp"
                 android:gravity="left"
                 android:paddingStart="15dp"
@@ -319,8 +313,7 @@
 
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/serviceTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/match_wrap"
                 android:layout_marginTop="15dp"
                 android:gravity="left"
                 android:paddingStart="15dp"
@@ -387,8 +380,7 @@
 
         <com.ruffian.library.widget.RLinearLayout
             android:id="@+id/settingLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/match_wrap"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"

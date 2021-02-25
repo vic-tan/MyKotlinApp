@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/match_wrap"
     android:layout_marginBottom="10dp"
     android:background="@color/white"
     android:paddingTop="15dp">
@@ -50,8 +49,7 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/match_wrap"
             android:ellipsize="end"
             android:lines="1"
             android:singleLine="true"
@@ -61,8 +59,7 @@
 
         <TextView
             android:id="@+id/school"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/match_wrap"
             android:ellipsize="end"
             android:lines="1"
             android:maxLines="1"
@@ -86,8 +83,7 @@
 
     <com.common.widget.ExpandTextView
         android:id="@+id/expand_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/match_wrap"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:textColor="@color/color_333333"
@@ -149,8 +145,7 @@
 
             <TextView
                 android:id="@+id/praise_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/wrap_wrap"
                 android:layout_marginStart="6dp"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -190,8 +185,7 @@
 
             <TextView
                 android:id="@+id/comment_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/wrap_wrap"
                 android:layout_marginStart="6dp"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -230,8 +224,7 @@
                 android:src="@mipmap/ic_wx" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/wrap_wrap"
                 android:layout_marginStart="6dp"
                 android:ellipsize="end"
                 android:maxLines="1"
