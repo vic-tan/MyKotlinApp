@@ -11,11 +11,11 @@ import java.util.LinkedHashSet
 
 
 /**
- * @desc: RecyclerView单一item Adapter的简单封装
+ * @desc: RecyclerView 多布局 Adapter的简单封装
  * @author: tanlifei
  * @date: 2021/2/24 15:50
  */
-abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
+abstract class CommonRvMultiItemAdapter<T : Any, V : ViewBinding> :
     RecyclerView.Adapter<CommonRvHolder<V>>() {
 
     /**
@@ -103,8 +103,6 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
 
 }
 
-open class CommonRvHolder<V : ViewBinding>(val binding: V) : RecyclerView.ViewHolder(binding.root) {
 
-}
 
 

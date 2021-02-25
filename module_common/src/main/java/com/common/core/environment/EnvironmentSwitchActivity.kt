@@ -9,6 +9,7 @@ import com.common.R
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter
+import com.common.core.environment.adapter.EnvironmentMultiAdapter
 import com.common.core.environment.bean.ModuleBean
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.core.environment.viewmodel.EnvironmentSwitchViewModel
@@ -23,7 +24,7 @@ import com.hjq.bar.OnTitleBarListener
  */
 class EnvironmentSwitchActivity :
     BaseToolBarActivity<ActivityEnvironmentSwitchBinding, EnvironmentSwitchViewModel>() {
-    internal lateinit var adapter: EnvironmentAdapter
+    internal lateinit var adapter: EnvironmentMultiAdapter
 
     companion object {
         private fun actionStart(list: MutableList<ModuleBean>) {
@@ -78,12 +79,12 @@ class EnvironmentSwitchActivity :
 
     private fun initRecyclerView() {
         binding.recycler.layoutManager = LinearLayoutManager(mActivity)
-        adapter = EnvironmentAdapter(viewModel.environmentList)
+        adapter = EnvironmentMultiAdapter(viewModel.environmentList)
         binding.recycler.adapter = adapter
-        adapter.addChildClickViewIds(R.id.title, R.id.url, R.id.radio)
-        adapter.setOnItemClickListener { _, _, position ->
-            viewModel.setSelect(position)
-        }
+//        adapter.addChildClickViewIds(R.id.title, R.id.url, R.id.radio)
+//        adapter.setOnItemClickListener { _, _, position ->
+//            viewModel.setSelect(position)
+//        }
 
     }
 
