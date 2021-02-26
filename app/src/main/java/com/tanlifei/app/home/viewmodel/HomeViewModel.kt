@@ -69,7 +69,6 @@ class HomeViewModel() : BaseViewModel() {
     }
 
 
-
     /**
      * 请求用户信息
      */
@@ -79,8 +78,10 @@ class HomeViewModel() : BaseViewModel() {
             userBean!!.token = ComApplication.token.toString()
             LitePal.deleteAll(UserBean::class.java)
             userBean!!.save()
+            _refreshUserInfo.value = userBean
+        } else {
+            findUserByDB()
         }
-        _refreshUserInfo.value = userBean
     }, {
         findUserByDB()
     })

@@ -58,6 +58,8 @@ val Throwable.errorMsg: String
             errorMsg = "数据解析失败,请稍后再试"
         } else if (this is ParseException) {       // ParseException异常表明请求成功，但是数据不正确
             errorMsg = this.message ?: errorCode   //errorMsg为空，显示errorCode
+        } else {
+            printStackTrace()
         }
         return errorMsg ?: message ?: this.toString()
     }

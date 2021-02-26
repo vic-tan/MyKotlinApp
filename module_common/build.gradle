@@ -173,6 +173,9 @@ dependencies {
     //分包库
     api 'com.android.support:multidex:1.0.3'
 
+    //省市区三级联动库
+    api 'com.contrarywind:Android-PickerView:4.1.9'
+
 
     //banner
     //https://github.com/youth5201314/banner

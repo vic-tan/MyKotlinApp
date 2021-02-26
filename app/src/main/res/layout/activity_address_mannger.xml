@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match"
+    android:background="@color/white"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/enter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="15dp"
+                android:text="提醒:虚拟物品(话费卡/会员卡等)将充值到填写的手机号码上"
+                android:textColor="#F98F33"
+                android:textSize="18sp"
+                app:background_normal="#66F4D49B" />
+
+            <com.ruffian.library.widget.RConstraintLayout
+                android:id="@+id/name_layout"
+                style="@style/setting_list_style"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:id="@+id/name_title"
+                    style="@style/setting_list_item_title_text_style"
+                    android:layout_width="110dp"
+                    android:text="收货人*" />
+
+                <EditText
+                    android:id="@+id/name"
+                    style="@style/setting_list_item_arrow_eidt_style"
+                    android:paddingEnd="23dp"
+                    android:maxLength="8"
+                    app:layout_constraintLeft_toRightOf="@id/name_title"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            </com.ruffian.library.widget.RConstraintLayout>
+
+            <include layout="@layout/layout_line_setting" />
+
+            <com.ruffian.library.widget.RConstraintLayout
+                android:id="@+id/phone_layout"
+                style="@style/setting_list_style"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:id="@+id/phone_title"
+                    style="@style/setting_list_item_title_text_style"
+                    android:layout_width="110dp"
+                    android:text="手机号码*" />
+
+                <EditText
+                    android:id="@+id/phone"
+                    style="@style/setting_list_item_arrow_eidt_style"
+                    android:digits="0123456789"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:paddingEnd="23dp"
+                    android:maxLength="11"
+                    app:layout_constraintLeft_toRightOf="@id/phone_title"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            </com.ruffian.library.widget.RConstraintLayout>
+
+            <include layout="@layout/layout_line_setting" />
+
+
+            <com.ruffian.library.widget.RConstraintLayout
+                android:id="@+id/email_layout"
+                style="@style/setting_list_style"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:id="@+id/email_title"
+                    style="@style/setting_list_item_title_text_style"
+                    android:layout_width="110dp"
+                    android:text="电子邮箱" />
+
+                <EditText
+                    android:id="@+id/email"
+                    style="@style/setting_list_item_arrow_eidt_style"
+                    android:paddingEnd="23dp"
+                    app:layout_constraintLeft_toRightOf="@id/email_title"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+
+            </com.ruffian.library.widget.RConstraintLayout>
+
+            <include layout="@layout/layout_line_setting" />
+
+            <com.ruffian.library.widget.RConstraintLayout
+                android:id="@+id/area_layout"
+                style="@style/setting_list_style"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:id="@+id/area_title"
+                    style="@style/setting_list_item_title_text_style"
+                    android:layout_width="110dp"
+                    android:text="所在地区*" />
+
+                <TextView
+                    android:id="@+id/area"
+                    style="@style/setting_list_item_arrow_text_style"
+                    android:hint="请选择"
+                    app:layout_constraintLeft_toRightOf="@id/area_title"
+                    app:layout_constraintRight_toLeftOf="@id/area_arrow" />
+
+
+                <ImageView
+                    android:id="@+id/area_arrow"
+                    style="@style/setting_list_item_arrow_right_style"
+                    android:background="@mipmap/ic_arrow_right_grey" />
+            </com.ruffian.library.widget.RConstraintLayout>
+
+
+            <include layout="@layout/layout_line_setting" />
+
+            <com.ruffian.library.widget.RConstraintLayout
+                android:id="@+id/area_details_layout"
+                style="@style/setting_list_style"
+                android:layout_height="130dp">
+
+                <TextView
+                    android:id="@+id/area_details_title"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:text="详情地址*"
+                    android:textColor="@color/color_333333"
+                    android:textSize="18sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/area_details"
+                    style="@style/setting_list_item_arrow_eidt_style"
+                    android:layout_height="130dp"
+                    android:hint="请填写(30字内)"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:maxLength="30"
+                    android:paddingTop="15dp"
+                    android:paddingEnd="23dp"
+                    app:layout_constraintLeft_toRightOf="@id/area_details_title"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+
+            </com.ruffian.library.widget.RConstraintLayout>
+
+            <include layout="@layout/layout_line_setting" />
+
+             <EditText
+                 android:id="@+id/area_edit"
+                 android:layout_width="1dp"
+                 android:layout_height="1dp"
+                 android:layout_marginEnd="5dp"
+                 android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/enter"
+        style="@style/com_btn_style"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="确认"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

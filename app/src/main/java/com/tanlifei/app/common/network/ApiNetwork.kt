@@ -1,5 +1,6 @@
 package com.tanlifei.app.common.network
 
+import android.util.Log
 import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.bean.UserBean
@@ -8,6 +9,8 @@ import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
+import com.tanlifei.app.profile.bean.AddressBean
+import com.tanlifei.app.profile.bean.AreaJsonBean
 import com.tanlifei.app.profile.bean.ManualBean
 import rxhttp.RxHttp
 import rxhttp.toResponse
@@ -63,6 +66,37 @@ object ApiNetwork {
     suspend fun requestManualDetail(manualId: Long) = RxHttp.postJson(ApiConst.URL_MANUAL_DETAIL)
         .add("manualId", manualId)
         .toResponse<ManualBean>().await()
+
+    /**
+     * 获取收货地址
+     */
+    suspend fun requestGoodsAddress(id: Long) = RxHttp.postJson(ApiConst.URL_GOODS_ADDRESS)
+        .add("id", id)
+        .toResponse<AddressBean>().await()
+
+    /**
+     * 获取省市区JSON
+     */
+    suspend fun requestAreaJsonList() = RxHttp.postJson(ApiConst.URL_AREA_JSON)
+        .toResponse<MutableList<AreaJsonBean>>().await()
+
+
+    /**
+     * 更新收货地址
+     *
+     */
+    suspend fun requestEidtGoodsAddress(add: Boolean, addressBean: AddressBean) =
+        RxHttp.postJson(if (add) ApiConst.URL_ADD_GOODS_ADDRESS else ApiConst.URL_UPDATE_GOODS_ADDRESS)
+            .add("id", addressBean.id)
+            .add("username", addressBean.username)
+            .add("mobile", addressBean.mobile)
+            .add("provinceId", addressBean.provinceId)
+            .add("cityId", addressBean.cityId)
+            .add("areaId", addressBean.areaId)
+            .add("addressPrefix", addressBean.addressPrefix)
+            .add("address", addressBean.address)
+            .add("email", addressBean.email)
+            .toResponse<String>().await()
 
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
 

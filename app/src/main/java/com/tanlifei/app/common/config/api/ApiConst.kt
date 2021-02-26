@@ -53,6 +53,20 @@ object ApiConst {
     /* 操作手册详情 */
     const val URL_MANUAL_DETAIL = "major/api/manual/detail"
 
+    /* 获取省市区JSON */
+    const val URL_AREA_JSON = "major/api/user/getAreaJson"
+
+
+    /* 获取收货地址 */
+    const val URL_GOODS_ADDRESS = "major/api/user/getGoodsAddress"
+
+    /* 新增收货地址 */
+    const val URL_ADD_GOODS_ADDRESS = "major/api/user/setGoodsAddress"
+
+    /* 更新收货地址 */
+    const val URL_UPDATE_GOODS_ADDRESS = "major/api/user/updateGoodsAddress"
+
+
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
 
     /* 关注人文娱列表 */
@@ -64,7 +78,8 @@ object ApiConst {
 
 
     /* 获取文娱类型列表 */
-    const val URL_ENTERTAINMENT_CATEGORY_LIST = "major/api/entertainment/getEntertainmentCategoryList"
+    const val URL_ENTERTAINMENT_CATEGORY_LIST =
+        "major/api/entertainment/getEntertainmentCategoryList"
 
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/

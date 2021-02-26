@@ -83,8 +83,12 @@
             android:name=".profile.activity.SettingActivity"
             android:label="个人设置" />
         <activity
-            android:name=".profile.activity.ProfileInfoActivity"
+            android:name=".profile.activity.ProfileManagerActivity"
             android:label="个人资料" />
+
+        <activity
+            android:name=".profile.activity.AddressManagerActivity"
+            android:label="收货地址" />
 
         <activity
             android:name=".profile.activity.AboutActivity"

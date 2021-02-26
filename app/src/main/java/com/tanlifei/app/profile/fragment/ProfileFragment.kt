@@ -16,7 +16,7 @@ import com.tanlifei.app.databinding.FragmentProfileBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.profile.activity.ManualActivity
-import com.tanlifei.app.profile.activity.ProfileInfoActivity
+import com.tanlifei.app.profile.activity.ProfileManagerActivity
 import com.tanlifei.app.profile.activity.SettingActivity
 
 
@@ -87,7 +87,7 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClick
     override fun onClick(v: View) {
         if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
-            binding.arrow -> ProfileInfoActivity.actionStart()
+            binding.arrow -> ProfileManagerActivity.actionStart()
             binding.setting -> SettingActivity.actionStart()
             binding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)
             binding.score -> launchAppDetail()

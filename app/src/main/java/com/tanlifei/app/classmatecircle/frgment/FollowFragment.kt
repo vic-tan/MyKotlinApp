@@ -56,7 +56,6 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         adapter.setOnItemChildClickListener(object :
             OnItemListener {
             override fun onItemClick(v: View, position: Int) {
-                if (AntiShakeUtils.isInvalidClick(v)) return
                 when (v.id) {
                     R.id.more,
                     R.id.share_layout -> {

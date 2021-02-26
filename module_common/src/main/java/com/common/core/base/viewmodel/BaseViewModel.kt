@@ -67,6 +67,13 @@ open class BaseViewModel : ViewModel() {
     ) = rxLifeScope.launch({ block() }, onError)
 
     /**
+     * 静默加载请求不需要处理异常，直接提示异常
+     */
+    protected fun launchBySilence(block: suspend () -> Unit) = launchBySilence(block, {
+        it.show(it.errorCode, it.errorMsg)
+    })
+
+    /**
      * 由于屏幕旋转导致的Activity重建，该方法不会被调用
      *
      * 只有ViewModel已经没有任何Activity与之有关联，系统则会调用该方法，你可以在此清理资源

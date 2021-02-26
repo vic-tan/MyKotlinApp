@@ -30,6 +30,9 @@ interface GlobalConst {
             const val POSITION = "position"//传下标的Key
             const val LIST = "list"//传列表的Key
             const val JSON = "json"//传json的Key
+            const val URL = "url"//传json的Key
+            const val NAME = "name"//传json的Key
+            const val TITLE = "title"//传json的Key
         }
     }
 

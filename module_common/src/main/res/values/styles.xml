@@ -85,7 +85,7 @@
         <item name="android:ellipsize">end</item>
         <item name="android:lines">1</item>
         <item name="android:singleLine">true</item>
-        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintBottom_toBottomOf">parent</item>
     </style>
@@ -106,7 +106,7 @@
         <item name="android:hint">请填写</item>
         <item name="android:imeOptions">actionNext</item>
         <item name="android:lines">1</item>
-        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintBottom_toBottomOf">parent</item>
     </style>
@@ -117,7 +117,7 @@
         <item name="android:layout_width">8dp</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_height">12dp</item>
-        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
         <item name="layout_constraintRight_toRightOf">parent</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintBottom_toBottomOf">parent</item>

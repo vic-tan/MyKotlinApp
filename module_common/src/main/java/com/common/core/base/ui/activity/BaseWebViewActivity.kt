@@ -10,6 +10,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.databinding.ActivityBaseWebBinding
 
@@ -24,13 +25,12 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
     var title: String? = null
 
     companion object {
-        private const val EXTRAS_URL = "extras_url"
-        private const val EXTRAS_TITLE = "extras_title"
         fun actionStart(title: String?, url: String) {
-            var intent = Intent(ActivityUtils.getTopActivity(), BaseWebViewActivity::class.java).apply {
-                putExtra(EXTRAS_URL, url)
-                putExtra(EXTRAS_TITLE, title)
-            }
+            var intent =
+                Intent(ActivityUtils.getTopActivity(), BaseWebViewActivity::class.java).apply {
+                    putExtra(GlobalConst.Extras.URL, url)
+                    putExtra(GlobalConst.Extras.TITLE, title)
+                }
             ActivityUtils.startActivity(intent)
         }
     }
@@ -41,8 +41,8 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
 
     override fun init() {
         var bundle = this.intent.extras
-        url = bundle?.get(EXTRAS_URL).toString()
-        title = bundle?.get(EXTRAS_TITLE).toString()
+        url = bundle?.get(GlobalConst.Extras.URL).toString()
+        title = bundle?.get(GlobalConst.Extras.TITLE).toString()
         if (ObjectUtils.isNotEmpty(title)) {
             titleBar.title = title
         }
