@@ -72,15 +72,18 @@ object ApiConst {
     /* 关注人文娱列表 */
     const val URL_ENTERTAINMENT_LIST = "major/api/entertainment/getFriendsEntertainmentList"
 
-
     /* 文娱推荐列表 */
     const val URL_ENTERTAINMENT_LIST_BY_TYPE = "major/api/entertainment/getEntertainmentListByType"
-
 
     /* 获取文娱类型列表 */
     const val URL_ENTERTAINMENT_CATEGORY_LIST =
         "major/api/entertainment/getEntertainmentCategoryList"
 
+    /* 文娱详情 */
+    const val URL_ENTERTAINMENT_DETAIL = "major/api/entertainment/getEntertainmentDetail"
+
+    /* 评论列表 */
+    const val URL_COMMENT_LIST = "major/api/entertainment/getCommentList"
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 

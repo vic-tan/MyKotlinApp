@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnItemListener
 import com.common.utils.AntiShakeUtils
@@ -18,6 +18,7 @@ import java.util.*
  */
 abstract class CommonRvMultiItemAdapter<T : Any> :
     RecyclerView.Adapter<CommonRvMultiHolder>() {
+
 
     /**
      * 数据源
@@ -54,6 +55,18 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvMultiHolder {
+        return onCreateViewHolder(
+            LayoutInflater.from(parent.context),
+            parent,
+            viewType
+        )
+    }
+
+
+    /**
+     * 创建头部或者底部的ViewHolder
+     */
+    fun createHeaderFooterViewHolder(parent: ViewGroup, viewType: Int): CommonRvMultiHolder {
         return onCreateViewHolder(
             LayoutInflater.from(parent.context),
             parent,
@@ -108,7 +121,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
 }
 
 open class CommonRvMultiHolder(holder: View) :
-    RecyclerView.ViewHolder(holder) {
+    ViewHolder(holder) {
 }
 
 

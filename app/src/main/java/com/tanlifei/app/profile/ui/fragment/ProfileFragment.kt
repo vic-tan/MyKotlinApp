@@ -1,4 +1,4 @@
-package com.tanlifei.app.profile.fragment
+package com.tanlifei.app.profile.ui.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -15,9 +15,9 @@ import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.FragmentProfileBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.home.viewmodel.HomeViewModel
-import com.tanlifei.app.profile.activity.ManualActivity
-import com.tanlifei.app.profile.activity.ProfileManagerActivity
-import com.tanlifei.app.profile.activity.SettingActivity
+import com.tanlifei.app.profile.ui.activity.ManualActivity
+import com.tanlifei.app.profile.ui.activity.ProfileManagerActivity
+import com.tanlifei.app.profile.ui.activity.SettingActivity
 
 
 /**

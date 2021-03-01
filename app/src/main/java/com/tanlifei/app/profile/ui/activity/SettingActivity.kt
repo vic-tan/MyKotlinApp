@@ -1,4 +1,4 @@
-package com.tanlifei.app.profile.activity
+package com.tanlifei.app.profile.ui.activity
 
 import android.view.View
 import androidx.lifecycle.Observer

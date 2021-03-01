@@ -1,14 +1,18 @@
-package com.tanlifei.app.classmatecircle.frgment
+package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
+import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
+import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.ui.activity.ClassmateCircleDetailActivity
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
 import com.tanlifei.app.databinding.FragmentRecommendBinding
 
@@ -46,6 +50,16 @@ class RecommendFragment :
     override fun onFirstVisibleToUser() {
         adapter = RecommendAdapter()
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
+
+        adapter.setOnItemChildClickListener(object : OnItemListener{
+            override fun onItemClick(v: View, position: Int) {
+                when(v.id){
+                    R.id.item -> ClassmateCircleDetailActivity.actionStart(adapter.mData[position].publishId)
+                }
+            }
+
+        })
+
         initRecycler(
             binding.smartRefreshLayout,
             binding.refreshLoadingLayout,
@@ -56,6 +70,7 @@ class RecommendFragment :
                 8
             )
         )
+
     }
 
 

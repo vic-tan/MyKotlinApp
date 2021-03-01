@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
-import com.tanlifei.app.classmatecircle.frgment.RecommendFragment
+import com.tanlifei.app.classmatecircle.ui.fragment.RecommendFragment
 import com.tanlifei.app.common.network.ApiNetwork
 import java.util.*
 

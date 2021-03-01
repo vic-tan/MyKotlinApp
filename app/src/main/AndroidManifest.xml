@@ -78,26 +78,32 @@
             android:name="com.tanlifei.app.main.ui.LoginAtivity"
             android:label="登录" />
 
+        <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->
+
+        <activity
+            android:name=".classmatecircle.ui.activity.ClassmateCircleDetailActivity"
+            android:label="同学圈详情" />
+
         <!--—————————————————————————————————————————————————— 我的 ——————————————————————————————————————————————————-->
         <activity
-            android:name=".profile.activity.SettingActivity"
+            android:name="com.tanlifei.app.profile.ui.activity.SettingActivity"
             android:label="个人设置" />
         <activity
-            android:name=".profile.activity.ProfileManagerActivity"
+            android:name="com.tanlifei.app.profile.ui.activity.ProfileManagerActivity"
             android:label="个人资料" />
 
         <activity
-            android:name=".profile.activity.AddressManagerActivity"
+            android:name="com.tanlifei.app.profile.ui.activity.AddressManagerActivity"
             android:label="收货地址" />
 
         <activity
-            android:name=".profile.activity.AboutActivity"
+            android:name="com.tanlifei.app.profile.ui.activity.AboutActivity"
             android:label="关于网上老年大学" />
         <activity
-            android:name=".profile.activity.ManualActivity"
+            android:name="com.tanlifei.app.profile.ui.activity.ManualActivity"
             android:label="操作手册" />
         <activity
-            android:name=".profile.activity.ManualDetailActivity"
+            android:name="com.tanlifei.app.profile.ui.activity.ManualDetailActivity"
             android:label="操作手册" />
 
 

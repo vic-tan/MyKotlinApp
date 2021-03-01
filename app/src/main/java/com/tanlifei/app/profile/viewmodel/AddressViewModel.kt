@@ -45,10 +45,6 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
     val editAddressComplete: LiveData<Int> get() = _editAddressComplete
     private var _editAddressComplete = MutableLiveData<Int>()
 
-    /**
-     * 是否修改过LveData
-     */
-    var isUpdate: Boolean = false
 
     /**
      * 获取省市区JSON

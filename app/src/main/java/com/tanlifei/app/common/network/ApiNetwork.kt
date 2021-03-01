@@ -7,6 +7,7 @@ import com.common.core.base.bean.UserBean
 import com.common.core.bean.UpdateAppBean
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.profile.bean.AddressBean
@@ -125,6 +126,24 @@ object ApiNetwork {
     suspend fun requestEntertainmentCategoryList() =
         RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_CATEGORY_LIST)
             .toResponse<MutableList<CategoryBean>>().await()
+
+    /**
+     * 文娱详情
+     */
+    suspend fun requestEntertainmentDetail(id: Long) =
+        RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_DETAIL)
+            .add("publishId", id)
+            .toResponse<ClassmateCircleBean>().await()
+
+
+    /**
+     * 评论列表
+     */
+    suspend fun requestCommentList(pageNum: Int) =
+        RxHttp.postJson(ApiConst.URL_COMMENT_LIST)
+            .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
+            .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
+            .toResponse<MutableList<CommentBean>>().await()
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 

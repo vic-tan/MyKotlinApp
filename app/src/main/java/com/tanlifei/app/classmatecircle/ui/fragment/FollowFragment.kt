@@ -1,4 +1,4 @@
-package com.tanlifei.app.classmatecircle.frgment
+package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,6 @@ import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
-import com.common.utils.AntiShakeUtils
 import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.XPopup
 import com.tanlifei.app.R

@@ -1,4 +1,4 @@
-package com.tanlifei.app.profile.activity
+package com.tanlifei.app.profile.ui.activity
 
 import android.content.Intent
 import android.graphics.drawable.Drawable

@@ -1,4 +1,4 @@
-package com.tanlifei.app.profile.activity
+package com.tanlifei.app.profile.ui.activity
 
 import android.content.Intent
 import android.view.View
@@ -54,7 +54,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(this, binding.addressLayout)
+        ViewUtils.setOnClickListener(this, binding.addressLayout, binding.sexLayout)
     }
 
     private fun initData() {
@@ -65,6 +65,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.addressLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }
+            binding.sexLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }
         }
     }
 

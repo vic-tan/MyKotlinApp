@@ -1,6 +1,5 @@
-package com.tanlifei.app.profile.activity
+package com.tanlifei.app.profile.ui.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.text.TextUtils
 import android.view.View
@@ -138,7 +137,6 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
                                 .areaList[options3].name
                 binding.area.text = viewModel.addressBean?.addressPrefix
                 binding.areaEdit.setText(binding.area.text)
-                viewModel.isUpdate = true
             }
         )
             .setLayoutRes(

@@ -1,4 +1,4 @@
-package com.tanlifei.app.classmatecircle.frgment
+package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

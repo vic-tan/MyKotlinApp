@@ -78,7 +78,7 @@ class RecommendAdapter :
     }
 
     override fun addChildClickViewIds(binding: ItemRecommendBinding): LinkedHashSet<View> {
-        return linkedSetOf()
+        return linkedSetOf(binding.root)
     }
 
 
