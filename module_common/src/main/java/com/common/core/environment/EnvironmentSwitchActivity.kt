@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.listener.OnItemListener
+import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter
 import com.common.core.environment.bean.EnvironmentBean
@@ -84,7 +85,7 @@ class EnvironmentSwitchActivity :
         adapter.mData = viewModel.mData as MutableList<EnvironmentBean>
         binding.recycler.adapter = adapter
         adapter.setOnItemChildClickListener(object :
-            OnItemListener {
+            OnMultiItemListener {
             override fun onItemClick(v: View, position: Int) {
                 when (v?.id) {
                     R.id.layout-> {

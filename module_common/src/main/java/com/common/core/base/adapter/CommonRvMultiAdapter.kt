@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.listener.OnItemListener
+import com.common.core.base.listener.OnMultiItemListener
 import com.common.utils.AntiShakeUtils
 import java.util.*
 
@@ -28,7 +28,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
             field = value
             notifyItemRangeChanged(0, value.size)
         }
-    private var onItemListener: OnItemListener? = null
+    private var onItemListener: OnMultiItemListener? = null
 
 
     /**
@@ -115,7 +115,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         onItemListener?.onItemClick(v, position)
     }
 
-    fun setOnItemChildClickListener(listener: OnItemListener) {
+    fun setOnItemChildClickListener(listener: OnMultiItemListener) {
         this.onItemListener = listener
     }
 }

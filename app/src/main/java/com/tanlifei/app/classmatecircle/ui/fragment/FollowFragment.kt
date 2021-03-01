@@ -15,6 +15,7 @@ import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
 import com.tanlifei.app.databinding.FragmentFollowBinding
+import com.tanlifei.app.databinding.ItemFollowBinding
 
 
 /**
@@ -53,11 +54,11 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         adapter = FollowAdapter()
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
         adapter.setOnItemChildClickListener(object :
-            OnItemListener {
-            override fun onItemClick(v: View, position: Int) {
-                when (v.id) {
-                    R.id.more,
-                    R.id.share_layout -> {
+            OnItemListener<ItemFollowBinding> {
+            override fun onItemClick(v: View, binding: ItemFollowBinding, position: Int) {
+                when (v) {
+                    binding.more,
+                    binding.shareLayout -> {
                         context?.let {
                             XPopup.Builder(it).asCustom(
                                 ShareView(

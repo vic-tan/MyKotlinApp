@@ -3,11 +3,11 @@ package com.tanlifei.app.profile.ui.activity
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
-import com.common.utils.AntiShakeUtils
-import com.tanlifei.app.R
+import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.adapter.ManualAdapter
 import com.tanlifei.app.profile.bean.ManualBean
 import com.tanlifei.app.profile.viewmodel.ManualViewModel
@@ -48,14 +48,13 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
 
         }
         adapter.setOnItemChildClickListener(object :
-            OnItemListener {
-            override fun onItemClick(v: View, position: Int) {
-                when (v.id) {
-                    R.id.item -> ManualDetailActivity.actionStart((viewModel.mData[position] as ManualBean).id)
+            OnItemListener<ItemManualBinding> {
+            override fun onItemClick(v: View, itemBinding: ItemManualBinding, position: Int) {
+                when (v) {
+                    itemBinding.item -> ManualDetailActivity.actionStart((viewModel.mData[position] as ManualBean).id)
                 }
             }
         })
-
     }
 
     override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {

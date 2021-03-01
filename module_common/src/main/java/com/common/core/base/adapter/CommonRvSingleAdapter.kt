@@ -27,7 +27,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
             field = value
             notifyItemRangeChanged(0, value.size)
         }
-    private var onItemListener: OnItemListener? = null
+    private var onItemListener: OnItemListener<V>? = null
 
 
     /**
@@ -73,11 +73,18 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
                         it.setOnClickListener {
                             if (AntiShakeUtils.isInvalidClick(v))
                                 return@setOnClickListener
-                            setOnItemChildClick(v, holder.adapterPosition)
+                            setOnItemChildClick(v, holder.binding, holder.adapterPosition)
                         }
                     }
                 }
             }
+        }
+
+    }
+
+    fun setOnClickListener(clickListener: View.OnClickListener, vararg views: View) {
+        for (i in views.indices) {
+            views[i].setOnClickListener(clickListener)
         }
     }
 
@@ -93,11 +100,11 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
     abstract fun addChildClickViewIds(binding: V): LinkedHashSet<View>
 
 
-    protected open fun setOnItemChildClick(v: View, position: Int) {
-        onItemListener?.onItemClick(v, position)
+    protected open fun setOnItemChildClick(v: View, binding: V, position: Int) {
+        onItemListener?.onItemClick(v, binding, position)
     }
 
-    fun setOnItemChildClickListener(listener: OnItemListener) {
+    fun setOnItemChildClickListener(listener: OnItemListener<V>) {
         this.onItemListener = listener
     }
 

@@ -15,6 +15,7 @@ import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.ui.activity.ClassmateCircleDetailActivity
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
 import com.tanlifei.app.databinding.FragmentRecommendBinding
+import com.tanlifei.app.databinding.ItemRecommendBinding
 
 
 /**
@@ -51,10 +52,10 @@ class RecommendFragment :
         adapter = RecommendAdapter()
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
 
-        adapter.setOnItemChildClickListener(object : OnItemListener{
-            override fun onItemClick(v: View, position: Int) {
-                when(v.id){
-                    R.id.item -> ClassmateCircleDetailActivity.actionStart(adapter.mData[position].publishId)
+        adapter.setOnItemChildClickListener(object : OnItemListener<ItemRecommendBinding> {
+            override fun onItemClick(v: View, itemBinding: ItemRecommendBinding, position: Int) {
+                when (v) {
+                    itemBinding.item -> ClassmateCircleDetailActivity.actionStart(adapter.mData[position].publishId)
                 }
             }
 
