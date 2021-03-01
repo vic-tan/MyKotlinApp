@@ -10,7 +10,7 @@ import java.io.Serializable
 class ClassmateCircleBean : Serializable {
 
     var uid: Long = 0
-    var publishId = 0
+    var publishId: Long = 0
     var nickName: String? = null
     var avatar: String? = null
     var universityName: String? = null

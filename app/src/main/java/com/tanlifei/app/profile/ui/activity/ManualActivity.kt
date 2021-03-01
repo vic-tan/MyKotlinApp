@@ -50,7 +50,6 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
         adapter.setOnItemChildClickListener(object :
             OnItemListener {
             override fun onItemClick(v: View, position: Int) {
-                if (AntiShakeUtils.isInvalidClick(v)) return
                 when (v.id) {
                     R.id.item -> ManualDetailActivity.actionStart((viewModel.mData[position] as ManualBean).id)
                 }
