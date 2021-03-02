@@ -3,10 +3,9 @@ package com.common.core.environment.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.common.core.base.adapter.CommonRvMultiHolder
+import androidx.viewbinding.ViewBinding
+import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
-import com.common.core.environment.adapter.holder.EnvironmentContentHolder
-import com.common.core.environment.adapter.holder.EnvironmentTitleHolder
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.databinding.ItemEnvironmentContentBinding
 import com.common.databinding.ItemEnvironmentTitleBinding
@@ -25,17 +24,17 @@ class EnvironmentAdapter :
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvMultiHolder {
+    ): CommonRvHolder<ViewBinding> {
         return when (viewType) {
             EnvironmentBean.TITLE ->
-                EnvironmentTitleHolder(
+                CommonRvHolder(
                     ItemEnvironmentTitleBinding.inflate(
                         inflater,
                         parent,
                         false
                     )
                 )
-            else -> EnvironmentContentHolder(
+            else -> CommonRvHolder(
                 ItemEnvironmentContentBinding.inflate(
                     inflater, parent, false
                 )
@@ -45,15 +44,15 @@ class EnvironmentAdapter :
     }
 
     override fun onBindViewHolder(
-        holder: CommonRvMultiHolder,
+        holder: CommonRvHolder<ViewBinding>,
         position: Int,
         bean: EnvironmentBean
     ) {
-        when (holder) {
-            is EnvironmentTitleHolder -> {
+        when (holder.binding) {
+            is ItemEnvironmentTitleBinding -> {
                 holder.binding.title.text = bean.alias
             }
-            is EnvironmentContentHolder -> {
+            is ItemEnvironmentContentBinding -> {
                 holder.binding.title.text = bean.alias
                 holder.binding.url.text = bean.url
                 holder.binding.radio.setImageResource(if (bean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
@@ -65,12 +64,12 @@ class EnvironmentAdapter :
         return bean.itemType
     }
 
-    override fun addChildClickViewIds(holder: CommonRvMultiHolder): LinkedHashSet<View> {
-        return when (holder) {
-            is EnvironmentTitleHolder -> {
+    override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {
+        return when (holder.binding) {
+            is ItemEnvironmentTitleBinding -> {
                 linkedSetOf()
             }
-            is EnvironmentContentHolder -> {
+            is ItemEnvironmentContentBinding -> {
                 linkedSetOf(holder.binding.layout)
             }
             else -> {

@@ -1,6 +1,5 @@
 package com.tanlifei.app.common.network
 
-import android.util.Log
 import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.bean.UserBean

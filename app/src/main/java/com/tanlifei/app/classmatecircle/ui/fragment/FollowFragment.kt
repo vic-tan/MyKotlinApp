@@ -10,7 +10,6 @@ import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.XPopup
-import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel

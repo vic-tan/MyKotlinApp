@@ -4,10 +4,10 @@ import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.R
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.listener.OnItemListener
+import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter
@@ -16,6 +16,7 @@ import com.common.core.environment.bean.ModuleBean
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.core.environment.viewmodel.EnvironmentSwitchViewModel
 import com.common.databinding.ActivityEnvironmentSwitchBinding
+import com.common.databinding.ItemEnvironmentContentBinding
 import com.google.gson.Gson
 import com.hjq.bar.OnTitleBarListener
 
@@ -86,10 +87,14 @@ class EnvironmentSwitchActivity :
         binding.recycler.adapter = adapter
         adapter.setOnItemChildClickListener(object :
             OnMultiItemListener {
-            override fun onItemClick(v: View, position: Int) {
-                when (v?.id) {
-                    R.id.layout-> {
-                        viewModel.setSelect(position)
+            override fun onItemClick(v: View, holder: CommonRvHolder<ViewBinding>, position: Int) {
+                when (holder.binding) {
+                    is ItemEnvironmentContentBinding -> {
+                        when(v){
+                            holder.binding.layout -> {
+                                viewModel.setSelect(position)
+                            }
+                        }
                     }
                 }
             }

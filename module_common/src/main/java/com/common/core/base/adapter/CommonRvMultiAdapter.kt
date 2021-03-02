@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnMultiItemListener
 import com.common.utils.AntiShakeUtils
@@ -17,7 +17,7 @@ import java.util.*
  * @date: 2021/2/24 15:50
  */
 abstract class CommonRvMultiItemAdapter<T : Any> :
-    RecyclerView.Adapter<CommonRvMultiHolder>() {
+    RecyclerView.Adapter<CommonRvHolder<ViewBinding>>() {
 
 
     /**
@@ -54,7 +54,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvMultiHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<ViewBinding> {
         return onCreateViewHolder(
             LayoutInflater.from(parent.context),
             parent,
@@ -66,7 +66,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     /**
      * 创建头部或者底部的ViewHolder
      */
-    fun createHeaderFooterViewHolder(parent: ViewGroup, viewType: Int): CommonRvMultiHolder {
+    fun createHeaderFooterViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<ViewBinding> {
         return onCreateViewHolder(
             LayoutInflater.from(parent.context),
             parent,
@@ -76,7 +76,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
 
     override fun getItemCount(): Int = mData.size
 
-    override fun onBindViewHolder(holder: CommonRvMultiHolder, position: Int) {
+    override fun onBindViewHolder(holder: CommonRvHolder<ViewBinding>, position: Int) {
         onBindViewHolder(
             holder,
             holder.adapterPosition,
@@ -90,7 +90,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
                         it.setOnClickListener {
                             if (AntiShakeUtils.isInvalidClick(v))
                                 return@setOnClickListener
-                            setOnItemChildClick(v, holder.adapterPosition)
+                            setOnItemChildClick(v, holder, holder.adapterPosition)
                         }
                     }
                 }
@@ -103,16 +103,16 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvMultiHolder
+    ): CommonRvHolder<ViewBinding>
 
-    abstract fun onBindViewHolder(holder: CommonRvMultiHolder, position: Int, bean: T)
+    abstract fun onBindViewHolder(holder: CommonRvHolder<ViewBinding>, position: Int, bean: T)
     abstract fun setItemViewType(bean: T): Int
 
-    abstract fun addChildClickViewIds(holder: CommonRvMultiHolder): LinkedHashSet<View>
+    abstract fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View>
 
 
-    protected open fun setOnItemChildClick(v: View, position: Int) {
-        onItemListener?.onItemClick(v, position)
+    protected open fun setOnItemChildClick(v: View, holder: CommonRvHolder<ViewBinding>, position: Int) {
+        onItemListener?.onItemClick(v, holder, position)
     }
 
     fun setOnItemChildClickListener(listener: OnMultiItemListener) {
@@ -120,9 +120,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     }
 }
 
-open class CommonRvMultiHolder(holder: View) :
-    ViewHolder(holder) {
-}
+
 
 
 

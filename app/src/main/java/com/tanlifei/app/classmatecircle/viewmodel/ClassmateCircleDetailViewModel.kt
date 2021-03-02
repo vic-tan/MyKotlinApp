@@ -3,7 +3,6 @@ package com.tanlifei.app.classmatecircle.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.network.ApiNetwork

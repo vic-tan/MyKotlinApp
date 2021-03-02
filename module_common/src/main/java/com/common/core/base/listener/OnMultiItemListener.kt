@@ -2,6 +2,7 @@ package com.common.core.base.listener
 
 import android.view.View
 import androidx.viewbinding.ViewBinding
+import com.common.core.base.adapter.CommonRvHolder
 
 /**
  * @desc:Rv item 点击事件回调接口
@@ -20,6 +21,7 @@ interface OnMultiItemListener {
      */
     fun onItemClick(
         v: View,
+        holder: CommonRvHolder<ViewBinding>,
         position: Int
     )
 }

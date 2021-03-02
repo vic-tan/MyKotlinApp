@@ -3,7 +3,6 @@ package com.tanlifei.app.profile.ui.activity
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding

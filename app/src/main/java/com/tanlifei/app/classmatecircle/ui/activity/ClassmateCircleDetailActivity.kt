@@ -6,13 +6,10 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
-import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.utils.AntiShakeUtils
 import com.common.utils.ViewUtils
 import com.tanlifei.app.classmatecircle.viewmodel.ClassmateCircleDetailViewModel
 import com.tanlifei.app.databinding.ActivityClassmetaCircleDetailBinding
-import com.tanlifei.app.main.ui.LoginAtivity
-import com.tanlifei.app.profile.viewmodel.SettingViewModel
 
 
 /**

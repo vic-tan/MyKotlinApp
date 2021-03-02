@@ -3,11 +3,7 @@ package com.common.widget
 import android.content.Context
 import android.view.View
 import com.common.R
-import com.common.core.share.ShareBean
-import com.common.core.share.listener.OnShareListener
-import com.common.utils.AntiShakeUtils
 import com.common.utils.ViewUtils
-import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.core.BottomPopupView
 
 /**
