@@ -43,9 +43,6 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
             binding.refreshLoadingLayout,
             binding.refreshRecycler
         )
-        binding.refreshLoadingLayout.setOnClickListener {
-
-        }
         adapter.setOnItemChildClickListener(object :
             OnItemListener<ItemManualBinding> {
             override fun onItemClick(v: View, itemBinding: ItemManualBinding, position: Int) {

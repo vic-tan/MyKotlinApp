@@ -99,6 +99,8 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
                     notifyDataSetChanged(dataChangedType)
                 }
             }
+        }else{
+            notifyDataSetChanged(DataChagedType.NOTIFY)
         }
 
         if (mData.isEmpty()) {

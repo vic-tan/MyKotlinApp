@@ -138,9 +138,10 @@ object ApiNetwork {
     /**
      * 评论列表
      */
-    suspend fun requestCommentList(pageNum: Int) =
+    suspend fun requestCommentList(id: Long,pageNum: Int) =
         RxHttp.postJson(ApiConst.URL_COMMENT_LIST)
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
+            .add("publishId", id)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .toResponse<MutableList<CommentBean>>().await()
 

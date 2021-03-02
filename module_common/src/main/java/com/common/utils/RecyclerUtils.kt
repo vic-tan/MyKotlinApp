@@ -53,6 +53,8 @@ class RecyclerUtils {
                         smartRefreshLayout.finishLoadMore()
                     }
                     else -> {
+                        smartRefreshLayout.finishRefresh()
+                        smartRefreshLayout.finishLoadMore()
                         adapter.notifyDataSetChanged()
                     }
                 }
