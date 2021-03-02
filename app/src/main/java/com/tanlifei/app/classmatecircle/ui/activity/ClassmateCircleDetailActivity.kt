@@ -9,7 +9,7 @@ import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.AntiShakeUtils
 import com.common.utils.ViewUtils
 import com.tanlifei.app.classmatecircle.viewmodel.ClassmateCircleDetailViewModel
-import com.tanlifei.app.databinding.ActivityClassmetaCircleDetailBinding
+import com.tanlifei.app.databinding.ActivityClassmateCircleDetailBinding
 
 
 /**
@@ -18,7 +18,7 @@ import com.tanlifei.app.databinding.ActivityClassmetaCircleDetailBinding
  * @date: 2021/2/5 10:15
  */
 class ClassmateCircleDetailActivity :
-    BaseToolBarActivity<ActivityClassmetaCircleDetailBinding, ClassmateCircleDetailViewModel>(),
+    BaseToolBarActivity<ActivityClassmateCircleDetailBinding, ClassmateCircleDetailViewModel>(),
     View.OnClickListener {
 
 

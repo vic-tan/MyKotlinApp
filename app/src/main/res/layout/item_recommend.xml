@@ -173,7 +173,7 @@
         android:textSize="14sp"
         app:icon_direction="left"
         app:icon_height="16dp"
-        app:icon_src_normal="@mipmap/ic_praise"
+        app:icon_src_normal="@mipmap/ic_praise_gray"
         app:icon_width="16dp"
         app:icon_with_text="true"
         app:layout_constraintBaseline_toBaselineOf="@id/user_name"

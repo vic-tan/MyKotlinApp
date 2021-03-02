@@ -13,4 +13,14 @@
         <item>#FF6010</item>
         <item>#FF8242</item>
     </string-array>
+
+    <string-array name="classmate_circle_praise">
+        <item>#FEA234</item>
+        <item>#FED34E</item>
+    </string-array>
+
+    <string-array name="classmate_circle_comment">
+        <item>#F2323A</item>
+        <item>#FF7E56</item>
+    </string-array>
 </resources>

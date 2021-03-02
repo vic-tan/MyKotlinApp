@@ -83,7 +83,7 @@ class FollowAdapter : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() 
             if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
 
         holder.binding.praiseCount.text = NumberUtils.setPraiseCount(item.star)
-        holder.binding.praiseIcon.setImageResource(if (item.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise)
+        holder.binding.praiseIcon.setImageResource(if (item.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
 
 
         holder.binding.commentCount.text = NumberUtils.setCommentCount(item.comment)

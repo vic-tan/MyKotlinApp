@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_wrap"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/delete_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_80000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="该作品包含违规内容，无法展示"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/delete"
+            android:layout_width="84dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="删除作品"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:background_normal="@color/theme_color"
+            app:corner_radius="5dp" />
+
+    </LinearLayout>
+
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/userHead"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:background="@mipmap/ic_default_avatar"
+        android:scaleType="centerCrop"
+        app:corner_radius="27dp"
+        app:is_circle="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/banner" />
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/attention"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="关注"
+        android:textColor="@color/white"
+        app:background_normal="@color/white"
+        app:background_selected="@color/white"
+        app:border_color_normal="@color/theme_color"
+        app:border_color_selected="@color/color_999999"
+        app:border_width_normal="0.5dp"
+        app:border_width_selected="0.5dp"
+        app:corner_radius="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/userHead"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/userHead"
+        app:text_color_normal="@color/theme_color"
+        app:text_color_selected="@color/color_999999" />
+
+
+    <LinearLayout
+        android:id="@+id/userInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/userHead"
+        app:layout_constraintLeft_toRightOf="@id/userHead"
+        app:layout_constraintRight_toLeftOf="@id/attention"
+        app:layout_constraintTop_toTopOf="@id/userHead">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/match_wrap"
+            android:ellipsize="end"
+            android:lines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="18sp"
+            tools:text="作者：古月" />
+
+        <TextView
+            android:id="@+id/school"
+            style="@style/match_wrap"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_999999"
+            android:textSize="16sp"
+            tools:text="深圳老年大学" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/content"
+        style="@style/wrap_wrap"
+        android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/color_333333"
+        android:textSize="17sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInfo"
+        tools:text="今年是中华人民共和国成立七十周年。七十年来，在中国共产党领导下，我国对外工作历经风风雨雨。" />
+
+
+    <com.ruffian.library.widget.RLinearLayout
+        android:id="@+id/topic_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:background_normal="#FFF5F5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:corner_radius="5dp">
+
+
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:text="#"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            app:background_normal="@color/theme_color"
+            app:corner_radius="8dp" />
+
+        <TextView
+            android:id="@+id/topic_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical|left"
+            android:lines="1"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/color_666666"
+            android:textSize="15sp"
+            tools:text="左奇葩奇葩" />
+
+    </com.ruffian.library.widget.RLinearLayout>
+
+    <TextView
+        style="@style/wrap_wrap"
+        android:text="100条评论"
+        android:textColor="@color/color_999999"
+        android:textSize="15sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topic_layout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

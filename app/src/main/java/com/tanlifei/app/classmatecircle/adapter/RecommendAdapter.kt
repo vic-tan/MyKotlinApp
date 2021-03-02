@@ -69,7 +69,7 @@ class RecommendAdapter :
 
         holder.binding.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
         holder.binding.praiseCount.helper.iconNormalLeft =
-            ResUtils.getDrawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise)
+            ResUtils.getDrawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
 
         GlideUtils.load(context, bean.image?.url, holder.binding.cover)
         holder.binding.cover.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT

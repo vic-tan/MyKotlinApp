@@ -141,7 +141,7 @@
                 android:id="@+id/praise_icon"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:src="@mipmap/ic_praise" />
+                android:src="@mipmap/ic_praise_gray" />
 
             <TextView
                 android:id="@+id/praise_count"
@@ -181,7 +181,7 @@
             <ImageView
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:src="@mipmap/ic_comment" />
+                android:src="@mipmap/ic_comment_white" />
 
             <TextView
                 android:id="@+id/comment_count"
