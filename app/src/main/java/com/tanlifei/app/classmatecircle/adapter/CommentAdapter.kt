@@ -3,12 +3,11 @@ package com.tanlifei.app.classmatecircle.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.common.core.base.adapter.CommonRvAdapter
+import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvHolder
+import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.tanlifei.app.classmatecircle.bean.CommentBean
-import com.tanlifei.app.databinding.ItemManualBinding
-import com.tanlifei.app.profile.bean.ManualBean
-import org.w3c.dom.Comment
+import com.tanlifei.app.databinding.ItemCommentBinding
 import java.util.*
 
 /**
@@ -16,27 +15,40 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class CommentAdapter() :
-    CommonRvAdapter<CommentBean, ItemManualBinding>() {
+class CommentAdapter :
+    CommonRvMultiItemAdapter<CommentBean>() {
+
+    override fun setItemViewType(int: Int): Int {
+        return ItemViewType.CONTEN.ordinal
+    }
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ItemManualBinding> {
-        return CommonRvHolder(ItemManualBinding.inflate(inflater, parent, false))
+    ): CommonRvHolder<ViewBinding> {
+        return CommonRvHolder(
+            ItemCommentBinding.inflate(
+                inflater, parent, false
+            )
+        )
     }
+
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ItemManualBinding>,
+        holder: CommonRvHolder<ViewBinding>,
         position: Int,
-        binding: ItemManualBinding,
         bean: CommentBean
     ) {
-        holder.binding.title.text = bean.nickname
+        val holder = holder.binding as ItemCommentBinding
+        holder.title.text = bean.nickname
     }
 
-    override fun addChildClickViewIds(binding: ItemManualBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.item)
+
+    override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {
+        val holder = holder.binding as ItemCommentBinding
+        return linkedSetOf(holder.item)
     }
+
+
 }

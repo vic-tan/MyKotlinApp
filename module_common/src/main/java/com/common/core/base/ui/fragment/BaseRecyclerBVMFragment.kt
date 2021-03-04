@@ -60,7 +60,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
             this,
             setAdapter()
         )
-        RecyclerUtils.initListener(smartRefreshLayout, refreshRecycler, viewModel)
+        RecyclerUtils.initListener(smartRefreshLayout, refreshRecycler, refreshLoadingLayout,viewModel)
         initRecyclerView(refreshRecycler)
         RecyclerUtils.initData(viewModel)
         refreshLoadingLayout.setRetryListener(View.OnClickListener {

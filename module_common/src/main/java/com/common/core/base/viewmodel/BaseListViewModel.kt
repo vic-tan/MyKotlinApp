@@ -100,7 +100,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
                 }
             }
         }else{
-            notifyDataSetChanged(DataChagedType.NOTIFY)
+            notifyDataSetChanged(dataChangedType)
         }
 
         if (mData.isEmpty()) {

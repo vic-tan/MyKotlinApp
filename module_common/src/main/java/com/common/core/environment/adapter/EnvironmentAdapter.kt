@@ -60,8 +60,8 @@ class EnvironmentAdapter :
         }
     }
 
-    override fun setItemViewType(bean: EnvironmentBean): Int {
-        return bean.itemType
+    override fun setItemViewType(position: Int): Int {
+        return mData[position].itemType
     }
 
     override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {

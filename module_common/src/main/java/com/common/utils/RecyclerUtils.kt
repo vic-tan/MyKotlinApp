@@ -1,6 +1,7 @@
 package com.common.utils
 
 import android.content.Context
+import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -34,8 +35,21 @@ class RecyclerUtils {
             owner: LifecycleOwner,
             adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
         ) {
+            dataChangedObserve(smartRefreshLayout, adapter, viewModel, owner)
+            uiBehaviorObserve(smartRefreshLayout, refreshLoadingLayout, viewModel, owner)
+        }
+
+
+        /**
+         * 处理数据回调显示逻辑
+         */
+        fun dataChangedObserve(
+            smartRefreshLayout: SmartRefreshLayout,
+            adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
+            viewModel: BaseListViewModel,
+            owner: LifecycleOwner
+        ) {
             viewModel.dataChanged.observe(owner, Observer {
-                //请求数据完成
                 when (it) {
                     BaseListViewModel.DataChagedType.REFRESH -> {
                         smartRefreshLayout.finishRefresh()
@@ -59,28 +73,50 @@ class RecyclerUtils {
                     }
                 }
             })
+        }
+
+        /**
+         * 处理请求情况显示布局
+         */
+        fun uiBehaviorObserve(
+            smartRefreshLayout: SmartRefreshLayout,
+            refreshLoadingLayout: LoadingLayout,
+            viewModel: BaseListViewModel,
+            owner: LifecycleOwner,
+            isHeaderOrFooter: Boolean = false
+        ) {
             viewModel.uiBehavior.observe(owner, Observer {
                 when (it) {
                     BaseListViewModel.UIType.NOTMOREDATA -> {
                         smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
                     }
-                    BaseListViewModel.UIType.EMPTYDATA -> refreshLoadingLayout.showEmpty()
+                    BaseListViewModel.UIType.EMPTYDATA -> if (isHeaderOrFooter) refreshLoadingLayout.showContent() else refreshLoadingLayout.showEmpty()
                     BaseListViewModel.UIType.ERROR -> refreshLoadingLayout.showError()
                     BaseListViewModel.UIType.CONTENT -> {
                         refreshLoadingLayout.showContent()
                         smartRefreshLayout.setEnableLoadMore(true)
                     }
                 }
-
             })
         }
 
         /**
-         * 初始化监听
+         * 初始化加载中控件监听
          */
-        fun initListener(
+        fun initLoadingLayoutListener(
+            refreshLoadingLayout: LoadingLayout,
+            viewModel: BaseListViewModel
+        ) {
+            refreshLoadingLayout.setRetryListener(View.OnClickListener {
+                viewModel.refresh()
+            })
+        }
+
+        /**
+         * 初始化刷新控件监听
+         */
+        fun initRefreshLayoutListener(
             smartRefreshLayout: SmartRefreshLayout,
-            refreshRecycler: RecyclerView,
             viewModel: BaseListViewModel
         ) {
             smartRefreshLayout.setOnRefreshListener {
@@ -92,6 +128,19 @@ class RecyclerUtils {
             }
             smartRefreshLayout.setEnableLoadMore(false)
 
+        }
+
+        /**
+         * 初始化监听
+         */
+        fun initListener(
+            smartRefreshLayout: SmartRefreshLayout,
+            refreshRecycler: RecyclerView,
+            refreshLoadingLayout: LoadingLayout,
+            viewModel: BaseListViewModel
+        ) {
+            initRefreshLayoutListener(smartRefreshLayout, viewModel)
+            initLoadingLayoutListener(refreshLoadingLayout, viewModel)
             refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
@@ -138,6 +187,14 @@ class RecyclerUtils {
                 }
                 else -> layoutManager.itemCount - 1
             }
+        }
+
+        /**
+         * 初始化Recycler
+         */
+        fun initRecyclerView(context: Context?, refreshRecycler: RecyclerView) {
+            refreshRecycler.layoutManager = setLinearLayoutManager(context)
+            refreshRecycler.itemAnimator = null
         }
 
         /**
