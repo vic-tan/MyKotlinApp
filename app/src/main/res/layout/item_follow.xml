@@ -125,113 +125,87 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line">
 
-        <LinearLayout
-            android:id="@+id/praise_layout"
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/praise"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:ellipsize="end"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:text="点赞"
+            android:textColor="@color/color_333333"
+            android:textSize="16sp"
+            app:icon_direction="left"
+            app:icon_height="18dp"
+            app:icon_src_normal="@mipmap/ic_praise_gray"
+            app:icon_width="18dp"
+            app:icon_with_text="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/comment_layout"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/praise_icon"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:src="@mipmap/ic_praise_gray" />
-
-            <TextView
-                android:id="@+id/praise_count"
-                style="@style/wrap_wrap"
-                android:layout_marginStart="6dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="点赞"
-                android:textColor="@color/color_333333"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
-
+            app:layout_constraintRight_toLeftOf="@id/comment"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="20dp"
             android:layout_marginTop="17dp"
             android:background="@color/line_E9E9E9"
-            app:layout_constraintLeft_toLeftOf="@id/praise_layout"
-            app:layout_constraintRight_toRightOf="@id/comment_layout"
+            app:layout_constraintLeft_toLeftOf="@id/praise"
+            app:layout_constraintRight_toRightOf="@id/comment"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/comment_layout"
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/comment"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="评论"
+            android:textColor="@color/color_333333"
+            android:textSize="16sp"
+            app:icon_direction="left"
+            app:icon_height="18dp"
+            app:icon_src_normal="@mipmap/ic_comment_gray"
+            app:icon_width="18dp"
+            app:icon_with_text="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/praise_layout"
-            app:layout_constraintRight_toLeftOf="@id/share_layout"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:src="@mipmap/ic_comment_white" />
-
-            <TextView
-                android:id="@+id/comment_count"
-                style="@style/wrap_wrap"
-                android:layout_marginStart="6dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="评论"
-                android:textColor="@color/color_333333"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
+            app:layout_constraintLeft_toRightOf="@id/praise"
+            app:layout_constraintRight_toLeftOf="@id/share"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="20dp"
             android:layout_marginTop="17dp"
             android:background="@color/line_E9E9E9"
-            app:layout_constraintLeft_toLeftOf="@id/comment_layout"
-            app:layout_constraintRight_toRightOf="@id/share_layout"
+            app:layout_constraintLeft_toLeftOf="@id/share"
+            app:layout_constraintRight_toRightOf="@id/comment"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <LinearLayout
-            android:id="@+id/share_layout"
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/share"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:text="分享"
+            android:textColor="@color/color_333333"
+            android:textSize="16sp"
+            app:icon_direction="left"
+            app:icon_height="26dp"
+            app:icon_src_normal="@mipmap/ic_wx"
+            app:icon_width="26dp"
+            app:icon_with_text="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/comment_layout"
+            app:layout_constraintLeft_toRightOf="@id/comment"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:src="@mipmap/ic_wx" />
-
-            <TextView
-                style="@style/wrap_wrap"
-                android:layout_marginStart="6dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="分享"
-                android:textColor="@color/color_333333"
-                android:textSize="16sp" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </com.ruffian.library.widget.RConstraintLayout>

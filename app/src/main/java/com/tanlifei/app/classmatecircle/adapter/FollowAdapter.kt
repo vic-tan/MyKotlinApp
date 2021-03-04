@@ -12,6 +12,7 @@ import com.common.ComApplication.Companion.context
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
+import com.common.utils.ResUtils
 import com.common.widget.ExpandTextView
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -82,17 +83,19 @@ class FollowAdapter : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() 
         holder.binding.marginView.visibility =
             if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
 
-        holder.binding.praiseCount.text = NumberUtils.setPraiseCount(item.star)
-        holder.binding.praiseIcon.setImageResource(if (item.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+        holder.binding.praise.text = NumberUtils.setPraiseCount(item.star)
+        holder.binding.praise.helper.iconNormalLeft = ResUtils.getDrawable(
+            if (item.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray
+        )
 
 
-        holder.binding.commentCount.text = NumberUtils.setCommentCount(item.comment)
+        holder.binding.comment.text = item.comment?.let { NumberUtils.setCommentCount(it) }
 
 
     }
 
     override fun addChildClickViewIds(binding: ItemFollowBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.more, binding.shareLayout)
+        return linkedSetOf(binding.more, binding.share)
     }
 
 }

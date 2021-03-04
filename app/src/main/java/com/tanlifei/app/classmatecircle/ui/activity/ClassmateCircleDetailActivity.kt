@@ -12,10 +12,8 @@ import com.common.ComApplication
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.common.utils.AntiShakeUtils
-import com.common.utils.GlideUtils
-import com.common.utils.RecyclerUtils
-import com.common.utils.ViewUtils
+import com.common.utils.*
+import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
@@ -132,6 +130,10 @@ class ClassmateCircleDetailActivity :
         headerBinding.topicTxt.text = bean?.entertainmentTopicName + ""
         headerBinding.totalCommentCount.text =
             bean?.comment?.let { "共${NumberUtils.setCommentCount("0", it)}条评论" }
+        binding.commentBtn.text = bean?.comment?.let { NumberUtils.setCommentCount("评论", it) }
+        binding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
+        binding.praiseBtn.helper.iconNormalLeft =
+            ResUtils.getDrawable(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)
     }
 
     /**

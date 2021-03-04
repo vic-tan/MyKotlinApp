@@ -24,8 +24,8 @@ class ClassmateCircleBean : Serializable {
     var checkStatus = 1 //审核状态:0=无效,1=有效 ,2 审核中
     var star: Long = 0
     var share: Int = 0
-    var comment: Long = 0
-    var isStar = false
+    var comment: Long? = 0
+    var isStar: Boolean = false
     var isFollowing: Int = 0
     var isFollower: Int = 0
     var createtimeStr: String? = null

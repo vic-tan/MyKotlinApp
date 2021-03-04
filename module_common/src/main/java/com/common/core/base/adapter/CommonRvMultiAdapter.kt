@@ -117,7 +117,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
      * 是不是尾部类型
      */
     private fun isFooterPosition(position: Int): Boolean {
-        return position >= (mFooterViews.size + mData.size)
+        return position >= (mHeaderViews.size + mData.size)
     }
 
     /**
