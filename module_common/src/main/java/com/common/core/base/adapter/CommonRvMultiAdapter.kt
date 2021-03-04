@@ -22,7 +22,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     /**
      * UI加载框状态显示
      */
-    enum class ItemViewType(value: Int) {
+    enum class ItemViewType(val value:Int) {
         HEADER(1000),//头部
         FOOTER(2000),//尾部
         CONTEN(3000),//正常
@@ -66,10 +66,10 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
 
     override fun getItemViewType(position: Int): Int {
         if (isHeaderPosition(position)) {
-            return ItemViewType.HEADER.ordinal
+            return ItemViewType.HEADER.value
         }
         if (isFooterPosition(position)) {
-            return ItemViewType.FOOTER.ordinal
+            return ItemViewType.FOOTER.value
         }
         return setItemViewType(position)
     }
@@ -77,10 +77,10 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<ViewBinding> {
         return when (viewType) {
-            ItemViewType.HEADER.ordinal -> {
+            ItemViewType.HEADER.value-> {
                 CommonRvHolder(mHeaderViews[0])
             }
-            ItemViewType.FOOTER.ordinal -> {
+            ItemViewType.FOOTER.value -> {
                 CommonRvHolder(mFooterViews[0])
             }
             else -> {
@@ -117,7 +117,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
      * 是不是尾部类型
      */
     private fun isFooterPosition(position: Int): Boolean {
-        return position >= (mHeaderViews.size + mData.size)
+        return position >= (mFooterViews.size + mData.size)
     }
 
     /**
