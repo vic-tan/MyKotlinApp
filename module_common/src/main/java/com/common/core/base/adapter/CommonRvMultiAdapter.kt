@@ -65,22 +65,22 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
 
     override fun getItemViewType(position: Int): Int {
         if (isHeaderPosition(position)) {
-            return ItemViewType.HEADER.value
+            return ItemViewType.HEADER.value + position
         }
         if (isFooterPosition(position)) {
-            return ItemViewType.FOOTER.value
+            return ItemViewType.FOOTER.value + position
         }
         return setItemViewType(position)
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<ViewBinding> {
-        return when (viewType) {
-            ItemViewType.HEADER.value -> {
-                CommonRvHolder(mHeaderViews[0])
+        return when {
+            viewType >= ItemViewType.HEADER.value && viewType < ItemViewType.FOOTER.value -> {
+                CommonRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
             }
-            ItemViewType.FOOTER.value -> {
-                CommonRvHolder(mFooterViews[0])
+            viewType >= ItemViewType.FOOTER.value -> {
+                CommonRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value])
             }
             else -> {
                 onCreateViewHolder(
