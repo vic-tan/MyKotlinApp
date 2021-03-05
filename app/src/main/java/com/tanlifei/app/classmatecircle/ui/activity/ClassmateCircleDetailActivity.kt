@@ -132,9 +132,7 @@ class ClassmateCircleDetailActivity :
             bean?.comment?.let { "共${NumberUtils.setCommentCount("0", it)}条评论" }
         binding.commentBtn.text = bean?.comment?.let { NumberUtils.setCommentCount("评论", it) }
         binding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
-        MyLogTools.log("${ObjectUtils.isNotEmpty(bean) && bean?.isStar!!}")
-        binding.praiseBtn.helper.iconNormalLeft = getDrawable(R.mipmap.ic_praise_white_pre)
-
+        binding.praiseIcon.setImageResource(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)
     }
 
     /**

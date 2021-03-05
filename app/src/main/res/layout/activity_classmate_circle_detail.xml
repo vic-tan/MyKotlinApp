@@ -29,52 +29,72 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <com.ruffian.library.widget.RTextView
-            android:id="@+id/comment_btn"
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:id="@+id/comment_layout"
             android:layout_width="88dp"
             android:layout_height="36dp"
+            android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:drawablePadding="6dp"
-            android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="1"
-            android:text="评论"
-            android:textColor="@color/white"
-            android:textSize="15sp"
+            android:orientation="horizontal"
             app:background_normal="@array/classmate_circle_comment"
             app:corner_radius="20dp"
-            app:icon_direction="left"
-            app:icon_height="18dp"
-            app:icon_src_normal="@mipmap/ic_comment_white"
-            app:icon_width="19dp"
-            app:icon_with_text="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.ruffian.library.widget.RTextView
-            android:id="@+id/praise_btn"
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/ic_comment_white" />
+
+            <TextView
+                android:id="@+id/comment_btn"
+                style="@style/wrap_wrap"
+                android:layout_marginStart="6dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="评论"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+
+        </com.ruffian.library.widget.RLinearLayout>
+
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:id="@+id/praise_layout"
             android:layout_width="88dp"
             android:layout_height="36dp"
+            android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:drawablePadding="6dp"
-            android:ellipsize="end"
             android:gravity="center"
-            android:maxLength="6"
-            android:maxLines="1"
-            android:text="点赞"
-            android:textColor="@color/white"
-            android:textSize="15sp"
+            android:orientation="horizontal"
             app:background_normal="@array/classmate_circle_praise"
             app:corner_radius="20dp"
-            app:icon_direction="left"
-            app:icon_height="18dp"
-            app:icon_src_normal="@mipmap/ic_praise_white_pre"
-            app:icon_width="19dp"
-            app:icon_with_text="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/comment_btn"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintRight_toLeftOf="@+id/comment_layout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/praise_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/ic_praise_white" />
+
+            <TextView
+                android:id="@+id/praise_btn"
+                style="@style/wrap_wrap"
+                android:layout_marginStart="6dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="点赞"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+
+        </com.ruffian.library.widget.RLinearLayout>
 
 
         <com.ruffian.library.widget.RTextView
@@ -93,7 +113,7 @@
             app:corner_radius="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/praise_btn"
+            app:layout_constraintRight_toLeftOf="@+id/praise_layout"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
