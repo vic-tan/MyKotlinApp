@@ -22,12 +22,11 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     /**
      * UI加载框状态显示
      */
-    enum class ItemViewType(val value:Int) {
+    enum class ItemViewType(val value: Int) {
         HEADER(1000),//头部
         FOOTER(2000),//尾部
         CONTEN(3000),//正常
     }
-
 
     /**
      * 数据源
@@ -77,7 +76,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<ViewBinding> {
         return when (viewType) {
-            ItemViewType.HEADER.value-> {
+            ItemViewType.HEADER.value -> {
                 CommonRvHolder(mHeaderViews[0])
             }
             ItemViewType.FOOTER.value -> {

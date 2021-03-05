@@ -53,6 +53,7 @@ class RecyclerUtils {
                 when (it) {
                     BaseListViewModel.DataChagedType.REFRESH -> {
                         smartRefreshLayout.finishRefresh()
+                        smartRefreshLayout.setEnableLoadMore(true)
                         adapter.notifyItemRangeChanged(0, viewModel.mData.size - 1)
                     }
                     BaseListViewModel.DataChagedType.LOADMORE -> {
@@ -61,10 +62,18 @@ class RecyclerUtils {
                             viewModel.loadMoreStartPos,
                             viewModel.mData.size - 1
                         )
+
                     }
                     BaseListViewModel.DataChagedType.ERROE -> {
                         smartRefreshLayout.finishRefresh()
                         smartRefreshLayout.finishLoadMore()
+                        adapter.notifyDataSetChanged()
+                    }
+                    BaseListViewModel.DataChagedType.EMPTY -> {
+                        smartRefreshLayout.finishRefresh()
+                        smartRefreshLayout.finishLoadMore()
+                        smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
+                        adapter.notifyDataSetChanged()
                     }
                     else -> {
                         smartRefreshLayout.finishRefresh()
@@ -92,10 +101,7 @@ class RecyclerUtils {
                     }
                     BaseListViewModel.UIType.EMPTYDATA -> if (isHeaderOrFooter) refreshLoadingLayout.showContent() else refreshLoadingLayout.showEmpty()
                     BaseListViewModel.UIType.ERROR -> refreshLoadingLayout.showError()
-                    BaseListViewModel.UIType.CONTENT -> {
-                        refreshLoadingLayout.showContent()
-                        smartRefreshLayout.setEnableLoadMore(true)
-                    }
+                    BaseListViewModel.UIType.CONTENT -> refreshLoadingLayout.showContent()
                 }
             })
         }

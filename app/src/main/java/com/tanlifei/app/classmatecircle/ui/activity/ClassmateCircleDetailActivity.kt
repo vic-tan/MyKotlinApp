@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.blankj.utilcode.util.ScreenUtils
 import com.common.ComApplication
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
@@ -18,6 +19,7 @@ import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.classmatecircle.viewmodel.ClassmateCircleDetailViewModel
+import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ActivityClassmateCircleDetailBinding
 import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
@@ -31,6 +33,7 @@ import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
 class ClassmateCircleDetailActivity :
     BaseToolBarActivity<ActivityClassmateCircleDetailBinding, ClassmateCircleDetailViewModel>(),
     View.OnClickListener {
+    private var screenWidth = ScreenUtils.getScreenWidth()
     private lateinit var adapter: CommentAdapter
     private lateinit var header: ViewBinding
 
@@ -79,10 +82,9 @@ class ClassmateCircleDetailActivity :
         viewModel.dataChanged.observe(this, Observer {
             when (it) {
                 BaseListViewModel.DataChagedType.REFRESH -> {
+                    binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
                     binding.refreshLayout.smartRefreshLayout.finishRefresh()
-                    setHeaderData()
-                    adapter.removeHeaderView(header)
-                    adapter.addHeaderView(header)
+                    addHeader()
                     adapter.refreshItemRange()
                 }
                 BaseListViewModel.DataChagedType.LOADMORE -> {
@@ -94,6 +96,13 @@ class ClassmateCircleDetailActivity :
                     binding.refreshLayout.smartRefreshLayout.finishRefresh()
                     binding.refreshLayout.smartRefreshLayout.finishLoadMore()
                 }
+                BaseListViewModel.DataChagedType.EMPTY -> {
+                    addHeader()
+                    binding.refreshLayout.smartRefreshLayout.finishRefresh()
+                    binding.refreshLayout.smartRefreshLayout.finishLoadMore()
+                    binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false) //将不会再次触发加载更多事件
+                    adapter.notifyDataSetChanged()
+                }
                 else -> {
                     binding.refreshLayout.smartRefreshLayout.finishRefresh()
                     binding.refreshLayout.smartRefreshLayout.finishLoadMore()
@@ -103,9 +112,23 @@ class ClassmateCircleDetailActivity :
         })
     }
 
+    private fun addHeader() {
+        if (viewModel.pageNum == 1) {
+            setHeaderData()
+            adapter.removeHeaderView(header)
+            adapter.addHeaderView(header)
+            if(viewModel.mData.isEmpty()){
+
+            }
+        }
+    }
+
     private fun setHeaderData() {
         val headerBinding = header as ItemHeaderClassmateCircleDetailBinding
         var bean: ClassmateCircleBean? = viewModel.bean
+        headerBinding.banner.layoutParams.width = screenWidth
+        headerBinding.banner.layoutParams.height =
+            AutoHeightUtils.getHeightParams(screenWidth, bean?.image)
         GlideUtils.load(ComApplication.context, bean?.image?.url, headerBinding.banner)
         GlideUtils.loadAvatar(
             ComApplication.context,
