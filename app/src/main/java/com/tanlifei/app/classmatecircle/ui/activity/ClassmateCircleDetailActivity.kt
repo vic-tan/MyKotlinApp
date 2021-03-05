@@ -7,12 +7,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.common.ComApplication
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
+import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
@@ -36,6 +38,7 @@ class ClassmateCircleDetailActivity :
     private var screenWidth = ScreenUtils.getScreenWidth()
     private lateinit var adapter: CommentAdapter
     private lateinit var header: ViewBinding
+    private lateinit var emptyView: ViewBinding
 
     companion object {
         fun actionStart(id: Long) {
@@ -64,10 +67,18 @@ class ClassmateCircleDetailActivity :
 
     private fun initHeaderView() {
         header = ItemHeaderClassmateCircleDetailBinding.inflate(layoutInflater)
-        header.root.layoutParams = RecyclerView.LayoutParams(
+        header.root.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+        emptyView = LayoutLoadingEmptyBinding.inflate(layoutInflater)
+        emptyView.root.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ConvertUtils.dp2px(300f)
+        )
+        emptyView.root.setBackgroundColor(ResUtils.getColor(R.color.white))
+        val emptyBinding = emptyView as LayoutLoadingEmptyBinding
+        emptyBinding.emptyText.text = "暂无评论，说两句吧~"
     }
 
 
@@ -117,8 +128,11 @@ class ClassmateCircleDetailActivity :
             setHeaderData()
             adapter.removeHeaderView(header)
             adapter.addHeaderView(header)
-            if(viewModel.mData.isEmpty()){
-
+            if (viewModel.mData.isEmpty()) {
+                adapter.removeHeaderView(emptyView)
+                adapter.addHeaderView(emptyView)
+            } else {
+                adapter.removeHeaderView(emptyView)
             }
         }
     }
