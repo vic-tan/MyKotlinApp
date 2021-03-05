@@ -12,7 +12,6 @@ import com.common.ComApplication.Companion.context
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
-import com.common.utils.ResUtils
 import com.common.widget.ExpandTextView
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -51,17 +50,17 @@ class FollowAdapter : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() 
         holder: CommonRvHolder<ItemFollowBinding>,
         position: Int,
         binding: ItemFollowBinding,
-        item: ClassmateCircleBean
+        bean: ClassmateCircleBean
     ) {
         holder.binding.banner.layoutParams.width = screenWidth
         holder.binding.banner.layoutParams.height =
-            AutoHeightUtils.getHeightParams(screenWidth, item.image)
+            AutoHeightUtils.getHeightParams(screenWidth, bean.image)
 
-        holder.binding.name.text = item.nickName
+        holder.binding.name.text = bean.nickName
         holder.binding.school.text =
-            if (ObjectUtils.isEmpty(item.createtimeStr)) item.universityName else "${item.createtimeStr}  ${item.universityName}"
-        GlideUtils.load(context, item.image?.url, holder.binding.banner)
-        GlideUtils.loadAvatar(context, item.avatar, holder.binding.userHead)
+            if (ObjectUtils.isEmpty(bean.createtimeStr)) bean.universityName else "${bean.createtimeStr}  ${bean.universityName}"
+        GlideUtils.load(context, bean.image?.url, holder.binding.banner)
+        GlideUtils.loadAvatar(context, bean.avatar, holder.binding.userHead)
         holder.binding.expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
             override fun onExpand(view: ExpandTextView) {
                 mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
@@ -74,18 +73,18 @@ class FollowAdapter : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() 
         })
         val state: Int? = mPositionsAndStates.get(holder.adapterPosition)
         holder.binding.expandTextView.updateForRecyclerView(
-            item.content,
+            bean.content,
             textViewWidth,
             state ?: 0
         )
         holder.binding.expandTextView.visibility =
-            if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
+            if (TextUtils.isEmpty(bean.content)) View.GONE else View.VISIBLE
         holder.binding.marginView.visibility =
-            if (TextUtils.isEmpty(item.content)) View.GONE else View.VISIBLE
+            if (TextUtils.isEmpty(bean.content)) View.GONE else View.VISIBLE
 
-        holder.binding.praiseCount.text = NumberUtils.setPraiseCount(item.star)
-        holder.binding.praiseIcon.setImageResource(if (item.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
-        holder.binding.commentCount.text = NumberUtils.setCommentCount(item.comment)
+        holder.binding.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
+        holder.binding.praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+        holder.binding.commentCount.text = NumberUtils.setCommentCount(bean.comment)
     }
 
     override fun addChildClickViewIds(binding: ItemFollowBinding): LinkedHashSet<View> {

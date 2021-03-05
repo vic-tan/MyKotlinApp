@@ -4,8 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.blankj.utilcode.util.ObjectUtils
+import com.common.ComApplication
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
+import com.common.utils.GlideUtils
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.databinding.ItemCommentBinding
 import java.util.*
@@ -41,13 +44,19 @@ class CommentAdapter :
         bean: CommentBean
     ) {
         val holder = holder.binding as ItemCommentBinding
-        holder.title.text = bean.nickname
+        holder.name.text = bean.nickname
+        holder.content.text = bean.content
+        holder.time.text = bean.createTimeStr
+        holder.school.text = bean.universityName
+        holder.school.visibility =
+            if (ObjectUtils.isEmpty(bean.universityName)) View.GONE else View.VISIBLE
+        GlideUtils.loadAvatar(ComApplication.context, bean.avatar, holder.userHead)
     }
 
 
     override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {
         val holder = holder.binding as ItemCommentBinding
-        return linkedSetOf(holder.item)
+        return linkedSetOf()
     }
 
 
