@@ -57,7 +57,7 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
             override fun onItemClick(v: View, binding: ItemFollowBinding, position: Int) {
                 when (v) {
                     binding.more,
-                    binding.share -> {
+                    binding.shareLayout -> {
                         context?.let {
                             XPopup.Builder(it).asCustom(
                                 ShareView(

@@ -69,7 +69,7 @@
             app:corner_radius="20dp"
             app:icon_direction="left"
             app:icon_height="18dp"
-            app:icon_src_normal="@mipmap/ic_praise_white"
+            app:icon_src_normal="@mipmap/ic_praise_white_pre"
             app:icon_width="19dp"
             app:icon_with_text="true"
             app:layout_constraintBottom_toBottomOf="parent"
