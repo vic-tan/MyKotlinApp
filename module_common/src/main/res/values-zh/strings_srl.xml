@@ -14,6 +14,6 @@
     <string name="srl_footer_refreshing" tools:ignore="ExtraTranslation">正在刷新</string>
     <string name="srl_footer_finish" tools:ignore="ExtraTranslation">加载完成</string>
     <string name="srl_footer_failed" tools:ignore="ExtraTranslation">加载失败</string>
-    <string name="srl_footer_nothing" tools:ignore="ExtraTranslation">—— 我是有底线的 ——</string>
+    <string name="srl_footer_nothing" tools:ignore="ExtraTranslation">没有更多数据了</string>
 
 </resources>
