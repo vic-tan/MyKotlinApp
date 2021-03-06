@@ -151,6 +151,8 @@ class ClassmateCircleDetailActivity :
         )
         headerBinding.name.text = bean?.nickName
         headerBinding.school.text = bean?.universityName
+        headerBinding.school.visibility =
+            if (ObjectUtils.isEmpty(bean?.universityName)) View.GONE else View.VISIBLE
         headerBinding.content.text = bean?.content
         headerBinding.commentTime.text = bean?.createtimeStr + ""
         if (bean?.isFollower === 1) {

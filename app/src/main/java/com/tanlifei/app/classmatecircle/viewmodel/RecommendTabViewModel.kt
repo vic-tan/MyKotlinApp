@@ -7,6 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.viewmodel.BaseViewModel
+import com.example.httpsender.kt.errorCode
+import com.example.httpsender.kt.errorMsg
+import com.example.httpsender.kt.show
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.classmatecircle.ui.fragment.RecommendFragment
 import com.tanlifei.app.common.network.ApiNetwork
@@ -31,7 +34,7 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
     private var mFragments: MutableList<Fragment> = ArrayList()
 
     fun requestCategoryList() {
-        launchByLoading {
+        launchByLoading{
             val categoryList = ApiNetwork.requestEntertainmentCategoryList()
             if (ObjectUtils.isNotEmpty(categoryList)) {
                 mData.addAll(categoryList)

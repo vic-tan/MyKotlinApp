@@ -53,8 +53,6 @@ open class BaseViewModel : ViewModel() {
         _loadingState.value = LoadType.DISMISS
     }, onError, {
         _loadingState.value = LoadType.LOADING
-    }, {
-        _loadingState.value = LoadType.DISMISS
     })
 
 

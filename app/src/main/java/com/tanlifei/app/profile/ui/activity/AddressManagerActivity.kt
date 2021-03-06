@@ -87,6 +87,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
         })
 
         viewModel.areaDataComplete.observe(this, Observer {
+
             initAreaOptionPicker()
         })
         viewModel.editAddressComplete.observe(this, Observer {
@@ -118,48 +119,53 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * @return
      */
     private fun initAreaOptionPicker(): OptionsPickerView<AreaBean>? {
-        pvOptions = OptionsPickerBuilder(
-            this,
-            OnOptionsSelectListener { options1: Int, options2: Int, options3: Int, v: View? ->
-                if (ObjectUtils.isNotEmpty(viewModel.addressBean)) {
-                    viewModel.addressBean?.provinceId = viewModel.areaJsonList[options1].id
-                    viewModel.addressBean?.cityId =
-                        viewModel.areaJsonList[options1].areaListVOList[options2].id
-                    viewModel.addressBean?.areaId =
-                        viewModel.areaJsonList[options1].areaListVOList[options2]
-                            .areaList[options3].id
-                }
-                viewModel.addressBean?.addressPrefix =
-                    viewModel.areaJsonList[options1].name + " " +
+        if (ObjectUtils.isNotEmpty(viewModel.options1Items) && ObjectUtils.isNotEmpty(viewModel.options2Items)
+            && ObjectUtils.isNotEmpty(viewModel.options3Items)
+        ) {
+            pvOptions = OptionsPickerBuilder(
+                this,
+                OnOptionsSelectListener { options1: Int, options2: Int, options3: Int, _: View? ->
+                    if (ObjectUtils.isNotEmpty(viewModel.addressBean)) {
+                        viewModel.addressBean?.provinceId = viewModel.areaJsonList[options1].id
+                        viewModel.addressBean?.cityId =
+                            viewModel.areaJsonList[options1].areaListVOList[options2].id
+                        viewModel.addressBean?.areaId =
                             viewModel.areaJsonList[options1].areaListVOList[options2]
-                                .name + " " +
-                            viewModel.areaJsonList[options1].areaListVOList[options2]
-                                .areaList[options3].name
-                binding.area.text = viewModel.addressBean?.addressPrefix
-                binding.areaEdit.setText(binding.area.text)
-            }
-        )
-            .setLayoutRes(
-                R.layout.pickerview_custom_options
-            ) { v: View ->
-                val tvSubmit =
-                    v.findViewById<View>(R.id.tv_finish) as TextView
-                val ivCancel =
-                    v.findViewById<View>(R.id.iv_cancel) as TextView
-                tvSubmit.setOnClickListener {
-                    pvOptions?.returnData()
-                    pvOptions?.dismiss()
+                                .areaList[options3].id
+                    }
+                    viewModel.addressBean?.addressPrefix =
+                        viewModel.areaJsonList[options1].name + " " +
+                                viewModel.areaJsonList[options1].areaListVOList[options2]
+                                    .name + " " +
+                                viewModel.areaJsonList[options1].areaListVOList[options2]
+                                    .areaList[options3].name
+                    binding.area.text = viewModel.addressBean?.addressPrefix
+                    binding.areaEdit.setText(binding.area.text)
                 }
-                ivCancel.setOnClickListener { pvOptions?.dismiss() }
-            }.setItemVisibleCount(4)
-            .setLineSpacingMultiplier(2.2f)
-            .setOutSideCancelable(true)
-            .build<AreaBean>()
-        pvOptions?.setPicker(
-            viewModel.options1Items,
-            viewModel.options2Items,
-            viewModel.options3Items
-        )
+            )
+                .setLayoutRes(
+                    R.layout.pickerview_custom_options
+                ) { v: View ->
+                    val tvSubmit =
+                        v.findViewById<View>(R.id.tv_finish) as TextView
+                    val ivCancel =
+                        v.findViewById<View>(R.id.iv_cancel) as TextView
+                    tvSubmit.setOnClickListener {
+                        pvOptions?.returnData()
+                        pvOptions?.dismiss()
+                    }
+                    ivCancel.setOnClickListener { pvOptions?.dismiss() }
+                }.setItemVisibleCount(4)
+                .setLineSpacingMultiplier(2.2f)
+                .setOutSideCancelable(true)
+                .build<AreaBean>()
+
+            pvOptions?.setPicker(
+                viewModel.options1Items,
+                viewModel.options2Items,
+                viewModel.options3Items
+            )
+        }
         return pvOptions
     }
 

@@ -50,7 +50,7 @@ android {
         //开发环境
         dev {
             manifestPlaceholders = rootProject.ext.dev
-            buildConfigField 'String', 'CURRENTE_URL', rootProject.ext.configField['BASE_URL_DEV']
+            buildConfigField 'String', 'CURRENT_URL', rootProject.ext.configField['BASE_URL_DEV']
         }
         //测试环境(因为不允许命名为test)
         beta {
