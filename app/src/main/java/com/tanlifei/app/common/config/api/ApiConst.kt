@@ -83,7 +83,12 @@ object ApiConst {
     const val URL_ENTERTAINMENT_DETAIL = "major/api/entertainment/getEntertainmentDetail"
 
     /* 评论列表 */
-    const val URL_COMMENT_LIST = "major/api/entertainment/getCommentList"
+    const val URL_ENTERTAINMENT_COMMENT_LIST = "major/api/entertainment/getCommentList"
+
+
+    /* 发送评论回复 */
+    const val URL_ENTERTAINMENT_SEND_COMMENT = "major/api/entertainment/comment"
+
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 

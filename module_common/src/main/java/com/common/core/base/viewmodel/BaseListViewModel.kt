@@ -59,7 +59,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
      * 列表数据改变的LveData
      */
     val dataChanged: LiveData<DataChagedType> get() = _dataChanged
-    private var _dataChanged = MutableLiveData<DataChagedType>()
+    protected var _dataChanged = MutableLiveData<DataChagedType>()
 
     fun notifyDataSetChanged(dataChangedType: DataChagedType, startPos: Int = 0) {
         loadMoreStartPos = startPos

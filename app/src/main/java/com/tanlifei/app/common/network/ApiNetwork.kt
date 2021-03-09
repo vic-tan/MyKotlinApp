@@ -7,6 +7,8 @@ import com.common.core.bean.UpdateAppBean
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
+import com.tanlifei.app.classmatecircle.bean.ResponseCommentBean
+import com.tanlifei.app.classmatecircle.utils.CommentUrlType
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.profile.bean.AddressBean
@@ -138,12 +140,38 @@ object ApiNetwork {
     /**
      * 评论列表
      */
-    suspend fun requestCommentList(id: Long,pageNum: Int) =
-        RxHttp.postJson(ApiConst.URL_COMMENT_LIST)
+    suspend fun requestCommentList(
+        id: Long,
+        pageNum: Int,
+        urlType: CommentUrlType = CommentUrlType.CLASSMATE_CIRCLE
+    ) =
+        RxHttp.postJson(
+            when (urlType) {
+                CommentUrlType.CLASSMATE_CIRCLE -> ApiConst.URL_ENTERTAINMENT_COMMENT_LIST
+            }
+        )
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add("publishId", id)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .toResponse<MutableList<CommentBean>>().await()
+
+    /**
+     * 发送评论回复
+     */
+    suspend fun requestEntertainmentComment(
+        id: Long,
+        content: String,
+        urlType: CommentUrlType = CommentUrlType.CLASSMATE_CIRCLE
+    ) =
+        RxHttp.postJson(
+            when (urlType) {
+                CommentUrlType.CLASSMATE_CIRCLE -> ApiConst.URL_ENTERTAINMENT_SEND_COMMENT
+            }
+        )
+            .add("publishId", id)
+            .add("content", content)
+            .toResponse<ResponseCommentBean>().await()
+
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 
@@ -161,5 +189,6 @@ object ApiNetwork {
         .add("appId", "com.onlineaginguniversity")
         .add("clientVersion", AppUtils.getAppVersionName())
         .toResponse<UpdateAppBean>().await()
+
 
 }

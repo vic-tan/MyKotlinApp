@@ -123,6 +123,12 @@ class ClassmateCircleDetailActivity :
                 }
             }
         })
+        viewModel.itemDataChanged.observe(this, Observer {
+            adapter.notifyItemChanged(
+                adapter.mHeaderViews.size + it
+            )
+
+        })
     }
 
     private fun addHeader() {
@@ -206,7 +212,7 @@ class ClassmateCircleDetailActivity :
             binding.input -> {
                 ComDialogUtils.showInputEditView(this, object : BottomInputEditView.CallBack {
                     override fun callback(inputText: String) {
-                        ToastUtils.show(inputText)
+                        viewModel.requestComment(inputText)
                     }
                 })
             }

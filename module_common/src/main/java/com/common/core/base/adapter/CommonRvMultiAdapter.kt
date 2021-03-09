@@ -42,8 +42,8 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     /**
      * 添加头部尾部
      */
-    private var mHeaderViews: MutableList<ViewBinding> = mutableListOf()
-    private var mFooterViews: MutableList<ViewBinding> = mutableListOf()
+    var mHeaderViews: MutableList<ViewBinding> = mutableListOf()
+    var mFooterViews: MutableList<ViewBinding> = mutableListOf()
 
     /**
      * 用于保存需要设置点击事件的 item
@@ -206,6 +206,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     fun setOnItemChildClickListener(listener: OnMultiItemListener) {
         this.onItemListener = listener
     }
+
 
     /**
      * 有头部尾部刷新请用这个
