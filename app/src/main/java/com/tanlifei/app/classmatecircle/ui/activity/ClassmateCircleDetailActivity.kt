@@ -4,19 +4,20 @@ import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
+import com.common.widget.popup.BottomInputEditView
+import com.hjq.toast.ToastUtils
+import com.lxj.xpopup.XPopup
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -179,7 +180,7 @@ class ClassmateCircleDetailActivity :
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(this)
+        ViewUtils.setOnClickListener(this, binding.input)
     }
 
     private fun initAdapter() {
@@ -200,6 +201,14 @@ class ClassmateCircleDetailActivity :
 
     override fun onClick(v: View) {
         if (AntiShakeUtils.isInvalidClick(v)) return
-
+        when (v) {
+            binding.input -> {
+                ComDialogUtils.showInputEditView(this, object : BottomInputEditView.CallBack {
+                    override fun callback(inputText: String) {
+                        ToastUtils.show(inputText)
+                    }
+                })
+            }
+        }
     }
 }

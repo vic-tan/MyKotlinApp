@@ -31,7 +31,7 @@
     </style>
 
     <!-- 公用按钮样式 -->
-    <style name="com_btn_style">
+    <style name="com_btn_match_parent_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:layout_gravity">center</item>
@@ -43,6 +43,15 @@
         <item name="background_unable">@color/enabled_color</item>
         <item name="corner_radius">25dp</item>
         <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="com_btn_wrap_content_style" parent="com_btn_match_parent_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="corner_radius">5dp</item>
     </style>
 
     <!-- 设置列表样式 -->

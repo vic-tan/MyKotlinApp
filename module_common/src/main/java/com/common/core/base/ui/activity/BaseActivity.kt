@@ -15,7 +15,7 @@ import com.common.R
 import com.common.core.base.event.BaseEvent
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.databinding.ActivityBaseBinding
-import com.common.widget.CustomLoadingView
+import com.common.widget.popup.CustomLoadingView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup

@@ -2,9 +2,12 @@ package com.common.core.share.ui
 
 import android.content.Context
 import android.view.View
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
+import com.common.databinding.LayoutBottomEditViewBinding
+import com.common.databinding.LayoutShareBinding
 import com.common.utils.AntiShakeUtils
 import com.common.utils.ViewUtils
 import com.hjq.toast.ToastUtils
@@ -18,6 +21,7 @@ import com.lxj.xpopup.core.BottomPopupView
 class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
     BottomPopupView(context),
     View.OnClickListener {
+    lateinit var binding: LayoutShareBinding
 
     enum class ShareType {
         WX,//微信
@@ -34,14 +38,14 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
 
     override fun onCreate() {
         super.onCreate()
+        binding = LayoutShareBinding.bind(popupImplView)
         ViewUtils.setOnClickListener(
             this,
-            this,
-            R.id.wx,
-            R.id.wx_circle,
-            R.id.report,
-            R.id.credit,
-            R.id.cancel
+            binding.wx,
+            binding.wxCircle,
+            binding.report,
+            binding.credit,
+            binding.cancel
         )
     }
 
@@ -68,9 +72,12 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
 
 
     override fun onClick(v: View) {
+        if (ObjectUtils.isEmpty(binding)) {
+            return
+        }
         if (AntiShakeUtils.isInvalidClick(v)) return
-        when (v.id) {
-            R.id.wx -> {
+        when (v) {
+            binding.wx -> {
                 if (isWeixinAvilible()) {
                     dismiss()
                     mlistener.onItemClick(
@@ -79,7 +86,7 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
                     )
                 }
             }
-            R.id.wx_circle -> {
+            binding.wxCircle -> {
                 if (isWeixinAvilible()) {
                     mlistener.onItemClick(
                         v,
@@ -88,21 +95,21 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
                     dismiss()
                 }
             }
-            R.id.report -> {
+            binding.report -> {
                 dismiss()
                 mlistener.onItemClick(
                     v,
                     ShareType.REPORT
                 )
             }
-            R.id.credit -> {
+            binding.credit -> {
                 dismiss()
                 mlistener.onItemClick(
                     v,
                     ShareType.CREDIT
                 )
             }
-            R.id.cancel -> dismiss()
+            binding.cancel -> dismiss()
 
         }
     }

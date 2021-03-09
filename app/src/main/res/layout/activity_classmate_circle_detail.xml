@@ -98,6 +98,7 @@
 
 
         <com.ruffian.library.widget.RTextView
+            android:id="@+id/input"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_centerVertical="true"

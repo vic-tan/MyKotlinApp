@@ -1,4 +1,4 @@
-package com.common.widget
+package com.common.widget.popup
 
 import android.content.Context
 import android.view.View
@@ -11,7 +11,7 @@ import com.lxj.xpopup.core.BottomPopupView
  * @author: tanlifei
  * @date: 2021/2/24 14:43
  */
-class BottomListView<T>(context: Context) :
+class BottomOptionView<T>(context: Context) :
     BottomPopupView(context),
     View.OnClickListener {
 
