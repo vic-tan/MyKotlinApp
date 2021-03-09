@@ -19,6 +19,7 @@ import com.common.databinding.ItemEnvironmentContentBinding
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
 import com.common.widget.popup.BottomInputEditView
+import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -208,7 +209,9 @@ class ClassmateCircleDetailActivity :
                     is ItemCommentBinding -> {
                         when (v) {
                             (holder.binding as ItemCommentBinding).delete -> {
-                                viewModel.requestDeleteComment(viewModel.mData[position] as CommentBean)
+                                ComDialogUtils.comConfirm(this@ClassmateCircleDetailActivity,
+                                    "确定删除些评论?",
+                                    OnConfirmListener { viewModel.requestDeleteComment(viewModel.mData[position] as CommentBean) })
                             }
                         }
                     }

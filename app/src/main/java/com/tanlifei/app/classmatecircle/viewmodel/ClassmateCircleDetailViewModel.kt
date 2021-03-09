@@ -62,11 +62,13 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
         }
     }
 
-    fun requestDeleteComment(bean: CommentBean) {
+    fun requestDeleteComment(commentBean: CommentBean) {
         launchBySilence {
-            ApiNetwork.requestDeleteComment(bean.id)
-            mData.remove(bean)
+            ApiNetwork.requestDeleteComment(commentBean.id)
+            mData.remove(commentBean)
+            bean?.comment = bean?.comment?.minus(1)!!
             mDataChanged.value = DataChagedType.NOTIFY
+            mBeanChanged.value = bean
         }
     }
 
