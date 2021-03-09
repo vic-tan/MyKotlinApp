@@ -16,8 +16,6 @@ import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
 import com.common.widget.popup.BottomInputEditView
-import com.hjq.toast.ToastUtils
-import com.lxj.xpopup.XPopup
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -127,13 +125,17 @@ class ClassmateCircleDetailActivity :
             adapter.notifyItemChanged(
                 adapter.mHeaderViews.size + it
             )
+            adapter.removeHeaderView(emptyView)
 
+        })
+        viewModel.beanChanged.observe(this, Observer {
+            refreshHeaderData()
         })
     }
 
     private fun addHeader() {
         if (viewModel.pageNum == 1) {
-            setHeaderData()
+            refreshHeaderData()
             adapter.removeHeaderView(header)
             adapter.addHeaderView(header)
             if (viewModel.mData.isEmpty()) {
@@ -145,7 +147,7 @@ class ClassmateCircleDetailActivity :
         }
     }
 
-    private fun setHeaderData() {
+    private fun refreshHeaderData() {
         val headerBinding = header as ItemHeaderClassmateCircleDetailBinding
         var bean: ClassmateCircleBean? = viewModel.bean
         headerBinding.banner.layoutParams.width = screenWidth
@@ -181,6 +183,7 @@ class ClassmateCircleDetailActivity :
         binding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
         binding.praiseIcon.setImageResource(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)
     }
+
 
     /**
      * 初始化监听

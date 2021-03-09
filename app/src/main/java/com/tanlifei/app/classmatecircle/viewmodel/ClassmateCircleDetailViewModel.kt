@@ -25,6 +25,12 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
     val itemDataChanged: LiveData<Int> get() = _itemDataChanged
     protected var _itemDataChanged = MutableLiveData<Int>()
 
+    /**
+     * 列表数据改变的LveData
+     */
+    val beanChanged: LiveData<ClassmateCircleBean> get() = _beanChanged
+    protected var _beanChanged = MutableLiveData<ClassmateCircleBean>()
+
     private fun requestDetail(dataChangedType: DataChagedType) {
         launchByLoading({
             if (dataChangedType == DataChagedType.REFRESH) {
@@ -43,9 +49,11 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
     fun requestComment(content: String) {
         launchBySilence {
             var requestBean = ApiNetwork.requestEntertainmentComment(id, content)
-            if (ObjectUtils.isNotEmpty(requestBean)) {
-                mData.add(0, requestBean)
+            if (ObjectUtils.isNotEmpty(requestBean) && ObjectUtils.isNotEmpty(requestBean.info)) {
+                mData.add(0, requestBean.info)
                 _itemDataChanged.value = 0
+                bean?.comment = bean?.comment?.plus(1)!!
+                _beanChanged.value = bean
             }
         }
     }
