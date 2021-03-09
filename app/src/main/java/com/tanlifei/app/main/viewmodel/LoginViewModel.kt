@@ -25,20 +25,20 @@ class LoginViewModel() : BaseViewModel() {
     /**
      * 登录成功获取到token 的LveData
      */
-    val isToken: LiveData<Boolean> get() = _isToken
-    private val _isToken = MutableLiveData<Boolean>()
+    val isToken: LiveData<Boolean> get() = mIsToken
+    private val mIsToken = MutableLiveData<Boolean>()
 
     /**
      * 连续点击logo 显示切换环境按钮LveData
      */
-    val isContinuousClick: LiveData<Boolean> get() = _isContinuousClick
-    private val _isContinuousClick = MutableLiveData<Boolean>()
+    val isContinuousClick: LiveData<Boolean> get() = mIsContinuousClick
+    private val mIsContinuousClick = MutableLiveData<Boolean>()
 
     /**
      * 短信倒计时LveData
      */
-    val smsCodeInterval: LiveData<Long> get() = _smsCodeInterval
-    private val _smsCodeInterval = MutableLiveData<Long>()
+    val smsCodeInterval: LiveData<Long> get() = mSmsCodeInterval
+    private val mSmsCodeInterval = MutableLiveData<Long>()
 
 
     var token: String? = null
@@ -58,16 +58,16 @@ class LoginViewModel() : BaseViewModel() {
             .map { aLong -> count - aLong }
             .observeOn(AndroidSchedulers.mainThread()) //ui线程中进行控件更新
             .doOnSubscribe {
-                _smsCodeInterval.value = -1L//倒计时过程禁止按钮点击
+                mSmsCodeInterval.value = -1L//倒计时过程禁止按钮点击
             }.subscribe(object : Observer<Long> {
                 override fun onSubscribe(d: Disposable?) {}
                 override fun onNext(t: Long) {
-                    _smsCodeInterval.value = t//倒计时
+                    mSmsCodeInterval.value = t//倒计时
                 }
 
                 override fun onError(e: Throwable?) {}
                 override fun onComplete() {
-                    _smsCodeInterval.value = -2L//回复原来初始状态
+                    mSmsCodeInterval.value = -2L//回复原来初始状态
                 }
             })
     }
@@ -86,7 +86,7 @@ class LoginViewModel() : BaseViewModel() {
      */
     fun requestLogin(phone: String, code: String) = launchByLoading {
         token = ApiNetwork.requestLogin(phone, code)
-        _isToken.value = ObjectUtils.isNotEmpty(token)
+        mIsToken.value = ObjectUtils.isNotEmpty(token)
     }
 
     /**
@@ -94,7 +94,7 @@ class LoginViewModel() : BaseViewModel() {
      */
     fun requestLogin() = launchByLoading {
         token = ApiNetwork.requestLoginOut()
-        _isToken.value = false
+        mIsToken.value = false
     }
 
 
@@ -108,7 +108,7 @@ class LoginViewModel() : BaseViewModel() {
         mHits[mHits.size - 1] = SystemClock.uptimeMillis()
         if (mHits[0] >= SystemClock.uptimeMillis() - totalDuration) {
             mHits = LongArray(counts) //重新初始化数组
-            _isContinuousClick.value = true
+            mIsContinuousClick.value = true
         }
     }
 

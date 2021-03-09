@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.config.Const
@@ -25,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
- class SplashViewModel() : BaseViewModel() {
+class SplashViewModel() : BaseViewModel() {
 
     enum class JumpType {
         GUIDE,//表示去引导页
@@ -39,15 +38,15 @@ import java.util.concurrent.TimeUnit
     /**
      * 3s结束倒计时LveData
      */
-    val jump: LiveData<JumpType> get() = _jump
-    private val _jump = MutableLiveData<JumpType>()
+    val jump: LiveData<JumpType> get() = mJump
+    private val mJump = MutableLiveData<JumpType>()
 
 
     /**
      * 广告倒计时LveData
      */
-    val adsInterval: LiveData<Long> get() = _adsInterval
-    private val _adsInterval = MutableLiveData<Long>()
+    val adsInterval: LiveData<Long> get() = mAdsInterval
+    private val mAdsInterval = MutableLiveData<Long>()
 
     var adsBean: AdsBean? = null
 
@@ -60,7 +59,7 @@ import java.util.concurrent.TimeUnit
         if (ObjectUtils.isNotEmpty(adsBean)) {
             LitePal.deleteAll(AdsBean::class.java)
             adsBean!!.save()
-            _jump.value = JumpType.REQUEST_ADS
+            mJump.value = JumpType.REQUEST_ADS
         }
     }, {
         findAdsByDB()
@@ -73,7 +72,7 @@ import java.util.concurrent.TimeUnit
         if (ObjectUtils.isEmpty(adsBean)) {
             adsBean = AdsUtils.getAds()
             if (ObjectUtils.isNotEmpty(adsBean)) {
-                _jump.value = JumpType.REQUEST_ADS
+                mJump.value = JumpType.REQUEST_ADS
             }
         }
     }
@@ -102,19 +101,19 @@ import java.util.concurrent.TimeUnit
     fun doJump() {
         var guide = SPUtils.getInstance().getBoolean(Const.SPKey.GUIDE, true)
         if (guide) {
-            _jump.value = JumpType.GUIDE
+            mJump.value = JumpType.GUIDE
         } else {
             findAdsByDB()
             if (ObjectUtils.isNotEmpty(adsBean) && (ObjectUtils.isNotEmpty(adsBean) && adsBean?.status == 1)) {
-                _jump.value = JumpType.ADS
+                mJump.value = JumpType.ADS
             } else {
                 val token = UserInfoUtils.getToken()
                 //已经登录过了
                 if (ObjectUtils.isNotEmpty(token)) {
                     ComFun.token = token
-                    _jump.value = JumpType.HOME
+                    mJump.value = JumpType.HOME
                 } else {//未登录
-                    _jump.value = JumpType.LOGIN
+                    mJump.value = JumpType.LOGIN
                 }
             }
         }
@@ -136,12 +135,12 @@ import java.util.concurrent.TimeUnit
             .doOnSubscribe {}.subscribe(object : Observer<Long> {
                 override fun onSubscribe(d: Disposable?) {}
                 override fun onNext(t: Long) {
-                    _adsInterval.value = t//倒计时
+                    mAdsInterval.value = t//倒计时
                 }
 
                 override fun onError(e: Throwable?) {}
                 override fun onComplete() {
-                    _adsInterval.value = -1L//回复原来初始状态
+                    mAdsInterval.value = -1L//回复原来初始状态
                 }
             })
     }
@@ -154,9 +153,9 @@ import java.util.concurrent.TimeUnit
         //已经登录过了
         if (ObjectUtils.isNotEmpty(token)) {
             ComFun.token = token
-            _jump.value = JumpType.HOME
+            mJump.value = JumpType.HOME
         } else {//未登录
-            _jump.value = JumpType.LOGIN
+            mJump.value = JumpType.LOGIN
         }
     }
 }

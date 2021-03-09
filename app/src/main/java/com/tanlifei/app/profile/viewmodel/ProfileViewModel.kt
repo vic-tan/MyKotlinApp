@@ -21,14 +21,14 @@ class ProfileViewModel() : BaseViewModel() {
     /**
      * 刷新用户信息
      */
-    val refreshUserInfo: LiveData<UserBean> get() = _refreshUserInfo
-    private val _refreshUserInfo = MutableLiveData<UserBean>()
+    val refreshUserInfo: LiveData<UserBean> get() = mRefreshUserInfo
+    private val mRefreshUserInfo = MutableLiveData<UserBean>()
 
     /**
      * 列表数据改变的LveData
      */
-    val dataChanged: LiveData<Boolean> get() = _dataChanged
-    private var _dataChanged = MutableLiveData<Boolean>()
+    val dataChanged: LiveData<Boolean> get() = mDataChanged
+    private var mDataChanged = MutableLiveData<Boolean>()
 
     /**
      * 请求用户信息
@@ -37,7 +37,7 @@ class ProfileViewModel() : BaseViewModel() {
         val user = ApiNetwork.requestUserInfo()
         if (ObjectUtils.isNotEmpty(user)) {
             userBean = user
-            _refreshUserInfo.value = userBean
+            mRefreshUserInfo.value = userBean
         }else{
             findUserByDB()
         }
@@ -53,7 +53,7 @@ class ProfileViewModel() : BaseViewModel() {
         if (ObjectUtils.isEmpty(userBean)) {
             userBean = UserInfoUtils.getUser()
             if (ObjectUtils.isNotEmpty(userBean)) {
-                _refreshUserInfo.value = userBean
+                mRefreshUserInfo.value = userBean
             }
         }
     }

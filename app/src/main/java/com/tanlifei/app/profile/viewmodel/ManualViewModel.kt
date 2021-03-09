@@ -18,8 +18,8 @@ class ManualViewModel() : BaseListViewModel() {
     /**
      * 详情
      */
-    val bean: LiveData<ManualBean> get() = _bean
-    private val _bean = MutableLiveData<ManualBean>()
+    val bean: LiveData<ManualBean> get() = mBean
+    private val mBean = MutableLiveData<ManualBean>()
 
     override fun requestList(dataChangedType: DataChagedType) {
         launchByLoading({
@@ -31,7 +31,7 @@ class ManualViewModel() : BaseListViewModel() {
         launchByLoading {
             var manualBean = ApiNetwork.requestManualDetail(manualId)
             if (ObjectUtils.isNotEmpty(manualBean)) {
-                _bean.value = manualBean
+                mBean.value = manualBean
             }
         }
     }

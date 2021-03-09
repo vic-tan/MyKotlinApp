@@ -7,9 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.viewmodel.BaseViewModel
-import com.example.httpsender.kt.errorCode
-import com.example.httpsender.kt.errorMsg
-import com.example.httpsender.kt.show
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.classmatecircle.ui.fragment.RecommendFragment
 import com.tanlifei.app.common.network.ApiNetwork
@@ -27,8 +24,8 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
     /**
      * 列表数据改变的LveData
      */
-    val dataChanged: LiveData<Boolean> get() = _dataChanged
-    private var _dataChanged = MutableLiveData<Boolean>()
+    val dataChanged: LiveData<Boolean> get() = mDataChanged
+    private var mDataChanged = MutableLiveData<Boolean>()
 
     lateinit var fragmentAdapter: BasePagerAdapter
     private var mFragments: MutableList<Fragment> = ArrayList()
@@ -40,7 +37,7 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
                 mData.addAll(categoryList)
                 addFragment()
             } else {
-                _loadingState.value = LoadType.ERROR
+                mLoadingState.value = LoadType.ERROR
             }
         }
     }
@@ -52,6 +49,6 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
             }
         }
         fragmentAdapter = BasePagerAdapter(manager, mFragments)
-        _dataChanged.value = true
+        mDataChanged.value = true
     }
 }

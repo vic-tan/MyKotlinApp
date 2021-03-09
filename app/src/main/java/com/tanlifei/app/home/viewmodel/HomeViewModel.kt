@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.core.base.bean.UserBean
 import com.common.core.base.navigator.NavigatorAdapter
@@ -35,20 +34,20 @@ class HomeViewModel() : BaseViewModel() {
     /**
      * 点击TAB时LveData
      */
-    val currTabPosition: LiveData<Int> get() = _currTabPosition
-    private val _currTabPosition = MutableLiveData<Int>()
+    val currTabPosition: LiveData<Int> get() = mCurrTabPosition
+    private val mCurrTabPosition = MutableLiveData<Int>()
 
     /**
      * 刷新用户信息
      */
-    val refreshUserInfo: LiveData<UserBean> get() = _refreshUserInfo
-    private val _refreshUserInfo = MutableLiveData<UserBean>()
+    val refreshUserInfo: LiveData<UserBean> get() = mRefreshUserInfo
+    private val mRefreshUserInfo = MutableLiveData<UserBean>()
 
 
     var userBean: UserBean? = null
 
     init {
-        _currTabPosition.value = 0
+        mCurrTabPosition.value = 0
     }
 
     /**
@@ -65,7 +64,7 @@ class HomeViewModel() : BaseViewModel() {
 
 
     fun showFragment(position: Int) {
-        _currTabPosition.value = position
+        mCurrTabPosition.value = position
         mNavigator.showFragment(position) //显示点击Fargment
     }
 
@@ -79,7 +78,7 @@ class HomeViewModel() : BaseViewModel() {
             userBean!!.token = ComFun.token.toString()
             LitePal.deleteAll(UserBean::class.java)
             userBean!!.save()
-            _refreshUserInfo.value = userBean
+            mRefreshUserInfo.value = userBean
         } else {
             findUserByDB()
         }
@@ -92,7 +91,7 @@ class HomeViewModel() : BaseViewModel() {
      */
     fun getUser() {
         if (ObjectUtils.isNotEmpty(userBean)) {
-            _refreshUserInfo.value = userBean
+            mRefreshUserInfo.value = userBean
         } else {
             requestUser()
         }
@@ -105,7 +104,7 @@ class HomeViewModel() : BaseViewModel() {
         if (ObjectUtils.isEmpty(userBean)) {
             userBean = UserInfoUtils.getUser()
             if (ObjectUtils.isNotEmpty(userBean)) {
-                _refreshUserInfo.value = userBean
+                mRefreshUserInfo.value = userBean
             }
         }
     }
