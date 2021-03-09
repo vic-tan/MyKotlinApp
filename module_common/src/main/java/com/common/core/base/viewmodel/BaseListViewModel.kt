@@ -21,7 +21,6 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         LOADMORE,//上拉加载刷新
         NOTIFY,//数据改变刷新
         ERROE,//请求报错时不刷新数据，但上下拉要关闭
-        EMPTY,//本次请求接口数据为null
     }
 
     enum class UIType {
@@ -83,24 +82,24 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     }
 
     fun addList(list: List<Any>, dataChangedType: DataChagedType) {
-        if (list.isNotEmpty()) {
-            when (dataChangedType) {
-                DataChagedType.REFRESH -> {
-                    mData.clear()
+        when (dataChangedType) {
+            DataChagedType.REFRESH -> {
+                mData.clear()
+                if (list.isNotEmpty()) {
                     mData.addAll(list)
-                    notifyDataSetChanged(dataChangedType)
                 }
-                DataChagedType.LOADMORE -> {
-                    val startPos = mData.size - 1
-                    mData.addAll(list)
-                    notifyDataSetChanged(dataChangedType, startPos)
-                }
-                else -> {
-                    notifyDataSetChanged(dataChangedType)
-                }
+                notifyDataSetChanged(dataChangedType)
             }
-        } else {
-            notifyDataSetChanged(DataChagedType.EMPTY)
+            DataChagedType.LOADMORE -> {
+                val startPos = mData.size - 1
+                if (list.isNotEmpty()) {
+                    mData.addAll(list)
+                }
+                notifyDataSetChanged(dataChangedType, startPos)
+            }
+            else -> {
+                notifyDataSetChanged(dataChangedType)
+            }
         }
 
         if (mData.isEmpty()) {
@@ -121,7 +120,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
             state = RefreshState.RefreshFinish
             showNotMoreDataUI()
-            notifyDataSetChanged(dataChangedType,mData.size - 1)
+            notifyDataSetChanged(dataChangedType, mData.size - 1)
         } else {
             //下拉刷新时才显示错误界面，上拉不处理
             if (dataChangedType == DataChagedType.REFRESH) {

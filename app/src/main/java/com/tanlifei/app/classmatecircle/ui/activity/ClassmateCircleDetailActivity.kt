@@ -100,7 +100,12 @@ class ClassmateCircleDetailActivity :
                     binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
                     binding.refreshLayout.smartRefreshLayout.finishRefresh()
                     addHeader()
-                    adapter.refreshItemRange()
+                    if (viewModel.mData.isEmpty()) {
+                        adapter.notifyDataSetChanged()
+                        binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false) //将不会再次触发加载更多事件
+                    } else {
+                        adapter.refreshItemRange()
+                    }
                 }
                 BaseListViewModel.DataChagedType.LOADMORE -> {
                     binding.refreshLayout.smartRefreshLayout.finishLoadMore()
@@ -111,16 +116,10 @@ class ClassmateCircleDetailActivity :
                     binding.refreshLayout.smartRefreshLayout.finishRefresh()
                     binding.refreshLayout.smartRefreshLayout.finishLoadMore()
                 }
-                BaseListViewModel.DataChagedType.EMPTY -> {
-                    addHeader()
-                    binding.refreshLayout.smartRefreshLayout.finishRefresh()
-                    binding.refreshLayout.smartRefreshLayout.finishLoadMore()
-                    binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false) //将不会再次触发加载更多事件
-                    adapter.notifyDataSetChanged()
-                }
                 else -> {
                     binding.refreshLayout.smartRefreshLayout.finishRefresh()
                     binding.refreshLayout.smartRefreshLayout.finishLoadMore()
+                    addEmptyView()
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -142,12 +141,16 @@ class ClassmateCircleDetailActivity :
             refreshHeaderData()
             adapter.removeHeaderView(header)
             adapter.addHeaderView(header)
-            if (viewModel.mData.isEmpty()) {
-                adapter.removeHeaderView(emptyView)
-                adapter.addHeaderView(emptyView)
-            } else {
-                adapter.removeHeaderView(emptyView)
-            }
+            addEmptyView()
+        }
+    }
+
+    private fun addEmptyView() {
+        if (viewModel.mData.isEmpty()) {
+            adapter.removeHeaderView(emptyView)
+            adapter.addHeaderView(emptyView)
+        } else {
+            adapter.removeHeaderView(emptyView)
         }
     }
 
@@ -205,7 +208,7 @@ class ClassmateCircleDetailActivity :
                     is ItemCommentBinding -> {
                         when (v) {
                             (holder.binding as ItemCommentBinding).delete -> {
-                                viewModel.requestDeleteComment()
+                                viewModel.requestDeleteComment(viewModel.mData[position] as CommentBean)
                             }
                         }
                     }

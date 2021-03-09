@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.network.ApiNetwork
 
 /**
@@ -61,9 +62,10 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
         }
     }
 
-    fun requestDeleteComment() {
+    fun requestDeleteComment(bean: CommentBean) {
         launchBySilence {
-            ApiNetwork.requestDeleteComment(id)
+            ApiNetwork.requestDeleteComment(bean.id)
+            mData.remove(bean)
             mDataChanged.value = DataChagedType.NOTIFY
         }
     }
