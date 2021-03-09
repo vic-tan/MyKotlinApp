@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
 import com.tanlifei.app.classmatecircle.bean.CommentBean
+import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ItemCommentBinding
 import java.util.*
 
@@ -52,12 +52,14 @@ class CommentAdapter :
         holder.school.visibility =
             if (ObjectUtils.isEmpty(bean.universityName)) View.GONE else View.VISIBLE
         GlideUtils.loadAvatar(ComFun.context, bean.avatar, holder.userHead)
+        holder.delete.visibility =
+            if (UserInfoUtils.getUid() == bean.uid) View.VISIBLE else View.GONE
     }
 
 
     override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {
         val holder = holder.binding as ItemCommentBinding
-        return linkedSetOf()
+        return linkedSetOf(holder.delete)
     }
 
 

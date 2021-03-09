@@ -3,6 +3,7 @@ package com.common.core.base.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.cofing.constant.GlobalConst
+import com.common.utils.MyLogTools
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show
@@ -63,6 +64,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
 
     fun notifyDataSetChanged(dataChangedType: DataChagedType, startPos: Int = 0) {
         loadMoreStartPos = startPos
+        MyLogTools.log("notifyDataSetChanged----${loadMoreStartPos}---${dataChangedType.name}------>")
         mDataChanged.value = dataChangedType
     }
 
@@ -82,6 +84,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     }
 
     fun addList(list: List<Any>, dataChangedType: DataChagedType) {
+        MyLogTools.log("addList-----${dataChangedType.name}------>")
         if (list.isNotEmpty()) {
             when (dataChangedType) {
                 DataChagedType.REFRESH -> {
@@ -91,9 +94,9 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
                 }
                 DataChagedType.LOADMORE -> {
                     val startPos = mData.size - 1
+                    MyLogTools.log("addList-----${loadMoreStartPos}------>")
                     mData.addAll(list)
                     notifyDataSetChanged(dataChangedType, startPos)
-
                 }
                 else -> {
                     notifyDataSetChanged(dataChangedType)
@@ -121,7 +124,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
             state = RefreshState.RefreshFinish
             showNotMoreDataUI()
-            notifyDataSetChanged(dataChangedType)
+            notifyDataSetChanged(dataChangedType,mData.size - 1)
         } else {
             //下拉刷新时才显示错误界面，上拉不处理
             if (dataChangedType == DataChagedType.REFRESH) {

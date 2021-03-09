@@ -44,9 +44,14 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
         }, dataChangedType)
     }
 
+
+    override fun requestList(dataChangedType: DataChagedType) {
+        requestDetail(dataChangedType)
+    }
+
     fun requestComment(content: String) {
         launchBySilence {
-            var requestBean = ApiNetwork.requestEntertainmentComment(id, content)
+            var requestBean = ApiNetwork.requestSendComment(id, content)
             if (ObjectUtils.isNotEmpty(requestBean) && ObjectUtils.isNotEmpty(requestBean.info)) {
                 mData.add(0, requestBean.info)
                 mItemDataChanged.value = 0
@@ -56,8 +61,11 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
         }
     }
 
-
-    override fun requestList(dataChangedType: DataChagedType) {
-        requestDetail(dataChangedType)
+    fun requestDeleteComment() {
+        launchBySilence {
+            var requestBean = ApiNetwork.requestDeleteComment(id)
+        }
     }
+
+
 }

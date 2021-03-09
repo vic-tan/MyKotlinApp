@@ -11,8 +11,11 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.common.ComFun
 import com.common.cofing.constant.GlobalConst
+import com.common.core.base.adapter.CommonRvHolder
+import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
+import com.common.databinding.ItemEnvironmentContentBinding
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
 import com.common.widget.popup.BottomInputEditView
@@ -24,6 +27,7 @@ import com.tanlifei.app.classmatecircle.viewmodel.ClassmateCircleDetailViewModel
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ActivityClassmateCircleDetailBinding
+import com.tanlifei.app.databinding.ItemCommentBinding
 import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
 
 
@@ -195,6 +199,18 @@ class ClassmateCircleDetailActivity :
     private fun initAdapter() {
         adapter = CommentAdapter()
         adapter.mData = viewModel.mData as MutableList<CommentBean>
+        adapter.setOnItemChildClickListener(object : OnMultiItemListener {
+            override fun onItemClick(v: View, holder: CommonRvHolder<ViewBinding>, position: Int) {
+                when (holder.binding) {
+                    is ItemCommentBinding -> {
+                        when (v) {
+                            (holder.binding as ItemCommentBinding).delete -> {
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
 
     private fun initData() {

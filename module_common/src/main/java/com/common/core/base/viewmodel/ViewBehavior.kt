@@ -1,9 +1,9 @@
 package com.common.core.base.viewmodel
 
 /**
- * @author: Albert Li
+ * @author: tanlifei
  * @contact: albertlii@163.com
- * @time: 2020/6/9 8:01 PM
+ * @time: 2021/2/9 8:01 PM
  * @description: 页面的常用操作
  * @since: 1.0.0
  */
@@ -33,6 +33,6 @@ interface ViewBehavior {
     /**
      * 错误界面
      */
-    fun  showErrorUI()
+    fun showErrorUI()
 
 }

@@ -156,9 +156,9 @@ object ApiNetwork {
             .toResponse<MutableList<CommentBean>>().await()
 
     /**
-     * 发送评论回复
+     * 发送评论
      */
-    suspend fun requestEntertainmentComment(
+    suspend fun requestSendComment(
         id: Long,
         content: String,
         urlType: CommentUrlType = CommentUrlType.CLASSMATE_CIRCLE
@@ -171,6 +171,21 @@ object ApiNetwork {
             .add("publishId", id)
             .add("content", content)
             .toResponse<ResponseCommentBean>().await()
+
+    /**
+     * 删除评论
+     */
+    suspend fun requestDeleteComment(
+        id: Long,
+        urlType: CommentUrlType = CommentUrlType.CLASSMATE_CIRCLE
+    ) =
+        RxHttp.postJson(
+            when (urlType) {
+                CommentUrlType.CLASSMATE_CIRCLE -> ApiConst.URL_ENTERTAINMENT_DELETE_COMMENT
+            }
+        )
+            .add("commentId", id)
+            .toResponse<String>().await()
 
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
