@@ -180,7 +180,7 @@ class ClassmateCircleDetailActivity :
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(this, binding.input)
+        ViewUtils.setOnClickListener(this, binding.commentLayout, binding.input)
     }
 
     private fun initAdapter() {
@@ -202,6 +202,7 @@ class ClassmateCircleDetailActivity :
     override fun onClick(v: View) {
         if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
+            binding.commentLayout,
             binding.input -> {
                 ComDialogUtils.showInputEditView(this, object : BottomInputEditView.CallBack {
                     override fun callback(inputText: String) {

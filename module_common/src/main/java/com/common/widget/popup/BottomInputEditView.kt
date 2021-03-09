@@ -22,7 +22,7 @@ class BottomInputEditView(
     context: Context,
     var hintText: String = "请输入内容",
     var btnText: String = "确定",
-    var maxNum: Int = 20,
+    var maxNum: Int = 200,
     var callBack: CallBack
 ) :
     BottomPopupView(context),
