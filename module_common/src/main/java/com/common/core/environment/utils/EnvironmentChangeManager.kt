@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComApplication
+import com.common.ComFun
 import com.common.core.environment.bean.EnvironmentBean
 import org.litepal.LitePal
 
@@ -124,7 +125,7 @@ object EnvironmentChangeManager {
             if (bean.activityAlias.isNotEmpty()) {
                 if (ObjectUtils.isNotEmpty(bean.activityAlias)) {
                     changeIcon(
-                        ComApplication.context,
+                        ComFun.context,
                         bean.activityAlias
                     )
                 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComApplication
+import com.common.ComFun
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
@@ -50,7 +51,7 @@ class CommentAdapter :
         holder.school.text = bean.universityName
         holder.school.visibility =
             if (ObjectUtils.isEmpty(bean.universityName)) View.GONE else View.VISIBLE
-        GlideUtils.loadAvatar(ComApplication.context, bean.avatar, holder.userHead)
+        GlideUtils.loadAvatar(ComFun.context, bean.avatar, holder.userHead)
     }
 
 

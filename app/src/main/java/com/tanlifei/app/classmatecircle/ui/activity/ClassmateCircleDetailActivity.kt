@@ -11,6 +11,7 @@ import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.common.ComApplication
+import com.common.ComFun
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
@@ -143,9 +144,9 @@ class ClassmateCircleDetailActivity :
         headerBinding.banner.layoutParams.width = screenWidth
         headerBinding.banner.layoutParams.height =
             AutoHeightUtils.getHeightParams(screenWidth, bean?.image)
-        GlideUtils.load(ComApplication.context, bean?.image?.url, headerBinding.banner)
+        GlideUtils.load(ComFun.context, bean?.image?.url, headerBinding.banner)
         GlideUtils.loadAvatar(
-            ComApplication.context,
+            ComFun.context,
             bean?.avatar,
             headerBinding.userHead
         )

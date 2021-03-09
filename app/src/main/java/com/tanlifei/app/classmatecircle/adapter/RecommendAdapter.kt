@@ -1,12 +1,12 @@
 package com.tanlifei.app.classmatecircle.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.common.ComApplication.Companion.context
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
@@ -24,7 +24,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class RecommendAdapter :
+class RecommendAdapter(var context: Context?) :
     CommonRvAdapter<ClassmateCircleBean, ItemRecommendBinding>() {
     private val screenWidth =
         ((ScreenUtils.getScreenWidth() - ConvertUtils.dp2px(20f)) * 0.5).toInt()//左右及中间边距为20

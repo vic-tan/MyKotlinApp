@@ -13,6 +13,7 @@ import cn.iwgang.simplifyspan.unit.SpecialTextUnit
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.ComApplication
+import com.common.ComFun
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
@@ -80,7 +81,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
 
         viewModel.isToken.observe(this, Observer {
             if (it) {
-                ComApplication.token = viewModel.token
+                ComFun.token = viewModel.token
                 viewModel.token?.let { it -> UserInfoUtils.saveToken(it) }
                 HomeActivity.actionStart()
             }

@@ -48,7 +48,7 @@ class RecommendFragment :
 
 
     override fun onFirstVisibleToUser() {
-        adapter = RecommendAdapter()
+        adapter = RecommendAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
 
         adapter.setOnItemChildClickListener(object : OnItemListener<ItemRecommendBinding> {

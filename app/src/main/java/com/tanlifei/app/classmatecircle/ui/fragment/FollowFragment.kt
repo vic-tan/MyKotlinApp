@@ -50,7 +50,7 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
 
     override fun initView() {
         super.initView()
-        adapter = FollowAdapter()
+        adapter = FollowAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
         adapter.setOnItemChildClickListener(object :
             OnItemListener<ItemFollowBinding> {

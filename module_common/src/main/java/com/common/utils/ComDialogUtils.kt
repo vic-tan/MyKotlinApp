@@ -4,6 +4,7 @@ import android.content.Context
 import com.blankj.utilcode.util.ConvertUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.enums.PopupAnimation
 import com.lxj.xpopup.interfaces.OnConfirmListener
 
 /**
@@ -27,7 +28,8 @@ object ComDialogUtils {
         content: String,
         confirmListener: OnConfirmListener
     ): BasePopupView {
-        return XPopup.Builder(context).borderRadius(ConvertUtils.dp2px(10f).toFloat())
+        return XPopup.Builder(context).popupAnimation(PopupAnimation.NoAnimation)
+            .borderRadius(ConvertUtils.dp2px(10f).toFloat())
             .asConfirm(title, content, confirmListener).show()
     }
 }

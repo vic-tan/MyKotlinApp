@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.ComApplication
+import com.common.ComFun
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.AntiShakeUtils
 import com.common.utils.ComDialogUtils
@@ -47,7 +48,7 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
      */
     private fun initViewModelObserve() {
         viewModel.isToken.observe(this, Observer {
-            ComApplication.token = null
+            ComFun.token = null
             UserInfoUtils.clear()
             LoginAtivity.actionStart()
             ActivityUtils.finishActivity(this)

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComApplication
+import com.common.ComFun
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.common.network.ApiNetwork
@@ -110,7 +111,7 @@ import java.util.concurrent.TimeUnit
                 val token = UserInfoUtils.getToken()
                 //已经登录过了
                 if (ObjectUtils.isNotEmpty(token)) {
-                    ComApplication.token = token
+                    ComFun.token = token
                     _jump.value = JumpType.HOME
                 } else {//未登录
                     _jump.value = JumpType.LOGIN
@@ -152,7 +153,7 @@ import java.util.concurrent.TimeUnit
         val token = UserInfoUtils.getToken()
         //已经登录过了
         if (ObjectUtils.isNotEmpty(token)) {
-            ComApplication.token = token
+            ComFun.token = token
             _jump.value = JumpType.HOME
         } else {//未登录
             _jump.value = JumpType.LOGIN

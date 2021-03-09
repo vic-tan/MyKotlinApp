@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComApplication
+import com.common.ComFun
 import com.common.core.base.bean.UserBean
 import com.common.core.base.navigator.NavigatorAdapter
 import com.common.core.base.navigator.NavigatorFragmentManager
@@ -75,7 +76,7 @@ class HomeViewModel() : BaseViewModel() {
     fun requestUser() = launchBySilence({
         userBean = ApiNetwork.requestUserInfo()
         if (ObjectUtils.isNotEmpty(userBean)) {
-            userBean!!.token = ComApplication.token.toString()
+            userBean!!.token = ComFun.token.toString()
             LitePal.deleteAll(UserBean::class.java)
             userBean!!.save()
             _refreshUserInfo.value = userBean

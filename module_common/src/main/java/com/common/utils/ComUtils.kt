@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
 import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.core.bean.UpdateAppBean
 import com.common.core.environment.utils.EnvironmentChangeManager
@@ -73,6 +74,13 @@ object ComUtils {
      * 应用升级显示
      */
     fun udpateApp(updateAppBean: UpdateAppBean) {
+        if (ObjectUtils.isEmpty(updateAppBean)) {
+            return
+        }
+        if (ObjectUtils.isEmpty(updateAppBean.downloadUrl)) {
+            return
+        }
+
         // 更新配置
         val updateConfig = UpdateConfig().apply {
             force = updateAppBean.updateInstall == 1

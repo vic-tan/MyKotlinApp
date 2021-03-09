@@ -3,6 +3,7 @@ package com.common.utils
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.common.ComApplication
+import com.common.ComFun
 
 /**
  * @desc:
@@ -19,7 +20,7 @@ class ResUtils {
          * @return
          */
         fun getColor(resId: Int): Int {
-            return ContextCompat.getColor(ComApplication.context, resId)
+            return ContextCompat.getColor(ComFun.context, resId)
         }
 
         /**
@@ -29,7 +30,7 @@ class ResUtils {
          * @return
          */
         fun getDrawable(resId: Int): Drawable? {
-            return ContextCompat.getDrawable(ComApplication.context, resId)
+            return ContextCompat.getDrawable(ComFun.context, resId)
         }
     }
 }

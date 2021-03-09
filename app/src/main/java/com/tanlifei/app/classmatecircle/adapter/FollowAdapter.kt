@@ -1,5 +1,6 @@
 package com.tanlifei.app.classmatecircle.adapter
 
+import android.content.Context
 import android.text.TextUtils
 import android.util.SparseArray
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.common.ComApplication.Companion.context
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
@@ -25,7 +25,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/24 16:02
  */
-class FollowAdapter : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() {
+class FollowAdapter(var context: Context?) : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() {
 
     private var screenWidth = ScreenUtils.getScreenWidth()
     private var textViewWidth = screenWidth - ConvertUtils.dp2px(30f)

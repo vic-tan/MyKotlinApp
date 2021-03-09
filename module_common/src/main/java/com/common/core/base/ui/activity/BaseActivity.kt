@@ -20,6 +20,7 @@ import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.enums.PopupAnimation
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -57,6 +58,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
         titleBar = baseBinding.toolbar
         titleBar.setLeftIcon(R.mipmap.ic_back_black)
         hud = XPopup.Builder(this)
+            .popupAnimation(PopupAnimation.NoAnimation)
             .hasShadowBg(false)
             .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
             .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true

@@ -26,10 +26,10 @@ class UpdateAppViewModel() : BaseViewModel() {
     /**
      * 应用升级
      */
-    fun requestVersion() = launchBySilence({
+    fun requestVersion() = launchBySilence {
         val updateAppBean = ApiNetwork.requestVersion()
         if (ObjectUtils.isNotEmpty(updateAppBean)) {
             _updateApp.value = updateAppBean
         }
-    })
+    }
 }
