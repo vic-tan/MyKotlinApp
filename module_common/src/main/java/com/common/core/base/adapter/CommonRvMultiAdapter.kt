@@ -212,14 +212,20 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
      * 有头部尾部刷新请用这个
      */
     fun refreshItemRange() {
-        notifyItemRangeChanged(mHeaderViews.size, mData.size - 1 - mFooterViews.size)
+        notifyItemRangeChanged(
+            mHeaderViews.size,
+            mHeaderViews.size + mData.size - 1
+        )
     }
 
     /**
      * 有头部尾部加载更多时请用这个
      */
     fun loadmoreItemRange(startPos: Int) {
-        notifyItemRangeChanged(startPos + mHeaderViews.size, mData.size - 1 - mFooterViews.size)
+        notifyItemRangeChanged(
+            startPos + mHeaderViews.size,
+            mHeaderViews.size + mData.size - 1
+        )
     }
 }
 

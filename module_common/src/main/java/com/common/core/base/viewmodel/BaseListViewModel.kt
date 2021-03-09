@@ -64,7 +64,6 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
 
     fun notifyDataSetChanged(dataChangedType: DataChagedType, startPos: Int = 0) {
         loadMoreStartPos = startPos
-        MyLogTools.log("notifyDataSetChanged----${loadMoreStartPos}---${dataChangedType.name}------>")
         mDataChanged.value = dataChangedType
     }
 
@@ -84,7 +83,6 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     }
 
     fun addList(list: List<Any>, dataChangedType: DataChagedType) {
-        MyLogTools.log("addList-----${dataChangedType.name}------>")
         if (list.isNotEmpty()) {
             when (dataChangedType) {
                 DataChagedType.REFRESH -> {
@@ -94,7 +92,6 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
                 }
                 DataChagedType.LOADMORE -> {
                     val startPos = mData.size - 1
-                    MyLogTools.log("addList-----${loadMoreStartPos}------>")
                     mData.addAll(list)
                     notifyDataSetChanged(dataChangedType, startPos)
                 }

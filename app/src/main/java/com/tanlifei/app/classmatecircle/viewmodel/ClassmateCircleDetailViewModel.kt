@@ -63,7 +63,8 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
 
     fun requestDeleteComment() {
         launchBySilence {
-            var requestBean = ApiNetwork.requestDeleteComment(id)
+            ApiNetwork.requestDeleteComment(id)
+            mDataChanged.value = DataChagedType.NOTIFY
         }
     }
 

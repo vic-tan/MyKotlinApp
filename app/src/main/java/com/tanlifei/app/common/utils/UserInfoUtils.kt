@@ -29,7 +29,7 @@ object UserInfoUtils {
         if (ObjectUtils.isEmpty(ComFun.user)) {
             ComFun.user = LitePal.findLast(UserBean::class.java)
         }
-        return ComFun.user?.id
+        return ComFun.user?.uid
     }
 
     /**

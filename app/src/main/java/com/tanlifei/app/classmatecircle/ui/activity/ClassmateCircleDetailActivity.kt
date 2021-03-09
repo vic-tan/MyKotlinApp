@@ -205,6 +205,7 @@ class ClassmateCircleDetailActivity :
                     is ItemCommentBinding -> {
                         when (v) {
                             (holder.binding as ItemCommentBinding).delete -> {
+                                viewModel.requestDeleteComment()
                             }
                         }
                     }

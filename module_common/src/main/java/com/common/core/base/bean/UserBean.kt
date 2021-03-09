@@ -1,5 +1,6 @@
 package com.common.core.base.bean
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 /**
@@ -7,10 +8,12 @@ import java.io.Serializable
  * @author: tanlifei
  * @date: 2021/1/28 16:02
  */
-class UserBean : BaseLitePalBean(),Serializable {
+class UserBean : BaseLitePalBean(), Serializable {
     override val modelId: Long
-        get() = id
-    var id: Long = 0
+        get() = uid
+
+    @SerializedName(value = "id")
+    var uid: Long = 0
     var token: String = ""
     var avatar: String = ""
     var nickname: String = ""
