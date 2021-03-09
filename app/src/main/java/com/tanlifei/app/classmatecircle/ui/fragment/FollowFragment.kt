@@ -1,13 +1,16 @@
 package com.tanlifei.app.classmatecircle.ui.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
+import com.common.utils.ImageLoader
 import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.XPopup
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
@@ -75,6 +78,32 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
                                     })
                             ).show()
                         }
+                    }
+                    binding.banner -> {
+                        var list = mutableListOf<Any>()
+                        var url = (viewModel.mData[position] as ClassmateCircleBean).imageUrl
+                        url?.let { list.add(it) }
+                        XPopup.Builder(binding.banner.context)
+                            .asImageViewer(
+                                binding.banner,
+                                0,
+                                list as List<Any>?,
+                                true,
+                                true,
+                                -1,
+                                -1,
+                                -1,
+                                true,
+                                Color.rgb(32, 36, 46),
+                                { popupView, position ->
+                                    val rv =
+                                        binding.banner.parent as RecyclerView
+                                    popupView.updateSrcView(rv.getChildAt(position) as ImageView)
+                                },
+                                ImageLoader()
+                            )
+                            .show()
+
                     }
                 }
             }

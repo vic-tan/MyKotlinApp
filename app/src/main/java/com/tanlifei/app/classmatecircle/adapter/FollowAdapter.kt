@@ -88,7 +88,7 @@ class FollowAdapter(var context: Context?) : CommonRvAdapter<ClassmateCircleBean
     }
 
     override fun addChildClickViewIds(binding: ItemFollowBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.more, binding.shareLayout)
+        return linkedSetOf(binding.more, binding.shareLayout,binding.banner)
     }
 
 }

@@ -1,6 +1,7 @@
 package com.tanlifei.app.classmatecircle.ui.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -15,10 +16,10 @@ import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.common.databinding.ItemEnvironmentContentBinding
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
 import com.common.widget.popup.BottomInputEditView
+import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
@@ -187,9 +188,19 @@ class ClassmateCircleDetailActivity :
         headerBinding.topicTxt.text = bean?.entertainmentTopicName + ""
         headerBinding.totalCommentCount.text =
             bean?.comment?.let { "共${NumberUtils.setCommentCount("0", it)}条评论" }
+        headerBinding.banner.setOnClickListener {
+            XPopup.Builder(this)
+                .asImageViewer(
+                    headerBinding.banner,
+                    bean?.image?.url, ImageLoader()
+                )
+                .show()
+        }
+
         binding.commentBtn.text = bean?.comment?.let { NumberUtils.setCommentCount("评论", it) }
         binding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
         binding.praiseIcon.setImageResource(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)
+
     }
 
 
