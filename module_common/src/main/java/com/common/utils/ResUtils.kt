@@ -10,27 +10,25 @@ import com.common.ComFun
  * @author: tanlifei
  * @date: 2021/1/27 16:06
  */
-class ResUtils {
+object ResUtils {
 
-    companion object {
-        /**
-         * 获取颜色
-         *
-         * @param resId
-         * @return
-         */
-        fun getColor(resId: Int): Int {
-            return ContextCompat.getColor(ComFun.context, resId)
-        }
+    /**
+     * 获取颜色
+     *
+     * @param resId
+     * @return
+     */
+    fun getColor(resId: Int): Int {
+        return ContextCompat.getColor(ComFun.context, resId)
+    }
 
-        /**
-         * 获取颜色
-         *
-         * @param resId
-         * @return
-         */
-        fun getDrawable(resId: Int): Drawable? {
-            return ContextCompat.getDrawable(ComFun.context, resId)
-        }
+    /**
+     * 获取颜色
+     *
+     * @param resId
+     * @return
+     */
+    fun getDrawable(resId: Int): Drawable? {
+        return ContextCompat.getDrawable(ComFun.context, resId)
     }
 }

@@ -8,13 +8,11 @@ import com.common.BuildConfig
  * @author: tanlifei
  * @date: 2021/1/27 15:26
  */
-class MyLogTools {
-    companion object {
-        private const val TAG = "tlf_log"
-        fun log(content: String) {
-            if (BuildConfig.DEBUG) {
-                LogUtils.dTag(TAG, content)
-            }
+object MyLogTools {
+    private const val TAG = "tlf_log"
+    fun log(content: String) {
+        if (BuildConfig.DEBUG) {
+            LogUtils.dTag(TAG, content)
         }
     }
 }
