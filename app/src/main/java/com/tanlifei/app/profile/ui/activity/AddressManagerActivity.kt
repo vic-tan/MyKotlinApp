@@ -14,8 +14,7 @@ import com.blankj.utilcode.util.RegexUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.bean.UserBean
 import com.common.core.base.ui.activity.BaseFormActivity
-import com.common.utils.AntiShakeUtils
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickListener
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
@@ -104,7 +103,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(this, binding.areaLayout, binding.enter)
+        clickListener(this, binding.areaLayout, binding.enter)
     }
 
     private fun initData() {
@@ -171,7 +170,6 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
 
 
     override fun onClick(v: View) {
-        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.areaLayout -> {
                 shopAreaOptionPicker()

@@ -7,9 +7,8 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.utils.AntiShakeUtils
 import com.common.utils.GlideUtils
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickListener
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.FragmentProfileBinding
@@ -48,7 +47,7 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClick
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(
+        context?.clickListener(
             this,
             binding.arrow,
             binding.setting,
@@ -85,7 +84,6 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClick
     }
 
     override fun onClick(v: View) {
-        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.arrow -> ProfileManagerActivity.actionStart()
             binding.setting -> SettingActivity.actionStart()

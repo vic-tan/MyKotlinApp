@@ -7,8 +7,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseFormActivity
-import com.common.utils.AntiShakeUtils
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickListener
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityProfileManagerBinding
 import com.tanlifei.app.profile.viewmodel.ProfileViewModel
@@ -54,7 +53,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(this, binding.addressLayout, binding.sexLayout)
+        clickListener(this, binding.addressLayout, binding.sexLayout)
     }
 
     private fun initData() {
@@ -62,7 +61,6 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
     }
 
     override fun onClick(v: View) {
-        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.addressLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }
             binding.sexLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }

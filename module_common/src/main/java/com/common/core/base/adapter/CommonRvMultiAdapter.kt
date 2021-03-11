@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnMultiItemListener
-import com.common.utils.AntiShakeUtils
+import com.common.utils.extension.click
 import java.util.*
 
 
@@ -171,9 +171,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
             onItemListener?.let {
                 for (v in childClickViews) {
                     v?.let {
-                        it.setOnClickListener {
-                            if (AntiShakeUtils.isInvalidClick(v))
-                                return@setOnClickListener
+                        it.click {
                             setOnItemChildClick(v, holder, adapterPosition)
                         }
                     }

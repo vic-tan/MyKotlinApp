@@ -154,7 +154,6 @@ object RecyclerUtils {
                 // 获取 LayoutManger
                 val layoutManager = recyclerView.layoutManager
                 if (ObjectUtils.isNotEmpty(layoutManager)) {
-                    if (AntiShakeUtils.isInvalidClick(recyclerView)) return
                     // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
                     if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
                         && getOutLast(layoutManager) >= getLoadCount(layoutManager)

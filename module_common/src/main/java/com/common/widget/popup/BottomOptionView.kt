@@ -3,7 +3,8 @@ package com.common.widget.popup
 import android.content.Context
 import android.view.View
 import com.common.R
-import com.common.utils.ViewUtils
+import com.common.databinding.LayoutShareBinding
+import com.common.utils.extension.clickListener
 import com.lxj.xpopup.core.BottomPopupView
 
 /**
@@ -15,31 +16,23 @@ class BottomOptionView<T>(context: Context) :
     BottomPopupView(context),
     View.OnClickListener {
 
-    enum class ShareType {
-        WX,//微信
-        WX_CIRCLE,//朋友圈
-        REPORT,//举报
-        CREDIT,//删除
-    }
-
+    lateinit var binding: LayoutShareBinding
     override fun getImplLayoutId(): Int {
         return R.layout.layout_share
     }
 
     override fun onCreate() {
         super.onCreate()
-        ViewUtils.setOnClickListener(
+        binding = LayoutShareBinding.bind(popupImplView)
+        context.clickListener(
             this,
-            this,
-            R.id.wx,
-            R.id.wx_circle,
-            R.id.report,
-            R.id.credit,
-            R.id.cancel
+            binding.wx,
+            binding.wxCircle,
+            binding.report,
+            binding.credit,
+            binding.cancel
         )
     }
-
-
 
 
     override fun onClick(v: View) {

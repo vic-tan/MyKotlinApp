@@ -7,9 +7,8 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
-import com.common.utils.AntiShakeUtils
 import com.common.utils.GlideUtils
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickListener
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.ui.GuideActivity
@@ -98,7 +97,7 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(
+        clickListener(
             this,
             binding.adsImg,
             binding.into,
@@ -122,7 +121,6 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
     }
 
     override fun onClick(v: View) {
-        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.adsImg -> {
                 viewModel.adsBean?.url?.let { it1 ->

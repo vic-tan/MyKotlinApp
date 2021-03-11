@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnItemListener
-import com.common.utils.AntiShakeUtils
+import com.common.utils.extension.click
 import java.util.*
 
 
@@ -70,9 +70,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
             onItemListener?.let {
                 for (v in childClickViews) {
                     v?.let {
-                        it.setOnClickListener {
-                            if (AntiShakeUtils.isInvalidClick(v))
-                                return@setOnClickListener
+                        it.click {
                             setOnItemChildClick(v, holder.binding, holder.adapterPosition)
                         }
                     }

@@ -12,16 +12,15 @@ import cn.iwgang.simplifyspan.unit.SpecialClickableUnit
 import cn.iwgang.simplifyspan.unit.SpecialTextUnit
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.RegexUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
-import com.common.utils.AntiShakeUtils
 import com.common.utils.ComUtils
 import com.common.utils.ResUtils
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickEnable
+import com.common.utils.extension.clickListener
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
@@ -106,7 +105,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun initListener() {
         binding.phone.addTextChangedListener(this)
-        ViewUtils.setOnClickListener(
+        clickListener(
             this,
             binding.codeBtn,
             binding.login,
@@ -116,7 +115,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     }
 
     override fun onClick(v: View) {
-        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.codeBtn -> {
                 if (checkPhone(
@@ -162,13 +160,13 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         protocolBuild.append(SpecialTextUnit("《用户协议》").setTextColor(ResUtils.getColor(R.color.color_A47E68))
             .setClickableUnit(
                 SpecialClickableUnit(binding.protocolTxt,
-
                     OnClickableSpanListener { v: TextView, _: CustomClickableSpan? ->
-                        if (AntiShakeUtils.isInvalidClick(v)) return@OnClickableSpanListener
-                        gotoWeb(
-                            "用户协议",
-                            URL_USER_AGREEMENT
-                        )
+                        if (v.clickEnable()) {
+                            gotoWeb(
+                                "用户协议",
+                                URL_USER_AGREEMENT
+                            )
+                        }
                     }
                 )
                     .setPressBgColor(ResUtils.getColor(R.color.white))
@@ -178,11 +176,12 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
             .setClickableUnit(
                 SpecialClickableUnit(binding.protocolTxt,
                     OnClickableSpanListener { v: TextView, _: CustomClickableSpan? ->
-                        if (AntiShakeUtils.isInvalidClick(v)) return@OnClickableSpanListener
-                        gotoWeb(
-                            "隐私政策",
-                            URL_PRIVATE_AGREEMENT
-                        )
+                        if (v.clickEnable()) {
+                            gotoWeb(
+                                "隐私政策",
+                                URL_PRIVATE_AGREEMENT
+                            )
+                        }
                     }
                 )
                     .setPressBgColor(ResUtils.getColor(R.color.white))))

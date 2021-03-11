@@ -4,12 +4,10 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.core.base.ui.activity.BaseToolBarActivity
-import com.common.utils.AntiShakeUtils
 import com.common.utils.ComDialogUtils
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickListener
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding
@@ -59,7 +57,7 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(this, binding.about, binding.exit)
+        mActivity.clickListener(this, binding.about, binding.exit)
     }
 
     private fun initData() {
@@ -67,7 +65,6 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
     }
 
     override fun onClick(v: View) {
-        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.about -> AboutActivity.actionStart()
             binding.exit -> {

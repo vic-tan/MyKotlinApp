@@ -2,6 +2,7 @@ package com.common.utils.extension
 
 import android.content.Context
 import android.content.pm.PackageManager
+import android.view.View
 
 /**
  * @desc:context相关的扩展类
@@ -17,6 +18,14 @@ val Context.screenWidth
 //屏幕高度
 val Context.screenHeight
     get() = resources.displayMetrics.heightPixels
+
+fun Context.clickListener(clickListener: View.OnClickListener, vararg views: View) {
+    for (i in views.indices) {
+        views[i].click {
+            clickListener.onClick(it)
+        }
+    }
+}
 
 //app versionName
 val Context.appVersionName: String

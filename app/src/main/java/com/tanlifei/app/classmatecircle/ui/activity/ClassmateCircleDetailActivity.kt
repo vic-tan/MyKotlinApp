@@ -18,6 +18,7 @@ import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
+import com.common.utils.extension.clickListener
 import com.common.widget.popup.BottomInputEditView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnConfirmListener
@@ -208,7 +209,7 @@ class ClassmateCircleDetailActivity :
      * 初始化监听
      */
     private fun initListener() {
-        ViewUtils.setOnClickListener(this, binding.commentLayout, binding.input)
+        clickListener(this, binding.commentLayout, binding.input)
     }
 
     private fun initAdapter() {
@@ -243,7 +244,6 @@ class ClassmateCircleDetailActivity :
     }
 
     override fun onClick(v: View) {
-        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.commentLayout,
             binding.input -> {

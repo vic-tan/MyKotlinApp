@@ -6,10 +6,8 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
-import com.common.databinding.LayoutBottomEditViewBinding
 import com.common.databinding.LayoutShareBinding
-import com.common.utils.AntiShakeUtils
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickListener
 import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.core.BottomPopupView
 
@@ -39,7 +37,7 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
     override fun onCreate() {
         super.onCreate()
         binding = LayoutShareBinding.bind(popupImplView)
-        ViewUtils.setOnClickListener(
+        context.clickListener(
             this,
             binding.wx,
             binding.wxCircle,
@@ -75,7 +73,6 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
         if (ObjectUtils.isEmpty(binding)) {
             return
         }
-        if (AntiShakeUtils.isInvalidClick(v)) return
         when (v) {
             binding.wx -> {
                 if (isWeixinAvilible()) {

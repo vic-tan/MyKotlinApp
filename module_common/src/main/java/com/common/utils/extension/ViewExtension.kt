@@ -64,6 +64,9 @@ fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener {
     }
 }
 
+
+
+
 /**
  * 长按点击
  */
@@ -72,7 +75,7 @@ fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener {
 }
 
 //是否可以点击
-private fun <T : View> T.clickEnable(): Boolean {
+fun <T : View> T.clickEnable(): Boolean {
     var flag = false
     val currentClickTime = System.currentTimeMillis()
     if (currentClickTime - triggerLastTime >= triggerDelay) {
@@ -89,9 +92,9 @@ private var <T : View> T.triggerLastTime: Long
         setTag(1123460103, value)
     }
 
-//点击延迟时间，默认300ms
+//点击延迟时间，默认500ms
 private var <T : View> T.triggerDelay: Long
-    get() = if (getTag(1123461123) != null) getTag(1123461123) as Long else 300
+    get() = if (getTag(1123461123) != null) getTag(1123461123) as Long else 500
     set(value) {
         setTag(1123461123, value)
     }

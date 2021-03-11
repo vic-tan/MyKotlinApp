@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.common.R
 import com.common.databinding.LayoutBottomEditViewBinding
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickListener
 import com.common.widget.TextInputHelper
 import com.lxj.xpopup.core.BottomPopupView
 
@@ -42,7 +42,7 @@ class BottomInputEditView(
         binding.enter.text = btnText
         binding.num.text = "${0}/${maxNum}"
         initTextInputHelper()
-        ViewUtils.setOnClickListener(
+        context.clickListener(
             this,
             binding.enter
         )

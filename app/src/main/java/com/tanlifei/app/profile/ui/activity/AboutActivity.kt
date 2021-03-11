@@ -6,8 +6,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
-import com.common.utils.AntiShakeUtils
-import com.common.utils.ViewUtils
+import com.common.utils.extension.clickListener
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
 import com.tanlifei.app.profile.viewmodel.AboutViewModel
@@ -33,7 +32,7 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
     override fun init() {
         binding.versionName.text = "当前版本V${AppUtils.getAppVersionName()}"
         binding.logo.setImageResource(EnvironmentUtils.appLogo())
-        ViewUtils.setOnClickListener(
+        clickListener(
             this,
             binding.schoolLeaders,
             binding.userAgreement,
@@ -53,7 +52,6 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
     }
 
     override fun onClick(v: View) {
-        if (AntiShakeUtils.isInvalidClick(v)) return
         var title: String? = ""
         var url: String? = ""
         when (v) {
