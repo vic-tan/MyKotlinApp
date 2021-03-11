@@ -6,6 +6,8 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
+import com.common.widget.LoadingLayout
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.adapter.ManualAdapter
 import com.tanlifei.app.profile.bean.ManualBean
@@ -38,11 +40,7 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
     private fun initData() {
         adapter = ManualAdapter()
         adapter.mData = viewModel.mData as MutableList<ManualBean>
-        initRefreshView(
-            binding.smartRefreshLayout,
-            binding.refreshLoadingLayout,
-            binding.refreshRecycler
-        )
+        initRefreshView()
         adapter.setOnItemChildClickListener(object :
             OnItemListener<ItemManualBinding> {
             override fun onItemClick(v: View, itemBinding: ItemManualBinding, position: Int) {
@@ -55,6 +53,18 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
 
     override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+    }
+
+    override fun smartRefreshLayout(): SmartRefreshLayout {
+        return binding.smartRefreshLayout
+    }
+
+    override fun refreshLoadingLayout(): LoadingLayout {
+        return binding.refreshLoadingLayout
+    }
+
+    override fun refreshRecycler(): RecyclerView {
+        return binding.refreshRecycler
     }
 
 }

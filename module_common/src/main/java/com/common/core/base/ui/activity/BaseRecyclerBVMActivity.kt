@@ -1,6 +1,5 @@
 package com.common.core.base.ui.activity
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.viewmodel.BaseListViewModel
@@ -19,25 +18,21 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 初始化列表控件
      */
-    protected fun initRefreshView(
-        smartRefreshLayout: SmartRefreshLayout,
-        refreshLoadingLayout: LoadingLayout,
-        refreshRecycler: RecyclerView
-    ) {
+    protected fun initRefreshView() {
         RecyclerUtils.initViewModelObserve(
-            smartRefreshLayout,
-            refreshLoadingLayout,
+            smartRefreshLayout(),
+            refreshLoadingLayout(),
             viewModel,
             this,
             setAdapter()
         )
         RecyclerUtils.initListener(
-            smartRefreshLayout,
-            refreshRecycler,
-            refreshLoadingLayout,
+            smartRefreshLayout(),
+            refreshRecycler(),
+            refreshLoadingLayout(),
             viewModel
         )
-        initRecyclerView(refreshRecycler)
+        initRecyclerView()
         RecyclerUtils.initData(viewModel)
 
     }
@@ -45,10 +40,10 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 初始化Recycler
      */
-    private fun initRecyclerView(refreshRecycler: RecyclerView) {
-        refreshRecycler.layoutManager = setLinearLayoutManager()
-        refreshRecycler.adapter = setAdapter()
-        refreshRecycler.itemAnimator = null
+    private fun initRecyclerView() {
+        refreshRecycler().layoutManager = setLinearLayoutManager()
+        refreshRecycler().adapter = setAdapter()
+        refreshRecycler().itemAnimator = null
     }
 
     /**
@@ -62,6 +57,22 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
      * 子类设置Adapter
      */
     protected abstract fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>
+
+
+    /**
+     * 子类设置SmartRefreshLayout
+     */
+    protected abstract fun smartRefreshLayout(): SmartRefreshLayout
+
+    /**
+     * 子类设置LoadingLayout
+     */
+    protected abstract fun refreshLoadingLayout(): LoadingLayout
+
+    /**
+     * 子类设置RecyclerView
+     */
+    protected abstract fun refreshRecycler(): RecyclerView
 
 
 }

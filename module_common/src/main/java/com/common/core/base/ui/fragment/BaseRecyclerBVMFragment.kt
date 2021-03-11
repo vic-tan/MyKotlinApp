@@ -22,7 +22,6 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
     BaseLazyFragment<T>() {
     protected lateinit var viewModel: VM
 
-
     protected abstract fun createViewModel(): VM
 
     override fun onCreateView(
@@ -45,25 +44,27 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
         viewModel.application = requireActivity().application
     }
 
+
     /**
      * 初始化
      */
-    fun initRecycler(
-        smartRefreshLayout: SmartRefreshLayout,
-        refreshLoadingLayout: LoadingLayout,
-        refreshRecycler: RecyclerView
-    ) {
+    fun initRecycler() {
         RecyclerUtils.initViewModelObserve(
-            smartRefreshLayout,
-            refreshLoadingLayout,
+            smartRefreshLayout(),
+            refreshLoadingLayout(),
             viewModel,
             this,
             setAdapter()
         )
-        RecyclerUtils.initListener(smartRefreshLayout, refreshRecycler, refreshLoadingLayout,viewModel)
-        initRecyclerView(refreshRecycler)
+        RecyclerUtils.initListener(
+            smartRefreshLayout(),
+            refreshRecycler(),
+            refreshLoadingLayout(),
+            viewModel
+        )
+        initRecyclerView()
         RecyclerUtils.initData(viewModel)
-        refreshLoadingLayout.setRetryListener(View.OnClickListener {
+        refreshLoadingLayout().setRetryListener(View.OnClickListener {
             viewModel.refresh()
         })
     }
@@ -72,10 +73,10 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 初始化Recycler
      */
-    private fun initRecyclerView(refreshRecycler: RecyclerView) {
-        refreshRecycler.layoutManager = setLinearLayoutManager()
-        refreshRecycler.adapter = setAdapter()
-        refreshRecycler.itemAnimator = null
+    private fun initRecyclerView() {
+        refreshRecycler().layoutManager = setLinearLayoutManager()
+        refreshRecycler().adapter = setAdapter()
+        refreshRecycler().itemAnimator = null
     }
 
 
@@ -91,5 +92,20 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
      * 子类设置Adapter
      */
     protected abstract fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>
+
+    /**
+     * 子类设置SmartRefreshLayout
+     */
+    protected abstract fun smartRefreshLayout(): SmartRefreshLayout
+
+    /**
+     * 子类设置LoadingLayout
+     */
+    protected abstract fun refreshLoadingLayout(): LoadingLayout
+
+    /**
+     * 子类设置RecyclerView
+     */
+    protected abstract fun refreshRecycler(): RecyclerView
 
 }

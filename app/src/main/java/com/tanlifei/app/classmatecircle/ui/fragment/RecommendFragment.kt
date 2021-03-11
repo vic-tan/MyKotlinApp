@@ -8,6 +8,8 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
+import com.common.widget.LoadingLayout
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -46,11 +48,9 @@ class RecommendFragment :
         )
     }
 
-
     override fun onFirstVisibleToUser() {
         adapter = RecommendAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
-
         adapter.setOnItemChildClickListener(object : OnItemListener<ItemRecommendBinding> {
             override fun onItemClick(v: View, itemBinding: ItemRecommendBinding, position: Int) {
                 when (v) {
@@ -60,11 +60,7 @@ class RecommendFragment :
 
         })
 
-        initRecycler(
-            binding.smartRefreshLayout,
-            binding.refreshLoadingLayout,
-            binding.refreshRecycler
-        )
+        initRecycler()
         binding.refreshRecycler.addItemDecoration(
             GridItemDecoration(
                 8
@@ -88,6 +84,18 @@ class RecommendFragment :
 
     override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+    }
+
+    override fun smartRefreshLayout(): SmartRefreshLayout {
+        return binding.smartRefreshLayout
+    }
+
+    override fun refreshLoadingLayout(): LoadingLayout {
+        return binding.refreshLoadingLayout
+    }
+
+    override fun refreshRecycler(): RecyclerView {
+        return binding.refreshRecycler
     }
 
 
