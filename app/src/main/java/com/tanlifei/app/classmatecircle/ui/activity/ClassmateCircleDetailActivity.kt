@@ -1,7 +1,6 @@
 package com.tanlifei.app.classmatecircle.ui.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer

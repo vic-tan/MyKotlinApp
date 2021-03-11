@@ -129,7 +129,7 @@ dependencies {
 
     //图片选择库
     //https://github.com/LuckSiege/PictureSelector
-    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.8'
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.6.0'
 
     //加载反馈页管理框架(处理加载中，重试，无数据界面显示等)
     //https://github.com/KingJA/LoadSir

@@ -7,7 +7,15 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseFormActivity
+import com.common.utils.GlideEngine
+import com.common.utils.GlideUtils
+import com.common.utils.PictureSelectorManager
 import com.common.utils.extension.clickListener
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.listener.OnResultCallbackListener
+import com.luck.picture.lib.style.PictureSelectorUIStyle
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityProfileManagerBinding
 import com.tanlifei.app.profile.viewmodel.ProfileViewModel
@@ -53,7 +61,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 初始化监听
      */
     private fun initListener() {
-        clickListener(this, binding.addressLayout, binding.sexLayout)
+        clickListener(this, binding.userHead, binding.addressLayout, binding.sexLayout)
     }
 
     private fun initData() {
@@ -62,6 +70,21 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
 
     override fun onClick(v: View) {
         when (v) {
+            binding.userHead -> {
+                PictureSelector.create(this)
+                    .openGallery(PictureMimeType.ofAll()).imageEngine(GlideEngine)
+                    .setPictureUIStyle(PictureSelectorManager.getPictureUIStyle())
+                    .isCompress(true)
+                    .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                        override fun onResult(result: List<LocalMedia?>) {
+                            GlideUtils.load(mActivity, result[0]?.compressPath, binding.userHead)
+                        }
+
+                        override fun onCancel() {
+                            // onCancel Callback
+                        }
+                    })
+            }
             binding.addressLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }
             binding.sexLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }
         }
@@ -88,3 +111,5 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
 
 
 }
+
+

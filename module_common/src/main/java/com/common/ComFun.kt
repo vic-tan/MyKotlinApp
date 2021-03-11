@@ -10,6 +10,7 @@ import com.common.core.base.bean.UserBean
 import com.common.core.environment.utils.EnvironmentChangeManager
 import com.common.core.http.RxHttpManager
 import com.hjq.toast.ToastUtils
+import com.luck.picture.lib.app.PictureAppMaster
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
