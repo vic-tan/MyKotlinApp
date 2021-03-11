@@ -15,15 +15,11 @@ object PictureSelectorManager {
     fun getPictureUIStyle(): PictureSelectorUIStyle? {
         val uiStyle = PictureSelectorUIStyle()
         uiStyle.picture_switchSelectTotalStyle = true
-
         uiStyle.picture_statusBarChangeTextColor = true
-
+        uiStyle.picture_switchSelectNumberStyle = true
         uiStyle.picture_statusBarBackgroundColor = ResUtils.getColor(R.color.white)
-
         uiStyle.picture_container_backgroundColor = ResUtils.getColor(R.color.white)
-
         uiStyle.picture_navBarColor = ResUtils.getColor(R.color.white)
-
         uiStyle.picture_check_style = R.drawable.picture_checkbox_selector
 
         uiStyle.picture_top_leftBack = R.drawable.picture_icon_back_arrow
