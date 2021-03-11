@@ -31,7 +31,7 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
     private var mFragments: MutableList<Fragment> = ArrayList()
 
     fun requestCategoryList() {
-        launchByLoading{
+        launchByLoading {
             val categoryList = ApiNetwork.requestEntertainmentCategoryList()
             if (ObjectUtils.isNotEmpty(categoryList)) {
                 mData.addAll(categoryList)
