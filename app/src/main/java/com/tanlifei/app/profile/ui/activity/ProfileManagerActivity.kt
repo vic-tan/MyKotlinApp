@@ -10,6 +10,7 @@ import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.utils.GlideEngine
 import com.common.utils.GlideUtils
 import com.common.utils.PictureSelectorManager
+import com.common.utils.ResUtils
 import com.common.utils.extension.clickListener
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
@@ -72,9 +73,16 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         when (v) {
             binding.userHead -> {
                 PictureSelector.create(this)
-                    .openGallery(PictureMimeType.ofAll()).imageEngine(GlideEngine)
+                    .openGallery(PictureMimeType.ofImage()).imageEngine(GlideEngine)
                     .setPictureUIStyle(PictureSelectorManager.getPictureUIStyle())
                     .isCompress(true)
+                    .isEnableCrop(true)
+                    .maxSelectNum(1)
+                    .circleDimmedLayer(true)
+                    .setCropDimmedColor(ResUtils.getColor(R.color.com_blur_shadow))//设置圆形裁剪背景色值
+                    .setCircleDimmedBorderColor(ResUtils.getColor(R.color.white))//设置圆形裁剪边框色值
+                    .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+                    .showCropGrid(false)//是否显示裁剪矩形网格 圆形裁剪时建议设为false
                     .forResult(object : OnResultCallbackListener<LocalMedia?> {
                         override fun onResult(result: List<LocalMedia?>) {
                             GlideUtils.load(mActivity, result[0]?.compressPath, binding.userHead)
