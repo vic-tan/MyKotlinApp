@@ -79,7 +79,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                     .isEnableCrop(true)
                     .maxSelectNum(1)
                     .circleDimmedLayer(true)
-                    .setCropDimmedColor(ResUtils.getColor(R.color.com_blur_shadow))//设置圆形裁剪背景色值
+                    .setCropDimmedColor(ResUtils.getColor(R.color.com_shadow_blur))//设置圆形裁剪背景色值
                     .setCircleDimmedBorderColor(ResUtils.getColor(R.color.white))//设置圆形裁剪边框色值
                     .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
                     .showCropGrid(false)//是否显示裁剪矩形网格 圆形裁剪时建议设为false

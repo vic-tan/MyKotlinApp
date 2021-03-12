@@ -24,7 +24,7 @@
             android:id="@+id/persenalBgShadow"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:background_normal="@color/com_blur_shadow"
+            app:background_normal="@color/com_shadow_blur"
             app:layout_constraintBottom_toBottomOf="@id/persenalBg"
             app:layout_constraintLeft_toLeftOf="@id/persenalBg"
             app:layout_constraintRight_toRightOf="@id/persenalBg"

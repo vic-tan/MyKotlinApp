@@ -1,13 +1,12 @@
 package com.common.utils
 
-import android.graphics.Color
 import com.common.R
 import com.luck.picture.lib.style.PictureSelectorUIStyle
 import com.luck.picture.lib.style.PictureWindowAnimationStyle
 
 
 /**
- * @desc:
+ * @desc:相册设置管理类
  * @author: tanlifei
  * @date: 2021/3/11 18:16
  */
