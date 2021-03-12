@@ -42,7 +42,7 @@ object PictureSelectorManager {
         uiStyle.picture_bottom_completeRedDotTextSize = 12
         uiStyle.picture_bottom_completeTextSize = 14
         uiStyle.picture_bottom_completeRedDotTextColor = ResUtils.getColor(R.color.white)
-        uiStyle.picture_bottom_completeRedDotBackground = R.drawable.picture_num_oval
+        uiStyle.picture_bottom_completeRedDotBackground = R.drawable.picture_num_oval_pre
         uiStyle.picture_bottom_completeTextColor = intArrayOf(
             ResUtils.getColor(R.color.theme_color),
             ResUtils.getColor(R.color.theme_color)
