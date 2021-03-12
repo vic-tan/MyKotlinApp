@@ -1,6 +1,15 @@
 package com.common.utils
 
+import android.app.Activity
+import android.content.Context
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import com.blankj.utilcode.util.ConvertUtils
 import com.common.R
+import com.luck.picture.lib.PictureSelectionModel
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.style.PictureSelectorUIStyle
 import com.luck.picture.lib.style.PictureWindowAnimationStyle
 
@@ -10,7 +19,52 @@ import com.luck.picture.lib.style.PictureWindowAnimationStyle
  * @author: tanlifei
  * @date: 2021/3/11 18:16
  */
-object PictureSelectorManager {
+object PictureSelectorUtils {
+
+    fun create(any: Any, chooseMode: Int, selectNum: Int = 1): PictureSelectionModel {
+        return when (any) {
+            is Fragment -> initSelectionModel(PictureSelector.create(any), chooseMode, selectNum)
+            else -> initSelectionModel(
+                PictureSelector.create(any as Activity),
+                chooseMode,
+                selectNum
+            )
+        }
+    }
+
+    /**
+     *
+     * 加载头像并裁剪为圆形
+     */
+    fun createAvatarCrop(any: Any): PictureSelectionModel {
+        return create(any, PictureMimeType.ofImage())
+            .isEnableCrop(true)
+            .circleDimmedLayer(true)
+            .selectionMode(PictureConfig.SINGLE)//单选
+            .freeStyleCropEnabled(true)
+            .isSingleDirectReturn(true)//PictureConfig.SINGLE模式下是否直接返回
+            .cropImageWideHigh(ConvertUtils.dp2px(150f), ConvertUtils.dp2px(150f))
+            .setCropDimmedColor(ResUtils.getColor(R.color.com_shadow_blur))//设置圆形裁剪背景色值
+            .setCircleDimmedBorderColor(ResUtils.getColor(R.color.white))//设置圆形裁剪边框色值
+            .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
+            .showCropGrid(false)//是否显示裁剪矩形网格 圆形裁剪时建议设为false
+    }
+
+
+    private fun initSelectionModel(
+        selector: PictureSelector,
+        chooseMode: Int,
+        selectNum: Int
+    ): PictureSelectionModel {
+        return selector.openGallery(chooseMode).imageEngine(GlideEngine)
+            .setPictureUIStyle(getPictureUIStyle())
+            .isCompress(true)
+            .maxSelectNum(selectNum)
+            .isMaxSelectEnabledMask(true)//选择条件达到阀时列表是否启用蒙层效果
+            .isAutomaticTitleRecyclerTop(true)//图片列表超过一屏连续点击顶部标题栏快速回滚至顶部
+    }
+
+
     fun getPictureUIStyle(): PictureSelectorUIStyle? {
         val uiStyle = PictureSelectorUIStyle()
         uiStyle.picture_switchSelectTotalStyle = true
