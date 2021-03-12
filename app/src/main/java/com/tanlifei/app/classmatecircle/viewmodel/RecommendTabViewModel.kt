@@ -1,14 +1,12 @@
 package com.tanlifei.app.classmatecircle.viewmodel
 
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.viewmodel.BaseViewModel
+import com.tanlifei.app.classmatecircle.adapter.RecommendTabAdapter
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
-import com.tanlifei.app.classmatecircle.ui.fragment.RecommendFragment
 import com.tanlifei.app.common.network.ApiNetwork
 import java.util.*
 
@@ -27,8 +25,7 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
     val dataChanged: LiveData<Boolean> get() = mDataChanged
     private var mDataChanged = MutableLiveData<Boolean>()
 
-    lateinit var fragmentAdapter: BasePagerAdapter
-    private var mFragments: MutableList<Fragment> = ArrayList()
+    lateinit var tabAdapter: RecommendTabAdapter
 
     fun requestCategoryList() {
         launchByLoading {
@@ -43,12 +40,7 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
     }
 
     private fun addFragment() {
-        if (ObjectUtils.isNotEmpty(mData)) {
-            for (categoryBean in mData) {
-                mFragments.add(RecommendFragment.newInstance(categoryBean.categoryId))
-            }
-        }
-        fragmentAdapter = BasePagerAdapter(manager, mFragments)
+        tabAdapter = RecommendTabAdapter(manager, mData)
         mDataChanged.value = true
     }
 }

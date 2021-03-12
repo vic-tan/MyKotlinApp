@@ -108,4 +108,5 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
      */
     protected abstract fun refreshRecycler(): RecyclerView
 
+
 }

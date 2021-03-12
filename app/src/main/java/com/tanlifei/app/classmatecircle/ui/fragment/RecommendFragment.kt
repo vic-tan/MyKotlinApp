@@ -2,12 +2,15 @@ package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewpager2.adapter.FragmentViewHolder
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.listener.OnItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
+import com.common.utils.MyLogTools
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
@@ -49,6 +52,7 @@ class RecommendFragment :
     }
 
     override fun onFirstVisibleToUser() {
+        MyLogTools.log("onFirstVisibleToUser()")
         adapter = RecommendAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
         adapter.setOnItemChildClickListener(object : OnItemListener<ItemRecommendBinding> {
@@ -98,5 +102,13 @@ class RecommendFragment :
         return binding.refreshRecycler
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        MyLogTools.log("onDestroy()")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
 
 }

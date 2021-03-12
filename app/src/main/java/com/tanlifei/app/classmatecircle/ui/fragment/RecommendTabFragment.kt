@@ -53,7 +53,7 @@ class RecommendTabFragment :
      */
     private fun initViewModelObserve() {
         viewModel.dataChanged.observe(this, Observer {
-            binding.viewPager.adapter = viewModel.fragmentAdapter
+            binding.viewPager.adapter = viewModel.tabAdapter
             customLayoutTab()
         })
         viewModel.loadingState.observe(this, Observer {
