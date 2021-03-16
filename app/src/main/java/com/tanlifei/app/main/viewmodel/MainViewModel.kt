@@ -1,4 +1,4 @@
-package com.tanlifei.app.home.viewmodel
+package com.tanlifei.app.main.viewmodel
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -26,7 +26,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/4 15:01
  */
-class HomeViewModel() : BaseViewModel() {
+class MainViewModel() : BaseViewModel() {
 
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mNavigator: NavigatorFragmentManager

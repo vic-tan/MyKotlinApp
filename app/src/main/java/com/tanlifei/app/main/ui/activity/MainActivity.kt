@@ -1,4 +1,4 @@
-package com.tanlifei.app.home.ui.activity
+package com.tanlifei.app.main.ui.activity
 
 
 import android.view.View
@@ -10,8 +10,8 @@ import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
-import com.tanlifei.app.databinding.ActivityHomeBinding
-import com.tanlifei.app.home.viewmodel.HomeViewModel
+import com.tanlifei.app.databinding.ActivityMainBinding
+import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
 
 
@@ -20,19 +20,19 @@ import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
  * @author: tanlifei
  * @date: 2021/1/23 16:07
  */
-open class HomeActivity : BaseBVMActivity<ActivityHomeBinding, HomeViewModel>(),
+open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
     NavigatorView.NavigatorListener {
 
     lateinit var updateAppViewModel: UpdateAppViewModel
 
     companion object {
         fun actionStart() {
-            ActivityUtils.startActivity(HomeActivity::class.java)
+            ActivityUtils.startActivity(MainActivity::class.java)
         }
     }
 
-    override fun createViewModel(): HomeViewModel {
-        return HomeViewModel()
+    override fun createViewModel(): MainViewModel {
+        return MainViewModel()
     }
 
 

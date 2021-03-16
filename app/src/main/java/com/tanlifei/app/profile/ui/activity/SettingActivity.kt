@@ -11,7 +11,7 @@ import com.common.utils.extension.clickListener
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding
-import com.tanlifei.app.main.ui.LoginAtivity
+import com.tanlifei.app.main.ui.activity.LoginAtivity
 import com.tanlifei.app.profile.viewmodel.SettingViewModel
 
 

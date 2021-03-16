@@ -1,4 +1,4 @@
-package com.tanlifei.app.main.ui
+package com.tanlifei.app.main.ui.activity
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -28,7 +28,6 @@ import com.tanlifei.app.common.config.api.ApiConst.URL_PRIVATE_AGREEMENT
 import com.tanlifei.app.common.config.api.ApiConst.URL_USER_AGREEMENT
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
-import com.tanlifei.app.home.ui.activity.HomeActivity
 import com.tanlifei.app.main.utils.LoginUtils
 import com.tanlifei.app.main.viewmodel.LoginViewModel
 
@@ -87,7 +86,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
             if (it) {
                 ComFun.token = viewModel.token
                 viewModel.token?.let { it -> UserInfoUtils.saveToken(it) }
-                HomeActivity.actionStart()
+                MainActivity.actionStart()
             }
         })
 

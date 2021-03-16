@@ -70,13 +70,13 @@
         </activity-alias>
         <!--—————————————————————————————————————————————————— Main ——————————————————————————————————————————————————-->
         <activity
-            android:name="com.tanlifei.app.main.ui.GuideActivity"
+            android:name="com.tanlifei.app.main.ui.activity.GuideActivity"
             android:label="引导页" />
         <activity
-            android:name="com.tanlifei.app.home.ui.activity.HomeActivity"
+            android:name="com.tanlifei.app.main.ui.activity.MainActivity"
             android:label="首页" />
         <activity
-            android:name="com.tanlifei.app.main.ui.LoginAtivity"
+            android:name="com.tanlifei.app.main.ui.activity.LoginAtivity"
             android:label="登录" />
 
         <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->

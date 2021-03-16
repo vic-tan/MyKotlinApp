@@ -12,7 +12,7 @@ import com.blankj.utilcode.util.SPUtils
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.Const
-import com.tanlifei.app.main.ui.LoginAtivity
+import com.tanlifei.app.main.ui.activity.LoginAtivity
 import com.youth.banner.adapter.BannerAdapter
 
 

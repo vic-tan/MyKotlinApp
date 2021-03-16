@@ -12,8 +12,8 @@ import com.common.utils.extension.clickListener
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.FragmentProfileBinding
-import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.home.viewmodel.HomeViewModel
+import com.tanlifei.app.main.ui.activity.MainActivity
+import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.tanlifei.app.profile.ui.activity.ManualActivity
 import com.tanlifei.app.profile.ui.activity.ProfileManagerActivity
 import com.tanlifei.app.profile.ui.activity.SettingActivity
@@ -26,7 +26,7 @@ import com.tanlifei.app.profile.ui.activity.SettingActivity
  */
 class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClickListener {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: MainViewModel
 
     companion object {
         fun newInstance(): ProfileFragment {
@@ -61,7 +61,7 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClick
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        homeViewModel = (activity as HomeActivity).viewModel
+        homeViewModel = (activity as MainActivity).viewModel
         homeViewModel.getUser()
     }
 

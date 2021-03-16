@@ -10,9 +10,9 @@ import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.GlideUtils
 import com.common.utils.extension.clickListener
 import com.tanlifei.app.databinding.ActivitySplashBinding
-import com.tanlifei.app.home.ui.activity.HomeActivity
-import com.tanlifei.app.main.ui.GuideActivity
-import com.tanlifei.app.main.ui.LoginAtivity
+import com.tanlifei.app.main.ui.activity.MainActivity
+import com.tanlifei.app.main.ui.activity.GuideActivity
+import com.tanlifei.app.main.ui.activity.LoginAtivity
 import com.tanlifei.app.main.viewmodel.SplashViewModel
 import com.tanlifei.app.main.viewmodel.SplashViewModel.JumpType.*
 import com.taobao.sophix.SophixManager
@@ -68,7 +68,7 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
                     ActivityUtils.finishActivity(this)
                 }
                 HOME -> {
-                    HomeActivity.actionStart()
+                    MainActivity.actionStart()
                     ActivityUtils.finishActivity(this)
                 }
                 REQUEST_ADS -> {
