@@ -3,13 +3,14 @@ package com.tanlifei.app.home.ui.fragment
 import android.os.Bundle
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.tanlifei.app.databinding.FragmentHomeBinding
+import com.tanlifei.app.databinding.FragmentStudyBinding
 
 /**
  * @desc:
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class ClassFragment : BaseLazyFragment<FragmentHomeBinding>() {
+class ClassFragment : BaseLazyFragment<FragmentStudyBinding>() {
 
     companion object {
         fun newInstance(): ClassFragment {
@@ -21,7 +22,7 @@ class ClassFragment : BaseLazyFragment<FragmentHomeBinding>() {
     }
 
     override fun onFirstVisibleToUser() {
-        binding.txtBtn.text = "CLASS...Sophix"
+        binding.txtBtn.text = "Class"
     }
 
 

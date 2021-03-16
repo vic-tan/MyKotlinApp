@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.SPUtils
 import com.ruffian.library.widget.RTextView
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.Const
+import com.tanlifei.app.databinding.ItemGuideBinding
 import com.tanlifei.app.main.ui.activity.LoginAtivity
 import com.youth.banner.adapter.BannerAdapter
 
@@ -26,12 +27,9 @@ open class GuideAdapter(activity: Activity, datas: MutableList<Int>) :
     var mActivity = activity
 
     override fun onCreateHolder(parent: ViewGroup, viewType: Int): BannerViewHolder? {
-        var view =
-            LayoutInflater.from(mActivity).inflate(
-                R.layout.item_guide
-                , parent, false
-            )
-        return BannerViewHolder(view)
+        val binding = ItemGuideBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
+        return BannerViewHolder(binding)
     }
 
     override fun onBindView(
@@ -40,20 +38,17 @@ open class GuideAdapter(activity: Activity, datas: MutableList<Int>) :
         position: Int,
         size: Int
     ) {
-        holder.image.setImageResource(data)
-        holder.startBtn.visibility = if (position == mDatas.size - 1) View.VISIBLE else View.GONE
-        holder.startBtn.setOnClickListener {
+        holder.binding.image.setImageResource(data)
+        holder.binding.startBtn.visibility = if (position == mDatas.size - 1) View.VISIBLE else View.GONE
+        holder.binding.startBtn.setOnClickListener {
             SPUtils.getInstance().put(Const.SPKey.GUIDE, false)
             ActivityUtils.startActivity(LoginAtivity::class.java)
             ActivityUtils.finishActivity(mActivity)
         }
     }
 
-    class BannerViewHolder(@NonNull view: View) :
-        RecyclerView.ViewHolder(view) {
-        var startBtn: RTextView = view.findViewById(R.id.startBtn) as RTextView
-        var image: ImageView = view.findViewById(R.id.image) as ImageView
-
+    inner class BannerViewHolder(val binding: ItemGuideBinding) :
+        RecyclerView.ViewHolder(binding.root) {
     }
 
 }

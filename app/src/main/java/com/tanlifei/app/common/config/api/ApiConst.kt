@@ -67,6 +67,12 @@ object ApiConst {
     const val URL_UPDATE_GOODS_ADDRESS = "major/api/user/updateGoodsAddress"
 
 
+    /**—————————————————————————————————————————————————— 首页相关  ——————————————————————————————————————————————*/
+
+    /* 首页顶部信息，banner,icon,新人礼包 */
+    const val URL_HOME_BANNER = "major/api/index/getHomeTopInfo"
+
+
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
 
     /* 关注人文娱列表 */

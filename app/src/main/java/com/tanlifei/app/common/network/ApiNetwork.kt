@@ -10,6 +10,7 @@ import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.classmatecircle.bean.ResponseCommentBean
 import com.tanlifei.app.classmatecircle.utils.CommentUrlType
 import com.tanlifei.app.common.config.api.ApiConst
+import com.tanlifei.app.home.bean.HomeHeaderDataBean
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.profile.bean.AddressBean
 import com.tanlifei.app.profile.bean.AreaJsonBean
@@ -99,6 +100,15 @@ object ApiNetwork {
             .add("address", addressBean.address)
             .add("email", addressBean.email)
             .toResponse<String>().await()
+
+    /**—————————————————————————————————————————————————— 首页相关  ——————————————————————————————————————————————*/
+
+    /**
+     * 首页顶部信息，banner,icon,新人礼包
+     */
+    suspend fun requestHomeBanner() =
+        RxHttp.postJson(ApiConst.URL_HOME_BANNER)
+            .toResponse<HomeHeaderDataBean>().await()
 
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
 

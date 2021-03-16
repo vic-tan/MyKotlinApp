@@ -1,20 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/match_match">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match"
+    tools:background="@color/base_layout_bg">
 
 
-    <com.ruffian.library.widget.RTextView
-        android:id="@+id/txtBtn"
-        style="@style/match_match"
-        android:gravity="center"
-        android:text="HOME"
-        android:textColor="#a3F2323A"
-        android:textSize="50sp"
+    <com.ruffian.library.widget.RConstraintLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.ruffian.library.widget.RImageView
+            android:id="@+id/userCover"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="15dp"
+            android:src="@mipmap/ic_default_avatar"
+            app:is_circle="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/customerService"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginEnd="10dp"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:src="@mipmap/ic_default_avatar"
+            android:text="联系\n老师"
+            android:textColor="#808080"
+            android:textSize="13sp"
+            app:background_normal="@color/white"
+            app:corner_radius="8dp"
+            app:icon_direction="left"
+            app:icon_height="25dp"
+            app:icon_normal_left="@mipmap/ic_service"
+            app:icon_width="25dp"
+            app:is_circle="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:background_normal="@color/white"
+            app:corner_radius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/userCover"
+            app:layout_constraintRight_toLeftOf="@id/customerService"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/search"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:background="@mipmap/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:gravity="center_vertical"
+                android:text="搜索课程"
+                android:textColor="@color/color_999999"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/search"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </com.ruffian.library.widget.RConstraintLayout>
+
+    </com.ruffian.library.widget.RConstraintLayout>
+
+    <include
+        android:id="@+id/refreshLayout"
+        layout="@layout/layout_recycler_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/top_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
