@@ -1,5 +1,6 @@
 package com.tanlifei.app.profile.ui.activity
 
+import android.Manifest
 import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
@@ -7,10 +8,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseFormActivity
-import com.common.utils.GlideEngine
-import com.common.utils.GlideUtils
-import com.common.utils.PictureSelectorUtils
-import com.common.utils.ResUtils
+import com.common.utils.*
 import com.common.utils.extension.clickListener
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
@@ -71,15 +69,27 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
     override fun onClick(v: View) {
         when (v) {
             binding.userHead -> {
-                PictureSelectorUtils.createAvatarCrop(this)
-                    .forResult(object : OnResultCallbackListener<LocalMedia?> {
-                        override fun onResult(result: List<LocalMedia?>) {
-                            GlideUtils.load(mActivity, result[0]?.compressPath, binding.userHead)
-                        }
+                PermissionUtils.requestCameraPermission(
+                    this,
+                    callback = object : PermissionUtils.PermissionCallback {
+                        override fun allGranted() {
+                            PictureSelectorUtils.createAvatarCrop(mActivity)
+                                .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                                    override fun onResult(result: List<LocalMedia?>) {
+                                        GlideUtils.load(
+                                            mActivity,
+                                            result[0]?.compressPath,
+                                            binding.userHead
+                                        )
+                                    }
 
-                        override fun onCancel() {
+                                    override fun onCancel() {
+                                    }
+                                })
                         }
-                    })
+                    }
+                )
+
             }
             binding.addressLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }
             binding.sexLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }

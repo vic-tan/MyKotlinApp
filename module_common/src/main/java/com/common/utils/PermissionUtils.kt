@@ -1,9 +1,12 @@
 package com.common.utils
 
+import android.Manifest
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ObjectUtils
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.permissionx.guolindev.PermissionX
 import java.util.*
 
@@ -47,6 +50,23 @@ object PermissionUtils {
                 }
         }
 
+    }
+
+
+    /**
+     * 请求拍照权限
+     */
+    fun requestCameraPermission(
+        context: Context,
+        callback: PermissionCallback
+    ) {
+        requestPermission(
+            context,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            callback = callback
+        )
     }
 
     interface PermissionCallback {

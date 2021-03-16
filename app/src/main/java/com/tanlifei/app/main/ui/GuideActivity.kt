@@ -36,14 +36,6 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
         binding.banner.adapter = GuideAdapter(this, guideList)
         binding.banner.indicator = CircleIndicator(this)
         binding.banner.isAutoLoop(false)
-        PermissionUtils.requestPermission(
-            this,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            callback = object : PermissionUtils.PermissionCallback {
-                override fun allGranted() {}
-            }
-        )
     }
 
     private fun addGuideData() {
