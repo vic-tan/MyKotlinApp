@@ -128,6 +128,7 @@ class RecommendTabFragment :
             }
         }
         binding.tabIndicator.navigator = commonNavigator
+        binding.viewPager.offscreenPageLimit = 10//有内存泄漏暂时先用这句处理内存泄漏
         ViewPagerHelper.bind(binding.tabIndicator, binding.viewPager)
     }
 }

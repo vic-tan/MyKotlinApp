@@ -7,7 +7,7 @@ import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.classmatecircle.ui.fragment.RecommendFragment
 
 /**
- * @desc:Viewpage
+ * @desc: 为什么不用公用的BasePagerAdapter ，放到List<Fragment>中会导致内存泄漏
  * @author: tanlifei
  * @date: 2021/2/7 13:11
  */
