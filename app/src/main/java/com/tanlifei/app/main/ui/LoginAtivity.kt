@@ -66,9 +66,14 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         initData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.logo.setImageResource(EnvironmentUtils.appLogo())
+    }
+
 
     private fun initData() {
-        binding.logo.setImageResource(EnvironmentUtils.appLogo())
+
     }
 
 
