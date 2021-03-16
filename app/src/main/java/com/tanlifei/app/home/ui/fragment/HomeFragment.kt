@@ -3,17 +3,22 @@ package com.tanlifei.app.home.ui.fragment
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.viewmodel.BaseListViewModel
+import com.common.core.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.CommentBean
+import com.tanlifei.app.classmatecircle.ui.fragment.FollowFragment
+import com.tanlifei.app.classmatecircle.ui.fragment.RecommendTabFragment
 import com.tanlifei.app.databinding.FragmentHomeBinding
 import com.tanlifei.app.databinding.HomeHeaderBannerBinding
 import com.tanlifei.app.home.adapter.HomeBannerAdapter
@@ -27,10 +32,15 @@ import com.youth.banner.indicator.RectangleIndicator
  * @date: 2021/1/23 17:41
  */
 class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
+
+    private val mTitleData = mutableListOf("免费直播", "精品课程", "高校直播")
     private lateinit var header: ViewBinding
     private lateinit var adapter: CommentAdapter
     private lateinit var bannerAdapter: HomeBannerAdapter
     private lateinit var menuAdapter: MenuAdapter
+
+    private lateinit var fragmentAdapter: BasePagerAdapter
+    private var mFragments: MutableList<Fragment> = ArrayList()
 
     companion object {
         fun newInstance(): HomeFragment {
@@ -105,6 +115,22 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         headerBinding.recycler.adapter = menuAdapter
         headerBinding.recycler.layoutManager = GridLayoutManager(context, 4)
         headerBinding.recycler.itemAnimator = null
+
+
+        //ViewPager 推荐
+        mFragments.add(FollowFragment.newInstance())
+        mFragments.add(FollowFragment.newInstance())
+        mFragments.add(FollowFragment.newInstance())
+        fragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
+        headerBinding.viewPager.adapter = fragmentAdapter
+        headerBinding.viewPager.offscreenPageLimit = 3
+        MagicIndicatorUtils.initComMagicIndicator(
+            activity,
+            headerBinding.tabIndicator,
+            headerBinding.viewPager,
+            mTitleData
+        )
+
     }
 
     private fun addHeader() {
@@ -112,11 +138,12 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         adapter.addHeaderView(header)
         useBanner()
         menuAdapter.notifyDataSetChanged()
-        if(ObjectUtils.isNotEmpty(viewModel.adsnoviceData)) {
+        if (ObjectUtils.isNotEmpty(viewModel.adsnoviceData)) {
             var headerBinding = header as HomeHeaderBannerBinding
             GlideUtils.load(context, viewModel.adsnoviceData[0].image, headerBinding.ads)
         }
     }
+
 
     private fun useBanner() {
         bannerAdapter.notifyDataSetChanged()
