@@ -38,7 +38,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
     private lateinit var menuAdapter: MenuAdapter
 
     private lateinit var fragmentAdapter: BasePagerAdapter
-    private var mFragments: MutableList<Fragment> = ArrayList()
+    private var mFragments: MutableList<HomeRecommendFragment> = ArrayList()
+    private var isFirstLoad = true
 
     companion object {
         fun newInstance(): HomeFragment {
@@ -83,6 +84,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
             RecyclerUtils.setLinearLayoutManager(context)
         binding.refreshLayout.refreshRecycler.itemAnimator = null
         binding.refreshLayout.smartRefreshLayout.setOnRefreshListener {
+            isFirstLoad = false
             viewModel.requestRefresh()
 
         }
@@ -140,6 +142,12 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
             var headerBinding = header as HomeHeaderBannerBinding
             GlideUtils.load(context, viewModel.adsnoviceData[0].image, headerBinding.ads)
         }
+        if (!isFirstLoad) {
+            for (fragment in mFragments) {
+                fragment.refresh()
+            }
+        }
+
     }
 
 

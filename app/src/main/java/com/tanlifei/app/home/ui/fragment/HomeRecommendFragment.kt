@@ -3,7 +3,9 @@ package com.tanlifei.app.home.ui.fragment
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
+import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -11,6 +13,7 @@ import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.home.adapter.HomeRecommentAdapter
 import com.tanlifei.app.home.view.GridHomeRecommentItemDecoration
+import com.tanlifei.app.home.viewmodel.HomeRecommendViewModel
 
 
 /**
@@ -18,7 +21,7 @@ import com.tanlifei.app.home.view.GridHomeRecommentItemDecoration
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class HomeRecommendFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, RecommendViewModel>() {
+class HomeRecommendFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, HomeRecommendViewModel>() {
 
     private lateinit var adapter: HomeRecommentAdapter
 
@@ -31,8 +34,8 @@ class HomeRecommendFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, Rec
         }
     }
 
-    override fun createViewModel(): RecommendViewModel {
-        return RecommendViewModel()
+    override fun createViewModel(): HomeRecommendViewModel {
+        return HomeRecommendViewModel()
     }
 
     override fun onFirstVisibleToUser() {
@@ -41,12 +44,18 @@ class HomeRecommendFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, Rec
     }
 
 
+
     override fun initView() {
         super.initView()
         adapter = HomeRecommentAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
     }
 
+    fun refresh() {
+        if (ObjectUtils.isNotEmpty(viewModel)) {
+            viewModel.refresh()
+        }
+    }
 
     override fun setLinearLayoutManager(): RecyclerView.LayoutManager {
         return GridLayoutManager(context, 2)

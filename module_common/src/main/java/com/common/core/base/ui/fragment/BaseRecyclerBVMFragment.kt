@@ -63,12 +63,15 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
             viewModel
         )
         initRecyclerView()
-        RecyclerUtils.initData(viewModel)
+        requestData()
         refreshLoadingLayout().setRetryListener(View.OnClickListener {
             viewModel.refresh()
         })
     }
 
+    open fun requestData(){
+        RecyclerUtils.initData(viewModel)
+    }
 
     /**
      * 初始化Recycler

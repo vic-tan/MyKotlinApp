@@ -55,7 +55,7 @@ class HomeRecommentAdapter(var context: Context?) :
         bean: ClassmateCircleBean
     ) {
         holder.binding.title.text = bean.nickName
-        holder.binding.desc.text ="2021-05-23 15:12:34"
+        holder.binding.desc.text ="05月23日 15:20"
         GlideUtils.load(context, bean.image?.url, holder.binding.cover)
     }
 
