@@ -18,6 +18,7 @@ import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ItemFollowBinding
+import com.tanlifei.app.databinding.ItemHomeRecommentBinding
 import java.util.*
 
 /**
@@ -26,7 +27,7 @@ import java.util.*
  * @date: 2021/2/24 16:02
  */
 class HomeRecommentAdapter(var context: Context?) :
-    CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() {
+    CommonRvAdapter<ClassmateCircleBean, ItemHomeRecommentBinding>() {
 
     private var screenWidth = ScreenUtils.getScreenWidth()
     private var textViewWidth = screenWidth - ConvertUtils.dp2px(30f)
@@ -36,10 +37,10 @@ class HomeRecommentAdapter(var context: Context?) :
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ItemFollowBinding> {
+    ): CommonRvHolder<ItemHomeRecommentBinding> {
 
         return CommonRvHolder(
-            ItemFollowBinding.inflate(
+            ItemHomeRecommentBinding.inflate(
                 inflater,
                 parent,
                 false
@@ -48,48 +49,18 @@ class HomeRecommentAdapter(var context: Context?) :
     }
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ItemFollowBinding>,
+        holder: CommonRvHolder<ItemHomeRecommentBinding>,
         position: Int,
-        binding: ItemFollowBinding,
+        binding: ItemHomeRecommentBinding,
         bean: ClassmateCircleBean
     ) {
-        holder.binding.banner.layoutParams.width = screenWidth
-        holder.binding.banner.layoutParams.height =
-            AutoHeightUtils.getHeightParams(screenWidth, bean.image)
-
-        holder.binding.name.text = bean.nickName
-        holder.binding.school.text =
-            if (ObjectUtils.isEmpty(bean.createtimeStr)) bean.universityName else "${bean.createtimeStr}  ${bean.universityName}"
-        GlideUtils.load(context, bean.image?.url, holder.binding.banner)
-        GlideUtils.loadAvatar(context, bean.avatar, holder.binding.userHead)
-        holder.binding.expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
-            override fun onExpand(view: ExpandTextView) {
-                mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
-            }
-
-            override fun onShrink(view: ExpandTextView) {
-                mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
-            }
-
-        })
-        val state: Int? = mPositionsAndStates.get(holder.adapterPosition)
-        holder.binding.expandTextView.updateForRecyclerView(
-            bean.content,
-            textViewWidth,
-            state ?: 0
-        )
-        holder.binding.expandTextView.visibility =
-            if (TextUtils.isEmpty(bean.content)) View.GONE else View.VISIBLE
-        holder.binding.marginView.visibility =
-            if (TextUtils.isEmpty(bean.content)) View.GONE else View.VISIBLE
-
-        holder.binding.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
-        holder.binding.praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
-        holder.binding.commentCount.text = NumberUtils.setCommentCount(bean.comment)
+        holder.binding.title.text = bean.nickName
+        holder.binding.desc.text ="2021-05-23 15:12:34"
+        GlideUtils.load(context, bean.image?.url, holder.binding.cover)
     }
 
-    override fun addChildClickViewIds(binding: ItemFollowBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.more, binding.shareLayout, binding.banner)
+    override fun addChildClickViewIds(binding: ItemHomeRecommentBinding): LinkedHashSet<View> {
+        return linkedSetOf()
     }
 
 }

@@ -17,8 +17,6 @@ import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.CommentBean
-import com.tanlifei.app.classmatecircle.ui.fragment.FollowFragment
-import com.tanlifei.app.classmatecircle.ui.fragment.RecommendTabFragment
 import com.tanlifei.app.databinding.FragmentHomeBinding
 import com.tanlifei.app.databinding.HomeHeaderBannerBinding
 import com.tanlifei.app.home.adapter.HomeBannerAdapter
@@ -118,9 +116,9 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
         //ViewPager 推荐
-        mFragments.add(FollowFragment.newInstance())
-        mFragments.add(FollowFragment.newInstance())
-        mFragments.add(FollowFragment.newInstance())
+        mFragments.add(HomeRecommendFragment.newInstance())
+        mFragments.add(HomeRecommendFragment.newInstance())
+        mFragments.add(HomeRecommendFragment.newInstance())
         fragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
         headerBinding.viewPager.adapter = fragmentAdapter
         headerBinding.viewPager.offscreenPageLimit = 3
