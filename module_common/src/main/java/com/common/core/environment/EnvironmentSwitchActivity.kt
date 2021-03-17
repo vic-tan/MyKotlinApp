@@ -85,12 +85,16 @@ class EnvironmentSwitchActivity :
         adapter = EnvironmentAdapter()
         adapter.mData = viewModel.mData as MutableList<EnvironmentBean>
         binding.recycler.adapter = adapter
-        adapter.setOnItemChildClickListener(object :
-            OnMultiItemListener {
-            override fun onItemClick(v: View, holder: CommonRvHolder<ViewBinding>, position: Int) {
+        adapter.setItemClickListener(object : OnMultiItemListener<EnvironmentBean> {
+            override fun click(
+                holder: CommonRvHolder<ViewBinding>,
+                bean: EnvironmentBean,
+                v: View,
+                position: Int
+            ) {
                 when (holder.binding) {
                     is ItemEnvironmentContentBinding -> {
-                        when(v){
+                        when (v) {
                             holder.binding.layout -> {
                                 viewModel.setSelect(position)
                             }
@@ -98,6 +102,7 @@ class EnvironmentSwitchActivity :
                     }
                 }
             }
+
         })
     }
 

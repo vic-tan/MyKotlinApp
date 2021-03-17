@@ -19,6 +19,7 @@ import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.common.utils.extension.click
 import com.hjq.toast.ToastUtils
+import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.*
 import com.tanlifei.app.home.adapter.HomeAdapter
 import com.tanlifei.app.home.adapter.HomeBannerAdapter
@@ -85,18 +86,24 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun initAdapter() {
         adapter = HomeAdapter(context)
         adapter.mData = viewModel.mData
-        adapter.setOnItemChildClickListener(object : OnMultiItemListener {
-            override fun onItemClick(v: View, holder: CommonRvHolder<ViewBinding>, position: Int) {
+        adapter.setItemClickListener(object : OnMultiItemListener<ClassmateCircleBean> {
+            override fun click(
+                holder: CommonRvHolder<ViewBinding>,
+                itemBean: ClassmateCircleBean,
+                v: View,
+                position: Int
+            ) {
                 when (holder.binding) {
                     is ItemHomeBinding -> {
                         when (v) {
                             (holder.binding as ItemHomeBinding).item -> {
-                                ToastUtils.show(viewModel.mData[position].nickName)
+                                ToastUtils.show(itemBean.nickName)
                             }
                         }
                     }
                 }
             }
+
         })
         binding.refreshLayout.refreshRecycler.adapter = adapter
         binding.refreshLayout.refreshRecycler.layoutManager =

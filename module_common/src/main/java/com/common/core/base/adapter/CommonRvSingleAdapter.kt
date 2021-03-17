@@ -71,7 +71,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
                 for (v in childClickViews) {
                     v?.let {
                         it.click {
-                            setItemClickListener(
+                            setItemClick(
                                 holder.binding,
                                 mData[holder.adapterPosition],
                                 v,
@@ -103,7 +103,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
     abstract fun addChildClickViewIds(binding: V): LinkedHashSet<View>
 
 
-    protected open fun setItemClickListener(binding: V, bean: T, v: View, position: Int) {
+    protected open fun setItemClick(binding: V, bean: T, v: View, position: Int) {
         onItemClickListener?.click(binding, bean, v, position)
     }
 

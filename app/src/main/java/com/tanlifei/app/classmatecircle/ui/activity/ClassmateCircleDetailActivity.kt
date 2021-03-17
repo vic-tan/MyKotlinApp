@@ -214,15 +214,20 @@ class ClassmateCircleDetailActivity :
     private fun initAdapter() {
         adapter = CommentAdapter()
         adapter.mData = viewModel.mData as MutableList<CommentBean>
-        adapter.setOnItemChildClickListener(object : OnMultiItemListener {
-            override fun onItemClick(v: View, holder: CommonRvHolder<ViewBinding>, position: Int) {
+        adapter.setItemClickListener(object : OnMultiItemListener<CommentBean> {
+            override fun click(
+                holder: CommonRvHolder<ViewBinding>,
+                itemBean: CommentBean,
+                v: View,
+                position: Int
+            ) {
                 when (holder.binding) {
                     is ItemCommentBinding -> {
                         when (v) {
                             (holder.binding as ItemCommentBinding).delete -> {
                                 ComDialogUtils.comConfirm(this@ClassmateCircleDetailActivity,
                                     "确定删除些评论?",
-                                    OnConfirmListener { viewModel.requestDeleteComment(viewModel.mData[position] as CommentBean) })
+                                    OnConfirmListener { viewModel.requestDeleteComment(itemBean) })
                             }
                         }
                     }

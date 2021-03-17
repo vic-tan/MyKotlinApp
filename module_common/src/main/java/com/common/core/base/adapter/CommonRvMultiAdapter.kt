@@ -36,7 +36,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
             field = value
             notifyItemRangeChanged(0, value.size)
         }
-    private var onItemListener: OnMultiItemListener? = null
+    private var onItemListener: OnMultiItemListener<T>? = null
 
 
     /**
@@ -172,7 +172,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
                 for (v in childClickViews) {
                     v?.let {
                         it.click {
-                            setOnItemChildClick(v, holder, adapterPosition)
+                            setOnItemClick(holder, mData[adapterPosition], v, adapterPosition)
                         }
                     }
                 }
@@ -193,15 +193,16 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     abstract fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View>
 
 
-    protected open fun setOnItemChildClick(
-        v: View,
+    protected open fun setOnItemClick(
         holder: CommonRvHolder<ViewBinding>,
+        bean: T,
+        v: View,
         position: Int
     ) {
-        onItemListener?.onItemClick(v, holder, position)
+        onItemListener?.click(holder, bean, v, position)
     }
 
-    fun setOnItemChildClickListener(listener: OnMultiItemListener) {
+    fun setItemClickListener(listener: OnMultiItemListener<T>) {
         this.onItemListener = listener
     }
 

@@ -9,7 +9,7 @@ import com.common.core.base.adapter.CommonRvHolder
  * @author: tanlifei
  * @date: 2021/2/24 16:55
  */
-interface OnMultiItemListener {
+interface OnMultiItemListener<T>{
     /**
      * Callback method to be invoked when an item in this RecyclerView has
      * been clicked.
@@ -19,9 +19,10 @@ interface OnMultiItemListener {
      * will be a view provided by the adapter)
      * @param position The position of the view in the adapter.
      */
-    fun onItemClick(
-        v: View,
+    fun click(
         holder: CommonRvHolder<ViewBinding>,
+        itemBean: T,
+        v: View,
         position: Int
     )
 }
