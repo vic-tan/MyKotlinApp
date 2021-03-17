@@ -80,7 +80,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
                 CommonRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
             }
             viewType >= ItemViewType.FOOTER.value -> {
-                CommonRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value])
+                CommonRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size - 1])
             }
             else -> {
                 onCreateViewHolder(

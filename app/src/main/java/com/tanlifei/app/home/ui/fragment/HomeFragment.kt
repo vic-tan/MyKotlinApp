@@ -3,7 +3,6 @@ package com.tanlifei.app.home.ui.fragment
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewbinding.ViewBinding
@@ -15,10 +14,10 @@ import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
-import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
-import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.databinding.FragmentHomeBinding
-import com.tanlifei.app.databinding.HomeHeaderBannerBinding
+import com.tanlifei.app.databinding.HomeFooterBinding
+import com.tanlifei.app.databinding.HomeHeaderBinding
+import com.tanlifei.app.home.adapter.HomeAdapter
 import com.tanlifei.app.home.adapter.HomeBannerAdapter
 import com.tanlifei.app.home.adapter.MenuAdapter
 import com.tanlifei.app.home.viewmodel.HomeViewModel
@@ -33,7 +32,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private val mTitleData = mutableListOf("免费直播", "精品课程", "高校直播")
     private lateinit var header: ViewBinding
-    private lateinit var adapter: CommentAdapter
+    private lateinit var footer: ViewBinding
+    private lateinit var adapter: HomeAdapter
     private lateinit var bannerAdapter: HomeBannerAdapter
     private lateinit var menuAdapter: MenuAdapter
 
@@ -59,10 +59,12 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         BarUtils.addMarginTopEqualStatusBarHeight(binding.topLayout)
         initAdapter()
         initHeaderView()
+        initHFooterView()
         viewModel.homeHeaderDataChanged.observe(this, Observer {
             binding.refreshLayout.refreshLoadingLayout.showContent()
             binding.refreshLayout.smartRefreshLayout.finishRefresh()
-            addHeader()
+            addHeaderOrFooter()
+            adapter.notifyDataSetChanged()
         })
         viewModel.loadingState.observe(this, Observer {
             when (it) {
@@ -77,8 +79,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun initAdapter() {
-        adapter = CommentAdapter()
-        adapter.mData = viewModel.mData as MutableList<CommentBean>
+        adapter = HomeAdapter(context)
+        adapter.mData = viewModel.mData
         binding.refreshLayout.refreshRecycler.adapter = adapter
         binding.refreshLayout.refreshRecycler.layoutManager =
             RecyclerUtils.setLinearLayoutManager(context)
@@ -95,13 +97,14 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         viewModel.requestRefresh()
     }
 
+
     private fun initHeaderView() {
-        header = HomeHeaderBannerBinding.inflate(layoutInflater)
+        header = HomeHeaderBinding.inflate(layoutInflater)
         header.root.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        var headerBinding = header as HomeHeaderBannerBinding
+        var headerBinding = header as HomeHeaderBinding
 
         //banner
         bannerAdapter = HomeBannerAdapter(context, viewModel.bannerData)
@@ -133,13 +136,22 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
     }
 
-    private fun addHeader() {
+    private fun initHFooterView() {
+        footer = HomeFooterBinding.inflate(layoutInflater)
+        footer.root.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        var footerBinding = footer as HomeFooterBinding
+    }
+
+    private fun addHeaderOrFooter() {
         adapter.removeHeaderView(header)
         adapter.addHeaderView(header)
         useBanner()
         menuAdapter.notifyDataSetChanged()
         if (ObjectUtils.isNotEmpty(viewModel.adsnoviceData)) {
-            var headerBinding = header as HomeHeaderBannerBinding
+            var headerBinding = header as HomeHeaderBinding
             GlideUtils.load(context, viewModel.adsnoviceData[0].image, headerBinding.ads)
         }
         if (!isFirstLoad) {
@@ -147,7 +159,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
                 fragment.refresh()
             }
         }
-
+        adapter.removeFooterView(footer)
+        adapter.addFooterView(footer)
     }
 
 
