@@ -76,7 +76,8 @@ class HomeAdapter(var context: Context?) :
 
 
     override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {
-        return linkedSetOf()
+        val holder = holder.binding as ItemHomeBinding
+        return linkedSetOf(holder.item)
     }
 
 

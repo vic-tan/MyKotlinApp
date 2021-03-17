@@ -9,18 +9,26 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.BasePagerAdapter
+import com.common.core.base.adapter.CommonRvHolder
+import com.common.core.base.listener.OnItemListener
+import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.magicindicator.MagicIndicatorUtils
+import com.common.utils.ComDialogUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
-import com.tanlifei.app.databinding.FragmentHomeBinding
-import com.tanlifei.app.databinding.HomeFooterBinding
-import com.tanlifei.app.databinding.HomeHeaderBinding
+import com.common.utils.extension.click
+import com.hjq.toast.ToastUtils
+import com.tanlifei.app.classmatecircle.bean.CommentBean
+import com.tanlifei.app.databinding.*
 import com.tanlifei.app.home.adapter.HomeAdapter
 import com.tanlifei.app.home.adapter.HomeBannerAdapter
 import com.tanlifei.app.home.adapter.MenuAdapter
+import com.tanlifei.app.home.bean.MenuBean
 import com.tanlifei.app.home.viewmodel.HomeViewModel
+import com.tanlifei.app.profile.bean.ManualBean
+import com.tanlifei.app.profile.ui.activity.ManualDetailActivity
 import com.youth.banner.indicator.RectangleIndicator
 
 /**
@@ -81,6 +89,19 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun initAdapter() {
         adapter = HomeAdapter(context)
         adapter.mData = viewModel.mData
+        adapter.setOnItemChildClickListener(object : OnMultiItemListener {
+            override fun onItemClick(v: View, holder: CommonRvHolder<ViewBinding>, position: Int) {
+                when (holder.binding) {
+                    is ItemHomeBinding -> {
+                        when (v) {
+                            (holder.binding as ItemHomeBinding).item -> {
+                                ToastUtils.show(viewModel.mData[position].nickName)
+                            }
+                        }
+                    }
+                }
+            }
+        })
         binding.refreshLayout.refreshRecycler.adapter = adapter
         binding.refreshLayout.refreshRecycler.layoutManager =
             RecyclerUtils.setLinearLayoutManager(context)
@@ -115,6 +136,14 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         //Menu
         menuAdapter = MenuAdapter(context)
         menuAdapter.mData = viewModel.menuData
+        menuAdapter.setOnItemChildClickListener(object :
+            OnItemListener<ItemHomeMenuBinding> {
+            override fun onItemClick(v: View, itemBinding: ItemHomeMenuBinding, position: Int) {
+                when (v) {
+                    itemBinding.item -> ToastUtils.show(viewModel.menuData[position].name)
+                }
+            }
+        })
         headerBinding.recycler.adapter = menuAdapter
         headerBinding.recycler.layoutManager = GridLayoutManager(context, 4)
         headerBinding.recycler.itemAnimator = null
@@ -134,6 +163,10 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
             mTitleData
         )
 
+        headerBinding.more.click {
+            ToastUtils.show(it.text.toString())
+        }
+
     }
 
     private fun initHFooterView() {
@@ -143,6 +176,9 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
         var footerBinding = footer as HomeFooterBinding
+        footerBinding.adjustment.click {
+            ToastUtils.show(it.text.toString())
+        }
     }
 
     private fun addHeaderOrFooter() {

@@ -60,7 +60,7 @@ class HomeRecommentAdapter(var context: Context?) :
     }
 
     override fun addChildClickViewIds(binding: ItemHomeRecommentBinding): LinkedHashSet<View> {
-        return linkedSetOf()
+        return linkedSetOf(binding.item)
     }
 
 }
