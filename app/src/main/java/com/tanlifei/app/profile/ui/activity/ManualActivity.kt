@@ -43,7 +43,7 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
         initRefreshView()
         adapter.setOnItemClick(object :
             OnItemClickListener<ItemManualBinding, ManualBean> {
-            override fun onItemClick(
+            override fun click(
                 binding: ItemManualBinding,
                 bean: ManualBean,
                 v: View,

@@ -104,7 +104,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
 
 
     protected open fun setOnItemClick(binding: V, bean: T, v: View, position: Int) {
-        onItemClickListener?.onItemClick(binding, bean, v, position)
+        onItemClickListener?.click(binding, bean, v, position)
     }
 
     fun setOnItemClick(clickListener: OnItemClickListener<V, T>) {

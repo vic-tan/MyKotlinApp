@@ -18,7 +18,7 @@ interface OnItemClickListener<V : ViewBinding, T> {
      * will be a view provided by the adapter)
      * @param position The position of the view in the adapter.
      */
-    fun onItemClick(
+    fun click(
         binding: V,
         itemBean: T,
         v: View,
