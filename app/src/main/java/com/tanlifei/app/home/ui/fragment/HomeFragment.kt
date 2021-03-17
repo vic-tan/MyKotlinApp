@@ -87,22 +87,23 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         adapter = HomeAdapter(context)
         adapter.mData = viewModel.mData
         adapter.setItemClickListener(object : OnMultiItemListener<ClassmateCircleBean> {
-            override fun click(
-                holder: CommonRvHolder<ViewBinding>,
+            override fun <V : ViewBinding> click(
+                holder: V,
                 itemBean: ClassmateCircleBean,
                 v: View,
                 position: Int
             ) {
-                when (holder.binding) {
+                when (holder) {
                     is ItemHomeBinding -> {
                         when (v) {
-                            (holder.binding as ItemHomeBinding).item -> {
+                            holder.item -> {
                                 ToastUtils.show(itemBean.nickName)
                             }
                         }
                     }
                 }
             }
+
 
         })
         binding.refreshLayout.refreshRecycler.adapter = adapter

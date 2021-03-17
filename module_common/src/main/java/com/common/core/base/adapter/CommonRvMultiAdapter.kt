@@ -199,7 +199,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         v: View,
         position: Int
     ) {
-        onItemListener?.click(holder, bean, v, position)
+        onItemListener?.click(holder.binding, bean, v, position)
     }
 
     fun setItemClickListener(listener: OnMultiItemListener<T>) {
