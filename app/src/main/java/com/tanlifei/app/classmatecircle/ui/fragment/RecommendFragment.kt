@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.listener.OnItemListener
+import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -51,10 +51,16 @@ class RecommendFragment :
     override fun onFirstVisibleToUser() {
         adapter = RecommendAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
-        adapter.setOnItemChildClickListener(object : OnItemListener<ItemRecommendBinding> {
-            override fun onItemClick(v: View, itemBinding: ItemRecommendBinding, position: Int) {
+        adapter.setOnItemClick(object :
+            OnItemClickListener<ItemRecommendBinding, ClassmateCircleBean> {
+            override fun onItemClick(
+                itemBinding: ItemRecommendBinding,
+                itemBean: ClassmateCircleBean,
+                v: View,
+                position: Int
+            ) {
                 when (v) {
-                    itemBinding.item -> ClassmateCircleDetailActivity.actionStart(adapter.mData[position].publishId)
+                    itemBinding.item -> ClassmateCircleDetailActivity.actionStart(itemBean.publishId)
                 }
             }
 

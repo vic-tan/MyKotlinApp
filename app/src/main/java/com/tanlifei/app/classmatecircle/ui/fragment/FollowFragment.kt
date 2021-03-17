@@ -1,36 +1,25 @@
 package com.tanlifei.app.classmatecircle.ui.fragment
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.blankj.utilcode.util.NetworkUtils
-import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.listener.OnItemListener
+import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
-import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.ImageLoader
-import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
 import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.XPopup
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemFollowBinding
-import java.util.*
 
 
 /**
@@ -64,9 +53,14 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         super.initView()
         adapter = FollowAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
-        adapter.setOnItemChildClickListener(object :
-            OnItemListener<ItemFollowBinding> {
-            override fun onItemClick(v: View, binding: ItemFollowBinding, position: Int) {
+        adapter.setOnItemClick(object :
+            OnItemClickListener<ItemFollowBinding, ClassmateCircleBean> {
+            override fun onItemClick(
+                binding: ItemFollowBinding,
+                bean: ClassmateCircleBean,
+                v: View,
+                position: Int
+            ) {
                 when (v) {
                     binding.more,
                     binding.shareLayout -> {
@@ -90,7 +84,7 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
                     }
                     binding.banner -> {
                         var list = mutableListOf<Any>()
-                        var url = (viewModel.mData[position] as ClassmateCircleBean).imageUrl
+                        var url = bean.imageUrl
                         url?.let { list.add(it) }
                         XPopup.Builder(binding.banner.context)
                             .asImageViewer(

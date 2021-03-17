@@ -3,7 +3,7 @@ package com.tanlifei.app.profile.ui.activity
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.core.base.listener.OnItemListener
+import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
 import com.common.widget.LoadingLayout
@@ -41,11 +41,16 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
         adapter = ManualAdapter()
         adapter.mData = viewModel.mData as MutableList<ManualBean>
         initRefreshView()
-        adapter.setOnItemChildClickListener(object :
-            OnItemListener<ItemManualBinding> {
-            override fun onItemClick(v: View, itemBinding: ItemManualBinding, position: Int) {
+        adapter.setOnItemClick(object :
+            OnItemClickListener<ItemManualBinding, ManualBean> {
+            override fun onItemClick(
+                binding: ItemManualBinding,
+                bean: ManualBean,
+                v: View,
+                position: Int
+            ) {
                 when (v) {
-                    itemBinding.item -> ManualDetailActivity.actionStart((viewModel.mData[position] as ManualBean).id)
+                    binding.item -> ManualDetailActivity.actionStart(bean.id)
                 }
             }
         })

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.listener.OnItemListener
+import com.common.core.base.listener.OnItemClickListener
 import com.common.utils.extension.click
 import java.util.*
 
@@ -27,7 +27,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
             field = value
             notifyItemRangeChanged(0, value.size)
         }
-    private var onItemListener: OnItemListener<V>? = null
+    private var onItemClickListener: OnItemClickListener<V, T>? = null
 
 
     /**
@@ -67,11 +67,16 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
         )
         addViewList(addChildClickViewIds(holder.binding))
         if (ObjectUtils.isNotEmpty(childClickViews)) {
-            onItemListener?.let {
+            onItemClickListener?.let {
                 for (v in childClickViews) {
                     v?.let {
                         it.click {
-                            setOnItemChildClick(v, holder.binding, holder.adapterPosition)
+                            setOnItemClick(
+                                holder.binding,
+                                mData[holder.adapterPosition],
+                                v,
+                                holder.adapterPosition
+                            )
                         }
                     }
                 }
@@ -98,12 +103,12 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
     abstract fun addChildClickViewIds(binding: V): LinkedHashSet<View>
 
 
-    protected open fun setOnItemChildClick(v: View, binding: V, position: Int) {
-        onItemListener?.onItemClick(v, binding, position)
+    protected open fun setOnItemClick(binding: V, bean: T, v: View, position: Int) {
+        onItemClickListener?.onItemClick(binding, bean, v, position)
     }
 
-    fun setOnItemChildClickListener(listener: OnItemListener<V>) {
-        this.onItemListener = listener
+    fun setOnItemClick(clickListener: OnItemClickListener<V, T>) {
+        this.onItemClickListener = clickListener
     }
 
 
