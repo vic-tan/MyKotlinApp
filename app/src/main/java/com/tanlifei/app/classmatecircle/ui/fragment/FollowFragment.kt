@@ -53,9 +53,9 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         super.initView()
         adapter = FollowAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
-        adapter.setOnItemClick(object :
+        adapter.setItemClickListener(object :
             OnItemClickListener<ItemFollowBinding, ClassmateCircleBean> {
-            override fun onItemClick(
+            override fun click(
                 binding: ItemFollowBinding,
                 bean: ClassmateCircleBean,
                 v: View,
@@ -110,6 +110,8 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
                     }
                 }
             }
+
+
         })
     }
 

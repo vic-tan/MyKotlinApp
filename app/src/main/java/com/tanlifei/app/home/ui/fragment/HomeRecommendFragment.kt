@@ -51,9 +51,9 @@ class HomeRecommendFragment :
         super.initView()
         adapter = HomeRecommentAdapter(context)
         adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
-        adapter.setOnItemClick(object :
+        adapter.setItemClickListener(object :
             OnItemClickListener<ItemHomeRecommentBinding, ClassmateCircleBean> {
-            override fun onItemClick(
+            override fun click(
                 itemBinding: ItemHomeRecommentBinding,
                 itemBan: ClassmateCircleBean,
                 v: View,

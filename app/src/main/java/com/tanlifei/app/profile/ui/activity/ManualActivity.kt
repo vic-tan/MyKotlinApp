@@ -41,7 +41,7 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
         adapter = ManualAdapter()
         adapter.mData = viewModel.mData as MutableList<ManualBean>
         initRefreshView()
-        adapter.setOnItemClick(object :
+        adapter.setItemClickListener(object :
             OnItemClickListener<ItemManualBinding, ManualBean> {
             override fun click(
                 binding: ItemManualBinding,

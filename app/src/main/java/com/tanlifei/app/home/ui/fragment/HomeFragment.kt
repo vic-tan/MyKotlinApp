@@ -132,9 +132,9 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         //Menu
         menuAdapter = MenuAdapter(context)
         menuAdapter.mData = viewModel.menuData
-        menuAdapter.setOnItemClick(object :
+        menuAdapter.setItemClickListener(object :
             OnItemClickListener<ItemHomeMenuBinding, MenuBean> {
-            override fun onItemClick(
+            override fun click(
                 itemBinding: ItemHomeMenuBinding,
                 itemBean: MenuBean,
                 v: View,
