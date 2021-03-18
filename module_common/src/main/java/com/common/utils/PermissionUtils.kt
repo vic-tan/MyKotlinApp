@@ -67,6 +67,21 @@ object PermissionUtils {
         )
     }
 
+    /**
+     * 请求SDCard权限
+     */
+    fun requestSDCardPermission(
+        context: Context,
+        callback: PermissionCallback
+    ) {
+        requestPermission(
+            context,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            callback = callback
+        )
+    }
+
     interface PermissionCallback {
         fun allGranted()
         fun denied(deniedList: MutableList<String>) {}

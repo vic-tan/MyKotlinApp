@@ -57,7 +57,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
         _mActivity = this
         baseBinding = ActivityBaseBinding.inflate(layoutInflater)
         titleBar = baseBinding.toolbar
-        titleBar.setLeftIcon(R.mipmap.ic_back_black)
+        titleBar.setLeftIcon(R.mipmap.ic_arrow_left_black)
         hud = XPopup.Builder(this)
             .popupAnimation(PopupAnimation.NoAnimation)
             .hasShadowBg(false)

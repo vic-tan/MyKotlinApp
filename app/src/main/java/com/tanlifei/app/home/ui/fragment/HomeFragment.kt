@@ -15,6 +15,7 @@ import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
+import com.common.utils.PhotoUtils
 import com.common.utils.RecyclerUtils
 import com.common.utils.extension.click
 import com.common.utils.extension.toast
@@ -28,6 +29,7 @@ import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.youth.banner.indicator.RectangleIndicator
+import com.youth.banner.listener.OnBannerListener
 
 /**
  * @desc:首页
@@ -139,7 +141,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         var headerBinding = header as HomeHeaderBinding
 
         //banner
-        bannerAdapter = HomeBannerAdapter(context, viewModel.bannerData)
+        bannerAdapter =
+            HomeBannerAdapter(context, headerBinding.banner.viewPager2, viewModel.bannerData)
         headerBinding.banner.addBannerLifecycleObserver(this) //添加生命周期观察者
             .setAdapter(bannerAdapter).indicator = RectangleIndicator(context)
 

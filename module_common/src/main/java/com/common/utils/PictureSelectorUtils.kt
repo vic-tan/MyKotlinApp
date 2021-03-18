@@ -83,7 +83,7 @@ object PictureSelectorUtils {
         uiStyle.picture_navBarColor = color(R.color.white)
         uiStyle.picture_check_style = R.drawable.picture_checkbox_selector
 
-        uiStyle.picture_top_leftBack = R.mipmap.ic_back_black
+        uiStyle.picture_top_leftBack = R.mipmap.ic_arrow_left_black
         uiStyle.picture_top_titleRightTextColor = intArrayOf(
             color(R.color.black),
             color(R.color.black)
