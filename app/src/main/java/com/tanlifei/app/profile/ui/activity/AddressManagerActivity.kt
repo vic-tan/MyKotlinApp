@@ -15,8 +15,8 @@ import com.common.cofing.constant.GlobalConst
 import com.common.core.base.bean.UserBean
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.utils.extension.clickListener
+import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
-import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityAddressManngerBinding
 import com.tanlifei.app.profile.bean.AreaBean
@@ -89,7 +89,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
             initAreaOptionPicker()
         })
         viewModel.editAddressComplete.observe(this, Observer {
-            ToastUtils.show("保存成功")
+            toast("保存成功")
             val i = Intent()
             i.putExtra(GlobalConst.Extras.ID, it)
             setResult(RESULT_OK, i)
@@ -189,15 +189,15 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
     private fun checkContent(): Boolean {
         val userName: String = binding.name.text.toString().trim { it <= ' ' }
         if (TextUtils.isEmpty(userName)) {
-            ToastUtils.show("收货人不能为空")
+            toast("收货人不能为空")
             return false
         }
 
         if (TextUtils.isEmpty(binding.phone.text.toString().trim { it <= ' ' })) {
-            ToastUtils.show("联系方式不能为空")
+            toast("联系方式不能为空")
             return false
         } else if (!RegexUtils.isMobileSimple(binding.phone.text)) {
-            ToastUtils.show("请输入正确的手机号码")
+            toast("请输入正确的手机号码")
             return false
         }
 
@@ -205,16 +205,16 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
                 binding.email.text.toString().trim { it <= ' ' }
             ) && !RegexUtils.isEmail(binding.email.text)
         ) {
-            ToastUtils.show("请输入正确电子邮箱")
+            toast("请输入正确电子邮箱")
             return false
         }
 
         if (TextUtils.isEmpty(binding.area.text)) {
-            ToastUtils.show("请选择所在地区")
+            toast("请选择所在地区")
             return false
         }
         if (TextUtils.isEmpty(binding.areaDetails.text.toString().trim { it <= ' ' })) {
-            ToastUtils.show("请填写详细地址")
+            toast("请填写详细地址")
             return false
         }
         viewModel.addressBean?.username = userName

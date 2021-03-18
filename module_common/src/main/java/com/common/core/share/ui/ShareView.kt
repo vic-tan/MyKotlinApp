@@ -7,7 +7,7 @@ import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.databinding.LayoutShareBinding
 import com.common.utils.extension.clickListener
-import com.hjq.toast.ToastUtils
+import com.common.utils.extension.toast
 import com.lxj.xpopup.core.BottomPopupView
 
 /**
@@ -98,7 +98,7 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
                 }
             }
         }
-        ToastUtils.show("请求先安装微信客户端再分享")
+        toast("请求先安装微信客户端再分享")
         return false
     }
 

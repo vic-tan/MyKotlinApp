@@ -11,8 +11,8 @@ import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.ImageLoader
+import com.common.utils.extension.toast
 import com.common.widget.LoadingLayout
-import com.hjq.toast.ToastUtils
 import com.lxj.xpopup.XPopup
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
@@ -75,7 +75,7 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
                                             v: View,
                                             type: ShareView.ShareType
                                         ) {
-                                            ToastUtils.show(type.name)
+                                            toast(type.name)
                                         }
 
                                     })

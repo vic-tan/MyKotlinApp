@@ -3,8 +3,8 @@ package com.example.httpsender.kt
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.Utils
 import com.common.R
+import com.common.utils.extension.toast
 import com.google.gson.JsonSyntaxException
-import com.hjq.toast.ToastUtils
 import rxhttp.wrapper.exception.HttpStatusCodeException
 import rxhttp.wrapper.exception.ParseException
 import java.net.ConnectException
@@ -22,7 +22,7 @@ fun Throwable.show(errorCode: Int, errorMsg: String) {
 }
 
 fun String.show(errorCode: Int, errorMsg: String) {
-    ToastUtils.show(errorMsg)
+    toast(errorMsg)
 }
 
 val Throwable.errorCode: Int

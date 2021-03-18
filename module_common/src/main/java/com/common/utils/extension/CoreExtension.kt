@@ -4,8 +4,10 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.BuildConfig
 import com.common.ComFun
+import com.hjq.toast.ToastUtils
 
 
 /**
@@ -23,7 +25,7 @@ fun globalContext() = ComFun.context
 /**
  * 点击事件
  */
-fun clickListener( vararg views: View,clickListener: View.OnClickListener) {
+fun clickListener(vararg views: View, clickListener: View.OnClickListener) {
     for (i in views.indices) {
         views[i].click {
             clickListener.onClick(it)
@@ -37,6 +39,22 @@ fun clickListener( vararg views: View,clickListener: View.OnClickListener) {
  */
 fun log(content: String?) {
     if (BuildConfig.DEBUG) Log.i("[tlf_log]", content ?: "")
+}
+
+/**
+ * toast
+ */
+fun toast(content: String?) {
+    if (ObjectUtils.isNotEmpty(content)) {
+        ToastUtils.show(content)
+    }
+}
+
+/**
+ * toast
+ */
+fun toast(strId: Int?) {
+    ToastUtils.show(strId)
 }
 
 

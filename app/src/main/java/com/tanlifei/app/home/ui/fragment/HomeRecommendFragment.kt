@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
+import com.common.utils.extension.toast
 import com.common.widget.LoadingLayout
-import com.hjq.toast.ToastUtils
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.FragmentFollowBinding
@@ -60,7 +60,7 @@ class HomeRecommendFragment :
                 position: Int
             ) {
                 when (v) {
-                    itemBinding.item -> ToastUtils.show(itemBan.nickName)
+                    itemBinding.item -> toast(itemBan.nickName)
                 }
             }
         })

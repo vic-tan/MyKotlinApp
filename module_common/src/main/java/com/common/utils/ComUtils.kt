@@ -11,6 +11,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.core.bean.UpdateAppBean
 import com.common.core.environment.utils.EnvironmentChangeManager
+import com.common.utils.extension.toast
 import com.hjq.toast.ToastUtils
 import constant.UiType
 import listener.OnBtnClickListener
@@ -35,7 +36,7 @@ object ComUtils {
         var tExit: Timer?
         if (!isExit) {
             isExit = true // 准备退出
-            ToastUtils.show(R.string.app_exit)
+            toast(R.string.app_exit)
             tExit = Timer()
             tExit.schedule(object : TimerTask() {
                 override fun run() {
@@ -108,7 +109,7 @@ object ComUtils {
             // 设置 立即更新 按钮点击事件
             .setUpdateBtnClickListener(object : OnBtnClickListener {
                 override fun onClick(): Boolean {
-                    ToastUtils.show("正在下载中...")
+                    toast("正在下载中...")
                     return false // 事件是否消费，是否需要传递下去。false-会执行原有点击逻辑，true-只执行本次设置的点击逻辑
                 }
             })

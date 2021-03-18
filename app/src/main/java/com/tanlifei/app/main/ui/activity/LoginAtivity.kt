@@ -18,12 +18,8 @@ import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.ComUtils
-import com.common.utils.extension.clickEnable
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.color
-import com.common.utils.extension.setVisible
+import com.common.utils.extension.*
 import com.common.widget.TextInputHelper
-import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiConst.URL_PRIVATE_AGREEMENT
 import com.tanlifei.app.common.config.api.ApiConst.URL_USER_AGREEMENT
@@ -196,17 +192,17 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun checkFormInfo(phone: String, code: String): Boolean {
         if (phone.isEmpty()) {
-            ToastUtils.show("请输入手机号")
+            toast("请输入手机号")
             return false
         } else if (!RegexUtils.isMobileSimple(phone)) {
-            ToastUtils.show("请输入正确的手机号码")
+            toast("请输入正确的手机号码")
             return false
         }
         if (code.isEmpty()) {
-            ToastUtils.show("请输入验证码")
+            toast("请输入验证码")
             return false
         } else if (code.length < 4) {
-            ToastUtils.show("请输入4位验证码")
+            toast("请输入4位验证码")
             return false
         }
         return true
@@ -217,10 +213,10 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun checkPhone(phone: String): Boolean {
         if (phone.isEmpty()) {
-            ToastUtils.show("请输入手机号")
+            toast("请输入手机号")
             return false
         } else if (!RegexUtils.isMobileSimple(phone)) {
-            ToastUtils.show("请输入正确的手机号码")
+            toast("请输入正确的手机号码")
             return false
         }
         return true

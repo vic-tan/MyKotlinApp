@@ -17,8 +17,7 @@ import com.common.core.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.common.utils.extension.click
-import com.hjq.toast.ToastUtils
-import com.tanlifei.app.R
+import com.common.utils.extension.toast
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.*
 import com.tanlifei.app.home.adapter.HomeAdapter
@@ -105,7 +104,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
                     is ItemHomeBinding -> {
                         when (v) {
                             holder.item -> {
-                                ToastUtils.show(itemBean.nickName)
+                                toast(itemBean.nickName)
                             }
                         }
                     }
@@ -157,7 +156,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
                 position: Int
             ) {
                 when (v) {
-                    itemBinding.item -> ToastUtils.show(itemBean.name)
+                    itemBinding.item -> toast(itemBean.name)
                 }
             }
         })
@@ -181,7 +180,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         )
 
         headerBinding.more.click {
-            ToastUtils.show(it.text.toString())
+            toast(it.text.toString())
         }
 
     }
@@ -194,7 +193,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         )
         var footerBinding = footer as HomeFooterBinding
         footerBinding.adjustment.click {
-            ToastUtils.show(it.text.toString())
+            toast(it.text.toString())
         }
     }
 
