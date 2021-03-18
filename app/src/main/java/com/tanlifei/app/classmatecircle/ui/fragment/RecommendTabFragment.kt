@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.GlideUtils
-import com.common.utils.ResUtils
+import com.common.utils.extension.color
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.databinding.FragmentClassmatecircleRecommendBinding
@@ -94,12 +94,12 @@ class RecommendTabFragment :
                 commonPagerTitleView.onPagerTitleChangeListener = object :
                     OnPagerTitleChangeListener {
                     override fun onSelected(index: Int, totalCount: Int) {
-                        titleText.setTextColor(ResUtils.getColor(R.color.theme_color))
+                        titleText.setTextColor(color(R.color.theme_color))
                         GlideUtils.load(context, viewModel.mData[index].iconSelect, titleImg)
                     }
 
                     override fun onDeselected(index: Int, totalCount: Int) {
-                        titleText.setTextColor(ResUtils.getColor(R.color.color_96A8BB))
+                        titleText.setTextColor(color(R.color.color_96A8BB))
                         GlideUtils.load(context, viewModel.mData[index].iconDefault, titleImg)
                     }
 

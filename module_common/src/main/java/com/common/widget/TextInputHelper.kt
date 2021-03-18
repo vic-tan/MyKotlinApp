@@ -1,11 +1,12 @@
 package com.common.widget
 
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.TextView
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
-import com.common.utils.ResUtils
+import com.common.utils.extension.color
 import com.ruffian.library.widget.RTextView
 import java.util.*
 
@@ -15,9 +16,10 @@ import java.util.*
  * @date: 2021/1/28 17:40
  */
 class TextInputHelper(
-    private val mBtnView: RTextView,
-    private val mColorNormal: Int = R.color.theme_color,
-    private val mEnabledColor: Int = R.color.enabled_color
+    var context: Context,
+    var mTargetView: RTextView,
+    private var mColorNormal: Int = R.color.theme_color,
+    private var mEnabledColor: Int = R.color.enabled_color
 ) : TextWatcher {
     private var mViewSet: MutableList<TextView>? = null //TextView集合，子类也可以（EditText、TextView、Button）
 
@@ -67,15 +69,15 @@ class TextInputHelper(
      * @param enabled 启用或者禁用View的事件
      */
     private fun setEnabled(enabled: Boolean) {
-        if (enabled == mBtnView.isEnabled) return
+        if (enabled == mTargetView.isEnabled) return
         if (enabled) {
             //启用View的事件
-            mBtnView.isEnabled = true
-            mBtnView.helper.backgroundColorNormal = ResUtils.getColor(mColorNormal)
+            mTargetView.isEnabled = true
+            mTargetView.helper.backgroundColorNormal = color(mColorNormal)
         } else {
             //禁用View的事件
-            mBtnView.isEnabled = false
-            mBtnView.helper.backgroundColorNormal = ResUtils.getColor(mEnabledColor)
+            mTargetView.isEnabled = false
+            mTargetView.helper.backgroundColorNormal = color(mEnabledColor)
         }
     }
 

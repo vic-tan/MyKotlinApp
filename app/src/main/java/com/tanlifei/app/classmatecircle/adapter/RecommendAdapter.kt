@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
-import com.common.utils.ResUtils
+import com.common.utils.extension.drawable
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
@@ -69,7 +69,7 @@ class RecommendAdapter(var context: Context?) :
 
         holder.binding.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
         holder.binding.praiseCount.helper.iconNormalLeft =
-            ResUtils.getDrawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+            drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
 
         GlideUtils.load(context, bean.image?.url, holder.binding.cover)
         holder.binding.cover.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT

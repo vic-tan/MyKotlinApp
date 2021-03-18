@@ -18,9 +18,9 @@ import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.ComUtils
-import com.common.utils.ResUtils
 import com.common.utils.extension.clickEnable
 import com.common.utils.extension.clickListener
+import com.common.utils.extension.color
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
@@ -150,7 +150,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
-        mInputHelper = TextInputHelper(binding.login)
+        mInputHelper = TextInputHelper(this,binding.login)
         mInputHelper.addViews(binding.phone, binding.code)
     }
 
@@ -160,8 +160,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun setProtocolTxt() {
         val protocolBuild = SimplifySpanBuild()
-        protocolBuild.append(SpecialTextUnit("登录即代表您已同意").setTextColor(ResUtils.getColor(R.color.color_666666)))
-        protocolBuild.append(SpecialTextUnit("《用户协议》").setTextColor(ResUtils.getColor(R.color.color_A47E68))
+        protocolBuild.append(SpecialTextUnit("登录即代表您已同意").setTextColor(color(R.color.color_666666)))
+        protocolBuild.append(SpecialTextUnit("《用户协议》").setTextColor(color(R.color.color_A47E68))
             .setClickableUnit(
                 SpecialClickableUnit(binding.protocolTxt,
                     OnClickableSpanListener { v: TextView, _: CustomClickableSpan? ->
@@ -173,10 +173,10 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
                         }
                     }
                 )
-                    .setPressBgColor(ResUtils.getColor(R.color.white))
+                    .setPressBgColor(color(R.color.white))
             ))
-        protocolBuild.append(SpecialTextUnit("和").setTextColor(ResUtils.getColor(R.color.color_666666)))
-        protocolBuild.append(SpecialTextUnit("《隐私政策》").setTextColor(ResUtils.getColor(R.color.color_A47E68))
+        protocolBuild.append(SpecialTextUnit("和").setTextColor(color(R.color.color_666666)))
+        protocolBuild.append(SpecialTextUnit("《隐私政策》").setTextColor(color(R.color.color_A47E68))
             .setClickableUnit(
                 SpecialClickableUnit(binding.protocolTxt,
                     OnClickableSpanListener { v: TextView, _: CustomClickableSpan? ->
@@ -188,7 +188,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
                         }
                     }
                 )
-                    .setPressBgColor(ResUtils.getColor(R.color.white))))
+                    .setPressBgColor(color(R.color.white))))
         binding.protocolTxt.text = protocolBuild.build()
     }
 
@@ -248,7 +248,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun onIntervalStart() {
         binding.codeBtn.isClickable = false //在发送数据的时候设置为不能点击
-        binding.codeBtn.setTextColor(ResUtils.getColor(R.color.color_999999))
+        binding.codeBtn.setTextColor(color(R.color.color_999999))
     }
 
     /**
@@ -264,7 +264,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun onIntervalComplete() {
         binding.codeBtn.isClickable = true
-        binding.codeBtn.setTextColor(ResUtils.getColor(R.color.theme_color))
+        binding.codeBtn.setTextColor(color(R.color.theme_color))
         binding.codeBtn.text = "点击获取"
     }
 

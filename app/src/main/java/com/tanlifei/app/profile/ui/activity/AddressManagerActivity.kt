@@ -62,7 +62,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
-        mInputHelper = TextInputHelper(binding.enter)
+        mInputHelper = TextInputHelper(this,binding.enter)
         mInputHelper.addViews(
             binding.name,
             binding.phone,

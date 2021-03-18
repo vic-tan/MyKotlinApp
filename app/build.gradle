@@ -66,6 +66,7 @@ android {
 
     }
 
+
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             def moduleName = "app"
@@ -76,6 +77,8 @@ android {
             }
         }
     }
+
+
 
     repositories {
         flatDir {

@@ -17,6 +17,7 @@ import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
 import com.common.utils.extension.clickListener
+import com.common.utils.extension.color
 import com.common.widget.popup.BottomInputEditView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnConfirmListener
@@ -81,7 +82,7 @@ class ClassmateCircleDetailActivity :
             ViewGroup.LayoutParams.MATCH_PARENT,
             ConvertUtils.dp2px(300f)
         )
-        emptyView.root.setBackgroundColor(ResUtils.getColor(R.color.white))
+        emptyView.root.setBackgroundColor(color(R.color.white))
         val emptyBinding = emptyView as LayoutLoadingEmptyBinding
         emptyBinding.emptyText.text = "暂无评论，说两句吧~"
     }

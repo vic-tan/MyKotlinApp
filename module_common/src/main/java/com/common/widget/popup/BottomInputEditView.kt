@@ -65,7 +65,7 @@ class BottomInputEditView(
      */
     private fun initTextInputHelper() {
         if (ObjectUtils.isNotEmpty(binding)) {
-            mInputHelper = TextInputHelper(binding.enter)
+            mInputHelper = TextInputHelper(context,binding.enter)
             mInputHelper.addViews(binding.etInput)
             binding.etInput.addTextChangedListener(this)
         }

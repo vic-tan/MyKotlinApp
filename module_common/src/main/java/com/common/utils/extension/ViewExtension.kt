@@ -22,15 +22,16 @@ val View.isInVisible: Boolean
 val View.isGone: Boolean
     get() = visibility == View.GONE
 
-//dp转px
-fun View.dp2px(value: Int) = (value * resources.displayMetrics.density).toInt()
-
-fun View.dp2px(value: Float) = (value * resources.displayMetrics.density).toInt()
-
-//sp转px
-fun View.sp2px(value: Int) = (value * resources.displayMetrics.scaledDensity).toInt()
-
-fun View.sp2px(value: Float) = (value * resources.displayMetrics.scaledDensity).toInt()
+/**
+ * view 显示隐藏
+ */
+fun View.visibleOrGone(show: Boolean) {
+    if (show) {
+        this.visibility = View.VISIBLE
+    } else {
+        this.visibility = View.GONE
+    }
+}
 
 /**
  * 隐藏键盘
@@ -65,8 +66,6 @@ fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener {
 }
 
 
-
-
 /**
  * 长按点击
  */
@@ -74,7 +73,9 @@ fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener {
     block(it as T)
 }
 
-//是否可以点击
+/**
+ * 是否可以点击
+ */
 fun <T : View> T.clickEnable(): Boolean {
     var flag = false
     val currentClickTime = System.currentTimeMillis()
@@ -85,14 +86,18 @@ fun <T : View> T.clickEnable(): Boolean {
     return flag
 }
 
-//最后点击时间
+/**
+ * 最后点击时间
+ */
 private var <T : View> T.triggerLastTime: Long
     get() = if (getTag(1123460103) != null) getTag(1123460103) as Long else 0
     set(value) {
         setTag(1123460103, value)
     }
 
-//点击延迟时间，默认500ms
+/**
+ * 点击延迟时间，默认500ms
+ */
 private var <T : View> T.triggerDelay: Long
     get() = if (getTag(1123461123) != null) getTag(1123461123) as Long else 500
     set(value) {
