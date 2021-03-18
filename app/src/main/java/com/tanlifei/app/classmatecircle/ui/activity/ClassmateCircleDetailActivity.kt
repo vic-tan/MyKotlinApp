@@ -21,6 +21,7 @@ import com.common.utils.ImageLoader
 import com.common.utils.RecyclerUtils
 import com.common.utils.extension.clickListener
 import com.common.utils.extension.color
+import com.common.utils.extension.setVisible
 import com.common.widget.popup.BottomInputEditView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnConfirmListener
@@ -172,8 +173,7 @@ class ClassmateCircleDetailActivity :
         )
         headerBinding.name.text = bean?.nickName
         headerBinding.school.text = bean?.universityName
-        headerBinding.school.visibility =
-            if (ObjectUtils.isEmpty(bean?.universityName)) View.GONE else View.VISIBLE
+        headerBinding.school.setVisible(ObjectUtils.isNotEmpty(bean?.universityName))
         headerBinding.content.text = bean?.content
         headerBinding.commentTime.text = bean?.createtimeStr + ""
         if (bean?.isFollower === 1) {
@@ -185,8 +185,7 @@ class ClassmateCircleDetailActivity :
         } else {
             headerBinding.attention.text = "  关注  "
         }
-        headerBinding.topicLayout.visibility =
-            if (ObjectUtils.isEmpty(bean?.entertainmentTopicName)) View.GONE else View.VISIBLE
+        headerBinding.topicLayout.setVisible(ObjectUtils.isNotEmpty(bean?.entertainmentTopicName))
         headerBinding.topicTxt.text = bean?.entertainmentTopicName + ""
         headerBinding.totalCommentCount.text =
             bean?.comment?.let { "共${NumberUtils.setCommentCount("0", it)}条评论" }

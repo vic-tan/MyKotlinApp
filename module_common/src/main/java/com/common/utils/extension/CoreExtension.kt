@@ -31,6 +31,7 @@ fun clickListener( vararg views: View,clickListener: View.OnClickListener) {
     }
 }
 
+
 /**
  * 打印日志
  */

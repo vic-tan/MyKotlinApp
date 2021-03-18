@@ -10,6 +10,7 @@ import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
+import com.common.utils.extension.setVisible
 import com.tanlifei.app.databinding.ActivityMainBinding
 import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
@@ -41,7 +42,7 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
         initViewModel()
         initViewModelObserve()
         initListener()
-        binding.navigatorTab.getMsgBadge().visibility = View.VISIBLE
+        binding.navigatorTab.getMsgBadge().setVisible(true)
     }
 
     /**

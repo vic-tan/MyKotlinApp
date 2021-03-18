@@ -8,6 +8,8 @@ import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
+import com.common.utils.extension.setVisible
+import com.common.utils.extension.visible
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.ItemHomeBinding
 import java.util.*
@@ -47,15 +49,9 @@ class HomeAdapter(var context: Context?) :
         holder.desc.text = bean.content
         holder.time.text = "05月23日 15:20"
         GlideUtils.load(context, bean.image?.url, holder.cover)
-        if (position == 0) {
-            holder.headerTitleSplit.visibility = View.VISIBLE
-            holder.headerTitle.visibility = View.VISIBLE
-            holder.headerTitleLine.visibility = View.VISIBLE
-        } else {
-            holder.headerTitleSplit.visibility = View.GONE
-            holder.headerTitle.visibility = View.GONE
-            holder.headerTitleLine.visibility = View.GONE
-        }
+        holder.headerTitleSplit.setVisible(position == 0)
+        holder.headerTitle.setVisible(position == 0)
+        holder.headerTitleLine.setVisible(position == 0)
     }
 
 

@@ -21,6 +21,7 @@ import com.common.utils.ComUtils
 import com.common.utils.extension.clickEnable
 import com.common.utils.extension.clickListener
 import com.common.utils.extension.color
+import com.common.utils.extension.setVisible
 import com.common.widget.TextInputHelper
 import com.hjq.toast.ToastUtils
 import com.tanlifei.app.R
@@ -52,8 +53,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         return LoginViewModel()
     }
 
-    override fun hideToolbar(): Boolean {
-        return true
+    override fun visibleToolbar(): Boolean {
+        return false
     }
 
     override fun init() {
@@ -98,7 +99,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         })
 
         viewModel.isContinuousClick.observe(this, Observer {
-            binding.changeEnvironment.visibility = if (it) View.VISIBLE else View.GONE
+            binding.changeEnvironment.setVisible(it)
         })
 
     }
@@ -147,7 +148,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
-        mInputHelper = TextInputHelper(this,binding.login)
+        mInputHelper = TextInputHelper(this, binding.login)
         mInputHelper.addViews(binding.phone, binding.code)
     }
 

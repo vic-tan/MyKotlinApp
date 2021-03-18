@@ -24,12 +24,26 @@ val View.isGone: Boolean
 /**
  * view 显示隐藏
  */
-fun View.visibleOrGone(show: Boolean) {
+fun View.setVisible(show: Boolean) {
     if (show) {
         this.visibility = View.VISIBLE
     } else {
         this.visibility = View.GONE
     }
+}
+
+/**
+ * view 显示隐藏
+ */
+fun View.visible() {
+    setVisible(true)
+}
+
+/**
+ * view 显示隐藏
+ */
+fun View.gone() {
+    setVisible(false)
 }
 
 /**

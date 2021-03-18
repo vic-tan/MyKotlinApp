@@ -11,6 +11,7 @@ import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
 import com.common.utils.extension.drawable
+import com.common.utils.extension.setVisible
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
@@ -44,29 +45,19 @@ class RecommendAdapter(var context: Context?) :
         binding: ItemRecommendBinding,
         bean: ClassmateCircleBean
     ) {
-        when (source) {
-            //审核状态:1=有效,0=无效
-            1 ->
-                holder.binding.caveat.visibility =
-                    if (bean.checkStatus == 0 && bean.uid == UserInfoUtils.getUid()) View.VISIBLE else View.GONE
-            else -> holder.binding.caveat.visibility = View.GONE
-        }
+        //审核状态:1=有效,0=无效
+        holder.binding.caveat.setVisible(source == 1 && bean.checkStatus == 0 && bean.uid == UserInfoUtils.getUid())
         holder.binding.userName.text = bean.nickName
         GlideUtils.loadAvatar(context, bean.avatar, holder.binding.userHead)
 
-        holder.binding.play.visibility = if (bean.mediaType == 1) View.VISIBLE else View.GONE
+        holder.binding.play.setVisible(bean.mediaType == 1)
 
         holder.binding.content.text = bean.content
-        holder.binding.content.visibility =
-            if (ObjectUtils.isNotEmpty(bean.content)) View.VISIBLE else View.GONE
-
-        holder.binding.topicLayout.visibility =
-            if (ObjectUtils.isEmpty(bean.entertainmentTopicName)) View.GONE else View.VISIBLE
+        holder.binding.content.setVisible(ObjectUtils.isNotEmpty(bean.content))
+        holder.binding.topicLayout.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTopicName))
         holder.binding.topicTxt.text = bean.entertainmentTopicName
         holder.binding.tag.text = bean.entertainmentTagName
-        holder.binding.tag.visibility =
-            if (ObjectUtils.isEmpty(bean.entertainmentTagName)) View.GONE else View.VISIBLE
-
+        holder.binding.tag.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTagName))
         holder.binding.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
         holder.binding.praiseCount.helper.iconNormalLeft =
             drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)

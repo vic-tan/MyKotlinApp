@@ -15,6 +15,8 @@ import com.common.R
 import com.common.core.base.event.BaseEvent
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.databinding.ActivityBaseBinding
+import com.common.utils.extension.gone
+import com.common.utils.extension.setVisible
 import com.common.widget.popup.CustomLoadingView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
@@ -80,7 +82,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
         }
         setContentView(baseBinding.root)
         initLayout()
-        setToolbar(View.GONE)
+        setToolbar(false)
         setOrientation()
         initImmersionBar()
         initBefore()
@@ -97,7 +99,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
      * 沉浸式
      */
     open fun initImmersionBar() {
-        baseBinding.statusBarView.visibility = View.GONE
+        baseBinding.statusBarView.gone()
         immersionBar() {
             statusBarDarkFont(true, 0.2f)
         }
@@ -114,8 +116,8 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
      * 是否显示状态栏
      */
 
-    open fun setToolbar(visibility: Int) {
-        titleBar.visibility = visibility
+    open fun setToolbar(visible: Boolean) {
+        titleBar.setVisible(visible)
     }
 
     /**

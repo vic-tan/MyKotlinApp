@@ -9,6 +9,7 @@ import com.common.ComFun
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
+import com.common.utils.extension.setVisible
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ItemCommentBinding
@@ -49,11 +50,9 @@ class CommentAdapter :
         holder.content.text = bean.content
         holder.time.text = bean.createTimeStr
         holder.school.text = bean.universityName
-        holder.school.visibility =
-            if (ObjectUtils.isEmpty(bean.universityName)) View.GONE else View.VISIBLE
+        holder.school.setVisible(ObjectUtils.isNotEmpty(bean.universityName))
         GlideUtils.loadAvatar(ComFun.context, bean.avatar, holder.userHead)
-        holder.delete.visibility =
-            if (UserInfoUtils.getUid() == bean.uid) View.VISIBLE else View.GONE
+        holder.delete.setVisible(UserInfoUtils.getUid() == bean.uid)
     }
 
 

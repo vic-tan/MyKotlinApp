@@ -2,11 +2,11 @@ package com.tanlifei.app.main.adapter
 
 import android.app.Activity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.SPUtils
+import com.common.utils.extension.setVisible
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.databinding.ItemGuideBinding
 import com.tanlifei.app.main.ui.activity.LoginAtivity
@@ -35,7 +35,7 @@ open class GuideAdapter(activity: Activity, datas: MutableList<Int>) :
         size: Int
     ) {
         holder.binding.image.setImageResource(data)
-        holder.binding.startBtn.visibility = if (position == mDatas.size - 1) View.VISIBLE else View.GONE
+        holder.binding.startBtn.setVisible(position == mDatas.size - 1)
         holder.binding.startBtn.setOnClickListener {
             SPUtils.getInstance().put(Const.SPKey.GUIDE, false)
             ActivityUtils.startActivity(LoginAtivity::class.java)

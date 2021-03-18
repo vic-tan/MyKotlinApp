@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.target.ImageViewTarget
 import com.common.R
+import com.common.utils.extension.setVisible
 import com.luck.picture.lib.engine.ImageEngine
 import com.luck.picture.lib.listener.OnImageCompleteCallback
 import com.luck.picture.lib.tools.MediaUtils
@@ -83,8 +84,8 @@ object GlideEngine : ImageEngine {
                             resource.width,
                             resource.height
                         )
-                        longImageView!!.visibility = if (eqLongImage) View.VISIBLE else View.GONE
-                        imageView.visibility = if (eqLongImage) View.GONE else View.VISIBLE
+                        longImageView!!.setVisible(eqLongImage)
+                        imageView.setVisible(!eqLongImage)
                         if (eqLongImage) {
                             // 加载长图
                             longImageView!!.isQuickScaleEnabled = true

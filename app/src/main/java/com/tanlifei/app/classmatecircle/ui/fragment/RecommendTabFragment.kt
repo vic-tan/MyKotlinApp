@@ -11,6 +11,7 @@ import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.GlideUtils
 import com.common.utils.extension.color
+import com.common.utils.extension.setVisible
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.databinding.FragmentClassmatecircleRecommendBinding
@@ -85,10 +86,7 @@ class RecommendTabFragment :
                     customLayout.findViewById<View>(R.id.name) as TextView
                 val lineRight =
                     customLayout.findViewById<View>(R.id.line_right) as View
-                when (index) {
-                    viewModel.mData.size - 1 -> lineRight.visibility = View.VISIBLE
-                    else -> lineRight.visibility = View.GONE
-                }
+                lineRight.setVisible(index == viewModel.mData.size - 1)
                 titleText.text = viewModel.mData[index].name
                 commonPagerTitleView.setContentView(customLayout)
                 commonPagerTitleView.onPagerTitleChangeListener = object :

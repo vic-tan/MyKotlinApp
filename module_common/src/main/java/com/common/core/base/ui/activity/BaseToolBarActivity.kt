@@ -6,6 +6,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
 import com.common.core.base.viewmodel.BaseViewModel
+import com.common.utils.extension.visible
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.OnTitleBarListener
 
@@ -18,7 +19,7 @@ open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setToolbar(if (hideToolbar()) View.GONE else View.VISIBLE)
+        setToolbar(visibleToolbar())
         setTitleBarListener()
     }
 
@@ -41,7 +42,7 @@ open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
      * 沉浸式
      */
     override fun initImmersionBar() {
-        baseBinding.statusBarView.visibility = View.VISIBLE
+        baseBinding.statusBarView.visible()
         immersionBar() {
             statusBarDarkFont(true, 0.2f)
             statusBarView(baseBinding.statusBarView)
@@ -49,8 +50,8 @@ open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
         }
     }
 
-    open fun hideToolbar(): Boolean {
-        return false
+    open fun visibleToolbar(): Boolean {
+        return true
     }
 
 

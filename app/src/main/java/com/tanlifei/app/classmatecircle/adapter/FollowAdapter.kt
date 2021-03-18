@@ -1,7 +1,6 @@
 package com.tanlifei.app.classmatecircle.adapter
 
 import android.content.Context
-import android.text.TextUtils
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
+import com.common.utils.extension.setVisible
 import com.common.widget.ExpandTextView
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -25,7 +25,8 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/24 16:02
  */
-class FollowAdapter(var context: Context?) : CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() {
+class FollowAdapter(var context: Context?) :
+    CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() {
 
     private var screenWidth = ScreenUtils.getScreenWidth()
     private var textViewWidth = screenWidth - ConvertUtils.dp2px(30f)
@@ -77,18 +78,15 @@ class FollowAdapter(var context: Context?) : CommonRvAdapter<ClassmateCircleBean
             textViewWidth,
             state ?: 0
         )
-        holder.binding.expandTextView.visibility =
-            if (TextUtils.isEmpty(bean.content)) View.GONE else View.VISIBLE
-        holder.binding.marginView.visibility =
-            if (TextUtils.isEmpty(bean.content)) View.GONE else View.VISIBLE
-
+        holder.binding.expandTextView.setVisible(ObjectUtils.isNotEmpty(bean.content))
+        holder.binding.marginView.setVisible(ObjectUtils.isNotEmpty(bean.content))
         holder.binding.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
         holder.binding.praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
         holder.binding.commentCount.text = NumberUtils.setCommentCount(bean.comment)
     }
 
     override fun addChildClickViewIds(binding: ItemFollowBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.more, binding.shareLayout,binding.banner)
+        return linkedSetOf(binding.more, binding.shareLayout, binding.banner)
     }
 
 }

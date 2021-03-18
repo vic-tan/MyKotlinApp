@@ -3,7 +3,6 @@ package com.common.core.base.ui.activity
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
-import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -13,6 +12,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.databinding.ActivityBaseWebBinding
+import com.common.utils.extension.setVisible
 
 /**
  * @desc:公用的WebView
@@ -90,11 +90,10 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
         }
         binding.webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {
+                binding.progressBar.setVisible(newProgress != 100)
                 if (newProgress == 100) {
-                    binding.progressBar.visibility = View.GONE
                     binding.progressBar.progress = 0
                 } else {
-                    binding.progressBar.visibility = View.VISIBLE
                     binding.progressBar.progress = newProgress
                 }
             }

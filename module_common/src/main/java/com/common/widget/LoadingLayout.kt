@@ -16,6 +16,9 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import com.common.R
+import com.common.utils.extension.gone
+import com.common.utils.extension.setVisible
+import com.common.utils.extension.visible
 import java.util.*
 
 /**
@@ -28,6 +31,7 @@ class LoadingLayout : FrameLayout {
     var btn: TextView? = null
     var txt: TextView? = null
     var descTxt: TextView? = null
+
     constructor(context: Context) : super(context) {
         init(context, null, R.attr.styleLoadingLayout)
     }
@@ -268,9 +272,9 @@ class LoadingLayout : FrameLayout {
 
     private fun show(layoutId: Int) {
         for (view in mLayouts.values) {
-            view!!.visibility = View.GONE
+            view!!.gone()
         }
-        layout(layoutId)!!.visibility = View.VISIBLE
+        layout(layoutId)!!.visible()
     }
 
 
@@ -286,17 +290,15 @@ class LoadingLayout : FrameLayout {
             return mLayouts[layoutId]
         }
         val layout = mInflater!!.inflate(layoutId, this, false)
-        layout.visibility = View.GONE
+        layout.gone()
         addView(layout)
         mLayouts[layoutId] = layout
         if (layoutId == mEmptyResId) {
             val img =
                 layout.findViewById<View>(R.id.empty_image) as ImageView
             if (img != null) {
-                if (mEmptyImage == -1) {
-                    img.visibility = View.GONE
-                } else {
-                    img.visibility = View.VISIBLE
+                img.setVisible(mEmptyImage != -1)
+                if (mEmptyImage != -1) {
                     img.setImageResource(mEmptyImage)
                 }
             }
@@ -348,7 +350,7 @@ class LoadingLayout : FrameLayout {
                 mLayouts[layoutId]!!.findViewById<View>(ctrlId) as TextView
             if (view != null) {
                 view.text = value
-                view.visibility = View.VISIBLE
+                view.visible()
             }
         }
     }
@@ -358,10 +360,8 @@ class LoadingLayout : FrameLayout {
             val view = mLayouts[layoutId]
                 ?.findViewById<View>(ctrlId) as ImageView
             if (view != null) {
-                if (resId == -1) {
-                    view.visibility = View.GONE
-                } else {
-                    view.visibility = View.VISIBLE
+                view.setVisible(resId != -1)
+                if (resId != -1) {
                     view.setImageResource(resId)
                 }
             }
