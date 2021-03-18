@@ -18,6 +18,7 @@ import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.common.utils.extension.click
 import com.hjq.toast.ToastUtils
+import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.*
 import com.tanlifei.app.home.adapter.HomeAdapter
@@ -25,6 +26,8 @@ import com.tanlifei.app.home.adapter.HomeBannerAdapter
 import com.tanlifei.app.home.adapter.MenuAdapter
 import com.tanlifei.app.home.bean.MenuBean
 import com.tanlifei.app.home.viewmodel.HomeViewModel
+import com.tanlifei.app.main.ui.activity.MainActivity
+import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.youth.banner.indicator.RectangleIndicator
 
 /**
@@ -35,6 +38,7 @@ import com.youth.banner.indicator.RectangleIndicator
 class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private val mTitleData = mutableListOf("免费直播", "精品课程", "高校直播")
+    private lateinit var homeViewModel: MainViewModel
     private lateinit var header: ViewBinding
     private lateinit var footer: ViewBinding
     private lateinit var adapter: HomeAdapter
@@ -61,6 +65,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun onFirstVisibleToUser() {
         BarUtils.addMarginTopEqualStatusBarHeight(binding.topLayout)
+        homeViewModel = (activity as MainActivity).viewModel
+        homeViewModel.getUser()
         initAdapter()
         initHeaderView()
         initHFooterView()
@@ -80,13 +86,16 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
                 BaseListViewModel.UIType.CONTENT -> binding.refreshLayout.refreshLoadingLayout.showContent()
             }
         })
+        homeViewModel.refreshUserInfo.observe(this, Observer {
+            GlideUtils.loadAvatar(this.context, it.avatar, binding.userCover)
+        })
     }
 
     private fun initAdapter() {
         adapter = HomeAdapter(context)
         adapter.mData = viewModel.mData
         adapter.setItemClickListener(object : OnMultiItemListener<ClassmateCircleBean> {
-            override fun  click(
+            override fun click(
                 holder: ViewBinding,
                 itemBean: ClassmateCircleBean,
                 v: View,
