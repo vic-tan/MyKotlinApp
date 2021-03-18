@@ -22,9 +22,7 @@ import com.taobao.sophix.SophixManager
  * @author: tanlifei
  * @date: 2021/1/22 16:26
  */
-class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>(),
-    View.OnClickListener {
-
+class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>() {
     override fun showFullScreen(): Boolean {
         return true
     }
@@ -98,10 +96,24 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
      */
     private fun initListener() {
         clickListener(
-            this,
             binding.adsImg,
             binding.into,
-            binding.splash
+            binding.splash,
+            clickListener = View.OnClickListener {
+                when (it) {
+                    binding.adsImg -> {
+                        viewModel.adsBean?.url?.let { it1 ->
+                            BaseWebViewActivity.actionStart(
+                                viewModel.adsBean!!.name,
+                                it1
+                            )
+                        }
+                    }
+                    binding.into -> viewModel.doAdsJump()
+                    binding.splash -> {
+                    }
+                }
+            }
         )
     }
 
@@ -120,20 +132,5 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
         return SplashViewModel()
     }
 
-    override fun onClick(v: View) {
-        when (v) {
-            binding.adsImg -> {
-                viewModel.adsBean?.url?.let { it1 ->
-                    BaseWebViewActivity.actionStart(
-                        viewModel.adsBean!!.name,
-                        it1
-                    )
-                }
-            }
-            binding.into -> viewModel.doAdsJump()
-            binding.splash -> {
-            }
-        }
-    }
 
 }

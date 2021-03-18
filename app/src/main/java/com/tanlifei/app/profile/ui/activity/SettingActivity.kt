@@ -20,8 +20,7 @@ import com.tanlifei.app.profile.viewmodel.SettingViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewModel>(),
-    View.OnClickListener {
+class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewModel>(){
 
 
     companion object {
@@ -57,26 +56,23 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
      * 初始化监听
      */
     private fun initListener() {
-        mActivity.clickListener(this, binding.about, binding.exit)
+        clickListener(binding.about, binding.exit,
+            clickListener = View.OnClickListener {
+                when (it) {
+                    binding.about -> AboutActivity.actionStart()
+                    binding.exit -> {
+                        ComDialogUtils.comConfirm(
+                            this,
+                            "您确定要退出应用吗?",
+                            OnConfirmListener {
+                                viewModel.requestLogin()
+                            })
+                    }
+                }
+            })
     }
 
     private fun initData() {
         binding.versionName.text = "V${AppUtils.getAppVersionName()}"
     }
-
-    override fun onClick(v: View) {
-        when (v) {
-            binding.about -> AboutActivity.actionStart()
-            binding.exit -> {
-                ComDialogUtils.comConfirm(
-                    this,
-                    "您确定要退出应用吗?",
-                    OnConfirmListener {
-                        viewModel.requestLogin()
-                    })
-            }
-        }
-    }
-
-
 }

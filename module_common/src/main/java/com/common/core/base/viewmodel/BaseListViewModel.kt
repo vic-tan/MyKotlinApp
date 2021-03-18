@@ -3,7 +3,6 @@ package com.common.core.base.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.cofing.constant.GlobalConst
-import com.common.utils.MyLogTools
 import com.example.httpsender.kt.errorCode
 import com.example.httpsender.kt.errorMsg
 import com.example.httpsender.kt.show

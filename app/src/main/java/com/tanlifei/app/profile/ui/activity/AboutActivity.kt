@@ -16,8 +16,7 @@ import com.tanlifei.app.profile.viewmodel.AboutViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(),
-    View.OnClickListener {
+class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>() {
 
     companion object {
         fun actionStart() {
@@ -33,13 +32,49 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
         binding.versionName.text = "当前版本V${AppUtils.getAppVersionName()}"
         binding.logo.setImageResource(EnvironmentUtils.appLogo())
         clickListener(
-            this,
             binding.schoolLeaders,
             binding.userAgreement,
             binding.privateAgreement,
             binding.privacyRights,
             binding.rechargeAgreement,
-            binding.lecturerAgreement
+            binding.lecturerAgreement,
+            clickListener = View.OnClickListener { it ->
+                var title: String? = ""
+                var url: String? = ""
+                when (it) {
+                    /*学校领导*/
+                    binding.schoolLeaders -> {
+                        title = binding.schoolLeadersTitle.text.toString()
+                        url = ApiConst.URL_SCHOOL_LEADERS_AGREEMENT
+                    }
+                    /*用户协议*/
+                    binding.userAgreement -> {
+                        title = binding.userAgreementTitle.text.toString()
+                        url = ApiConst.URL_USER_AGREEMENT
+                    }
+                    /*隐私政策*/
+                    binding.privateAgreement -> {
+                        title = binding.privateAgreementTitle.text.toString()
+                        url = ApiConst.URL_PRIVATE_AGREEMENT
+                    }
+                    /*隐私权限*/
+                    binding.privacyRights -> {
+                        title = binding.privacyRightsTitle.text.toString()
+                        url = ApiConst.URL_PRIVATE_AGREEMENT
+                    }
+                    /*充值购买协议*/
+                    binding.rechargeAgreement -> {
+                        title = binding.rechargeAgreementTitle.text.toString()
+                        url = ApiConst.URL_RECHARGE_AGREEMENT
+                    }
+                    /*讲师入驻协议*/
+                    binding.lecturerAgreement -> {
+                        title = binding.lecturerAgreementTitle.text.toString()
+                        url = ApiConst.URL_LECTURER_AGREEMENT
+                    }
+                }
+                url?.let { gotoWeb(title, it) }
+            }
         )
     }
 
@@ -49,44 +84,6 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
      */
     private fun gotoWeb(title: String?, url: String) {
         BaseWebViewActivity.actionStart(title, url)
-    }
-
-    override fun onClick(v: View) {
-        var title: String? = ""
-        var url: String? = ""
-        when (v) {
-            /*学校领导*/
-            binding.schoolLeaders -> {
-                title = binding.schoolLeadersTitle.text.toString()
-                url = ApiConst.URL_SCHOOL_LEADERS_AGREEMENT
-            }
-            /*用户协议*/
-            binding.userAgreement -> {
-                title = binding.userAgreementTitle.text.toString()
-                url = ApiConst.URL_USER_AGREEMENT
-            }
-            /*隐私政策*/
-            binding.privateAgreement -> {
-                title = binding.privateAgreementTitle.text.toString()
-                url = ApiConst.URL_PRIVATE_AGREEMENT
-            }
-            /*隐私权限*/
-            binding.privacyRights -> {
-                title = binding.privacyRightsTitle.text.toString()
-                url = ApiConst.URL_PRIVATE_AGREEMENT
-            }
-            /*充值购买协议*/
-            binding.rechargeAgreement -> {
-                title = binding.rechargeAgreementTitle.text.toString()
-                url = ApiConst.URL_RECHARGE_AGREEMENT
-            }
-            /*讲师入驻协议*/
-            binding.lecturerAgreement -> {
-                title = binding.lecturerAgreementTitle.text.toString()
-                url = ApiConst.URL_LECTURER_AGREEMENT
-            }
-        }
-        url?.let { gotoWeb(title, it) }
     }
 
 

@@ -37,8 +37,7 @@ import com.tanlifei.app.main.viewmodel.LoginViewModel
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>(), TextWatcher,
-    View.OnClickListener {
+open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>(), TextWatcher {
 
     private lateinit var mInputHelper: TextInputHelper
 
@@ -110,39 +109,37 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     private fun initListener() {
         binding.phone.addTextChangedListener(this)
         clickListener(
-            this,
             binding.codeBtn,
             binding.login,
             binding.changeEnvironment,
-            binding.logo
+            binding.logo,
+            clickListener = View.OnClickListener {
+                when (it) {
+                    binding.codeBtn -> {
+                        if (checkPhone(
+                                LoginUtils.getPhone(binding.phone.text.toString())
+                            )
+                        ) {
+                            viewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
+                        }
+                    }
+                    binding.login -> {
+                        if (checkFormInfo(
+                                LoginUtils.getPhone(binding.phone.text.toString()),
+                                binding.code.text.toString()
+                            )
+                        ) {
+                            viewModel.requestLogin(
+                                LoginUtils.getPhone(binding.phone.text.toString()),
+                                binding.code.text.toString()
+                            )
+                        }
+                    }
+                    binding.changeEnvironment -> EnvironmentSwitchActivity.actionStart()
+                    binding.logo -> viewModel.continuousClick()
+                }
+            }
         )
-    }
-
-    override fun onClick(v: View) {
-        when (v) {
-            binding.codeBtn -> {
-                if (checkPhone(
-                        LoginUtils.getPhone(binding.phone.text.toString())
-                    )
-                ) {
-                    viewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
-                }
-            }
-            binding.login -> {
-                if (checkFormInfo(
-                        LoginUtils.getPhone(binding.phone.text.toString()),
-                        binding.code.text.toString()
-                    )
-                ) {
-                    viewModel.requestLogin(
-                        LoginUtils.getPhone(binding.phone.text.toString()),
-                        binding.code.text.toString()
-                    )
-                }
-            }
-            binding.changeEnvironment -> EnvironmentSwitchActivity.actionStart()
-            binding.logo -> viewModel.continuousClick()
-        }
     }
 
 

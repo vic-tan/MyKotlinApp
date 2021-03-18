@@ -17,8 +17,7 @@ import com.lxj.xpopup.core.BottomPopupView
  * @date: 2021/2/24 14:43
  */
 class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
-    BottomPopupView(context),
-    View.OnClickListener {
+    BottomPopupView(context) {
     lateinit var binding: LayoutShareBinding
 
     enum class ShareType {
@@ -37,13 +36,49 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
     override fun onCreate() {
         super.onCreate()
         binding = LayoutShareBinding.bind(popupImplView)
-        context.clickListener(
-            this,
+        clickListener(
             binding.wx,
             binding.wxCircle,
             binding.report,
             binding.credit,
-            binding.cancel
+            binding.cancel,
+            clickListener = OnClickListener {
+                when (it) {
+                    binding.wx -> {
+                        if (isWeixinAvilible()) {
+                            dismiss()
+                            mlistener.onItemClick(
+                                it,
+                                ShareType.WX
+                            )
+                        }
+                    }
+                    binding.wxCircle -> {
+                        if (isWeixinAvilible()) {
+                            mlistener.onItemClick(
+                                it,
+                                ShareType.WX_CIRCLE
+                            )
+                            dismiss()
+                        }
+                    }
+                    binding.report -> {
+                        dismiss()
+                        mlistener.onItemClick(
+                            it,
+                            ShareType.REPORT
+                        )
+                    }
+                    binding.credit -> {
+                        dismiss()
+                        mlistener.onItemClick(
+                            it,
+                            ShareType.CREDIT
+                        )
+                    }
+                    binding.cancel -> dismiss()
+                }
+            }
         )
     }
 
@@ -66,49 +101,6 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
         }
         ToastUtils.show("请求先安装微信客户端再分享")
         return false
-    }
-
-
-    override fun onClick(v: View) {
-        if (ObjectUtils.isEmpty(binding)) {
-            return
-        }
-        when (v) {
-            binding.wx -> {
-                if (isWeixinAvilible()) {
-                    dismiss()
-                    mlistener.onItemClick(
-                        v,
-                        ShareType.WX
-                    )
-                }
-            }
-            binding.wxCircle -> {
-                if (isWeixinAvilible()) {
-                    mlistener.onItemClick(
-                        v,
-                        ShareType.WX_CIRCLE
-                    )
-                    dismiss()
-                }
-            }
-            binding.report -> {
-                dismiss()
-                mlistener.onItemClick(
-                    v,
-                    ShareType.REPORT
-                )
-            }
-            binding.credit -> {
-                dismiss()
-                mlistener.onItemClick(
-                    v,
-                    ShareType.CREDIT
-                )
-            }
-            binding.cancel -> dismiss()
-
-        }
     }
 
 

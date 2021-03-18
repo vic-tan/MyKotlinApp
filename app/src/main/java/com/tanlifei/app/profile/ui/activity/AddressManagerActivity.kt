@@ -28,8 +28,7 @@ import com.tanlifei.app.profile.viewmodel.AddressViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, AddressViewModel>(),
-    View.OnClickListener {
+class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, AddressViewModel>() {
 
 
     private lateinit var mInputHelper: TextInputHelper
@@ -62,7 +61,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
-        mInputHelper = TextInputHelper(this,binding.enter)
+        mInputHelper = TextInputHelper(this, binding.enter)
         mInputHelper.addViews(
             binding.name,
             binding.phone,
@@ -103,7 +102,20 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 初始化监听
      */
     private fun initListener() {
-        clickListener(this, binding.areaLayout, binding.enter)
+        clickListener(binding.areaLayout, binding.enter,
+            clickListener = View.OnClickListener {
+                when (it) {
+                    binding.areaLayout -> {
+                        shopAreaOptionPicker()
+                    }
+                    binding.enter -> {
+                        if (checkContent()) {
+                            viewModel.requestEidtGoodsAddress()
+                        }
+                    }
+
+                }
+            })
     }
 
     private fun initData() {
@@ -166,21 +178,6 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
             )
         }
         return pvOptions
-    }
-
-
-    override fun onClick(v: View) {
-        when (v) {
-            binding.areaLayout -> {
-                shopAreaOptionPicker()
-            }
-            binding.enter -> {
-                if (checkContent()) {
-                    viewModel.requestEidtGoodsAddress()
-                }
-            }
-
-        }
     }
 
 

@@ -39,8 +39,7 @@ import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
  * @date: 2021/2/5 10:15
  */
 class ClassmateCircleDetailActivity :
-    BaseToolBarActivity<ActivityClassmateCircleDetailBinding, ClassmateCircleDetailViewModel>(),
-    View.OnClickListener {
+    BaseToolBarActivity<ActivityClassmateCircleDetailBinding, ClassmateCircleDetailViewModel>(){
     private var screenWidth = ScreenUtils.getScreenWidth()
     private lateinit var adapter: CommentAdapter
     private lateinit var header: ViewBinding
@@ -208,7 +207,21 @@ class ClassmateCircleDetailActivity :
      * 初始化监听
      */
     private fun initListener() {
-        clickListener(this, binding.commentLayout, binding.input)
+        clickListener(binding.commentLayout, binding.input,
+            clickListener = View.OnClickListener {
+                when (it) {
+                    binding.commentLayout,
+                    binding.input -> {
+                        ComDialogUtils.showInputEditView(
+                            this,
+                            object : BottomInputEditView.CallBack {
+                                override fun callback(inputText: String) {
+                                    viewModel.requestComment(inputText)
+                                }
+                            })
+                    }
+                }
+            })
     }
 
     private fun initAdapter() {
@@ -248,16 +261,5 @@ class ClassmateCircleDetailActivity :
         RecyclerUtils.initData(viewModel)
     }
 
-    override fun onClick(v: View) {
-        when (v) {
-            binding.commentLayout,
-            binding.input -> {
-                ComDialogUtils.showInputEditView(this, object : BottomInputEditView.CallBack {
-                    override fun callback(inputText: String) {
-                        viewModel.requestComment(inputText)
-                    }
-                })
-            }
-        }
-    }
+
 }

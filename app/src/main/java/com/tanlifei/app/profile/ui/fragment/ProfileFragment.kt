@@ -24,7 +24,7 @@ import com.tanlifei.app.profile.ui.activity.SettingActivity
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClickListener {
+class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>() {
 
     private lateinit var homeViewModel: MainViewModel
 
@@ -47,13 +47,21 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClick
      * 初始化监听
      */
     private fun initListener() {
-        context?.clickListener(
-            this,
+        clickListener(
             binding.arrow,
             binding.setting,
             binding.recruitingLecturers,
             binding.score,
-            binding.optManual
+            binding.optManual,
+            clickListener = View.OnClickListener {
+                when (it) {
+                    binding.arrow -> ProfileManagerActivity.actionStart()
+                    binding.setting -> SettingActivity.actionStart()
+                    binding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)
+                    binding.score -> launchAppDetail()
+                    binding.optManual -> ManualActivity.actionStart()
+                }
+            }
         )
     }
 
@@ -83,15 +91,6 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>(), View.OnClick
         })
     }
 
-    override fun onClick(v: View) {
-        when (v) {
-            binding.arrow -> ProfileManagerActivity.actionStart()
-            binding.setting -> SettingActivity.actionStart()
-            binding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)
-            binding.score -> launchAppDetail()
-            binding.optManual -> ManualActivity.actionStart()
-        }
-    }
 
     /**
      * 启动到应用商店app详情界面

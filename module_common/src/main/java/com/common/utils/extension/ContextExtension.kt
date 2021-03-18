@@ -14,22 +14,6 @@ import com.common.ComFun
  */
 
 
-//屏幕宽度
-val Context.screenWidth
-    get() = resources.displayMetrics.widthPixels
-
-//屏幕高度
-val Context.screenHeight
-    get() = resources.displayMetrics.heightPixels
-
-fun Context.clickListener(clickListener: View.OnClickListener, vararg views: View) {
-    for (i in views.indices) {
-        views[i].click {
-            clickListener.onClick(it)
-        }
-    }
-}
-
 //app versionName
 val Context.appVersionName: String
     get() {

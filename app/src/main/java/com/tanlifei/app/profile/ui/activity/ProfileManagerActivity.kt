@@ -23,8 +23,7 @@ import com.tanlifei.app.profile.viewmodel.ProfileViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, ProfileViewModel>(),
-    View.OnClickListener {
+class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, ProfileViewModel>() {
 
 
     companion object {
@@ -58,42 +57,50 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 初始化监听
      */
     private fun initListener() {
-        clickListener(this, binding.userHead, binding.addressLayout, binding.sexLayout)
+        clickListener(binding.userHead, binding.addressLayout, binding.sexLayout,
+            clickListener = View.OnClickListener {
+                when (it) {
+                    binding.userHead -> {
+                        PermissionUtils.requestCameraPermission(
+                            this,
+                            callback = object : PermissionUtils.PermissionCallback {
+                                override fun allGranted() {
+                                    PictureSelectorUtils.createAvatarCrop(mActivity)
+                                        .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                                            override fun onResult(result: List<LocalMedia?>) {
+                                                GlideUtils.load(
+                                                    mActivity,
+                                                    result[0]?.compressPath,
+                                                    binding.userHead
+                                                )
+                                            }
+
+                                            override fun onCancel() {
+                                            }
+                                        })
+                                }
+                            }
+                        )
+
+                    }
+                    binding.addressLayout -> viewModel.userBean?.let {
+                        AddressManagerActivity.actionStart(
+                            it
+                        )
+                    }
+                    binding.sexLayout -> viewModel.userBean?.let {
+                        AddressManagerActivity.actionStart(
+                            it
+                        )
+                    }
+                }
+            })
     }
 
     private fun initData() {
         viewModel.requestUser()
     }
 
-    override fun onClick(v: View) {
-        when (v) {
-            binding.userHead -> {
-                PermissionUtils.requestCameraPermission(
-                    this,
-                    callback = object : PermissionUtils.PermissionCallback {
-                        override fun allGranted() {
-                            PictureSelectorUtils.createAvatarCrop(mActivity)
-                                .forResult(object : OnResultCallbackListener<LocalMedia?> {
-                                    override fun onResult(result: List<LocalMedia?>) {
-                                        GlideUtils.load(
-                                            mActivity,
-                                            result[0]?.compressPath,
-                                            binding.userHead
-                                        )
-                                    }
-
-                                    override fun onCancel() {
-                                    }
-                                })
-                        }
-                    }
-                )
-
-            }
-            binding.addressLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }
-            binding.sexLayout -> viewModel.userBean?.let { AddressManagerActivity.actionStart(it) }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

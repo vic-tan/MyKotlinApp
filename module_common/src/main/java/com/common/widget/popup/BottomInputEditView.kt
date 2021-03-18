@@ -4,7 +4,7 @@ import android.content.Context
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
-import android.view.View
+import android.view.View.OnClickListener
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.common.R
@@ -26,7 +26,7 @@ class BottomInputEditView(
     var callBack: CallBack
 ) :
     BottomPopupView(context),
-    TextWatcher, View.OnClickListener {
+    TextWatcher {
     lateinit var binding: LayoutBottomEditViewBinding
     private lateinit var mInputHelper: TextInputHelper
 
@@ -42,30 +42,26 @@ class BottomInputEditView(
         binding.enter.text = btnText
         binding.num.text = "${0}/${maxNum}"
         initTextInputHelper()
-        context.clickListener(
-            this,
-            binding.enter
+        clickListener(
+            binding.enter,
+            clickListener = OnClickListener {
+                when (it) {
+                    binding.enter -> {
+                        dismiss()
+                        callBack.callback(binding.etInput.text.toString())
+                    }
+                }
+            }
         )
     }
 
-    override fun onClick(v: View?) {
-        if (ObjectUtils.isEmpty(binding)) {
-            return
-        }
-        when (v) {
-            binding.enter -> {
-                dismiss()
-                callBack.callback(binding.etInput.text.toString())
-            }
-        }
-    }
 
     /**
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
         if (ObjectUtils.isNotEmpty(binding)) {
-            mInputHelper = TextInputHelper(context,binding.enter)
+            mInputHelper = TextInputHelper(context, binding.enter)
             mInputHelper.addViews(binding.etInput)
             binding.etInput.addTextChangedListener(this)
         }

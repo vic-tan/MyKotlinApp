@@ -11,6 +11,7 @@ import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
 import com.common.utils.extension.drawable
+import com.common.utils.extension.log
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
@@ -28,7 +29,7 @@ class RecommendAdapter(var context: Context?) :
     CommonRvAdapter<ClassmateCircleBean, ItemRecommendBinding>() {
     private val screenWidth =
         ((ScreenUtils.getScreenWidth() - ConvertUtils.dp2px(20f)) * 0.5).toInt()//左右及中间边距为20
-    val source = 0 // 0、主页同学圈推荐 1、为人个中心作品
+    private val source = 0 // 0、主页同学圈推荐 1、为人个中心作品
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
