@@ -9,7 +9,6 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.BasePagerAdapter
-import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.fragment.BaseBVMFragment

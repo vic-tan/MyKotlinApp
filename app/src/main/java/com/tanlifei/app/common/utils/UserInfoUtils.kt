@@ -1,7 +1,6 @@
 package com.tanlifei.app.common.utils
 
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.core.base.bean.UserBean
 import org.litepal.LitePal

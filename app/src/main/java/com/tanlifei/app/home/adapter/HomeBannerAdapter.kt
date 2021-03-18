@@ -1,15 +1,10 @@
 package com.tanlifei.app.home.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.common.utils.GlideUtils
-import com.tanlifei.app.classmatecircle.bean.ImageBean
-import com.tanlifei.app.databinding.ItemGuideBinding
 import com.tanlifei.app.databinding.ItemHomeBannerBinding
 import com.tanlifei.app.home.bean.BannerBean
 import com.youth.banner.adapter.BannerAdapter

@@ -4,13 +4,9 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.SPUtils
-import com.ruffian.library.widget.RTextView
-import com.tanlifei.app.R
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.databinding.ItemGuideBinding
 import com.tanlifei.app.main.ui.activity.LoginAtivity

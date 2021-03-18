@@ -11,7 +11,6 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.common.ComFun
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel

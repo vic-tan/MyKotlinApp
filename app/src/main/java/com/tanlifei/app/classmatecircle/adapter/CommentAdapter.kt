@@ -9,7 +9,6 @@ import com.common.ComFun
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
-import com.common.utils.MyLogTools
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ItemCommentBinding

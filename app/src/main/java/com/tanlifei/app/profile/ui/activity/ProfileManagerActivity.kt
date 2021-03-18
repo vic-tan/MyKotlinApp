@@ -1,6 +1,5 @@
 package com.tanlifei.app.profile.ui.activity
 
-import android.Manifest
 import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
@@ -8,10 +7,10 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseFormActivity
-import com.common.utils.*
+import com.common.utils.GlideUtils
+import com.common.utils.PermissionUtils
+import com.common.utils.PictureSelectorUtils
 import com.common.utils.extension.clickListener
-import com.luck.picture.lib.PictureSelector
-import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.tanlifei.app.R

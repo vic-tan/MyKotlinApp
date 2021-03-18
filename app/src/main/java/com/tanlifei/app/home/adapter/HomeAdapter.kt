@@ -1,31 +1,15 @@
 package com.tanlifei.app.home.adapter
 
 import android.content.Context
-import android.text.TextUtils
-import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.blankj.utilcode.util.ConvertUtils
-import com.blankj.utilcode.util.ObjectUtils
-import com.blankj.utilcode.util.ScreenUtils
-import com.common.ComFun
-import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
-import com.common.widget.ExpandTextView
-import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
-import com.tanlifei.app.classmatecircle.bean.CommentBean
-import com.tanlifei.app.common.utils.AutoHeightUtils
-import com.tanlifei.app.common.utils.NumberUtils
-import com.tanlifei.app.common.utils.UserInfoUtils
-import com.tanlifei.app.databinding.ItemCommentBinding
-import com.tanlifei.app.databinding.ItemFollowBinding
 import com.tanlifei.app.databinding.ItemHomeBinding
-import com.tanlifei.app.databinding.ItemHomeRecommentBinding
 import java.util.*
 
 /**

@@ -8,9 +8,7 @@ import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
 import com.tanlifei.app.databinding.ItemHomeMenuBinding
-import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.home.bean.MenuBean
-import com.tanlifei.app.profile.bean.ManualBean
 import java.util.*
 
 /**
