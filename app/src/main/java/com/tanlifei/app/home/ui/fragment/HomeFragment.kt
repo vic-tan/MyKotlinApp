@@ -87,8 +87,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         adapter = HomeAdapter(context)
         adapter.mData = viewModel.mData
         adapter.setItemClickListener(object : OnMultiItemListener<ClassmateCircleBean> {
-            override fun <V : ViewBinding> click(
-                holder: V,
+            override fun  click(
+                holder: ViewBinding,
                 itemBean: ClassmateCircleBean,
                 v: View,
                 position: Int

@@ -18,8 +18,8 @@ interface OnMultiItemListener<T> {
      * will be a view provided by the adapter)
      * @param position The position of the view in the adapter.
      */
-    fun <V : ViewBinding> click(
-        holder: V,
+    fun click(
+        holder: ViewBinding,
         itemBean: T,
         v: View,
         position: Int

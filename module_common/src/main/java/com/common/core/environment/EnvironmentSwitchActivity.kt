@@ -86,8 +86,8 @@ class EnvironmentSwitchActivity :
         adapter.mData = viewModel.mData as MutableList<EnvironmentBean>
         binding.recycler.adapter = adapter
         adapter.setItemClickListener(object : OnMultiItemListener<EnvironmentBean> {
-            override fun <V : ViewBinding> click(
-                holder: V,
+            override fun click(
+                holder: ViewBinding,
                 itemBean: EnvironmentBean,
                 v: View,
                 position: Int
