@@ -9,7 +9,6 @@ import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
 import com.common.utils.extension.setVisible
-import com.common.utils.extension.visible
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.ItemHomeBinding
 import java.util.*

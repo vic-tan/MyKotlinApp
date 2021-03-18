@@ -3,7 +3,6 @@ package com.common.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.PointF
-import android.view.View
 import android.widget.ImageView
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.bumptech.glide.Glide
