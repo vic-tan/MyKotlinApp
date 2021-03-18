@@ -44,18 +44,18 @@ class EnvironmentAdapter :
     }
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ViewBinding>,
+        holder: ViewBinding,
         position: Int,
         bean: EnvironmentBean
     ) {
-        when (holder.binding) {
+        when (holder) {
             is ItemEnvironmentTitleBinding -> {
-                holder.binding.title.text = bean.alias
+                holder.title.text = bean.alias
             }
             is ItemEnvironmentContentBinding -> {
-                holder.binding.title.text = bean.alias
-                holder.binding.url.text = bean.url
-                holder.binding.radio.setImageResource(if (bean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
+                holder.title.text = bean.alias
+                holder.url.text = bean.url
+                holder.radio.setImageResource(if (bean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
             }
         }
     }
@@ -64,13 +64,13 @@ class EnvironmentAdapter :
         return mData[position].itemType
     }
 
-    override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {
-        return when (holder.binding) {
+    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+        return when (holder) {
             is ItemEnvironmentTitleBinding -> {
                 linkedSetOf()
             }
             is ItemEnvironmentContentBinding -> {
-                linkedSetOf(holder.binding.layout)
+                linkedSetOf(holder.layout)
             }
             else -> {
                 linkedSetOf()

@@ -41,11 +41,11 @@ class CommentAdapter :
 
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ViewBinding>,
+        holder: ViewBinding,
         position: Int,
         bean: CommentBean
     ) {
-        val holder = holder.binding as ItemCommentBinding
+        val holder = holder as ItemCommentBinding
         holder.name.text = bean.nickname
         holder.content.text = bean.content
         holder.time.text = bean.createTimeStr
@@ -58,8 +58,8 @@ class CommentAdapter :
     }
 
 
-    override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {
-        val holder = holder.binding as ItemCommentBinding
+    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+        val holder = holder as ItemCommentBinding
         return linkedSetOf(holder.delete)
     }
 

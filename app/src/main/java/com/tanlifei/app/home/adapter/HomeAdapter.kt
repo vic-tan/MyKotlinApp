@@ -54,11 +54,11 @@ class HomeAdapter(var context: Context?) :
 
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ViewBinding>,
+        holder: ViewBinding,
         position: Int,
         bean: ClassmateCircleBean
     ) {
-        val holder = holder.binding as ItemHomeBinding
+        val holder = holder as ItemHomeBinding
         holder.title.text = bean.nickName
         holder.desc.text = bean.content
         holder.time.text = "05月23日 15:20"
@@ -75,8 +75,8 @@ class HomeAdapter(var context: Context?) :
     }
 
 
-    override fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View> {
-        val holder = holder.binding as ItemHomeBinding
+    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+        val holder = holder as ItemHomeBinding
         return linkedSetOf(holder.item)
     }
 

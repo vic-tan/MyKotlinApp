@@ -162,17 +162,22 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         // 计算一下位置
         val adapterPosition: Int = position - mHeaderViews.size
         onBindViewHolder(
-            holder,
+            holder.binding,
             adapterPosition,
             mData[adapterPosition]
         )
-        addViewList(addChildClickViewIds(holder))
+        addViewList(addChildClickViewIds(holder.binding))
         if (ObjectUtils.isNotEmpty(childClickViews)) {
             onItemListener?.let {
                 for (v in childClickViews) {
                     v?.let {
                         it.click {
-                            setOnItemClick(holder, mData[adapterPosition], v, adapterPosition)
+                            setOnItemClick(
+                                holder.binding,
+                                mData[adapterPosition],
+                                v,
+                                adapterPosition
+                            )
                         }
                     }
                 }
@@ -187,19 +192,19 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         viewType: Int
     ): CommonRvHolder<ViewBinding>
 
-    abstract fun onBindViewHolder(holder: CommonRvHolder<ViewBinding>, position: Int, bean: T)
+    abstract fun onBindViewHolder(holder: ViewBinding, position: Int, bean: T)
     abstract fun setItemViewType(int: Int): Int
 
-    abstract fun addChildClickViewIds(holder: CommonRvHolder<ViewBinding>): LinkedHashSet<View>
+    abstract fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View>
 
 
     protected open fun setOnItemClick(
-        holder: CommonRvHolder<ViewBinding>,
+        holder: ViewBinding,
         bean: T,
         v: View,
         position: Int
     ) {
-        onItemListener?.click(holder.binding, bean, v, position)
+        onItemListener?.click(holder, bean, v, position)
     }
 
     fun setItemClickListener(listener: OnMultiItemListener<T>) {
