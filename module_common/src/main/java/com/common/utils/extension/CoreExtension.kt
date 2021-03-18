@@ -53,8 +53,8 @@ fun toast(content: String?) {
 /**
  * toast
  */
-fun toast(strId: Int?) {
-    ToastUtils.show(strId)
+fun toast(strId: Int) {
+    toast(string(strId))
 }
 
 
