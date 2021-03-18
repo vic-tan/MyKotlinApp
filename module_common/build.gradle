@@ -144,7 +144,7 @@ dependencies {
     //https://github.com/chrisbanes/PhotoView
     api rootProject.ext.dependencies.photoView
 
-    //Spannable库
+    //文字处理库(加图片，加边框，加链接，大小变化，颜色变化，加标签)
     //https://github.com/iwgang/SimplifySpan
     api rootProject.ext.dependencies.simplifyspan
 
