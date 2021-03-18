@@ -5,7 +5,7 @@ ext {
             targetSdkVersion : 29,//10
             minSdkVersion    : 21,//5.0
             versionCode      : 231,
-            versionName      : "1.3.0"
+            versionName      : "1.3.0",
     ]
 
 
@@ -40,5 +40,160 @@ ext {
             APP_ICON     : "@mipmap/ic_launcher",
             VERSION_NAME : rootProject.ext.android.versionName,
             BUGLY_APPID  : "d9b6aa88cc",
+    ]
+
+    //依赖第三方配置
+    dependencies = [
+            //<-------------------------------------  基本库 --------------------------------------->
+            "appcompat"              : "androidx.appcompat:appcompat:1.2.0",
+            "kotlin_stdlib_jdk7"     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            "recyclerview"           : "com.android.support:recyclerview-v7:27.1.1",
+            "constraintlayout"       : "androidx.constraintlayout:constraintlayout:1.1.3",
+            "gson"                   : "com.google.code.gson:gson:2.8.6",
+            //分包库
+            "multidex"               : "com.android.support:multidex:1.0.3",
+
+
+            //<----------------------------  以下为本项目引用的第三方开源库 START---------------------------->
+
+            //okhttp-RxHttp 以下3个为必须
+            //https://github.com/liujingxing/okhttp-RxHttp
+            "rxHttp"                 : "com.ljx.rxhttp:rxhttp:2.5.4",
+            "rxHttp_rxlife_coroutine": "com.ljx.rxlife:rxlife-coroutine:2.0.1",
+            "rxHttp_compiler"        : "com.ljx.rxhttp:rxhttp-compiler:2.5.4",
+
+
+            //okhttp3
+            //https://github.com/square/okhttp
+            "okhttp3"                : "com.squareup.okhttp3:okhttp:4.9.0",
+
+
+            //rxjava3
+            //https://github.com/ReactiveX/RxJava
+            "rxjava"                 : "io.reactivex.rxjava3:rxjava:3.0.6",
+            "rxandroid"              : "io.reactivex.rxjava3:rxandroid:3.0.0",
+            "rxlife_rxjava"          : "com.ljx.rxlife3:rxlife-rxjava:3.0.0",
+
+
+            //图片加载库
+            //https://github.com/bumptech/glide
+            "glide"                  : "com.github.bumptech.glide:glide:4.12.0",
+            "glide_compiler"         : "com.github.bumptech.glide:compiler:4.12.0",
+            "glide_transformations"  : "jp.wasabeef:glide-transformations:4.3.0",
+
+
+            //下拉上拉刷新库
+            //https://github.com/scwang90/SmartRefreshLayout
+            "refresh_kernel"         : "com.scwang.smart:refresh-layout-kernel:2.0.3",
+            "refresh_header"         : "com.scwang.smart:refresh-header-classics:2.0.3", //经典刷新头
+            "refresh_footer"         : "com.scwang.smart:refresh-footer-classics:2.0.3",//经典加载
+
+
+            //沉浸式实现
+            //https://github.com/gyf-dev/ImmersionBar
+            "immersionbar"           : "com.gyf.immersionbar:immersionbar:3.0.0",// 基础依赖包，必须要依赖
+            "immersionbar_components": "com.gyf.immersionbar:immersionbar-components:3.0.0", //fragment快速实现（可选）
+            "immersionbar_ktx"       : "com.gyf.immersionbar:immersionbar-ktx:3.0.0",//kotlin扩展（可选）
+
+            //弹窗库XPopup
+            //https://github.com/li-xiaojun/XPopup
+            "xpopup"                 : "com.lxj:xpopup:2.2.23",
+            "material"               : "com.google.android.material:material:1.3.0-alpha02",
+
+            //事件通知
+            //https://github.com/greenrobot/eventbus
+            "eventbus"               : "org.greenrobot:eventbus:3.2.0",
+
+            //内存检测
+            //https://github.com/square/leakcanary
+            "leakcanary"             : "com.squareup.leakcanary:leakcanary-android:2.4",
+
+            //屏幕适配
+            //https://github.com/JessYanCoding/AndroidAutoSize
+            "autosize"               : "me.jessyan:autosize:1.2.1",
+
+            //图片选择库
+            //https://github.com/LuckSiege/PictureSelector
+            "picture_selector"       : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
+
+            //动态申请权限库
+            //https://github.com/guolindev/PermissionX
+            "permissionx"            : "com.permissionx.guolindev:permissionx:1.4.0",
+
+            //本地数据库
+            //https://github.com/guolindev/litepal
+            "litepal"                : "org.litepal.guolindev:core:3.2.3",
+
+            //View 圆角、边框、背景渐变、触摸状态样式、阴影、水波纹等库
+            //https://github.com/RuffianZhong/RWidgetHelper
+            "widget_helper"          : "com.ruffian.library:RWidgetHelper-AndroidX:0.0.9",
+
+            //工具类
+            //https://github.com/Blankj/AndroidUtilCode
+            "utilcodex"              : "com.blankj:utilcodex:1.29.0",
+
+            //无需通知栏权限都不影响吐司的弹出吐司工具类
+            //https://github.com/getActivity/ToastUtils
+            "toast"                  : "com.hjq:toast:8.6",
+
+            // 标题栏框架
+            // https://github.com/getActivity/TitleBar
+            "titlebar"               : "com.hjq:titlebar:8.2",
+
+            //应用升级
+            //https://github.com/teprinciple/UpdateAppUtils
+            "updateapputilsx"        : "com.teprinciple:updateapputilsx:2.3.0",
+
+            //浏览图片显示(与BigImageViewPager二选一即可)
+            //https://github.com/chrisbanes/PhotoView
+            "photoView"              : "com.github.chrisbanes:PhotoView:2.3.0",
+
+            //Spannable库
+            //https://github.com/iwgang/SimplifySpan
+            "simplifyspan"           : "com.github.iwgang:simplifyspan:2.2",
+
+            //各种TabIndicator
+            //https://github.com/hackware1993/MagicIndicator
+            "magicIndicator"         : "com.github.hackware1993:MagicIndicator:1.7.0",
+
+
+            //banner
+            //https://github.com/youth5201314/banner
+            "banner"                 : "com.youth.banner:banner:2.1.0",
+
+            //省市区三级联动库
+            //https://github.com/Bigkoo/Android-PickerView
+            "pickerView"             : "com.contrarywind:Android-PickerView:4.1.9",
+
+            //引导操作库
+            //https://github.com/TakuSemba/Spotlight
+            "spotlight"              : "com.github.takusemba:spotlight:2.0.1",
+
+            //最新Bugly收库
+            //https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20200622202242
+            "bugly"                  : "com.tencent.bugly:crashreport:3.2.3",
+
+
+            //Sophix 未开源，商业收费，实时生效/冷启动修复(50000人)
+            //https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20200622202242
+            "hotfix"                 : "com.aliyun.ams:alicloud-android-hotfix:3.2.17",
+
+
+            //<----------------------------  以上为本项目引用的第三方开源库 EDN ----------------------------------->
+
+            //万能adapter适配器(对ViewBinding支持不是很好,这里暂时没有用到)
+            //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+            //"adapter_helper"         : "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
+
+
+            //浏览图片显示 (与PhotoView二选一即可)
+            //https://github.com/SherlockGougou/BigImageViewPager
+            //"bigImageViewPager"         : "com.github.SherlockGougou:BigImageViewPager:androidx-6.0.2",
+
+            //加载反馈页管理框架(处理加载中，重试，无数据界面显示等)
+            //https://github.com/KingJA/LoadSir
+            //"loadsir"         : "com.kingja.loadsir:loadsir:1.3.8",
+
+
     ]
 }
