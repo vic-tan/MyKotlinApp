@@ -3,7 +3,6 @@ package com.common.utils
 import android.app.Activity
 import android.content.Context
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ConvertUtils
 import com.common.R
 import com.common.utils.extension.color

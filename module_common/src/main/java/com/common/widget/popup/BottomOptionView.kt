@@ -3,7 +3,6 @@ package com.common.widget.popup
 import android.content.Context
 import android.view.View
 import com.common.R
-import com.common.core.share.ui.ShareView
 import com.common.databinding.LayoutShareBinding
 import com.common.utils.extension.clickListener
 import com.lxj.xpopup.core.BottomPopupView

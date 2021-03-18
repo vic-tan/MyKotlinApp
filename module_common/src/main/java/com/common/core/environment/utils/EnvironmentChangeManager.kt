@@ -4,7 +4,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.pm.PackageManager
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.core.environment.bean.EnvironmentBean
 import org.litepal.LitePal

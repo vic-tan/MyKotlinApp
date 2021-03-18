@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter

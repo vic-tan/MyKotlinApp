@@ -6,7 +6,6 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.common.R
-import com.luck.picture.lib.entity.LocalMedia
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 /**

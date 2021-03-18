@@ -2,13 +2,12 @@ package com.common.core.http
 
 import android.app.Application
 import com.blankj.utilcode.util.AppUtils
-import com.common.ComApplication
 import com.common.ComFun
 import com.common.utils.ComUtils
 import okhttp3.OkHttpClient
 import rxhttp.RxHttp
 import rxhttp.wrapper.param.Param
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeUnit
 
 /**
  * @desc:

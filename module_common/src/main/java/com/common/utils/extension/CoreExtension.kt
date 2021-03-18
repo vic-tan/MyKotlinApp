@@ -1,6 +1,5 @@
 package com.common.utils.extension
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View

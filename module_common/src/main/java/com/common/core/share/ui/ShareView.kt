@@ -1,8 +1,7 @@
 package com.common.core.share.ui
 
 import android.content.Context
-import android.view.View
-import com.blankj.utilcode.util.ObjectUtils
+import android.view.View.OnClickListener
 import com.common.R
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener

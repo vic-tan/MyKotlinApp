@@ -5,8 +5,6 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ObjectUtils
-import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.permissionx.guolindev.PermissionX
 import java.util.*
 

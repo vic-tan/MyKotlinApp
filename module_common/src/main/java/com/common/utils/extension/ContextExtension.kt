@@ -2,10 +2,6 @@ package com.common.utils.extension
 
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.drawable.Drawable
-import android.view.View
-import androidx.core.content.ContextCompat
-import com.common.ComFun
 
 /**
  * @desc:context相关的扩展类
