@@ -113,7 +113,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
     private fun initListener() {
         clickListener(
             binding.userHead,
-            binding.introduction,
+            binding.introductionLayout,
             binding.areaLayout,
             binding.schoolLayout,
             binding.sexLayout,
@@ -144,7 +144,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                         )
 
                     }
-                    binding.introduction -> {
+                    binding.introductionLayout -> {
                         IntroductionActivity.actionStart(viewModel.userBean?.bio)
                     }
                     binding.areaLayout -> {

@@ -7,7 +7,6 @@ import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.utils.extension.click
-import com.common.utils.extension.showKeyboard
 import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
