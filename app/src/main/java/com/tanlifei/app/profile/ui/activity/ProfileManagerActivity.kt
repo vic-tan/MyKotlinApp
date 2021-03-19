@@ -2,7 +2,12 @@ package com.tanlifei.app.profile.ui.activity
 
 import android.content.Intent
 import android.view.View
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.lifecycle.Observer
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener
+import com.bigkoo.pickerview.view.OptionsPickerView
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
@@ -10,14 +15,17 @@ import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils
 import com.common.utils.PictureSelectorUtils
+import com.common.utils.extension.click
 import com.common.utils.extension.clickListener
-import com.common.widget.popup.BottomOptionView
+import com.common.widget.popup.BottomOptionsView
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnSelectListener
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityProfileManagerBinding
+import com.tanlifei.app.profile.bean.AreaBean
+import com.tanlifei.app.profile.bean.UniversityBean
 import com.tanlifei.app.profile.viewmodel.ProfileViewModel
 
 
@@ -28,6 +36,8 @@ import com.tanlifei.app.profile.viewmodel.ProfileViewModel
  */
 class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, ProfileViewModel>() {
 
+    var areaOptions: OptionsPickerView<AreaBean>? = null
+    var universityOptions: OptionsPickerView<UniversityBean>? = null
 
     companion object {
         fun actionStart() {
@@ -46,6 +56,27 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         titleBar.rightTitle = "保存"
     }
 
+    /**
+     * 显示地区显示
+     */
+    private fun shopAreaOptionPicker() {
+        if (ObjectUtils.isEmpty(areaOptions)) {
+            initAreaOptionPicker()
+        }
+        areaOptions?.show()
+    }
+
+    /**
+     * 显示地区学校显示
+     */
+    private fun showUniversityDialog() {
+        if (ObjectUtils.isEmpty(universityOptions)) {
+            initUniversityOptionPicker()
+        }
+        if (ObjectUtils.isNotEmpty(universityOptions)) {
+            universityOptions?.show()
+        }
+    }
 
     /**
      * 设置ViewModel的observe
@@ -54,12 +85,25 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         viewModel.refreshUserInfo.observe(this, Observer { it ->
             GlideUtils.loadAvatar(mActivity, it.avatar, binding.userHead)
             binding.nickname.setText(it.nickname)
+            if (it.isLecturer == 1) {
+                binding.introduction.hint = "补充讲师介绍，让学员更了解你"
+            }
+            binding.nickname.setSelection(binding.nickname.text.length)
             binding.introduction.setText(it.bio)
             binding.area.text = it.address
             binding.school.text = it.universityName
             binding.sex.text = it.gender
             binding.age.text = it.age
             binding.address.text = if (it.goodsAddress == 0L) "" else "修改"
+        })
+        viewModel.areaDataComplete.observe(this, Observer {
+            initAreaOptionPicker()
+        })
+        viewModel.refreshUniversityList.observe(this, Observer {
+            initUniversityOptionPicker()
+            if(ObjectUtils.isNotEmpty(it)) {
+                binding.school.text = it[0].name
+            }
         })
     }
 
@@ -69,9 +113,11 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
     private fun initListener() {
         clickListener(
             binding.userHead,
-            binding.addressLayout,
+            binding.areaLayout,
+            binding.schoolLayout,
             binding.sexLayout,
             binding.ageLayout,
+            binding.addressLayout,
             clickListener = View.OnClickListener { v ->
                 when (v) {
                     binding.userHead -> {
@@ -97,14 +143,22 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                         )
 
                     }
-                    binding.addressLayout -> viewModel.userBean?.let {
-                        AddressManagerActivity.actionStart(it)
+
+
+                    binding.areaLayout -> {
+                        shopAreaOptionPicker()
+                    }
+                    binding.schoolLayout -> {
+                        showUniversityDialog()
                     }
                     binding.sexLayout -> viewModel.userBean?.let {
-                        var optionView = BottomOptionView(
+                        var optionView = BottomOptionsView(
                             mActivity,
                             mutableListOf("男", "女"),
-                            OnSelectListener { _, text -> binding.sex.text = text }
+                            OnSelectListener { _, text ->
+                                binding.sex.text = text
+                                viewModel.userBean?.gender = text
+                            }
                         )
                         XPopup.Builder(mActivity)
                             .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
@@ -112,22 +166,116 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                             .show()
                     }
                     binding.ageLayout -> {
-                        var optionView = BottomOptionView(
+                        var optionView = BottomOptionsView(
                             mActivity,
                             mutableListOf("50以下", "50-60", "60-70", "70以上"),
-                            OnSelectListener { _, text -> binding.age.text = text }
+                            OnSelectListener { _, text ->
+                                binding.age.text = text
+                                viewModel.userBean?.age = text
+                            }
                         )
                         XPopup.Builder(mActivity)
                             .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
                             .asCustom(optionView)
                             .show()
                     }
+                    binding.addressLayout -> viewModel.userBean?.let {
+                        AddressManagerActivity.actionStart(it)
+                    }
+
                 }
             })
     }
 
+
+    /**
+     * 地区条件选择器初始化，自定义布局
+     *
+     * @return
+     */
+    private fun initAreaOptionPicker(): OptionsPickerView<AreaBean>? {
+        if (ObjectUtils.isNotEmpty(viewModel.options1Items) && ObjectUtils.isNotEmpty(viewModel.options2Items)) {
+            areaOptions = OptionsPickerBuilder(
+                this,
+                OnOptionsSelectListener { options1: Int, options2: Int, _: Int, _: View? ->
+                    val newAreaId =
+                        viewModel.areaJsonList[options1].areaListVOList[options2].id
+                    if (viewModel.userBean?.areaId != newAreaId) {
+                        viewModel.requestUniversity(newAreaId)
+                        viewModel.userBean?.address =
+                            "${viewModel.areaJsonList[options1].name},${viewModel.areaJsonList[options1].areaListVOList[options2].name}"
+                        viewModel.userBean?.areaId = newAreaId
+                        binding.area.text = viewModel.userBean?.address
+                    }
+                }
+            )
+                .setLayoutRes(
+                    R.layout.pickerview_custom_options
+                ) { v: View ->
+                    val tvSubmit =
+                        v.findViewById<View>(R.id.tv_finish) as TextView
+                    val ivCancel =
+                        v.findViewById<View>(R.id.iv_cancel) as TextView
+                    val optLayout =
+                        v.findViewById<View>(R.id.opt_layout) as RelativeLayout
+                    tvSubmit.click {
+                        areaOptions?.returnData()
+                        areaOptions?.dismiss()
+                    }
+                    ivCancel.click { areaOptions?.dismiss() }
+                    optLayout.click { }
+                }.setItemVisibleCount(4)
+                .setLineSpacingMultiplier(2.2f)
+                .setOutSideCancelable(true)
+                .build<AreaBean>()
+
+            areaOptions?.setPicker(
+                viewModel.options1Items,
+                viewModel.options2Items
+            )
+        }
+        return areaOptions
+    }
+
+
+    /**
+     * 学校条件选择器初始化，自定义布局
+     *
+     * @return
+     */
+    private fun initUniversityOptionPicker(): OptionsPickerView<UniversityBean>? {
+        universityOptions = OptionsPickerBuilder(
+            this,
+            OnOptionsSelectListener { options1: Int, _: Int, _: Int, _: View? ->
+                viewModel.userBean?.university = viewModel.universityOptionsItems[options1].id
+                viewModel.userBean?.universityName = viewModel.universityOptionsItems[options1].name
+                binding.school.text = viewModel.userBean?.universityName
+            }
+        )
+            .setLayoutRes(
+                R.layout.pickerview_custom_options
+            ) { v: View ->
+                val tvSubmit =
+                    v.findViewById<View>(R.id.tv_finish) as TextView
+                val ivCancel =
+                    v.findViewById<View>(R.id.iv_cancel) as TextView
+                tvSubmit.setOnClickListener {
+                    universityOptions?.returnData()
+                    universityOptions?.dismiss()
+                }
+                ivCancel.setOnClickListener { _ -> universityOptions?.dismiss() }
+            }
+            .setItemVisibleCount(4)
+            .setLineSpacingMultiplier(2.2f)
+            .setOutSideCancelable(true)
+            .build<UniversityBean>()
+        universityOptions?.setPicker(viewModel.universityOptionsItems)
+        return universityOptions
+    }
+
     private fun initData() {
         viewModel.requestUser()
+        viewModel.requestAreaJsonList()
     }
 
 

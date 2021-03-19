@@ -8,7 +8,7 @@ import com.contrarywind.interfaces.IPickerViewData
  * @date: 2021/2/25 18:27
  */
 data class AreaBean(
-    val id: Int = 0,
+    val id: Long = 0,
     val pid: Int = 0,
     val name: String = "",
     val level: Int = 0

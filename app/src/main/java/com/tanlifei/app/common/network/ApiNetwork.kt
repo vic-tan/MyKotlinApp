@@ -15,6 +15,7 @@ import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.profile.bean.AddressBean
 import com.tanlifei.app.profile.bean.AreaJsonBean
 import com.tanlifei.app.profile.bean.ManualBean
+import com.tanlifei.app.profile.bean.UniversityBean
 import rxhttp.RxHttp
 import rxhttp.toResponse
 
@@ -76,6 +77,21 @@ object ApiNetwork {
     suspend fun requestGoodsAddress(id: Long) = RxHttp.postJson(ApiConst.URL_GOODS_ADDRESS)
         .add("id", id)
         .toResponse<AddressBean>().await()
+
+    /**
+     * 获取合作大学存在的省区
+     */
+    suspend fun requestUniversityAreaList() = RxHttp.postJson(ApiConst.URL_UNIVERSITY_AREA_LIST)
+        .toResponse<MutableList<AreaJsonBean>>().await()
+
+
+    /**
+     * 根据地区获取大学列表
+     */
+    suspend fun requestUniversity(id: Long) = RxHttp.postJson(ApiConst.URL_UNIVERSITY_List)
+        .add("id", id)
+        .toResponse<MutableList<UniversityBean>>().await()
+
 
     /**
      * 获取省市区JSON

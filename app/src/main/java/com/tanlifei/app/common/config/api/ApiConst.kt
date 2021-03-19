@@ -53,9 +53,16 @@ object ApiConst {
     /* 操作手册详情 */
     const val URL_MANUAL_DETAIL = "major/api/manual/detail"
 
+    /* 获取合作大学存在的省区 */
+    const val URL_UNIVERSITY_AREA_LIST = "major/api/user/getAreaListByUniversity"
+
+    /* 根据地区获取大学列表 */
+    const val URL_UNIVERSITY_List = "major/api/user/getUniversityList"
+
+
+
     /* 获取省市区JSON */
     const val URL_AREA_JSON = "major/api/user/getAreaJson"
-
 
     /* 获取收货地址 */
     const val URL_GOODS_ADDRESS = "major/api/user/getGoodsAddress"

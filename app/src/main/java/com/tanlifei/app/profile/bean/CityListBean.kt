@@ -6,7 +6,7 @@ package com.tanlifei.app.profile.bean
  * @date: 2021/2/25 18:30
  */
 data class CityListBean(
-    var id: Int = 0,
+    var id: Long = 0,
     val name: String = "",
     val pid: Int = 0,
     val level: Int = 0,

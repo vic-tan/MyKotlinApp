@@ -4,16 +4,14 @@ import android.content.Context
 import android.view.View
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
-import com.common.core.base.adapter.BottomOptionAdapter
+import com.common.core.base.adapter.BottomOptionsAdapter
 import com.common.core.base.listener.OnItemClickListener
 import com.common.databinding.ItemOptionBinding
 import com.common.databinding.LayoutOptionBinding
-import com.common.databinding.LayoutShareBinding
 import com.common.utils.RecyclerUtils
 import com.common.utils.extension.clickListener
 import com.common.utils.extension.setVisible
 import com.lxj.xpopup.core.BottomPopupView
-import com.lxj.xpopup.impl.BottomListPopupView
 import com.lxj.xpopup.interfaces.OnSelectListener
 
 /**
@@ -21,7 +19,7 @@ import com.lxj.xpopup.interfaces.OnSelectListener
  * @author: tanlifei
  * @date: 2021/2/24 14:43
  */
-class BottomOptionView(
+class BottomOptionsView(
     context: Context,
     var list: MutableList<String>,
     var selectListener: OnSelectListener,
@@ -31,7 +29,7 @@ class BottomOptionView(
     BottomPopupView(context) {
 
     lateinit var binding: LayoutOptionBinding
-    lateinit var adapter: BottomOptionAdapter
+    lateinit var adapter: BottomOptionsAdapter
     override fun getImplLayoutId(): Int {
         return R.layout.layout_option
     }
@@ -39,7 +37,7 @@ class BottomOptionView(
     override fun onCreate() {
         super.onCreate()
         binding = LayoutOptionBinding.bind(popupImplView)
-        adapter = BottomOptionAdapter(ObjectUtils.isNotEmpty(title))
+        adapter = BottomOptionsAdapter(ObjectUtils.isNotEmpty(title))
         adapter.mData = list
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = RecyclerUtils.setLinearLayoutManager(context)

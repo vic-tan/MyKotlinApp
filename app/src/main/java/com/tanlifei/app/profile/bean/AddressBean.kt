@@ -1,5 +1,7 @@
 package com.tanlifei.app.profile.bean
 
+import android.util.Log
+
 /**
  * @desc:收货地址实体
  * @author: tanlifei
@@ -9,9 +11,9 @@ data class AddressBean(
     var id: Long,
     var username: String,
     var mobile: String,
-    var provinceId: Int,
-    var cityId: Int,
-    var areaId: Int,
+    var provinceId: Long,
+    var cityId: Long,
+    var areaId: Long,
     var addressPrefix: String,
     var address: String,
     var status: Int,

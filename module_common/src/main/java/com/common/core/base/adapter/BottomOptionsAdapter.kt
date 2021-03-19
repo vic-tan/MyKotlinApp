@@ -14,7 +14,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class BottomOptionAdapter(val hasTitleView: Boolean) :
+class BottomOptionsAdapter(val hasTitleView: Boolean) :
     CommonRvAdapter<String, ItemOptionBinding>() {
 
     override fun onCreateViewHolder(
