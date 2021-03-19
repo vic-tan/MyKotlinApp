@@ -144,9 +144,6 @@ ext {
             //https://github.com/teprinciple/UpdateAppUtils
             "updateapputilsx"        : "com.teprinciple:updateapputilsx:2.3.0",
 
-            //浏览图片显示(与BigImageViewPager二选一即可)
-            //https://github.com/chrisbanes/PhotoView
-            "photoView"              : "com.github.chrisbanes:PhotoView:2.3.0",
 
             //文字处理库(加图片，加边框，加链接，大小变化，颜色变化，加标签)
             //https://github.com/iwgang/SimplifySpan
@@ -167,7 +164,7 @@ ext {
 
             //引导操作库
             //https://github.com/TakuSemba/Spotlight
-            "spotlight"              : "com.github.takusemba:spotlight:2.0.1",
+            "spotlight"              : "com.github.takusemba:spotlight:2.0.3",
 
             //最新Bugly收库
             //https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20200622202242
@@ -185,6 +182,9 @@ ext {
             //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
             //"adapter_helper"         : "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
 
+            //浏览图片显示(与BigImageViewPager二选一即可)
+            //https://github.com/chrisbanes/PhotoView
+            //"photoView"              : "com.github.chrisbanes:PhotoView:2.3.0",
 
             //浏览图片显示 (与PhotoView二选一即可)
             //https://github.com/SherlockGougou/BigImageViewPager

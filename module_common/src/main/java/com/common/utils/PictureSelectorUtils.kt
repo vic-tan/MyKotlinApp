@@ -24,13 +24,11 @@ object PictureSelectorUtils {
     fun create(context: Context, chooseMode: Int, selectNum: Int = 1): PictureSelectionModel {
         return when (context) {
             is Fragment -> initSelectionModel(
-                context,
                 PictureSelector.create(context),
                 chooseMode,
                 selectNum
             )
             else -> initSelectionModel(
-                context,
                 PictureSelector.create(context as Activity),
                 chooseMode,
                 selectNum
@@ -59,13 +57,12 @@ object PictureSelectorUtils {
 
 
     private fun initSelectionModel(
-        context: Context,
         selector: PictureSelector,
         chooseMode: Int,
         selectNum: Int
     ): PictureSelectionModel {
         return selector.openGallery(chooseMode).imageEngine(GlideEngine)
-            .setPictureUIStyle(getPictureUIStyle(context))
+            .setPictureUIStyle(getPictureUIStyle())
             .isCompress(true)
             .maxSelectNum(selectNum)
             .isMaxSelectEnabledMask(true)//选择条件达到阀时列表是否启用蒙层效果
@@ -73,7 +70,7 @@ object PictureSelectorUtils {
     }
 
 
-    fun getPictureUIStyle(context: Context): PictureSelectorUIStyle? {
+    private fun getPictureUIStyle(): PictureSelectorUIStyle? {
         val uiStyle = PictureSelectorUIStyle()
         uiStyle.picture_switchSelectTotalStyle = true
         uiStyle.picture_statusBarChangeTextColor = true

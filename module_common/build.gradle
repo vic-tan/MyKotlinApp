@@ -140,10 +140,6 @@ dependencies {
     //https://github.com/teprinciple/UpdateAppUtils
     api rootProject.ext.dependencies.updateapputilsx
 
-    //浏览图片显示(与BigImageViewPager二选一即可)
-    //https://github.com/chrisbanes/PhotoView
-    api rootProject.ext.dependencies.photoView
-
     //文字处理库(加图片，加边框，加链接，大小变化，颜色变化，加标签)
     //https://github.com/iwgang/SimplifySpan
     api rootProject.ext.dependencies.simplifyspan
