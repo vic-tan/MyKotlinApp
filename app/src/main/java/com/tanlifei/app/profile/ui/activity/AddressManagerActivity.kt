@@ -240,8 +240,9 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
         pvOptions?.show()
     }
 
-    override fun showSoftByEditViewIds(): IntArray {
-        return return intArrayOf(R.id.name, R.id.phone, R.id.email, R.id.area_details)
+
+    override fun showSoftByEditView(): MutableList<View> {
+        return  mutableListOf(binding.name,binding.phone,binding.email,binding.areaDetails)
     }
 
 

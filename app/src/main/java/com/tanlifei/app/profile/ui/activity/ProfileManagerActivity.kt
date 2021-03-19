@@ -302,10 +302,9 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
     }
 
 
-    override fun showSoftByEditViewIds(): IntArray {
-        return return intArrayOf(R.id.nickname, R.id.introduction)
+    override fun showSoftByEditView(): MutableList<View> {
+        return  mutableListOf(binding.nickname,binding.introduction)
     }
-
 
 }
 

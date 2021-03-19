@@ -232,8 +232,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     /**
      * 设置触摸不收起键盘控件
      */
-    override fun showSoftByEditViewIds(): IntArray {
-        return intArrayOf(R.id.phone, R.id.code)
+    override fun showSoftByEditView(): MutableList<View> {
+        return  mutableListOf(binding.phone,binding.code)
     }
 
 
@@ -284,6 +284,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         LoginUtils.phoneFormatTextChanged(binding.phone, s, count)
     }
+
+
 
 }
 

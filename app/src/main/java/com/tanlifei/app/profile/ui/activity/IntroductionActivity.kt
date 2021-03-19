@@ -1,6 +1,7 @@
 package com.tanlifei.app.profile.ui.activity
 
 import android.content.Intent
+import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
@@ -11,6 +12,7 @@ import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityIntroductionBinding
+import java.util.*
 
 
 /**
@@ -53,8 +55,8 @@ class IntroductionActivity : BaseFormActivity<ActivityIntroductionBinding, Empty
         }
     }
 
-    override fun showSoftByEditViewIds(): IntArray {
-        return return intArrayOf(R.id.content)
+    override fun showSoftByEditView(): MutableList<View> {
+        return  mutableListOf(binding.content)
     }
 
 

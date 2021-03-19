@@ -6,13 +6,15 @@ import android.widget.EditText
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.KeyboardUtils
 import com.common.core.base.viewmodel.BaseViewModel
+import java.util.*
 
 /**
  * @desc: 有表单输入基类 主要是点输入显示键盘，点其它的地方收起键盘
  * @author: tanlifei
  * @date: 2021/1/28 13:51
  */
-open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> : BaseToolBarActivity<T,VM>() {
+open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> :
+    BaseToolBarActivity<T, VM>() {
 
     //region软键盘的处理
     /**
@@ -21,10 +23,10 @@ open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> : Base
      * @param v   焦点所在View
      * @param ids 输入框
      */
-    open fun clearViewFocus(v: View?, vararg ids: Int) {
-        if (null != v && null != ids && ids.isNotEmpty()) {
-            for (id in ids) {
-                if (v.id == id) {
+    open fun clearViewFocus(v: View?, views: MutableList<View>) {
+        if (null != v && null != views && views.isNotEmpty()) {
+            for (view in views) {
+                if (v == view) {
                     v.clearFocus()
                     break
                 }
@@ -39,10 +41,10 @@ open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> : Base
      * @param ids 输入框
      * @return true代表焦点在edit上
      */
-    open fun isFocusEditText(v: View?, vararg ids: Int): Boolean {
+    open fun isFocusEditText(v: View?, views: MutableList<View>): Boolean {
         if (v is EditText) {
-            for (id in ids) {
-                if (v.id == id) {
+            for (view in views) {
+                if (v == view) {
                     return true
                 }
             }
@@ -57,7 +59,7 @@ open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> : Base
      * @param ev
      * @return
      */
-    open fun isTouchView(views: Array<View>?, ev: MotionEvent): Boolean {
+    open fun isTouchView(views: MutableList<View>?, ev: MotionEvent): Boolean {
         if (views == null || views.isEmpty()) {
             return false
         }
@@ -105,17 +107,17 @@ open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> : Base
                 if (isTouchView(filterViewByIds(), ev)) {
                     return super.dispatchTouchEvent(ev)
                 }
-                if (showSoftByEditViewIds() == null || showSoftByEditViewIds().isEmpty()) {
+                if (showSoftByEditView() == null || showSoftByEditView().isEmpty()) {
                     return super.dispatchTouchEvent(ev)
                 }
                 val v = currentFocus
-                if (isFocusEditText(v, *showSoftByEditViewIds())) {
-                    if (isTouchView(showSoftByEditViewIds(), ev)) {
+                if (isFocusEditText(v, showSoftByEditView())) {
+                    if (isTouchView(showSoftByEditView(), ev)) {
                         return super.dispatchTouchEvent(ev)
                     }
                     //隐藏键盘
                     KeyboardUtils.hideSoftInput(this)
-                    clearViewFocus(v, *showSoftByEditViewIds())
+                    clearViewFocus(v, showSoftByEditView())
                 }
             }
         } finally {
@@ -128,17 +130,17 @@ open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> : Base
      * 传入要过滤的View
      * 过滤之后点击将不会有隐藏软键盘的操作
      *
-     * @return id 数组
+     * @return view 数组
      */
-    open fun filterViewByIds(): Array<View> {
-        return arrayOf()
+    open fun filterViewByIds(): MutableList<View> {
+        return mutableListOf()
     }
 
     /**
      * 传入EditText的Id
      * 没有传入的EditText不做处理
      *
-     * @return id 数组
+     * @return view 数组
      */
-    abstract fun showSoftByEditViewIds(): IntArray
+    abstract fun showSoftByEditView(): MutableList<View>
 }
