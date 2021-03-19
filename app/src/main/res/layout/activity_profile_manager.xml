@@ -79,6 +79,7 @@
 
         <include layout="@layout/layout_line_setting" />
 
+
         <com.ruffian.library.widget.RConstraintLayout
             android:id="@+id/introduction_layout"
             style="@style/setting_list_style">
@@ -90,7 +91,8 @@
 
             <TextView
                 android:id="@+id/introduction"
-                style="@style/setting_list_item_arrow_eidt_style"
+                style="@style/setting_list_item_arrow_text_style"
+                android:hint="请填写"
                 app:layout_constraintLeft_toRightOf="@id/introduction_title"
                 app:layout_constraintRight_toLeftOf="@id/introduction_arrow" />
 
