@@ -79,6 +79,11 @@ fun string(string: Int) = globalContext().getString(string) ?: ""
 fun drawable(resId: Int): Drawable? = ContextCompat.getDrawable(globalContext(), resId)
 
 /**
+ * 获取dimen值
+ */
+fun dimen(resId: Int): Float = globalContext().resources.getDimension(resId)
+
+/**
  * 屏幕宽度
  */
 val screenWidth

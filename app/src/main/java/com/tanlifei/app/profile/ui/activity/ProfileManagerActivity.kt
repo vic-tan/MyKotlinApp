@@ -11,8 +11,12 @@ import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils
 import com.common.utils.PictureSelectorUtils
 import com.common.utils.extension.clickListener
+import com.common.utils.extension.toast
+import com.common.widget.popup.BottomOptionView
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnSelectListener
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityProfileManagerBinding
 import com.tanlifei.app.profile.viewmodel.ProfileViewModel
@@ -89,9 +93,15 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                         )
                     }
                     binding.sexLayout -> viewModel.userBean?.let {
-                        AddressManagerActivity.actionStart(
-                            it
+                        var optionView = BottomOptionView(
+                            mActivity,
+                            mutableListOf("男", "女"),
+                            OnSelectListener { position, text -> toast("position $position click $text") },
                         )
+                        XPopup.Builder(mActivity)
+                            .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
+                            .asCustom(optionView)
+                            .show()
                     }
                 }
             })
