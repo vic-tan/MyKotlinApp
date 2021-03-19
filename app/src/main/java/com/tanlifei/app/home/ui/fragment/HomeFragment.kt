@@ -146,7 +146,6 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         headerBinding.banner.addBannerLifecycleObserver(this) //添加生命周期观察者
             .setAdapter(bannerAdapter).indicator = RectangleIndicator(context)
 
-
         //Menu
         menuAdapter = MenuAdapter(context)
         menuAdapter.mData = viewModel.menuData

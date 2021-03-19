@@ -27,9 +27,8 @@ class ImageViewerPopup(context: Context) : ImageViewerPopupView(context) {
         super.onCreate()
         binding = LayoutImageViewerPopupBinding.bind(customView)
         BarUtils.addMarginTopEqualStatusBarHeight(binding.arrowBack)
-        isShowIndicator(urls.size > 1)//是否显示页码指示器
-        isShowSaveButton(false)
-
+        binding.tvPagerIndicator.setVisible(urls.size > 1)
+        showPagerIndicator()
         clickListener(binding.arrowBack, binding.tvSave, clickListener = OnClickListener {
             when (it) {
                 binding.arrowBack -> dismiss()
@@ -45,6 +44,36 @@ class ImageViewerPopup(context: Context) : ImageViewerPopupView(context) {
                 }
             }
         })
+        pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(i: Int) {
+                position = i
+                showPagerIndicator()
+                //更新srcView
+                if (srcViewUpdateListener != null) {
+                    srcViewUpdateListener.onSrcViewUpdate(this@ImageViewerPopup, i)
+                }
+            }
+
+        })
+    }
+
+
+    private fun showPagerIndicator() {
+        if (urls.size > 1) {
+            val selectPos = if (isInfinite) position % urls.size else position
+            binding.tvPagerIndicator.text = (selectPos + 1).toString() + "/" + urls.size
+        }
+        if (isShowSaveBtn) tv_save.visibility = View.VISIBLE
     }
 
 

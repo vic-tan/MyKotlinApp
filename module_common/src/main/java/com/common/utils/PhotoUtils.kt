@@ -4,9 +4,11 @@ import android.content.Context
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.blankj.utilcode.util.ObjectUtils
+import com.common.R
+import com.common.utils.extension.color
 import com.common.widget.popup.ImageViewerPopup
 import com.lxj.xpopup.XPopup
-import java.util.*
 
 /**
  * @desc:
@@ -15,37 +17,75 @@ import java.util.*
  */
 object PhotoUtils {
 
+
+    /**
+     * 显示单张
+     */
     fun show(context: Context, imageView: ImageView, url: String?) {
-        //自定义的弹窗需要用asCustom来显示，之前的asImageViewer这些方法当然不能用了。
-        val viewerPopup = ImageViewerPopup(context)
-        //自定义的ImageViewer弹窗需要自己手动设置相应的属性，必须设置的有srcView，url和imageLoader。
-        viewerPopup.setSingleSrcView(imageView, url)
-        viewerPopup.setXPopupImageLoader(ImageLoader())
+        if (ObjectUtils.isNotEmpty(url)) {
+            var list = mutableListOf<String>()
+            list.add(url!!)
+            showXPopup(context, initImageViewerPopup(context, imageView, 0, list))
+        }
+    }
+
+
+    /**
+     * viewpage2 显示大图
+     */
+    fun showBanner(
+        context: Context,
+        imageView: ImageView,
+        position: Int,
+        pager2: ViewPager2,
+        list: List<String>
+    ) {
+        if (ObjectUtils.isNotEmpty(list)) {
+            val viewerPopup = initImageViewerPopup(context, imageView, position, list)
+            viewerPopup.setSrcViewUpdateListener { popupView, position ->
+                pager2.setCurrentItem(position, false)
+                //一定要post，因为setCurrentItem内部实现是RecyclerView.scrollTo()，这个是异步的
+                //由于ViewPager2内部是包裹了一个RecyclerView，而RecyclerView始终维护一个子View
+                pager2.post {
+                    val rv = pager2.getChildAt(0) as RecyclerView
+                    //再拿子View，就是ImageView
+                    popupView.updateSrcView(rv.getChildAt(0) as ImageView)
+                }
+            }
+            showXPopup(context, viewerPopup)
+        }
+
+
+    }
+
+    private fun showXPopup(context: Context, viewerPopup: ImageViewerPopup) {
         XPopup.Builder(context)
             .isDestroyOnDismiss(true)
             .asCustom(viewerPopup)
             .show()
     }
 
-    fun showBanner(
-        context: Context?,
+    private fun initImageViewerPopup(
+        context: Context,
         imageView: ImageView,
         position: Int,
-        pager2: ViewPager2,
         list: List<String>
-    ) {
-        XPopup.Builder(context).asImageViewer(
-            imageView, position, list,
-            { popupView, position ->
-                pager2.setCurrentItem(position, false)
-                //一定要post，因为setCurrentItem内部实现是RecyclerView.scrollTo()，这个是异步的
-                pager2.post(Runnable { //由于ViewPager2内部是包裹了一个RecyclerView，而RecyclerView始终维护一个子View
-                    val rv = pager2.getChildAt(0) as RecyclerView
-                    //再拿子View，就是ImageView
-                    popupView.updateSrcView(rv.getChildAt(0) as ImageView)
-                })
-            }, ImageLoader()
-        ).show()
+    ): ImageViewerPopup {
+        val viewerPopup = ImageViewerPopup(context)
+        //自定义的ImageViewer弹窗需要自己手动设置相应的属性，必须设置的有srcView，url和imageLoader。
+        viewerPopup.setSingleSrcView(imageView, if (list.size > 1) list else list[0])
+        if (list.size > 1) {
+            viewerPopup.setSrcView(imageView, position)
+            viewerPopup.setImageUrls(list)
+        } else {
+            viewerPopup.setSingleSrcView(imageView, list[0])
+        }
+        viewerPopup.isShowSaveButton(false)
+        viewerPopup.isShowIndicator(false)
+        viewerPopup.setBgColor(color(R.color.black))
+        viewerPopup.setXPopupImageLoader(ImageLoader())
+        return viewerPopup
     }
+
 
 }

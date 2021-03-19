@@ -20,7 +20,7 @@ import com.youth.banner.adapter.BannerAdapter
 class HomeBannerAdapter(
     val context: Context?,
     var viewPager2: ViewPager2,
-     datas: MutableList<BannerBean>
+    datas: MutableList<BannerBean>
 ) :
     BannerAdapter<BannerBean, HomeBannerAdapter.BannerViewHolder>(datas) {
 
@@ -45,13 +45,15 @@ class HomeBannerAdapter(
             for (banerBean in mDatas) {
                 photoList.add(banerBean.image)
             }
-            PhotoUtils.showBanner(
-                context,
-                holder.binding.image,
-                position,
-                viewPager2,
-                photoList
-            )
+            context?.let { it1 ->
+                PhotoUtils.showBanner(
+                    it1,
+                    holder.binding.image,
+                    position,
+                    viewPager2,
+                    photoList
+                )
+            }
         }
     }
 }
