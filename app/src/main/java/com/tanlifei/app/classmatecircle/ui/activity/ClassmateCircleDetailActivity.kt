@@ -186,7 +186,9 @@ class ClassmateCircleDetailActivity :
         headerBinding.topicTxt.text = bean?.entertainmentTopicName + ""
         headerBinding.totalCommentCount.text =
             bean?.comment?.let { "共${NumberUtils.setCommentCount("0", it)}条评论" }
-        PhotoUtils.showSinglePhoto(this, headerBinding.banner, bean?.image?.url)
+        headerBinding.banner.click {
+            PhotoUtils.showSinglePhoto(this, headerBinding.banner, bean?.image?.url)
+        }
         binding.commentBtn.text = bean?.comment?.let { NumberUtils.setCommentCount("评论", it) }
         binding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
         binding.praiseIcon.setImageResource(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)
