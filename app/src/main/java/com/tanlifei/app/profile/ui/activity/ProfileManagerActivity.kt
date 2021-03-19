@@ -89,7 +89,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                 binding.introduction.hint = "补充讲师介绍，让学员更了解你"
             }
             binding.nickname.setSelection(binding.nickname.text.length)
-            binding.introduction.setText(it.bio)
+            binding.introduction.text = it.bio
             binding.area.text = it.address
             binding.school.text = it.universityName
             binding.sex.text = it.gender
@@ -101,7 +101,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         })
         viewModel.refreshUniversityList.observe(this, Observer {
             initUniversityOptionPicker()
-            if(ObjectUtils.isNotEmpty(it)) {
+            if (ObjectUtils.isNotEmpty(it)) {
                 binding.school.text = it[0].name
             }
         })
@@ -113,6 +113,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
     private fun initListener() {
         clickListener(
             binding.userHead,
+            binding.introduction,
             binding.areaLayout,
             binding.schoolLayout,
             binding.sexLayout,
@@ -143,8 +144,9 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                         )
 
                     }
-
-
+                    binding.introduction -> {
+                        IntroductionActivity.actionStart(viewModel.userBean?.bio)
+                    }
                     binding.areaLayout -> {
                         shopAreaOptionPicker()
                     }
@@ -283,6 +285,12 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             when (requestCode) {
+                1 ->//简介
+                    if (ObjectUtils.isNotEmpty(data)) {
+                        var introduction = data!!.getStringExtra(GlobalConst.Extras.CONTENT)
+                        viewModel.userBean?.bio = introduction;
+                        binding.introduction.text = introduction
+                    }
                 2 -> {//收货地址
                     if (ObjectUtils.isNotEmpty(data)) {
                         viewModel.userBean?.goodsAddress =

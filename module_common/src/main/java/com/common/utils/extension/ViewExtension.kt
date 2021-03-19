@@ -46,27 +46,6 @@ fun View.gone() {
     setVisible(false)
 }
 
-/**
- * 隐藏键盘
- */
-fun View.hideKeyboard(): Boolean {
-    clearFocus()
-    return (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
-        windowToken,
-        0
-    )
-}
-
-/**
- * 显示键盘
- */
-fun View.showKeyboard(): Boolean {
-    requestFocus()
-    return (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).showSoftInput(
-        this,
-        InputMethodManager.SHOW_IMPLICIT
-    )
-}
 
 
 /**

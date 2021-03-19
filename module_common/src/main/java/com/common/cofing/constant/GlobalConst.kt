@@ -33,6 +33,7 @@ interface GlobalConst {
             const val URL = "url"//传json的Key
             const val NAME = "name"//传json的Key
             const val TITLE = "title"//传json的Key
+            const val CONTENT = "content"//传json的Key
         }
     }
 

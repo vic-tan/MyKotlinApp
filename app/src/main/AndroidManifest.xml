@@ -92,6 +92,9 @@
         <activity
             android:name="com.tanlifei.app.profile.ui.activity.ProfileManagerActivity"
             android:label="个人资料" />
+        <activity
+            android:name="com.tanlifei.app.profile.ui.activity.IntroductionActivity"
+            android:label="修改人个简介" />
 
         <activity
             android:name="com.tanlifei.app.profile.ui.activity.AddressManagerActivity"
