@@ -45,15 +45,13 @@ class HomeBannerAdapter(
             for (banerBean in mDatas) {
                 photoList.add(banerBean.image)
             }
-            context?.let { it1 ->
-                PhotoUtils.showBanner(
-                    it1,
-                    holder.binding.image,
-                    position,
-                    viewPager2,
-                    photoList
-                )
-            }
+            PhotoUtils.showBannerPhoto(
+                context,
+                holder.binding.image,
+                position,
+                viewPager2,
+                photoList
+            )
         }
     }
 }

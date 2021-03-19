@@ -11,6 +11,7 @@ import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.ImageLoader
+import com.common.utils.PhotoUtils
 import com.common.utils.extension.toast
 import com.common.widget.LoadingLayout
 import com.lxj.xpopup.XPopup
@@ -83,30 +84,10 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
                         }
                     }
                     binding.banner -> {
-                        var list = mutableListOf<Any>()
-                        var url = bean.imageUrl
+                        var list = mutableListOf<String>()
+                        var url = bean.image?.url
                         url?.let { list.add(it) }
-                        XPopup.Builder(binding.banner.context)
-                            .asImageViewer(
-                                binding.banner,
-                                0,
-                                list as List<Any>?,
-                                true,
-                                true,
-                                -1,
-                                -1,
-                                -1,
-                                true,
-                                Color.rgb(32, 36, 46),
-                                { popupView, position ->
-                                    val rv =
-                                        binding.banner.parent as RecyclerView
-                                    popupView.updateSrcView(rv.getChildAt(position) as ImageView)
-                                },
-                                ImageLoader()
-                            )
-                            .show()
-
+                        PhotoUtils.showListPhoto(context,binding.banner,position,list)
                     }
                 }
             }

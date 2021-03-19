@@ -21,7 +21,6 @@ import com.common.utils.extension.clickListener
 import com.common.utils.extension.color
 import com.common.utils.extension.setVisible
 import com.common.widget.popup.BottomInputEditView
-import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
@@ -41,7 +40,7 @@ import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
  * @date: 2021/2/5 10:15
  */
 class ClassmateCircleDetailActivity :
-    BaseToolBarActivity<ActivityClassmateCircleDetailBinding, ClassmateCircleDetailViewModel>(){
+    BaseToolBarActivity<ActivityClassmateCircleDetailBinding, ClassmateCircleDetailViewModel>() {
     private var screenWidth = ScreenUtils.getScreenWidth()
     private lateinit var adapter: CommentAdapter
     private lateinit var header: ViewBinding
@@ -187,9 +186,7 @@ class ClassmateCircleDetailActivity :
         headerBinding.topicTxt.text = bean?.entertainmentTopicName + ""
         headerBinding.totalCommentCount.text =
             bean?.comment?.let { "共${NumberUtils.setCommentCount("0", it)}条评论" }
-        headerBinding.banner.click {
-            PhotoUtils.show(this,it,bean?.image?.url)
-        }
+        PhotoUtils.showSinglePhoto(this, headerBinding.banner, bean?.image?.url)
         binding.commentBtn.text = bean?.comment?.let { NumberUtils.setCommentCount("评论", it) }
         binding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
         binding.praiseIcon.setImageResource(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)

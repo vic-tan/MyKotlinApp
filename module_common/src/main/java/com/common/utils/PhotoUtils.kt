@@ -1,6 +1,7 @@
 package com.common.utils
 
 import android.content.Context
+import android.graphics.Color
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -21,11 +22,32 @@ object PhotoUtils {
     /**
      * 显示单张
      */
-    fun show(context: Context, imageView: ImageView, url: String?) {
-        if (ObjectUtils.isNotEmpty(url)) {
+    fun showSinglePhoto(context: Context?, imageView: ImageView, url: String?) {
+        if (ObjectUtils.isNotEmpty(url) && null != context) {
             var list = mutableListOf<String>()
             list.add(url!!)
             showXPopup(context, initImageViewerPopup(context, imageView, 0, list))
+        }
+    }
+
+    /**
+     * 列表
+     */
+    fun showListPhoto(
+        context: Context?,
+        imageView: ImageView,
+        position: Int,
+        list: List<String>
+    ) {
+
+        if (ObjectUtils.isNotEmpty(list) && null != context) {
+            val viewerPopup = initImageViewerPopup(context, imageView, position, list)
+            viewerPopup.setSrcViewUpdateListener { popupView, _ ->
+                val rv =
+                    imageView.parent as RecyclerView
+                popupView.updateSrcView(rv.getChildAt(0) as ImageView)
+            }
+            showXPopup(context, viewerPopup)
         }
     }
 
@@ -33,14 +55,14 @@ object PhotoUtils {
     /**
      * viewpage2 显示大图
      */
-    fun showBanner(
-        context: Context,
+    fun showBannerPhoto(
+        context: Context?,
         imageView: ImageView,
         position: Int,
         pager2: ViewPager2,
         list: List<String>
     ) {
-        if (ObjectUtils.isNotEmpty(list)) {
+        if (ObjectUtils.isNotEmpty(list) && null != context) {
             val viewerPopup = initImageViewerPopup(context, imageView, position, list)
             viewerPopup.setSrcViewUpdateListener { popupView, position ->
                 pager2.setCurrentItem(position, false)
