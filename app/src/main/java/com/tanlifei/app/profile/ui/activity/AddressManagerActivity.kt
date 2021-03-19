@@ -3,6 +3,7 @@ package com.tanlifei.app.profile.ui.activity
 import android.content.Intent
 import android.text.TextUtils
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
@@ -14,6 +15,7 @@ import com.blankj.utilcode.util.RegexUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.bean.UserBean
 import com.common.core.base.ui.activity.BaseFormActivity
+import com.common.utils.extension.click
 import com.common.utils.extension.clickListener
 import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
@@ -161,11 +163,14 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
                         v.findViewById<View>(R.id.tv_finish) as TextView
                     val ivCancel =
                         v.findViewById<View>(R.id.iv_cancel) as TextView
-                    tvSubmit.setOnClickListener {
+                    val optLayout =
+                        v.findViewById<View>(R.id.opt_layout) as RelativeLayout
+                    tvSubmit.click {
                         pvOptions?.returnData()
                         pvOptions?.dismiss()
                     }
-                    ivCancel.setOnClickListener { pvOptions?.dismiss() }
+                    ivCancel.click { pvOptions?.dismiss() }
+                    optLayout.click { }
                 }.setItemVisibleCount(4)
                 .setLineSpacingMultiplier(2.2f)
                 .setOutSideCancelable(true)

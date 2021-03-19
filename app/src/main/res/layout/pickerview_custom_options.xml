@@ -8,6 +8,7 @@
     app:corner_radius_top_right="20dp">
 
     <com.ruffian.library.widget.RRelativeLayout
+        android:id="@+id/opt_layout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         app:corner_radius_top_left="20dp"
