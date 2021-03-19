@@ -41,7 +41,6 @@ class IntroductionActivity : BaseFormActivity<ActivityIntroductionBinding, Empty
         mInputHelper.addViews(binding.content)
         binding.content.setText(intent.getStringExtra(GlobalConst.Extras.CONTENT))
         binding.content.setSelection(binding.content.text.length)
-        binding.content.showKeyboard()
         binding.save.click {
             if (ObjectUtils.isEmpty(binding.content.text)) {
                 toast("请输入内容")
