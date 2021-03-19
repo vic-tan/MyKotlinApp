@@ -11,7 +11,6 @@ import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils
 import com.common.utils.PictureSelectorUtils
 import com.common.utils.extension.clickListener
-import com.common.utils.extension.toast
 import com.common.widget.popup.BottomOptionView
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
@@ -52,8 +51,15 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.refreshUserInfo.observe(this, Observer {
-
+        viewModel.refreshUserInfo.observe(this, Observer { it ->
+            GlideUtils.loadAvatar(mActivity, it.avatar, binding.userHead)
+            binding.nickname.setText(it.nickname)
+            binding.introduction.setText(it.bio)
+            binding.area.text = it.address
+            binding.school.text = it.universityName
+            binding.sex.text = it.gender
+            binding.age.text = it.age
+            binding.address.text = if (it.goodsAddress == 0L) "" else "修改"
         })
     }
 
@@ -61,9 +67,13 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 初始化监听
      */
     private fun initListener() {
-        clickListener(binding.userHead, binding.addressLayout, binding.sexLayout,
-            clickListener = View.OnClickListener {
-                when (it) {
+        clickListener(
+            binding.userHead,
+            binding.addressLayout,
+            binding.sexLayout,
+            binding.ageLayout,
+            clickListener = View.OnClickListener { v ->
+                when (v) {
                     binding.userHead -> {
                         PermissionUtils.requestCameraPermission(
                             this,
@@ -88,15 +98,24 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
 
                     }
                     binding.addressLayout -> viewModel.userBean?.let {
-                        AddressManagerActivity.actionStart(
-                            it
-                        )
+                        AddressManagerActivity.actionStart(it)
                     }
                     binding.sexLayout -> viewModel.userBean?.let {
                         var optionView = BottomOptionView(
                             mActivity,
                             mutableListOf("男", "女"),
-                            OnSelectListener { position, text -> toast("position $position click $text") },
+                            OnSelectListener { _, text -> binding.sex.text = text }
+                        )
+                        XPopup.Builder(mActivity)
+                            .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
+                            .asCustom(optionView)
+                            .show()
+                    }
+                    binding.ageLayout -> {
+                        var optionView = BottomOptionView(
+                            mActivity,
+                            mutableListOf("50以下", "50-60", "60-70", "70以上"),
+                            OnSelectListener { _, text -> binding.age.text = text }
                         )
                         XPopup.Builder(mActivity)
                             .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
