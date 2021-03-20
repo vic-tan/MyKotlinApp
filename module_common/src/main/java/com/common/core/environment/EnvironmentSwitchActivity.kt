@@ -50,9 +50,9 @@ class EnvironmentSwitchActivity :
     }
 
     override fun setTitleBarListener() {
-        titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+        mTitleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(v: View) {
-                viewModel.saveAllSelect()
+                mViewModel.saveAllSelect()
                 ActivityUtils.finishActivity(mActivity)
             }
 
@@ -65,15 +65,15 @@ class EnvironmentSwitchActivity :
     }
 
     override fun onBackPressed() {
-        viewModel.saveAllSelect()
+        mViewModel.saveAllSelect()
         super.onBackPressed()
     }
 
     override fun init() {
         val mapJsonStr: String = intent.getStringExtra(GlobalConst.Extras.JSON)
-        viewModel.initListData(mapJsonStr)
+        mViewModel.initListData(mapJsonStr)
         initRecyclerView()
-        viewModel.dataChanged.observe(this, Observer {
+        mViewModel.mDataChanged.observe(this, Observer {
             adapter.notifyDataSetChanged()
         })
     }
@@ -82,7 +82,7 @@ class EnvironmentSwitchActivity :
     private fun initRecyclerView() {
         binding.recycler.layoutManager = LinearLayoutManager(mActivity)
         adapter = EnvironmentAdapter()
-        adapter.mData = viewModel.mData as MutableList<EnvironmentBean>
+        adapter.mData = mViewModel.mData as MutableList<EnvironmentBean>
         binding.recycler.adapter = adapter
         adapter.setItemClickListener(object : OnMultiItemListener<EnvironmentBean> {
             override fun click(
@@ -95,7 +95,7 @@ class EnvironmentSwitchActivity :
                     is ItemEnvironmentContentBinding -> {
                         when (v) {
                             holder.layout -> {
-                                viewModel.setSelect(position)
+                                mViewModel.setSelect(position)
                             }
                         }
                     }

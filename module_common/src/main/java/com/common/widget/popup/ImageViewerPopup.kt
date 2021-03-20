@@ -17,22 +17,22 @@ import com.lxj.xpopup.core.ImageViewerPopupView
  * @author: tanlifei
  * @date: 2021/3/18 17:27
  */
-class ImageViewerPopup(context: Context) : ImageViewerPopupView(context) {
-    lateinit var binding: LayoutImageViewerPopupBinding
+class ImageViewerPopup(mContext: Context) : ImageViewerPopupView(mContext) {
+    lateinit var mBinding: LayoutImageViewerPopupBinding
     override fun getImplLayoutId(): Int {
         return R.layout.layout_image_viewer_popup
     }
 
     override fun onCreate() {
         super.onCreate()
-        binding = LayoutImageViewerPopupBinding.bind(customView)
-        BarUtils.addMarginTopEqualStatusBarHeight(binding.arrowBack)
-        binding.tvPagerIndicator.setVisible(urls.size > 1)
+        mBinding = LayoutImageViewerPopupBinding.bind(customView)
+        BarUtils.addMarginTopEqualStatusBarHeight(mBinding.arrowBack)
+        mBinding.tvPagerIndicator.setVisible(urls.size > 1)
         showPagerIndicator()
-        clickListener(binding.arrowBack, binding.tvSave, clickListener = OnClickListener {
+        clickListener(mBinding.arrowBack, mBinding.tvSave, clickListener = OnClickListener {
             when (it) {
-                binding.arrowBack -> dismiss()
-                binding.tvSave -> {
+                mBinding.arrowBack -> dismiss()
+                mBinding.tvSave -> {
                     PermissionUtils.requestSDCardPermission(
                         context,
                         callback = object : PermissionUtils.PermissionCallback {
@@ -71,7 +71,7 @@ class ImageViewerPopup(context: Context) : ImageViewerPopupView(context) {
     private fun showPagerIndicator() {
         if (urls.size > 1) {
             val selectPos = if (isInfinite) position % urls.size else position
-            binding.tvPagerIndicator.text = (selectPos + 1).toString() + "/" + urls.size
+            mBinding.tvPagerIndicator.text = (selectPos + 1).toString() + "/" + urls.size
         }
         if (isShowSaveBtn) tv_save.visibility = View.VISIBLE
     }

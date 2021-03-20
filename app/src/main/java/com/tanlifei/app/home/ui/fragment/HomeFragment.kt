@@ -15,7 +15,6 @@ import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
-import com.common.utils.PhotoUtils
 import com.common.utils.RecyclerUtils
 import com.common.utils.extension.click
 import com.common.utils.extension.toast
@@ -29,7 +28,6 @@ import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.youth.banner.indicator.RectangleIndicator
-import com.youth.banner.listener.OnBannerListener
 
 /**
  * @desc:首页
@@ -65,36 +63,36 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     override fun onFirstVisibleToUser() {
-        BarUtils.addMarginTopEqualStatusBarHeight(binding.topLayout)
-        homeViewModel = (activity as MainActivity).viewModel
+        BarUtils.addMarginTopEqualStatusBarHeight(mBinding.topLayout)
+        homeViewModel = (activity as MainActivity).mViewModel
         homeViewModel.getUser()
         initAdapter()
         initHeaderView()
         initHFooterView()
-        viewModel.homeHeaderDataChanged.observe(this, Observer {
-            binding.refreshLayout.refreshLoadingLayout.showContent()
-            binding.refreshLayout.smartRefreshLayout.finishRefresh()
+        mViewModel.homeHeaderDataChanged.observe(this, Observer {
+            mBinding.refreshLayout.refreshLoadingLayout.showContent()
+            mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
             addHeaderOrFooter()
             adapter.notifyDataSetChanged()
         })
-        viewModel.loadingState.observe(this, Observer {
+        mViewModel.mLoadingState.observe(this, Observer {
             when (it) {
                 BaseListViewModel.UIType.NOTMOREDATA -> {
-                    binding.refreshLayout.smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
+                    mBinding.refreshLayout.smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
                 }
-                BaseListViewModel.UIType.EMPTYDATA -> binding.refreshLayout.refreshLoadingLayout.showContent()
-                BaseListViewModel.UIType.ERROR -> binding.refreshLayout.refreshLoadingLayout.showError()
-                BaseListViewModel.UIType.CONTENT -> binding.refreshLayout.refreshLoadingLayout.showContent()
+                BaseListViewModel.UIType.EMPTYDATA -> mBinding.refreshLayout.refreshLoadingLayout.showContent()
+                BaseListViewModel.UIType.ERROR -> mBinding.refreshLayout.refreshLoadingLayout.showError()
+                BaseListViewModel.UIType.CONTENT -> mBinding.refreshLayout.refreshLoadingLayout.showContent()
             }
         })
-        homeViewModel.refreshUserInfo.observe(this, Observer {
-            GlideUtils.loadAvatar(this.context, it.avatar, binding.userCover)
+        homeViewModel.mRefreshUserInfo.observe(this, Observer {
+            GlideUtils.loadAvatar(this.context, it.avatar, mBinding.userCover)
         })
     }
 
     private fun initAdapter() {
-        adapter = HomeAdapter(context)
-        adapter.mData = viewModel.mData
+        adapter = HomeAdapter()
+        adapter.mData = mViewModel.mData
         adapter.setItemClickListener(object : OnMultiItemListener<ClassmateCircleBean> {
             override fun click(
                 holder: ViewBinding,
@@ -115,20 +113,20 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
         })
-        binding.refreshLayout.refreshRecycler.adapter = adapter
-        binding.refreshLayout.refreshRecycler.layoutManager =
+        mBinding.refreshLayout.refreshRecycler.adapter = adapter
+        mBinding.refreshLayout.refreshRecycler.layoutManager =
             RecyclerUtils.setLinearLayoutManager(context)
-        binding.refreshLayout.refreshRecycler.itemAnimator = null
-        binding.refreshLayout.smartRefreshLayout.setOnRefreshListener {
+        mBinding.refreshLayout.refreshRecycler.itemAnimator = null
+        mBinding.refreshLayout.smartRefreshLayout.setOnRefreshListener {
             isFirstLoad = false
-            viewModel.requestRefresh()
+            mViewModel.requestRefresh()
 
         }
-        binding.refreshLayout.refreshLoadingLayout.setRetryListener(View.OnClickListener {
-            viewModel.requestRefresh()
+        mBinding.refreshLayout.refreshLoadingLayout.setRetryListener(View.OnClickListener {
+            mViewModel.requestRefresh()
         })
-        binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false)
-        viewModel.requestRefresh()
+        mBinding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false)
+        mViewModel.requestRefresh()
     }
 
 
@@ -142,13 +140,13 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
         //banner
         bannerAdapter =
-            HomeBannerAdapter(context, headerBinding.banner.viewPager2, viewModel.bannerData)
+            HomeBannerAdapter(headerBinding.banner.viewPager2, mViewModel.bannerData)
         headerBinding.banner.addBannerLifecycleObserver(this) //添加生命周期观察者
             .setAdapter(bannerAdapter).indicator = RectangleIndicator(context)
 
         //Menu
-        menuAdapter = MenuAdapter(context)
-        menuAdapter.mData = viewModel.menuData
+        menuAdapter = MenuAdapter()
+        menuAdapter.mData = mViewModel.menuData
         menuAdapter.setItemClickListener(object :
             OnItemClickListener<ItemHomeMenuBinding, MenuBean> {
             override fun click(
@@ -204,9 +202,9 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         adapter.addHeaderView(header)
         useBanner()
         menuAdapter.notifyDataSetChanged()
-        if (ObjectUtils.isNotEmpty(viewModel.adsnoviceData)) {
+        if (ObjectUtils.isNotEmpty(mViewModel.adsnoviceData)) {
             var headerBinding = header as HomeHeaderBinding
-            GlideUtils.load(context, viewModel.adsnoviceData[0].image, headerBinding.ads)
+            GlideUtils.load(context, mViewModel.adsnoviceData[0].image, headerBinding.ads)
         }
         if (!isFirstLoad) {
             for (fragment in mFragments) {

@@ -18,9 +18,9 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/24 16:02
  */
-class HomeAdapter(var context: Context?) :
+class HomeAdapter :
     CommonRvMultiItemAdapter<ClassmateCircleBean>() {
-
+    private lateinit var mContext: Context
     override fun setItemViewType(int: Int): Int {
         return ItemViewType.CONTEN.ordinal
     }
@@ -30,6 +30,7 @@ class HomeAdapter(var context: Context?) :
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ViewBinding> {
+        mContext = parent.context
         return CommonRvHolder(
             ItemHomeBinding.inflate(
                 inflater, parent, false
@@ -47,7 +48,7 @@ class HomeAdapter(var context: Context?) :
         holder.title.text = bean.nickName
         holder.desc.text = bean.content
         holder.time.text = "05月23日 15:20"
-        GlideUtils.load(context, bean.image?.url, holder.cover)
+        GlideUtils.load(mContext, bean.image?.url, holder.cover)
         holder.headerTitleSplit.setVisible(position == 0)
         holder.headerTitle.setVisible(position == 0)
         holder.headerTitleLine.setVisible(position == 0)

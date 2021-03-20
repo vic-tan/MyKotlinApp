@@ -51,7 +51,7 @@ class CommentAdapter :
         holder.time.text = bean.createTimeStr
         holder.school.text = bean.universityName
         holder.school.setVisible(ObjectUtils.isNotEmpty(bean.universityName))
-        GlideUtils.loadAvatar(ComFun.context, bean.avatar, holder.userHead)
+        GlideUtils.loadAvatar(ComFun.mContext, bean.avatar, holder.userHead)
         holder.delete.setVisible(UserInfoUtils.getUid() == bean.uid)
     }
 

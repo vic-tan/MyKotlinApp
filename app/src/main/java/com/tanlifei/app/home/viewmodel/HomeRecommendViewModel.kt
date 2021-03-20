@@ -14,7 +14,7 @@ class HomeRecommendViewModel(private var categoryId: Long = 1) : BaseListViewMod
     override fun requestList(dataChangedType: DataChagedType) {
         launchByLoading({
             addList(
-                ApiNetwork.requestFriendsEntertainmentListByType(pageNum, categoryId),
+                ApiNetwork.requestFriendsEntertainmentListByType(mPageNum, categoryId),
                 dataChangedType
             )
         }, dataChangedType)

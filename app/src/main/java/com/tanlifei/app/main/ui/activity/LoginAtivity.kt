@@ -76,17 +76,17 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.loadingState.observe(this, this)
+        mViewModel.mLoadingState.observe(this, this)
 
-        viewModel.isToken.observe(this, Observer {
+        mViewModel.mIsToken.observe(this, Observer {
             if (it) {
-                ComFun.token = viewModel.token
-                viewModel.token?.let { it -> UserInfoUtils.saveToken(it) }
+                ComFun.mToken = mViewModel.mToken
+                mViewModel.mToken?.let { it -> UserInfoUtils.saveToken(it) }
                 MainActivity.actionStart()
             }
         })
 
-        viewModel.smsCodeInterval.observe(this, Observer {
+        mViewModel.mSmsCodeInterval.observe(this, Observer {
             when (it) {
                 -1L -> onIntervalStart()
                 -2L -> onIntervalComplete()
@@ -94,7 +94,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
             }
         })
 
-        viewModel.isContinuousClick.observe(this, Observer {
+        mViewModel.mIsContinuousClick.observe(this, Observer {
             binding.changeEnvironment.setVisible(it)
         })
 
@@ -117,7 +117,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
                                 LoginUtils.getPhone(binding.phone.text.toString())
                             )
                         ) {
-                            viewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
+                            mViewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
                         }
                     }
                     binding.login -> {
@@ -126,14 +126,14 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
                                 binding.code.text.toString()
                             )
                         ) {
-                            viewModel.requestLogin(
+                            mViewModel.requestLogin(
                                 LoginUtils.getPhone(binding.phone.text.toString()),
                                 binding.code.text.toString()
                             )
                         }
                     }
                     binding.changeEnvironment -> EnvironmentSwitchActivity.actionStart()
-                    binding.logo -> viewModel.continuousClick()
+                    binding.logo -> mViewModel.continuousClick()
                 }
             }
         )

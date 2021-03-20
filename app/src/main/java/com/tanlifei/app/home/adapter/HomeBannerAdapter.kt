@@ -18,16 +18,17 @@ import com.youth.banner.adapter.BannerAdapter
  * @date: 2021/3/16 17:15
  */
 class HomeBannerAdapter(
-    val context: Context?,
-    var viewPager2: ViewPager2,
-    datas: MutableList<BannerBean>
+    var mViewPager2: ViewPager2,
+    mBannerList: MutableList<BannerBean>
 ) :
-    BannerAdapter<BannerBean, HomeBannerAdapter.BannerViewHolder>(datas) {
+    BannerAdapter<BannerBean, HomeBannerAdapter.BannerViewHolder>(mBannerList) {
+    private lateinit var mContext: Context
 
     inner class BannerViewHolder(val binding: ItemHomeBannerBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateHolder(parent: ViewGroup, viewType: Int): BannerViewHolder {
+        mContext = parent.context
         val binding = ItemHomeBannerBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return BannerViewHolder(binding)
@@ -39,17 +40,17 @@ class HomeBannerAdapter(
         position: Int,
         size: Int
     ) {
-        GlideUtils.load(context, data.image, holder.binding.image)
+        GlideUtils.load(mContext, data.image, holder.binding.image)
         holder.binding.image.click {
             val photoList: MutableList<String> = mutableListOf()
             for (banerBean in mDatas) {
                 photoList.add(banerBean.image)
             }
             PhotoUtils.showBannerPhoto(
-                context,
+                mContext,
                 holder.binding.image,
                 position,
-                viewPager2,
+                mViewPager2,
                 photoList
             )
         }

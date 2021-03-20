@@ -24,10 +24,10 @@ import update.UpdateAppUtils
  */
 object ComFun {
 
-    lateinit var context: Context
-    lateinit var handler: Handler
-    var token: String? = null
-    var user: UserBean? = null
+    lateinit var mContext: Context
+    lateinit var mHandler: Handler
+    var mToken: String? = null
+    var mUser: UserBean? = null
     var mFinalCount = 0
 
     /**
@@ -65,13 +65,13 @@ object ComFun {
     }
 
     fun initialize(context: Application) {
-        this.context = context
+        this.mContext = context
         RxHttpManager.init(context)
         ToastUtils.init(context)
         CrashReport.initCrashReport(context)
         UpdateAppUtils.init(context)//app升级
         LitePal.initialize(context)
-        handler = Handler(Looper.getMainLooper())
+        mHandler = Handler(Looper.getMainLooper())
         context.registerActivityLifecycleCallbacks(StatisticActivityLifecycleCallback())
     }
 

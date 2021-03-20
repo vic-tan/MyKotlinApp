@@ -15,28 +15,28 @@ object UserInfoUtils {
      * 获取用户信息
      */
     fun getUser(): UserBean? {
-        if (ObjectUtils.isEmpty(ComFun.user)) {
-            ComFun.user = LitePal.findLast(UserBean::class.java)
+        if (ObjectUtils.isEmpty(ComFun.mUser)) {
+            ComFun.mUser = LitePal.findLast(UserBean::class.java)
         }
-        return ComFun.user
+        return ComFun.mUser
     }
 
     /**
      * 获取用户Uid
      */
     fun getUid(): Long? {
-        if (ObjectUtils.isEmpty(ComFun.user)) {
-            ComFun.user = LitePal.findLast(UserBean::class.java)
+        if (ObjectUtils.isEmpty(ComFun.mUser)) {
+            ComFun.mUser = LitePal.findLast(UserBean::class.java)
         }
-        return ComFun.user?.uid
+        return ComFun.mUser?.uid
     }
 
     /**
      * 获用户token
      */
     fun getToken(): String? {
-        return if (ObjectUtils.isNotEmpty(ComFun.token)) {
-            ComFun.token
+        return if (ObjectUtils.isNotEmpty(ComFun.mToken)) {
+            ComFun.mToken
         } else {
             getUser()?.token
         }

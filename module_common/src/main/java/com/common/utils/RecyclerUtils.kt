@@ -48,7 +48,7 @@ object RecyclerUtils {
         viewModel: BaseListViewModel,
         owner: LifecycleOwner
     ) {
-        viewModel.dataChanged.observe(owner, Observer {
+        viewModel.mDataChanged.observe(owner, Observer {
             when (it) {
                 BaseListViewModel.DataChagedType.REFRESH -> {
                     smartRefreshLayout.finishRefresh()
@@ -64,7 +64,7 @@ object RecyclerUtils {
                 BaseListViewModel.DataChagedType.LOADMORE -> {
                     smartRefreshLayout.finishLoadMore()
                     adapter.notifyItemRangeInserted(
-                        viewModel.loadMoreStartPos,
+                        viewModel.mLoadMoreStartPos,
                         viewModel.mData.size - 1
                     )
 
@@ -93,7 +93,7 @@ object RecyclerUtils {
         owner: LifecycleOwner,
         isHeaderOrFooter: Boolean = false
     ) {
-        viewModel.uiBehavior.observe(owner, Observer {
+        viewModel.mUiBehavior.observe(owner, Observer {
             when (it) {
                 BaseListViewModel.UIType.NOTMOREDATA -> {
                     smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
@@ -157,9 +157,9 @@ object RecyclerUtils {
                     // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
                     if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
                         && getOutLast(layoutManager) >= getLoadCount(layoutManager)
-                        && viewModel.state == RefreshState.None
+                        && viewModel.mState == RefreshState.None
                     ) {
-                        viewModel.state = RefreshState.Loading
+                        viewModel.mState = RefreshState.Loading
                         viewModel.loadMore()
                     }
                 }

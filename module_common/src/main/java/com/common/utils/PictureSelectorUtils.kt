@@ -21,15 +21,15 @@ import com.luck.picture.lib.style.PictureWindowAnimationStyle
  */
 object PictureSelectorUtils {
 
-    fun create(context: Context, chooseMode: Int, selectNum: Int = 1): PictureSelectionModel {
-        return when (context) {
+    fun create(mContext: Context, chooseMode: Int, selectNum: Int = 1): PictureSelectionModel {
+        return when (mContext) {
             is Fragment -> initSelectionModel(
-                PictureSelector.create(context),
+                PictureSelector.create(mContext),
                 chooseMode,
                 selectNum
             )
             else -> initSelectionModel(
-                PictureSelector.create(context as Activity),
+                PictureSelector.create(mContext as Activity),
                 chooseMode,
                 selectNum
             )
@@ -41,8 +41,8 @@ object PictureSelectorUtils {
      *
      * 加载头像并裁剪为圆形
      */
-    fun createAvatarCrop(context: Context): PictureSelectionModel {
-        return create(context, PictureMimeType.ofImage())
+    fun createAvatarCrop(mContext: Context): PictureSelectionModel {
+        return create(mContext, PictureMimeType.ofImage())
             .isEnableCrop(true)
             .circleDimmedLayer(true)
             .selectionMode(PictureConfig.SINGLE)//单选

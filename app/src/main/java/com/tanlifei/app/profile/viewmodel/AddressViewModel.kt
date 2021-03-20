@@ -19,31 +19,31 @@ import com.tanlifei.app.profile.bean.AreaJsonBean
 class AddressViewModel(mUser: UserBean) : BaseViewModel() {
 
 
-    var user: UserBean = mUser
-    var addressBean: AddressBean? = null
-    var areaJsonList: MutableList<AreaJsonBean> = mutableListOf()
-    var options1Items: MutableList<AreaBean> = mutableListOf()
-    var options2Items: MutableList<MutableList<AreaBean>> = mutableListOf()
-    var options3Items: MutableList<MutableList<MutableList<AreaBean>>> = mutableListOf()
+    var mUser: UserBean = mUser
+    var mAddressBean: AddressBean? = null
+    var mAreaJsonList: MutableList<AreaJsonBean> = mutableListOf()
+    var mOptions1Items: MutableList<AreaBean> = mutableListOf()
+    var mOptions2Items: MutableList<MutableList<AreaBean>> = mutableListOf()
+    var mOptions3Items: MutableList<MutableList<MutableList<AreaBean>>> = mutableListOf()
 
 
     /**
      * 地址数据加载完成的LveData
      */
-    val addressDataComplete: LiveData<AddressBean> get() = _addressDataComplete
-    private var _addressDataComplete = MutableLiveData<AddressBean>()
+    val mAddressDataComplete: LiveData<AddressBean> get() = addressDataComplete
+    private var addressDataComplete = MutableLiveData<AddressBean>()
 
     /**
      * 地区数据加载完成的LveData
      */
-    val areaDataComplete: LiveData<Boolean> get() = _areaDataComplete
-    private var _areaDataComplete = MutableLiveData<Boolean>()
+    val mAreaDataComplete: LiveData<Boolean> get() = areaDataComplete
+    private var areaDataComplete = MutableLiveData<Boolean>()
 
     /**
      * 的LveData
      */
-    val editAddressComplete: LiveData<Int> get() = _editAddressComplete
-    private var _editAddressComplete = MutableLiveData<Int>()
+    val mEditAddressComplete: LiveData<Int> get() = editAddressComplete
+    private var editAddressComplete = MutableLiveData<Int>()
 
 
     /**
@@ -52,9 +52,9 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
     fun requestAreaJsonList() = launchBySilence {
         var data = ApiNetwork.requestAreaJsonList()
         if (ObjectUtils.isNotEmpty(data)) {
-            areaJsonList = data
+            mAreaJsonList = data
             analysisAreaJson(data)
-            _areaDataComplete.value = true
+            areaDataComplete.value = true
         }
     }
 
@@ -62,13 +62,13 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
      * 更新收货地址
      */
     fun requestEidtGoodsAddress() = launchByLoading {
-        addressBean?.let {
+        mAddressBean?.let {
             var id = ApiNetwork.requestEidtGoodsAddress(
-                user.goodsAddress == 0L,
+                mUser.goodsAddress == 0L,
                 it
             )
             if (ObjectUtils.isNotEmpty(id)) {
-                _editAddressComplete.value = id.toInt()
+                editAddressComplete.value = id.toInt()
             }
 
         }
@@ -79,10 +79,10 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
      */
     fun requestGoodsAddress() {
         launchBySilence {
-            var address = ApiNetwork.requestGoodsAddress(user.goodsAddress)
+            var address = ApiNetwork.requestGoodsAddress(mUser.goodsAddress)
             if (ObjectUtils.isNotEmpty(address)) {
-                addressBean = address
-                _addressDataComplete.value = addressBean
+                mAddressBean = address
+                addressDataComplete.value = mAddressBean
             }
         }
     }
@@ -92,16 +92,16 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
      */
     private fun analysisAreaJson(areaList: MutableList<AreaJsonBean>) {
         if (ObjectUtils.isNotEmpty(areaList)) {
-            options1Items.clear()
-            options2Items.clear()
-            options3Items.clear()
+            mOptions1Items.clear()
+            mOptions2Items.clear()
+            mOptions3Items.clear()
 
             var provinceList: MutableList<AreaBean> = mutableListOf() //该省（第一级）
 
             var cityList: MutableList<AreaBean> //该省的城市列表（第二级）
             var provinceAreaList: MutableList<MutableList<AreaBean>> //该省的所有地区列表（第三极）
             for (p in areaList) { //遍历省份
-                options1Items.add(AreaBean(p.id, p.pid, p.name))
+                mOptions1Items.add(AreaBean(p.id, p.pid, p.name))
                 cityList = mutableListOf()
                 provinceAreaList = mutableListOf()
                 var cityAreaList: MutableList<AreaBean> //该城市的所有地区列表
@@ -114,16 +114,16 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
                 /**
                  * 添加城市数据
                  */
-                options2Items.add(cityList)
+                mOptions2Items.add(cityList)
                 /**
                  * 添加地区数据
                  */
-                options3Items.add(provinceAreaList)
+                mOptions3Items.add(provinceAreaList)
             }
             /**
              * 添加省钩
              */
-            options1Items.addAll(provinceList)
+            mOptions1Items.addAll(provinceList)
         }
     }
 

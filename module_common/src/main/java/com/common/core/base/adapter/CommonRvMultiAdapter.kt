@@ -36,7 +36,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
             field = value
             notifyItemRangeChanged(0, value.size)
         }
-    private var onItemListener: OnMultiItemListener<T>? = null
+    private var mOnItemListener: OnMultiItemListener<T>? = null
 
 
     /**
@@ -48,7 +48,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     /**
      * 用于保存需要设置点击事件的 item
      */
-    private val childClickViews = LinkedHashSet<View>()
+    private val mChildClickViews = LinkedHashSet<View>()
 
 
     /**
@@ -56,9 +56,9 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
      * @param views viewArray
      */
     private fun addViewList(views: LinkedHashSet<View>) {
-        childClickViews.clear()
+        mChildClickViews.clear()
         if (ObjectUtils.isNotEmpty(views)) {
-            childClickViews.addAll(views)
+            mChildClickViews.addAll(views)
         }
 
     }
@@ -167,9 +167,9 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
             mData[adapterPosition]
         )
         addViewList(addChildClickViewIds(holder.binding))
-        if (ObjectUtils.isNotEmpty(childClickViews)) {
-            onItemListener?.let {
-                for (v in childClickViews) {
+        if (ObjectUtils.isNotEmpty(mChildClickViews)) {
+            mOnItemListener?.let {
+                for (v in mChildClickViews) {
                     v?.let {
                         it.click {
                             setOnItemClick(
@@ -204,11 +204,11 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         v: View,
         position: Int
     ) {
-        onItemListener?.click(holder, bean, v, position)
+        mOnItemListener?.click(holder, bean, v, position)
     }
 
     fun setItemClickListener(listener: OnMultiItemListener<T>) {
-        this.onItemListener = listener
+        this.mOnItemListener = listener
     }
 
 

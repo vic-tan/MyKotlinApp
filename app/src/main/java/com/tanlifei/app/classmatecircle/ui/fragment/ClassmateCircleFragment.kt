@@ -16,7 +16,7 @@ import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
  */
 class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>() {
     private val mTitleData = mutableListOf("关注", "推荐")
-    private lateinit var fragmentAdapter: BasePagerAdapter
+    private lateinit var mFragmentAdapter: BasePagerAdapter
     private var mFragments: MutableList<Fragment> = ArrayList()
 
     companion object {
@@ -30,12 +30,12 @@ class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>
 
 
     override fun onFirstVisibleToUser() {
-        BarUtils.addMarginTopEqualStatusBarHeight(binding.tabIndicator)//为 view 增加 MarginTop 为状态栏高度
+        BarUtils.addMarginTopEqualStatusBarHeight(mBinding.tabIndicator)//为 view 增加 MarginTop 为状态栏高度
         bindFragments()
         MagicIndicatorUtils.initComMagicIndicator(
             activity,
-            binding.tabIndicator,
-            binding.viewPager,
+            mBinding.tabIndicator,
+            mBinding.viewPager,
             mTitleData
         )
     }
@@ -46,8 +46,8 @@ class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>
     private fun bindFragments() {
         mFragments.add(FollowFragment.newInstance())
         mFragments.add(RecommendTabFragment.newInstance())
-        fragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
-        binding.viewPager.adapter = fragmentAdapter
+        mFragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
+        mBinding.viewPager.adapter = mFragmentAdapter
     }
 
 

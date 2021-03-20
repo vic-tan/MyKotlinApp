@@ -35,7 +35,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
 
 
     private lateinit var mInputHelper: TextInputHelper
-    var pvOptions: OptionsPickerView<AreaBean>? = null
+    var mPvOptions: OptionsPickerView<AreaBean>? = null
 
     companion object {
         fun actionStart(user: UserBean) {
@@ -81,9 +81,9 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.loadingState.observe(this, this)
-        viewModel.addressDataComplete.observe(this, Observer {
-            binding.name.setText(viewModel.user.nickname)
+        mViewModel.mLoadingState.observe(this, this)
+        mViewModel.mAddressDataComplete.observe(this, Observer {
+            binding.name.setText(mViewModel.mUser.nickname)
             binding.name.setSelection(binding.name.text.length)
             binding.phone.setText(it.mobile)
             binding.email.setText(it.email)
@@ -91,11 +91,11 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
             binding.areaDetails.setText(it.address)
         })
 
-        viewModel.areaDataComplete.observe(this, Observer {
+        mViewModel.mAreaDataComplete.observe(this, Observer {
 
             initAreaOptionPicker()
         })
-        viewModel.editAddressComplete.observe(this, Observer {
+        mViewModel.mEditAddressComplete.observe(this, Observer {
             toast("保存成功")
             val i = Intent()
             i.putExtra(GlobalConst.Extras.ID, it)
@@ -117,7 +117,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
                     }
                     binding.enter -> {
                         if (checkContent()) {
-                            viewModel.requestEidtGoodsAddress()
+                            mViewModel.requestEidtGoodsAddress()
                         }
                     }
 
@@ -126,8 +126,8 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
     }
 
     private fun initData() {
-        viewModel.requestGoodsAddress()
-        viewModel.requestAreaJsonList()
+        mViewModel.requestGoodsAddress()
+        mViewModel.requestAreaJsonList()
     }
 
 
@@ -137,27 +137,27 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * @return
      */
     private fun initAreaOptionPicker(): OptionsPickerView<AreaBean>? {
-        if (ObjectUtils.isNotEmpty(viewModel.options1Items) && ObjectUtils.isNotEmpty(viewModel.options2Items)
-            && ObjectUtils.isNotEmpty(viewModel.options3Items)
+        if (ObjectUtils.isNotEmpty(mViewModel.mOptions1Items) && ObjectUtils.isNotEmpty(mViewModel.mOptions2Items)
+            && ObjectUtils.isNotEmpty(mViewModel.mOptions3Items)
         ) {
-            pvOptions = OptionsPickerBuilder(
+            mPvOptions = OptionsPickerBuilder(
                 this,
                 OnOptionsSelectListener { options1: Int, options2: Int, options3: Int, _: View? ->
-                    if (ObjectUtils.isNotEmpty(viewModel.addressBean)) {
-                        viewModel.addressBean?.provinceId = viewModel.areaJsonList[options1].id
-                        viewModel.addressBean?.cityId =
-                            viewModel.areaJsonList[options1].areaListVOList[options2].id
-                        viewModel.addressBean?.areaId =
-                            viewModel.areaJsonList[options1].areaListVOList[options2]
+                    if (ObjectUtils.isNotEmpty(mViewModel.mAddressBean)) {
+                        mViewModel.mAddressBean?.provinceId = mViewModel.mAreaJsonList[options1].id
+                        mViewModel.mAddressBean?.cityId =
+                            mViewModel.mAreaJsonList[options1].areaListVOList[options2].id
+                        mViewModel.mAddressBean?.areaId =
+                            mViewModel.mAreaJsonList[options1].areaListVOList[options2]
                                 .areaList[options3].id
                     }
-                    viewModel.addressBean?.addressPrefix =
-                        viewModel.areaJsonList[options1].name + " " +
-                                viewModel.areaJsonList[options1].areaListVOList[options2]
+                    mViewModel.mAddressBean?.addressPrefix =
+                        mViewModel.mAreaJsonList[options1].name + " " +
+                                mViewModel.mAreaJsonList[options1].areaListVOList[options2]
                                     .name + " " +
-                                viewModel.areaJsonList[options1].areaListVOList[options2]
+                                mViewModel.mAreaJsonList[options1].areaListVOList[options2]
                                     .areaList[options3].name
-                    binding.area.text = viewModel.addressBean?.addressPrefix
+                    binding.area.text = mViewModel.mAddressBean?.addressPrefix
                     binding.areaEdit.setText(binding.area.text)
                 }
             )
@@ -171,23 +171,23 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
                     val optLayout =
                         v.findViewById<View>(R.id.opt_layout) as RelativeLayout
                     tvSubmit.click {
-                        pvOptions?.returnData()
-                        pvOptions?.dismiss()
+                        mPvOptions?.returnData()
+                        mPvOptions?.dismiss()
                     }
-                    ivCancel.click { pvOptions?.dismiss() }
+                    ivCancel.click { mPvOptions?.dismiss() }
                     optLayout.click { }
                 }.setItemVisibleCount(4)
                 .setLineSpacingMultiplier(2.2f)
                 .setOutSideCancelable(true)
                 .build<AreaBean>()
 
-            pvOptions?.setPicker(
-                viewModel.options1Items,
-                viewModel.options2Items,
-                viewModel.options3Items
+            mPvOptions?.setPicker(
+                mViewModel.mOptions1Items,
+                mViewModel.mOptions2Items,
+                mViewModel.mOptions3Items
             )
         }
-        return pvOptions
+        return mPvOptions
     }
 
 
@@ -227,10 +227,10 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
             toast("请填写详细地址")
             return false
         }
-        viewModel.addressBean?.username = userName
-        viewModel.addressBean?.mobile = binding.phone.text.toString()
-        viewModel.addressBean?.email = binding.email.text.toString()
-        viewModel.addressBean?.address = binding.areaDetails.text.toString()
+        mViewModel.mAddressBean?.username = userName
+        mViewModel.mAddressBean?.mobile = binding.phone.text.toString()
+        mViewModel.mAddressBean?.email = binding.email.text.toString()
+        mViewModel.mAddressBean?.address = binding.areaDetails.text.toString()
         return true
     }
 
@@ -239,10 +239,10 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 显示地区显示
      */
     private fun shopAreaOptionPicker() {
-        if (ObjectUtils.isEmpty(pvOptions)) {
+        if (ObjectUtils.isEmpty(mPvOptions)) {
             initAreaOptionPicker()
         }
-        pvOptions?.show()
+        mPvOptions?.show()
     }
 
 

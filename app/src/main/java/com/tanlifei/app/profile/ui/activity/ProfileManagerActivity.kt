@@ -59,11 +59,11 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         initViewModelObserve()
         initListener()
         initData()
-        titleBar.rightTitle = "保存"
+        mTitleBar.rightTitle = "保存"
     }
 
     override fun setTitleBarListener() {
-        titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+        mTitleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(v: View?) {
                 ActivityUtils.finishActivity(mActivity)
             }
@@ -73,11 +73,11 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                     toast("昵称不能为空")
                     return
                 }
-                viewModel.userBean?.nickname = binding.nickname.text.toString()
+                mViewModel.mUserBean?.nickname = binding.nickname.text.toString()
                 if (saveUrl.isEmpty()) {
-                    viewModel.requestUpdateUser()
+                    mViewModel.requestUpdateUser()
                 } else {
-                    viewModel.saveUser(saveUrl)
+                    mViewModel.saveUser(saveUrl)
                 }
             }
 
@@ -113,8 +113,8 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.loadingState.observe(this, this)
-        viewModel.refreshUserInfo.observe(this, Observer { it ->
+        mViewModel.mLoadingState.observe(this, this)
+        mViewModel.mRefreshUserInfo.observe(this, Observer { it ->
             GlideUtils.loadAvatar(mActivity, it.avatar, binding.userHead)
             binding.nickname.setText(it.nickname)
             if (it.isLecturer == 1) {
@@ -128,16 +128,16 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
             binding.age.text = it.age
             binding.address.text = if (it.goodsAddress == 0L) "" else "修改"
         })
-        viewModel.areaDataComplete.observe(this, Observer {
+        mViewModel.mAreaDataComplete.observe(this, Observer {
             initAreaOptionPicker()
         })
-        viewModel.refreshUniversityList.observe(this, Observer {
+        mViewModel.mRefreshUniversityList.observe(this, Observer {
             initUniversityOptionPicker()
             if (ObjectUtils.isNotEmpty(it)) {
                 binding.school.text = it[0].name
             }
         })
-        viewModel.dataChanged.observe(this, Observer {
+        mViewModel.mDataChanged.observe(this, Observer {
             EventBus.getDefault().post(
                 UserEvent(it)
             )
@@ -184,7 +184,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
 
                     }
                     binding.introductionLayout -> {
-                        IntroductionActivity.actionStart(viewModel.userBean?.bio)
+                        IntroductionActivity.actionStart(mViewModel.mUserBean?.bio)
                     }
                     binding.areaLayout -> {
                         shopAreaOptionPicker()
@@ -192,13 +192,13 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                     binding.schoolLayout -> {
                         showUniversityDialog()
                     }
-                    binding.sexLayout -> viewModel.userBean?.let {
+                    binding.sexLayout -> mViewModel.mUserBean?.let {
                         var optionView = BottomOptionsView(
                             mActivity,
                             mutableListOf("男", "女"),
                             OnSelectListener { _, text ->
                                 binding.sex.text = text
-                                viewModel.userBean?.gender = text
+                                mViewModel.mUserBean?.gender = text
                             }
                         )
                         XPopup.Builder(mActivity)
@@ -212,7 +212,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                             mutableListOf("50以下", "50-60", "60-70", "70以上"),
                             OnSelectListener { _, text ->
                                 binding.age.text = text
-                                viewModel.userBean?.age = text
+                                mViewModel.mUserBean?.age = text
                             }
                         )
                         XPopup.Builder(mActivity)
@@ -220,7 +220,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                             .asCustom(optionView)
                             .show()
                     }
-                    binding.addressLayout -> viewModel.userBean?.let {
+                    binding.addressLayout -> mViewModel.mUserBean?.let {
                         AddressManagerActivity.actionStart(it)
                     }
 
@@ -235,18 +235,18 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * @return
      */
     private fun initAreaOptionPicker(): OptionsPickerView<AreaBean>? {
-        if (ObjectUtils.isNotEmpty(viewModel.options1Items) && ObjectUtils.isNotEmpty(viewModel.options2Items)) {
+        if (ObjectUtils.isNotEmpty(mViewModel.mOptions1Items) && ObjectUtils.isNotEmpty(mViewModel.mOptions2Items)) {
             areaOptions = OptionsPickerBuilder(
                 this,
                 OnOptionsSelectListener { options1: Int, options2: Int, _: Int, _: View? ->
                     val newAreaId =
-                        viewModel.areaJsonList[options1].areaListVOList[options2].id
-                    if (viewModel.userBean?.areaId != newAreaId) {
-                        viewModel.requestUniversity(newAreaId)
-                        viewModel.userBean?.address =
-                            "${viewModel.areaJsonList[options1].name},${viewModel.areaJsonList[options1].areaListVOList[options2].name}"
-                        viewModel.userBean?.areaId = newAreaId
-                        binding.area.text = viewModel.userBean?.address
+                        mViewModel.mAreaJsonList[options1].areaListVOList[options2].id
+                    if (mViewModel.mUserBean?.areaId != newAreaId) {
+                        mViewModel.requestUniversity(newAreaId)
+                        mViewModel.mUserBean?.address =
+                            "${mViewModel.mAreaJsonList[options1].name},${mViewModel.mAreaJsonList[options1].areaListVOList[options2].name}"
+                        mViewModel.mUserBean?.areaId = newAreaId
+                        binding.area.text = mViewModel.mUserBean?.address
                     }
                 }
             )
@@ -271,8 +271,8 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                 .build<AreaBean>()
 
             areaOptions?.setPicker(
-                viewModel.options1Items,
-                viewModel.options2Items
+                mViewModel.mOptions1Items,
+                mViewModel.mOptions2Items
             )
         }
         return areaOptions
@@ -288,9 +288,9 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         universityOptions = OptionsPickerBuilder(
             this,
             OnOptionsSelectListener { options1: Int, _: Int, _: Int, _: View? ->
-                viewModel.userBean?.university = viewModel.universityOptionsItems[options1].id
-                viewModel.userBean?.universityName = viewModel.universityOptionsItems[options1].name
-                binding.school.text = viewModel.userBean?.universityName
+                mViewModel.mUserBean?.university = mViewModel.mUniversityOptionsItems[options1].id
+                mViewModel.mUserBean?.universityName = mViewModel.mUniversityOptionsItems[options1].name
+                binding.school.text = mViewModel.mUserBean?.universityName
             }
         )
             .setLayoutRes(
@@ -310,13 +310,13 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
             .setLineSpacingMultiplier(2.2f)
             .setOutSideCancelable(true)
             .build<UniversityBean>()
-        universityOptions?.setPicker(viewModel.universityOptionsItems)
+        universityOptions?.setPicker(mViewModel.mUniversityOptionsItems)
         return universityOptions
     }
 
     private fun initData() {
-        viewModel.requestUser()
-        viewModel.requestAreaJsonList()
+        mViewModel.requestUser()
+        mViewModel.requestAreaJsonList()
     }
 
 
@@ -327,12 +327,12 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                 ActivityResult.REQUEST_CODE_1 ->//简介
                     if (ObjectUtils.isNotEmpty(data)) {
                         var introduction = data!!.getStringExtra(GlobalConst.Extras.CONTENT)
-                        viewModel.userBean?.bio = introduction;
+                        mViewModel.mUserBean?.bio = introduction;
                         binding.introduction.text = introduction
                     }
                 ActivityResult.REQUEST_CODE_2 -> {//收货地址
                     if (ObjectUtils.isNotEmpty(data)) {
-                        viewModel.userBean?.goodsAddress =
+                        mViewModel.mUserBean?.goodsAddress =
                             data!!.getIntExtra(GlobalConst.Extras.ID, 0).toLong()
                     }
                 }

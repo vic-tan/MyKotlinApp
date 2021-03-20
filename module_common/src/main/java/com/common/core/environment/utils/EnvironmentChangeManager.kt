@@ -124,7 +124,7 @@ object EnvironmentChangeManager {
             if (bean.activityAlias.isNotEmpty()) {
                 if (ObjectUtils.isNotEmpty(bean.activityAlias)) {
                     changeIcon(
-                        ComFun.context,
+                        ComFun.mContext,
                         bean.activityAlias
                     )
                 }

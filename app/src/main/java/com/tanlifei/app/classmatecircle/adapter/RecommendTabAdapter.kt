@@ -11,14 +11,14 @@ import com.tanlifei.app.classmatecircle.ui.fragment.RecommendFragment
  * @author: tanlifei
  * @date: 2021/2/7 13:11
  */
-class RecommendTabAdapter(manager: FragmentManager, private val categoryList: List<CategoryBean>) :
-    FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class RecommendTabAdapter(mManager: FragmentManager, private val mCategoryList: List<CategoryBean>) :
+    FragmentPagerAdapter(mManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        return RecommendFragment.newInstance(categoryList[position].categoryId)
+        return RecommendFragment.newInstance(mCategoryList[position].categoryId)
     }
 
     override fun getCount(): Int {
-        return categoryList.size
+        return mCategoryList.size
     }
 }

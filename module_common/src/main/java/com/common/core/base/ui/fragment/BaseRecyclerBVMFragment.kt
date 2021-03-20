@@ -20,7 +20,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  */
 abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
     BaseLazyFragment<T>() {
-    protected lateinit var viewModel: VM
+    protected lateinit var mViewModel: VM
 
     protected abstract fun createViewModel(): VM
 
@@ -39,9 +39,9 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
 
     private fun injectViewModel() {
         val vm = createViewModel()
-        viewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
+        mViewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
             .get(vm::class.java)
-        viewModel.application = requireActivity().application
+        mViewModel.mApplication = requireActivity().application
     }
 
 
@@ -52,7 +52,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
         RecyclerUtils.initViewModelObserve(
             smartRefreshLayout(),
             refreshLoadingLayout(),
-            viewModel,
+            mViewModel,
             this,
             setAdapter()
         )
@@ -60,17 +60,17 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
             smartRefreshLayout(),
             refreshRecycler(),
             refreshLoadingLayout(),
-            viewModel
+            mViewModel
         )
         initRecyclerView()
         requestData()
         refreshLoadingLayout().setRetryListener(View.OnClickListener {
-            viewModel.refresh()
+            mViewModel.refresh()
         })
     }
 
     open fun requestData(){
-        RecyclerUtils.initData(viewModel)
+        RecyclerUtils.initData(mViewModel)
     }
 
     /**

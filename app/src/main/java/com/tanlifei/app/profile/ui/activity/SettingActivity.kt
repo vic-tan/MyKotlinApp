@@ -44,8 +44,8 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.isToken.observe(this, Observer {
-            ComFun.token = null
+        mViewModel.mIsToken.observe(this, Observer {
+            ComFun.mToken = null
             UserInfoUtils.clear()
             LoginAtivity.actionStart()
             ActivityUtils.finishActivity(this)
@@ -65,7 +65,7 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
                             this,
                             "您确定要退出应用吗?",
                             OnConfirmListener {
-                                viewModel.requestLogin()
+                                mViewModel.requestLogin()
                             })
                     }
                 }

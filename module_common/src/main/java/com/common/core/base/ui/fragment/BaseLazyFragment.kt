@@ -10,8 +10,8 @@ import androidx.viewbinding.ViewBinding
  */
 open abstract class BaseLazyFragment<T : ViewBinding> : BaseFragment<T>() {
 
-    private var isFirstVisible: Boolean = true
-    private var isPrepared: Boolean = false
+    private var mIsFirstVisible: Boolean = true
+    private var mIsPrepared: Boolean = false
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -21,9 +21,9 @@ open abstract class BaseLazyFragment<T : ViewBinding> : BaseFragment<T>() {
 
     override fun onResume() {
         super.onResume()
-        if (isFirstVisible) {
+        if (mIsFirstVisible) {
             initPrepare()
-            isFirstVisible = false
+            mIsFirstVisible = false
         } else {
             onVisibleToUser()
         }
@@ -37,10 +37,10 @@ open abstract class BaseLazyFragment<T : ViewBinding> : BaseFragment<T>() {
 
     @Synchronized
     private fun initPrepare() {
-        if (isPrepared) {
+        if (mIsPrepared) {
             onFirstVisibleToUser()
         } else {
-            isPrepared = true
+            mIsPrepared = true
         }
     }
 

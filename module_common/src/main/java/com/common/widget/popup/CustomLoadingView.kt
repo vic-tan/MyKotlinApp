@@ -10,8 +10,8 @@ import com.lxj.xpopup.core.CenterPopupView
  * @author: tanlifei
  * @date: 2021/2/1 17:40
  */
-class CustomLoadingView(context: Context) :
-    CenterPopupView(context) {
+class CustomLoadingView(mContext: Context) :
+    CenterPopupView(mContext) {
 
     // 返回自定义弹窗的布局
     override fun getImplLayoutId(): Int {

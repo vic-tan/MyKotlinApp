@@ -45,7 +45,7 @@ class RecommendTabFragment :
     }
 
     override fun onFirstVisibleToUser() {
-        viewModel.requestCategoryList()
+        mViewModel.requestCategoryList()
         initViewModelObserve()
     }
 
@@ -53,15 +53,15 @@ class RecommendTabFragment :
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.dataChanged.observe(this, Observer {
-            binding.viewPager.adapter = viewModel.tabAdapter
+        mViewModel.mDataChanged.observe(this, Observer {
+            mBinding.viewPager.adapter = mViewModel.mTabAdapter
             customLayoutTab()
         })
-        viewModel.loadingState.observe(this, Observer {
+        mViewModel.mLoadingState.observe(this, Observer {
             when (it) {
-                BaseViewModel.LoadType.LOADING -> binding.loadingLayout.showLoading()
-                BaseViewModel.LoadType.DISMISS -> binding.loadingLayout.showContent()
-                BaseViewModel.LoadType.ERROR -> binding.loadingLayout.showError()
+                BaseViewModel.LoadType.LOADING -> mBinding.loadingLayout.showLoading()
+                BaseViewModel.LoadType.DISMISS -> mBinding.loadingLayout.showContent()
+                BaseViewModel.LoadType.ERROR -> mBinding.loadingLayout.showError()
             }
         })
     }
@@ -71,7 +71,7 @@ class RecommendTabFragment :
         commonNavigator.scrollPivotX = 0.25f
         commonNavigator.adapter = object : CommonNavigatorAdapter() {
             override fun getCount(): Int {
-                return viewModel.mData.size
+                return mViewModel.mData.size
             }
 
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
@@ -86,19 +86,19 @@ class RecommendTabFragment :
                     customLayout.findViewById<View>(R.id.name) as TextView
                 val lineRight =
                     customLayout.findViewById<View>(R.id.line_right) as View
-                lineRight.setVisible(index == viewModel.mData.size - 1)
-                titleText.text = viewModel.mData[index].name
+                lineRight.setVisible(index == mViewModel.mData.size - 1)
+                titleText.text = mViewModel.mData[index].name
                 commonPagerTitleView.setContentView(customLayout)
                 commonPagerTitleView.onPagerTitleChangeListener = object :
                     OnPagerTitleChangeListener {
                     override fun onSelected(index: Int, totalCount: Int) {
                         titleText.setTextColor(color(R.color.theme_color))
-                        GlideUtils.load(context, viewModel.mData[index].iconSelect, titleImg)
+                        GlideUtils.load(context, mViewModel.mData[index].iconSelect, titleImg)
                     }
 
                     override fun onDeselected(index: Int, totalCount: Int) {
                         titleText.setTextColor(color(R.color.color_96A8BB))
-                        GlideUtils.load(context, viewModel.mData[index].iconDefault, titleImg)
+                        GlideUtils.load(context, mViewModel.mData[index].iconDefault, titleImg)
                     }
 
                     override fun onLeave(
@@ -117,7 +117,7 @@ class RecommendTabFragment :
                     ) {
                     }
                 }
-                commonPagerTitleView.setOnClickListener { binding.viewPager.currentItem = index }
+                commonPagerTitleView.setOnClickListener { mBinding.viewPager.currentItem = index }
                 return commonPagerTitleView
             }
 
@@ -125,8 +125,8 @@ class RecommendTabFragment :
                 return null
             }
         }
-        binding.tabIndicator.navigator = commonNavigator
-        binding.viewPager.offscreenPageLimit = 10//有内存泄漏暂时先用这句处理内存泄漏
-        ViewPagerHelper.bind(binding.tabIndicator, binding.viewPager)
+        mBinding.tabIndicator.navigator = commonNavigator
+        mBinding.viewPager.offscreenPageLimit = 10//有内存泄漏暂时先用这句处理内存泄漏
+        ViewPagerHelper.bind(mBinding.tabIndicator, mBinding.viewPager)
     }
 }

@@ -25,7 +25,7 @@ open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
 
 
     open fun setTitleBarListener() {
-        titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+        mTitleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(v: View) {
                 ActivityUtils.finishActivity(mActivity)
             }
@@ -42,10 +42,10 @@ open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
      * 沉浸式
      */
     override fun initImmersionBar() {
-        baseBinding.statusBarView.visible()
+        mBaseBinding.statusBarView.visible()
         immersionBar() {
             statusBarDarkFont(true, 0.2f)
-            statusBarView(baseBinding.statusBarView)
+            statusBarView(mBaseBinding.statusBarView)
             statusBarColor(R.color.white)
         }
     }

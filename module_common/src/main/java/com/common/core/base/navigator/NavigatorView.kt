@@ -18,13 +18,13 @@ import com.ruffian.library.widget.RTextView
  * @date: 2021/1/23 16:23
  */
 abstract class NavigatorView<T : ViewBinding> @JvmOverloads constructor(
-    context: Context,
-    attributeSet: AttributeSet? = null,
-    defStyleAttr: Int =  0
-) : LinearLayout(context, attributeSet, defStyleAttr) {
+    mContext: Context,
+    mAttributeSet: AttributeSet? = null,
+    mDefStyleAttr: Int =  0
+) : LinearLayout(mContext, mAttributeSet, mDefStyleAttr) {
 
-    protected lateinit var binding: T
-    lateinit var listener: NavigatorListener
+    protected lateinit var mBinding: T
+    lateinit var mListener: NavigatorListener
 
     init {
         init()
@@ -36,11 +36,11 @@ abstract class NavigatorView<T : ViewBinding> @JvmOverloads constructor(
      */
     private fun init() {
         var view = View.inflate(context, navigatorLayoutResId(), this)
-        binding = createBinding(view)
+        mBinding = createBinding(view)
         for (i in 0 until childCount) {
             val view = getChildAt(i)
             view.setOnClickListener { v: View? ->
-                listener.onNavigatorItemClick(i, v)
+                mListener.onNavigatorItemClick(i, v)
             }
         }
     }
@@ -129,7 +129,7 @@ abstract class NavigatorView<T : ViewBinding> @JvmOverloads constructor(
     }
 
     open fun setNavigatorListener(listener: NavigatorListener) {
-        this.listener = listener
+        this.mListener = listener
 
     }
 }

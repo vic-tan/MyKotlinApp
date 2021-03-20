@@ -19,15 +19,15 @@ import com.lxj.xpopup.core.BottomPopupView
  * @date: 2021/3/9 11:17
  */
 class BottomInputEditView(
-    context: Context,
+    mContext: Context,
     var hintText: String = "请输入内容",
     var btnText: String = "确定",
     var maxNum: Int = 200,
     var callBack: CallBack
 ) :
-    BottomPopupView(context),
+    BottomPopupView(mContext),
     TextWatcher {
-    lateinit var binding: LayoutBottomEditViewBinding
+    lateinit var mBinding: LayoutBottomEditViewBinding
     private lateinit var mInputHelper: TextInputHelper
 
     override fun getImplLayoutId(): Int {
@@ -36,19 +36,19 @@ class BottomInputEditView(
 
     override fun onCreate() {
         super.onCreate()
-        binding = LayoutBottomEditViewBinding.bind(popupImplView)
-        binding.etInput.hint = hintText
-        binding.etInput.filters = arrayOf(InputFilter.LengthFilter(maxNum))
-        binding.enter.text = btnText
-        binding.num.text = "${0}/${maxNum}"
+        mBinding = LayoutBottomEditViewBinding.bind(popupImplView)
+        mBinding.etInput.hint = hintText
+        mBinding.etInput.filters = arrayOf(InputFilter.LengthFilter(maxNum))
+        mBinding.enter.text = btnText
+        mBinding.num.text = "${0}/${maxNum}"
         initTextInputHelper()
         clickListener(
-            binding.enter,
+            mBinding.enter,
             clickListener = OnClickListener {
                 when (it) {
-                    binding.enter -> {
+                    mBinding.enter -> {
                         dismiss()
-                        callBack.callback(binding.etInput.text.toString())
+                        callBack.callback(mBinding.etInput.text.toString())
                     }
                 }
             }
@@ -60,10 +60,10 @@ class BottomInputEditView(
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
-        if (ObjectUtils.isNotEmpty(binding)) {
-            mInputHelper = TextInputHelper(context, binding.enter)
-            mInputHelper.addViews(binding.etInput)
-            binding.etInput.addTextChangedListener(this)
+        if (ObjectUtils.isNotEmpty(mBinding)) {
+            mInputHelper = TextInputHelper(context, mBinding.enter)
+            mInputHelper.addViews(mBinding.etInput)
+            mBinding.etInput.addTextChangedListener(this)
         }
     }
 
@@ -72,8 +72,8 @@ class BottomInputEditView(
     }
 
     override fun afterTextChanged(s: Editable?) {
-        if (ObjectUtils.isNotEmpty(binding)) {
-            binding.num.text = "${s?.length}/${maxNum}"
+        if (ObjectUtils.isNotEmpty(mBinding)) {
+            mBinding.num.text = "${s?.length}/${maxNum}"
         }
     }
 

@@ -15,17 +15,17 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/7 15:41
  */
-class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewModel() {
+class RecommendTabViewModel(private val mManager: FragmentManager) : BaseViewModel() {
 
     var mData: MutableList<CategoryBean> = ArrayList()
 
     /**
      * 列表数据改变的LveData
      */
-    val dataChanged: LiveData<Boolean> get() = _dataChanged
-    private var _dataChanged = MutableLiveData<Boolean>()
+    val mDataChanged: LiveData<Boolean> get() = dataChanged
+    private var dataChanged = MutableLiveData<Boolean>()
 
-    lateinit var tabAdapter: RecommendTabAdapter
+    lateinit var mTabAdapter: RecommendTabAdapter
 
     fun requestCategoryList() {
         launchByLoading {
@@ -34,13 +34,13 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
                 mData.addAll(categoryList)
                 addFragment()
             } else {
-                _loadingState.value = LoadType.ERROR
+                loadingState.value = LoadType.ERROR
             }
         }
     }
 
     private fun addFragment() {
-        tabAdapter = RecommendTabAdapter(manager, mData)
-        _dataChanged.value = true
+        mTabAdapter = RecommendTabAdapter(mManager, mData)
+        dataChanged.value = true
     }
 }

@@ -8,7 +8,6 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.blankj.utilcode.util.ScreenUtils
 import com.common.ComFun
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.listener.OnMultiItemListener
@@ -16,10 +15,7 @@ import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.*
-import com.common.utils.extension.click
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.color
-import com.common.utils.extension.setVisible
+import com.common.utils.extension.*
 import com.common.widget.popup.BottomInputEditView
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.R
@@ -41,10 +37,9 @@ import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
  */
 class ClassmateCircleDetailActivity :
     BaseToolBarActivity<ActivityClassmateCircleDetailBinding, ClassmateCircleDetailViewModel>() {
-    private var screenWidth = ScreenUtils.getScreenWidth()
-    private lateinit var adapter: CommentAdapter
-    private lateinit var header: ViewBinding
-    private lateinit var emptyView: ViewBinding
+    private lateinit var mAdapter: CommentAdapter
+    private lateinit var mHeader: ViewBinding
+    private lateinit var mEmptyView: ViewBinding
 
     companion object {
         fun actionStart(id: Long) {
@@ -72,18 +67,18 @@ class ClassmateCircleDetailActivity :
     }
 
     private fun initHeaderView() {
-        header = ItemHeaderClassmateCircleDetailBinding.inflate(layoutInflater)
-        header.root.layoutParams = ViewGroup.LayoutParams(
+        mHeader = ItemHeaderClassmateCircleDetailBinding.inflate(layoutInflater)
+        mHeader.root.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        emptyView = LayoutLoadingEmptyBinding.inflate(layoutInflater)
-        emptyView.root.layoutParams = ViewGroup.LayoutParams(
+        mEmptyView = LayoutLoadingEmptyBinding.inflate(layoutInflater)
+        mEmptyView.root.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ConvertUtils.dp2px(300f)
         )
-        emptyView.root.setBackgroundColor(color(R.color.white))
-        val emptyBinding = emptyView as LayoutLoadingEmptyBinding
+        mEmptyView.root.setBackgroundColor(color(R.color.white))
+        val emptyBinding = mEmptyView as LayoutLoadingEmptyBinding
         emptyBinding.emptyText.text = "暂无评论，说两句吧~"
     }
 
@@ -94,24 +89,24 @@ class ClassmateCircleDetailActivity :
     private fun initViewModelObserve() {
         RecyclerUtils.uiBehaviorObserve(
             binding.refreshLayout.smartRefreshLayout, binding.refreshLayout.refreshLoadingLayout,
-            viewModel, this, true
+            mViewModel, this, true
         )
-        viewModel.dataChanged.observe(this, Observer {
+        mViewModel.mDataChanged.observe(this, Observer {
             when (it) {
                 BaseListViewModel.DataChagedType.REFRESH -> {
                     binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
                     binding.refreshLayout.smartRefreshLayout.finishRefresh()
                     addHeader()
-                    if (viewModel.mData.isEmpty()) {
-                        adapter.notifyDataSetChanged()
+                    if (mViewModel.mData.isEmpty()) {
+                        mAdapter.notifyDataSetChanged()
                         binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false) //将不会再次触发加载更多事件
                     } else {
-                        adapter.refreshItemRange()
+                        mAdapter.refreshItemRange()
                     }
                 }
                 BaseListViewModel.DataChagedType.LOADMORE -> {
                     binding.refreshLayout.smartRefreshLayout.finishLoadMore()
-                    adapter.loadmoreItemRange(viewModel.loadMoreStartPos)
+                    mAdapter.loadmoreItemRange(mViewModel.mLoadMoreStartPos)
 
                 }
                 BaseListViewModel.DataChagedType.ERROE -> {
@@ -122,49 +117,49 @@ class ClassmateCircleDetailActivity :
                     binding.refreshLayout.smartRefreshLayout.finishRefresh()
                     binding.refreshLayout.smartRefreshLayout.finishLoadMore()
                     addEmptyView()
-                    adapter.notifyDataSetChanged()
+                    mAdapter.notifyDataSetChanged()
                 }
             }
         })
-        viewModel.itemDataChanged.observe(this, Observer {
-            adapter.notifyItemChanged(
-                adapter.mHeaderViews.size + it
+        mViewModel.itemDataChanged.observe(this, Observer {
+            mAdapter.notifyItemChanged(
+                mAdapter.mHeaderViews.size + it
             )
-            adapter.removeHeaderView(emptyView)
+            mAdapter.removeHeaderView(mEmptyView)
 
         })
-        viewModel.beanChanged.observe(this, Observer {
+        mViewModel.beanChanged.observe(this, Observer {
             refreshHeaderData()
         })
     }
 
     private fun addHeader() {
-        if (viewModel.pageNum == 1) {
+        if (mViewModel.mPageNum == 1) {
             refreshHeaderData()
-            adapter.removeHeaderView(header)
-            adapter.addHeaderView(header)
+            mAdapter.removeHeaderView(mHeader)
+            mAdapter.addHeaderView(mHeader)
             addEmptyView()
         }
     }
 
     private fun addEmptyView() {
-        if (viewModel.mData.isEmpty()) {
-            adapter.removeHeaderView(emptyView)
-            adapter.addHeaderView(emptyView)
+        if (mViewModel.mData.isEmpty()) {
+            mAdapter.removeHeaderView(mEmptyView)
+            mAdapter.addHeaderView(mEmptyView)
         } else {
-            adapter.removeHeaderView(emptyView)
+            mAdapter.removeHeaderView(mEmptyView)
         }
     }
 
     private fun refreshHeaderData() {
-        val headerBinding = header as ItemHeaderClassmateCircleDetailBinding
-        var bean: ClassmateCircleBean? = viewModel.bean
+        val headerBinding = mHeader as ItemHeaderClassmateCircleDetailBinding
+        var bean: ClassmateCircleBean? = mViewModel.mBean
         headerBinding.banner.layoutParams.width = screenWidth
         headerBinding.banner.layoutParams.height =
             AutoHeightUtils.getHeightParams(screenWidth, bean?.image)
-        GlideUtils.load(ComFun.context, bean?.image?.url, headerBinding.banner)
+        GlideUtils.load(ComFun.mContext, bean?.image?.url, headerBinding.banner)
         GlideUtils.loadAvatar(
-            ComFun.context,
+            ComFun.mContext,
             bean?.avatar,
             headerBinding.userHead
         )
@@ -209,7 +204,7 @@ class ClassmateCircleDetailActivity :
                             this,
                             object : BottomInputEditView.CallBack {
                                 override fun callback(inputText: String) {
-                                    viewModel.requestComment(inputText)
+                                    mViewModel.requestComment(inputText)
                                 }
                             })
                     }
@@ -218,9 +213,9 @@ class ClassmateCircleDetailActivity :
     }
 
     private fun initAdapter() {
-        adapter = CommentAdapter()
-        adapter.mData = viewModel.mData as MutableList<CommentBean>
-        adapter.setItemClickListener(object : OnMultiItemListener<CommentBean> {
+        mAdapter = CommentAdapter()
+        mAdapter.mData = mViewModel.mData as MutableList<CommentBean>
+        mAdapter.setItemClickListener(object : OnMultiItemListener<CommentBean> {
             override fun click(
                 holder: ViewBinding,
                 itemBean: CommentBean,
@@ -233,7 +228,7 @@ class ClassmateCircleDetailActivity :
                             holder.delete -> {
                                 ComDialogUtils.comConfirm(this@ClassmateCircleDetailActivity,
                                     "确定删除些评论?",
-                                    OnConfirmListener { viewModel.requestDeleteComment(itemBean) })
+                                    OnConfirmListener { mViewModel.requestDeleteComment(itemBean) })
                             }
                         }
                     }
@@ -244,14 +239,14 @@ class ClassmateCircleDetailActivity :
     }
 
     private fun initData() {
-        binding.refreshLayout.refreshRecycler.adapter = adapter
+        binding.refreshLayout.refreshRecycler.adapter = mAdapter
         RecyclerUtils.initRecyclerView(this, binding.refreshLayout.refreshRecycler)
-        RecyclerUtils.initRefreshLayoutListener(binding.refreshLayout.smartRefreshLayout, viewModel)
+        RecyclerUtils.initRefreshLayoutListener(binding.refreshLayout.smartRefreshLayout, mViewModel)
         RecyclerUtils.initLoadingLayoutListener(
             binding.refreshLayout.refreshLoadingLayout,
-            viewModel
+            mViewModel
         )
-        RecyclerUtils.initData(viewModel)
+        RecyclerUtils.initData(mViewModel)
     }
 
 

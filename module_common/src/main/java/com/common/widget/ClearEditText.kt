@@ -17,9 +17,9 @@ import com.ruffian.library.widget.REditText
  * @date: 2021/1/26 18:23
  */
 open class ClearEditText(
-    context: Context,
+    mContext: Context,
     attrs: AttributeSet? = null
-) : REditText(context, attrs), OnFocusChangeListener,
+) : REditText(mContext, attrs), OnFocusChangeListener,
     TextWatcher {
 
     init {

@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.blankj.utilcode.util.ScreenUtils
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
 import com.common.utils.extension.drawable
+import com.common.utils.extension.screenWidth
 import com.common.utils.extension.setVisible
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -25,17 +25,19 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class RecommendAdapter(var context: Context?) :
+class RecommendAdapter :
     CommonRvAdapter<ClassmateCircleBean, ItemRecommendBinding>() {
-    private val screenWidth =
-        ((ScreenUtils.getScreenWidth() - ConvertUtils.dp2px(20f)) * 0.5).toInt()//左右及中间边距为20
-    private val source = 0 // 0、主页同学圈推荐 1、为人个中心作品
+    private lateinit var mContext: Context
+    private val mCoverWidth =
+        ((screenWidth - ConvertUtils.dp2px(20f)) * 0.5).toInt()//左右及中间边距为20
+    private val mSource = 0 // 0、主页同学圈推荐 1、为人个中心作品
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ItemRecommendBinding> {
+        mContext = parent.context
         return CommonRvHolder(ItemRecommendBinding.inflate(inflater, parent, false))
     }
 
@@ -46,9 +48,9 @@ class RecommendAdapter(var context: Context?) :
         bean: ClassmateCircleBean
     ) {
         //审核状态:1=有效,0=无效
-        holder.binding.caveat.setVisible(source == 1 && bean.checkStatus == 0 && bean.uid == UserInfoUtils.getUid())
+        holder.binding.caveat.setVisible(mSource == 1 && bean.checkStatus == 0 && bean.uid == UserInfoUtils.getUid())
         holder.binding.userName.text = bean.nickName
-        GlideUtils.loadAvatar(context, bean.avatar, holder.binding.userHead)
+        GlideUtils.loadAvatar(mContext, bean.avatar, holder.binding.userHead)
 
         holder.binding.play.setVisible(bean.mediaType == 1)
 
@@ -62,10 +64,10 @@ class RecommendAdapter(var context: Context?) :
         holder.binding.praiseCount.helper.iconNormalLeft =
             drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
 
-        GlideUtils.load(context, bean.image?.url, holder.binding.cover)
+        GlideUtils.load(mContext, bean.image?.url, holder.binding.cover)
         holder.binding.cover.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
         holder.binding.cover.layoutParams.height =
-            AutoHeightUtils.getHeightParams(screenWidth, bean.image)
+            AutoHeightUtils.getHeightParams(mCoverWidth, bean.image)
     }
 
     override fun addChildClickViewIds(binding: ItemRecommendBinding): LinkedHashSet<View> {

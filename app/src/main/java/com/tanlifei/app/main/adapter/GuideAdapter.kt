@@ -18,9 +18,8 @@ import com.youth.banner.adapter.BannerAdapter
  * @author: tanlifei
  * @date: 2021/1/23 10:21
  */
-open class GuideAdapter(activity: Activity, datas: MutableList<Int>) :
-    BannerAdapter<Int, GuideAdapter.BannerViewHolder>(datas) {
-    var mActivity = activity
+open class GuideAdapter(private val mActivity: Activity, mList: MutableList<Int>) :
+    BannerAdapter<Int, GuideAdapter.BannerViewHolder>(mList) {
 
     override fun onCreateHolder(parent: ViewGroup, viewType: Int): BannerViewHolder? {
         val binding = ItemGuideBinding

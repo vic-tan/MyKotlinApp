@@ -1,16 +1,13 @@
 package com.tanlifei.app.classmatecircle.ui.fragment
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
-import com.common.utils.ImageLoader
 import com.common.utils.PhotoUtils
 import com.common.utils.extension.toast
 import com.common.widget.LoadingLayout
@@ -30,7 +27,7 @@ import com.tanlifei.app.databinding.ItemFollowBinding
  */
 class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowViewModel>() {
 
-    private lateinit var adapter: FollowAdapter
+    private lateinit var mAdapter: FollowAdapter
 
     companion object {
         fun newInstance(): FollowFragment {
@@ -52,9 +49,9 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
 
     override fun initView() {
         super.initView()
-        adapter = FollowAdapter(context)
-        adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
-        adapter.setItemClickListener(object :
+        mAdapter = FollowAdapter()
+        mAdapter.mData = mViewModel.mData as MutableList<ClassmateCircleBean>
+        mAdapter.setItemClickListener(object :
             OnItemClickListener<ItemFollowBinding, ClassmateCircleBean> {
             override fun click(
                 binding: ItemFollowBinding,
@@ -98,19 +95,19 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
 
 
     override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+        return mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {
-        return binding.refreshLayout.smartRefreshLayout
+        return mBinding.refreshLayout.smartRefreshLayout
     }
 
     override fun refreshLoadingLayout(): LoadingLayout {
-        return binding.refreshLayout.refreshLoadingLayout
+        return mBinding.refreshLayout.refreshLoadingLayout
     }
 
     override fun refreshRecycler(): RecyclerView {
-        return binding.refreshLayout.refreshRecycler
+        return mBinding.refreshLayout.refreshRecycler
     }
 
 }

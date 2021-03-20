@@ -10,7 +10,7 @@ import com.common.core.base.viewmodel.BaseViewModel
  * @date: 2021/2/7 17:14
  */
 abstract class BaseBVMActivity<T : ViewBinding, VM : BaseViewModel> : BaseActivity<T>() {
-    lateinit var viewModel: VM
+    lateinit var mViewModel: VM
     protected abstract fun createViewModel(): VM
 
     override fun initBefore() {
@@ -19,9 +19,9 @@ abstract class BaseBVMActivity<T : ViewBinding, VM : BaseViewModel> : BaseActivi
 
     private fun injectViewModel() {
         val vm = createViewModel()
-        viewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
+        mViewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
             .get(vm::class.java)
-        viewModel.application = application
+        mViewModel.mApplication = application
     }
 
 

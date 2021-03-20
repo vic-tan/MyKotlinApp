@@ -27,7 +27,7 @@ object RxHttpManager {
         //设置公共参数，非必须
         RxHttp.setOnParamAssembly { p: Param<*>? ->
             p!!.add("versionName", AppUtils.getAppVersionName()) //添加公共参数
-                .addHeader("Authorization", "Bearer " + ComFun.token)
+                .addHeader("Authorization", "Bearer " + ComFun.mToken)
                 .addHeader("channel_code", "" + ComUtils.getDefaultChannel(context))
                 .addHeader("deviceType", "android") //添加公共请求头
         }
@@ -35,7 +35,7 @@ object RxHttpManager {
 
     fun addToken() {
         RxHttp.setOnParamAssembly { p: Param<*>? ->
-            p!!.addHeader("Authorization", "Bearer " + ComFun.token)
+            p!!.addHeader("Authorization", "Bearer " + ComFun.mToken)
         }
     }
 }

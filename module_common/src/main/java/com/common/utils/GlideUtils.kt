@@ -23,16 +23,16 @@ object GlideUtils {
      * @return
      */
     fun load(
-        context: Context?,
+        mContext: Context?,
         url: String?,
         view: ImageView,
         defaultId: Int = R.mipmap.bg_default_img
     ) {
-        if (ObjectUtils.isNotEmpty(context)
+        if (ObjectUtils.isNotEmpty(mContext)
             && ObjectUtils.isNotEmpty(view)
             && ObjectUtils.isNotEmpty(url)
         ) {
-            Glide.with(context!!)
+            Glide.with(mContext!!)
                 .load(url)
                 .apply(RequestOptions.placeholderOf(defaultId))
                 .dontAnimate()
@@ -43,12 +43,12 @@ object GlideUtils {
     /**
      * 加载头像,Glide 不做圆角，让控件做圆角
      */
-    fun loadAvatar(context: Context?, url: String?, view: ImageView) {
-        if (ObjectUtils.isNotEmpty(context)
+    fun loadAvatar(mContext: Context?, url: String?, view: ImageView) {
+        if (ObjectUtils.isNotEmpty(mContext)
             && ObjectUtils.isNotEmpty(view)
             && ObjectUtils.isNotEmpty(url)
         ) {
-            load(context, url, view, R.mipmap.ic_default_avatar)
+            load(mContext, url, view, R.mipmap.ic_default_avatar)
         }
     }
 
@@ -56,18 +56,18 @@ object GlideUtils {
      * 加载高斯模糊图片处理
      */
     fun loadBlur(
-        context: Context?,
+        mContext: Context?,
         url: String,
         view: ImageView,
         defaultBlurId: Int,
         radius: Int = 24,
         sampling: Int = 5
     ) {
-        if (ObjectUtils.isNotEmpty(context)
+        if (ObjectUtils.isNotEmpty(mContext)
             && ObjectUtils.isNotEmpty(view)
             && ObjectUtils.isNotEmpty(url)
         ) {
-            Glide.with(context!!)
+            Glide.with(mContext!!)
                 .load(url)
                 .apply(RequestOptions.bitmapTransform(BlurTransformation(radius, sampling)))
                 .apply(RequestOptions.placeholderOf(defaultBlurId))
@@ -79,46 +79,46 @@ object GlideUtils {
     /**
      * 恢复请求，一般在停止滚动的时候
      *
-     * @param context
+     * @param mContext
      */
-    fun resumeRequests(context: Context?) {
-        if (ObjectUtils.isNotEmpty(context)) {
-            Glide.with(context!!).resumeRequests()
+    fun resumeRequests(mContext: Context?) {
+        if (ObjectUtils.isNotEmpty(mContext)) {
+            Glide.with(mContext!!).resumeRequests()
         }
     }
 
     /**
      * 暂停请求 正在滚动的时候
      *
-     * @param context
+     * @param mContext
      */
-    fun pauseRequests(context: Context?) {
-        if (ObjectUtils.isNotEmpty(context)) {
-            Glide.with(context!!).pauseRequests()
+    fun pauseRequests(mContext: Context?) {
+        if (ObjectUtils.isNotEmpty(mContext)) {
+            Glide.with(mContext!!).pauseRequests()
         }
     }
 
     /**
      * 清理磁盘缓存
      * 理磁盘缓存 需要在子线程中执行
-     * @param context
+     * @param mContext
      */
-    fun clearDiskCache(context: Context?) {
+    fun clearDiskCache(mContext: Context?) {
         //理磁盘缓存 需要在子线程中执行
-        if (ObjectUtils.isNotEmpty(context)) {
-            Glide.get(context!!).clearDiskCache()
+        if (ObjectUtils.isNotEmpty(mContext)) {
+            Glide.get(mContext!!).clearDiskCache()
         }
     }
 
     /**
      * 清理内存缓存
      * 清理内存缓存  可以在UI主线程中进行
-     * @param context
+     * @param mContext
      */
-    fun clearMemory(context: Context?) {
+    fun clearMemory(mContext: Context?) {
         //清理内存缓存  可以在UI主线程中进行
-        if (ObjectUtils.isNotEmpty(context)) {
-            Glide.get(context!!).clearMemory()
+        if (ObjectUtils.isNotEmpty(mContext)) {
+            Glide.get(mContext!!).clearMemory()
         }
     }
 }

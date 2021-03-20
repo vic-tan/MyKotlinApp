@@ -22,7 +22,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
         RecyclerUtils.initViewModelObserve(
             smartRefreshLayout(),
             refreshLoadingLayout(),
-            viewModel,
+            mViewModel,
             this,
             setAdapter()
         )
@@ -30,10 +30,10 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
             smartRefreshLayout(),
             refreshRecycler(),
             refreshLoadingLayout(),
-            viewModel
+            mViewModel
         )
         initRecyclerView()
-        RecyclerUtils.initData(viewModel)
+        RecyclerUtils.initData(mViewModel)
 
     }
 

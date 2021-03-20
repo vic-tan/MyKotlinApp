@@ -15,9 +15,9 @@ import com.lxj.xpopup.core.BottomPopupView
  * @author: tanlifei
  * @date: 2021/2/24 14:43
  */
-class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
-    BottomPopupView(context) {
-    lateinit var binding: LayoutShareBinding
+class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener) :
+    BottomPopupView(mContext) {
+    lateinit var mBinding: LayoutShareBinding
 
     enum class ShareType {
         WX,//微信
@@ -26,24 +26,24 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
         CREDIT,//删除
     }
 
-    var mlistener: OnShareListener = listener
-    var share: ShareBean = share
+    var mlistener: OnShareListener = mListener
+    var share: ShareBean = mShare
     override fun getImplLayoutId(): Int {
         return R.layout.layout_share
     }
 
     override fun onCreate() {
         super.onCreate()
-        binding = LayoutShareBinding.bind(popupImplView)
+        mBinding = LayoutShareBinding.bind(popupImplView)
         clickListener(
-            binding.wx,
-            binding.wxCircle,
-            binding.report,
-            binding.credit,
-            binding.cancel,
+            mBinding.wx,
+            mBinding.wxCircle,
+            mBinding.report,
+            mBinding.credit,
+            mBinding.cancel,
             clickListener = OnClickListener {
                 when (it) {
-                    binding.wx -> {
+                    mBinding.wx -> {
                         if (isWeixinAvilible()) {
                             dismiss()
                             mlistener.onItemClick(
@@ -52,7 +52,7 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
                             )
                         }
                     }
-                    binding.wxCircle -> {
+                    mBinding.wxCircle -> {
                         if (isWeixinAvilible()) {
                             mlistener.onItemClick(
                                 it,
@@ -61,21 +61,21 @@ class ShareView(context: Context, share: ShareBean, listener: OnShareListener) :
                             dismiss()
                         }
                     }
-                    binding.report -> {
+                    mBinding.report -> {
                         dismiss()
                         mlistener.onItemClick(
                             it,
                             ShareType.REPORT
                         )
                     }
-                    binding.credit -> {
+                    mBinding.credit -> {
                         dismiss()
                         mlistener.onItemClick(
                             it,
                             ShareType.CREDIT
                         )
                     }
-                    binding.cancel -> dismiss()
+                    mBinding.cancel -> dismiss()
                 }
             }
         )

@@ -34,20 +34,20 @@ class MainViewModel() : BaseViewModel() {
     /**
      * 点击TAB时LveData
      */
-    val currTabPosition: LiveData<Int> get() = mCurrTabPosition
-    private val mCurrTabPosition = MutableLiveData<Int>()
+    val mCurrTabPosition: LiveData<Int> get() = currTabPosition
+    private val currTabPosition = MutableLiveData<Int>()
 
     /**
      * 刷新用户信息
      */
-    val refreshUserInfo: LiveData<UserBean> get() = mRefreshUserInfo
-    private val mRefreshUserInfo = MutableLiveData<UserBean>()
+    val mRefreshUserInfo: LiveData<UserBean> get() = refreshUserInfo
+    private val refreshUserInfo = MutableLiveData<UserBean>()
 
 
-    var userBean: UserBean? = null
+    var mUserBean: UserBean? = null
 
     init {
-        mCurrTabPosition.value = 0
+        currTabPosition.value = 0
     }
 
     /**
@@ -64,7 +64,7 @@ class MainViewModel() : BaseViewModel() {
 
 
     fun showFragment(position: Int) {
-        mCurrTabPosition.value = position
+        currTabPosition.value = position
         mNavigator.showFragment(position) //显示点击Fargment
     }
 
@@ -73,12 +73,12 @@ class MainViewModel() : BaseViewModel() {
      * 请求用户信息
      */
     fun requestUser() = launchBySilence({
-        userBean = ApiNetwork.requestUserInfo()
-        if (ObjectUtils.isNotEmpty(userBean)) {
-            userBean!!.token = ComFun.token.toString()
+        mUserBean = ApiNetwork.requestUserInfo()
+        if (ObjectUtils.isNotEmpty(mUserBean)) {
+            mUserBean!!.token = ComFun.mToken.toString()
             LitePal.deleteAll(UserBean::class.java)
-            userBean!!.save()
-            mRefreshUserInfo.value = userBean
+            mUserBean!!.save()
+            refreshUserInfo.value = mUserBean
         } else {
             findUserByDB()
         }
@@ -90,8 +90,8 @@ class MainViewModel() : BaseViewModel() {
      * 获取用户信息
      */
     fun getUser() {
-        if (ObjectUtils.isNotEmpty(userBean)) {
-            mRefreshUserInfo.value = userBean
+        if (ObjectUtils.isNotEmpty(mUserBean)) {
+            refreshUserInfo.value = mUserBean
         } else {
             requestUser()
         }
@@ -101,10 +101,10 @@ class MainViewModel() : BaseViewModel() {
      * 查找数据库中是否保存广告
      */
     private fun findUserByDB() {
-        if (ObjectUtils.isEmpty(userBean)) {
-            userBean = UserInfoUtils.getUser()
-            if (ObjectUtils.isNotEmpty(userBean)) {
-                mRefreshUserInfo.value = userBean
+        if (ObjectUtils.isEmpty(mUserBean)) {
+            mUserBean = UserInfoUtils.getUser()
+            if (ObjectUtils.isNotEmpty(mUserBean)) {
+                refreshUserInfo.value = mUserBean
             }
         }
     }

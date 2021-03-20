@@ -38,28 +38,28 @@ class SplashViewModel() : BaseViewModel() {
     /**
      * 3s结束倒计时LveData
      */
-    val jump: LiveData<JumpType> get() = mJump
-    private val mJump = MutableLiveData<JumpType>()
+    val mJump: LiveData<JumpType> get() = jump
+    private val jump = MutableLiveData<JumpType>()
 
 
     /**
      * 广告倒计时LveData
      */
-    val adsInterval: LiveData<Long> get() = mAdsInterval
-    private val mAdsInterval = MutableLiveData<Long>()
+    val mAdsInterval: LiveData<Long> get() = adsInterval
+    private val adsInterval = MutableLiveData<Long>()
 
-    var adsBean: AdsBean? = null
+    var mAdsBean: AdsBean? = null
 
 
     /**
      * 请求短信码
      */
     fun requestAds() = launchBySilence({
-        adsBean = ApiNetwork.requestAds()
-        if (ObjectUtils.isNotEmpty(adsBean)) {
+        mAdsBean = ApiNetwork.requestAds()
+        if (ObjectUtils.isNotEmpty(mAdsBean)) {
             LitePal.deleteAll(AdsBean::class.java)
-            adsBean!!.save()
-            mJump.value = JumpType.REQUEST_ADS
+            mAdsBean!!.save()
+            jump.value = JumpType.REQUEST_ADS
         }
     }, {
         findAdsByDB()
@@ -69,10 +69,10 @@ class SplashViewModel() : BaseViewModel() {
      * 查找数据库中是否保存广告
      */
     private fun findAdsByDB() {
-        if (ObjectUtils.isEmpty(adsBean)) {
-            adsBean = AdsUtils.getAds()
-            if (ObjectUtils.isNotEmpty(adsBean)) {
-                mJump.value = JumpType.REQUEST_ADS
+        if (ObjectUtils.isEmpty(mAdsBean)) {
+            mAdsBean = AdsUtils.getAds()
+            if (ObjectUtils.isNotEmpty(mAdsBean)) {
+                jump.value = JumpType.REQUEST_ADS
             }
         }
     }
@@ -101,19 +101,19 @@ class SplashViewModel() : BaseViewModel() {
     fun doJump() {
         var guide = SPUtils.getInstance().getBoolean(Const.SPKey.GUIDE, true)
         if (guide) {
-            mJump.value = JumpType.GUIDE
+            jump.value = JumpType.GUIDE
         } else {
             findAdsByDB()
-            if (ObjectUtils.isNotEmpty(adsBean) && (ObjectUtils.isNotEmpty(adsBean) && adsBean?.status == 1)) {
-                mJump.value = JumpType.ADS
+            if (ObjectUtils.isNotEmpty(mAdsBean) && (ObjectUtils.isNotEmpty(mAdsBean) && mAdsBean?.status == 1)) {
+                jump.value = JumpType.ADS
             } else {
                 val token = UserInfoUtils.getToken()
                 //已经登录过了
                 if (ObjectUtils.isNotEmpty(token)) {
-                    ComFun.token = token
-                    mJump.value = JumpType.HOME
+                    ComFun.mToken = token
+                    jump.value = JumpType.HOME
                 } else {//未登录
-                    mJump.value = JumpType.LOGIN
+                    jump.value = JumpType.LOGIN
                 }
             }
         }
@@ -125,8 +125,8 @@ class SplashViewModel() : BaseViewModel() {
      */
     fun startAdsInterval() {
         var count = 3
-        if (ObjectUtils.isNotEmpty(adsBean)) {
-            count = adsBean!!.duration
+        if (ObjectUtils.isNotEmpty(mAdsBean)) {
+            count = mAdsBean!!.duration
         }
         Observable.interval(0, 1, TimeUnit.SECONDS)
             .take((count + 1).toLong())
@@ -135,12 +135,12 @@ class SplashViewModel() : BaseViewModel() {
             .doOnSubscribe {}.subscribe(object : Observer<Long> {
                 override fun onSubscribe(d: Disposable?) {}
                 override fun onNext(t: Long) {
-                    mAdsInterval.value = t//倒计时
+                    adsInterval.value = t//倒计时
                 }
 
                 override fun onError(e: Throwable?) {}
                 override fun onComplete() {
-                    mAdsInterval.value = -1L//回复原来初始状态
+                    adsInterval.value = -1L//回复原来初始状态
                 }
             })
     }
@@ -152,10 +152,10 @@ class SplashViewModel() : BaseViewModel() {
         val token = UserInfoUtils.getToken()
         //已经登录过了
         if (ObjectUtils.isNotEmpty(token)) {
-            ComFun.token = token
-            mJump.value = JumpType.HOME
+            ComFun.mToken = token
+            jump.value = JumpType.HOME
         } else {//未登录
-            mJump.value = JumpType.LOGIN
+            jump.value = JumpType.LOGIN
         }
     }
 }

@@ -37,28 +37,28 @@ import java.lang.reflect.ParameterizedType
 open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
     Observer<BaseViewModel.LoadType> {
 
-    protected lateinit var baseBinding: ActivityBaseBinding
+    protected lateinit var mBaseBinding: ActivityBaseBinding
     protected lateinit var binding: T
-    protected lateinit var titleBar: TitleBar
+    protected lateinit var mTitleBar: TitleBar
 
 
     /**
      * 当前Activity的实例。
      */
-    private var _mActivity: Activity? = null
-    protected val mActivity get() = _mActivity!!
+    private var activity: Activity? = null
+    protected val mActivity get() = activity!!
 
     //    protected lateinit var hud: KProgressHUD//加载框
-    protected lateinit var hud: BasePopupView//加载框
+    protected lateinit var mHud: BasePopupView//加载框
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _mActivity = this
-        baseBinding = ActivityBaseBinding.inflate(layoutInflater)
-        titleBar = baseBinding.toolbar
-        titleBar.setLeftIcon(R.mipmap.ic_arrow_left_black)
-        hud = XPopup.Builder(this)
+        activity = this
+        mBaseBinding = ActivityBaseBinding.inflate(layoutInflater)
+        mTitleBar = mBaseBinding.toolbar
+        mTitleBar.setLeftIcon(R.mipmap.ic_arrow_left_black)
+        mHud = XPopup.Builder(this)
             .popupAnimation(PopupAnimation.NoAnimation)
             .hasShadowBg(false)
             .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
@@ -79,7 +79,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
         if (showFullScreen()) {
             setFullScreen()
         }
-        setContentView(baseBinding.root)
+        setContentView(mBaseBinding.root)
         initLayout()
         setToolbar(false)
         setOrientation()
@@ -98,7 +98,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
      * 沉浸式
      */
     open fun initImmersionBar() {
-        baseBinding.statusBarView.gone()
+        mBaseBinding.statusBarView.gone()
         immersionBar() {
             statusBarDarkFont(true, 0.2f)
         }
@@ -116,17 +116,17 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
      */
 
     open fun setToolbar(visible: Boolean) {
-        titleBar.setVisible(visible)
+        mTitleBar.setVisible(visible)
     }
 
     /**
      * 是否显示加载框
      */
     open fun loadingView(loadingState: BaseViewModel.LoadType) {
-        if (ObjectUtils.isNotEmpty(hud)) {
+        if (ObjectUtils.isNotEmpty(mHud)) {
             when (loadingState) {
-                BaseViewModel.LoadType.LOADING -> if (hud.isDismiss) hud.show()
-                else -> if (hud.isShow) hud.dismiss()
+                BaseViewModel.LoadType.LOADING -> if (mHud.isDismiss) mHud.show()
+                else -> if (mHud.isShow) mHud.dismiss()
             }
         }
     }
@@ -162,7 +162,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
         try {
             val inflate: Method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java)
             binding = inflate.invoke(null, layoutInflater) as T
-            baseBinding.baseContainer.addView(binding.root)
+            mBaseBinding.baseContainer.addView(binding.root)
         } catch (e: NoSuchMethodException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {
@@ -181,10 +181,10 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
 
     override fun onDestroy() {
         super.onDestroy()
-        if (null != hud && hud.isShow) {
-            hud.dismiss()
+        if (null != mHud && mHud.isShow) {
+            mHud.dismiss()
         }
-        _mActivity = null
+        activity = null
         if (registerEventBus()) {
             EventBus.getDefault().unregister(this)
         }

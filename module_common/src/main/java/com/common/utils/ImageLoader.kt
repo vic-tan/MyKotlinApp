@@ -21,9 +21,9 @@ class ImageLoader: XPopupImageLoader {
             .into(imageView)
     }
 
-    override fun getImageFile(context: Context, uri: Any): File? {
+    override fun getImageFile(mContext: Context, uri: Any): File? {
         try {
-            return Glide.with(context).downloadOnly().load(uri).submit().get()
+            return Glide.with(mContext).downloadOnly().load(uri).submit().get()
         } catch (e: Exception) {
             e.printStackTrace()
         }

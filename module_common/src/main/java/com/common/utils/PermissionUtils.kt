@@ -16,7 +16,7 @@ import java.util.*
 object PermissionUtils {
 
     fun requestPermission(
-        context: Context,
+        mContext: Context,
         vararg permissions: String,
         callback: PermissionCallback
     ) {
@@ -26,8 +26,8 @@ object PermissionUtils {
                 permissionsList.add(p)
             }
         }
-        if (context is FragmentActivity) {
-            PermissionX.init(context)
+        if (mContext is FragmentActivity) {
+            PermissionX.init(mContext)
                 .permissions(permissionsList)
                 .request { allGranted, _, deniedList ->
                     if (allGranted) {
@@ -36,8 +36,8 @@ object PermissionUtils {
                         callback.denied(deniedList)
                     }
                 }
-        } else if (context is Fragment) {
-            PermissionX.init(context)
+        } else if (mContext is Fragment) {
+            PermissionX.init(mContext)
                 .permissions(permissionsList)
                 .request { allGranted, _, deniedList ->
                     if (allGranted) {
@@ -55,11 +55,11 @@ object PermissionUtils {
      * 请求拍照权限
      */
     fun requestCameraPermission(
-        context: Context,
+        mContext: Context,
         callback: PermissionCallback
     ) {
         requestPermission(
-            context,
+            mContext,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA,
@@ -71,11 +71,11 @@ object PermissionUtils {
      * 请求SDCard权限
      */
     fun requestSDCardPermission(
-        context: Context,
+        mContext: Context,
         callback: PermissionCallback
     ) {
         requestPermission(
-            context,
+            mContext,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             callback = callback

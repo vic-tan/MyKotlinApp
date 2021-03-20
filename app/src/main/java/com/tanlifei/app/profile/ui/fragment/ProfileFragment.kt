@@ -26,7 +26,7 @@ import com.tanlifei.app.profile.ui.activity.SettingActivity
  */
 class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>() {
 
-    private lateinit var homeViewModel: MainViewModel
+    private lateinit var mHomeViewModel: MainViewModel
 
     companion object {
         fun newInstance(): ProfileFragment {
@@ -48,18 +48,18 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>() {
      */
     private fun initListener() {
         clickListener(
-            binding.arrow,
-            binding.setting,
-            binding.recruitingLecturers,
-            binding.score,
-            binding.optManual,
+            mBinding.arrow,
+            mBinding.setting,
+            mBinding.recruitingLecturers,
+            mBinding.score,
+            mBinding.optManual,
             clickListener = View.OnClickListener {
                 when (it) {
-                    binding.arrow -> ProfileManagerActivity.actionStart()
-                    binding.setting -> SettingActivity.actionStart()
-                    binding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)
-                    binding.score -> launchAppDetail()
-                    binding.optManual -> ManualActivity.actionStart()
+                    mBinding.arrow -> ProfileManagerActivity.actionStart()
+                    mBinding.setting -> SettingActivity.actionStart()
+                    mBinding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)
+                    mBinding.score -> launchAppDetail()
+                    mBinding.optManual -> ManualActivity.actionStart()
                 }
             }
         )
@@ -69,8 +69,8 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>() {
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        homeViewModel = (activity as MainActivity).viewModel
-        homeViewModel.getUser()
+        mHomeViewModel = (activity as MainActivity).mViewModel
+        mHomeViewModel.getUser()
     }
 
 
@@ -78,16 +78,16 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>() {
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        homeViewModel.refreshUserInfo.observe(this, Observer {
-            binding.name.text = it.nickname
-            binding.university.text = it.universityName
+        mHomeViewModel.mRefreshUserInfo.observe(this, Observer {
+            mBinding.name.text = it.nickname
+            mBinding.university.text = it.universityName
             GlideUtils.loadBlur(
                 this.context,
                 it.avatar,
-                binding.persenalBg,
+                mBinding.persenalBg,
                 R.mipmap.bg_profile_default
             )
-            GlideUtils.loadAvatar(this.context, it.avatar, binding.userCover)
+            GlideUtils.loadAvatar(this.context, it.avatar, mBinding.userCover)
         })
     }
 

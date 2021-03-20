@@ -14,10 +14,10 @@ import com.tanlifei.app.databinding.NavigatorMainTabBinding
  * @date: 2021/1/23 17:23
  */
 class MainNavigatorView @JvmOverloads constructor(
-    context: Context,
-    attributeSet: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : NavigatorView<NavigatorMainTabBinding>(context, attributeSet, defStyleAttr) {
+    mContext: Context,
+    mAttributeSet: AttributeSet? = null,
+    mDefStyleAttr: Int = 0
+) : NavigatorView<NavigatorMainTabBinding>(mContext, mAttributeSet, mDefStyleAttr) {
 
 
     override fun navigatorLayoutResId(): Int {
@@ -52,7 +52,7 @@ class MainNavigatorView @JvmOverloads constructor(
      * 显示学习数
      */
     open fun getMsgBadge(): RTextView {
-        return binding.msgBadge
+        return mBinding.msgBadge
     }
 
 

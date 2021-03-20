@@ -15,7 +15,7 @@ import com.youth.banner.indicator.CircleIndicator
  */
 class GuideActivity : BaseActivity<ActivityGuideBinding>() {
 
-    var guideList: MutableList<Int> = ArrayList()
+    var mGuideList: MutableList<Int> = ArrayList()
 
     companion object {
         fun actionStart() {
@@ -31,16 +31,16 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
 
     override fun init() {
         addGuideData()
-        binding.banner.adapter = GuideAdapter(this, guideList)
+        binding.banner.adapter = GuideAdapter(this, mGuideList)
         binding.banner.indicator = CircleIndicator(this)
         binding.banner.isAutoLoop(false)
     }
 
     private fun addGuideData() {
-        guideList.add(R.mipmap.bg_guide_one)
-        guideList.add(R.mipmap.bg_guide_two)
-        guideList.add(R.mipmap.bg_guide_three)
-        guideList.add(R.mipmap.bg_guide_four)
+        mGuideList.add(R.mipmap.bg_guide_one)
+        mGuideList.add(R.mipmap.bg_guide_two)
+        mGuideList.add(R.mipmap.bg_guide_three)
+        mGuideList.add(R.mipmap.bg_guide_four)
     }
 
     /**

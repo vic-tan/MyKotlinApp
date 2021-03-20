@@ -19,8 +19,8 @@ class UpdateAppViewModel() : BaseViewModel() {
     /**
      * 应用升级LveData
      */
-    val updateApp: LiveData<UpdateAppBean> get() = mUpdateApp
-    private val mUpdateApp = MutableLiveData<UpdateAppBean>()
+    val mUpdateApp: LiveData<UpdateAppBean> get() = updateApp
+    private val updateApp = MutableLiveData<UpdateAppBean>()
 
 
     /**
@@ -29,7 +29,7 @@ class UpdateAppViewModel() : BaseViewModel() {
     fun requestVersion() = launchBySilence {
         val updateAppBean = ApiNetwork.requestVersion()
         if (ObjectUtils.isNotEmpty(updateAppBean)) {
-            mUpdateApp.value = updateAppBean
+            updateApp.value = updateAppBean
         }
     }
 }

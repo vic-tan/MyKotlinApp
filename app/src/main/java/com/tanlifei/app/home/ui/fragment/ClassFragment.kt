@@ -21,7 +21,7 @@ class ClassFragment : BaseLazyFragment<FragmentStudyBinding>() {
     }
 
     override fun onFirstVisibleToUser() {
-        binding.txtBtn.text = "Class"
+        mBinding.txtBtn.text = "Class"
     }
 
 

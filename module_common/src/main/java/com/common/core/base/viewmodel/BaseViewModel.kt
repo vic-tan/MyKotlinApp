@@ -26,17 +26,17 @@ open class BaseViewModel : ViewModel() {
     /**
      * 请求网络是否正在加载的LveData
      */
-    val loadingState: LiveData<LoadType> get() = _loadingState
-    protected val _loadingState = MutableLiveData<LoadType>()
+    val mLoadingState: LiveData<LoadType> get() = loadingState
+    protected val loadingState = MutableLiveData<LoadType>()
 
     @SuppressLint("StaticFieldLeak")
-    lateinit var application: Application
+    lateinit var mApplication: Application
 
     /**
      * 加载框请求不需要处理异常，直接提示异常
      */
     protected fun launchByLoading(block: suspend () -> Unit) = launchByLoading(block, {
-        _loadingState.value = LoadType.ERROR
+        loadingState.value = LoadType.ERROR
         it.show(it.errorCode, it.errorMsg)
     })
 
@@ -48,11 +48,11 @@ open class BaseViewModel : ViewModel() {
         block: suspend () -> Unit,
         onError: ((Throwable) -> Unit)? = null
     ) = rxLifeScope.launch({
-        _loadingState.value = LoadType.LOADING
+        loadingState.value = LoadType.LOADING
         block()
-        _loadingState.value = LoadType.DISMISS
+        loadingState.value = LoadType.DISMISS
     }, onError, {
-        _loadingState.value = LoadType.LOADING
+        loadingState.value = LoadType.LOADING
     })
 
 

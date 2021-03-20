@@ -19,19 +19,16 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/24 16:02
  */
-class HomeRecommentAdapter(var context: Context?) :
+class HomeRecommentAdapter :
     CommonRvAdapter<ClassmateCircleBean, ItemHomeRecommentBinding>() {
-
-    private var screenWidth = ScreenUtils.getScreenWidth()
-    private var textViewWidth = screenWidth - ConvertUtils.dp2px(30f)
-    private var mPositionsAndStates: SparseArray<Int> = SparseArray()
+    private lateinit var mContext: Context
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ItemHomeRecommentBinding> {
-
+        mContext = parent.context
         return CommonRvHolder(
             ItemHomeRecommentBinding.inflate(
                 inflater,
@@ -48,8 +45,8 @@ class HomeRecommentAdapter(var context: Context?) :
         bean: ClassmateCircleBean
     ) {
         holder.binding.title.text = bean.nickName
-        holder.binding.desc.text ="05月23日 15:20"
-        GlideUtils.load(context, bean.image?.url, holder.binding.cover)
+        holder.binding.desc.text = "05月23日 15:20"
+        GlideUtils.load(mContext, bean.image?.url, holder.binding.cover)
     }
 
     override fun addChildClickViewIds(binding: ItemHomeRecommentBinding): LinkedHashSet<View> {

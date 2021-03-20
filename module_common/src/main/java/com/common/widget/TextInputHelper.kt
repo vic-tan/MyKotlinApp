@@ -16,7 +16,7 @@ import java.util.*
  * @date: 2021/1/28 17:40
  */
 class TextInputHelper(
-    var context: Context,
+    var mContext: Context,
     var mTargetView: RTextView,
     private var mColorNormal: Int = R.color.theme_color,
     private var mEnabledColor: Int = R.color.enabled_color

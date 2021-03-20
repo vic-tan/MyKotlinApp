@@ -14,7 +14,7 @@ import com.common.core.base.viewmodel.BaseViewModel
  * @date: 2021/2/7 18:17
  */
 abstract class BaseBVMFragment<T : ViewBinding, VM : BaseViewModel> : BaseLazyFragment<T>() {
-    protected lateinit var viewModel: VM
+    protected lateinit var mViewModel: VM
         private set
 
     protected abstract fun createViewModel(): VM
@@ -34,9 +34,9 @@ abstract class BaseBVMFragment<T : ViewBinding, VM : BaseViewModel> : BaseLazyFr
 
     private fun injectViewModel() {
         val vm = createViewModel()
-        viewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
+        mViewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
             .get(vm::class.java)
-        viewModel.application = requireActivity().application
+        mViewModel.mApplication = requireActivity().application
     }
 
 

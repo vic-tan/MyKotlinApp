@@ -28,9 +28,9 @@ import java.util.*
  */
 class LoadingLayout : FrameLayout {
     private lateinit var mContext: Context
-    var btn: TextView? = null
-    var txt: TextView? = null
-    var descTxt: TextView? = null
+    var mBtn: TextView? = null
+    var mTxt: TextView? = null
+    var mDescTxt: TextView? = null
 
     constructor(context: Context) : super(context) {
         init(context, null, R.attr.styleLoadingLayout)
@@ -323,19 +323,19 @@ class LoadingLayout : FrameLayout {
             val img =
                 layout.findViewById<View>(R.id.error_image) as ImageView
             img?.setImageResource(mErrorImage)
-            txt = layout.findViewById<View>(R.id.error_text) as TextView
-            if (txt != null) {
-                txt!!.text = mErrorText
-                txt!!.setTextColor(mTextColor)
-                txt!!.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
+            mTxt = layout.findViewById<View>(R.id.error_text) as TextView
+            if (mTxt != null) {
+                mTxt!!.text = mErrorText
+                mTxt!!.setTextColor(mTextColor)
+                mTxt!!.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
             }
-            btn = layout.findViewById<View>(R.id.retry_button) as TextView
-            if (btn != null) {
-                btn!!.text = mRetryText
-                btn!!.setTextColor(mButtonTextColor)
-                btn!!.setTextSize(TypedValue.COMPLEX_UNIT_PX, mButtonTextSize.toFloat())
-                btn!!.background = mButtonBackground
-                btn!!.setOnClickListener(mRetryButtonClickListener)
+            mBtn = layout.findViewById<View>(R.id.retry_button) as TextView
+            if (mBtn != null) {
+                mBtn!!.text = mRetryText
+                mBtn!!.setTextColor(mButtonTextColor)
+                mBtn!!.setTextSize(TypedValue.COMPLEX_UNIT_PX, mButtonTextSize.toFloat())
+                mBtn!!.background = mButtonBackground
+                mBtn!!.setOnClickListener(mRetryButtonClickListener)
             }
             if (mOnErrorInflateListener != null) {
                 mOnErrorInflateListener!!.onInflate(layout)

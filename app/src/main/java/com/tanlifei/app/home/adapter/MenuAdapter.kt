@@ -16,14 +16,15 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class MenuAdapter(val context: Context?) :
+class MenuAdapter :
     CommonRvAdapter<MenuBean, ItemHomeMenuBinding>() {
-
+    private lateinit var mContext: Context
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ItemHomeMenuBinding> {
+        mContext = parent.context
         return CommonRvHolder(ItemHomeMenuBinding.inflate(inflater, parent, false))
     }
 
@@ -34,7 +35,7 @@ class MenuAdapter(val context: Context?) :
         bean: MenuBean
     ) {
         holder.binding.title.text = bean.name
-        GlideUtils.load(context, bean.image, binding.icon)
+        GlideUtils.load(mContext, bean.image, binding.icon)
     }
 
     override fun addChildClickViewIds(binding: ItemHomeMenuBinding): LinkedHashSet<View> {

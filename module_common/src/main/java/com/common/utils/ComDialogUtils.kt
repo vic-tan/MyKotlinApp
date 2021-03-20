@@ -16,20 +16,20 @@ import com.lxj.xpopup.interfaces.OnConfirmListener
 object ComDialogUtils {
 
     fun comConfirm(
-        context: Context,
+        mContext: Context,
         content: String,
         confirmListener: OnConfirmListener
     ): BasePopupView {
-        return comConfirm(context, "", content, confirmListener)
+        return comConfirm(mContext, "", content, confirmListener)
     }
 
     fun comConfirm(
-        context: Context,
+        mContext: Context,
         title: String? = "",
         content: String,
         confirmListener: OnConfirmListener
     ): BasePopupView {
-        return XPopup.Builder(context).popupAnimation(PopupAnimation.NoAnimation)
+        return XPopup.Builder(mContext).popupAnimation(PopupAnimation.NoAnimation)
             .isDestroyOnDismiss(true)////对于只使用一次的弹窗,就释放资源
             .borderRadius(ConvertUtils.dp2px(10f).toFloat())
             .asConfirm(title, content, confirmListener).show()
@@ -38,13 +38,13 @@ object ComDialogUtils {
     /**
      * 输入信息框
      */
-    fun showInputEditView(context: Context, callBack: BottomInputEditView.CallBack): BasePopupView {
-        return XPopup.Builder(context)
+    fun showInputEditView(mContext: Context, callBack: BottomInputEditView.CallBack): BasePopupView {
+        return XPopup.Builder(mContext)
             .autoOpenSoftInput(true)
             .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
             .asCustom(
                 BottomInputEditView(
-                    context,
+                    mContext,
                     callBack = callBack
                 )
             )

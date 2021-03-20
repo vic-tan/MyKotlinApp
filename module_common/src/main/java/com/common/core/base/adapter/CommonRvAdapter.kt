@@ -27,13 +27,13 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
             field = value
             notifyItemRangeChanged(0, value.size)
         }
-    private var onItemClickListener: OnItemClickListener<V, T>? = null
+    private var mOnItemClickListener: OnItemClickListener<V, T>? = null
 
 
     /**
      * 用于保存需要设置点击事件的 item
      */
-    private val childClickViews = LinkedHashSet<View>()
+    private val mChildClickViews = LinkedHashSet<View>()
 
 
     /**
@@ -41,9 +41,9 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
      * @param views viewArray
      */
     private fun addViewList(views: LinkedHashSet<View>) {
-        childClickViews.clear()
+        mChildClickViews.clear()
         if (ObjectUtils.isNotEmpty(views)) {
-            childClickViews.addAll(views)
+            mChildClickViews.addAll(views)
         }
 
     }
@@ -66,9 +66,9 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
             mData[holder.adapterPosition]
         )
         addViewList(addChildClickViewIds(holder.binding))
-        if (ObjectUtils.isNotEmpty(childClickViews)) {
-            onItemClickListener?.let {
-                for (v in childClickViews) {
+        if (ObjectUtils.isNotEmpty(mChildClickViews)) {
+            mOnItemClickListener?.let {
+                for (v in mChildClickViews) {
                     v?.let {
                         it.click {
                             setItemClick(
@@ -104,11 +104,11 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
 
 
     protected open fun setItemClick(binding: V, bean: T, v: View, position: Int) {
-        onItemClickListener?.click(binding, bean, v, position)
+        mOnItemClickListener?.click(binding, bean, v, position)
     }
 
     fun setItemClickListener(clickListener: OnItemClickListener<V, T>) {
-        this.onItemClickListener = clickListener
+        this.mOnItemClickListener = clickListener
     }
 
 

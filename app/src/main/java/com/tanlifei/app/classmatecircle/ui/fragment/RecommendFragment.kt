@@ -27,7 +27,7 @@ import com.tanlifei.app.databinding.ItemRecommendBinding
 class RecommendFragment :
     BaseRecyclerBVMFragment<FragmentRecommendBinding, RecommendViewModel>() {
 
-    private lateinit var adapter: RecommendAdapter
+    private lateinit var mAdapter: RecommendAdapter
 
     companion object {
         fun newInstance(id: Long): RecommendFragment {
@@ -49,9 +49,9 @@ class RecommendFragment :
     }
 
     override fun onFirstVisibleToUser() {
-        adapter = RecommendAdapter(context)
-        adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
-        adapter.setItemClickListener(object :
+        mAdapter = RecommendAdapter()
+        mAdapter.mData = mViewModel.mData as MutableList<ClassmateCircleBean>
+        mAdapter.setItemClickListener(object :
             OnItemClickListener<ItemRecommendBinding, ClassmateCircleBean> {
             override fun click(
                 itemBinding: ItemRecommendBinding,
@@ -66,7 +66,7 @@ class RecommendFragment :
 
         })
         initRecycler()
-        binding.refreshRecycler.addItemDecoration(
+        mBinding.refreshRecycler.addItemDecoration(
             GridItemDecoration(
                 8
             )
@@ -82,19 +82,19 @@ class RecommendFragment :
     }
 
     override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+        return mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {
-        return binding.smartRefreshLayout
+        return mBinding.smartRefreshLayout
     }
 
     override fun refreshLoadingLayout(): LoadingLayout {
-        return binding.refreshLoadingLayout
+        return mBinding.refreshLoadingLayout
     }
 
     override fun refreshRecycler(): RecyclerView {
-        return binding.refreshRecycler
+        return mBinding.refreshRecycler
     }
 
 }

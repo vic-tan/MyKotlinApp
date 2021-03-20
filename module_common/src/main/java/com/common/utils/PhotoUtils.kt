@@ -1,7 +1,6 @@
 package com.common.utils
 
 import android.content.Context
-import android.graphics.Color
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -22,11 +21,11 @@ object PhotoUtils {
     /**
      * 显示单张
      */
-    fun showSinglePhoto(context: Context?, imageView: ImageView, url: String?) {
-        if (ObjectUtils.isNotEmpty(url) && null != context) {
+    fun showSinglePhoto(mContext: Context?, imageView: ImageView, url: String?) {
+        if (ObjectUtils.isNotEmpty(url) && null != mContext) {
             var list = mutableListOf<String>()
             list.add(url!!)
-            showXPopup(context, initImageViewerPopup(context, imageView, 0, list))
+            showXPopup(mContext, initImageViewerPopup(mContext, imageView, 0, list))
         }
     }
 
@@ -34,20 +33,20 @@ object PhotoUtils {
      * 列表
      */
     fun showListPhoto(
-        context: Context?,
+        mContext: Context?,
         imageView: ImageView,
         position: Int,
         list: List<String>
     ) {
 
-        if (ObjectUtils.isNotEmpty(list) && null != context) {
-            val viewerPopup = initImageViewerPopup(context, imageView, position, list)
+        if (ObjectUtils.isNotEmpty(list) && null != mContext) {
+            val viewerPopup = initImageViewerPopup(mContext, imageView, position, list)
             viewerPopup.setSrcViewUpdateListener { popupView, _ ->
                 val rv =
                     imageView.parent as RecyclerView
                 popupView.updateSrcView(rv.getChildAt(0) as ImageView)
             }
-            showXPopup(context, viewerPopup)
+            showXPopup(mContext, viewerPopup)
         }
     }
 
@@ -56,14 +55,14 @@ object PhotoUtils {
      * viewpage2 显示大图
      */
     fun showBannerPhoto(
-        context: Context?,
+        mContext: Context?,
         imageView: ImageView,
         position: Int,
         pager2: ViewPager2,
         list: List<String>
     ) {
-        if (ObjectUtils.isNotEmpty(list) && null != context) {
-            val viewerPopup = initImageViewerPopup(context, imageView, position, list)
+        if (ObjectUtils.isNotEmpty(list) && null != mContext) {
+            val viewerPopup = initImageViewerPopup(mContext, imageView, position, list)
             viewerPopup.setSrcViewUpdateListener { popupView, position ->
                 pager2.setCurrentItem(position, false)
                 //一定要post，因为setCurrentItem内部实现是RecyclerView.scrollTo()，这个是异步的
@@ -74,26 +73,26 @@ object PhotoUtils {
                     popupView.updateSrcView(rv.getChildAt(0) as ImageView)
                 }
             }
-            showXPopup(context, viewerPopup)
+            showXPopup(mContext, viewerPopup)
         }
 
 
     }
 
-    private fun showXPopup(context: Context, viewerPopup: ImageViewerPopup) {
-        XPopup.Builder(context)
+    private fun showXPopup(mContext: Context, viewerPopup: ImageViewerPopup) {
+        XPopup.Builder(mContext)
             .isDestroyOnDismiss(true)
             .asCustom(viewerPopup)
             .show()
     }
 
     private fun initImageViewerPopup(
-        context: Context,
+        mContext: Context,
         imageView: ImageView,
         position: Int,
         list: List<String>
     ): ImageViewerPopup {
-        val viewerPopup = ImageViewerPopup(context)
+        val viewerPopup = ImageViewerPopup(mContext)
         //自定义的ImageViewer弹窗需要自己手动设置相应的属性，必须设置的有srcView，url和imageLoader。
         viewerPopup.setSingleSrcView(imageView, if (list.size > 1) list else list[0])
         if (list.size > 1) {

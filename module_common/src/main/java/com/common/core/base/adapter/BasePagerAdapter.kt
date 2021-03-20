@@ -9,14 +9,14 @@ import androidx.fragment.app.FragmentPagerAdapter
  * @author: tanlifei
  * @date: 2021/2/7 13:11
  */
-class BasePagerAdapter(manager: FragmentManager, private val fragments: List<Fragment>) :
-    FragmentPagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class BasePagerAdapter(mManager: FragmentManager, private val mFragments: List<Fragment>) :
+    FragmentPagerAdapter(mManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        return fragments[position]
+        return mFragments[position]
     }
 
     override fun getCount(): Int {
-        return fragments.size
+        return mFragments.size
     }
 }

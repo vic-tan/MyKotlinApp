@@ -13,10 +13,9 @@ import com.tanlifei.app.common.network.ApiNetwork
  * @author: tanlifei
  * @date: 2021/2/7 15:41
  */
-class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
+class ClassmateCircleDetailViewModel(val id: Long) : BaseListViewModel() {
 
-    val id: Long = _id
-    var bean: ClassmateCircleBean? = null
+    var mBean: ClassmateCircleBean? = null
 
     /**
      * 列表数据改变的LveData
@@ -35,11 +34,11 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
             if (dataChangedType == DataChagedType.REFRESH) {
                 var requestBean = ApiNetwork.requestEntertainmentDetail(id)
                 if (ObjectUtils.isNotEmpty(requestBean)) {
-                    bean = requestBean
+                    mBean = requestBean
                 }
             }
             addList(
-                ApiNetwork.requestCommentList(id, pageNum),
+                ApiNetwork.requestCommentList(id, mPageNum),
                 dataChangedType
             )
         }, dataChangedType)
@@ -56,8 +55,8 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
             if (ObjectUtils.isNotEmpty(requestBean) && ObjectUtils.isNotEmpty(requestBean.info)) {
                 mData.add(0, requestBean.info)
                 _itemDataChanged.value = 0
-                bean?.comment = bean?.comment?.plus(1)!!
-                _beanChanged.value = bean
+                mBean?.comment = mBean?.comment?.plus(1)!!
+                _beanChanged.value = mBean
             }
         }
     }
@@ -66,9 +65,9 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
         launchBySilence {
             ApiNetwork.requestDeleteComment(commentBean.id)
             mData.remove(commentBean)
-            bean?.comment = bean?.comment?.minus(1)!!
-            _dataChanged.value = DataChagedType.NOTIFY
-            _beanChanged.value = bean
+            mBean?.comment = mBean?.comment?.minus(1)!!
+            dataChanged.value = DataChagedType.NOTIFY
+            _beanChanged.value = mBean
         }
     }
 

@@ -20,10 +20,10 @@ import com.common.R
  * @date: 2021/2/22 17:01
  */
 class ExpandTextView @JvmOverloads constructor(
-    context: Context,
+    mContext: Context,
     attrs: AttributeSet? = null,
     style: Int = android.R.attr.textStyle
-) : AppCompatTextView(context, attrs, style) {
+) : AppCompatTextView(mContext, attrs, style) {
 
     companion object {
         const val STATE_SHRINK = 0

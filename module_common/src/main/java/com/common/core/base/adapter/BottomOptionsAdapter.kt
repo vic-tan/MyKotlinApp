@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import com.common.R
 import com.common.databinding.ItemOptionBinding
 import com.common.utils.extension.dimen
-import com.common.utils.extension.dp2px
 import java.util.*
 
 /**
@@ -14,7 +13,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class BottomOptionsAdapter(val hasTitleView: Boolean) :
+class BottomOptionsAdapter(val mHasTitleView: Boolean) :
     CommonRvAdapter<String, ItemOptionBinding>() {
 
     override fun onCreateViewHolder(
@@ -32,7 +31,7 @@ class BottomOptionsAdapter(val hasTitleView: Boolean) :
         title: String
     ) {
         holder.binding.title.text = title
-        if (position == 0 && !hasTitleView) {
+        if (position == 0 && !mHasTitleView) {
             holder.binding.title.helper.cornerRadiusTopLeft =
                 dimen(R.dimen.dialog_corner_radius)
             holder.binding.title.helper.cornerRadiusTopRight =

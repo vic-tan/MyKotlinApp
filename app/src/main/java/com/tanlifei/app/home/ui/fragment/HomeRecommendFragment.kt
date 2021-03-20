@@ -43,14 +43,14 @@ class HomeRecommendFragment :
 
     override fun onFirstVisibleToUser() {
         initRecycler()
-        binding.refreshLayout.refreshRecycler.addItemDecoration(GridHomeRecommentItemDecoration(8))
+        mBinding.refreshLayout.refreshRecycler.addItemDecoration(GridHomeRecommentItemDecoration(8))
     }
 
 
     override fun initView() {
         super.initView()
-        adapter = HomeRecommentAdapter(context)
-        adapter.mData = viewModel.mData as MutableList<ClassmateCircleBean>
+        adapter = HomeRecommentAdapter()
+        adapter.mData = mViewModel.mData as MutableList<ClassmateCircleBean>
         adapter.setItemClickListener(object :
             OnItemClickListener<ItemHomeRecommentBinding, ClassmateCircleBean> {
             override fun click(
@@ -67,8 +67,8 @@ class HomeRecommendFragment :
     }
 
     fun refresh() {
-        if (ObjectUtils.isNotEmpty(viewModel)) {
-            viewModel.refresh()
+        if (ObjectUtils.isNotEmpty(mViewModel)) {
+            mViewModel.refresh()
         }
     }
 
@@ -81,15 +81,15 @@ class HomeRecommendFragment :
     }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {
-        return binding.refreshLayout.smartRefreshLayout
+        return mBinding.refreshLayout.smartRefreshLayout
     }
 
     override fun refreshLoadingLayout(): LoadingLayout {
-        return binding.refreshLayout.refreshLoadingLayout
+        return mBinding.refreshLayout.refreshLoadingLayout
     }
 
     override fun refreshRecycler(): RecyclerView {
-        return binding.refreshLayout.refreshRecycler
+        return mBinding.refreshLayout.refreshRecycler
     }
 
 }

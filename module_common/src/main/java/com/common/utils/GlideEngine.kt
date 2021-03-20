@@ -29,51 +29,51 @@ object GlideEngine : ImageEngine {
     /**
      * 加载图片
      *
-     * @param context
+     * @param mContext
      * @param url
      * @param imageView
      */
-    override fun loadImage(context: Context, url: String, imageView: ImageView) {
-        GlideUtils.load(context, url, imageView)
+    override fun loadImage(mContext: Context, url: String, imageView: ImageView) {
+        GlideUtils.load(mContext, url, imageView)
     }
 
     /**
      * 加载网络图片适配长图方案
      * # 注意：此方法只有加载网络图片才会回调
      *
-     * @param context
+     * @param mContext
      * @param url
      * @param imageView
      * @param longImageView
      * @param callback      网络图片加载回调监听 {link after version 2.5.1 Please use the #OnImageCompleteCallback#}
      */
     override fun loadImage(
-        context: Context,
+        mContext: Context,
         url: String,
         imageView: ImageView,
         longImageView: SubsamplingScaleImageView?,
         callback: OnImageCompleteCallback?
     ) {
-        GlideUtils.load(context, url, imageView)
+        GlideUtils.load(mContext, url, imageView)
     }
 
     /**
      * 加载网络图片适配长图方案
      * # 注意：此方法只有加载网络图片才会回调
      *
-     * @param context
+     * @param mContext
      * @param url
      * @param imageView
      * @param longImageView
      * @ 已废弃
      */
     override fun loadImage(
-        context: Context,
+        mContext: Context,
         url: String,
         imageView: ImageView,
         longImageView: SubsamplingScaleImageView?
     ) {
-        Glide.with(context)
+        Glide.with(mContext)
             .asBitmap()
             .load(url)
             .into(object : ImageViewTarget<Bitmap?>(imageView) {
@@ -108,12 +108,12 @@ object GlideEngine : ImageEngine {
     /**
      * 加载gif
      *
-     * @param context   上下文
+     * @param mContext   上下文
      * @param url       图片路径
      * @param imageView 承载图片ImageView
      */
-    override fun loadAsGifImage(context: Context, url: String, imageView: ImageView) {
-        Glide.with(context)
+    override fun loadAsGifImage(mContext: Context, url: String, imageView: ImageView) {
+        Glide.with(mContext)
             .asGif()
             .load(url)
             .into(imageView)
@@ -122,12 +122,12 @@ object GlideEngine : ImageEngine {
     /**
      * 加载图片列表图片
      *
-     * @param context   上下文
+     * @param mContext   上下文
      * @param url       图片路径
      * @param imageView 承载图片ImageView
      */
-    override fun loadGridImage(context: Context, url: String, imageView: ImageView) {
-        Glide.with(context)
+    override fun loadGridImage(mContext: Context, url: String, imageView: ImageView) {
+        Glide.with(mContext)
             .load(url)
             .override(200, 200)
             .centerCrop()
@@ -135,8 +135,8 @@ object GlideEngine : ImageEngine {
             .into(imageView)
     }
 
-    override fun loadFolderImage(context: Context, url: String, imageView: ImageView) {
-        Glide.with(context)
+    override fun loadFolderImage(mContext: Context, url: String, imageView: ImageView) {
+        Glide.with(mContext)
             .asBitmap()
             .load(url)
             .override(180, 180)
@@ -146,7 +146,7 @@ object GlideEngine : ImageEngine {
             .into(object : BitmapImageViewTarget(imageView) {
                 override fun setResource(resource: Bitmap?) {
                     val circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(context.resources, resource)
+                        RoundedBitmapDrawableFactory.create(mContext.resources, resource)
                     circularBitmapDrawable.cornerRadius = 8f
                     imageView.setImageDrawable(circularBitmapDrawable)
                 }

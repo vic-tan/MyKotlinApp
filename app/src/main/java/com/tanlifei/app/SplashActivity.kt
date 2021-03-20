@@ -10,7 +10,6 @@ import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.GlideUtils
 import com.common.utils.extension.clickListener
 import com.common.utils.extension.gone
-import com.common.utils.extension.visible
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.main.ui.activity.GuideActivity
 import com.tanlifei.app.main.ui.activity.LoginAtivity
@@ -49,15 +48,15 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        viewModel.startInterval()
-        viewModel.requestAds()
+        mViewModel.startInterval()
+        mViewModel.requestAds()
     }
 
     /**
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.jump.observe(this, Observer {
+        mViewModel.mJump.observe(this, Observer {
             when (it) {
                 GUIDE -> {
                     GuideActivity.actionStart()
@@ -72,22 +71,22 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
                     ActivityUtils.finishActivity(this)
                 }
                 REQUEST_ADS -> {
-                    if (ObjectUtils.isNotEmpty(viewModel.adsBean)) {
-                        GlideUtils.load(this, viewModel.adsBean!!.poster, binding.adsImg)
+                    if (ObjectUtils.isNotEmpty(mViewModel.mAdsBean)) {
+                        GlideUtils.load(this, mViewModel.mAdsBean!!.poster, binding.adsImg)
                     }
                 }
                 ADS -> {
-                    viewModel.adsBean?.let {
+                    mViewModel.mAdsBean?.let {
                         binding.splash.gone()
-                        viewModel.startAdsInterval()
+                        mViewModel.startAdsInterval()
                     }
                 }
             }
         })
 
-        viewModel.adsInterval.observe(this, Observer {
+        mViewModel.mAdsInterval.observe(this, Observer {
             when (it) {
-                -1L -> viewModel.doAdsJump()
+                -1L -> mViewModel.doAdsJump()
                 else -> onIntervalChanged(it)
             }
         })
@@ -104,14 +103,14 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
             clickListener = View.OnClickListener {
                 when (it) {
                     binding.adsImg -> {
-                        viewModel.adsBean?.url?.let { it1 ->
+                        mViewModel.mAdsBean?.url?.let { it1 ->
                             BaseWebViewActivity.actionStart(
-                                viewModel.adsBean!!.name,
+                                mViewModel.mAdsBean!!.name,
                                 it1
                             )
                         }
                     }
-                    binding.into -> viewModel.doAdsJump()
+                    binding.into -> mViewModel.doAdsJump()
                     binding.splash -> {
                     }
                 }

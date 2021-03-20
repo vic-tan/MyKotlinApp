@@ -32,15 +32,15 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         ERROR,//报错界面
     }
 
-    var loadMoreStartPos = 0//用于上接刷新里开始刷新的下标
-    var state: RefreshState = RefreshState.None
+    var mLoadMoreStartPos = 0//用于上接刷新里开始刷新的下标
+    var mState: RefreshState = RefreshState.None
 
     /**
      * 列表加载显示处理异常
      */
     protected fun launchByLoading(block: suspend () -> Unit, dataChangedType: DataChagedType) =
         launchByLoading(block, {
-            _loadingState.value = LoadType.ERROR
+            loadingState.value = LoadType.ERROR
             onError(dataChangedType, it)
         })
 
@@ -48,28 +48,28 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     /**
      * 显示Ui 的LveData
      */
-    val uiBehavior: LiveData<UIType> get() = _uiBehavior
-    private val _uiBehavior = MutableLiveData<UIType>()
+    val mUiBehavior: LiveData<UIType> get() = uiBehavior
+    private val uiBehavior = MutableLiveData<UIType>()
 
     var mData: MutableList<Any> = mutableListOf()
-    var pageNum: Int = 1
+    var mPageNum: Int = 1
 
     /**
      * 列表数据改变的LveData
      */
-    val dataChanged: LiveData<DataChagedType> get() = _dataChanged
-    protected var _dataChanged = MutableLiveData<DataChagedType>()
+    val mDataChanged: LiveData<DataChagedType> get() = dataChanged
+    protected var dataChanged = MutableLiveData<DataChagedType>()
 
     fun notifyDataSetChanged(dataChangedType: DataChagedType, startPos: Int = 0) {
-        loadMoreStartPos = startPos
-        _dataChanged.value = dataChangedType
+        mLoadMoreStartPos = startPos
+        dataChanged.value = dataChangedType
     }
 
     /**
      * 下拉刷新
      */
     fun refresh() {
-        pageNum = 1
+        mPageNum = 1
         requestList(DataChagedType.REFRESH)
     }
 
@@ -106,18 +106,18 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
         } else {
             showContentUI()
         }
-        state = RefreshState.None
-        pageNum++
+        mState = RefreshState.None
+        mPageNum++
     }
 
     /**
      * 错误处理
      */
     private fun onError(dataChangedType: DataChagedType, it: Throwable) {
-        _loadingState.value = LoadType.ERROR
+        loadingState.value = LoadType.ERROR
         //没有下一页
         if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
-            state = RefreshState.RefreshFinish
+            mState = RefreshState.RefreshFinish
             showNotMoreDataUI()
             notifyDataSetChanged(dataChangedType, mData.size - 1)
         } else {
@@ -126,31 +126,31 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
                 showErrorUI()
             }
             it.show(it.errorCode, it.errorMsg)
-            state = RefreshState.None
+            mState = RefreshState.None
             notifyDataSetChanged(DataChagedType.ERROE)
         }
 
     }
 
     override fun showLoadingUI() {
-        _uiBehavior.value = UIType.LOADING
+        uiBehavior.value = UIType.LOADING
     }
 
     override fun showEmptyUI() {
-        _uiBehavior.value = UIType.EMPTYDATA
+        uiBehavior.value = UIType.EMPTYDATA
     }
 
 
     override fun showContentUI() {
-        _uiBehavior.value = UIType.CONTENT
+        uiBehavior.value = UIType.CONTENT
     }
 
     override fun showNotMoreDataUI() {
-        _uiBehavior.value = UIType.NOTMOREDATA
+        uiBehavior.value = UIType.NOTMOREDATA
     }
 
     override fun showErrorUI() {
-        _uiBehavior.value = UIType.ERROR
+        uiBehavior.value = UIType.ERROR
     }
 
 

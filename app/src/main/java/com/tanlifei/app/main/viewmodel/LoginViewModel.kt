@@ -25,28 +25,28 @@ class LoginViewModel() : BaseViewModel() {
     /**
      * 登录成功获取到token 的LveData
      */
-    val isToken: LiveData<Boolean> get() = mIsToken
-    private val mIsToken = MutableLiveData<Boolean>()
+    val mIsToken: LiveData<Boolean> get() = this.isToken
+    private val isToken = MutableLiveData<Boolean>()
 
     /**
      * 连续点击logo 显示切换环境按钮LveData
      */
-    val isContinuousClick: LiveData<Boolean> get() = mIsContinuousClick
-    private val mIsContinuousClick = MutableLiveData<Boolean>()
+    val mIsContinuousClick: LiveData<Boolean> get() = isContinuousClick
+    private val isContinuousClick = MutableLiveData<Boolean>()
 
     /**
      * 短信倒计时LveData
      */
-    val smsCodeInterval: LiveData<Long> get() = mSmsCodeInterval
-    private val mSmsCodeInterval = MutableLiveData<Long>()
+    val mSmsCodeInterval: LiveData<Long> get() = smsCodeInterval
+    private val smsCodeInterval = MutableLiveData<Long>()
 
 
-    var token: String? = null
+    var mToken: String? = null
 
 
-    private val counts = 10 // 点击次数
-    private val totalDuration: Long = 10000 // 规定有效时间
-    var mHits: LongArray = LongArray(counts)
+    private val mCounts = 10 // 点击次数
+    private val mTotalDuration: Long = 10000 // 规定有效时间
+    var mHits: LongArray = LongArray(mCounts)
 
 
     /**
@@ -58,16 +58,16 @@ class LoginViewModel() : BaseViewModel() {
             .map { aLong -> count - aLong }
             .observeOn(AndroidSchedulers.mainThread()) //ui线程中进行控件更新
             .doOnSubscribe {
-                mSmsCodeInterval.value = -1L//倒计时过程禁止按钮点击
+                smsCodeInterval.value = -1L//倒计时过程禁止按钮点击
             }.subscribe(object : Observer<Long> {
                 override fun onSubscribe(d: Disposable?) {}
                 override fun onNext(t: Long) {
-                    mSmsCodeInterval.value = t//倒计时
+                    smsCodeInterval.value = t//倒计时
                 }
 
                 override fun onError(e: Throwable?) {}
                 override fun onComplete() {
-                    mSmsCodeInterval.value = -2L//回复原来初始状态
+                    smsCodeInterval.value = -2L//回复原来初始状态
                 }
             })
     }
@@ -85,16 +85,16 @@ class LoginViewModel() : BaseViewModel() {
      * 请求登录
      */
     fun requestLogin(phone: String, code: String) = launchByLoading {
-        token = ApiNetwork.requestLogin(phone, code)
-        mIsToken.value = ObjectUtils.isNotEmpty(token)
+        mToken = ApiNetwork.requestLogin(phone, code)
+        this.isToken.value = ObjectUtils.isNotEmpty(mToken)
     }
 
     /**
      * 退出登录
      */
     fun requestLogin() = launchByLoading {
-        token = ApiNetwork.requestLoginOut()
-        mIsToken.value = false
+        mToken = ApiNetwork.requestLoginOut()
+        this.isToken.value = false
     }
 
 
@@ -106,9 +106,9 @@ class LoginViewModel() : BaseViewModel() {
         System.arraycopy(mHits, 1, mHits, 0, mHits.size - 1)
         //为数组最后一位赋值
         mHits[mHits.size - 1] = SystemClock.uptimeMillis()
-        if (mHits[0] >= SystemClock.uptimeMillis() - totalDuration) {
-            mHits = LongArray(counts) //重新初始化数组
-            mIsContinuousClick.value = true
+        if (mHits[0] >= SystemClock.uptimeMillis() - mTotalDuration) {
+            mHits = LongArray(mCounts) //重新初始化数组
+            isContinuousClick.value = true
         }
     }
 

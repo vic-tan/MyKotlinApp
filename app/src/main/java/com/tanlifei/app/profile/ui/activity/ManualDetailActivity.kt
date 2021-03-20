@@ -37,9 +37,9 @@ class ManualDetailActivity : BaseToolBarActivity<ActivityManualDetailBinding, Ma
     }
 
     override fun init() {
-        viewModel.requestManualDetail(intent.getLongExtra(GlobalConst.Extras.ID, 0))
-        viewModel.bean.observe(this, Observer {
-            binding.name.text = Html.fromHtml(viewModel.bean.value?.content)
+        mViewModel.requestManualDetail(intent.getLongExtra(GlobalConst.Extras.ID, 0))
+        mViewModel.mBean.observe(this, Observer {
+            binding.name.text = Html.fromHtml(mViewModel.mBean.value?.content)
             val imgGetter = ImageGetter { source ->
                 var drawable: Drawable? = null
                 val url: URL
@@ -55,7 +55,7 @@ class ManualDetailActivity : BaseToolBarActivity<ActivityManualDetailBinding, Ma
                 )
                 drawable
             }
-            binding.name.text = Html.fromHtml(viewModel.bean.value?.content, imgGetter, null)
+            binding.name.text = Html.fromHtml(mViewModel.mBean.value?.content, imgGetter, null)
         })
 
     }

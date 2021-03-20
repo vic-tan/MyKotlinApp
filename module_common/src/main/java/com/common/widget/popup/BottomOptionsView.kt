@@ -20,28 +20,28 @@ import com.lxj.xpopup.interfaces.OnSelectListener
  * @date: 2021/2/24 14:43
  */
 class BottomOptionsView(
-    context: Context,
+    mContext: Context,
     var list: MutableList<String>,
     var selectListener: OnSelectListener,
     var title: String = "",
     var cancel: String = "取消"
 ) :
-    BottomPopupView(context) {
+    BottomPopupView(mContext) {
 
-    lateinit var binding: LayoutOptionBinding
-    lateinit var adapter: BottomOptionsAdapter
+    lateinit var mBinding: LayoutOptionBinding
+    lateinit var mAdapter: BottomOptionsAdapter
     override fun getImplLayoutId(): Int {
         return R.layout.layout_option
     }
 
     override fun onCreate() {
         super.onCreate()
-        binding = LayoutOptionBinding.bind(popupImplView)
-        adapter = BottomOptionsAdapter(ObjectUtils.isNotEmpty(title))
-        adapter.mData = list
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = RecyclerUtils.setLinearLayoutManager(context)
-        adapter.setItemClickListener(object :
+        mBinding = LayoutOptionBinding.bind(popupImplView)
+        mAdapter = BottomOptionsAdapter(ObjectUtils.isNotEmpty(title))
+        mAdapter.mData = list
+        mBinding.recyclerView.adapter = mAdapter
+        mBinding.recyclerView.layoutManager = RecyclerUtils.setLinearLayoutManager(context)
+        mAdapter.setItemClickListener(object :
             OnItemClickListener<ItemOptionBinding, String> {
             override fun click(
                 binding: ItemOptionBinding,
@@ -57,17 +57,17 @@ class BottomOptionsView(
                 }
             }
         })
-        binding.title.setVisible(ObjectUtils.isNotEmpty(title))
-        binding.titleLine.setVisible(ObjectUtils.isNotEmpty(title))
-        binding.cancel.setVisible(ObjectUtils.isNotEmpty(cancel))
-        binding.divider.setVisible(ObjectUtils.isNotEmpty(cancel))
-        binding.title.text = title
-        binding.cancel.text = cancel
+        mBinding.title.setVisible(ObjectUtils.isNotEmpty(title))
+        mBinding.titleLine.setVisible(ObjectUtils.isNotEmpty(title))
+        mBinding.cancel.setVisible(ObjectUtils.isNotEmpty(cancel))
+        mBinding.divider.setVisible(ObjectUtils.isNotEmpty(cancel))
+        mBinding.title.text = title
+        mBinding.cancel.text = cancel
         clickListener(
-            binding.cancel,
+            mBinding.cancel,
             clickListener = View.OnClickListener {
                 when (it) {
-                    binding.cancel -> {
+                    mBinding.cancel -> {
                         dismiss()
                     }
                 }

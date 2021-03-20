@@ -44,7 +44,7 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
         url = bundle?.get(GlobalConst.Extras.URL).toString()
         title = bundle?.get(GlobalConst.Extras.TITLE).toString()
         if (ObjectUtils.isNotEmpty(title)) {
-            titleBar.title = title
+            mTitleBar.title = title
         }
         initWebSettings()
         initWebViewClient()
@@ -84,7 +84,7 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
             override fun onPageFinished(view: WebView, httpUrl: String) {
                 super.onPageFinished(view, httpUrl)
                 if (TextUtils.isEmpty(title) && ObjectUtils.isNotEmpty(view.title)) {
-                    titleBar.title = view.title
+                    mTitleBar.title = view.title
                 }
             }
         }

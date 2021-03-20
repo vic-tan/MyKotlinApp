@@ -19,7 +19,7 @@ import com.hjq.toast.ToastUtils
 /**
  * 全局context
  */
-fun globalContext() = ComFun.context
+fun globalContext() = ComFun.mContext
 
 
 /**

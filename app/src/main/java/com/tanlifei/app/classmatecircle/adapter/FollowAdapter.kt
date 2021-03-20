@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.blankj.utilcode.util.ScreenUtils
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
+import com.common.utils.extension.screenWidth
 import com.common.utils.extension.setVisible
 import com.common.widget.ExpandTextView
 import com.tanlifei.app.R
@@ -25,11 +25,10 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/24 16:02
  */
-class FollowAdapter(var context: Context?) :
+class FollowAdapter:
     CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() {
-
-    private var screenWidth = ScreenUtils.getScreenWidth()
-    private var textViewWidth = screenWidth - ConvertUtils.dp2px(30f)
+    private lateinit var mContext: Context
+    private var mTextViewWidth = screenWidth - ConvertUtils.dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
 
     override fun onCreateViewHolder(
@@ -37,7 +36,7 @@ class FollowAdapter(var context: Context?) :
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ItemFollowBinding> {
-
+        mContext = parent.context
         return CommonRvHolder(
             ItemFollowBinding.inflate(
                 inflater,
@@ -60,8 +59,8 @@ class FollowAdapter(var context: Context?) :
         holder.binding.name.text = bean.nickName
         holder.binding.school.text =
             if (ObjectUtils.isEmpty(bean.createtimeStr)) bean.universityName else "${bean.createtimeStr}  ${bean.universityName}"
-        GlideUtils.load(context, bean.image?.url, holder.binding.banner)
-        GlideUtils.loadAvatar(context, bean.avatar, holder.binding.userHead)
+        GlideUtils.load(mContext, bean.image?.url, holder.binding.banner)
+        GlideUtils.loadAvatar(mContext, bean.avatar, holder.binding.userHead)
         holder.binding.expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
             override fun onExpand(view: ExpandTextView) {
                 mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
@@ -75,7 +74,7 @@ class FollowAdapter(var context: Context?) :
         val state: Int? = mPositionsAndStates.get(holder.adapterPosition)
         holder.binding.expandTextView.updateForRecyclerView(
             bean.content,
-            textViewWidth,
+            mTextViewWidth,
             state ?: 0
         )
         holder.binding.expandTextView.setVisible(ObjectUtils.isNotEmpty(bean.content))

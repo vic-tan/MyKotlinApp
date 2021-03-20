@@ -28,7 +28,7 @@ import org.greenrobot.eventbus.ThreadMode
 open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
     NavigatorView.NavigatorListener {
 
-    lateinit var updateAppViewModel: UpdateAppViewModel
+    lateinit var mUpdateAppViewModel: UpdateAppViewModel
 
     companion object {
         fun actionStart() {
@@ -53,27 +53,27 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        updateAppViewModel = ViewModelProvider(
+        mUpdateAppViewModel = ViewModelProvider(
             this,
             BaseViewModel.createViewModelFactory(UpdateAppViewModel())
         ).get(
             UpdateAppViewModel::class.java
         )
-        viewModel.bindFragments()
-        viewModel.initNavigator(supportFragmentManager)
-        viewModel.requestUser()
-        updateAppViewModel.requestVersion()
+        mViewModel.bindFragments()
+        mViewModel.initNavigator(supportFragmentManager)
+        mViewModel.requestUser()
+        mUpdateAppViewModel.requestVersion()
     }
 
     /**
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        viewModel.currTabPosition.observe(this, Observer {
+        mViewModel.mCurrTabPosition.observe(this, Observer {
             binding.navigatorTab.select(it)
         })
 
-        updateAppViewModel.updateApp.observe(this, Observer {
+        mUpdateAppViewModel.mUpdateApp.observe(this, Observer {
             ComUtils.udpateApp(it)
         })
     }
@@ -90,7 +90,7 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
     @Subscribe(threadMode = ThreadMode.MAIN)
     override fun onMessageEvent(event: BaseEvent) {
         if (event is UserEvent) {
-            viewModel.requestUser()
+            mViewModel.requestUser()
         }
     }
 
@@ -99,7 +99,7 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
     }
 
     override fun onNavigatorItemClick(position: Int, view: View?) {
-        viewModel.showFragment(position)
+        mViewModel.showFragment(position)
     }
 
 
