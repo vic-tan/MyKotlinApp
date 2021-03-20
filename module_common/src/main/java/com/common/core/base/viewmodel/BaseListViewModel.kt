@@ -40,7 +40,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
      */
     protected fun launchByLoading(block: suspend () -> Unit, dataChangedType: DataChagedType) =
         launchByLoading(block, {
-            mLoadingState.value = LoadType.ERROR
+            _loadingState.value = LoadType.ERROR
             onError(dataChangedType, it)
         })
 
@@ -48,8 +48,8 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     /**
      * 显示Ui 的LveData
      */
-    val uiBehavior: LiveData<UIType> get() = mUiBehavior
-    private val mUiBehavior = MutableLiveData<UIType>()
+    val uiBehavior: LiveData<UIType> get() = _uiBehavior
+    private val _uiBehavior = MutableLiveData<UIType>()
 
     var mData: MutableList<Any> = mutableListOf()
     var pageNum: Int = 1
@@ -57,12 +57,12 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     /**
      * 列表数据改变的LveData
      */
-    val dataChanged: LiveData<DataChagedType> get() = mDataChanged
-    protected var mDataChanged = MutableLiveData<DataChagedType>()
+    val dataChanged: LiveData<DataChagedType> get() = _dataChanged
+    protected var _dataChanged = MutableLiveData<DataChagedType>()
 
     fun notifyDataSetChanged(dataChangedType: DataChagedType, startPos: Int = 0) {
         loadMoreStartPos = startPos
-        mDataChanged.value = dataChangedType
+        _dataChanged.value = dataChangedType
     }
 
     /**
@@ -114,7 +114,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
      * 错误处理
      */
     private fun onError(dataChangedType: DataChagedType, it: Throwable) {
-        mLoadingState.value = LoadType.ERROR
+        _loadingState.value = LoadType.ERROR
         //没有下一页
         if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
             state = RefreshState.RefreshFinish
@@ -133,24 +133,24 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     }
 
     override fun showLoadingUI() {
-        mUiBehavior.value = UIType.LOADING
+        _uiBehavior.value = UIType.LOADING
     }
 
     override fun showEmptyUI() {
-        mUiBehavior.value = UIType.EMPTYDATA
+        _uiBehavior.value = UIType.EMPTYDATA
     }
 
 
     override fun showContentUI() {
-        mUiBehavior.value = UIType.CONTENT
+        _uiBehavior.value = UIType.CONTENT
     }
 
     override fun showNotMoreDataUI() {
-        mUiBehavior.value = UIType.NOTMOREDATA
+        _uiBehavior.value = UIType.NOTMOREDATA
     }
 
     override fun showErrorUI() {
-        mUiBehavior.value = UIType.ERROR
+        _uiBehavior.value = UIType.ERROR
     }
 
 

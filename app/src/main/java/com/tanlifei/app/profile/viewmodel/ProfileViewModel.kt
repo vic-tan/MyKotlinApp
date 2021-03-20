@@ -59,7 +59,7 @@ class ProfileViewModel() : BaseViewModel() {
         if (url.isNotEmpty()) {
             var uploadList: MutableList<String> = mutableListOf()
             uploadList.add(url)
-            mLoadingState.value = LoadType.LOADING
+            _loadingState.value = LoadType.LOADING
             HuaweiUploadManager().statJob(
                 HuaweiUploadManager.EnterType.ENTER_TYPE_CLASSMATE,
                 uploadList,
@@ -71,7 +71,7 @@ class ProfileViewModel() : BaseViewModel() {
 
                     override fun onFail(errorType: HuaweiUploadManager.UploadType) {
                         toast("上传图片失败了")
-                        mLoadingState.value = LoadType.ERROR
+                        _loadingState.value = LoadType.ERROR
                     }
 
                 }

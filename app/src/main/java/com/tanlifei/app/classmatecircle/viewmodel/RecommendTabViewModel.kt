@@ -22,8 +22,8 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
     /**
      * 列表数据改变的LveData
      */
-    val dataChanged: LiveData<Boolean> get() = mDataChanged
-    private var mDataChanged = MutableLiveData<Boolean>()
+    val dataChanged: LiveData<Boolean> get() = _dataChanged
+    private var _dataChanged = MutableLiveData<Boolean>()
 
     lateinit var tabAdapter: RecommendTabAdapter
 
@@ -34,13 +34,13 @@ class RecommendTabViewModel(private val manager: FragmentManager) : BaseViewMode
                 mData.addAll(categoryList)
                 addFragment()
             } else {
-                mLoadingState.value = LoadType.ERROR
+                _loadingState.value = LoadType.ERROR
             }
         }
     }
 
     private fun addFragment() {
         tabAdapter = RecommendTabAdapter(manager, mData)
-        mDataChanged.value = true
+        _dataChanged.value = true
     }
 }

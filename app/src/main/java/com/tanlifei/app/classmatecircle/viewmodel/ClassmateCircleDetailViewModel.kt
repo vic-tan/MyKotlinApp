@@ -21,14 +21,14 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
     /**
      * 列表数据改变的LveData
      */
-    val itemDataChanged: LiveData<Int> get() = mItemDataChanged
-    private var mItemDataChanged = MutableLiveData<Int>()
+    val itemDataChanged: LiveData<Int> get() = _itemDataChanged
+    private var _itemDataChanged = MutableLiveData<Int>()
 
     /**
      * 列表数据改变的LveData
      */
-    val beanChanged: LiveData<ClassmateCircleBean> get() = mBeanChanged
-    private var mBeanChanged = MutableLiveData<ClassmateCircleBean>()
+    val beanChanged: LiveData<ClassmateCircleBean> get() = _beanChanged
+    private var _beanChanged = MutableLiveData<ClassmateCircleBean>()
 
     private fun requestDetail(dataChangedType: DataChagedType) {
         launchByLoading({
@@ -55,9 +55,9 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
             var requestBean = ApiNetwork.requestSendComment(id, content)
             if (ObjectUtils.isNotEmpty(requestBean) && ObjectUtils.isNotEmpty(requestBean.info)) {
                 mData.add(0, requestBean.info)
-                mItemDataChanged.value = 0
+                _itemDataChanged.value = 0
                 bean?.comment = bean?.comment?.plus(1)!!
-                mBeanChanged.value = bean
+                _beanChanged.value = bean
             }
         }
     }
@@ -67,8 +67,8 @@ class ClassmateCircleDetailViewModel(_id: Long) : BaseListViewModel() {
             ApiNetwork.requestDeleteComment(commentBean.id)
             mData.remove(commentBean)
             bean?.comment = bean?.comment?.minus(1)!!
-            mDataChanged.value = DataChagedType.NOTIFY
-            mBeanChanged.value = bean
+            _dataChanged.value = DataChagedType.NOTIFY
+            _beanChanged.value = bean
         }
     }
 

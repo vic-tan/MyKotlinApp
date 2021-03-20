@@ -21,8 +21,8 @@ class HomeViewModel() : BaseViewModel() {
     var bannerData: MutableList<BannerBean> = mutableListOf()
     var menuData: MutableList<MenuBean> = mutableListOf()
     var adsnoviceData: MutableList<AdsnoviceBean> = mutableListOf()
-    val homeHeaderDataChanged: LiveData<HomeHeaderDataBean> get() = mHomeHeaderDataChanged
-    private var mHomeHeaderDataChanged = MutableLiveData<HomeHeaderDataBean>()
+    val homeHeaderDataChanged: LiveData<HomeHeaderDataBean> get() = _homeHeaderDataChanged
+    private var _homeHeaderDataChanged = MutableLiveData<HomeHeaderDataBean>()
 
     fun requestRefresh() {
         launchByLoading {
@@ -44,7 +44,7 @@ class HomeViewModel() : BaseViewModel() {
             if (ObjectUtils.isNotEmpty(listData)) {
                 mData.addAll(listData)
             }
-            mHomeHeaderDataChanged.value = homeHeaderData
+            _homeHeaderDataChanged.value = homeHeaderData
         }
     }
 }

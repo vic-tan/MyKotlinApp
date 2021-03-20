@@ -16,8 +16,8 @@ class SettingViewModel() : BaseViewModel() {
     /**
      * 登录成功获取到token 的LveData
      */
-    val isToken: LiveData<Boolean> get() = mIsToken
-    private val mIsToken = MutableLiveData<Boolean>()
+    val isToken: LiveData<Boolean> get() = _isToken
+    private val _isToken = MutableLiveData<Boolean>()
 
 
     /**
@@ -25,7 +25,7 @@ class SettingViewModel() : BaseViewModel() {
      */
     fun requestLogin() = launchByLoading {
         ApiNetwork.requestLoginOut()
-        mIsToken.value = false
+        _isToken.value = false
     }
 
 
