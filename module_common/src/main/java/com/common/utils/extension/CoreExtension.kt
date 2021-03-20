@@ -27,8 +27,10 @@ fun globalContext() = ComFun.context
  */
 fun clickListener(vararg views: View, clickListener: View.OnClickListener) {
     for (i in views.indices) {
-        views[i].click {
-            clickListener.onClick(it)
+        views[i].setOnClickListener {
+            if (it.clickEnable()) {
+                clickListener.onClick(it)
+            }
         }
     }
 }
