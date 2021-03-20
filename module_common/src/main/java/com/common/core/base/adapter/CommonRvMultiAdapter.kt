@@ -8,6 +8,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnMultiItemListener
 import com.common.utils.extension.click
+import com.common.utils.extension.clickEnable
 import java.util.*
 
 
@@ -36,8 +37,6 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
             field = value
             notifyItemRangeChanged(0, value.size)
         }
-    private var mOnItemListener: OnMultiItemListener<T>? = null
-
 
     /**
      * 添加头部尾部
@@ -45,11 +44,14 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     var mHeaderViews: MutableList<ViewBinding> = mutableListOf()
     var mFooterViews: MutableList<ViewBinding> = mutableListOf()
 
+
     /**
      * 用于保存需要设置点击事件的 item
      */
     private val mChildClickViews = LinkedHashSet<View>()
 
+
+    private var mOnItemListener: OnMultiItemListener<T>? = null
 
     /**
      * 设置需要点击事件的子view
@@ -170,8 +172,8 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         if (ObjectUtils.isNotEmpty(mChildClickViews)) {
             mOnItemListener?.let {
                 for (v in mChildClickViews) {
-                    v?.let {
-                        it.click {
+                    v.setOnClickListener {
+                        if (it.clickEnable()) {
                             setOnItemClick(
                                 holder.binding,
                                 mData[adapterPosition],
@@ -180,6 +182,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
                             )
                         }
                     }
+
                 }
             }
         }

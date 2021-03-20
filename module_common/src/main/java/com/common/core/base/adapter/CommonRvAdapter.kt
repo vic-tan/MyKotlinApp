@@ -8,6 +8,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnItemClickListener
 import com.common.utils.extension.click
+import com.common.utils.extension.clickEnable
 import java.util.*
 
 
@@ -69,8 +70,8 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
         if (ObjectUtils.isNotEmpty(mChildClickViews)) {
             mOnItemClickListener?.let {
                 for (v in mChildClickViews) {
-                    v?.let {
-                        it.click {
+                    v.setOnClickListener {
+                        if (it.clickEnable()) {
                             setItemClick(
                                 holder.binding,
                                 mData[holder.adapterPosition],
