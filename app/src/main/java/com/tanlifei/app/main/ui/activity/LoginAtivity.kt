@@ -63,7 +63,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
 
     override fun onResume() {
         super.onResume()
-        binding.logo.setImageResource(EnvironmentUtils.appLogo())
+        mBinding.logo.setImageResource(EnvironmentUtils.appLogo())
     }
 
 
@@ -95,7 +95,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         })
 
         mViewModel.mIsContinuousClick.observe(this, Observer {
-            binding.changeEnvironment.setVisible(it)
+            mBinding.changeEnvironment.setVisible(it)
         })
 
     }
@@ -104,36 +104,36 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 初始化监听
      */
     private fun initListener() {
-        binding.phone.addTextChangedListener(this)
+        mBinding.phone.addTextChangedListener(this)
         clickListener(
-            binding.codeBtn,
-            binding.login,
-            binding.changeEnvironment,
-            binding.logo,
+            mBinding.codeBtn,
+            mBinding.login,
+            mBinding.changeEnvironment,
+            mBinding.logo,
             clickListener = View.OnClickListener {
                 when (it) {
-                    binding.codeBtn -> {
+                    mBinding.codeBtn -> {
                         if (checkPhone(
-                                LoginUtils.getPhone(binding.phone.text.toString())
+                                LoginUtils.getPhone(mBinding.phone.text.toString())
                             )
                         ) {
-                            mViewModel.requestSmsCode(LoginUtils.getPhone(binding.phone.text.toString()))
+                            mViewModel.requestSmsCode(LoginUtils.getPhone(mBinding.phone.text.toString()))
                         }
                     }
-                    binding.login -> {
+                    mBinding.login -> {
                         if (checkFormInfo(
-                                LoginUtils.getPhone(binding.phone.text.toString()),
-                                binding.code.text.toString()
+                                LoginUtils.getPhone(mBinding.phone.text.toString()),
+                                mBinding.code.text.toString()
                             )
                         ) {
                             mViewModel.requestLogin(
-                                LoginUtils.getPhone(binding.phone.text.toString()),
-                                binding.code.text.toString()
+                                LoginUtils.getPhone(mBinding.phone.text.toString()),
+                                mBinding.code.text.toString()
                             )
                         }
                     }
-                    binding.changeEnvironment -> EnvironmentSwitchActivity.actionStart()
-                    binding.logo -> mViewModel.continuousClick()
+                    mBinding.changeEnvironment -> EnvironmentSwitchActivity.actionStart()
+                    mBinding.logo -> mViewModel.continuousClick()
                 }
             }
         )
@@ -144,8 +144,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
-        mInputHelper = TextInputHelper(this, binding.login)
-        mInputHelper.addViews(binding.phone, binding.code)
+        mInputHelper = TextInputHelper(this, mBinding.login)
+        mInputHelper.addViews(mBinding.phone, mBinding.code)
     }
 
 
@@ -157,7 +157,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         protocolBuild.append(SpecialTextUnit("登录即代表您已同意").setTextColor(color(R.color.color_666666)))
         protocolBuild.append(SpecialTextUnit("《用户协议》").setTextColor(color(R.color.color_A47E68))
             .setClickableUnit(
-                SpecialClickableUnit(binding.protocolTxt,
+                SpecialClickableUnit(mBinding.protocolTxt,
                     OnClickableSpanListener { v: TextView, _: CustomClickableSpan? ->
                         if (v.clickEnable()) {
                             gotoWeb(
@@ -172,7 +172,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         protocolBuild.append(SpecialTextUnit("和").setTextColor(color(R.color.color_666666)))
         protocolBuild.append(SpecialTextUnit("《隐私政策》").setTextColor(color(R.color.color_A47E68))
             .setClickableUnit(
-                SpecialClickableUnit(binding.protocolTxt,
+                SpecialClickableUnit(mBinding.protocolTxt,
                     OnClickableSpanListener { v: TextView, _: CustomClickableSpan? ->
                         if (v.clickEnable()) {
                             gotoWeb(
@@ -183,7 +183,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
                     }
                 )
                     .setPressBgColor(color(R.color.white))))
-        binding.protocolTxt.text = protocolBuild.build()
+        mBinding.protocolTxt.text = protocolBuild.build()
     }
 
 
@@ -233,7 +233,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 设置触摸不收起键盘控件
      */
     override fun showSoftByEditView(): MutableList<View> {
-        return  mutableListOf(binding.phone,binding.code)
+        return  mutableListOf(mBinding.phone,mBinding.code)
     }
 
 
@@ -241,8 +241,8 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 倒计时开始时显示
      */
     private fun onIntervalStart() {
-        binding.codeBtn.isClickable = false //在发送数据的时候设置为不能点击
-        binding.codeBtn.setTextColor(color(R.color.color_999999))
+        mBinding.codeBtn.isClickable = false //在发送数据的时候设置为不能点击
+        mBinding.codeBtn.setTextColor(color(R.color.color_999999))
     }
 
     /**
@@ -250,16 +250,16 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
 
     private fun onIntervalChanged(second: Long) {
-        binding.codeBtn.text = "${second}s"
+        mBinding.codeBtn.text = "${second}s"
     }
 
     /**
      * 倒计时结束后显示
      */
     private fun onIntervalComplete() {
-        binding.codeBtn.isClickable = true
-        binding.codeBtn.setTextColor(color(R.color.theme_color))
-        binding.codeBtn.text = "点击获取"
+        mBinding.codeBtn.isClickable = true
+        mBinding.codeBtn.setTextColor(color(R.color.theme_color))
+        mBinding.codeBtn.text = "点击获取"
     }
 
     override fun onBackPressed() {
@@ -272,7 +272,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     }
 
     override fun afterTextChanged(s: Editable?) {
-        binding.phone.setSelection(binding.phone.text.toString().length)
+        mBinding.phone.setSelection(mBinding.phone.text.toString().length)
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -282,7 +282,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 格式化手机号格式（三四四格式） 如：138 2132 3435
      */
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        LoginUtils.phoneFormatTextChanged(binding.phone, s, count)
+        LoginUtils.phoneFormatTextChanged(mBinding.phone, s, count)
     }
 
 

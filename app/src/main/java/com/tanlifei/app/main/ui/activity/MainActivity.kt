@@ -46,7 +46,7 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
         initViewModel()
         initViewModelObserve()
         initListener()
-        binding.navigatorTab.getMsgBadge().setVisible(true)
+        mBinding.navigatorTab.getMsgBadge().setVisible(true)
     }
 
     /**
@@ -70,7 +70,7 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
      */
     private fun initViewModelObserve() {
         mViewModel.mCurrTabPosition.observe(this, Observer {
-            binding.navigatorTab.select(it)
+            mBinding.navigatorTab.select(it)
         })
 
         mUpdateAppViewModel.mUpdateApp.observe(this, Observer {
@@ -82,8 +82,8 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
      * 初始化监听
      */
     private fun initListener() {
-        if (binding.navigatorTab != null) {
-            binding.navigatorTab.setNavigatorListener(this)
+        if (mBinding.navigatorTab != null) {
+            mBinding.navigatorTab.setNavigatorListener(this)
         }
     }
 

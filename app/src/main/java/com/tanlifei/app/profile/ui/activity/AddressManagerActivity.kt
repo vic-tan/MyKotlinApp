@@ -68,12 +68,12 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 初始化输入框内容是否禁用按钮监听
      */
     private fun initTextInputHelper() {
-        mInputHelper = TextInputHelper(this, binding.enter)
+        mInputHelper = TextInputHelper(this, mBinding.enter)
         mInputHelper.addViews(
-            binding.name,
-            binding.phone,
-            binding.areaDetails,
-            binding.areaEdit
+            mBinding.name,
+            mBinding.phone,
+            mBinding.areaDetails,
+            mBinding.areaEdit
         )
     }
 
@@ -83,12 +83,12 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
     private fun initViewModelObserve() {
         mViewModel.mLoadingState.observe(this, this)
         mViewModel.mAddressDataComplete.observe(this, Observer {
-            binding.name.setText(mViewModel.mUser.nickname)
-            binding.name.setSelection(binding.name.text.length)
-            binding.phone.setText(it.mobile)
-            binding.email.setText(it.email)
-            binding.area.text = it.addressPrefix
-            binding.areaDetails.setText(it.address)
+            mBinding.name.setText(mViewModel.mUser.nickname)
+            mBinding.name.setSelection(mBinding.name.text.length)
+            mBinding.phone.setText(it.mobile)
+            mBinding.email.setText(it.email)
+            mBinding.area.text = it.addressPrefix
+            mBinding.areaDetails.setText(it.address)
         })
 
         mViewModel.mAreaDataComplete.observe(this, Observer {
@@ -109,13 +109,13 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 初始化监听
      */
     private fun initListener() {
-        clickListener(binding.areaLayout, binding.enter,
+        clickListener(mBinding.areaLayout, mBinding.enter,
             clickListener = View.OnClickListener {
                 when (it) {
-                    binding.areaLayout -> {
+                    mBinding.areaLayout -> {
                         shopAreaOptionPicker()
                     }
-                    binding.enter -> {
+                    mBinding.enter -> {
                         if (checkContent()) {
                             mViewModel.requestEidtGoodsAddress()
                         }
@@ -157,8 +157,8 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
                                     .name + " " +
                                 mViewModel.mAreaJsonList[options1].areaListVOList[options2]
                                     .areaList[options3].name
-                    binding.area.text = mViewModel.mAddressBean?.addressPrefix
-                    binding.areaEdit.setText(binding.area.text)
+                    mBinding.area.text = mViewModel.mAddressBean?.addressPrefix
+                    mBinding.areaEdit.setText(mBinding.area.text)
                 }
             )
                 .setLayoutRes(
@@ -197,40 +197,40 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * @return
      */
     private fun checkContent(): Boolean {
-        val userName: String = binding.name.text.toString().trim { it <= ' ' }
+        val userName: String = mBinding.name.text.toString().trim { it <= ' ' }
         if (TextUtils.isEmpty(userName)) {
             toast("收货人不能为空")
             return false
         }
 
-        if (TextUtils.isEmpty(binding.phone.text.toString().trim { it <= ' ' })) {
+        if (TextUtils.isEmpty(mBinding.phone.text.toString().trim { it <= ' ' })) {
             toast("联系方式不能为空")
             return false
-        } else if (!RegexUtils.isMobileSimple(binding.phone.text)) {
+        } else if (!RegexUtils.isMobileSimple(mBinding.phone.text)) {
             toast("请输入正确的手机号码")
             return false
         }
 
         if (ObjectUtils.isNotEmpty(
-                binding.email.text.toString().trim { it <= ' ' }
-            ) && !RegexUtils.isEmail(binding.email.text)
+                mBinding.email.text.toString().trim { it <= ' ' }
+            ) && !RegexUtils.isEmail(mBinding.email.text)
         ) {
             toast("请输入正确电子邮箱")
             return false
         }
 
-        if (TextUtils.isEmpty(binding.area.text)) {
+        if (TextUtils.isEmpty(mBinding.area.text)) {
             toast("请选择所在地区")
             return false
         }
-        if (TextUtils.isEmpty(binding.areaDetails.text.toString().trim { it <= ' ' })) {
+        if (TextUtils.isEmpty(mBinding.areaDetails.text.toString().trim { it <= ' ' })) {
             toast("请填写详细地址")
             return false
         }
         mViewModel.mAddressBean?.username = userName
-        mViewModel.mAddressBean?.mobile = binding.phone.text.toString()
-        mViewModel.mAddressBean?.email = binding.email.text.toString()
-        mViewModel.mAddressBean?.address = binding.areaDetails.text.toString()
+        mViewModel.mAddressBean?.mobile = mBinding.phone.text.toString()
+        mViewModel.mAddressBean?.email = mBinding.email.text.toString()
+        mViewModel.mAddressBean?.address = mBinding.areaDetails.text.toString()
         return true
     }
 
@@ -247,7 +247,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
 
 
     override fun showSoftByEditView(): MutableList<View> {
-        return mutableListOf(binding.name, binding.phone, binding.email, binding.areaDetails)
+        return mutableListOf(mBinding.name, mBinding.phone, mBinding.email, mBinding.areaDetails)
     }
 
 

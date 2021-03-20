@@ -72,12 +72,12 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
                 }
                 REQUEST_ADS -> {
                     if (ObjectUtils.isNotEmpty(mViewModel.mAdsBean)) {
-                        GlideUtils.load(this, mViewModel.mAdsBean!!.poster, binding.adsImg)
+                        GlideUtils.load(this, mViewModel.mAdsBean!!.poster, mBinding.adsImg)
                     }
                 }
                 ADS -> {
                     mViewModel.mAdsBean?.let {
-                        binding.splash.gone()
+                        mBinding.splash.gone()
                         mViewModel.startAdsInterval()
                     }
                 }
@@ -97,12 +97,12 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
      */
     private fun initListener() {
         clickListener(
-            binding.adsImg,
-            binding.into,
-            binding.splash,
+            mBinding.adsImg,
+            mBinding.into,
+            mBinding.splash,
             clickListener = View.OnClickListener {
                 when (it) {
-                    binding.adsImg -> {
+                    mBinding.adsImg -> {
                         mViewModel.mAdsBean?.url?.let { it1 ->
                             BaseWebViewActivity.actionStart(
                                 mViewModel.mAdsBean!!.name,
@@ -110,8 +110,8 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
                             )
                         }
                     }
-                    binding.into -> mViewModel.doAdsJump()
-                    binding.splash -> {
+                    mBinding.into -> mViewModel.doAdsJump()
+                    mBinding.splash -> {
                     }
                 }
             }
@@ -119,7 +119,7 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
     }
 
     private fun onIntervalChanged(second: Long) {
-        binding.into.text = "跳过 ${second}s"
+        mBinding.into.text = "跳过 ${second}s"
     }
 
     /**

@@ -56,11 +56,11 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
      * 初始化监听
      */
     private fun initListener() {
-        clickListener(binding.about, binding.exit,
+        clickListener(mBinding.about, mBinding.exit,
             clickListener = View.OnClickListener {
                 when (it) {
-                    binding.about -> AboutActivity.actionStart()
-                    binding.exit -> {
+                    mBinding.about -> AboutActivity.actionStart()
+                    mBinding.exit -> {
                         ComDialogUtils.comConfirm(
                             this,
                             "您确定要退出应用吗?",
@@ -73,6 +73,6 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
     }
 
     private fun initData() {
-        binding.versionName.text = "V${AppUtils.getAppVersionName()}"
+        mBinding.versionName.text = "V${AppUtils.getAppVersionName()}"
     }
 }

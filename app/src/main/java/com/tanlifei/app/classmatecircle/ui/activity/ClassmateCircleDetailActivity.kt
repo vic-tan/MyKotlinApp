@@ -88,34 +88,34 @@ class ClassmateCircleDetailActivity :
      */
     private fun initViewModelObserve() {
         RecyclerUtils.uiBehaviorObserve(
-            binding.refreshLayout.smartRefreshLayout, binding.refreshLayout.refreshLoadingLayout,
+            mBinding.refreshLayout.smartRefreshLayout, mBinding.refreshLayout.refreshLoadingLayout,
             mViewModel, this, true
         )
         mViewModel.mDataChanged.observe(this, Observer {
             when (it) {
                 BaseListViewModel.DataChagedType.REFRESH -> {
-                    binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
-                    binding.refreshLayout.smartRefreshLayout.finishRefresh()
+                    mBinding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
+                    mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
                     addHeader()
                     if (mViewModel.mData.isEmpty()) {
                         mAdapter.notifyDataSetChanged()
-                        binding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false) //将不会再次触发加载更多事件
+                        mBinding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false) //将不会再次触发加载更多事件
                     } else {
                         mAdapter.refreshItemRange()
                     }
                 }
                 BaseListViewModel.DataChagedType.LOADMORE -> {
-                    binding.refreshLayout.smartRefreshLayout.finishLoadMore()
+                    mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
                     mAdapter.loadmoreItemRange(mViewModel.mLoadMoreStartPos)
 
                 }
                 BaseListViewModel.DataChagedType.ERROE -> {
-                    binding.refreshLayout.smartRefreshLayout.finishRefresh()
-                    binding.refreshLayout.smartRefreshLayout.finishLoadMore()
+                    mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
+                    mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
                 }
                 else -> {
-                    binding.refreshLayout.smartRefreshLayout.finishRefresh()
-                    binding.refreshLayout.smartRefreshLayout.finishLoadMore()
+                    mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
+                    mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
                     addEmptyView()
                     mAdapter.notifyDataSetChanged()
                 }
@@ -184,9 +184,9 @@ class ClassmateCircleDetailActivity :
         headerBinding.banner.click {
             PhotoUtils.showSinglePhoto(this, headerBinding.banner, bean?.image?.url)
         }
-        binding.commentBtn.text = bean?.comment?.let { NumberUtils.setCommentCount("评论", it) }
-        binding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
-        binding.praiseIcon.setImageResource(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)
+        mBinding.commentBtn.text = bean?.comment?.let { NumberUtils.setCommentCount("评论", it) }
+        mBinding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
+        mBinding.praiseIcon.setImageResource(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)
 
     }
 
@@ -195,11 +195,11 @@ class ClassmateCircleDetailActivity :
      * 初始化监听
      */
     private fun initListener() {
-        clickListener(binding.commentLayout, binding.input,
+        clickListener(mBinding.commentLayout, mBinding.input,
             clickListener = View.OnClickListener {
                 when (it) {
-                    binding.commentLayout,
-                    binding.input -> {
+                    mBinding.commentLayout,
+                    mBinding.input -> {
                         ComDialogUtils.showInputEditView(
                             this,
                             object : BottomInputEditView.CallBack {
@@ -239,11 +239,11 @@ class ClassmateCircleDetailActivity :
     }
 
     private fun initData() {
-        binding.refreshLayout.refreshRecycler.adapter = mAdapter
-        RecyclerUtils.initRecyclerView(this, binding.refreshLayout.refreshRecycler)
-        RecyclerUtils.initRefreshLayoutListener(binding.refreshLayout.smartRefreshLayout, mViewModel)
+        mBinding.refreshLayout.refreshRecycler.adapter = mAdapter
+        RecyclerUtils.initRecyclerView(this, mBinding.refreshLayout.refreshRecycler)
+        RecyclerUtils.initRefreshLayoutListener(mBinding.refreshLayout.smartRefreshLayout, mViewModel)
         RecyclerUtils.initLoadingLayoutListener(
-            binding.refreshLayout.refreshLoadingLayout,
+            mBinding.refreshLayout.refreshLoadingLayout,
             mViewModel
         )
         RecyclerUtils.initData(mViewModel)

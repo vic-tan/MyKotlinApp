@@ -31,9 +31,9 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
 
     override fun init() {
         addGuideData()
-        binding.banner.adapter = GuideAdapter(this, mGuideList)
-        binding.banner.indicator = CircleIndicator(this)
-        binding.banner.isAutoLoop(false)
+        mBinding.banner.adapter = GuideAdapter(this, mGuideList)
+        mBinding.banner.indicator = CircleIndicator(this)
+        mBinding.banner.isAutoLoop(false)
     }
 
     private fun addGuideData() {

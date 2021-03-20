@@ -38,7 +38,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
     Observer<BaseViewModel.LoadType> {
 
     protected lateinit var mBaseBinding: ActivityBaseBinding
-    protected lateinit var binding: T
+    protected lateinit var mBinding: T
     protected lateinit var mTitleBar: TitleBar
 
 
@@ -161,8 +161,8 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
         val cls = type.actualTypeArguments[0] as Class<*>
         try {
             val inflate: Method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java)
-            binding = inflate.invoke(null, layoutInflater) as T
-            mBaseBinding.baseContainer.addView(binding.root)
+            mBinding = inflate.invoke(null, layoutInflater) as T
+            mBaseBinding.baseContainer.addView(mBinding.root)
         } catch (e: NoSuchMethodException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {

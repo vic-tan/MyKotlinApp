@@ -69,11 +69,11 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
             }
 
             override fun onRightClick(v: View?) {
-                if (binding.nickname.text.trim().isEmpty()) {
+                if (mBinding.nickname.text.trim().isEmpty()) {
                     toast("昵称不能为空")
                     return
                 }
-                mViewModel.mUserBean?.nickname = binding.nickname.text.toString()
+                mViewModel.mUserBean?.nickname = mBinding.nickname.text.toString()
                 if (saveUrl.isEmpty()) {
                     mViewModel.requestUpdateUser()
                 } else {
@@ -115,18 +115,18 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
     private fun initViewModelObserve() {
         mViewModel.mLoadingState.observe(this, this)
         mViewModel.mRefreshUserInfo.observe(this, Observer { it ->
-            GlideUtils.loadAvatar(mActivity, it.avatar, binding.userHead)
-            binding.nickname.setText(it.nickname)
+            GlideUtils.loadAvatar(mActivity, it.avatar, mBinding.userHead)
+            mBinding.nickname.setText(it.nickname)
             if (it.isLecturer == 1) {
-                binding.introduction.hint = "补充讲师介绍，让学员更了解你"
+                mBinding.introduction.hint = "补充讲师介绍，让学员更了解你"
             }
-            binding.nickname.setSelection(binding.nickname.text.length)
-            binding.introduction.text = it.bio
-            binding.area.text = it.address
-            binding.school.text = it.universityName
-            binding.sex.text = it.gender
-            binding.age.text = it.age
-            binding.address.text = if (it.goodsAddress == 0L) "" else "修改"
+            mBinding.nickname.setSelection(mBinding.nickname.text.length)
+            mBinding.introduction.text = it.bio
+            mBinding.area.text = it.address
+            mBinding.school.text = it.universityName
+            mBinding.sex.text = it.gender
+            mBinding.age.text = it.age
+            mBinding.address.text = if (it.goodsAddress == 0L) "" else "修改"
         })
         mViewModel.mAreaDataComplete.observe(this, Observer {
             initAreaOptionPicker()
@@ -134,7 +134,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         mViewModel.mRefreshUniversityList.observe(this, Observer {
             initUniversityOptionPicker()
             if (ObjectUtils.isNotEmpty(it)) {
-                binding.school.text = it[0].name
+                mBinding.school.text = it[0].name
             }
         })
         mViewModel.mDataChanged.observe(this, Observer {
@@ -150,16 +150,16 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      */
     private fun initListener() {
         clickListener(
-            binding.userHead,
-            binding.introductionLayout,
-            binding.areaLayout,
-            binding.schoolLayout,
-            binding.sexLayout,
-            binding.ageLayout,
-            binding.addressLayout,
+            mBinding.userHead,
+            mBinding.introductionLayout,
+            mBinding.areaLayout,
+            mBinding.schoolLayout,
+            mBinding.sexLayout,
+            mBinding.ageLayout,
+            mBinding.addressLayout,
             clickListener = View.OnClickListener { v ->
                 when (v) {
-                    binding.userHead -> {
+                    mBinding.userHead -> {
                         PermissionUtils.requestCameraPermission(
                             this,
                             callback = object : PermissionUtils.PermissionCallback {
@@ -171,7 +171,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                                                 GlideUtils.load(
                                                     mActivity,
                                                     result[0]?.cutPath,
-                                                    binding.userHead
+                                                    mBinding.userHead
                                                 )
                                             }
 
@@ -183,21 +183,21 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                         )
 
                     }
-                    binding.introductionLayout -> {
+                    mBinding.introductionLayout -> {
                         IntroductionActivity.actionStart(mViewModel.mUserBean?.bio)
                     }
-                    binding.areaLayout -> {
+                    mBinding.areaLayout -> {
                         shopAreaOptionPicker()
                     }
-                    binding.schoolLayout -> {
+                    mBinding.schoolLayout -> {
                         showUniversityDialog()
                     }
-                    binding.sexLayout -> mViewModel.mUserBean?.let {
+                    mBinding.sexLayout -> mViewModel.mUserBean?.let {
                         var optionView = BottomOptionsView(
                             mActivity,
                             mutableListOf("男", "女"),
                             OnSelectListener { _, text ->
-                                binding.sex.text = text
+                                mBinding.sex.text = text
                                 mViewModel.mUserBean?.gender = text
                             }
                         )
@@ -206,12 +206,12 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                             .asCustom(optionView)
                             .show()
                     }
-                    binding.ageLayout -> {
+                    mBinding.ageLayout -> {
                         var optionView = BottomOptionsView(
                             mActivity,
                             mutableListOf("50以下", "50-60", "60-70", "70以上"),
                             OnSelectListener { _, text ->
-                                binding.age.text = text
+                                mBinding.age.text = text
                                 mViewModel.mUserBean?.age = text
                             }
                         )
@@ -220,7 +220,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                             .asCustom(optionView)
                             .show()
                     }
-                    binding.addressLayout -> mViewModel.mUserBean?.let {
+                    mBinding.addressLayout -> mViewModel.mUserBean?.let {
                         AddressManagerActivity.actionStart(it)
                     }
 
@@ -246,7 +246,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                         mViewModel.mUserBean?.address =
                             "${mViewModel.mAreaJsonList[options1].name},${mViewModel.mAreaJsonList[options1].areaListVOList[options2].name}"
                         mViewModel.mUserBean?.areaId = newAreaId
-                        binding.area.text = mViewModel.mUserBean?.address
+                        mBinding.area.text = mViewModel.mUserBean?.address
                     }
                 }
             )
@@ -290,7 +290,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
             OnOptionsSelectListener { options1: Int, _: Int, _: Int, _: View? ->
                 mViewModel.mUserBean?.university = mViewModel.mUniversityOptionsItems[options1].id
                 mViewModel.mUserBean?.universityName = mViewModel.mUniversityOptionsItems[options1].name
-                binding.school.text = mViewModel.mUserBean?.universityName
+                mBinding.school.text = mViewModel.mUserBean?.universityName
             }
         )
             .setLayoutRes(
@@ -328,7 +328,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                     if (ObjectUtils.isNotEmpty(data)) {
                         var introduction = data!!.getStringExtra(GlobalConst.Extras.CONTENT)
                         mViewModel.mUserBean?.bio = introduction;
-                        binding.introduction.text = introduction
+                        mBinding.introduction.text = introduction
                     }
                 ActivityResult.REQUEST_CODE_2 -> {//收货地址
                     if (ObjectUtils.isNotEmpty(data)) {
@@ -342,7 +342,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
 
 
     override fun showSoftByEditView(): MutableList<View> {
-        return mutableListOf(binding.nickname, binding.introduction)
+        return mutableListOf(mBinding.nickname, mBinding.introduction)
     }
 
 }

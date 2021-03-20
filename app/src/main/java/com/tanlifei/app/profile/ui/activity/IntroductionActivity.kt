@@ -41,25 +41,25 @@ class IntroductionActivity : BaseFormActivity<ActivityIntroductionBinding, Empty
     }
 
     override fun init() {
-        mInputHelper = TextInputHelper(this, binding.save)
-        mInputHelper.addViews(binding.content)
-        binding.content.setText(intent.getStringExtra(GlobalConst.Extras.CONTENT))
-        binding.content.setSelection(binding.content.text.length)
-        binding.content.requestFocus()
-        binding.save.click {
-            if (ObjectUtils.isEmpty(binding.content.text)) {
+        mInputHelper = TextInputHelper(this, mBinding.save)
+        mInputHelper.addViews(mBinding.content)
+        mBinding.content.setText(intent.getStringExtra(GlobalConst.Extras.CONTENT))
+        mBinding.content.setSelection(mBinding.content.text.length)
+        mBinding.content.requestFocus()
+        mBinding.save.click {
+            if (ObjectUtils.isEmpty(mBinding.content.text)) {
                 toast("请输入内容")
                 return@click
             }
             val i = Intent()
-            i.putExtra(GlobalConst.Extras.CONTENT, binding.content.text.toString())
+            i.putExtra(GlobalConst.Extras.CONTENT, mBinding.content.text.toString())
             setResult(RESULT_OK, i)
             ActivityUtils.finishActivity(this)
         }
     }
 
     override fun showSoftByEditView(): MutableList<View> {
-        return mutableListOf(binding.content)
+        return mutableListOf(mBinding.content)
     }
 
 

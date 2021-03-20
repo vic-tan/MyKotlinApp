@@ -61,15 +61,15 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
     }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {
-        return binding.smartRefreshLayout
+        return mBinding.smartRefreshLayout
     }
 
     override fun refreshLoadingLayout(): LoadingLayout {
-        return binding.refreshLoadingLayout
+        return mBinding.refreshLoadingLayout
     }
 
     override fun refreshRecycler(): RecyclerView {
-        return binding.refreshRecycler
+        return mBinding.refreshRecycler
     }
 
 }

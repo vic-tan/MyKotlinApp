@@ -29,47 +29,47 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
     }
 
     override fun init() {
-        binding.versionName.text = "当前版本V${AppUtils.getAppVersionName()}"
-        binding.logo.setImageResource(EnvironmentUtils.appLogo())
+        mBinding.versionName.text = "当前版本V${AppUtils.getAppVersionName()}"
+        mBinding.logo.setImageResource(EnvironmentUtils.appLogo())
         clickListener(
-            binding.schoolLeaders,
-            binding.userAgreement,
-            binding.privateAgreement,
-            binding.privacyRights,
-            binding.rechargeAgreement,
-            binding.lecturerAgreement,
+            mBinding.schoolLeaders,
+            mBinding.userAgreement,
+            mBinding.privateAgreement,
+            mBinding.privacyRights,
+            mBinding.rechargeAgreement,
+            mBinding.lecturerAgreement,
             clickListener = View.OnClickListener { it ->
                 var title: String? = ""
                 var url: String? = ""
                 when (it) {
                     /*学校领导*/
-                    binding.schoolLeaders -> {
-                        title = binding.schoolLeadersTitle.text.toString()
+                    mBinding.schoolLeaders -> {
+                        title = mBinding.schoolLeadersTitle.text.toString()
                         url = ApiConst.URL_SCHOOL_LEADERS_AGREEMENT
                     }
                     /*用户协议*/
-                    binding.userAgreement -> {
-                        title = binding.userAgreementTitle.text.toString()
+                    mBinding.userAgreement -> {
+                        title = mBinding.userAgreementTitle.text.toString()
                         url = ApiConst.URL_USER_AGREEMENT
                     }
                     /*隐私政策*/
-                    binding.privateAgreement -> {
-                        title = binding.privateAgreementTitle.text.toString()
+                    mBinding.privateAgreement -> {
+                        title = mBinding.privateAgreementTitle.text.toString()
                         url = ApiConst.URL_PRIVATE_AGREEMENT
                     }
                     /*隐私权限*/
-                    binding.privacyRights -> {
-                        title = binding.privacyRightsTitle.text.toString()
+                    mBinding.privacyRights -> {
+                        title = mBinding.privacyRightsTitle.text.toString()
                         url = ApiConst.URL_PRIVATE_AGREEMENT
                     }
                     /*充值购买协议*/
-                    binding.rechargeAgreement -> {
-                        title = binding.rechargeAgreementTitle.text.toString()
+                    mBinding.rechargeAgreement -> {
+                        title = mBinding.rechargeAgreementTitle.text.toString()
                         url = ApiConst.URL_RECHARGE_AGREEMENT
                     }
                     /*讲师入驻协议*/
-                    binding.lecturerAgreement -> {
-                        title = binding.lecturerAgreementTitle.text.toString()
+                    mBinding.lecturerAgreement -> {
+                        title = mBinding.lecturerAgreementTitle.text.toString()
                         url = ApiConst.URL_LECTURER_AGREEMENT
                     }
                 }

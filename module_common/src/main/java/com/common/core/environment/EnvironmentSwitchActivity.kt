@@ -80,10 +80,10 @@ class EnvironmentSwitchActivity :
 
 
     private fun initRecyclerView() {
-        binding.recycler.layoutManager = LinearLayoutManager(mActivity)
+        mBinding.recycler.layoutManager = LinearLayoutManager(mActivity)
         adapter = EnvironmentAdapter()
         adapter.mData = mViewModel.mData as MutableList<EnvironmentBean>
-        binding.recycler.adapter = adapter
+        mBinding.recycler.adapter = adapter
         adapter.setItemClickListener(object : OnMultiItemListener<EnvironmentBean> {
             override fun click(
                 holder: ViewBinding,

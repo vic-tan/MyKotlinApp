@@ -51,15 +51,15 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
     }
 
     private fun initWebSettings() {
-        val settings: WebSettings = binding.webView.settings
+        val settings: WebSettings = mBinding.webView.settings
         settings.javaScriptEnabled = true
         settings.domStorageEnabled = true
         settings.blockNetworkImage = false // 解决图片不显示
-        binding.webView.loadUrl(url)
+        mBinding.webView.loadUrl(url)
     }
 
     private fun initWebViewClient() {
-        binding.webView.webViewClient = object : WebViewClient() {
+        mBinding.webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(
                 view: WebView,
                 httpUrl: String
@@ -88,13 +88,13 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
                 }
             }
         }
-        binding.webView.webChromeClient = object : WebChromeClient() {
+        mBinding.webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView, newProgress: Int) {
-                binding.progressBar.setVisible(newProgress != 100)
+                mBinding.progressBar.setVisible(newProgress != 100)
                 if (newProgress == 100) {
-                    binding.progressBar.progress = 0
+                    mBinding.progressBar.progress = 0
                 } else {
-                    binding.progressBar.progress = newProgress
+                    mBinding.progressBar.progress = newProgress
                 }
             }
 
@@ -102,7 +102,7 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
         }
         //链接中有需要跳转下载的链接时跳转浏览器下载
 
-        binding.webView.setDownloadListener { url, _, _, _, _ ->
+        mBinding.webView.setDownloadListener { url, _, _, _, _ ->
             val intent = Intent(Intent.ACTION_VIEW)
             val uri = Uri.parse(url)
             intent.addCategory(Intent.CATEGORY_BROWSABLE)
