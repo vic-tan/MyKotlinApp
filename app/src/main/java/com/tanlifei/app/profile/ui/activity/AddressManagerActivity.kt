@@ -23,6 +23,7 @@ import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityAddressManngerBinding
 import com.tanlifei.app.profile.bean.AreaBean
 import com.tanlifei.app.profile.viewmodel.AddressViewModel
+import com.common.cofing.constant.GlobalConst.ActivityResult
 
 
 /**
@@ -42,7 +43,11 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
                 Intent(ActivityUtils.getTopActivity(), AddressManagerActivity::class.java).apply {
                     putExtra(GlobalConst.Extras.BEAN, user)
                 }
-            ActivityUtils.startActivityForResult(ActivityUtils.getTopActivity(), intent, 2)
+            ActivityUtils.startActivityForResult(
+                ActivityUtils.getTopActivity(),
+                intent,
+                ActivityResult.REQUEST_CODE_2
+            )
         }
     }
 
@@ -242,7 +247,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
 
 
     override fun showSoftByEditView(): MutableList<View> {
-        return  mutableListOf(binding.name,binding.phone,binding.email,binding.areaDetails)
+        return mutableListOf(binding.name, binding.phone, binding.email, binding.areaDetails)
     }
 
 

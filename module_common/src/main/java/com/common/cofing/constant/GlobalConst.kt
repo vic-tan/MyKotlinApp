@@ -8,7 +8,7 @@ package com.common.cofing.constant
 interface GlobalConst {
 
     /**
-     * SharedPreferences KEY 常量
+     * 网络请求常用字段 KEY 常量
      */
     interface Http {
         companion object {
@@ -20,6 +20,7 @@ interface GlobalConst {
     }
 
     /**
+     * activity 或者Fragment 等之关传值参数问题
      * Intent KEY 传值的
      */
     interface Extras {
@@ -34,6 +35,18 @@ interface GlobalConst {
             const val NAME = "name"//传json的Key
             const val TITLE = "title"//传json的Key
             const val CONTENT = "content"//传json的Key
+        }
+    }
+
+    /**
+     * ActivityForResult 中定义通用RequestCode
+     */
+    interface ActivityResult {
+        companion object {
+            const val REQUEST_CODE_1 = 0x01
+            const val REQUEST_CODE_2 = 0x02
+            const val REQUEST_CODE_3 = 0x03
+            const val REQUEST_CODE_4 = 0x04
         }
     }
 

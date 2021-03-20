@@ -10,9 +10,8 @@ import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.utils.extension.click
 import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
-import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityIntroductionBinding
-import java.util.*
+import com.common.cofing.constant.GlobalConst.ActivityResult
 
 
 /**
@@ -29,7 +28,11 @@ class IntroductionActivity : BaseFormActivity<ActivityIntroductionBinding, Empty
                 Intent(ActivityUtils.getTopActivity(), IntroductionActivity::class.java).apply {
                     putExtra(GlobalConst.Extras.CONTENT, content)
                 }
-            ActivityUtils.startActivityForResult(ActivityUtils.getTopActivity(), intent, 1)
+            ActivityUtils.startActivityForResult(
+                ActivityUtils.getTopActivity(),
+                intent,
+                ActivityResult.REQUEST_CODE_1
+            )
         }
     }
 
@@ -56,7 +59,7 @@ class IntroductionActivity : BaseFormActivity<ActivityIntroductionBinding, Empty
     }
 
     override fun showSoftByEditView(): MutableList<View> {
-        return  mutableListOf(binding.content)
+        return mutableListOf(binding.content)
     }
 
 

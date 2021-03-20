@@ -31,6 +31,7 @@ import com.tanlifei.app.profile.bean.AreaBean
 import com.tanlifei.app.profile.bean.UniversityBean
 import com.tanlifei.app.profile.viewmodel.ProfileViewModel
 import org.greenrobot.eventbus.EventBus
+import com.common.cofing.constant.GlobalConst.ActivityResult
 
 
 /**
@@ -40,7 +41,7 @@ import org.greenrobot.eventbus.EventBus
  */
 class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, ProfileViewModel>() {
 
-    var saveUrl = "";
+    var saveUrl = ""
     var areaOptions: OptionsPickerView<AreaBean>? = null
     var universityOptions: OptionsPickerView<UniversityBean>? = null
 
@@ -323,13 +324,13 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             when (requestCode) {
-                1 ->//简介
+                ActivityResult.REQUEST_CODE_1 ->//简介
                     if (ObjectUtils.isNotEmpty(data)) {
                         var introduction = data!!.getStringExtra(GlobalConst.Extras.CONTENT)
                         viewModel.userBean?.bio = introduction;
                         binding.introduction.text = introduction
                     }
-                2 -> {//收货地址
+                ActivityResult.REQUEST_CODE_2 -> {//收货地址
                     if (ObjectUtils.isNotEmpty(data)) {
                         viewModel.userBean?.goodsAddress =
                             data!!.getIntExtra(GlobalConst.Extras.ID, 0).toLong()
