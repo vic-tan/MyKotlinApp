@@ -5,15 +5,19 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ActivityUtils
+import com.common.core.base.event.BaseEvent
 import com.common.core.base.navigator.NavigatorView
 import com.common.core.base.ui.activity.BaseBVMActivity
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
 import com.common.utils.extension.setVisible
+import com.tanlifei.app.common.event.UserEvent
 import com.tanlifei.app.databinding.ActivityMainBinding
 import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.tanlifei.app.main.viewmodel.UpdateAppViewModel
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 /**
@@ -83,6 +87,16 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    override fun onMessageEvent(event: BaseEvent) {
+        if (event is UserEvent) {
+            viewModel.requestUser()
+        }
+    }
+
+    override fun registerEventBus(): Boolean {
+        return true
+    }
 
     override fun onNavigatorItemClick(position: Int, view: View?) {
         viewModel.showFragment(position)

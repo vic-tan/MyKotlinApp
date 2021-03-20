@@ -25,6 +25,9 @@ allprojects {
         google()
         jcenter(){ url 'http://jcenter.bintray.com/'}
 
+        //华为云存储
+        maven {url 'http://mirrors.huaweicloud.com/repository/maven/huaweicloudsdk/'}
+        maven {url 'http://mirrors.huaweicloud.com/repository/maven/'}
     }
 }
 

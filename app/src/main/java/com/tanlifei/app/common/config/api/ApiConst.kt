@@ -60,7 +60,6 @@ object ApiConst {
     const val URL_UNIVERSITY_List = "major/api/user/getUniversityList"
 
 
-
     /* 获取省市区JSON */
     const val URL_AREA_JSON = "major/api/user/getAreaJson"
 
@@ -72,6 +71,11 @@ object ApiConst {
 
     /* 更新收货地址 */
     const val URL_UPDATE_GOODS_ADDRESS = "major/api/user/updateGoodsAddress"
+
+    /* 更新个人信息 */
+    const val URL_UPDATE_USER = "major/api/user/updateUser"
+
+
 
 
     /**—————————————————————————————————————————————————— 首页相关  ——————————————————————————————————————————————*/

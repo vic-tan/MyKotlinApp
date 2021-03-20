@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.bean.UserBean
 import com.common.core.base.viewmodel.BaseViewModel
+import com.common.utils.extension.toast
+import com.obs.services.model.PutObjectResult
 import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.utils.HuaweiUploadManager
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.profile.bean.AreaBean
 import com.tanlifei.app.profile.bean.AreaJsonBean
 import com.tanlifei.app.profile.bean.UniversityBean
-import java.util.*
 
 
 /**
@@ -31,26 +33,60 @@ class ProfileViewModel() : BaseViewModel() {
     /**
      * 刷新用户信息
      */
-    val refreshUserInfo: LiveData<UserBean> get() = mRefreshUserInfo
-    private val mRefreshUserInfo = MutableLiveData<UserBean>()
+    val refreshUserInfo: LiveData<UserBean> get() = _refreshUserInfo
+    private val _refreshUserInfo = MutableLiveData<UserBean>()
 
     /**
      * 刷新地区学校信息
      */
-    val refreshUniversityList: LiveData<MutableList<UniversityBean>> get() = mRefreshUniversityList
-    private val mRefreshUniversityList = MutableLiveData<MutableList<UniversityBean>>()
+    val refreshUniversityList: LiveData<MutableList<UniversityBean>> get() = _refreshUniversityList
+    private val _refreshUniversityList = MutableLiveData<MutableList<UniversityBean>>()
 
     /**
-     * 列表数据改变的LveData
+     * 数据改变的LveData
      */
-    val dataChanged: LiveData<Boolean> get() = mDataChanged
-    private var mDataChanged = MutableLiveData<Boolean>()
+    val dataChanged: LiveData<UserBean> get() = _dataChanged
+    private var _dataChanged = MutableLiveData<UserBean>()
 
     /**
      * 地区数据加载完成的LveData
      */
     val areaDataComplete: LiveData<Boolean> get() = _areaDataComplete
     private var _areaDataComplete = MutableLiveData<Boolean>()
+
+
+    fun saveUser(url: String) {
+        if (url.isNotEmpty()) {
+            var uploadList: MutableList<String> = mutableListOf()
+            uploadList.add(url)
+            mLoadingState.value = LoadType.LOADING
+            HuaweiUploadManager().statJob(
+                HuaweiUploadManager.EnterType.ENTER_TYPE_CLASSMATE,
+                uploadList,
+                object : HuaweiUploadManager.HuaweiResultListener {
+                    override fun onResult(resultList: MutableList<PutObjectResult>) {
+                        userBean?.avatar = resultList[0].objectUrl
+                        requestUpdateUser()
+                    }
+
+                    override fun onFail(errorType: HuaweiUploadManager.UploadType) {
+                        toast("上传图片失败了")
+                        mLoadingState.value = LoadType.ERROR
+                    }
+
+                }
+            )
+
+        }
+
+    }
+
+    fun requestUpdateUser() = launchByLoading {
+        val user = ApiNetwork.requestUpdateUser(userBean!!)
+        toast("保存完成")
+        _dataChanged.value = userBean
+    }
+
 
     /**
      * 请求用户信息
@@ -59,7 +95,7 @@ class ProfileViewModel() : BaseViewModel() {
         val user = ApiNetwork.requestUserInfo()
         if (ObjectUtils.isNotEmpty(user)) {
             userBean = user
-            mRefreshUserInfo.value = userBean
+            _refreshUserInfo.value = userBean
             userBean?.areaId?.let { requestUniversity(it) }
         } else {
             findUserByDB()
@@ -88,7 +124,7 @@ class ProfileViewModel() : BaseViewModel() {
         val universityList = ApiNetwork.requestUniversity(id)
         if (ObjectUtils.isNotEmpty(universityList)) {
             universityOptionsItems = universityList
-            mRefreshUniversityList.value = universityList
+            _refreshUniversityList.value = universityList
         }
     }
 
@@ -100,7 +136,7 @@ class ProfileViewModel() : BaseViewModel() {
         if (ObjectUtils.isEmpty(userBean)) {
             userBean = UserInfoUtils.getUser()
             if (ObjectUtils.isNotEmpty(userBean)) {
-                mRefreshUserInfo.value = userBean
+                _refreshUserInfo.value = userBean
                 userBean?.areaId?.let { requestUniversity(it) }
             }
         }

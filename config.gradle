@@ -175,6 +175,9 @@ ext {
             //https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20200622202242
             "hotfix"                 : "com.aliyun.ams:alicloud-android-hotfix:3.2.17",
 
+            //华为云存储库
+            "huawei_obs"             : "com.huawei.storage:esdk-obs-android:3.1.3",
+
 
             //<----------------------------  以上为本项目引用的第三方开源库 EDN ----------------------------------->
 

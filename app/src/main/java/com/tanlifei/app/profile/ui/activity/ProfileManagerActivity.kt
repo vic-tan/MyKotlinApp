@@ -17,16 +17,20 @@ import com.common.utils.PermissionUtils
 import com.common.utils.PictureSelectorUtils
 import com.common.utils.extension.click
 import com.common.utils.extension.clickListener
+import com.common.utils.extension.toast
 import com.common.widget.popup.BottomOptionsView
+import com.hjq.bar.OnTitleBarListener
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnSelectListener
 import com.tanlifei.app.R
+import com.tanlifei.app.common.event.UserEvent
 import com.tanlifei.app.databinding.ActivityProfileManagerBinding
 import com.tanlifei.app.profile.bean.AreaBean
 import com.tanlifei.app.profile.bean.UniversityBean
 import com.tanlifei.app.profile.viewmodel.ProfileViewModel
+import org.greenrobot.eventbus.EventBus
 
 
 /**
@@ -36,6 +40,7 @@ import com.tanlifei.app.profile.viewmodel.ProfileViewModel
  */
 class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, ProfileViewModel>() {
 
+    var saveUrl = "";
     var areaOptions: OptionsPickerView<AreaBean>? = null
     var universityOptions: OptionsPickerView<UniversityBean>? = null
 
@@ -54,6 +59,31 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
         initListener()
         initData()
         titleBar.rightTitle = "保存"
+    }
+
+    override fun setTitleBarListener() {
+        titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+            override fun onLeftClick(v: View?) {
+                ActivityUtils.finishActivity(mActivity)
+            }
+
+            override fun onRightClick(v: View?) {
+                if (binding.nickname.text.trim().isEmpty()) {
+                    toast("昵称不能为空")
+                    return
+                }
+                viewModel.userBean?.nickname = binding.nickname.text.toString()
+                if (saveUrl.isEmpty()) {
+                    viewModel.requestUpdateUser()
+                } else {
+                    viewModel.saveUser(saveUrl)
+                }
+            }
+
+            override fun onTitleClick(v: View?) {
+            }
+
+        })
     }
 
     /**
@@ -82,6 +112,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
+        viewModel.loadingState.observe(this, this)
         viewModel.refreshUserInfo.observe(this, Observer { it ->
             GlideUtils.loadAvatar(mActivity, it.avatar, binding.userHead)
             binding.nickname.setText(it.nickname)
@@ -104,6 +135,12 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
             if (ObjectUtils.isNotEmpty(it)) {
                 binding.school.text = it[0].name
             }
+        })
+        viewModel.dataChanged.observe(this, Observer {
+            EventBus.getDefault().post(
+                UserEvent(it)
+            )
+            ActivityUtils.finishActivity(this)
         })
     }
 
@@ -129,9 +166,10 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
                                     PictureSelectorUtils.createAvatarCrop(mActivity)
                                         .forResult(object : OnResultCallbackListener<LocalMedia?> {
                                             override fun onResult(result: List<LocalMedia?>) {
+                                                saveUrl = result[0]?.cutPath.toString()
                                                 GlideUtils.load(
                                                     mActivity,
-                                                    result[0]?.compressPath,
+                                                    result[0]?.cutPath,
                                                     binding.userHead
                                                 )
                                             }
@@ -303,7 +341,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
 
 
     override fun showSoftByEditView(): MutableList<View> {
-        return  mutableListOf(binding.nickname,binding.introduction)
+        return mutableListOf(binding.nickname, binding.introduction)
     }
 
 }

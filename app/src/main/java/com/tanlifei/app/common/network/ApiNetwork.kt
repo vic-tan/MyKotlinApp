@@ -117,6 +117,27 @@ object ApiNetwork {
             .add("email", addressBean.email)
             .toResponse<String>().await()
 
+    /**
+     * 更新个人信息
+     */
+    suspend fun requestUpdateUser(userBean: UserBean) = RxHttp.postJson(ApiConst.URL_UPDATE_USER)
+        .add("id", userBean.uid)
+        .add("avatar", userBean.avatar)
+        .add("nickname", userBean.nickname)
+        .add("address", userBean.address)
+        .add("university", userBean.university)
+        .add("universityName", userBean.universityName)
+        .add("gender", userBean.gender)
+        .add("age", userBean.age)
+        .add("goodsAddress", userBean.goodsAddress)
+        .add("score", userBean.score)
+        .add("areaId", userBean.areaId)
+        .add("points", userBean.points)
+        .add("mobile", userBean.mobile)
+        .add("bio", userBean.bio)
+        .add("email", userBean.email)
+        .toResponse<String>().await()
+
     /**—————————————————————————————————————————————————— 首页相关  ——————————————————————————————————————————————*/
 
     /**
