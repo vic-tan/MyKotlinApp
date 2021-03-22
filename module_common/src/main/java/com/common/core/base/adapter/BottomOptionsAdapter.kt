@@ -43,7 +43,7 @@ class BottomOptionsAdapter(val mHasTitleView: Boolean) :
         }
     }
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         holder as ItemOptionBinding
         return linkedSetOf(holder.title)
     }

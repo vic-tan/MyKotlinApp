@@ -52,7 +52,7 @@ class CommentAdapter :
     }
 
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         val holder = holder as ItemCommentBinding
         return linkedSetOf(holder.delete)
     }

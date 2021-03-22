@@ -102,7 +102,7 @@ class ClassmateCircleDetailActivity :
                 }
                 BaseListViewModel.DataChagedType.LOADMORE -> {
                     mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
-                    mAdapter.loadmoreItemRange(mViewModel.mLoadMoreStartPos)
+                    mAdapter.loadMoreItemRange(mViewModel.mLoadMoreStartPos)
 
                 }
                 BaseListViewModel.DataChagedType.ERROE -> {

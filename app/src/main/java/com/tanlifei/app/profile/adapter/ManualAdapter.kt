@@ -35,7 +35,7 @@ class ManualAdapter :
         holder.title.text = bean.title
     }
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         val holder = holder as ItemManualBinding
         return linkedSetOf(holder.item)
     }

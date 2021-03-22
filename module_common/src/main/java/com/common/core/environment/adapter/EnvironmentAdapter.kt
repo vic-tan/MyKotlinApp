@@ -64,7 +64,7 @@ class EnvironmentAdapter :
         return itemBean.itemType
     }
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         return when (holder) {
             is ItemEnvironmentTitleBinding -> {
                 linkedSetOf()

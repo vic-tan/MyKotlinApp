@@ -20,7 +20,6 @@ import java.util.*
  */
 class HomeAdapter :
     CommonRvAdapter<ClassmateCircleBean>() {
-    private lateinit var mContext: Context
 
 
     override fun onCreateViewHolder(
@@ -28,7 +27,6 @@ class HomeAdapter :
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ViewBinding> {
-        mContext = parent.context
         return CommonRvHolder(
             ItemHomeBinding.inflate(
                 inflater, parent, false
@@ -53,7 +51,7 @@ class HomeAdapter :
     }
 
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         val holder = holder as ItemHomeBinding
         return linkedSetOf(holder.item)
     }

@@ -19,14 +19,12 @@ import java.util.*
  */
 class HomeRecommentAdapter :
     CommonRvAdapter<ClassmateCircleBean>() {
-    private lateinit var mContext: Context
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ViewBinding> {
-        mContext = parent.context
         return CommonRvHolder(
             ItemHomeRecommentBinding.inflate(
                 inflater,
@@ -47,7 +45,7 @@ class HomeRecommentAdapter :
         GlideUtils.load(mContext, bean.image?.url, holder.cover)
     }
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         holder as ItemHomeRecommentBinding
         return linkedSetOf(holder.item)
     }

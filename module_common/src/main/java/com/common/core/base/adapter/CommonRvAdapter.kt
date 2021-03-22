@@ -1,5 +1,6 @@
 package com.common.core.base.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,38 +20,54 @@ import java.util.*
 abstract class CommonRvAdapter<T> :
     RecyclerView.Adapter<CommonRvHolder<ViewBinding>>() {
 
-    /**
-     * UI加载框状态显示
-     */
+    /** item 布局类型框状态显示**/
     enum class ItemViewType(val value: Int) {
-        HEADER(1000),//头部
-        FOOTER(2000),//尾部
-        CONTEN(3000),//正常
+        HEADER(1000),//头部布局类型
+        FOOTER(2000),//尾部布局类型
+        CONTEN(3000),//其它布局类型
     }
 
-    /**
-     * 数据源
-     */
-    var mData: MutableList<Any> = mutableListOf()
-        set(value) {
-            field = value
-            notifyItemRangeChanged(0, value.size)
-        }
+    /**上下文* */
+    protected lateinit var mContext: Context
 
-    /**
-     * 添加头部尾部
-     */
+    /**数据源* */
+    var mData: MutableList<Any> = mutableListOf()
+
+    /** 添加头部部 **/
     var mHeaderViews: MutableList<ViewBinding> = mutableListOf()
+
+    /** 添加尾部 **/
     var mFooterViews: MutableList<ViewBinding> = mutableListOf()
 
 
-    /**
-     * 用于保存需要设置点击事件的 item
-     */
+    /**用于保存需要设置点击事件的 item **/
     private val mChildClickViews = LinkedHashSet<View>()
 
-
+    /**点击事件的监听器 **/
     private var mOnItemClickListener: OnItemClickListener<T>? = null
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<ViewBinding> {
+        mContext = parent.context
+        return when {
+            viewType >= ItemViewType.HEADER.value && viewType < ItemViewType.FOOTER.value -> {
+                CommonRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
+            }
+            viewType >= ItemViewType.FOOTER.value -> {
+                CommonRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size - 1])
+            }
+            else -> {
+//                CommonRvHolder(ViewBinding {  })
+//                false
+//                ))
+                onCreateViewHolder(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    viewType
+                )
+            }
+        }
+    }
 
     /**
      * 设置需要点击事件的子view
@@ -64,6 +81,9 @@ abstract class CommonRvAdapter<T> :
 
     }
 
+    /**
+     * item 多布局实现
+     */
     override fun getItemViewType(position: Int): Int {
         if (isHeaderPosition(position)) {
             return ItemViewType.HEADER.value + position
@@ -72,25 +92,6 @@ abstract class CommonRvAdapter<T> :
             return ItemViewType.FOOTER.value + position
         }
         return setItemViewType(mData[position] as T)
-    }
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<ViewBinding> {
-        return when {
-            viewType >= ItemViewType.HEADER.value && viewType < ItemViewType.FOOTER.value -> {
-                CommonRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
-            }
-            viewType >= ItemViewType.FOOTER.value -> {
-                CommonRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size - 1])
-            }
-            else -> {
-                onCreateViewHolder(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    viewType
-                )
-            }
-        }
     }
 
 
@@ -167,13 +168,13 @@ abstract class CommonRvAdapter<T> :
             adapterPosition,
             mData[adapterPosition] as T
         )
-        addViewList(addChildClickViewIds(holder.binding))
+        addViewList(addChildClickView(holder.binding))
         if (ObjectUtils.isNotEmpty(mChildClickViews)) {
             mOnItemClickListener?.let {
                 for (v in mChildClickViews) {
                     v.setOnClickListener {
                         if (it.clickEnable()) {
-                            setOnItemClick(
+                            mOnItemClickListener?.click(
                                 holder.binding,
                                 mData[adapterPosition] as T,
                                 v,
@@ -187,31 +188,35 @@ abstract class CommonRvAdapter<T> :
         }
     }
 
-    // 为什么不把这个方法也封装起来？ 因为不想使用反射~
+    /**
+     * 为什么不把这个方法也封装起来？ 因为不想使用反射~
+     */
     abstract fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ViewBinding>
 
+
     abstract fun onBindViewHolder(holder: ViewBinding, position: Int, bean: T)
 
+    /**
+     * 子类
+     */
+    abstract fun addChildClickView(holder: ViewBinding): LinkedHashSet<View>
+
+
+    /**
+     * 子类可以实现该方法实现多布局显示
+     */
     open fun setItemViewType(bean: T): Int {
         return ItemViewType.CONTEN.ordinal
     }
 
-    abstract fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View>
 
-
-    protected open fun setOnItemClick(
-        holder: ViewBinding,
-        bean: T,
-        v: View,
-        position: Int
-    ) {
-        mOnItemClickListener?.click(holder, bean, v, position)
-    }
-
+    /**
+     * 设置item 点击事件
+     */
     fun setItemClickListener(clickListener: OnItemClickListener<T>) {
         this.mOnItemClickListener = clickListener
     }
@@ -230,7 +235,7 @@ abstract class CommonRvAdapter<T> :
     /**
      * 有头部尾部加载更多时请用这个
      */
-    fun loadmoreItemRange(startPos: Int) {
+    fun loadMoreItemRange(startPos: Int) {
         notifyItemRangeChanged(
             startPos + mHeaderViews.size,
             mHeaderViews.size + mData.size - 1
@@ -238,11 +243,8 @@ abstract class CommonRvAdapter<T> :
     }
 }
 
+/**
+ * 适配器Holder 基本类
+ */
 open class CommonRvHolder<V : ViewBinding>(val binding: V) :
     RecyclerView.ViewHolder(binding.root) {}
-
-
-
-
-
-

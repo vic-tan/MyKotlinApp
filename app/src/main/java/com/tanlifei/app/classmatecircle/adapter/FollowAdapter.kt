@@ -28,7 +28,6 @@ import java.util.*
  */
 class FollowAdapter:
     CommonRvAdapter<ClassmateCircleBean>() {
-    private lateinit var mContext: Context
     private var mTextViewWidth = screenWidth - ConvertUtils.dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
 
@@ -37,7 +36,6 @@ class FollowAdapter:
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ViewBinding> {
-        mContext = parent.context
         return CommonRvHolder(
             ItemFollowBinding.inflate(
                 inflater,
@@ -85,7 +83,7 @@ class FollowAdapter:
         holder.commentCount.text = NumberUtils.setCommentCount(bean.comment)
     }
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         holder as ItemFollowBinding
         return linkedSetOf(holder.more, holder.shareLayout, holder.banner)
     }

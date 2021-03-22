@@ -28,7 +28,6 @@ import java.util.*
  */
 class RecommendAdapter :
     CommonRvAdapter<ClassmateCircleBean>() {
-    private lateinit var mContext: Context
     private val mCoverWidth =
         ((screenWidth - ConvertUtils.dp2px(20f)) * 0.5).toInt()//左右及中间边距为20
     private val mSource = 0 // 0、主页同学圈推荐 1、为人个中心作品
@@ -38,7 +37,6 @@ class RecommendAdapter :
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ViewBinding> {
-        mContext = parent.context
         return CommonRvHolder(ItemRecommendBinding.inflate(inflater, parent, false))
     }
 
@@ -71,7 +69,7 @@ class RecommendAdapter :
             AutoHeightUtils.getHeightParams(mCoverWidth, bean.image)
     }
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         holder as ItemRecommendBinding
         return linkedSetOf(holder.root)
     }

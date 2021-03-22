@@ -19,13 +19,11 @@ import java.util.*
  */
 class MenuAdapter :
     CommonRvAdapter<MenuBean>() {
-    private lateinit var mContext: Context
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
     ): CommonRvHolder<ViewBinding> {
-        mContext = parent.context
         return CommonRvHolder(ItemHomeMenuBinding.inflate(inflater, parent, false))
     }
 
@@ -39,7 +37,7 @@ class MenuAdapter :
         GlideUtils.load(mContext, bean.image, holder.icon)
     }
 
-    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         holder as ItemHomeMenuBinding
         return linkedSetOf(holder.item)
     }
