@@ -11,6 +11,7 @@ import com.common.databinding.LayoutRecyclerRefreshBinding
 import com.common.utils.extension.startActivity
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.tanlifei.app.databinding.ActivityManualBinding
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.adapter.ManualAdapter
 import com.tanlifei.app.profile.bean.ManualBean
@@ -22,7 +23,7 @@ import com.tanlifei.app.profile.viewmodel.ManualViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, ManualViewModel>() {
+class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualViewModel>() {
     private lateinit var mAdapter: ManualAdapter
 
     companion object {
@@ -61,18 +62,18 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
 
 
     override fun smartRefreshLayout(): SmartRefreshLayout {
-        return mBinding.smartRefreshLayout
+        return mBinding.refreshLayout.smartRefreshLayout
     }
 
     override fun refreshLoadingLayout(): LoadingLayout {
-        return mBinding.refreshLoadingLayout
+        return mBinding.refreshLayout.refreshLoadingLayout
     }
 
     override fun refreshRecycler(): RecyclerView {
-        return mBinding.refreshRecycler
+        return mBinding.refreshLayout.refreshRecycler
     }
 
-    override fun setAdapter():  Any {
+    override fun setAdapter(): Any {
         return mAdapter
     }
 

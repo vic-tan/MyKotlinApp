@@ -76,7 +76,7 @@ class HomeRecommendFragment :
         return GridLayoutManager(context, 2)
     }
 
-    override fun setAdapter():  Any {
+    override fun setAdapter(): Any {
         return mAdapter
     }
 
