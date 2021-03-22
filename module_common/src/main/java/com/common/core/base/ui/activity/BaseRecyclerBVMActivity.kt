@@ -10,6 +10,9 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 /**
  * @desc:只有List列表 ViewModel基类
+ * @V :acticvity Recycler 列表布局文件
+ * @T :  Recycler adapter 适配器实体对象
+ * @VM :  BaseListViewModel  viewMode
  * @author: tanlifei
  * @date: 2021/2/7 17:14
  */
