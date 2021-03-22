@@ -42,7 +42,11 @@ class HomeRecommendFragment :
     }
 
     override fun onFirstVisibleToUser() {
-        initRecycler()
+        initRecycler(
+            mBinding.refreshLayout.smartRefreshLayout,
+            mBinding.refreshLayout.refreshRecycler,
+            mBinding.refreshLayout.refreshLoadingLayout
+        )
         mBinding.refreshLayout.refreshRecycler.addItemDecoration(GridHomeRecommentItemDecoration(8))
     }
 
@@ -78,18 +82,6 @@ class HomeRecommendFragment :
 
     override fun setAdapter(): Any {
         return mAdapter
-    }
-
-    override fun smartRefreshLayout(): SmartRefreshLayout {
-        return mBinding.refreshLayout.smartRefreshLayout
-    }
-
-    override fun refreshLoadingLayout(): LoadingLayout {
-        return mBinding.refreshLayout.refreshLoadingLayout
-    }
-
-    override fun refreshRecycler(): RecyclerView {
-        return mBinding.refreshLayout.refreshRecycler
     }
 
 }

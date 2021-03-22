@@ -65,7 +65,11 @@ class RecommendFragment :
             }
 
         })
-        initRecycler()
+        initRecycler(
+            mBinding.smartRefreshLayout,
+            mBinding.refreshRecycler,
+            mBinding.refreshLoadingLayout
+        )
         mBinding.refreshRecycler.addItemDecoration(
             GridItemDecoration(
                 8
@@ -85,16 +89,5 @@ class RecommendFragment :
         return mAdapter
     }
 
-    override fun smartRefreshLayout(): SmartRefreshLayout {
-        return mBinding.smartRefreshLayout
-    }
-
-    override fun refreshLoadingLayout(): LoadingLayout {
-        return mBinding.refreshLoadingLayout
-    }
-
-    override fun refreshRecycler(): RecyclerView {
-        return mBinding.refreshRecycler
-    }
 
 }

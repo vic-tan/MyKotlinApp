@@ -24,6 +24,7 @@ import com.tanlifei.app.profile.viewmodel.ManualViewModel
  * @date: 2021/2/5 10:15
  */
 class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualViewModel>() {
+    
     private lateinit var mAdapter: ManualAdapter
 
     companion object {
@@ -44,7 +45,11 @@ class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualView
     private fun initData() {
         mAdapter = ManualAdapter()
         mAdapter.mData = mViewModel.mData
-        initRefreshView()
+        initRefreshView(
+            mBinding.refreshLayout.smartRefreshLayout,
+            mBinding.refreshLayout.refreshRecycler,
+            mBinding.refreshLayout.refreshLoadingLayout
+        )
         mAdapter.setItemClickListener(object :
             OnItemClickListener<ItemManualBinding, ManualBean> {
             override fun click(
@@ -58,19 +63,6 @@ class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualView
                 }
             }
         })
-    }
-
-
-    override fun smartRefreshLayout(): SmartRefreshLayout {
-        return mBinding.refreshLayout.smartRefreshLayout
-    }
-
-    override fun refreshLoadingLayout(): LoadingLayout {
-        return mBinding.refreshLayout.refreshLoadingLayout
-    }
-
-    override fun refreshRecycler(): RecyclerView {
-        return mBinding.refreshLayout.refreshRecycler
     }
 
     override fun setAdapter(): Any {

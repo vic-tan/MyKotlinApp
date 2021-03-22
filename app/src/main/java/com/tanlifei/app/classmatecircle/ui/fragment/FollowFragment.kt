@@ -43,7 +43,11 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
     }
 
     override fun onFirstVisibleToUser() {
-        initRecycler()
+        initRecycler(
+            mBinding.refreshLayout.smartRefreshLayout,
+            mBinding.refreshLayout.refreshRecycler,
+            mBinding.refreshLayout.refreshLoadingLayout
+        )
     }
 
 
@@ -84,7 +88,7 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
                         var list = mutableListOf<String>()
                         var url = bean.image?.url
                         url?.let { list.add(it) }
-                        PhotoUtils.showListPhoto(context,binding.banner,position,list)
+                        PhotoUtils.showListPhoto(context, binding.banner, position, list)
                     }
                 }
             }
@@ -93,20 +97,9 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         })
     }
 
-    override fun setAdapter():  Any {
+    override fun setAdapter(): Any {
         return mAdapter
     }
 
-    override fun smartRefreshLayout(): SmartRefreshLayout {
-        return mBinding.refreshLayout.smartRefreshLayout
-    }
-
-    override fun refreshLoadingLayout(): LoadingLayout {
-        return mBinding.refreshLayout.refreshLoadingLayout
-    }
-
-    override fun refreshRecycler(): RecyclerView {
-        return mBinding.refreshLayout.refreshRecycler
-    }
 
 }
