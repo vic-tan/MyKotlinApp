@@ -93,9 +93,8 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         })
     }
 
-
-    override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        return mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+    override fun setAdapter():  Any {
+        return mAdapter
     }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {

@@ -39,8 +39,9 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
 
     private fun injectViewModel() {
         val vm = createViewModel()
-        mViewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
-            .get(vm::class.java)
+        mViewModel =
+            ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
+                .get(vm::class.java)
         mViewModel.mApplication = requireActivity().application
     }
 
@@ -54,7 +55,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
             refreshLoadingLayout(),
             mViewModel,
             this,
-            setAdapter()
+            setAdapter() as RecyclerView.Adapter<RecyclerView.ViewHolder>
         )
         RecyclerUtils.initListener(
             smartRefreshLayout(),
@@ -69,7 +70,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
         })
     }
 
-    open fun requestData(){
+    open fun requestData() {
         RecyclerUtils.initData(mViewModel)
     }
 
@@ -78,7 +79,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
      */
     private fun initRecyclerView() {
         refreshRecycler().layoutManager = setLinearLayoutManager()
-        refreshRecycler().adapter = setAdapter()
+        refreshRecycler().adapter = setAdapter() as RecyclerView.Adapter<RecyclerView.ViewHolder>
         refreshRecycler().itemAnimator = null
     }
 
@@ -94,7 +95,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 子类设置Adapter
      */
-    protected abstract fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>
+    protected abstract fun setAdapter(): Any
 
     /**
      * 子类设置SmartRefreshLayout

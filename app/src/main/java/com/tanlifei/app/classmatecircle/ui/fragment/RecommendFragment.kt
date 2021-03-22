@@ -81,8 +81,8 @@ class RecommendFragment :
         return StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        return mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+    override fun setAdapter(): Any {
+        return mAdapter
     }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {

@@ -26,7 +26,7 @@ import com.tanlifei.app.home.viewmodel.HomeRecommendViewModel
 class HomeRecommendFragment :
     BaseRecyclerBVMFragment<FragmentFollowBinding, HomeRecommendViewModel>() {
 
-    private lateinit var adapter: HomeRecommentAdapter
+    private lateinit var mAdapter: HomeRecommentAdapter
 
     companion object {
         fun newInstance(): HomeRecommendFragment {
@@ -49,9 +49,9 @@ class HomeRecommendFragment :
 
     override fun initView() {
         super.initView()
-        adapter = HomeRecommentAdapter()
-        adapter.mData = mViewModel.mData as MutableList<ClassmateCircleBean>
-        adapter.setItemClickListener(object :
+        mAdapter = HomeRecommentAdapter()
+        mAdapter.mData = mViewModel.mData as MutableList<ClassmateCircleBean>
+        mAdapter.setItemClickListener(object :
             OnItemClickListener<ItemHomeRecommentBinding, ClassmateCircleBean> {
             override fun click(
                 itemBinding: ItemHomeRecommentBinding,
@@ -76,8 +76,8 @@ class HomeRecommendFragment :
         return GridLayoutManager(context, 2)
     }
 
-    override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        return adapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+    override fun setAdapter():  Any {
+        return mAdapter
     }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {

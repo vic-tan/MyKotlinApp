@@ -3,10 +3,14 @@ package com.common.core.base.ui.activity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
+import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
+import com.example.httpsender.parser.ResponseParser
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import rxhttp.IRxHttp
+import rxhttp.toParser
 
 /**
  * @desc:只有List列表 ViewModel基类
@@ -25,7 +29,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
             refreshLoadingLayout(),
             mViewModel,
             this,
-            setAdapter()
+            setAdapter() as RecyclerView.Adapter<RecyclerView.ViewHolder>
         )
         RecyclerUtils.initListener(
             smartRefreshLayout(),
@@ -43,7 +47,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
      */
     private fun initRecyclerView() {
         refreshRecycler().layoutManager = setLinearLayoutManager()
-        refreshRecycler().adapter = setAdapter()
+        refreshRecycler().adapter = setAdapter() as RecyclerView.Adapter<RecyclerView.ViewHolder>
         refreshRecycler().itemAnimator = null
     }
 
@@ -54,10 +58,11 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
         return RecyclerUtils.setLinearLayoutManager(this)
     }
 
+
     /**
      * 子类设置Adapter
      */
-    protected abstract fun <T> setAdapter(): T
+    protected abstract fun setAdapter(): Any
 
 
     /**

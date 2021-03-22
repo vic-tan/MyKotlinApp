@@ -2,7 +2,9 @@ package com.tanlifei.app.profile.ui.activity
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.blankj.utilcode.util.ActivityUtils
+import androidx.viewbinding.ViewBinding
+import com.common.core.base.adapter.CommonRvAdapter
+import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
@@ -57,9 +59,6 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
         })
     }
 
-    override fun <ManualAdapter> setAdapter(): ManualAdapter {
-        return mAdapter as ManualAdapter
-    }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {
         return mBinding.smartRefreshLayout
@@ -72,5 +71,10 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
     override fun refreshRecycler(): RecyclerView {
         return mBinding.refreshRecycler
     }
+
+    override fun setAdapter():  Any {
+        return mAdapter
+    }
+
 
 }
