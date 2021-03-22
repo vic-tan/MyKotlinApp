@@ -209,7 +209,7 @@ class ClassmateCircleDetailActivity :
 
     private fun initAdapter() {
         mAdapter = CommentAdapter()
-        mAdapter.mData = mViewModel.mData as MutableList<CommentBean>
+        mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object : OnMultiItemListener<CommentBean> {
             override fun click(
                 holder: ViewBinding,

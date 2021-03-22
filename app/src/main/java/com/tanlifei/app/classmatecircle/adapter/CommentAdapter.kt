@@ -7,7 +7,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
 import com.common.core.base.adapter.CommonRvHolder
-import com.common.core.base.adapter.CommonRvMultiItemAdapter
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.utils.GlideUtils
 import com.common.utils.extension.setVisible
 import com.tanlifei.app.classmatecircle.bean.CommentBean
@@ -21,7 +21,7 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class CommentAdapter :
-    CommonRvMultiItemAdapter<CommentBean>() {
+    CommonRvAdapter<CommentBean>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

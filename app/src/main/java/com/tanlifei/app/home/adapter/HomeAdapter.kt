@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvHolder
-import com.common.core.base.adapter.CommonRvMultiItemAdapter
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.utils.GlideUtils
 import com.common.utils.extension.setVisible
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -19,9 +19,9 @@ import java.util.*
  * @date: 2021/2/24 16:02
  */
 class HomeAdapter :
-    CommonRvMultiItemAdapter<ClassmateCircleBean>() {
+    CommonRvAdapter<ClassmateCircleBean>() {
     private lateinit var mContext: Context
-  
+
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

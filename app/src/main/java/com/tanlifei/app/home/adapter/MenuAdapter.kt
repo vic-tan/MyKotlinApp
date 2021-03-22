@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvHolder
-import com.common.core.base.adapter.CommonRvMultiItemAdapter
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.utils.GlideUtils
 import com.tanlifei.app.databinding.ItemHomeMenuBinding
 import com.tanlifei.app.home.bean.MenuBean
@@ -18,7 +18,7 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class MenuAdapter :
-    CommonRvMultiItemAdapter<MenuBean>() {
+    CommonRvAdapter<MenuBean>() {
     private lateinit var mContext: Context
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

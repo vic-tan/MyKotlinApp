@@ -2,10 +2,12 @@ package com.common.widget.popup
 
 import android.content.Context
 import android.view.View
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.core.base.adapter.BottomOptionsAdapter
 import com.common.core.base.listener.OnItemClickListener
+import com.common.core.base.listener.OnMultiItemListener
 import com.common.databinding.ItemOptionBinding
 import com.common.databinding.LayoutOptionBinding
 import com.common.utils.RecyclerUtils
@@ -42,15 +44,16 @@ class BottomOptionsView(
         mBinding.recyclerView.adapter = mAdapter
         mBinding.recyclerView.layoutManager = RecyclerUtils.setLinearLayoutManager(context)
         mAdapter.setItemClickListener(object :
-            OnItemClickListener<ItemOptionBinding, String> {
+            OnMultiItemListener<String> {
             override fun click(
-                binding: ItemOptionBinding,
+                holder: ViewBinding,
                 str: String,
                 v: View,
                 position: Int
             ) {
+                holder as ItemOptionBinding
                 when (v) {
-                    binding.title -> {
+                    holder.title -> {
                         selectListener.onSelect(position, str)
                         dismiss()
                     }

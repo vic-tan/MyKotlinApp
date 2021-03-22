@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.CommonRvHolder
-import com.common.core.base.adapter.CommonRvMultiItemAdapter
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.utils.GlideUtils
 import com.common.utils.extension.drawable
 import com.common.utils.extension.screenWidth
@@ -27,7 +27,7 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class RecommendAdapter :
-    CommonRvMultiItemAdapter<ClassmateCircleBean>() {
+    CommonRvAdapter<ClassmateCircleBean>() {
     private lateinit var mContext: Context
     private val mCoverWidth =
         ((screenWidth - ConvertUtils.dp2px(20f)) * 0.5).toInt()//左右及中间边距为20

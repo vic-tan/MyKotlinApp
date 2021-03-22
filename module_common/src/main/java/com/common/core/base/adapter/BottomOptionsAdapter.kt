@@ -3,6 +3,7 @@ package com.common.core.base.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewbinding.ViewBinding
 import com.common.R
 import com.common.databinding.ItemOptionBinding
 import com.common.utils.extension.dimen
@@ -14,35 +15,36 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class BottomOptionsAdapter(val mHasTitleView: Boolean) :
-    CommonRvAdapter<String, ItemOptionBinding>() {
+    CommonRvAdapter<String>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ItemOptionBinding> {
+    ): CommonRvHolder<ViewBinding> {
         return CommonRvHolder(ItemOptionBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ItemOptionBinding>,
+        holder: ViewBinding,
         position: Int,
-        binding: ItemOptionBinding,
         title: String
     ) {
-        holder.binding.title.text = title
+        holder as ItemOptionBinding
+        holder.title.text = title
         if (position == 0 && !mHasTitleView) {
-            holder.binding.title.helper.cornerRadiusTopLeft =
+            holder.title.helper.cornerRadiusTopLeft =
                 dimen(R.dimen.dialog_corner_radius)
-            holder.binding.title.helper.cornerRadiusTopRight =
+            holder.title.helper.cornerRadiusTopRight =
                 dimen(R.dimen.dialog_corner_radius)
         } else {
-            holder.binding.title.helper.cornerRadiusTopLeft = 0f
-            holder.binding.title.helper.cornerRadiusTopRight = 0f
+            holder.title.helper.cornerRadiusTopLeft = 0f
+            holder.title.helper.cornerRadiusTopRight = 0f
         }
     }
 
-    override fun addChildClickViewIds(binding: ItemOptionBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.title)
+    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+        holder as ItemOptionBinding
+        return linkedSetOf(holder.title)
     }
 }

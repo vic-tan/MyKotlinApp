@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvHolder
-import com.common.core.base.adapter.CommonRvMultiItemAdapter
+import com.common.core.base.adapter.CommonRvAdapter
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.bean.ManualBean
 import java.util.*
@@ -16,7 +16,7 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class ManualAdapter :
-    CommonRvMultiItemAdapter<ManualBean>() {
+    CommonRvAdapter<ManualBean>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

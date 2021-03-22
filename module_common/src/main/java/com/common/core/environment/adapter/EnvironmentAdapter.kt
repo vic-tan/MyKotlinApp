@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvHolder
-import com.common.core.base.adapter.CommonRvMultiItemAdapter
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.databinding.ItemEnvironmentContentBinding
 import com.common.databinding.ItemEnvironmentTitleBinding
@@ -18,7 +18,7 @@ import java.util.*
  * @date: 2021/2/2 17:58
  */
 class EnvironmentAdapter :
-    CommonRvMultiItemAdapter<EnvironmentBean>() {
+    CommonRvAdapter<EnvironmentBean>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

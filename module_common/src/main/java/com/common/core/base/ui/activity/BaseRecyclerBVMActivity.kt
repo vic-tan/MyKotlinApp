@@ -2,15 +2,10 @@ package com.common.core.base.ui.activity
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
-import com.example.httpsender.parser.ResponseParser
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import rxhttp.IRxHttp
-import rxhttp.toParser
 
 /**
  * @desc:只有List列表 ViewModel基类
