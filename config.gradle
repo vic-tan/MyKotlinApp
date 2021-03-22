@@ -130,15 +130,15 @@ ext {
 
             //工具类
             //https://github.com/Blankj/AndroidUtilCode
-            "utilcodex"              : "com.blankj:utilcodex:1.29.0",
+            "utilcodex"              : "com.blankj:utilcodex:1.30.0",
 
             //无需通知栏权限都不影响吐司的弹出吐司工具类
             //https://github.com/getActivity/ToastUtils
-            "toast"                  : "com.hjq:toast:8.6",
+            "toast"                  : "com.hjq:toast:8.8",
 
             // 标题栏框架
             // https://github.com/getActivity/TitleBar
-            "titlebar"               : "com.hjq:titlebar:8.2",
+            "titlebar"               : "com.hjq:titlebar:8.5",
 
             //应用升级
             //https://github.com/teprinciple/UpdateAppUtils
