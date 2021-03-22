@@ -43,14 +43,9 @@ class ClassmateCircleDetailActivity :
 
     companion object {
         fun actionStart(id: Long) {
-            var intent =
-                Intent(
-                    ActivityUtils.getTopActivity(),
-                    ClassmateCircleDetailActivity::class.java
-                ).apply {
-                    putExtra(GlobalConst.Extras.ID, id)
-                }
-            ActivityUtils.startActivity(intent)
+            startActivity<ClassmateCircleDetailActivity> {
+                putExtra(GlobalConst.Extras.ID, id)
+            }
         }
     }
 
@@ -241,7 +236,10 @@ class ClassmateCircleDetailActivity :
     private fun initData() {
         mBinding.refreshLayout.refreshRecycler.adapter = mAdapter
         RecyclerUtils.initRecyclerView(this, mBinding.refreshLayout.refreshRecycler)
-        RecyclerUtils.initRefreshLayoutListener(mBinding.refreshLayout.smartRefreshLayout, mViewModel)
+        RecyclerUtils.initRefreshLayoutListener(
+            mBinding.refreshLayout.smartRefreshLayout,
+            mViewModel
+        )
         RecyclerUtils.initLoadingLayoutListener(
             mBinding.refreshLayout.refreshLoadingLayout,
             mViewModel

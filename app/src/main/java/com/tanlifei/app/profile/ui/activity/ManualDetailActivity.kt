@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
+import com.common.utils.extension.startActivity
 import com.tanlifei.app.databinding.ActivityManualDetailBinding
 import com.tanlifei.app.profile.viewmodel.ManualViewModel
 import java.net.URL
@@ -22,13 +23,9 @@ class ManualDetailActivity : BaseToolBarActivity<ActivityManualDetailBinding, Ma
 
     companion object {
         fun actionStart(id: Long) {
-            var intent = Intent(
-                ActivityUtils.getTopActivity(),
-                ManualDetailActivity::class.java
-            ).apply {
+            startActivity<ManualDetailActivity> {
                 putExtra(GlobalConst.Extras.ID, id)
             }
-            ActivityUtils.startActivity(intent)
         }
     }
 

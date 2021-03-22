@@ -2,6 +2,7 @@ package com.common.core.base.ui.activity
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
@@ -56,7 +57,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 子类设置Adapter
      */
-    protected abstract fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>
+    protected abstract fun <T> setAdapter(): T
 
 
     /**

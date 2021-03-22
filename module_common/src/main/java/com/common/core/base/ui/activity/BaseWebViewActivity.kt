@@ -13,6 +13,7 @@ import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.databinding.ActivityBaseWebBinding
 import com.common.utils.extension.setVisible
+import com.common.utils.extension.startActivity
 
 /**
  * @desc:公用的WebView
@@ -26,12 +27,10 @@ class BaseWebViewActivity : BaseToolBarActivity<ActivityBaseWebBinding, EmptyVie
 
     companion object {
         fun actionStart(title: String?, url: String) {
-            var intent =
-                Intent(ActivityUtils.getTopActivity(), BaseWebViewActivity::class.java).apply {
-                    putExtra(GlobalConst.Extras.URL, url)
-                    putExtra(GlobalConst.Extras.TITLE, title)
-                }
-            ActivityUtils.startActivity(intent)
+            startActivity<BaseWebViewActivity> {
+                putExtra(GlobalConst.Extras.URL, url)
+                putExtra(GlobalConst.Extras.TITLE, title)
+            }
         }
     }
 

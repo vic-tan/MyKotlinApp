@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnItemClickListener
-import com.common.utils.extension.click
 import com.common.utils.extension.clickEnable
 import java.util.*
 

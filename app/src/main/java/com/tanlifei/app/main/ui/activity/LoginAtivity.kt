@@ -40,7 +40,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
 
     companion object {
         fun actionStart() {
-            ActivityUtils.startActivity(LoginAtivity::class.java)
+            startActivity<LoginAtivity> { }
             ActivityUtils.finishOtherActivities(LoginAtivity::class.java)
         }
     }
@@ -233,7 +233,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 设置触摸不收起键盘控件
      */
     override fun showSoftByEditView(): MutableList<View> {
-        return  mutableListOf(mBinding.phone,mBinding.code)
+        return mutableListOf(mBinding.phone, mBinding.code)
     }
 
 
@@ -284,7 +284,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         LoginUtils.phoneFormatTextChanged(mBinding.phone, s, count)
     }
-
 
 
 }

@@ -2,6 +2,7 @@ package com.tanlifei.app.main.ui.activity
 
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.ui.activity.BaseActivity
+import com.common.utils.extension.startActivity
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityGuideBinding
 import com.tanlifei.app.main.adapter.GuideAdapter
@@ -19,7 +20,7 @@ class GuideActivity : BaseActivity<ActivityGuideBinding>() {
 
     companion object {
         fun actionStart() {
-            ActivityUtils.startActivity(GuideActivity::class.java)
+            startActivity<GuideActivity> { }
         }
     }
 

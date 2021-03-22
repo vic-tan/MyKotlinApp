@@ -15,15 +15,13 @@ import com.blankj.utilcode.util.RegexUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.bean.UserBean
 import com.common.core.base.ui.activity.BaseFormActivity
-import com.common.utils.extension.click
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityAddressManngerBinding
 import com.tanlifei.app.profile.bean.AreaBean
 import com.tanlifei.app.profile.viewmodel.AddressViewModel
 import com.common.cofing.constant.GlobalConst.ActivityResult
+import com.common.utils.extension.*
 
 
 /**
@@ -39,15 +37,9 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
 
     companion object {
         fun actionStart(user: UserBean) {
-            var intent =
-                Intent(ActivityUtils.getTopActivity(), AddressManagerActivity::class.java).apply {
-                    putExtra(GlobalConst.Extras.BEAN, user)
-                }
-            ActivityUtils.startActivityForResult(
-                ActivityUtils.getTopActivity(),
-                intent,
-                ActivityResult.REQUEST_CODE_2
-            )
+            startActivityForResult<AddressManagerActivity>(ActivityResult.REQUEST_CODE_2) {
+                putExtra(GlobalConst.Extras.BEAN, user)
+            }
         }
     }
 

@@ -12,6 +12,8 @@ import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.databinding.ActivityIntroductionBinding
 import com.common.cofing.constant.GlobalConst.ActivityResult
+import com.common.utils.extension.startActivity
+import com.common.utils.extension.startActivityForResult
 
 
 /**
@@ -24,15 +26,9 @@ class IntroductionActivity : BaseFormActivity<ActivityIntroductionBinding, Empty
 
     companion object {
         fun actionStart(content: String?) {
-            var intent =
-                Intent(ActivityUtils.getTopActivity(), IntroductionActivity::class.java).apply {
-                    putExtra(GlobalConst.Extras.CONTENT, content)
-                }
-            ActivityUtils.startActivityForResult(
-                ActivityUtils.getTopActivity(),
-                intent,
-                ActivityResult.REQUEST_CODE_1
-            )
+            startActivityForResult<IntroductionActivity>(ActivityResult.REQUEST_CODE_1){
+                putExtra(GlobalConst.Extras.CONTENT, content)
+            }
         }
     }
 

@@ -16,6 +16,7 @@ import com.common.core.environment.utils.EnvironmentUtils
 import com.common.core.environment.viewmodel.EnvironmentSwitchViewModel
 import com.common.databinding.ActivityEnvironmentSwitchBinding
 import com.common.databinding.ItemEnvironmentContentBinding
+import com.common.utils.extension.startActivity
 import com.google.gson.Gson
 import com.hjq.bar.OnTitleBarListener
 
@@ -30,14 +31,9 @@ class EnvironmentSwitchActivity :
 
     companion object {
         private fun actionStart(list: MutableList<ModuleBean>) {
-            val mapStr = Gson().toJson(list)
-            var intent = Intent(
-                ActivityUtils.getTopActivity(),
-                EnvironmentSwitchActivity::class.java
-            ).apply {
-                putExtra(GlobalConst.Extras.JSON, mapStr)
+            startActivity<EnvironmentSwitchActivity> {
+                putExtra(GlobalConst.Extras.JSON, Gson().toJson(list))
             }
-            ActivityUtils.startActivity(intent)
         }
 
         fun actionStart() {

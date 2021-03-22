@@ -7,6 +7,7 @@ import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.extension.clickListener
+import com.common.utils.extension.startActivity
 import com.tanlifei.app.common.config.api.ApiConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
 import com.tanlifei.app.profile.viewmodel.AboutViewModel
@@ -20,7 +21,7 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
 
     companion object {
         fun actionStart() {
-            ActivityUtils.startActivity(AboutActivity::class.java)
+            startActivity<AboutActivity> { }
         }
     }
 

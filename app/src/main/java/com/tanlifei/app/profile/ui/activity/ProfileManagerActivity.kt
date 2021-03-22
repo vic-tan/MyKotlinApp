@@ -32,6 +32,7 @@ import com.tanlifei.app.profile.bean.UniversityBean
 import com.tanlifei.app.profile.viewmodel.ProfileViewModel
 import org.greenrobot.eventbus.EventBus
 import com.common.cofing.constant.GlobalConst.ActivityResult
+import com.common.utils.extension.startActivity
 
 
 /**
@@ -47,7 +48,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
 
     companion object {
         fun actionStart() {
-            ActivityUtils.startActivity(ProfileManagerActivity::class.java)
+            startActivity<ProfileManagerActivity> {  }
         }
     }
 

@@ -12,6 +12,7 @@ import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
 import com.common.utils.extension.setVisible
+import com.common.utils.extension.startActivity
 import com.tanlifei.app.common.event.UserEvent
 import com.tanlifei.app.databinding.ActivityMainBinding
 import com.tanlifei.app.main.viewmodel.MainViewModel
@@ -32,7 +33,7 @@ open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
 
     companion object {
         fun actionStart() {
-            ActivityUtils.startActivity(MainActivity::class.java)
+            startActivity<MainActivity> { }
         }
     }
 

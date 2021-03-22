@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
+import com.common.utils.extension.startActivity
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.databinding.ItemManualBinding
@@ -24,7 +25,7 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
 
     companion object {
         fun actionStart() {
-            ActivityUtils.startActivity(ManualActivity::class.java)
+            startActivity<ManualActivity> { }
         }
     }
 
@@ -56,8 +57,8 @@ class ManualActivity : BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, Man
         })
     }
 
-    override fun setAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        return mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+    override fun <ManualAdapter> setAdapter(): ManualAdapter {
+        return mAdapter as ManualAdapter
     }
 
     override fun smartRefreshLayout(): SmartRefreshLayout {

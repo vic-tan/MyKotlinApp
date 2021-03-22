@@ -8,6 +8,7 @@ import com.common.ComFun
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.ComDialogUtils
 import com.common.utils.extension.clickListener
+import com.common.utils.extension.startActivity
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding
@@ -20,12 +21,12 @@ import com.tanlifei.app.profile.viewmodel.SettingViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewModel>(){
+class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewModel>() {
 
 
     companion object {
         fun actionStart() {
-            ActivityUtils.startActivity(SettingActivity::class.java)
+            startActivity<SettingActivity> { }
         }
     }
 
