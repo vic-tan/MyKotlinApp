@@ -33,12 +33,6 @@ class ManualActivity :
     }
 
     override fun init() {
-        initData()
-    }
-
-
-    private fun initData() {
-        mAdapter.mData = mViewModel.mData
         initRefreshView(
             mBinding.refreshLayout.smartRefreshLayout,
             mBinding.refreshLayout.refreshRecycler,
