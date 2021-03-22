@@ -16,8 +16,8 @@ import com.tanlifei.app.home.bean.MenuBean
  * @author: tanlifei
  * @date: 2021/2/7 15:41
  */
-class HomeViewModel() : BaseViewModel() {
-    var mData: MutableList<ClassmateCircleBean> = mutableListOf()
+class HomeViewModel : BaseViewModel() {
+    var mData: MutableList<Any> = mutableListOf()
     var bannerData: MutableList<BannerBean> = mutableListOf()
     var menuData: MutableList<Any> = mutableListOf()
     var adsnoviceData: MutableList<AdsnoviceBean> = mutableListOf()

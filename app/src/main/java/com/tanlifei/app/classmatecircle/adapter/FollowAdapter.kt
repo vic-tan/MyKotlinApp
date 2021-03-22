@@ -5,10 +5,11 @@ import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
+import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
 import com.common.utils.extension.screenWidth
 import com.common.utils.extension.setVisible
@@ -26,7 +27,7 @@ import java.util.*
  * @date: 2021/2/24 16:02
  */
 class FollowAdapter:
-    CommonRvAdapter<ClassmateCircleBean, ItemFollowBinding>() {
+    CommonRvMultiItemAdapter<ClassmateCircleBean>() {
     private lateinit var mContext: Context
     private var mTextViewWidth = screenWidth - ConvertUtils.dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
@@ -35,7 +36,7 @@ class FollowAdapter:
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ItemFollowBinding> {
+    ): CommonRvHolder<ViewBinding> {
         mContext = parent.context
         return CommonRvHolder(
             ItemFollowBinding.inflate(
@@ -47,45 +48,46 @@ class FollowAdapter:
     }
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ItemFollowBinding>,
+        holder: ViewBinding,
         position: Int,
-        binding: ItemFollowBinding,
         bean: ClassmateCircleBean
     ) {
-        holder.binding.banner.layoutParams.width = screenWidth
-        holder.binding.banner.layoutParams.height =
+        holder as ItemFollowBinding
+        holder.banner.layoutParams.width = screenWidth
+        holder.banner.layoutParams.height =
             AutoHeightUtils.getHeightParams(screenWidth, bean.image)
 
-        holder.binding.name.text = bean.nickName
-        holder.binding.school.text =
+        holder.name.text = bean.nickName
+        holder.school.text =
             if (ObjectUtils.isEmpty(bean.createtimeStr)) bean.universityName else "${bean.createtimeStr}  ${bean.universityName}"
-        GlideUtils.load(mContext, bean.image?.url, holder.binding.banner)
-        GlideUtils.loadAvatar(mContext, bean.avatar, holder.binding.userHead)
-        holder.binding.expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
+        GlideUtils.load(mContext, bean.image?.url, holder.banner)
+        GlideUtils.loadAvatar(mContext, bean.avatar, holder.userHead)
+        holder.expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
             override fun onExpand(view: ExpandTextView) {
-                mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
+                mPositionsAndStates.put(position, view.getExpandState())
             }
 
             override fun onShrink(view: ExpandTextView) {
-                mPositionsAndStates.put(holder.adapterPosition, view.getExpandState())
+                mPositionsAndStates.put(position, view.getExpandState())
             }
 
         })
-        val state: Int? = mPositionsAndStates.get(holder.adapterPosition)
-        holder.binding.expandTextView.updateForRecyclerView(
+        val state: Int? = mPositionsAndStates.get(position)
+        holder.expandTextView.updateForRecyclerView(
             bean.content,
             mTextViewWidth,
             state ?: 0
         )
-        holder.binding.expandTextView.setVisible(ObjectUtils.isNotEmpty(bean.content))
-        holder.binding.marginView.setVisible(ObjectUtils.isNotEmpty(bean.content))
-        holder.binding.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
-        holder.binding.praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
-        holder.binding.commentCount.text = NumberUtils.setCommentCount(bean.comment)
+        holder.expandTextView.setVisible(ObjectUtils.isNotEmpty(bean.content))
+        holder.marginView.setVisible(ObjectUtils.isNotEmpty(bean.content))
+        holder.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
+        holder.praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+        holder.commentCount.text = NumberUtils.setCommentCount(bean.comment)
     }
 
-    override fun addChildClickViewIds(binding: ItemFollowBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.more, binding.shareLayout, binding.banner)
+    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+        holder as ItemFollowBinding
+        return linkedSetOf(holder.more, holder.shareLayout, holder.banner)
     }
 
 }

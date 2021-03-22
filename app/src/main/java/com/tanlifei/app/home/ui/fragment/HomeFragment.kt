@@ -9,7 +9,6 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.BasePagerAdapter
-import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.fragment.BaseBVMFragment
 import com.common.core.base.viewmodel.BaseListViewModel
@@ -148,13 +147,14 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         menuAdapter = MenuAdapter()
         menuAdapter.mData = mViewModel.menuData
         menuAdapter.setItemClickListener(object :
-            OnItemClickListener<ItemHomeMenuBinding, MenuBean> {
+            OnMultiItemListener<MenuBean> {
             override fun click(
-                itemBinding: ItemHomeMenuBinding,
+                itemBinding: ViewBinding,
                 itemBean: MenuBean,
                 v: View,
                 position: Int
             ) {
+                itemBinding as ItemHomeMenuBinding
                 when (v) {
                     itemBinding.item -> toast(itemBean.name)
                 }

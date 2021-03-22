@@ -21,9 +21,7 @@ import java.util.*
 class HomeAdapter :
     CommonRvMultiItemAdapter<ClassmateCircleBean>() {
     private lateinit var mContext: Context
-    override fun setItemViewType(int: Int): Int {
-        return ItemViewType.CONTEN.ordinal
-    }
+  
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,

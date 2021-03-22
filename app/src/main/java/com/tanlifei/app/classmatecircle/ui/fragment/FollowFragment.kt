@@ -3,7 +3,9 @@ package com.tanlifei.app.classmatecircle.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.common.core.base.listener.OnItemClickListener
+import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
@@ -56,13 +58,14 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         mAdapter = FollowAdapter()
         mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
-            OnItemClickListener<ItemFollowBinding, ClassmateCircleBean> {
+            OnMultiItemListener<ClassmateCircleBean> {
             override fun click(
-                binding: ItemFollowBinding,
+                binding: ViewBinding,
                 bean: ClassmateCircleBean,
                 v: View,
                 position: Int
             ) {
+                binding as ItemFollowBinding
                 when (v) {
                     binding.more,
                     binding.shareLayout -> {

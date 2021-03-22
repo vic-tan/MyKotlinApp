@@ -23,10 +23,6 @@ import java.util.*
 class CommentAdapter :
     CommonRvMultiItemAdapter<CommentBean>() {
 
-    override fun setItemViewType(int: Int): Int {
-        return ItemViewType.CONTEN.ordinal
-    }
-
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,

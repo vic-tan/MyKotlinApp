@@ -3,8 +3,9 @@ package com.tanlifei.app.profile.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.common.core.base.adapter.CommonRvAdapter
+import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvHolder
+import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.bean.ManualBean
 import java.util.*
@@ -15,26 +16,27 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class ManualAdapter :
-    CommonRvAdapter<ManualBean, ItemManualBinding>() {
+    CommonRvMultiItemAdapter<ManualBean>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ItemManualBinding> {
+    ): CommonRvHolder<ViewBinding> {
         return CommonRvHolder(ItemManualBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ItemManualBinding>,
+        holder: ViewBinding,
         position: Int,
-        binding: ItemManualBinding,
         bean: ManualBean
     ) {
-        holder.binding.title.text = bean.title
+        val holder = holder as ItemManualBinding
+        holder.title.text = bean.title
     }
 
-    override fun addChildClickViewIds(binding: ItemManualBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.item)
+    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+        val holder = holder as ItemManualBinding
+        return linkedSetOf(holder.item)
     }
 }

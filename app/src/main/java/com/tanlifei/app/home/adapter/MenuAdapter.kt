@@ -4,8 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.common.core.base.adapter.CommonRvAdapter
+import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvHolder
+import com.common.core.base.adapter.CommonRvMultiItemAdapter
 import com.common.utils.GlideUtils
 import com.tanlifei.app.databinding.ItemHomeMenuBinding
 import com.tanlifei.app.home.bean.MenuBean
@@ -17,29 +18,30 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class MenuAdapter :
-    CommonRvAdapter<MenuBean, ItemHomeMenuBinding>() {
+    CommonRvMultiItemAdapter<MenuBean>() {
     private lateinit var mContext: Context
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ItemHomeMenuBinding> {
+    ): CommonRvHolder<ViewBinding> {
         mContext = parent.context
         return CommonRvHolder(ItemHomeMenuBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(
-        holder: CommonRvHolder<ItemHomeMenuBinding>,
+        holder: ViewBinding,
         position: Int,
-        binding: ItemHomeMenuBinding,
         bean: MenuBean
     ) {
-        holder.binding.title.text = bean.name
-        GlideUtils.load(mContext, bean.image, binding.icon)
+        holder as ItemHomeMenuBinding
+        holder.title.text = bean.name
+        GlideUtils.load(mContext, bean.image, holder.icon)
     }
 
-    override fun addChildClickViewIds(binding: ItemHomeMenuBinding): LinkedHashSet<View> {
-        return linkedSetOf(binding.item)
+    override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {
+        holder as ItemHomeMenuBinding
+        return linkedSetOf(holder.item)
     }
 
 

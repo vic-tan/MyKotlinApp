@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnItemClickListener
+import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.utils.extension.toast
 import com.common.widget.LoadingLayout
@@ -56,13 +58,14 @@ class HomeRecommendFragment :
         mAdapter = HomeRecommentAdapter()
         mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
-            OnItemClickListener<ItemHomeRecommentBinding, ClassmateCircleBean> {
+            OnMultiItemListener<ClassmateCircleBean> {
             override fun click(
-                itemBinding: ItemHomeRecommentBinding,
+                itemBinding: ViewBinding,
                 itemBan: ClassmateCircleBean,
                 v: View,
                 position: Int
             ) {
+                itemBinding as ItemHomeRecommentBinding
                 when (v) {
                     itemBinding.item -> toast(itemBan.nickName)
                 }

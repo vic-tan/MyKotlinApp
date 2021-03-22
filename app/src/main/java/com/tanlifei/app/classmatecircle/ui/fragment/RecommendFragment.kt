@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.listener.OnItemClickListener
+import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
-import com.common.widget.LoadingLayout
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -52,13 +51,14 @@ class RecommendFragment :
         mAdapter = RecommendAdapter()
         mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
-            OnItemClickListener<ItemRecommendBinding, ClassmateCircleBean> {
+            OnMultiItemListener<ClassmateCircleBean> {
             override fun click(
-                itemBinding: ItemRecommendBinding,
+                itemBinding: ViewBinding,
                 itemBean: ClassmateCircleBean,
                 v: View,
                 position: Int
             ) {
+                itemBinding as ItemRecommendBinding
                 when (v) {
                     itemBinding.item -> ClassmateCircleDetailActivity.actionStart(itemBean.publishId)
                 }

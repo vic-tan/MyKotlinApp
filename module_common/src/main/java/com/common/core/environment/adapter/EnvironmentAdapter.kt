@@ -46,22 +46,22 @@ class EnvironmentAdapter :
     override fun onBindViewHolder(
         holder: ViewBinding,
         position: Int,
-        bean: EnvironmentBean
+        itemBean: EnvironmentBean
     ) {
         when (holder) {
             is ItemEnvironmentTitleBinding -> {
-                holder.title.text = bean.alias
+                holder.title.text = itemBean.alias
             }
             is ItemEnvironmentContentBinding -> {
-                holder.title.text = bean.alias
-                holder.url.text = bean.url
-                holder.radio.setImageResource(if (bean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
+                holder.title.text = itemBean.alias
+                holder.url.text = itemBean.url
+                holder.radio.setImageResource(if (itemBean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
             }
         }
     }
 
-    override fun setItemViewType(position: Int): Int {
-        return mData[position].itemType
+    override fun setItemViewType(itemBean: EnvironmentBean): Int {
+        return itemBean.itemType
     }
 
     override fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View> {

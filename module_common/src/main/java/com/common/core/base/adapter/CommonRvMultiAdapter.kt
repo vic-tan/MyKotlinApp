@@ -32,7 +32,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     /**
      * 数据源
      */
-    var mData: MutableList<T> = mutableListOf()
+    var mData: MutableList<Any> = mutableListOf()
         set(value) {
             field = value
             notifyItemRangeChanged(0, value.size)
@@ -72,7 +72,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         if (isFooterPosition(position)) {
             return ItemViewType.FOOTER.value + position
         }
-        return setItemViewType(position)
+        return setItemViewType(mData[position] as T)
     }
 
 
@@ -166,7 +166,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
         onBindViewHolder(
             holder.binding,
             adapterPosition,
-            mData[adapterPosition]
+            mData[adapterPosition] as T
         )
         addViewList(addChildClickViewIds(holder.binding))
         if (ObjectUtils.isNotEmpty(mChildClickViews)) {
@@ -176,7 +176,7 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
                         if (it.clickEnable()) {
                             setOnItemClick(
                                 holder.binding,
-                                mData[adapterPosition],
+                                mData[adapterPosition] as T,
                                 v,
                                 adapterPosition
                             )
@@ -196,7 +196,10 @@ abstract class CommonRvMultiItemAdapter<T : Any> :
     ): CommonRvHolder<ViewBinding>
 
     abstract fun onBindViewHolder(holder: ViewBinding, position: Int, bean: T)
-    abstract fun setItemViewType(int: Int): Int
+
+    open fun setItemViewType(bean: T): Int {
+        return ItemViewType.CONTEN.ordinal
+    }
 
     abstract fun addChildClickViewIds(holder: ViewBinding): LinkedHashSet<View>
 
