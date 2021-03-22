@@ -16,7 +16,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/24 15:50
  */
-abstract class CommonRvAdapter<T : Any> :
+abstract class CommonRvAdapter<T> :
     RecyclerView.Adapter<CommonRvHolder<ViewBinding>>() {
 
     /**

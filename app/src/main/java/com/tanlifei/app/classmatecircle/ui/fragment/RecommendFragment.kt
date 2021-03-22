@@ -48,7 +48,6 @@ class RecommendFragment :
     }
 
     override fun onFirstVisibleToUser() {
-        mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
             OnItemClickListener<ClassmateCircleBean> {
             override fun click(

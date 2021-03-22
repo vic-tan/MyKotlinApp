@@ -54,7 +54,6 @@ class FollowFragment :
 
     override fun initView() {
         super.initView()
-        mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
             OnItemClickListener<ClassmateCircleBean> {
             override fun click(

@@ -52,6 +52,11 @@ abstract class BaseRecyclerBVMFragment<V : ViewBinding, T : Any, VM : BaseListVi
         mViewModel.mApplication = requireActivity().application
     }
 
+    override fun initView() {
+        super.initView()
+        mAdapter.mData = mViewModel.mData
+    }
+
 
     /**
      * 初始化
@@ -66,7 +71,7 @@ abstract class BaseRecyclerBVMFragment<V : ViewBinding, T : Any, VM : BaseListVi
             mLoadingLayout,
             mViewModel,
             this,
-            setAdapter() as RecyclerView.Adapter<RecyclerView.ViewHolder>
+            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
         )
         RecyclerUtils.initListener(
             mSmartRefreshLayout,
@@ -90,7 +95,7 @@ abstract class BaseRecyclerBVMFragment<V : ViewBinding, T : Any, VM : BaseListVi
      */
     private fun initRecyclerView(mRefreshRecycler: RecyclerView) {
         mRefreshRecycler.layoutManager = setLinearLayoutManager()
-        mRefreshRecycler.adapter = setAdapter() as RecyclerView.Adapter<RecyclerView.ViewHolder>
+        mRefreshRecycler.adapter = mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
         mRefreshRecycler.itemAnimator = null
     }
 

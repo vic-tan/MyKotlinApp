@@ -3,7 +3,6 @@ package com.common.core.base.ui.activity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
@@ -64,7 +63,6 @@ abstract class BaseRecyclerBVMActivity<V : ViewBinding, T : Any, VM : BaseListVi
      */
     protected open fun setLinearLayoutManager(): RecyclerView.LayoutManager {
         return RecyclerUtils.setLinearLayoutManager(this)
-
     }
 
     /**
