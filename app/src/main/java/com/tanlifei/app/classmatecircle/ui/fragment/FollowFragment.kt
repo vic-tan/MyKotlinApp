@@ -28,12 +28,7 @@ class FollowFragment :
 
 
     companion object {
-        fun newInstance(): FollowFragment {
-            val fragment = FollowFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = FollowFragment()
     }
 
     override fun createViewModel(): FollowViewModel {

@@ -27,12 +27,7 @@ class HomeRecommendFragment :
 
 
     companion object {
-        fun newInstance(): HomeRecommendFragment {
-            val fragment = HomeRecommendFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance()=HomeRecommendFragment()
     }
 
     override fun createViewModel(): HomeRecommendViewModel {

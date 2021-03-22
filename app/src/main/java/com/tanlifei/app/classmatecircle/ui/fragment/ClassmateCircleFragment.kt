@@ -20,12 +20,7 @@ class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>
     private var mFragments: MutableList<Fragment> = ArrayList()
 
     companion object {
-        fun newInstance(): ClassmateCircleFragment {
-            val fragment = ClassmateCircleFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = ClassmateCircleFragment()
     }
 
 

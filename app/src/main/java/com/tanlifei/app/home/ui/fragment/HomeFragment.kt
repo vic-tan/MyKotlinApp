@@ -48,12 +48,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
     private var isFirstLoad = true
 
     companion object {
-        fun newInstance(): HomeFragment {
-            val fragment = HomeFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = HomeFragment()
     }
 
 

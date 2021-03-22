@@ -23,3 +23,4 @@ inline fun <reified T> startActivityForResult(requestCode: Int, block: Intent.()
         requestCode
     )
 }
+

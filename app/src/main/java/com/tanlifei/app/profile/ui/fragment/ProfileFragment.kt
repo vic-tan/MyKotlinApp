@@ -29,12 +29,7 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>() {
     private lateinit var mHomeViewModel: MainViewModel
 
     companion object {
-        fun newInstance(): ProfileFragment {
-            val fragment = ProfileFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance()=ProfileFragment()
     }
 
     override fun onFirstVisibleToUser() {

@@ -13,14 +13,8 @@ class StudyFragment : BaseLazyFragment<FragmentStudyBinding>() {
 
 
     companion object {
-        fun newInstance(): StudyFragment {
-            val fragment = StudyFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = StudyFragment()
     }
-
 
 
     override fun onFirstVisibleToUser() {

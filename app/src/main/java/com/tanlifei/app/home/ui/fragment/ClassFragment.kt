@@ -12,12 +12,7 @@ import com.tanlifei.app.databinding.FragmentStudyBinding
 class ClassFragment : BaseLazyFragment<FragmentStudyBinding>() {
 
     companion object {
-        fun newInstance(): ClassFragment {
-            val fragment = ClassFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = ClassFragment()
     }
 
     override fun onFirstVisibleToUser() {

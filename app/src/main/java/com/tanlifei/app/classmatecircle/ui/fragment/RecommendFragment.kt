@@ -1,6 +1,5 @@
 package com.tanlifei.app.classmatecircle.ui.fragment
 
-import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -28,12 +27,11 @@ class RecommendFragment :
 
 
     companion object {
-        fun newInstance(id: Long): RecommendFragment {
-            val fragment = RecommendFragment()
-            val args = Bundle()
-            args.putLong(GlobalConst.Extras.ID, id)
-            fragment.arguments = args
-            return fragment
+
+        fun newInstance(id: Long)=RecommendFragment().apply{
+            arguments?.apply {
+                putLong(GlobalConst.Extras.ID, id)
+            }
         }
     }
 

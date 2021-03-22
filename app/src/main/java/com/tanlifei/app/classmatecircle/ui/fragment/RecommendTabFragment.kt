@@ -32,12 +32,7 @@ class RecommendTabFragment :
     BaseBVMFragment<FragmentClassmatecircleRecommendBinding, RecommendTabViewModel>() {
 
     companion object {
-        fun newInstance(): RecommendTabFragment {
-            val fragment = RecommendTabFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance() = RecommendTabFragment()
     }
 
     override fun createViewModel(): RecommendTabViewModel {
