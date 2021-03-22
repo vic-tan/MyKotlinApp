@@ -1,15 +1,18 @@
 package com.common.utils.extension
 
 
-import android.content.Context
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 
 /**
  * @desc:View扩展类
  * @author: tanlifei
  * @date: 2021/3/10 17:07
  */
+
+// 两次点击按钮之间的点击间隔不能少于500毫秒
+private var INTERNAL_TIME: Long = 500
+
+private var lastClickTime: Long = 0
 
 /**
  * view的显示隐藏
@@ -47,7 +50,6 @@ fun View.gone() {
 }
 
 
-
 /**
  * view点击,带有防重复点击
  */
@@ -66,33 +68,17 @@ fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener {
 }
 
 /**
- * 是否可以点击
+ *两次点击按钮之间的点击间隔不能少于500毫秒
  */
-fun <T : View> T.clickEnable(): Boolean {
+fun <T : View> T.clickEnable(mDelayTime: Long = 500): Boolean {
+    INTERNAL_TIME = mDelayTime
     var flag = false
-    val currentClickTime = System.currentTimeMillis()
-    if (currentClickTime - triggerLastTime >= triggerDelay) {
+    val curClickTime = System.currentTimeMillis()
+    if (curClickTime - lastClickTime >= INTERNAL_TIME) {
         flag = true
     }
-    triggerLastTime = currentClickTime
+    lastClickTime = curClickTime
     return flag
 }
 
-/**
- * 最后点击时间
- */
-private var <T : View> T.triggerLastTime: Long
-    get() = if (getTag(1123460103) != null) getTag(1123460103) as Long else 0
-    set(value) {
-        setTag(1123460103, value)
-    }
-
-/**
- * 点击延迟时间，默认500ms
- */
-private var <T : View> T.triggerDelay: Long
-    get() = if (getTag(1123461123) != null) getTag(1123461123) as Long else 500
-    set(value) {
-        setTag(1123461123, value)
-    }
 
