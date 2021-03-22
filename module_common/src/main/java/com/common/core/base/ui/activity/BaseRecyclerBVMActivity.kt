@@ -1,8 +1,10 @@
 package com.common.core.base.ui.activity
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
+import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
@@ -34,6 +36,7 @@ abstract class BaseRecyclerBVMActivity<V : ViewBinding, T, VM : BaseListViewMode
         mRefreshRecycler: RecyclerView,
         mLoadingLayout: LoadingLayout
     ) {
+        initAdapter()
         RecyclerUtils.initViewModelObserve(
             mSmartRefreshLayout,
             mLoadingLayout,
@@ -49,7 +52,18 @@ abstract class BaseRecyclerBVMActivity<V : ViewBinding, T, VM : BaseListViewMode
         )
         initRecyclerView(mRefreshRecycler)
         RecyclerUtils.initData(mViewModel)
+    }
 
+    /**
+     * 初始化initAdapter()
+     */
+    private fun initAdapter() {
+        mAdapter.mData = mViewModel.mData
+        mAdapter.setItemClickListener(object : OnItemClickListener<T> {
+            override fun click(holder: ViewBinding, itemBean: T, v: View, position: Int) {
+                itemClick(holder, itemBean, v, position)
+            }
+        })
     }
 
     /**
@@ -72,5 +86,11 @@ abstract class BaseRecyclerBVMActivity<V : ViewBinding, T, VM : BaseListViewMode
      * 子类设置Adapter
      */
     protected abstract fun setAdapter(): CommonRvAdapter<T>
+
+    /**
+     * item 点击事件
+     */
+    open fun itemClick(holder: ViewBinding, itemBean: T, v: View, position: Int) {
+    }
 
 }

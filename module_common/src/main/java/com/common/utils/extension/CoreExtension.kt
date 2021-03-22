@@ -1,15 +1,12 @@
 package com.common.utils.extension
 
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.BuildConfig
 import com.common.ComFun
-import com.common.cofing.constant.GlobalConst
 import com.hjq.toast.ToastUtils
 
 

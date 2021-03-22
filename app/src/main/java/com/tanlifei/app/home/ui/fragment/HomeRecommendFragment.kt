@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.utils.extension.toast
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
@@ -52,20 +51,6 @@ class HomeRecommendFragment :
 
     override fun initView() {
         super.initView()
-        mAdapter.setItemClickListener(object :
-            OnItemClickListener<ClassmateCircleBean> {
-            override fun click(
-                itemBinding: ViewBinding,
-                itemBan: ClassmateCircleBean,
-                v: View,
-                position: Int
-            ) {
-                itemBinding as ItemHomeRecommentBinding
-                when (v) {
-                    itemBinding.item -> toast(itemBan.nickName)
-                }
-            }
-        })
     }
 
     fun refresh() {
@@ -80,6 +65,18 @@ class HomeRecommendFragment :
 
     override fun setAdapter(): CommonRvAdapter<ClassmateCircleBean> {
         return HomeRecommentAdapter()
+    }
+
+    override fun itemClick(
+        holder: ViewBinding,
+        itemBean: ClassmateCircleBean,
+        v: View,
+        position: Int
+    ) {
+        holder as ItemHomeRecommentBinding
+        when (v) {
+            holder.item -> toast(itemBean.nickName)
+        }
     }
 
 }

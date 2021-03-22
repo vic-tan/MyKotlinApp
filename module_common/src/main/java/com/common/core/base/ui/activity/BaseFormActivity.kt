@@ -6,7 +6,6 @@ import android.widget.EditText
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.KeyboardUtils
 import com.common.core.base.viewmodel.BaseViewModel
-import java.util.*
 
 /**
  * @desc: 有表单输入基类 主要是点输入显示键盘，点其它的地方收起键盘

@@ -8,7 +8,6 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
@@ -48,21 +47,6 @@ class RecommendFragment :
     }
 
     override fun onFirstVisibleToUser() {
-        mAdapter.setItemClickListener(object :
-            OnItemClickListener<ClassmateCircleBean> {
-            override fun click(
-                itemBinding: ViewBinding,
-                itemBean: ClassmateCircleBean,
-                v: View,
-                position: Int
-            ) {
-                itemBinding as ItemRecommendBinding
-                when (v) {
-                    itemBinding.item -> ClassmateCircleDetailActivity.actionStart(itemBean.publishId)
-                }
-            }
-
-        })
         initRecycler(
             mBinding.smartRefreshLayout,
             mBinding.refreshRecycler,
@@ -87,5 +71,16 @@ class RecommendFragment :
         return RecommendAdapter()
     }
 
+    override fun itemClick(
+        holder: ViewBinding,
+        itemBean: ClassmateCircleBean,
+        v: View,
+        position: Int
+    ) {
+        holder as ItemRecommendBinding
+        when (v) {
+            holder.item -> ClassmateCircleDetailActivity.actionStart(itemBean.publishId)
+        }
+    }
 
 }

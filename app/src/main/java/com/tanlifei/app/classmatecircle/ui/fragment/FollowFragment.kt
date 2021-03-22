@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
@@ -17,8 +16,6 @@ import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemFollowBinding
-import com.tanlifei.app.profile.adapter.ManualAdapter
-import com.tanlifei.app.profile.bean.ManualBean
 
 
 /**
@@ -54,51 +51,47 @@ class FollowFragment :
 
     override fun initView() {
         super.initView()
-        mAdapter.setItemClickListener(object :
-            OnItemClickListener<ClassmateCircleBean> {
-            override fun click(
-                binding: ViewBinding,
-                bean: ClassmateCircleBean,
-                v: View,
-                position: Int
-            ) {
-                binding as ItemFollowBinding
-                when (v) {
-                    binding.more,
-                    binding.shareLayout -> {
-                        context?.let {
-                            XPopup.Builder(it).asCustom(
-                                ShareView(
-                                    it,
-                                    ShareBean("网上老年大学", "https://www.baidu.com", "test 分享", ""),
-                                    object :
-                                        OnShareListener {
-                                        override fun onItemClick(
-                                            v: View,
-                                            type: ShareView.ShareType
-                                        ) {
-                                            toast(type.name)
-                                        }
-
-                                    })
-                            ).show()
-                        }
-                    }
-                    binding.banner -> {
-                        var list = mutableListOf<String>()
-                        var url = bean.image?.url
-                        url?.let { list.add(it) }
-                        PhotoUtils.showListPhoto(context, binding.banner, position, list)
-                    }
-                }
-            }
-
-
-        })
     }
 
     override fun setAdapter(): CommonRvAdapter<ClassmateCircleBean> {
         return FollowAdapter()
+    }
+
+    override fun itemClick(
+        holder: ViewBinding,
+        itemBean: ClassmateCircleBean,
+        v: View,
+        position: Int
+    ) {
+        holder as ItemFollowBinding
+        when (v) {
+            holder.more,
+            holder.shareLayout -> {
+                context?.let {
+                    XPopup.Builder(it).asCustom(
+                        ShareView(
+                            it,
+                            ShareBean("网上老年大学", "https://www.baidu.com", "test 分享", ""),
+                            object :
+                                OnShareListener {
+                                override fun onItemClick(
+                                    v: View,
+                                    type: ShareView.ShareType
+                                ) {
+                                    toast(type.name)
+                                }
+
+                            })
+                    ).show()
+                }
+            }
+            holder.banner -> {
+                var list = mutableListOf<String>()
+                var url = itemBean.image?.url
+                url?.let { list.add(it) }
+                PhotoUtils.showListPhoto(context, holder.banner, position, list)
+            }
+        }
     }
 
 }

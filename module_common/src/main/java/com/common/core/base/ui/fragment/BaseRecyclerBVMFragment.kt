@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
+import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.RecyclerUtils
@@ -57,9 +58,21 @@ abstract class BaseRecyclerBVMFragment<V : ViewBinding, T, VM : BaseListViewMode
 
     override fun initView() {
         super.initView()
-        mAdapter.mData = mViewModel.mData
+        initAdapter()
     }
 
+
+    /**
+     * 初始化initAdapter()
+     */
+    private fun initAdapter() {
+        mAdapter.mData = mViewModel.mData
+        mAdapter.setItemClickListener(object : OnItemClickListener<T> {
+            override fun click(holder: ViewBinding, itemBean: T, v: View, position: Int) {
+                itemClick(holder, itemBean, v, position)
+            }
+        })
+    }
 
     /**
      * 初始化
@@ -116,5 +129,10 @@ abstract class BaseRecyclerBVMFragment<V : ViewBinding, T, VM : BaseListViewMode
      */
     protected abstract fun setAdapter(): CommonRvAdapter<T>
 
+    /**
+     * item 点击事件
+     */
+    open fun itemClick(holder: ViewBinding, itemBean: T, v: View, position: Int) {
+    }
 
 }
