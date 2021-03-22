@@ -88,7 +88,7 @@ abstract class CommonRvAdapter<T> :
         if (isFooterPosition(position)) {
             return ItemViewType.FOOTER.value + position
         }
-        return setItemViewType(mData[position] as T)
+        return setItemViewType(mData[position - mHeaderViews.size] as T)
     }
 
 

@@ -26,7 +26,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/4 15:01
  */
-class MainViewModel() : BaseViewModel() {
+class MainViewModel : BaseViewModel() {
 
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mNavigator: NavigatorFragmentManager
