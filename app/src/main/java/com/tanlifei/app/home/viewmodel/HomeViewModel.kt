@@ -19,7 +19,7 @@ import com.tanlifei.app.home.bean.MenuBean
 class HomeViewModel() : BaseViewModel() {
     var mData: MutableList<ClassmateCircleBean> = mutableListOf()
     var bannerData: MutableList<BannerBean> = mutableListOf()
-    var menuData: MutableList<MenuBean> = mutableListOf()
+    var menuData: MutableList<Any> = mutableListOf()
     var adsnoviceData: MutableList<AdsnoviceBean> = mutableListOf()
     val homeHeaderDataChanged: LiveData<HomeHeaderDataBean> get() = _homeHeaderDataChanged
     private var _homeHeaderDataChanged = MutableLiveData<HomeHeaderDataBean>()

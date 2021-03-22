@@ -20,7 +20,6 @@ import rxhttp.toParser
 abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> :
     BaseToolBarActivity<T, VM>() {
 
-    private lateinit var mAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     /**
      * 初始化列表控件

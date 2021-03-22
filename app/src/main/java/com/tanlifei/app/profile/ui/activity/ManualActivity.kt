@@ -43,7 +43,7 @@ class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualView
 
     private fun initData() {
         mAdapter = ManualAdapter()
-        mAdapter.mData = mViewModel.mData as MutableList<ManualBean>
+        mAdapter.mData = mViewModel.mData
         initRefreshView()
         mAdapter.setItemClickListener(object :
             OnItemClickListener<ItemManualBinding, ManualBean> {

@@ -21,7 +21,7 @@ import com.lxj.xpopup.interfaces.OnSelectListener
  */
 class BottomOptionsView(
     mContext: Context,
-    var list: MutableList<String>,
+    var list: MutableList<Any>,
     var selectListener: OnSelectListener,
     var title: String = "",
     var cancel: String = "取消"

@@ -22,7 +22,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
     /**
      * 数据源
      */
-    var mData: MutableList<T> = mutableListOf()
+    var mData: MutableList<Any> = mutableListOf()
         set(value) {
             field = value
             notifyItemRangeChanged(0, value.size)
@@ -63,7 +63,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
             holder,
             holder.adapterPosition,
             holder.binding,
-            mData[holder.adapterPosition]
+            mData[holder.adapterPosition] as T
         )
         addViewList(addChildClickViewIds(holder.binding))
         if (ObjectUtils.isNotEmpty(mChildClickViews)) {
@@ -73,7 +73,7 @@ abstract class CommonRvAdapter<T : Any, V : ViewBinding> :
                         if (it.clickEnable()) {
                             setItemClick(
                                 holder.binding,
-                                mData[holder.adapterPosition],
+                                mData[holder.adapterPosition] as T,
                                 v,
                                 holder.adapterPosition
                             )

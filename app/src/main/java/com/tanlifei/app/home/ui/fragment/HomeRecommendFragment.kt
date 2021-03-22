@@ -50,7 +50,7 @@ class HomeRecommendFragment :
     override fun initView() {
         super.initView()
         mAdapter = HomeRecommentAdapter()
-        mAdapter.mData = mViewModel.mData as MutableList<ClassmateCircleBean>
+        mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
             OnItemClickListener<ItemHomeRecommentBinding, ClassmateCircleBean> {
             override fun click(
