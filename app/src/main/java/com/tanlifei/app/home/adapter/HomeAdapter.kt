@@ -1,6 +1,5 @@
 package com.tanlifei.app.home.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,13 +40,16 @@ class HomeAdapter :
         bean: ClassmateCircleBean
     ) {
         val holder = holder as ItemHomeBinding
-        holder.title.text = bean.nickName
-        holder.desc.text = bean.content
-        holder.time.text = "05月23日 15:20"
-        GlideUtils.load(mContext, bean.image?.url, holder.cover)
-        holder.headerTitleSplit.setVisible(position == 0)
-        holder.headerTitle.setVisible(position == 0)
-        holder.headerTitleLine.setVisible(position == 0)
+        holder.apply {
+           title.text = bean.nickName
+           desc.text = bean.content
+           time.text = "05月23日 15:20"
+            GlideUtils.load(mContext, bean.image?.url,cover)
+           headerTitleSplit.setVisible(position == 0)
+           headerTitle.setVisible(position == 0)
+           headerTitleLine.setVisible(position == 0)
+        }
+
     }
 
 

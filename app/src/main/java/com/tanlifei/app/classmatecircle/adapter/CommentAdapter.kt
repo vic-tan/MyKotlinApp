@@ -42,13 +42,16 @@ class CommentAdapter :
         bean: CommentBean
     ) {
         val holder = holder as ItemCommentBinding
-        holder.name.text = bean.nickname
-        holder.content.text = bean.content
-        holder.time.text = bean.createTimeStr
-        holder.school.text = bean.universityName
-        holder.school.setVisible(ObjectUtils.isNotEmpty(bean.universityName))
-        GlideUtils.loadAvatar(ComFun.mContext, bean.avatar, holder.userHead)
-        holder.delete.setVisible(UserInfoUtils.getUid() == bean.uid)
+        holder.apply {
+            name.text = bean.nickname
+            content.text = bean.content
+            time.text = bean.createTimeStr
+            school.text = bean.universityName
+            school.setVisible(ObjectUtils.isNotEmpty(bean.universityName))
+            GlideUtils.loadAvatar(ComFun.mContext, bean.avatar, userHead)
+            delete.setVisible(UserInfoUtils.getUid() == bean.uid)
+        }
+
     }
 
 

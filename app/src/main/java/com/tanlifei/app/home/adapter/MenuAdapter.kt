@@ -1,6 +1,5 @@
 package com.tanlifei.app.home.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +32,11 @@ class MenuAdapter :
         bean: MenuBean
     ) {
         holder as ItemHomeMenuBinding
-        holder.title.text = bean.name
-        GlideUtils.load(mContext, bean.image, holder.icon)
+        holder.apply {
+            title.text = bean.name
+            GlideUtils.load(mContext, bean.image, icon)
+        }
+
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {

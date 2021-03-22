@@ -1,6 +1,5 @@
 package com.tanlifei.app.classmatecircle.adapter
 
-import android.content.Context
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +25,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/24 16:02
  */
-class FollowAdapter:
+class FollowAdapter :
     CommonRvAdapter<ClassmateCircleBean>() {
     private var mTextViewWidth = screenWidth - ConvertUtils.dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
@@ -51,36 +50,38 @@ class FollowAdapter:
         bean: ClassmateCircleBean
     ) {
         holder as ItemFollowBinding
-        holder.banner.layoutParams.width = screenWidth
-        holder.banner.layoutParams.height =
-            AutoHeightUtils.getHeightParams(screenWidth, bean.image)
+        holder.apply {
+            banner.layoutParams.width = screenWidth
+            banner.layoutParams.height =
+                AutoHeightUtils.getHeightParams(screenWidth, bean.image)
 
-        holder.name.text = bean.nickName
-        holder.school.text =
-            if (ObjectUtils.isEmpty(bean.createtimeStr)) bean.universityName else "${bean.createtimeStr}  ${bean.universityName}"
-        GlideUtils.load(mContext, bean.image?.url, holder.banner)
-        GlideUtils.loadAvatar(mContext, bean.avatar, holder.userHead)
-        holder.expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
-            override fun onExpand(view: ExpandTextView) {
-                mPositionsAndStates.put(position, view.getExpandState())
-            }
+            name.text = bean.nickName
+            school.text =
+                if (ObjectUtils.isEmpty(bean.createtimeStr)) bean.universityName else "${bean.createtimeStr}  ${bean.universityName}"
+            GlideUtils.load(mContext, bean.image?.url, banner)
+            GlideUtils.loadAvatar(mContext, bean.avatar, userHead)
+            expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
+                override fun onExpand(view: ExpandTextView) {
+                    mPositionsAndStates.put(position, view.getExpandState())
+                }
 
-            override fun onShrink(view: ExpandTextView) {
-                mPositionsAndStates.put(position, view.getExpandState())
-            }
+                override fun onShrink(view: ExpandTextView) {
+                    mPositionsAndStates.put(position, view.getExpandState())
+                }
 
-        })
-        val state: Int? = mPositionsAndStates.get(position)
-        holder.expandTextView.updateForRecyclerView(
-            bean.content,
-            mTextViewWidth,
-            state ?: 0
-        )
-        holder.expandTextView.setVisible(ObjectUtils.isNotEmpty(bean.content))
-        holder.marginView.setVisible(ObjectUtils.isNotEmpty(bean.content))
-        holder.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
-        holder.praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
-        holder.commentCount.text = NumberUtils.setCommentCount(bean.comment)
+            })
+            val state: Int? = mPositionsAndStates.get(position)
+            expandTextView.updateForRecyclerView(
+                bean.content,
+                mTextViewWidth,
+                state ?: 0
+            )
+            expandTextView.setVisible(ObjectUtils.isNotEmpty(bean.content))
+            marginView.setVisible(ObjectUtils.isNotEmpty(bean.content))
+            praiseCount.text = NumberUtils.setPraiseCount(bean.star)
+            praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+            commentCount.text = NumberUtils.setCommentCount(bean.comment)
+        }
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {

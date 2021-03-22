@@ -50,12 +50,16 @@ class EnvironmentAdapter :
     ) {
         when (holder) {
             is ItemEnvironmentTitleBinding -> {
-                holder.title.text = itemBean.alias
+                holder.apply {
+                    title.text = itemBean.alias
+                }
             }
             is ItemEnvironmentContentBinding -> {
-                holder.title.text = itemBean.alias
-                holder.url.text = itemBean.url
-                holder.radio.setImageResource(if (itemBean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
+                holder.apply {
+                    title.text = itemBean.alias
+                    url.text = itemBean.url
+                    radio.setImageResource(if (itemBean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
+                }
             }
         }
     }

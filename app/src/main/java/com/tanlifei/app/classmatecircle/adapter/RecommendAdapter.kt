@@ -1,6 +1,5 @@
 package com.tanlifei.app.classmatecircle.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,27 +45,30 @@ class RecommendAdapter :
         bean: ClassmateCircleBean
     ) {
         holder as ItemRecommendBinding
-        //审核状态:1=有效,0=无效
-        holder.caveat.setVisible(mSource == 1 && bean.checkStatus == 0 && bean.uid == UserInfoUtils.getUid())
-        holder.userName.text = bean.nickName
-        GlideUtils.loadAvatar(mContext, bean.avatar, holder.userHead)
+        holder.apply {
+            //审核状态:1=有效,0=无效
+            caveat.setVisible(mSource == 1 && bean.checkStatus == 0 && bean.uid == UserInfoUtils.getUid())
+            userName.text = bean.nickName
+            GlideUtils.loadAvatar(mContext, bean.avatar, userHead)
 
-        holder.play.setVisible(bean.mediaType == 1)
+            play.setVisible(bean.mediaType == 1)
 
-        holder.content.text = bean.content
-        holder.content.setVisible(ObjectUtils.isNotEmpty(bean.content))
-        holder.topicLayout.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTopicName))
-        holder.topicTxt.text = bean.entertainmentTopicName
-        holder.tag.text = bean.entertainmentTagName
-        holder.tag.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTagName))
-        holder.praiseCount.text = NumberUtils.setPraiseCount(bean.star)
-        holder.praiseCount.helper.iconNormalLeft =
-            drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+            content.text = bean.content
+            content.setVisible(ObjectUtils.isNotEmpty(bean.content))
+            topicLayout.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTopicName))
+            topicTxt.text = bean.entertainmentTopicName
+            tag.text = bean.entertainmentTagName
+            tag.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTagName))
+            praiseCount.text = NumberUtils.setPraiseCount(bean.star)
+            praiseCount.helper.iconNormalLeft =
+                drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
 
-        GlideUtils.load(mContext, bean.image?.url, holder.cover)
-        holder.cover.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-        holder.cover.layoutParams.height =
-            AutoHeightUtils.getHeightParams(mCoverWidth, bean.image)
+            GlideUtils.load(mContext, bean.image?.url, cover)
+            cover.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+            cover.layoutParams.height =
+                AutoHeightUtils.getHeightParams(mCoverWidth, bean.image)
+        }
+
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {

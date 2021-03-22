@@ -1,6 +1,5 @@
 package com.tanlifei.app.home.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,9 +39,12 @@ class HomeRecommentAdapter :
         bean: ClassmateCircleBean
     ) {
         holder as ItemHomeRecommentBinding
-        holder.title.text = bean.nickName
-        holder.desc.text = "05月23日 15:20"
-        GlideUtils.load(mContext, bean.image?.url, holder.cover)
+        holder.apply {
+            title.text = bean.nickName
+            desc.text = "05月23日 15:20"
+            GlideUtils.load(mContext, bean.image?.url, cover)
+        }
+
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {

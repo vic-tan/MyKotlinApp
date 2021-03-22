@@ -57,9 +57,6 @@ abstract class CommonRvAdapter<T> :
                 CommonRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size - 1])
             }
             else -> {
-//                CommonRvHolder(ViewBinding {  })
-//                false
-//                ))
                 onCreateViewHolder(
                     LayoutInflater.from(parent.context),
                     parent,

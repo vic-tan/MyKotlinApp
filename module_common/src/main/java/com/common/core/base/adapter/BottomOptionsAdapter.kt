@@ -31,16 +31,19 @@ class BottomOptionsAdapter(val mHasTitleView: Boolean) :
         title: String
     ) {
         holder as ItemOptionBinding
-        holder.title.text = title
-        if (position == 0 && !mHasTitleView) {
-            holder.title.helper.cornerRadiusTopLeft =
-                dimen(R.dimen.dialog_corner_radius)
-            holder.title.helper.cornerRadiusTopRight =
-                dimen(R.dimen.dialog_corner_radius)
-        } else {
-            holder.title.helper.cornerRadiusTopLeft = 0f
-            holder.title.helper.cornerRadiusTopRight = 0f
+        holder.title.apply {
+            text = title
+            if (position == 0 && !mHasTitleView) {
+                helper.cornerRadiusTopLeft =
+                    dimen(R.dimen.dialog_corner_radius)
+                helper.cornerRadiusTopRight =
+                    dimen(R.dimen.dialog_corner_radius)
+            } else {
+                helper.cornerRadiusTopLeft = 0f
+                helper.cornerRadiusTopRight = 0f
+            }
         }
+
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
