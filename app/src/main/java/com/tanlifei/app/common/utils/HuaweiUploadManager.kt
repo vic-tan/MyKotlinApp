@@ -4,7 +4,6 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.obs.services.ObsClient
 import com.obs.services.model.PutObjectRequest
 import com.obs.services.model.PutObjectResult
-import com.obs.services.model.TaskCallback
 import kotlinx.coroutines.*
 import java.io.File
 import java.util.*

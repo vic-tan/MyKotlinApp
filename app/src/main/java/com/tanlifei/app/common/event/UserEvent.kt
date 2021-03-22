@@ -2,7 +2,6 @@ package com.tanlifei.app.common.event
 
 import com.common.core.base.bean.UserBean
 import com.common.core.base.event.BaseEvent
-import com.common.core.environment.bean.EnvironmentBean
 
 /**
  * @desc:用户数据刷新

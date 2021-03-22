@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
  * @author: tanlifei
  * @date: 2021/2/24 16:55
  */
-interface OnItemClickListener<V : ViewBinding, T> {
+interface OnItemClickListener<T> {
     /**
      * Callback method to be invoked when an item in this RecyclerView has
      * been clicked.
@@ -19,7 +19,7 @@ interface OnItemClickListener<V : ViewBinding, T> {
      * @param position The position of the view in the adapter.
      */
     fun click(
-        binding: V,
+        holder: ViewBinding,
         itemBean: T,
         v: View,
         position: Int

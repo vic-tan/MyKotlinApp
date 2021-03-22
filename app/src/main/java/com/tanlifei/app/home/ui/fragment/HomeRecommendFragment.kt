@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.listener.OnItemClickListener
-import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.utils.extension.toast
-import com.common.widget.LoadingLayout
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemHomeRecommentBinding
@@ -58,7 +55,7 @@ class HomeRecommendFragment :
         mAdapter = HomeRecommentAdapter()
         mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
-            OnMultiItemListener<ClassmateCircleBean> {
+            OnItemClickListener<ClassmateCircleBean> {
             override fun click(
                 itemBinding: ViewBinding,
                 itemBan: ClassmateCircleBean,

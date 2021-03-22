@@ -2,19 +2,15 @@ package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.listener.OnItemClickListener
-import com.common.core.base.listener.OnMultiItemListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.PhotoUtils
 import com.common.utils.extension.toast
-import com.common.widget.LoadingLayout
 import com.lxj.xpopup.XPopup
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
@@ -58,7 +54,7 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         mAdapter = FollowAdapter()
         mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
-            OnMultiItemListener<ClassmateCircleBean> {
+            OnItemClickListener<ClassmateCircleBean> {
             override fun click(
                 binding: ViewBinding,
                 bean: ClassmateCircleBean,

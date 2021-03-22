@@ -13,15 +13,18 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.cofing.constant.GlobalConst
+import com.common.cofing.constant.GlobalConst.ActivityResult
 import com.common.core.base.bean.UserBean
 import com.common.core.base.ui.activity.BaseFormActivity
+import com.common.utils.extension.click
+import com.common.utils.extension.clickListener
+import com.common.utils.extension.startActivityForResult
+import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityAddressManngerBinding
 import com.tanlifei.app.profile.bean.AreaBean
 import com.tanlifei.app.profile.viewmodel.AddressViewModel
-import com.common.cofing.constant.GlobalConst.ActivityResult
-import com.common.utils.extension.*
 
 
 /**

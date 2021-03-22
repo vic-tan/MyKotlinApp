@@ -1,6 +1,5 @@
 package com.tanlifei.app.main.ui.activity
 
-import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.ui.activity.BaseActivity
 import com.common.utils.extension.startActivity
 import com.tanlifei.app.R

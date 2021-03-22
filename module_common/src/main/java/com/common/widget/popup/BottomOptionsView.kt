@@ -7,7 +7,6 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.core.base.adapter.BottomOptionsAdapter
 import com.common.core.base.listener.OnItemClickListener
-import com.common.core.base.listener.OnMultiItemListener
 import com.common.databinding.ItemOptionBinding
 import com.common.databinding.LayoutOptionBinding
 import com.common.utils.RecyclerUtils
@@ -44,7 +43,7 @@ class BottomOptionsView(
         mBinding.recyclerView.adapter = mAdapter
         mBinding.recyclerView.layoutManager = RecyclerUtils.setLinearLayoutManager(context)
         mAdapter.setItemClickListener(object :
-            OnMultiItemListener<String> {
+            OnItemClickListener<String> {
             override fun click(
                 holder: ViewBinding,
                 str: String,

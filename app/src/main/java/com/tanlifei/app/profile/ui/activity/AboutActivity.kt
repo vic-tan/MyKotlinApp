@@ -1,7 +1,6 @@
 package com.tanlifei.app.profile.ui.activity
 
 import android.view.View
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity

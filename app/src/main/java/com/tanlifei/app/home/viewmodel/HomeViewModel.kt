@@ -4,12 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseViewModel
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.common.network.ApiNetwork
 import com.tanlifei.app.home.bean.AdsnoviceBean
 import com.tanlifei.app.home.bean.BannerBean
 import com.tanlifei.app.home.bean.HomeHeaderDataBean
-import com.tanlifei.app.home.bean.MenuBean
 
 /**
  * @desc:首页

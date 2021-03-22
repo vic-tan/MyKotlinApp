@@ -1,11 +1,9 @@
 package com.tanlifei.app.profile.ui.activity
 
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.text.Html
 import android.text.Html.ImageGetter
 import androidx.lifecycle.Observer
-import com.blankj.utilcode.util.ActivityUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.extension.startActivity

@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
-import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.adapter.CommonRvAdapter
+import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
 import com.common.utils.extension.setVisible
 import com.tanlifei.app.classmatecircle.bean.CommentBean

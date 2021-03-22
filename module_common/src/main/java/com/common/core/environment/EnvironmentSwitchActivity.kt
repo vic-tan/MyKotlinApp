@@ -1,13 +1,12 @@
 package com.common.core.environment
 
-import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.listener.OnMultiItemListener
+import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter
 import com.common.core.environment.bean.EnvironmentBean
@@ -80,7 +79,7 @@ class EnvironmentSwitchActivity :
         adapter = EnvironmentAdapter()
         adapter.mData = mViewModel.mData
         mBinding.recycler.adapter = adapter
-        adapter.setItemClickListener(object : OnMultiItemListener<EnvironmentBean> {
+        adapter.setItemClickListener(object : OnItemClickListener<EnvironmentBean> {
             override fun click(
                 holder: ViewBinding,
                 itemBean: EnvironmentBean,

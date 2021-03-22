@@ -5,15 +5,14 @@ import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
+import com.common.cofing.constant.GlobalConst.ActivityResult
 import com.common.core.base.ui.activity.BaseFormActivity
 import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.utils.extension.click
+import com.common.utils.extension.startActivityForResult
 import com.common.utils.extension.toast
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.databinding.ActivityIntroductionBinding
-import com.common.cofing.constant.GlobalConst.ActivityResult
-import com.common.utils.extension.startActivity
-import com.common.utils.extension.startActivityForResult
 
 
 /**

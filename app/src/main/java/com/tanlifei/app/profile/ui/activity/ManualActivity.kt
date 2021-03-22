@@ -2,7 +2,7 @@ package com.tanlifei.app.profile.ui.activity
 
 import android.view.View
 import androidx.viewbinding.ViewBinding
-import com.common.core.base.listener.OnMultiItemListener
+import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.utils.extension.startActivity
 import com.tanlifei.app.databinding.ActivityManualBinding
@@ -44,7 +44,7 @@ class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualView
             mBinding.refreshLayout.refreshRecycler,
             mBinding.refreshLayout.refreshLoadingLayout
         )
-        mAdapter.setItemClickListener(object : OnMultiItemListener<ManualBean> {
+        mAdapter.setItemClickListener(object : OnItemClickListener<ManualBean> {
             override fun click(holder: ViewBinding, itemBean: ManualBean, v: View, position: Int) {
                 holder as ItemManualBinding
                 when (v) {

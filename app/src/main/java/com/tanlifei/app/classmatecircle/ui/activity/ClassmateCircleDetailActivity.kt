@@ -1,20 +1,21 @@
 package com.tanlifei.app.classmatecircle.ui.activity
 
-import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.listener.OnMultiItemListener
+import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.databinding.LayoutLoadingEmptyBinding
-import com.common.utils.*
+import com.common.utils.ComDialogUtils
+import com.common.utils.GlideUtils
+import com.common.utils.PhotoUtils
+import com.common.utils.RecyclerUtils
 import com.common.utils.extension.*
 import com.common.widget.popup.BottomInputEditView
 import com.lxj.xpopup.interfaces.OnConfirmListener
@@ -210,7 +211,7 @@ class ClassmateCircleDetailActivity :
     private fun initAdapter() {
         mAdapter = CommentAdapter()
         mAdapter.mData = mViewModel.mData
-        mAdapter.setItemClickListener(object : OnMultiItemListener<CommentBean> {
+        mAdapter.setItemClickListener(object : OnItemClickListener<CommentBean> {
             override fun click(
                 holder: ViewBinding,
                 itemBean: CommentBean,

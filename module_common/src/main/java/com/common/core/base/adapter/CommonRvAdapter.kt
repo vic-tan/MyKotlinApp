@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.listener.OnMultiItemListener
-import com.common.utils.extension.click
+import com.common.core.base.listener.OnItemClickListener
 import com.common.utils.extension.clickEnable
 import java.util.*
 
@@ -51,7 +50,7 @@ abstract class CommonRvAdapter<T : Any> :
     private val mChildClickViews = LinkedHashSet<View>()
 
 
-    private var mOnItemListener: OnMultiItemListener<T>? = null
+    private var mOnItemClickListener: OnItemClickListener<T>? = null
 
     /**
      * 设置需要点击事件的子view
@@ -170,7 +169,7 @@ abstract class CommonRvAdapter<T : Any> :
         )
         addViewList(addChildClickViewIds(holder.binding))
         if (ObjectUtils.isNotEmpty(mChildClickViews)) {
-            mOnItemListener?.let {
+            mOnItemClickListener?.let {
                 for (v in mChildClickViews) {
                     v.setOnClickListener {
                         if (it.clickEnable()) {
@@ -210,11 +209,11 @@ abstract class CommonRvAdapter<T : Any> :
         v: View,
         position: Int
     ) {
-        mOnItemListener?.click(holder, bean, v, position)
+        mOnItemClickListener?.click(holder, bean, v, position)
     }
 
-    fun setItemClickListener(listener: OnMultiItemListener<T>) {
-        this.mOnItemListener = listener
+    fun setItemClickListener(clickListener: OnItemClickListener<T>) {
+        this.mOnItemClickListener = clickListener
     }
 
 

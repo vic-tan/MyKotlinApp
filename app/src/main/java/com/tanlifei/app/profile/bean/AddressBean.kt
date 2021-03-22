@@ -1,7 +1,5 @@
 package com.tanlifei.app.profile.bean
 
-import android.util.Log
-
 /**
  * @desc:收货地址实体
  * @author: tanlifei

@@ -4,7 +4,6 @@ package com.tanlifei.app.main.ui.activity
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.blankj.utilcode.util.ActivityUtils
 import com.common.core.base.event.BaseEvent
 import com.common.core.base.navigator.NavigatorView
 import com.common.core.base.ui.activity.BaseBVMActivity
