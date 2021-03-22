@@ -64,6 +64,7 @@ abstract class BaseRecyclerBVMActivity<V : ViewBinding, T : Any, VM : BaseListVi
      */
     protected open fun setLinearLayoutManager(): RecyclerView.LayoutManager {
         return RecyclerUtils.setLinearLayoutManager(this)
+
     }
 
     /**
