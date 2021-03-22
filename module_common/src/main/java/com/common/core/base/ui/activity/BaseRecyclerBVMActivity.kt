@@ -13,7 +13,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  * @author: tanlifei
  * @date: 2021/2/7 17:14
  */
-abstract class BaseRecyclerBVMActivity<V : ViewBinding, T : Any, VM : BaseListViewModel> :
+abstract class BaseRecyclerBVMActivity<V : ViewBinding, T, VM : BaseListViewModel> :
     BaseToolBarActivity<V, VM>() {
 
     protected var mAdapter: CommonRvAdapter<T>
