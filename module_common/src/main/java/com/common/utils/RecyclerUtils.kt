@@ -2,6 +2,7 @@ package com.common.utils
 
 import android.content.Context
 import android.view.View
+import android.widget.Adapter
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager

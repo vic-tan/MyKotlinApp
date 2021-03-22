@@ -2,6 +2,7 @@ package com.tanlifei.app.profile.ui.activity
 
 import android.view.View
 import androidx.viewbinding.ViewBinding
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.utils.extension.startActivity
@@ -17,9 +18,9 @@ import com.tanlifei.app.profile.viewmodel.ManualViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualViewModel>() {
+class ManualActivity :
+    BaseRecyclerBVMActivity<ActivityManualBinding, ManualBean, ManualViewModel>() {
 
-    private lateinit var mAdapter: ManualAdapter
 
     companion object {
         fun actionStart() {
@@ -37,7 +38,6 @@ class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualView
 
 
     private fun initData() {
-        mAdapter = ManualAdapter()
         mAdapter.mData = mViewModel.mData
         initRefreshView(
             mBinding.refreshLayout.smartRefreshLayout,
@@ -55,8 +55,8 @@ class ManualActivity : BaseRecyclerBVMActivity<ActivityManualBinding, ManualView
         })
     }
 
-    override fun setAdapter(): Any {
-        return mAdapter
+    override fun setAdapter(): CommonRvAdapter<ManualBean> {
+        return ManualAdapter()
     }
 
 

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.utils.extension.toast
@@ -23,9 +24,8 @@ import com.tanlifei.app.home.viewmodel.HomeRecommendViewModel
  * @date: 2021/1/23 17:41
  */
 class HomeRecommendFragment :
-    BaseRecyclerBVMFragment<FragmentFollowBinding, HomeRecommendViewModel>() {
+    BaseRecyclerBVMFragment<FragmentFollowBinding, ClassmateCircleBean, HomeRecommendViewModel>() {
 
-    private lateinit var mAdapter: HomeRecommentAdapter
 
     companion object {
         fun newInstance(): HomeRecommendFragment {
@@ -52,7 +52,6 @@ class HomeRecommendFragment :
 
     override fun initView() {
         super.initView()
-        mAdapter = HomeRecommentAdapter()
         mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
             OnItemClickListener<ClassmateCircleBean> {
@@ -80,8 +79,8 @@ class HomeRecommendFragment :
         return GridLayoutManager(context, 2)
     }
 
-    override fun setAdapter(): Any {
-        return mAdapter
+    override fun setAdapter(): CommonRvAdapter<ClassmateCircleBean> {
+        return HomeRecommentAdapter()
     }
 
 }

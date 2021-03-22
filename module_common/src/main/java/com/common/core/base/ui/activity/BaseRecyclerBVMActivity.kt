@@ -2,6 +2,8 @@ package com.common.core.base.ui.activity
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.common.core.base.adapter.CommonRvAdapter
+import com.common.core.base.adapter.CommonRvHolder
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
@@ -12,8 +14,14 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  * @author: tanlifei
  * @date: 2021/2/7 17:14
  */
-abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> :
-    BaseToolBarActivity<T, VM>() {
+abstract class BaseRecyclerBVMActivity<V : ViewBinding, T : Any, VM : BaseListViewModel> :
+    BaseToolBarActivity<V, VM>() {
+
+    protected var mAdapter: CommonRvAdapter<T>
+
+    init {
+        mAdapter = setAdapter()
+    }
 
 
     /**
@@ -29,7 +37,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
             mLoadingLayout,
             mViewModel,
             this,
-            setAdapter() as RecyclerView.Adapter<RecyclerView.ViewHolder>
+            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
         )
         RecyclerUtils.initListener(
             mSmartRefreshLayout,
@@ -47,7 +55,7 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
      */
     private fun initRecyclerView(mRefreshRecycler: RecyclerView) {
         mRefreshRecycler.layoutManager = setLinearLayoutManager()
-        mRefreshRecycler.adapter = setAdapter() as RecyclerView.Adapter<RecyclerView.ViewHolder>
+        mRefreshRecycler.adapter = mAdapter
         mRefreshRecycler.itemAnimator = null
     }
 
@@ -61,6 +69,6 @@ abstract class BaseRecyclerBVMActivity<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 子类设置Adapter
      */
-    protected abstract fun setAdapter(): Any
+    protected abstract fun setAdapter(): CommonRvAdapter<T>
 
 }

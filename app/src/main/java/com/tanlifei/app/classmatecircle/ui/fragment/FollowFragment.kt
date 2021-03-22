@@ -3,6 +3,7 @@ package com.tanlifei.app.classmatecircle.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.viewbinding.ViewBinding
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.core.share.ShareBean
@@ -16,6 +17,8 @@ import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemFollowBinding
+import com.tanlifei.app.profile.adapter.ManualAdapter
+import com.tanlifei.app.profile.bean.ManualBean
 
 
 /**
@@ -23,9 +26,9 @@ import com.tanlifei.app.databinding.ItemFollowBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowViewModel>() {
+class FollowFragment :
+    BaseRecyclerBVMFragment<FragmentFollowBinding, ClassmateCircleBean, FollowViewModel>() {
 
-    private lateinit var mAdapter: FollowAdapter
 
     companion object {
         fun newInstance(): FollowFragment {
@@ -51,7 +54,6 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
 
     override fun initView() {
         super.initView()
-        mAdapter = FollowAdapter()
         mAdapter.mData = mViewModel.mData
         mAdapter.setItemClickListener(object :
             OnItemClickListener<ClassmateCircleBean> {
@@ -96,9 +98,8 @@ class FollowFragment : BaseRecyclerBVMFragment<FragmentFollowBinding, FollowView
         })
     }
 
-    override fun setAdapter(): Any {
-        return mAdapter
+    override fun setAdapter(): CommonRvAdapter<ClassmateCircleBean> {
+        return FollowAdapter()
     }
-
 
 }

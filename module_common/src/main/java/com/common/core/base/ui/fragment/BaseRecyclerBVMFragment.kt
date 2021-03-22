@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.RecyclerUtils
@@ -18,11 +19,17 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  * @author: tanlifei
  * @date: 2021/2/7 18:17
  */
-abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> :
-    BaseLazyFragment<T>() {
+abstract class BaseRecyclerBVMFragment<V : ViewBinding, T : Any, VM : BaseListViewModel> :
+    BaseLazyFragment<V>() {
     protected lateinit var mViewModel: VM
 
     protected abstract fun createViewModel(): VM
+
+    protected var mAdapter: CommonRvAdapter<T>
+
+    init {
+        mAdapter = setAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -99,7 +106,7 @@ abstract class BaseRecyclerBVMFragment<T : ViewBinding, VM : BaseListViewModel> 
     /**
      * 子类设置Adapter
      */
-    protected abstract fun setAdapter(): Any
+    protected abstract fun setAdapter(): CommonRvAdapter<T>
 
 
 }
