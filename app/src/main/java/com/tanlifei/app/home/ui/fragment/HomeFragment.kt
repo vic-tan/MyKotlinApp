@@ -27,6 +27,7 @@ import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.youth.banner.indicator.RectangleIndicator
+import com.youth.banner.util.BannerUtils
 
 /**
  * @desc:首页
@@ -212,6 +213,9 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
     private fun useBanner() {
+        var headerBinding = header as HomeHeaderBinding
+        headerBinding.banner.setDatas(mViewModel.bannerData)
+        headerBinding.banner.currentItem = 1
         bannerAdapter.notifyDataSetChanged()
     }
 }
