@@ -1,6 +1,5 @@
 package com.tanlifei.app.home.viewmodel
 
-import com.common.cofing.enumconst.UiType
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.common.network.ApiNetwork
 
@@ -12,13 +11,12 @@ import com.tanlifei.app.common.network.ApiNetwork
 class HomeRecommendViewModel(private var categoryId: Long = 1) : BaseListViewModel() {
 
 
-    override fun requestList(uiType: UiType) {
+    override fun requestList() {
         comRequest({
             complete(
-                ApiNetwork.requestFriendsEntertainmentListByType(mPageNum, categoryId),
-                uiType
+                ApiNetwork.requestFriendsEntertainmentListByType(mPageNum, categoryId)
             )
-        }, uiType = uiType)
+        })
     }
 
 }

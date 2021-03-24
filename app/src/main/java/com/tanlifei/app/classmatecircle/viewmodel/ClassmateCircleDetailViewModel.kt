@@ -31,23 +31,22 @@ class ClassmateCircleDetailViewModel(val id: Long) : BaseListViewModel() {
     val mBeanChanged: LiveData<ClassmateCircleBean> get() = beanChanged
     private var beanChanged = MutableLiveData<ClassmateCircleBean>()
 
-    private fun requestDetail(uiType: UiType) =
+    private fun requestDetail() =
         comRequest({
-            if (uiType == UiType.REFRESH) {
+            if (mRefreshType == UiType.REFRESH) {
                 var requestBean = ApiNetwork.requestEntertainmentDetail(id)
                 if (ObjectUtils.isNotEmpty(requestBean)) {
                     mBean = requestBean
                 }
             }
             complete(
-                ApiNetwork.requestCommentList(id, mPageNum),
-                uiType
+                ApiNetwork.requestCommentList(id, mPageNum)
             )
-        }, uiType = uiType)
+        })
 
 
-    override fun requestList(uiType: UiType) {
-        requestDetail(uiType)
+    override fun requestList() {
+        requestDetail()
     }
 
     fun requestComment(content: String) = comRequest({

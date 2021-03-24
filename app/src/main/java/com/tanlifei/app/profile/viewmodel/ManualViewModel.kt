@@ -22,9 +22,9 @@ class ManualViewModel : BaseListViewModel() {
     val mBean: LiveData<ManualBean> get() = bean
     private val bean = MutableLiveData<ManualBean>()
 
-    override fun requestList(uiType: UiType) {
+    override fun requestList() {
         comRequest({
-            complete(ApiNetwork.requestManualList(mPageNum), uiType)
+            complete(ApiNetwork.requestManualList(mPageNum))
         })
     }
 

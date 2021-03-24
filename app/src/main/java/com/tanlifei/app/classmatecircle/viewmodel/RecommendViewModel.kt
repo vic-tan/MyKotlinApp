@@ -12,13 +12,12 @@ import com.tanlifei.app.common.network.ApiNetwork
 class RecommendViewModel(private var mCategoryId: Long = 0) : BaseListViewModel() {
 
 
-    override fun requestList(uiType: UiType) {
+    override fun requestList() {
         comRequest({
             complete(
-                ApiNetwork.requestFriendsEntertainmentListByType(mPageNum, mCategoryId),
-                uiType
+                ApiNetwork.requestFriendsEntertainmentListByType(mPageNum, mCategoryId)
             )
-        }, uiType = uiType)
+        })
     }
 
 }

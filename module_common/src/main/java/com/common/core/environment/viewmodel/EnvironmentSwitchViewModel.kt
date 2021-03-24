@@ -116,6 +116,6 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
         }
     }
 
-    override fun requestList(uiType: UiType) {
+    override fun requestList() {
     }
 }

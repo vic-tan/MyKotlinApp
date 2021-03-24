@@ -68,16 +68,10 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
             addHeaderOrFooter()
             adapter.notifyDataSetChanged()
         })
-        mViewModel.mUiChange.observe(this, Observer {
-            when (it) {
-                UiType.NO_NEXT -> {
-                    mBinding.refreshLayout.smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
-                }
-                UiType.EMPTY -> mBinding.refreshLayout.refreshLoadingLayout.showContent()
-                UiType.ERROR -> mBinding.refreshLayout.refreshLoadingLayout.showError()
-                UiType.CONTENT -> mBinding.refreshLayout.refreshLoadingLayout.showContent()
-            }
-        })
+        RecyclerUtils.uiObserve(
+            mBinding.refreshLayout.smartRefreshLayout,
+            mBinding.refreshLayout.refreshLoadingLayout, mViewModel, this, true
+        )
         homeViewModel.mRefreshUserInfo.observe(this, Observer {
             GlideUtils.loadAvatar(this.context, it.avatar, mBinding.userCover)
         })

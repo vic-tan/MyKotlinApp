@@ -8,13 +8,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.blankj.utilcode.util.NetworkUtils
-import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.enumconst.UiType
+import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
+import com.common.core.base.viewmodel.BaseViewModel
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import com.scwang.smart.refresh.layout.constant.RefreshState
 import java.util.*
 
 /**
@@ -35,7 +34,7 @@ object RecyclerUtils {
         owner: LifecycleOwner,
         adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
     ) {
-        dataChangedObserve(adapter, viewModel, owner)
+        dataChangeObserve(adapter, viewModel, owner)
         uiObserve(smartRefreshLayout, refreshLoadingLayout, viewModel, owner)
     }
 
@@ -43,12 +42,14 @@ object RecyclerUtils {
     /**
      * 处理数据回调显示逻辑
      */
-    fun dataChangedObserve(
+    fun dataChangeObserve(
         adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
         viewModel: BaseListViewModel,
-        owner: LifecycleOwner
+        owner: LifecycleOwner,
+        block: (listDataChangePrams: ListDataChangePrams) -> Unit = { null }
     ) {
         viewModel.mDataChange.observe(owner, Observer {
+            block(it)
             when (it.uiType) {
                 /**上拉刷新**/
                 UiType.REFRESH -> {
@@ -66,6 +67,7 @@ object RecyclerUtils {
                     adapter.notifyDataSetChanged()
                 }
             }
+
         })
     }
 
@@ -76,39 +78,41 @@ object RecyclerUtils {
     fun uiObserve(
         smartRefreshLayout: SmartRefreshLayout,
         refreshLoadingLayout: LoadingLayout,
-        viewModel: BaseListViewModel,
+        viewModel: BaseViewModel,
         owner: LifecycleOwner,
         isHeaderOrFooter: Boolean = false
     ) {
         viewModel.mUiChange.observe(owner, Observer {
             when (it) {
-                /**加载中 列表有数据时，下拉时不再显示加载中**/
-                UiType.LOADING -> {
-                    //是否存在头部或者尾部，存在不用显示布局，要显示头部或者尾部
-                    if (!isHeaderOrFooter && viewModel.mData.isEmpty()) {
-                        refreshLoadingLayout.showLoading()
-                    }
-                }
                 /**请求完成**/
                 UiType.COMPLETE -> {
                     smartRefreshLayout.finishRefresh()
                     smartRefreshLayout.finishLoadMore()
                 }
                 /**有数据**/
-                UiType.CONTENT -> refreshLoadingLayout.showContent()
+                UiType.CONTENT -> {
+                    refreshLoadingLayout.showContent()
+                    smartRefreshLayout.setEnableLoadMore(true)
+                }
                 /**无数据**/
                 UiType.EMPTY -> {
                     //是否存在头部或者尾部，存在不用显示布局，要显示头部或者尾部
                     if (isHeaderOrFooter) {
                         refreshLoadingLayout.showContent()
-                    } else refreshLoadingLayout.showEmpty()
+                    } else {
+                        smartRefreshLayout.setEnableLoadMore(false)
+                        refreshLoadingLayout.showEmpty()
+                    }
                 }
                 /**没有一下页数据**/
                 UiType.NO_NEXT -> {
                     smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
                 }
                 /**报错界面**/
-                UiType.ERROR -> refreshLoadingLayout.showError()
+                UiType.ERROR -> {
+                    refreshLoadingLayout.showError()
+                    smartRefreshLayout.setEnableLoadMore(false)
+                }
             }
         })
     }
@@ -154,24 +158,24 @@ object RecyclerUtils {
     ) {
         initRefreshLayoutListener(smartRefreshLayout, viewModel)
         initLoadingLayoutListener(refreshLoadingLayout, viewModel)
-        refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (!NetworkUtils.isConnected())//没有网不加载，让用户手动加载
-                    return
-                // 获取 LayoutManger
-                val layoutManager = recyclerView.layoutManager
-                if (ObjectUtils.isNotEmpty(layoutManager)) {
-                    // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
-                    if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
-                        && getOutLast(layoutManager) >= getLoadCount(layoutManager)
-                        && viewModel.mRefreshState == RefreshState.None
-                    ) {
-                        viewModel.loadMore()
-                    }
-                }
-            }
-        })
+//        refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                if (!NetworkUtils.isConnected())//没有网不加载，让用户手动加载
+//                    return
+//                // 获取 LayoutManger
+//                val layoutManager = recyclerView.layoutManager
+//                if (ObjectUtils.isNotEmpty(layoutManager)) {
+//                    // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
+//                    if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
+//                        && getOutLast(layoutManager) >= getLoadCount(layoutManager)
+//                        && viewModel.mRefreshState == RefreshState.None
+//                    ) {
+//                        viewModel.loadMore()
+//                    }
+//                }
+//            }
+//        })
     }
 
     fun getLoadCount(layoutManager: RecyclerView.LayoutManager): Int {

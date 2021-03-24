@@ -3,6 +3,7 @@ package com.tanlifei.app.classmatecircle.ui.activity
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
@@ -87,36 +88,21 @@ class ClassmateCircleDetailActivity :
             mBinding.refreshLayout.smartRefreshLayout, mBinding.refreshLayout.refreshLoadingLayout,
             mViewModel, this, true
         )
-        mViewModel.mDataChange.observe(this, Observer {
+        RecyclerUtils.dataChangeObserve(
+            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>,
+            mViewModel,
+            this
+        ) {
             when (it.uiType) {
                 UiType.REFRESH -> {
-                    mBinding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
-                    mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
                     addHeader()
-                    if (mViewModel.mData.isEmpty()) {
-                        mAdapter.notifyDataSetChanged()
-                        mBinding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false) //将不会再次触发加载更多事件
-                    } else {
-                        mAdapter.refreshItemRange()
-                    }
-                }
-                UiType.LOADMORE -> {
-                    mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
-                    mAdapter.loadMoreItemRange(mViewModel.mData.size - it.size - 1)
-
-                }
-                UiType.ERROR -> {
-                    mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
-                    mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
                 }
                 else -> {
-                    mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
-                    mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
                     addEmptyView()
-                    mAdapter.notifyDataSetChanged()
                 }
             }
-        })
+
+        }
         mViewModel.mItemDataChanged.observe(this, Observer {
             mAdapter.notifyItemChanged(
                 mAdapter.mHeaderViews.size + it

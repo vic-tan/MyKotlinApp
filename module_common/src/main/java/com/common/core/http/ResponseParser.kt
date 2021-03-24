@@ -59,11 +59,6 @@ open class ResponseParser<T> : AbstractParser<T> {
         if (data.status != 200 || t == null) { //code不等于0，说明数据不正确，抛出异常
             throw ParseException(data.status.toString(), data.msg, response)
         }
-        if (data.status == 200 && data.pageNum > 0) {
-            if (data.pageNum * data.pageSize >= data.total && data.pageNum > 1) {
-                throw ParseException(GlobalConst.Http.NOT_LOAD_DATA.toString(), "没有更多数据了", response)
-            }
-        }
         return t
     }
 }
