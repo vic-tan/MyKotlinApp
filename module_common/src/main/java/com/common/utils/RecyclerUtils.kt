@@ -82,8 +82,13 @@ object RecyclerUtils {
     ) {
         viewModel.mUiChange.observe(owner, Observer {
             when (it) {
-                /**加载中**/
-                UiType.LOADING -> refreshLoadingLayout.showLoading()
+                /**加载中 列表有数据时，下拉时不再显示加载中**/
+                UiType.LOADING -> {
+                    //是否存在头部或者尾部，存在不用显示布局，要显示头部或者尾部
+                    if (!isHeaderOrFooter && viewModel.mData.isEmpty()) {
+                        refreshLoadingLayout.showLoading()
+                    }
+                }
                 /**请求完成**/
                 UiType.COMPLETE -> {
                     smartRefreshLayout.finishRefresh()
