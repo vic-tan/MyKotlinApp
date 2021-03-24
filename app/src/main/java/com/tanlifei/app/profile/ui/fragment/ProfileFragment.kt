@@ -2,7 +2,6 @@ package com.tanlifei.app.profile.ui.fragment
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.common.core.base.ui.activity.BaseWebViewActivity

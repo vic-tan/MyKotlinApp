@@ -1,6 +1,8 @@
 package com.common.core.environment.viewmodel
 
 import com.common.cofing.constant.ApiEnvironmentConst
+import com.common.cofing.enumconst.UiType
+import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.core.environment.bean.ModuleBean
@@ -48,7 +50,7 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
             }
         }
         (mData as MutableList<EnvironmentBean>)[pos].defaultCheck = true
-        notifyDataSetChanged(DataChagedType.NOTIFY)
+        setDataChange(ListDataChangePrams(UiType.NOTIFY))
     }
 
 
@@ -114,6 +116,6 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
         }
     }
 
-    override fun requestList(dataChangedType: DataChagedType) {
+    override fun requestList(uiType: UiType) {
     }
 }

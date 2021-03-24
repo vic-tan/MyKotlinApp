@@ -6,8 +6,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import com.common.cofing.enumconst.UiType
 import com.common.core.base.ui.fragment.BaseBVMFragment
-import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.GlideUtils
 import com.common.utils.extension.color
 import com.common.utils.extension.setVisible
@@ -51,11 +51,11 @@ class RecommendTabFragment :
             mBinding.viewPager.adapter = mViewModel.mTabAdapter
             customLayoutTab()
         })
-        mViewModel.mLoadingState.observe(this, Observer {
+        mViewModel.mUiChange.observe(this, Observer {
             when (it) {
-                BaseViewModel.LoadType.LOADING -> mBinding.loadingLayout.showLoading()
-                BaseViewModel.LoadType.DISMISS -> mBinding.loadingLayout.showContent()
-                BaseViewModel.LoadType.ERROR -> mBinding.loadingLayout.showError()
+                UiType.LOADING -> mBinding.loadingLayout.showLoading()
+                UiType.COMPLETE -> mBinding.loadingLayout.showContent()
+                UiType.ERROR -> mBinding.loadingLayout.showError()
             }
         })
     }

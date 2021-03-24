@@ -49,19 +49,19 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
     /**
      * 获取省市区JSON
      */
-    fun requestAreaJsonList() = launchBySilence {
+    fun requestAreaJsonList() = comRequest({
         var data = ApiNetwork.requestAreaJsonList()
         if (ObjectUtils.isNotEmpty(data)) {
             mAreaJsonList = data
             analysisAreaJson(data)
             areaDataComplete.value = true
         }
-    }
+    }, uiLiveData = false)
 
     /**
      * 更新收货地址
      */
-    fun requestEidtGoodsAddress() = launchByLoading {
+    fun requestEidtGoodsAddress() = comRequest({
         mAddressBean?.let {
             var id = ApiNetwork.requestEidtGoodsAddress(
                 mUser.goodsAddress == 0L,
@@ -72,19 +72,19 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
             }
 
         }
-    }
+    })
 
     /**
      * 获取收货地址
      */
     fun requestGoodsAddress() {
-        launchBySilence {
+        comRequest({
             var address = ApiNetwork.requestGoodsAddress(mUser.goodsAddress)
             if (ObjectUtils.isNotEmpty(address)) {
                 mAddressBean = address
                 addressDataComplete.value = mAddressBean
             }
-        }
+        }, uiLiveData = false)
     }
 
     /**

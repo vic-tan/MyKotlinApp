@@ -72,7 +72,7 @@ class MainViewModel : BaseViewModel() {
     /**
      * 请求用户信息
      */
-    fun requestUser() = launchBySilence({
+    fun requestUser() = comRequest({
         mUserBean = ApiNetwork.requestUserInfo()
         if (ObjectUtils.isNotEmpty(mUserBean)) {
             mUserBean!!.token = ComFun.mToken.toString()
@@ -82,7 +82,7 @@ class MainViewModel : BaseViewModel() {
         } else {
             findUserByDB()
         }
-    }, {
+    }, onError = {
         findUserByDB()
     })
 

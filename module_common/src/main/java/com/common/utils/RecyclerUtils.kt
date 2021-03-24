@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.cofing.enumconst.UiType
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -34,8 +35,8 @@ object RecyclerUtils {
         owner: LifecycleOwner,
         adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
     ) {
-        dataChangedObserve(smartRefreshLayout, adapter, viewModel, owner)
-        uiBehaviorObserve(smartRefreshLayout, refreshLoadingLayout, viewModel, owner)
+        dataChangedObserve(adapter, viewModel, owner)
+        uiObserve(smartRefreshLayout, refreshLoadingLayout, viewModel, owner)
     }
 
 
@@ -43,64 +44,66 @@ object RecyclerUtils {
      * 处理数据回调显示逻辑
      */
     fun dataChangedObserve(
-        smartRefreshLayout: SmartRefreshLayout,
         adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
         viewModel: BaseListViewModel,
         owner: LifecycleOwner
     ) {
-        viewModel.mDataChanged.observe(owner, Observer {
-            when (it) {
-                BaseListViewModel.DataChagedType.REFRESH -> {
-                    smartRefreshLayout.finishRefresh()
-                    smartRefreshLayout.setEnableLoadMore(true)
-                    if (viewModel.mData.isEmpty()) {
-                        smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
-                        adapter.notifyDataSetChanged()
-                    } else {
-                        smartRefreshLayout.setEnableLoadMore(true)
-                        adapter.notifyItemRangeChanged(0, viewModel.mData.size - 1)
-                    }
+        viewModel.mDataChange.observe(owner, Observer {
+            when (it.uiType) {
+                /**上拉刷新**/
+                UiType.REFRESH -> {
+                    adapter.notifyItemRangeChanged(0, viewModel.mData.size - it.size - 1)
                 }
-                BaseListViewModel.DataChagedType.LOADMORE -> {
-                    smartRefreshLayout.finishLoadMore()
+                /**下接刷新**/
+                UiType.LOADMORE -> {
                     adapter.notifyItemRangeInserted(
-                        viewModel.mLoadMoreStartPos,
+                        it.size - 1,
                         viewModel.mData.size - 1
                     )
-
                 }
-                BaseListViewModel.DataChagedType.ERROE -> {
-                    smartRefreshLayout.finishRefresh()
-                    smartRefreshLayout.finishLoadMore()
-                    adapter.notifyDataSetChanged()
-                }
-                else -> {
-                    smartRefreshLayout.finishRefresh()
-                    smartRefreshLayout.finishLoadMore()
+                /**更新刷新**/
+                UiType.NOTIFY -> {
                     adapter.notifyDataSetChanged()
                 }
             }
         })
     }
 
+
     /**
      * 处理请求情况显示布局
      */
-    fun uiBehaviorObserve(
+    fun uiObserve(
         smartRefreshLayout: SmartRefreshLayout,
         refreshLoadingLayout: LoadingLayout,
         viewModel: BaseListViewModel,
         owner: LifecycleOwner,
         isHeaderOrFooter: Boolean = false
     ) {
-        viewModel.mUiBehavior.observe(owner, Observer {
+        viewModel.mUiChange.observe(owner, Observer {
             when (it) {
-                BaseListViewModel.UIType.NOTMOREDATA -> {
+                /**加载中**/
+                UiType.LOADING -> refreshLoadingLayout.showLoading()
+                /**请求完成**/
+                UiType.COMPLETE -> {
+                    smartRefreshLayout.finishRefresh()
+                    smartRefreshLayout.finishLoadMore()
+                }
+                /**有数据**/
+                UiType.CONTENT -> refreshLoadingLayout.showContent()
+                /**无数据**/
+                UiType.EMPTY -> {
+                    //是否存在头部或者尾部，存在不用显示布局，要显示头部或者尾部
+                    if (isHeaderOrFooter) {
+                        refreshLoadingLayout.showContent()
+                    } else refreshLoadingLayout.showEmpty()
+                }
+                /**没有一下页数据**/
+                UiType.NO_NEXT -> {
                     smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
                 }
-                BaseListViewModel.UIType.EMPTYDATA -> if (isHeaderOrFooter) refreshLoadingLayout.showContent() else refreshLoadingLayout.showEmpty()
-                BaseListViewModel.UIType.ERROR -> refreshLoadingLayout.showError()
-                BaseListViewModel.UIType.CONTENT -> refreshLoadingLayout.showContent()
+                /**报错界面**/
+                UiType.ERROR -> refreshLoadingLayout.showError()
             }
         })
     }
@@ -157,9 +160,8 @@ object RecyclerUtils {
                     // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
                     if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
                         && getOutLast(layoutManager) >= getLoadCount(layoutManager)
-                        && viewModel.mState == RefreshState.None
+                        && viewModel.mRefreshState == RefreshState.None
                     ) {
-                        viewModel.mState = RefreshState.Loading
                         viewModel.loadMore()
                     }
                 }

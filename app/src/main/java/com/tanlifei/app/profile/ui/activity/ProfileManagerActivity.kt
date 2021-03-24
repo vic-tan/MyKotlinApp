@@ -48,7 +48,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
 
     companion object {
         fun actionStart() {
-            startActivity<ProfileManagerActivity> {  }
+            startActivity<ProfileManagerActivity> { }
         }
     }
 
@@ -114,7 +114,7 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        mViewModel.mLoadingState.observe(this, this)
+        mViewModel.mUiChange.observe(this, this)
         mViewModel.mRefreshUserInfo.observe(this, Observer { it ->
             GlideUtils.loadAvatar(mActivity, it.avatar, mBinding.userHead)
             mBinding.nickname.setText(it.nickname)
@@ -290,7 +290,8 @@ class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, P
             this,
             OnOptionsSelectListener { options1: Int, _: Int, _: Int, _: View? ->
                 mViewModel.mUserBean?.university = mViewModel.mUniversityOptionsItems[options1].id
-                mViewModel.mUserBean?.universityName = mViewModel.mUniversityOptionsItems[options1].name
+                mViewModel.mUserBean?.universityName =
+                    mViewModel.mUniversityOptionsItems[options1].name
                 mBinding.school.text = mViewModel.mUserBean?.universityName
             }
         )

@@ -10,6 +10,4 @@ import com.common.core.base.viewmodel.BaseViewModel
  */
 class AboutViewModel : BaseViewModel() {
 
-
-
 }

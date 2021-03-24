@@ -11,8 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
+import com.common.cofing.enumconst.UiType
 import com.common.core.base.event.BaseEvent
-import com.common.core.base.viewmodel.BaseViewModel
 import com.common.databinding.ActivityBaseBinding
 import com.common.utils.extension.gone
 import com.common.utils.extension.setVisible
@@ -35,7 +35,7 @@ import java.lang.reflect.ParameterizedType
  * open 表示该类可以被继承 ,kotlin中默认类是不可以被继承
  */
 open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
-    Observer<BaseViewModel.LoadType> {
+    Observer<UiType> {
 
     protected lateinit var mBaseBinding: ActivityBaseBinding
     protected lateinit var mBinding: T
@@ -122,11 +122,13 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
     /**
      * 是否显示加载框
      */
-    open fun loadingView(loadingState: BaseViewModel.LoadType) {
+    open fun loadingView(uiType: UiType) {
         if (ObjectUtils.isNotEmpty(mHud)) {
-            when (loadingState) {
-                BaseViewModel.LoadType.LOADING -> if (mHud.isDismiss) mHud.show()
-                else -> if (mHud.isShow) mHud.dismiss()
+            when (uiType) {
+                UiType.LOADING -> if (mHud.isDismiss) mHud.show()
+                UiType.COMPLETE -> if (mHud.isShow) mHud.dismiss()
+                else -> {
+                }
             }
         }
     }
@@ -214,7 +216,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
     /**
      * 加载框显示
      */
-    override fun onChanged(loadingState: BaseViewModel.LoadType) {
-        loadingView(loadingState)
+    override fun onChanged(uiType: UiType) {
+        loadingView(uiType)
     }
 }

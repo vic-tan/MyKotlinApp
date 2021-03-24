@@ -76,7 +76,7 @@ class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, A
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        mViewModel.mLoadingState.observe(this, this)
+        mViewModel.mUiChange.observe(this, this)
         mViewModel.mAddressDataComplete.observe(this, Observer {
             mBinding.name.setText(mViewModel.mUser.nickname)
             mBinding.name.setSelection(mBinding.name.text.length)

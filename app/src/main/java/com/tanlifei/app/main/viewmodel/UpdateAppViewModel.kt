@@ -13,7 +13,7 @@ import com.tanlifei.app.common.network.ApiNetwork
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class UpdateAppViewModel() : BaseViewModel() {
+class UpdateAppViewModel : BaseViewModel() {
 
 
     /**
@@ -26,10 +26,10 @@ class UpdateAppViewModel() : BaseViewModel() {
     /**
      * 应用升级
      */
-    fun requestVersion() = launchBySilence {
+    fun requestVersion() = comRequest({
         val updateAppBean = ApiNetwork.requestVersion()
         if (ObjectUtils.isNotEmpty(updateAppBean)) {
             updateApp.value = updateAppBean
         }
-    }
+    }, uiLiveData = false)
 }

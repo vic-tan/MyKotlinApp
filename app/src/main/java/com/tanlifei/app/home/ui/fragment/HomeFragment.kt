@@ -1,6 +1,5 @@
 package com.tanlifei.app.home.ui.fragment
 
-import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -8,10 +7,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.cofing.enumconst.UiType
 import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseBVMFragment
-import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
@@ -27,7 +26,6 @@ import com.tanlifei.app.home.viewmodel.HomeViewModel
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel
 import com.youth.banner.indicator.RectangleIndicator
-import com.youth.banner.util.BannerUtils
 
 /**
  * @desc:首页
@@ -70,14 +68,14 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
             addHeaderOrFooter()
             adapter.notifyDataSetChanged()
         })
-        mViewModel.mLoadingState.observe(this, Observer {
+        mViewModel.mUiChange.observe(this, Observer {
             when (it) {
-                BaseListViewModel.UIType.NOTMOREDATA -> {
+                UiType.NO_NEXT -> {
                     mBinding.refreshLayout.smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
                 }
-                BaseListViewModel.UIType.EMPTYDATA -> mBinding.refreshLayout.refreshLoadingLayout.showContent()
-                BaseListViewModel.UIType.ERROR -> mBinding.refreshLayout.refreshLoadingLayout.showError()
-                BaseListViewModel.UIType.CONTENT -> mBinding.refreshLayout.refreshLoadingLayout.showContent()
+                UiType.EMPTY -> mBinding.refreshLayout.refreshLoadingLayout.showContent()
+                UiType.ERROR -> mBinding.refreshLayout.refreshLoadingLayout.showError()
+                UiType.CONTENT -> mBinding.refreshLayout.refreshLoadingLayout.showContent()
             }
         })
         homeViewModel.mRefreshUserInfo.observe(this, Observer {

@@ -1,6 +1,5 @@
 package com.tanlifei.app.classmatecircle.ui.fragment
 
-import android.os.Bundle
 import android.view.View
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter

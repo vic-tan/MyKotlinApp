@@ -2,159 +2,102 @@ package com.common.core.base.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.common.cofing.constant.GlobalConst
-import com.example.httpsender.kt.code
-import com.example.httpsender.kt.msg
-import com.example.httpsender.kt.show
-import com.scwang.smart.refresh.layout.constant.RefreshState
+import com.common.cofing.enumconst.UiType
+import com.common.core.base.bean.ListDataChangePrams
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 
 /**
  * @desc:列表加载
  * @author: tanlifei
  * @date: 2021/2/8 9:31
  */
-open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
+open abstract class BaseListViewModel : BaseViewModel() {
 
-    enum class DataChagedType {
-        REFRESH,//下拉改变刷新
-        LOADMORE,//上拉加载刷新
-        NOTIFY,//数据改变刷新
-        ERROE,//请求报错时不刷新数据，但上下拉要关闭
-    }
-
-    enum class UIType {
-        REFRESH,//下拉改变刷新
-        LOADMORE,//上拉加载刷新
-        CONTENT,//有内容
-        LOADING,//加载中
-        EMPTYDATA,//空列表
-        NOTMOREDATA,//没有一下页数据
-        ERROR,//报错界面
-    }
-
-    var mLoadMoreStartPos = 0//用于上接刷新里开始刷新的下标
-    var mState: RefreshState = RefreshState.None
-
-    /**
-     * 列表加载显示处理异常
-     */
-    protected fun launchByLoading(block: suspend () -> Unit, dataChangedType: DataChagedType) =
-        launchByLoading(block, {
-            loadingState.value = LoadType.ERROR
-            onError(dataChangedType, it)
-        })
-
-
-    /**
-     * 显示Ui 的LveData
-     */
-    val mUiBehavior: LiveData<UIType> get() = uiBehavior
-    private val uiBehavior = MutableLiveData<UIType>()
-
+    /** 列表数据 **/
     var mData: MutableList<Any> = mutableListOf()
+
+    /** 分页下标 **/
     var mPageNum: Int = 1
 
-    /**
-     * 列表数据改变的LveData
-     */
-    val mDataChanged: LiveData<DataChagedType> get() = dataChanged
-    protected var dataChanged = MutableLiveData<DataChagedType>()
+    /** 请求接口返回数据结果的LveData **/
+    val mDataChange: LiveData<ListDataChangePrams> get() = dataChange
+    private var dataChange = MutableLiveData<ListDataChangePrams>()
 
-    fun notifyDataSetChanged(dataChangedType: DataChagedType, startPos: Int = 0) {
-        mLoadMoreStartPos = startPos
-        dataChanged.value = dataChangedType
+
+    /**
+     * 请求列表接口
+     */
+    abstract fun requestList(uiType: UiType)
+
+
+//    override fun comRequest(
+//        block: suspend CoroutineScope.() -> Unit,
+//        onError: ((Throwable) -> Unit)?,
+//        showToast: Boolean,
+//        uiLiveData: Boolean,
+//        refreshState: Boolean,
+//        uiType: UiType
+//    ): Job {
+//        return super.comRequest(
+//            block,
+//            onError = onError,
+//            showToast = showToast,
+//            uiLiveData = uiLiveData,
+//            refreshState = refreshState,
+//            uiType = uiType
+//        )
+//    }
+
+    /**
+     * 改变数据类型
+     */
+    fun setDataChange(listDataChangePrams: ListDataChangePrams) {
+        dataChange.value = listDataChangePrams
     }
 
     /**
-     * 下拉刷新
+     * 刷新
      */
     fun refresh() {
         mPageNum = 1
-        requestList(DataChagedType.REFRESH)
+        requestList(UiType.REFRESH)
     }
 
     /**
      * 加载更多
      */
     fun loadMore() {
-        requestList(DataChagedType.LOADMORE)
-    }
-
-    fun addList(list: List<Any>, dataChangedType: DataChagedType) {
-        when (dataChangedType) {
-            DataChagedType.REFRESH -> {
-                mData.clear()
-                if (list.isNotEmpty()) {
-                    mData.addAll(list)
-                }
-                notifyDataSetChanged(dataChangedType)
-            }
-            DataChagedType.LOADMORE -> {
-                val startPos = mData.size - 1
-                if (list.isNotEmpty()) {
-                    mData.addAll(list)
-                }
-                notifyDataSetChanged(dataChangedType, startPos)
-            }
-            else -> {
-                notifyDataSetChanged(dataChangedType)
-            }
-        }
-
-        if (mData.isEmpty()) {
-            showEmptyUI()
-        } else {
-            showContentUI()
-        }
-        mState = RefreshState.None
-        mPageNum++
+        requestList(UiType.LOADMORE)
     }
 
     /**
-     * 错误处理
+     * 加载完成
      */
-    private fun onError(dataChangedType: DataChagedType, it: Throwable) {
-        loadingState.value = LoadType.ERROR
-        //没有下一页
-        if (it.code == GlobalConst.Http.NOT_LOAD_DATA) {
-            mState = RefreshState.RefreshFinish
-            showNotMoreDataUI()
-            notifyDataSetChanged(dataChangedType, mData.size - 1)
-        } else {
-            //下拉刷新时才显示错误界面，上拉不处理
-            if (dataChangedType == DataChagedType.REFRESH) {
-                showErrorUI()
+    fun complete(resultList: List<Any>, uiType: UiType = UiType.REFRESH) {
+        when (uiType) {
+            UiType.REFRESH -> {//下拉刷新
+                mData.clear()
+                if (resultList.isNotEmpty()) {
+                    mData.addAll(resultList)
+                    setUI(UiType.CONTENT)//有数据
+                    dataChange.value = ListDataChangePrams(uiType, resultList.size)
+                } else {
+                    setUI(UiType.EMPTY)//无数据
+                }
             }
-            it.show(it.code, it.msg)
-            mState = RefreshState.None
-            notifyDataSetChanged(DataChagedType.ERROE)
+            UiType.LOADMORE -> {//上拉加载更多
+                if (resultList.isNotEmpty()) {
+                    mData.addAll(resultList)
+                    setUI(UiType.COMPLETE)//加载
+                    dataChange.value = ListDataChangePrams(uiType, resultList.size)
+                } else {
+                    setUI(UiType.NO_NEXT)//没有一下页数据
+                }
+            }
         }
-
+        mPageNum++
     }
-
-    override fun showLoadingUI() {
-        uiBehavior.value = UIType.LOADING
-    }
-
-    override fun showEmptyUI() {
-        uiBehavior.value = UIType.EMPTYDATA
-    }
-
-
-    override fun showContentUI() {
-        uiBehavior.value = UIType.CONTENT
-    }
-
-    override fun showNotMoreDataUI() {
-        uiBehavior.value = UIType.NOTMOREDATA
-    }
-
-    override fun showErrorUI() {
-        uiBehavior.value = UIType.ERROR
-    }
-
-
-    abstract fun requestList(dataChangedType: DataChagedType)
 
 
 }

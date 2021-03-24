@@ -23,7 +23,7 @@ class HomeViewModel : BaseViewModel() {
     private var _homeHeaderDataChanged = MutableLiveData<HomeHeaderDataBean>()
 
     fun requestRefresh() {
-        launchByLoading {
+        comRequest({
             var homeHeaderData = ApiNetwork.requestHomeBanner()
             var listData = ApiNetwork.requestFriendsEntertainmentListByType(1, 1)
             bannerData.clear()
@@ -43,6 +43,6 @@ class HomeViewModel : BaseViewModel() {
                 mData.addAll(listData)
             }
             _homeHeaderDataChanged.value = homeHeaderData
-        }
+        })
     }
 }

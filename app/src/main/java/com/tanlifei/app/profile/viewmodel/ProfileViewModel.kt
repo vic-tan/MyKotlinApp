@@ -3,6 +3,7 @@ package com.tanlifei.app.profile.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.cofing.enumconst.UiType
 import com.common.core.base.bean.UserBean
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.extension.toast
@@ -20,7 +21,7 @@ import com.tanlifei.app.profile.bean.UniversityBean
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class ProfileViewModel() : BaseViewModel() {
+class ProfileViewModel : BaseViewModel() {
 
     var mUserBean: UserBean? = null
 
@@ -59,7 +60,7 @@ class ProfileViewModel() : BaseViewModel() {
         if (url.isNotEmpty()) {
             var uploadList: MutableList<String> = mutableListOf()
             uploadList.add(url)
-            loadingState.value = LoadType.LOADING
+            setUI(UiType.LOADING)
             HuaweiUploadManager().statJob(
                 HuaweiUploadManager.EnterType.ENTER_TYPE_CLASSMATE,
                 uploadList,
@@ -71,7 +72,7 @@ class ProfileViewModel() : BaseViewModel() {
 
                     override fun onFail(errorType: HuaweiUploadManager.UploadType) {
                         toast("上传图片失败了")
-                        loadingState.value = LoadType.ERROR
+                        setUI(UiType.ERROR)
                     }
 
                 }
@@ -81,52 +82,52 @@ class ProfileViewModel() : BaseViewModel() {
 
     }
 
-    fun requestUpdateUser() = launchByLoading {
+    fun requestUpdateUser() = comRequest({
         val user = ApiNetwork.requestUpdateUser(mUserBean!!)
         toast("保存完成")
         dataChanged.value = mUserBean
-    }
+    })
 
 
     /**
      * 请求用户信息
      */
-    fun requestUser() = launchBySilence({
+    fun requestUser() = comRequest({
         val user = ApiNetwork.requestUserInfo()
         if (ObjectUtils.isNotEmpty(user)) {
             mUserBean = user
             refreshUserInfo.value = mUserBean
-            mUserBean?.areaId?.let { requestUniversity(it) }
+            mUserBean?.areaId?.let { requestUniversity(it) }!!
         } else {
             findUserByDB()
         }
-    }, {
+    }, onError = {
         findUserByDB()
     })
 
     /**
      * 获取省市区JSON
      */
-    fun requestAreaJsonList() = launchBySilence {
+    fun requestAreaJsonList() = comRequest({
         var data = ApiNetwork.requestUniversityAreaList()
         if (ObjectUtils.isNotEmpty(data)) {
             mAreaJsonList = data
             analysisAreaJson(data)
             areaDataComplete.value = true
         }
-    }
+    }, uiLiveData = false)
 
     /**
      * 获取合作大学存在的省区
      */
-    fun requestUniversity(id: Long) = launchBySilence {
+    fun requestUniversity(id: Long) = comRequest({
         mUniversityOptionsItems.clear()
         val universityList = ApiNetwork.requestUniversity(id)
         if (ObjectUtils.isNotEmpty(universityList)) {
             mUniversityOptionsItems = universityList
             refreshUniversityList.value = universityList
         }
-    }
+    }, uiLiveData = false)
 
 
     /**

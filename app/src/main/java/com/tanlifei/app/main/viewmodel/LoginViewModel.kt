@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class LoginViewModel() : BaseViewModel() {
+class LoginViewModel : BaseViewModel() {
 
     /* 永远暴露不可变LiveData给外部，防止外部可以修改LoginViewModel，保证LoginViewModel独立性 */
 
@@ -76,26 +76,18 @@ class LoginViewModel() : BaseViewModel() {
     /**
      * 请求短信码
      */
-    fun requestSmsCode(phone: String) = launchByLoading {
+    fun requestSmsCode(phone: String) = comRequest({
         ApiNetwork.requestSmsCode(phone)
         startInterval()
-    }
+    })
 
     /**
      * 请求登录
      */
-    fun requestLogin(phone: String, code: String) = launchByLoading {
+    fun requestLogin(phone: String, code: String) = comRequest({
         mToken = ApiNetwork.requestLogin(phone, code)
-        this.isToken.value = ObjectUtils.isNotEmpty(mToken)
-    }
-
-    /**
-     * 退出登录
-     */
-    fun requestLogin() = launchByLoading {
-        mToken = ApiNetwork.requestLoginOut()
-        this.isToken.value = false
-    }
+        isToken.value = ObjectUtils.isNotEmpty(mToken)
+    })
 
 
     /**

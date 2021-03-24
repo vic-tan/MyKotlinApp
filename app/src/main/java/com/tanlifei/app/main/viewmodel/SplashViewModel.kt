@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class SplashViewModel() : BaseViewModel() {
+class SplashViewModel : BaseViewModel() {
 
     enum class JumpType {
         GUIDE,//表示去引导页
@@ -52,16 +52,16 @@ class SplashViewModel() : BaseViewModel() {
 
 
     /**
-     * 请求短信码
+     * 请求广告图片
      */
-    fun requestAds() = launchBySilence({
+    fun requestAds() = comRequest({
         mAdsBean = ApiNetwork.requestAds()
         if (ObjectUtils.isNotEmpty(mAdsBean)) {
             LitePal.deleteAll(AdsBean::class.java)
             mAdsBean!!.save()
             jump.value = JumpType.REQUEST_ADS
         }
-    }, {
+    }, uiLiveData = false, onError = {
         findAdsByDB()
     })
 

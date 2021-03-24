@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.cofing.enumconst.UiType
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.classmatecircle.adapter.RecommendTabAdapter
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
@@ -28,15 +29,15 @@ class RecommendTabViewModel(private val mManager: FragmentManager) : BaseViewMod
     lateinit var mTabAdapter: RecommendTabAdapter
 
     fun requestCategoryList() {
-        launchByLoading {
+        comRequest({
             val categoryList = ApiNetwork.requestEntertainmentCategoryList()
             if (ObjectUtils.isNotEmpty(categoryList)) {
                 mData.addAll(categoryList)
                 addFragment()
             } else {
-                loadingState.value = LoadType.ERROR
+                setUI(UiType.ERROR)
             }
-        }
+        })
     }
 
     private fun addFragment() {

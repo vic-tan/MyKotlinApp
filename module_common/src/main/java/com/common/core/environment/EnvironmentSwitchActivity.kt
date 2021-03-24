@@ -68,7 +68,7 @@ class EnvironmentSwitchActivity :
         val mapJsonStr: String = intent.getStringExtra(GlobalConst.Extras.JSON)
         mViewModel.initListData(mapJsonStr)
         initRecyclerView()
-        mViewModel.mDataChanged.observe(this, Observer {
+        mViewModel.mDataChange.observe(this, Observer {
             adapter.notifyDataSetChanged()
         })
     }

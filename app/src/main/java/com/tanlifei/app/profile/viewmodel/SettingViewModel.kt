@@ -11,7 +11,7 @@ import com.tanlifei.app.common.network.ApiNetwork
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class SettingViewModel() : BaseViewModel() {
+class SettingViewModel : BaseViewModel() {
 
     /**
      * 登录成功获取到token 的LveData
@@ -23,10 +23,10 @@ class SettingViewModel() : BaseViewModel() {
     /**
      * 退出登录
      */
-    fun requestLogin() = launchByLoading {
+    fun requestLogin() = comRequest({
         ApiNetwork.requestLoginOut()
         isToken.value = false
-    }
+    })
 
 
 }

@@ -8,9 +8,9 @@ import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
 import com.common.cofing.constant.GlobalConst
+import com.common.cofing.enumconst.UiType
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.activity.BaseToolBarActivity
-import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.ComDialogUtils
 import com.common.utils.GlideUtils
@@ -83,13 +83,13 @@ class ClassmateCircleDetailActivity :
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        RecyclerUtils.uiBehaviorObserve(
+        RecyclerUtils.uiObserve(
             mBinding.refreshLayout.smartRefreshLayout, mBinding.refreshLayout.refreshLoadingLayout,
             mViewModel, this, true
         )
-        mViewModel.mDataChanged.observe(this, Observer {
-            when (it) {
-                BaseListViewModel.DataChagedType.REFRESH -> {
+        mViewModel.mDataChange.observe(this, Observer {
+            when (it.uiType) {
+                UiType.REFRESH -> {
                     mBinding.refreshLayout.smartRefreshLayout.setEnableLoadMore(true)
                     mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
                     addHeader()
@@ -100,12 +100,12 @@ class ClassmateCircleDetailActivity :
                         mAdapter.refreshItemRange()
                     }
                 }
-                BaseListViewModel.DataChagedType.LOADMORE -> {
+                UiType.LOADMORE -> {
                     mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
-                    mAdapter.loadMoreItemRange(mViewModel.mLoadMoreStartPos)
+                    mAdapter.loadMoreItemRange(mViewModel.mData.size - it.size - 1)
 
                 }
-                BaseListViewModel.DataChagedType.ERROE -> {
+                UiType.ERROR -> {
                     mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
                     mBinding.refreshLayout.smartRefreshLayout.finishLoadMore()
                 }
@@ -117,14 +117,14 @@ class ClassmateCircleDetailActivity :
                 }
             }
         })
-        mViewModel.itemDataChanged.observe(this, Observer {
+        mViewModel.mItemDataChanged.observe(this, Observer {
             mAdapter.notifyItemChanged(
                 mAdapter.mHeaderViews.size + it
             )
             mAdapter.removeHeaderView(mEmptyView)
 
         })
-        mViewModel.beanChanged.observe(this, Observer {
+        mViewModel.mBeanChanged.observe(this, Observer {
             refreshHeaderData()
         })
     }

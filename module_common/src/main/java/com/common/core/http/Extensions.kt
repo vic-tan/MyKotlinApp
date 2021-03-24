@@ -1,8 +1,5 @@
-package com.example.httpsender.kt
+package com.common.core.http
 
-import com.blankj.utilcode.util.NetworkUtils
-import com.blankj.utilcode.util.Utils
-import com.common.R
 import com.common.utils.extension.toast
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.TimeoutCancellationException

@@ -76,7 +76,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        mViewModel.mLoadingState.observe(this, this)
+        mViewModel.mUiChange.observe(this, this)
 
         mViewModel.mIsToken.observe(this, Observer {
             if (it) {

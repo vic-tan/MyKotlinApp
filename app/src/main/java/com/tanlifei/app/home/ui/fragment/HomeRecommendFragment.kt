@@ -1,6 +1,5 @@
 package com.tanlifei.app.home.ui.fragment
 
-import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView

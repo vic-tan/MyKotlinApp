@@ -1,5 +1,6 @@
 package com.tanlifei.app.classmatecircle.viewmodel
 
+import com.common.cofing.enumconst.UiType
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.common.network.ApiNetwork
 
@@ -10,10 +11,10 @@ import com.tanlifei.app.common.network.ApiNetwork
  */
 class FollowViewModel : BaseListViewModel() {
 
-
-    override fun requestList(dataChangedType: DataChagedType) {
-        launchByLoading({
-            addList(ApiNetwork.requestFriendsEntertainmentList(mPageNum), dataChangedType)
-        },dataChangedType)
+    override fun requestList(uiType: UiType) {
+        comRequest({
+            complete(ApiNetwork.requestFriendsEntertainmentList(mPageNum), uiType)
+        }, uiType = uiType)
     }
+
 }
