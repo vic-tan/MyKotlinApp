@@ -3,8 +3,8 @@ package com.common.core.base.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.cofing.constant.GlobalConst
-import com.example.httpsender.kt.errorCode
-import com.example.httpsender.kt.errorMsg
+import com.example.httpsender.kt.code
+import com.example.httpsender.kt.msg
 import com.example.httpsender.kt.show
 import com.scwang.smart.refresh.layout.constant.RefreshState
 
@@ -116,7 +116,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
     private fun onError(dataChangedType: DataChagedType, it: Throwable) {
         loadingState.value = LoadType.ERROR
         //没有下一页
-        if (it.errorCode == GlobalConst.Http.NOT_LOAD_DATA) {
+        if (it.code == GlobalConst.Http.NOT_LOAD_DATA) {
             mState = RefreshState.RefreshFinish
             showNotMoreDataUI()
             notifyDataSetChanged(dataChangedType, mData.size - 1)
@@ -125,7 +125,7 @@ open abstract class BaseListViewModel : BaseViewModel(), ViewBehavior {
             if (dataChangedType == DataChagedType.REFRESH) {
                 showErrorUI()
             }
-            it.show(it.errorCode, it.errorMsg)
+            it.show(it.code, it.msg)
             mState = RefreshState.None
             notifyDataSetChanged(DataChagedType.ERROE)
         }

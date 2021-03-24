@@ -3,8 +3,8 @@ package com.common.core.base.viewmodel
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.httpsender.kt.errorCode
-import com.example.httpsender.kt.errorMsg
+import com.example.httpsender.kt.code
+import com.example.httpsender.kt.msg
 import com.example.httpsender.kt.show
 
 /**
@@ -37,7 +37,7 @@ open class BaseViewModel : ViewModel() {
      */
     protected fun launchByLoading(block: suspend () -> Unit) = launchByLoading(block, {
         loadingState.value = LoadType.ERROR
-        it.show(it.errorCode, it.errorMsg)
+        it.show(it.code, it.msg)
     })
 
 
@@ -68,7 +68,7 @@ open class BaseViewModel : ViewModel() {
      * 静默加载请求不需要处理异常，直接提示异常
      */
     protected fun launchBySilence(block: suspend () -> Unit) = launchBySilence(block, {
-        it.show(it.errorCode, it.errorMsg)
+        it.show(it.code, it.msg)
     })
 
     /**

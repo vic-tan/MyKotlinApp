@@ -1,9 +1,5 @@
 <resources>
     <string name="app_exit" translatable="false">再按一次退出程序</string>
-    <string name="network_error" translatable="false">当前无网络，请检查你的网络设置</string>
-    <string name="notify_no_network" translatable="false">网络连接不可用，请稍后重试！</string>
-    <string name="esky_service_exception" translatable="false">网络不给力，请稍候重试！</string>
-    <string name="time_out_please_try_again_later" translatable="false">连接超时,请稍后再试</string>
     <string name="to_expand_hint" translatable="false">展开</string>
     <string name="to_shrink_hint" translatable="false">收起</string>
 </resources>
