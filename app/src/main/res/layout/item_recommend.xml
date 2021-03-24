@@ -2,8 +2,8 @@
 <com.ruffian.library.widget.RConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/match_wrap"
     android:id="@+id/item"
+    style="@style/match_wrap"
     app:background_normal="@color/white"
     app:background_pressed="@color/white"
     app:corner_radius="5dp">
@@ -12,6 +12,7 @@
         android:id="@+id/cover"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:background="@color/com_image_bg"
         android:scaleType="centerCrop"
         app:corner_radius_top_left="5dp"
         app:corner_radius_top_right="5dp"
