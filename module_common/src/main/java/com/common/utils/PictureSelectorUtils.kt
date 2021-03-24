@@ -49,7 +49,7 @@ object PictureSelectorUtils {
             .freeStyleCropEnabled(true)
             .isSingleDirectReturn(true)//PictureConfig.SINGLE模式下是否直接返回
             .cropImageWideHigh(ConvertUtils.dp2px(150f), ConvertUtils.dp2px(150f))
-            .setCropDimmedColor(color(R.color.com_shadow_blur))//设置圆形裁剪背景色值
+            .setCropDimmedColor(color(R.color.com_shadow))//设置圆形裁剪背景色值
             .setCircleDimmedBorderColor(color(R.color.white))//设置圆形裁剪边框色值
             .showCropFrame(false)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
             .showCropGrid(false)//是否显示裁剪矩形网格 圆形裁剪时建议设为false
@@ -94,8 +94,8 @@ object PictureSelectorUtils {
 
         uiStyle.picture_bottom_previewTextSize = 14
         uiStyle.picture_bottom_previewTextColor = intArrayOf(
-            color(R.color.theme_color),
-            color(R.color.theme_color)
+            color(R.color.theme),
+            color(R.color.theme)
         )
 
         uiStyle.picture_bottom_completeRedDotTextSize = 12
@@ -103,14 +103,14 @@ object PictureSelectorUtils {
         uiStyle.picture_bottom_completeRedDotTextColor = color(R.color.white)
         uiStyle.picture_bottom_completeRedDotBackground = R.drawable.picture_num_oval_pre
         uiStyle.picture_bottom_completeTextColor = intArrayOf(
-            color(R.color.theme_color),
-            color(R.color.theme_color)
+            color(R.color.theme),
+            color(R.color.theme)
         )
         uiStyle.picture_bottom_barBackgroundColor = color(R.color.white)
 
 
         uiStyle.picture_adapter_item_camera_backgroundColor =
-            color(R.color.color_999999)
+            color(R.color.txt_help)
         uiStyle.picture_adapter_item_camera_textColor = color(R.color.white)
         uiStyle.picture_adapter_item_camera_textSize = 14
         uiStyle.picture_adapter_item_camera_textTopDrawable =

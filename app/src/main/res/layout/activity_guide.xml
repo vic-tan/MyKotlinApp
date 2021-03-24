@@ -9,7 +9,7 @@
         style="@style/match_match"
         app:banner_indicator_marginBottom="35dp"
         app:banner_indicator_normal_color="#88000000"
-        app:banner_indicator_selected_color="@color/theme_color"
+        app:banner_indicator_selected_color="@color/theme"
         app:banner_infinite_loop="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

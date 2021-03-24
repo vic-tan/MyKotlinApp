@@ -38,8 +38,8 @@ object MagicIndicatorUtils {
                     ScalePagerTitleView(
                         context
                     )
-                simplePagerTitleView.normalColor = color(R.color.color_999999)
-                simplePagerTitleView.selectedColor = color(R.color.color_333333)
+                simplePagerTitleView.normalColor = color(R.color.txt_help)
+                simplePagerTitleView.selectedColor = color(R.color.txt_basic)
                 simplePagerTitleView.text = mTitleData[index]
                 simplePagerTitleView.textSize = 19f
                 simplePagerTitleView.setOnClickListener {
@@ -52,7 +52,7 @@ object MagicIndicatorUtils {
             override fun getIndicator(context: Context): IPagerIndicator {
                 //设置线
                 val indicator = LinePagerIndicator(context)
-                indicator.setColors(color(R.color.theme_color))
+                indicator.setColors(color(R.color.theme))
                 indicator.mode = LinePagerIndicator.MODE_EXACTLY
                 indicator.lineHeight = ConvertUtils.dp2px(3.5f).toFloat()
                 indicator.roundRadius = ConvertUtils.dp2px(3.0f).toFloat()

@@ -34,7 +34,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="点击更换头像"
-                android:textColor="@color/color_333333"
+                android:textColor="@color/txt_basic"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -55,7 +55,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@color/base_layout_bg" />
+            android:background="@color/com_root_bg" />
 
         <com.ruffian.library.widget.RConstraintLayout
             android:id="@+id/nickname_layout"

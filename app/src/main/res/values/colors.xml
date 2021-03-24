@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_333333">#333333</color>
-    <color name="color_F5F6FA">#F5F6FA</color>
-    <color name="color_999999">#999999</color>
-    <color name="color_BEBEC0">#BEBEC0</color>
-    <color name="color_666666">#666666</color>
     <color name="color_A47E68">#A47E68</color>
     <color name="color_96A8BB">#96A8BB</color>
-    <color name="color_80000000">#80000000</color>
 </resources>

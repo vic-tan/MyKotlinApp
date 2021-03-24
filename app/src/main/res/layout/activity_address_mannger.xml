@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:text="详情地址*"
-                    android:textColor="@color/color_333333"
+                    android:textColor="@color/txt_basic"
                     android:textSize="18sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

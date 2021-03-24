@@ -88,9 +88,9 @@ abstract class NavigatorView<T : ViewBinding> @JvmOverloads constructor(
             if (child is TextView) {
                 if (child !is RTextView) {
                     if (select) {
-                        child.setTextColor(ContextCompat.getColor(context, R.color.tab_txt_press))
+                        child.setTextColor(ContextCompat.getColor(context, R.color.txt_navigator_press))
                     } else {
-                        child.setTextColor(ContextCompat.getColor(context, R.color.tab_txt_normal))
+                        child.setTextColor(ContextCompat.getColor(context, R.color.txt_navigator_normal))
                     }
                 }
             }

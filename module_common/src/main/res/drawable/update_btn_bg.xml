@@ -3,6 +3,6 @@
     android:shape="rectangle">
     <!-- 圆角 -->
     <corners android:radius="6dp" /><!-- 设置圆角半径 -->
-    <solid android:color="@color/theme_color" /><!-- 填充的颜色 -->
+    <solid android:color="@color/theme" /><!-- 填充的颜色 -->
 
 </shape>

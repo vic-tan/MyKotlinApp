@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/match_match"
-    tools:background="@color/base_layout_bg">
+    tools:background="@color/com_root_bg">
 
 
     <com.ruffian.library.widget.RConstraintLayout
@@ -78,7 +78,7 @@
                 android:layout_marginStart="5dp"
                 android:gravity="center_vertical"
                 android:text="搜索课程"
-                android:textColor="@color/color_999999"
+                android:textColor="@color/txt_help"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/search"

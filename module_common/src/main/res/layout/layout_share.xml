@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="分享到"
-        android:textColor="@color/color_333333"
+        android:textColor="@color/txt_basic"
         android:textSize="19sp"
         app:corner_radius_top_left="@dimen/dialog_corner_radius"
         app:corner_radius_top_right="@dimen/dialog_corner_radius"
@@ -28,7 +28,7 @@
         android:id="@+id/title_line"
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
-        android:background="@color/line_E9E9E9"
+        android:background="@color/com_line"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
@@ -48,7 +48,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="微信"
-            android:textColor="@color/color_999999"
+            android:textColor="@color/txt_help"
             android:textSize="14sp"
             app:icon_direction="top"
             app:icon_height="40dp"
@@ -66,7 +66,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="朋友圈"
-            android:textColor="@color/color_999999"
+            android:textColor="@color/txt_help"
             android:textSize="14sp"
             app:icon_direction="top"
             app:icon_height="40dp"
@@ -84,7 +84,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="举报"
-            android:textColor="@color/color_999999"
+            android:textColor="@color/txt_help"
             android:textSize="14sp"
             app:icon_direction="top"
             app:icon_height="40dp"
@@ -102,7 +102,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="删除"
-            android:textColor="@color/color_999999"
+            android:textColor="@color/txt_help"
             android:textSize="14sp"
             app:icon_direction="top"
             app:icon_height="40dp"
@@ -121,7 +121,7 @@
         android:id="@+id/cancel_line"
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
-        android:background="@color/line_E9E9E9"
+        android:background="@color/com_line"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/share_type_layout" />
@@ -133,7 +133,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="取消"
-        android:textColor="@color/color_333333"
+        android:textColor="@color/txt_basic"
         android:textSize="18sp"
         app:corner_radius_top_left="@dimen/dialog_corner_radius"
         app:corner_radius_top_right="@dimen/dialog_corner_radius"
@@ -141,7 +141,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cancel_line"
         app:ripple="true"
-        app:ripple_color="@color/item_ripple_color" />
+        app:ripple_color="@color/com_ripple" />
 
 
 </com.ruffian.library.widget.RConstraintLayout>

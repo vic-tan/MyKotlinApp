@@ -29,8 +29,8 @@
         android:paddingBottom="1dp"
         android:textColor="@color/white"
         android:textSize="12sp"
-        android:visibility="gone"
-        app:background_normal="@array/classmate_circle_tag"
+        android:visibility="visible"
+        app:background_normal="@array/com_orange"
         app:corner_radius_bottom_right="5dp"
         app:corner_radius_top_left="5dp"
         app:gradient_orientation="TL_BR"
@@ -47,7 +47,7 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         android:visibility="gone"
-        app:background_normal="@color/theme_color"
+        app:background_normal="@color/theme"
         app:icon_direction="left"
         app:icon_height="16dp"
         app:icon_src_normal="@mipmap/ic_caveat"
@@ -97,7 +97,7 @@
                 android:text="#"
                 android:textColor="@color/white"
                 android:textSize="11sp"
-                app:background_normal="@color/theme_color"
+                app:background_normal="@color/theme"
                 app:corner_radius="8dp" />
 
             <TextView
@@ -110,7 +110,7 @@
                 android:lines="1"
                 android:singleLine="true"
                 android:text=""
-                android:textColor="@color/color_666666"
+                android:textColor="@color/txt_sub"
                 android:textSize="15sp"
                 tools:text="左奇葩奇葩" />
         </com.ruffian.library.widget.RLinearLayout>
@@ -151,7 +151,7 @@
         android:layout_marginStart="3dp"
         android:layout_marginTop="12dp"
         android:maxLines="1"
-        android:textColor="@color/color_999999"
+        android:textColor="@color/txt_help"
         android:textSize="14sp"
         app:layout_constraintLeft_toRightOf="@id/user_head"
         app:layout_constraintRight_toLeftOf="@id/praise_count"
@@ -169,7 +169,7 @@
         android:maxLength="6"
         android:maxLines="1"
         android:text="点赞"
-        android:textColor="@color/color_999999"
+        android:textColor="@color/txt_help"
         android:textSize="14sp"
         app:icon_direction="left"
         app:icon_height="16dp"

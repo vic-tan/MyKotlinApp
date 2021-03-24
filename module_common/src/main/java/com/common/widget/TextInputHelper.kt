@@ -18,8 +18,8 @@ import java.util.*
 class TextInputHelper(
     var mContext: Context,
     var mTargetView: RTextView,
-    private var mColorNormal: Int = R.color.theme_color,
-    private var mEnabledColor: Int = R.color.enabled_color
+    private var mColorNormal: Int = R.color.theme,
+    private var mEnabledColor: Int = R.color.com_btn_enabled
 ) : TextWatcher {
     private var mViewSet: MutableList<TextView>? = null //TextView集合，子类也可以（EditText、TextView、Button）
 

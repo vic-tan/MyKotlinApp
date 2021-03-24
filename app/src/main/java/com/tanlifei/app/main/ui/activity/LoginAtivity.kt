@@ -154,7 +154,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun setProtocolTxt() {
         val protocolBuild = SimplifySpanBuild()
-        protocolBuild.append(SpecialTextUnit("登录即代表您已同意").setTextColor(color(R.color.color_666666)))
+        protocolBuild.append(SpecialTextUnit("登录即代表您已同意").setTextColor(color(R.color.txt_sub)))
         protocolBuild.append(SpecialTextUnit("《用户协议》").setTextColor(color(R.color.color_A47E68))
             .setClickableUnit(
                 SpecialClickableUnit(mBinding.protocolTxt,
@@ -169,7 +169,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
                 )
                     .setPressBgColor(color(R.color.white))
             ))
-        protocolBuild.append(SpecialTextUnit("和").setTextColor(color(R.color.color_666666)))
+        protocolBuild.append(SpecialTextUnit("和").setTextColor(color(R.color.txt_sub)))
         protocolBuild.append(SpecialTextUnit("《隐私政策》").setTextColor(color(R.color.color_A47E68))
             .setClickableUnit(
                 SpecialClickableUnit(mBinding.protocolTxt,
@@ -242,7 +242,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun onIntervalStart() {
         mBinding.codeBtn.isClickable = false //在发送数据的时候设置为不能点击
-        mBinding.codeBtn.setTextColor(color(R.color.color_999999))
+        mBinding.codeBtn.setTextColor(color(R.color.txt_help))
     }
 
     /**
@@ -258,7 +258,7 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
      */
     private fun onIntervalComplete() {
         mBinding.codeBtn.isClickable = true
-        mBinding.codeBtn.setTextColor(color(R.color.theme_color))
+        mBinding.codeBtn.setTextColor(color(R.color.theme))
         mBinding.codeBtn.text = "点击获取"
     }
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--标签 / icon色 / button色-->
+    <string-array name="com_theme" tools:ignore="ExtraTranslation">
+        <item>#FD7352</item>
+        <item>#F2323A</item>
+    </string-array>
+
+    <!--标签 / icon色/分享-->
+    <string-array name="com_share" tools:ignore="ExtraTranslation">
+        <item>#43DE80</item>
+        <item>#1CCA61</item>
+    </string-array>
+
+    <!--标签 / icon色 / button色-->
+    <string-array name="com_yellow" tools:ignore="ExtraTranslation">
+        <item>#FED34E</item>
+        <item>#FEA234</item>
+    </string-array>
+
+    <!--标签 / icon色 / button色-->
+    <string-array name="com_blue">
+        <item>#0097FF</item>
+        <item>#2DC5F3</item>
+    </string-array>
+
+    <!--标签 / icon色 / button色-->
+    <string-array name="com_purple">
+        <item>#6859FF</item>
+        <item>#A073FF</item>
+    </string-array>
+
+    <!--标签 / icon色 / button色-->
+    <string-array name="com_orange">
+        <item>#FF794D</item>
+        <item>#F63C09</item>
+    </string-array>
+</resources>

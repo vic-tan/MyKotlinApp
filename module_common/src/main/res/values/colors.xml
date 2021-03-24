@@ -1,27 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="theme_color">#F2323A</color>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--———————————————————————————  主题色 ———————————————————————————————————— -->
+
+    <!--  主色调 / 警告提醒 / 常规button颜色 / 选中icon颜色-->
+    <color name="theme">#F2323A</color>
     <color name="colorPrimary">@color/white</color>
     <color name="colorPrimaryDark">@color/white</color>
-    <color name="colorAccent">@color/theme_color</color>
-    <color name="transparent">#00000000</color>
+    <color name="colorAccent">@color/theme</color>
+
+
+    <!--———————————————————————————  系统常用色 ———————————————————————————————————— -->
+
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 
-    <color name="base_layout_bg">#EDEDED</color>
+    <!--———————————————————————————  共用常用色 ———————————————————————————————————— -->
 
-    <color name="com_C0F2323A">#C0F2323A</color>
-    <color name="tab_txt_press">#343434</color>
-    <color name="tab_txt_normal">#9A9A9A</color>
-    <!--按钮禁用背景色-->
-    <color name="enabled_color">#66F2323A</color>
-    <color name="item_ripple_color">#eeeeee</color>
+    <!--透明-->
+    <color name="com_transparent">#00000000</color>
 
-    <color name="color_333333">#333333</color>
-    <color name="color_666666">#666666</color>
-    <color name="color_999999">#999999</color>
-    <color name="color_F5F6FA">#F5F6FA</color>
-    <color name="color_BEBEC0">#BEBEC0</color>
-    <color name="line_E9E9E9">#E9E9E9</color>
-    <color name="com_shadow_blur">#80000000</color>
+    <!--半透明-->
+    <color name="com_translucent">#80000000</color>
+
+    <!--页面背景色-->
+    <color name="com_root_bg">#EDEDED</color>
+
+    <!--输入框底色 / 占位图底色-->
+    <color name="com_input_bg">#F5F6FA</color>
+
+    <!--触摸时背景色-->
+    <color name="com_btn_pressed">#C0F2323A</color>
+
+    <!--禁时背景色-->
+    <color name="com_btn_enabled">#1AF2323A</color>
+
+    <!--图片、视频加载占位-->
+    <color name="com_image_bg">#F5F6FA</color>
+
+    <!--触摸时波浪背景色-->
+    <color name="com_ripple">#eeeeee</color>
+
+    <!--阴影，及半透明显示 黑色蒙层-->
+    <color name="com_shadow">#99000000</color>
+
+    <!-- 分线色-->
+    <color name="com_line">#E9E9E9</color>
+
+    <!-- 输入框分线色-->
+    <color name="com_line_split_view">#BEBEC0</color>
+
+    <!--———————————————————————————  文字常用色 ———————————————————————————————————— -->
+
+    <!-- 首页navigator 未选中字体色-->
+    <color name="txt_navigator_normal">#9A9A9A</color>
+
+    <!-- 首页navigator 选中字体色-->
+    <color name="txt_navigator_press">#343434</color>
+
+    <!--正文 / 标题 / 重要性文字-->
+    <color name="txt_basic">#333333</color>
+
+    <!--次要文本/ 长文本-->
+    <color name="txt_sub">#666666</color>
+
+    <!--辅助/ 提示 / 输入框提示文本-->
+    <color name="txt_help">#999999</color>
+
+
 </resources>

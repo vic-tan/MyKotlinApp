@@ -47,7 +47,7 @@ object ComFun {
             layout.setEnableScrollContentWhenLoaded(false)
             layout.setFooterMaxDragRate(4.0f)
             layout.setFooterHeight(45f)
-            layout.setPrimaryColorsId(R.color.transparent, R.color.color_666666)
+            layout.setPrimaryColorsId(R.color.com_transparent, R.color.txt_sub)
         }
 
         //设置全局的Header构建器

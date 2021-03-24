@@ -1,7 +1,6 @@
 package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -87,7 +86,7 @@ class RecommendTabFragment :
                 commonPagerTitleView.onPagerTitleChangeListener = object :
                     OnPagerTitleChangeListener {
                     override fun onSelected(index: Int, totalCount: Int) {
-                        titleText.setTextColor(color(R.color.theme_color))
+                        titleText.setTextColor(color(R.color.theme))
                         GlideUtils.load(context, mViewModel.mData[index].iconSelect, titleImg)
                     }
 

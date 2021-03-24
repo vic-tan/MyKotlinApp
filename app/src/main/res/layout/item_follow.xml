@@ -53,7 +53,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:singleLine="true"
-            android:textColor="@color/color_333333"
+            android:textColor="@color/txt_basic"
             android:textSize="18sp"
             tools:text="作者：古月" />
 
@@ -64,7 +64,7 @@
             android:lines="1"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@color/color_999999"
+            android:textColor="@color/txt_help"
             android:textSize="16sp"
             tools:text="深圳老年大学" />
     </LinearLayout>
@@ -86,12 +86,12 @@
         style="@style/match_wrap"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:textColor="@color/color_333333"
+        android:textColor="@color/txt_basic"
         android:textSize="20sp"
         app:etv_MaxLinesOnShrink="3"
-        app:etv_ToExpandHintColor="@color/color_999999"
+        app:etv_ToExpandHintColor="@color/txt_help"
         app:etv_ToExpandHintColorBgPressed="@color/white"
-        app:etv_ToShrinkHintColor="@color/color_999999"
+        app:etv_ToShrinkHintColor="@color/txt_help"
         app:etv_ToShrinkHintColorBgPressed="@color/white"
         app:layout_constraintBottom_toTopOf="@id/line"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -110,7 +110,7 @@
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
-        android:background="@color/line_E9E9E9"
+        android:background="@color/com_line"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/margin_view" />
@@ -150,7 +150,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="点赞"
-                android:textColor="@color/color_333333"
+                android:textColor="@color/txt_basic"
                 android:textSize="16sp" />
 
 
@@ -161,7 +161,7 @@
             android:layout_width="0.5dp"
             android:layout_height="20dp"
             android:layout_marginTop="17dp"
-            android:background="@color/line_E9E9E9"
+            android:background="@color/com_line"
             app:layout_constraintLeft_toLeftOf="@id/praise_layout"
             app:layout_constraintRight_toRightOf="@id/comment_layout"
             app:layout_constraintTop_toTopOf="parent" />
@@ -190,7 +190,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="评论"
-                android:textColor="@color/color_333333"
+                android:textColor="@color/txt_basic"
                 android:textSize="16sp" />
 
 
@@ -200,7 +200,7 @@
             android:layout_width="0.5dp"
             android:layout_height="20dp"
             android:layout_marginTop="17dp"
-            android:background="@color/line_E9E9E9"
+            android:background="@color/com_line"
             app:layout_constraintLeft_toLeftOf="@id/comment_layout"
             app:layout_constraintRight_toRightOf="@id/share_layout"
             app:layout_constraintTop_toTopOf="parent" />
@@ -229,7 +229,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="分享"
-                android:textColor="@color/color_333333"
+                android:textColor="@color/txt_basic"
                 android:textSize="16sp" />
         </LinearLayout>
 

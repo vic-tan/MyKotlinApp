@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/match_wrap"
-    android:background="@color/base_layout_bg">
+    android:background="@color/com_root_bg">
 
 
     <TextView
@@ -13,7 +13,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:text="调整学习兴趣"
-        android:textColor="@color/color_333333"
+        android:textColor="@color/txt_basic"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,7 +27,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:text="从此更懂你的学习需求"
-        android:textColor="@color/color_999999"
+        android:textColor="@color/txt_help"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -41,7 +41,7 @@
         android:layout_marginBottom="70dp"
         android:gravity="center"
         android:text="去调整"
-        android:textColor="@color/theme_color"
+        android:textColor="@color/theme"
         android:textSize="14sp"
         app:background_normal="@color/white"
         app:corner_radius="5dp"
