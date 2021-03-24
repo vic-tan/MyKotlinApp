@@ -7,5 +7,5 @@ import com.common.cofing.enumconst.UiType
  * @author: tanlifei
  * @date: 2021/3/24 15:54
  */
-data class ListDataChangePrams(val uiType: UiType, val size: Int = 0 ) {
+data class ListDataChangePrams(val uiType: UiType, val size: Int = -1 ) {
 }

@@ -53,7 +53,11 @@ object RecyclerUtils {
             when (it.uiType) {
                 /**上拉刷新**/
                 UiType.REFRESH -> {
-                    adapter.notifyItemRangeChanged(0, viewModel.mData.size - it.size - 1)
+                    if (it.size == -1) {
+                        adapter.notifyDataSetChanged()
+                    } else {
+                        adapter.notifyItemRangeChanged(0, viewModel.mData.size - it.size - 1)
+                    }
                 }
                 /**下接刷新**/
                 UiType.LOADMORE -> {
@@ -100,9 +104,9 @@ object RecyclerUtils {
                     if (isHeaderOrFooter) {
                         refreshLoadingLayout.showContent()
                     } else {
-                        smartRefreshLayout.setEnableLoadMore(false)
                         refreshLoadingLayout.showEmpty()
                     }
+                    smartRefreshLayout.setEnableLoadMore(false)
                 }
                 /**没有一下页数据**/
                 UiType.NO_NEXT -> {
