@@ -16,10 +16,12 @@
 
         <com.ruffian.library.widget.RImageView
             android:id="@+id/userCover"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="15dp"
             android:src="@mipmap/ic_default_avatar"
+            app:border_color="@color/white"
+            app:border_width="1.5dp"
             app:is_circle="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -36,6 +36,8 @@
             android:layout_height="65dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="70dp"
+            app:border_width="1dp"
+            app:border_color="@color/white"
             android:src="@mipmap/ic_default_avatar"
             app:is_circle="true"
             app:layout_constraintLeft_toLeftOf="parent"
