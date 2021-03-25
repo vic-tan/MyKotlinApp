@@ -70,7 +70,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         })
         RecyclerUtils.uiObserve(
             mBinding.refreshLayout.smartRefreshLayout,
-            mBinding.refreshLayout.refreshLoadingLayout, mViewModel, this, true
+            mBinding.refreshLayout.refreshLoadingLayout,
+            mViewModel, this, true
         )
         homeViewModel.mRefreshUserInfo.observe(this, Observer {
             GlideUtils.loadAvatar(this.context, it.avatar, mBinding.userCover)

@@ -60,7 +60,7 @@ open abstract class BaseListViewModel : BaseViewModel() {
      * 改变数据类型
      */
     fun setDataChange(listDataChangePrams: ListDataChangePrams) {
-        if(mData.isEmpty()) {
+        if (mData.isEmpty()) {
             setUI(UiType.EMPTY)
         }
         dataChange.value = listDataChangePrams
@@ -105,7 +105,11 @@ open abstract class BaseListViewModel : BaseViewModel() {
                     setUI(UiType.COMPLETE)//加载
                     dataChange.value = ListDataChangePrams(mRefreshType, resultList.size)
                 } else {
-                    setUI(UiType.NO_NEXT)//没有一下页数据
+                    if (mData.isEmpty()) {
+                        setUI(UiType.EMPTY)//无数据
+                    } else {
+                        setUI(UiType.NO_NEXT)//没有一下页数据
+                    }
                 }
             }
         }

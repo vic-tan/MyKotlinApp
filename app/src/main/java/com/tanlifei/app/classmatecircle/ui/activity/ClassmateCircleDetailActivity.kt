@@ -85,8 +85,9 @@ class ClassmateCircleDetailActivity :
      */
     private fun initViewModelObserve() {
         RecyclerUtils.uiObserve(
-            mBinding.refreshLayout.smartRefreshLayout, mBinding.refreshLayout.refreshLoadingLayout,
-            mViewModel, this, true
+            mBinding.refreshLayout.smartRefreshLayout,
+            mBinding.refreshLayout.refreshLoadingLayout,
+            mViewModel, this, isHeaderOrFooter = true, isMoreWithNoMoreData = false
         )
         RecyclerUtils.dataChangeObserve(
             mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>,

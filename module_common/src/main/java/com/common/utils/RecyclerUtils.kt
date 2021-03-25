@@ -12,6 +12,7 @@ import com.common.cofing.enumconst.UiType
 import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.base.viewmodel.BaseViewModel
+import com.common.utils.extension.toast
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import java.util.*
@@ -84,7 +85,8 @@ object RecyclerUtils {
         refreshLoadingLayout: LoadingLayout,
         viewModel: BaseViewModel,
         owner: LifecycleOwner,
-        isHeaderOrFooter: Boolean = false
+        isHeaderOrFooter: Boolean = false,
+        isMoreWithNoMoreData: Boolean = true
     ) {
         viewModel.mUiChange.observe(owner, Observer {
             when (it) {
@@ -103,14 +105,20 @@ object RecyclerUtils {
                     //是否存在头部或者尾部，存在不用显示布局，要显示头部或者尾部
                     if (isHeaderOrFooter) {
                         refreshLoadingLayout.showContent()
+                        smartRefreshLayout.setEnableLoadMore(false)
+                        smartRefreshLayout.setNoMoreData(false)
                     } else {
                         refreshLoadingLayout.showEmpty()
                     }
-                    smartRefreshLayout.setEnableLoadMore(false)
                 }
                 /**没有一下页数据**/
                 UiType.NO_NEXT -> {
-                    smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
+                    if (isMoreWithNoMoreData) {
+                        smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
+                    } else {
+                        smartRefreshLayout.setEnableLoadMore(false)
+                        toast("没有更多数据了哦~")
+                    }
                 }
                 /**报错界面**/
                 UiType.ERROR -> {
@@ -148,7 +156,6 @@ object RecyclerUtils {
             viewModel.loadMore()
         }
         smartRefreshLayout.setEnableLoadMore(false)
-
     }
 
     /**
@@ -160,6 +167,7 @@ object RecyclerUtils {
         refreshLoadingLayout: LoadingLayout,
         viewModel: BaseListViewModel
     ) {
+        initSmartRefreshLayoutConfig(smartRefreshLayout)
         initRefreshLayoutListener(smartRefreshLayout, viewModel)
         initLoadingLayoutListener(refreshLoadingLayout, viewModel)
 //        refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -180,6 +188,11 @@ object RecyclerUtils {
 //                }
 //            }
 //        })
+    }
+
+    private fun initSmartRefreshLayoutConfig(smartRefreshLayout: SmartRefreshLayout) {
+        smartRefreshLayout.setEnableLoadMoreWhenContentNotFull(false)//是否在列表不满一页时候开启上拉加载功能
+        smartRefreshLayout.setEnableOverScrollDrag(true)//是否启用越界拖动（仿苹果效果）
     }
 
     fun getLoadCount(layoutManager: RecyclerView.LayoutManager): Int {
