@@ -8,13 +8,18 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.blankj.utilcode.util.NetworkUtils
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.enumconst.UiType
 import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.base.viewmodel.BaseViewModel
+import com.common.utils.extension.clickEnable
+import com.common.utils.extension.log
 import com.common.utils.extension.toast
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.constant.RefreshState
 import java.util.*
 
 /**
@@ -170,24 +175,24 @@ object RecyclerUtils {
         initSmartRefreshLayoutConfig(smartRefreshLayout)
         initRefreshLayoutListener(smartRefreshLayout, viewModel)
         initLoadingLayoutListener(refreshLoadingLayout, viewModel)
-//        refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                if (!NetworkUtils.isConnected())//没有网不加载，让用户手动加载
-//                    return
-//                // 获取 LayoutManger
-//                val layoutManager = recyclerView.layoutManager
-//                if (ObjectUtils.isNotEmpty(layoutManager)) {
-//                    // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
-//                    if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
-//                        && getOutLast(layoutManager) >= getLoadCount(layoutManager)
-//                        && viewModel.mRefreshState == RefreshState.None
-//                    ) {
-//                        viewModel.loadMore()
-//                    }
-//                }
-//            }
-//        })
+        refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (!NetworkUtils.isConnected())//没有网不加载，让用户手动加载
+                    return
+                // 获取 LayoutManger
+                val layoutManager = recyclerView.layoutManager
+                if (ObjectUtils.isNotEmpty(layoutManager)) {
+                    // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
+                    if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
+                        && getOutLast(layoutManager) >= getLoadCount(layoutManager)
+                        && viewModel.mRefreshState == RefreshState.None
+                    ) {
+                        viewModel.loadMore()
+                    }
+                }
+            }
+        })
     }
 
     private fun initSmartRefreshLayoutConfig(smartRefreshLayout: SmartRefreshLayout) {

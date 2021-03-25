@@ -55,6 +55,9 @@ open class BaseViewModel : ViewModel() {
             it.show(it.code, it.msg)
         }
         onError
+        if (refreshState) {
+            mRefreshState = RefreshState.LoadFinish
+        }
     }, {
         if (uiLiveData && uiType == UiType.REFRESH) {
             uIChange.value = UiType.LOADING
@@ -65,9 +68,6 @@ open class BaseViewModel : ViewModel() {
     }, {
         if (uiLiveData) {
             uIChange.value = UiType.COMPLETE
-        }
-        if (refreshState) {
-            mRefreshState = RefreshState.None
         }
     })
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.cofing.enumconst.UiType
 import com.common.core.base.bean.ListDataChangePrams
+import com.scwang.smart.refresh.layout.constant.RefreshState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 
@@ -51,7 +52,7 @@ open abstract class BaseListViewModel : BaseViewModel() {
             onError = onError,
             showToast = showToast,
             uiLiveData = uiLiveData,
-            refreshState = refreshState,
+            refreshState = true,
             uiType = mRefreshType
         )
     }
@@ -94,6 +95,7 @@ open abstract class BaseListViewModel : BaseViewModel() {
                     mData.addAll(resultList)
                     setUI(UiType.CONTENT)//有数据
                     dataChange.value = ListDataChangePrams(mRefreshType, resultList.size)
+                    mRefreshState = RefreshState.None
                 } else {
                     setUI(UiType.EMPTY)//无数据
                     dataChange.value = ListDataChangePrams(mRefreshType)
