@@ -9,7 +9,7 @@ import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.utils.GlideUtils
 import com.common.utils.extension.clickListener
 import com.tanlifei.app.R
-import com.tanlifei.app.common.config.api.ApiConst
+import com.tanlifei.app.common.config.api.ApiUrlConst
 import com.tanlifei.app.databinding.FragmentProfileBinding
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel
@@ -51,7 +51,7 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding>() {
                 when (it) {
                     mBinding.arrow -> ProfileManagerActivity.actionStart()
                     mBinding.setting -> SettingActivity.actionStart()
-                    mBinding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiConst.URL_LECTURER_ASKFOR)
+                    mBinding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiUrlConst.URL_LECTURER_ASKFOR)
                     mBinding.score -> launchAppDetail()
                     mBinding.optManual -> ManualActivity.actionStart()
                 }

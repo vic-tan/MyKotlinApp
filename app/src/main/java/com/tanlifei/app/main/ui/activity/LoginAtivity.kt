@@ -21,8 +21,8 @@ import com.common.utils.ComUtils
 import com.common.utils.extension.*
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
-import com.tanlifei.app.common.config.api.ApiConst.URL_PRIVATE_AGREEMENT
-import com.tanlifei.app.common.config.api.ApiConst.URL_USER_AGREEMENT
+import com.tanlifei.app.common.config.api.ApiUrlConst.URL_PRIVATE_AGREEMENT
+import com.tanlifei.app.common.config.api.ApiUrlConst.URL_USER_AGREEMENT
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivityLoginBinding
 import com.tanlifei.app.main.utils.LoginUtils

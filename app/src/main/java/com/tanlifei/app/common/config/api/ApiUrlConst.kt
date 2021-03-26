@@ -7,7 +7,7 @@ import com.common.cofing.constant.ApiEnvironmentConst
  * @author: tanlifei
  * @date: 2021/1/29 16:13
  */
-object ApiConst {
+object ApiUrlConst {
 
     /**—————————————————————————————————————————————————— H5地址  ——————————————————————————————————————————————*/
 
