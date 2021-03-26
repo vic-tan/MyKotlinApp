@@ -86,7 +86,7 @@ object RecyclerUtils {
     fun uiObserve(
         smartRefreshLayout: SmartRefreshLayout,
         refreshLoadingLayout: LoadingLayout,
-        viewModel: BaseViewModel,
+        viewModel: BaseListViewModel,
         owner: LifecycleOwner,
         isHeaderOrFooter: Boolean = false,
         isMoreWithNoMoreData: Boolean = true
@@ -125,7 +125,9 @@ object RecyclerUtils {
                 }
                 /**报错界面**/
                 UiType.ERROR -> {
-                    refreshLoadingLayout.showError()
+                    if(viewModel.mData.isEmpty()){
+                        refreshLoadingLayout.showError()
+                    }
                     smartRefreshLayout.setEnableLoadMore(false)
                 }
             }
