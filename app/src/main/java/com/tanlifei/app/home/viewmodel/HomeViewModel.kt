@@ -21,10 +21,6 @@ class HomeViewModel : BaseListViewModel() {
     val mHomeHeaderDataChanged: LiveData<HomeHeaderDataBean> get() = homeHeaderDataChanged
     private var homeHeaderDataChanged = MutableLiveData<HomeHeaderDataBean>()
 
-    fun requestRefresh() {
-
-    }
-
     override fun requestList() {
         comRequest({
             var homeHeaderData = Repository.requestHomeBanner()

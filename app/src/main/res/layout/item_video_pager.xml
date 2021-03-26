@@ -16,4 +16,71 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/praise"
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="15dp"
+        android:drawablePadding="5dp"
+        android:shadowColor="#40000000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="1"
+        android:text="点赞"
+        android:textColor="@color/white"
+        app:icon_direction="top"
+        app:icon_height="40dp"
+        app:icon_src_normal="@mipmap/ic_praise_video_normal"
+        app:icon_width="40dp"
+        app:icon_with_text="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/comment"
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:drawablePadding="5dp"
+        android:shadowColor="#40000000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="1"
+        android:text="评论"
+        android:textColor="@color/white"
+        app:icon_direction="top"
+        app:icon_height="40dp"
+        app:icon_src_normal="@mipmap/ic_comment"
+        app:icon_width="40dp"
+        app:icon_with_text="true"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/praise" />
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/share"
+        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:drawablePadding="5dp"
+        android:shadowColor="#40000000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="1"
+        android:text="分享"
+        android:textColor="@color/white"
+        app:icon_direction="top"
+        app:icon_height="40dp"
+        app:icon_src_normal="@mipmap/ic_wx"
+        app:icon_width="40dp"
+        app:icon_with_text="true"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/comment" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

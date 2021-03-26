@@ -249,7 +249,10 @@ object Repository {
         if (publishId != -1L) {
             map["publishId"] = publishId
         }
-        map["mUserId"] = mUserId
+        if (mUserId != -1L) {
+            map["mUserId"] = mUserId
+        }
+
         return RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_VIDEO_LIST)
             .addAll(map)
             .toResponse<MutableList<CircleBean>>().await()

@@ -60,15 +60,16 @@ object RecyclerUtils {
                     if (it.size == -1) {
                         adapter.notifyDataSetChanged()
                     } else {
-                        adapter.notifyItemRangeChanged(0, viewModel.mData.size - it.size - 1)
+                        adapter.notifyItemRangeChanged(0, viewModel.mData.size - 1)
                     }
                 }
                 /**下接刷新**/
                 UiType.LOADMORE -> {
                     adapter.notifyItemRangeInserted(
-                        it.size - 1,
+                        viewModel.mData.size - it.size - 1,
                         viewModel.mData.size - 1
                     )
+
                 }
                 /**更新刷新**/
                 UiType.NOTIFY -> {
@@ -125,7 +126,7 @@ object RecyclerUtils {
                 }
                 /**报错界面**/
                 UiType.ERROR -> {
-                    if(viewModel.mData.isEmpty()){
+                    if (viewModel.mData.isEmpty()) {
                         refreshLoadingLayout.showError()
                     }
                     smartRefreshLayout.setEnableLoadMore(false)

@@ -5,11 +5,15 @@ import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
 import cn.jzvd.Jzvd
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.BarUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
+import com.common.utils.extension.clickListener
+import com.common.utils.extension.gone
 import com.common.utils.extension.startActivity
+import com.gyf.immersionbar.ktx.immersionBar
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.VideoPagerAdapter
 import com.tanlifei.app.classmatecircle.bean.CircleBean
@@ -75,7 +79,8 @@ class CircleVideoPagerActivity :
             }
 
         })
-        mBinding.refreshRecycler.addOnChildAttachStateChangeListener(object : OnChildAttachStateChangeListener {
+        mBinding.refreshRecycler.addOnChildAttachStateChangeListener(object :
+            OnChildAttachStateChangeListener {
             override fun onChildViewAttachedToWindow(view: View) {}
             override fun onChildViewDetachedFromWindow(view: View) {
                 val jzvd: Jzvd = view.findViewById(R.id.player)
@@ -89,6 +94,14 @@ class CircleVideoPagerActivity :
             }
         })
 
+        clickListener(mBinding.arrowBack, clickListener = View.OnClickListener {
+            when (it) {
+                mBinding.arrowBack -> {
+                    Jzvd.releaseAllVideos()
+                    ActivityUtils.finishActivity(this)
+                }
+            }
+        })
 
     }
 
@@ -111,8 +124,11 @@ class CircleVideoPagerActivity :
         return VideoPagerAdapter()
     }
 
-    override fun showFullScreen(): Boolean {
-        return true
+
+    override fun initImmersionBar() {
+        immersionBar() {
+            statusBarDarkFont(false, 0.2f)
+        }
     }
 
     override fun visibleToolbar(): Boolean {

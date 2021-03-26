@@ -106,14 +106,14 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         mBinding.refreshLayout.refreshRecycler.itemAnimator = null
         mBinding.refreshLayout.smartRefreshLayout.setOnRefreshListener {
             isFirstLoad = false
-            mViewModel.requestRefresh()
+            mViewModel.requestList()
 
         }
         mBinding.refreshLayout.refreshLoadingLayout.setRetryListener(View.OnClickListener {
-            mViewModel.requestRefresh()
+            mViewModel.requestList()
         })
         mBinding.refreshLayout.smartRefreshLayout.setEnableLoadMore(false)
-        mViewModel.requestRefresh()
+        mViewModel.requestList()
     }
 
 

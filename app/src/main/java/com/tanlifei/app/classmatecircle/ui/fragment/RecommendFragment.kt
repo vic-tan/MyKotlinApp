@@ -81,7 +81,7 @@ class RecommendFragment :
             holder.item -> {
                 if (itemBean.mediaType == 1) {
                     CircleVideoPagerActivity.actionStart(
-                        itemBean.publishId, itemBean.uid,
+                        itemBean.publishId, -1,
                         TYPE_HOME
                     )
                 } else {
