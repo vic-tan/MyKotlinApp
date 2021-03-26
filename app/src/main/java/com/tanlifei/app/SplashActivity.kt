@@ -24,6 +24,11 @@ import com.taobao.sophix.SophixManager
  * @date: 2021/1/22 16:26
  */
 class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>() {
+
+    override fun createViewModel(): SplashViewModel {
+        return SplashViewModel()
+    }
+
     override fun showFullScreen(): Boolean {
         return true
     }
@@ -127,10 +132,6 @@ class SplashActivity : BaseBVMActivity<ActivitySplashBinding, SplashViewModel>()
      */
     override fun onBackPressed() {
 
-    }
-
-    override fun createViewModel(): SplashViewModel {
-        return SplashViewModel()
     }
 
 

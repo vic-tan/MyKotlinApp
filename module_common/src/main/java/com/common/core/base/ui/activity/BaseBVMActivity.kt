@@ -17,10 +17,12 @@ abstract class BaseBVMActivity<V : ViewBinding, VM : BaseViewModel> : BaseActivi
         injectViewModel()
     }
 
+
     private fun injectViewModel() {
         val vm = createViewModel()
-        mViewModel = ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
-            .get(vm::class.java)
+        mViewModel =
+            ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
+                .get(vm::class.java)
         mViewModel.mApplication = application
     }
 
