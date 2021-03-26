@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.bean.UpdateAppBean
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 
 
 /**
@@ -27,7 +27,7 @@ class UpdateAppViewModel : BaseViewModel() {
      * 应用升级
      */
     fun requestVersion() = comRequest({
-        val updateAppBean = ApiNetwork.requestVersion()
+        val updateAppBean = Repository.requestVersion()
         if (ObjectUtils.isNotEmpty(updateAppBean)) {
             updateApp.value = updateAppBean
         }

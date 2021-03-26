@@ -24,7 +24,7 @@ import rxhttp.toResponse
  * @author: tanlifei
  * @date: 2021/2/7 16:17
  */
-object ApiNetwork {
+object Repository {
 
     /**—————————————————————————————————————————————————— 我的相关  ——————————————————————————————————————————————*/
 

@@ -8,7 +8,7 @@ import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 
 /**
  * @desc:
@@ -34,13 +34,13 @@ class ClassmateCircleDetailViewModel(val id: Long) : BaseListViewModel() {
     private fun requestDetail() =
         comRequest({
             if (mRefreshType == UiType.REFRESH) {
-                var requestBean = ApiNetwork.requestEntertainmentDetail(id)
+                var requestBean = Repository.requestEntertainmentDetail(id)
                 if (ObjectUtils.isNotEmpty(requestBean)) {
                     mBean = requestBean
                 }
             }
             complete(
-                ApiNetwork.requestCommentList(id, mPageNum)
+                Repository.requestCommentList(id, mPageNum)
             )
         })
 
@@ -50,7 +50,7 @@ class ClassmateCircleDetailViewModel(val id: Long) : BaseListViewModel() {
     }
 
     fun requestComment(content: String) = comRequest({
-        var requestBean = ApiNetwork.requestSendComment(id, content)
+        var requestBean = Repository.requestSendComment(id, content)
         if (ObjectUtils.isNotEmpty(requestBean) && ObjectUtils.isNotEmpty(requestBean.info)) {
             mData.add(0, requestBean.info)
             itemDataChanged.value = 0
@@ -60,7 +60,7 @@ class ClassmateCircleDetailViewModel(val id: Long) : BaseListViewModel() {
     }, uiLiveData = false)
 
     fun requestDeleteComment(commentBean: CommentBean) = comRequest({
-        ApiNetwork.requestDeleteComment(commentBean.id)
+        Repository.requestDeleteComment(commentBean.id)
         mData.remove(commentBean)
         mBean?.comment = mBean?.comment?.minus(1)!!
         setDataChange(ListDataChangePrams(UiType.NOTIFY))

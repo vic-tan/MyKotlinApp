@@ -1,8 +1,7 @@
 package com.tanlifei.app.classmatecircle.viewmodel
 
-import com.common.cofing.enumconst.UiType
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 
 /**
  * @desc:
@@ -15,7 +14,7 @@ class RecommendViewModel(private var mCategoryId: Long = 0) : BaseListViewModel(
     override fun requestList() {
         comRequest({
             complete(
-                ApiNetwork.requestFriendsEntertainmentListByType(mPageNum, mCategoryId)
+                Repository.requestFriendsEntertainmentListByType(mPageNum, mCategoryId)
             )
         })
     }

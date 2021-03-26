@@ -1,7 +1,7 @@
 package com.tanlifei.app.classmatecircle.viewmodel
 
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 
 /**
  * @desc:
@@ -12,7 +12,7 @@ class FollowViewModel : BaseListViewModel() {
 
     override fun requestList() {
         comRequest({
-            complete(ApiNetwork.requestFriendsEntertainmentList(mPageNum))
+            complete(Repository.requestFriendsEntertainmentList(mPageNum))
         })
     }
 

@@ -12,7 +12,7 @@ import com.common.core.base.navigator.NavigatorFragmentManager
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.ui.fragment.ClassmateCircleFragment
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
@@ -73,7 +73,7 @@ class MainViewModel : BaseViewModel() {
      * 请求用户信息
      */
     fun requestUser() = comRequest({
-        mUserBean = ApiNetwork.requestUserInfo()
+        mUserBean = Repository.requestUserInfo()
         if (ObjectUtils.isNotEmpty(mUserBean)) {
             mUserBean!!.token = ComFun.mToken.toString()
             LitePal.deleteAll(UserBean::class.java)

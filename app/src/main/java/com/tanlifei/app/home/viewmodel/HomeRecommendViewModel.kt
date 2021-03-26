@@ -1,7 +1,7 @@
 package com.tanlifei.app.home.viewmodel
 
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 
 /**
  * @desc:
@@ -14,7 +14,7 @@ class HomeRecommendViewModel(private var categoryId: Long = 1) : BaseListViewMod
     override fun requestList() {
         comRequest({
             complete(
-                ApiNetwork.requestFriendsEntertainmentListByType(mPageNum, categoryId)
+                Repository.requestFriendsEntertainmentListByType(mPageNum, categoryId)
             )
         })
     }

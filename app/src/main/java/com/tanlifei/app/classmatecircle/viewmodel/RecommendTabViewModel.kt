@@ -8,7 +8,7 @@ import com.common.cofing.enumconst.UiType
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.classmatecircle.adapter.RecommendTabAdapter
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 import java.util.*
 
 /**
@@ -30,7 +30,7 @@ class RecommendTabViewModel(private val mManager: FragmentManager) : BaseViewMod
 
     fun requestCategoryList() {
         comRequest({
-            val categoryList = ApiNetwork.requestEntertainmentCategoryList()
+            val categoryList = Repository.requestEntertainmentCategoryList()
             if (ObjectUtils.isNotEmpty(categoryList)) {
                 mData.addAll(categoryList)
                 addFragment()

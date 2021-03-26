@@ -8,7 +8,7 @@ import com.common.core.base.bean.UserBean
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.extension.toast
 import com.obs.services.model.PutObjectResult
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 import com.tanlifei.app.common.utils.HuaweiUploadManager
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.profile.bean.AreaBean
@@ -83,7 +83,7 @@ class ProfileViewModel : BaseViewModel() {
     }
 
     fun requestUpdateUser() = comRequest({
-        val user = ApiNetwork.requestUpdateUser(mUserBean!!)
+        val user = Repository.requestUpdateUser(mUserBean!!)
         toast("保存完成")
         dataChanged.value = mUserBean
     })
@@ -93,7 +93,7 @@ class ProfileViewModel : BaseViewModel() {
      * 请求用户信息
      */
     fun requestUser() = comRequest({
-        val user = ApiNetwork.requestUserInfo()
+        val user = Repository.requestUserInfo()
         if (ObjectUtils.isNotEmpty(user)) {
             mUserBean = user
             refreshUserInfo.value = mUserBean
@@ -109,7 +109,7 @@ class ProfileViewModel : BaseViewModel() {
      * 获取省市区JSON
      */
     fun requestAreaJsonList() = comRequest({
-        var data = ApiNetwork.requestUniversityAreaList()
+        var data = Repository.requestUniversityAreaList()
         if (ObjectUtils.isNotEmpty(data)) {
             mAreaJsonList = data
             analysisAreaJson(data)
@@ -122,7 +122,7 @@ class ProfileViewModel : BaseViewModel() {
      */
     fun requestUniversity(id: Long) = comRequest({
         mUniversityOptionsItems.clear()
-        val universityList = ApiNetwork.requestUniversity(id)
+        val universityList = Repository.requestUniversity(id)
         if (ObjectUtils.isNotEmpty(universityList)) {
             mUniversityOptionsItems = universityList
             refreshUniversityList.value = universityList

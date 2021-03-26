@@ -3,7 +3,7 @@ package com.tanlifei.app.profile.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.core.base.viewmodel.BaseViewModel
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 
 
 /**
@@ -24,7 +24,7 @@ class SettingViewModel : BaseViewModel() {
      * 退出登录
      */
     fun requestLogin() = comRequest({
-        ApiNetwork.requestLoginOut()
+        Repository.requestLoginOut()
         isToken.value = false
     })
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.bean.UserBean
 import com.common.core.base.viewmodel.BaseViewModel
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 import com.tanlifei.app.profile.bean.AddressBean
 import com.tanlifei.app.profile.bean.AreaBean
 import com.tanlifei.app.profile.bean.AreaJsonBean
@@ -50,7 +50,7 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
      * 获取省市区JSON
      */
     fun requestAreaJsonList() = comRequest({
-        var data = ApiNetwork.requestAreaJsonList()
+        var data = Repository.requestAreaJsonList()
         if (ObjectUtils.isNotEmpty(data)) {
             mAreaJsonList = data
             analysisAreaJson(data)
@@ -63,7 +63,7 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
      */
     fun requestEidtGoodsAddress() = comRequest({
         mAddressBean?.let {
-            var id = ApiNetwork.requestEidtGoodsAddress(
+            var id = Repository.requestEidtGoodsAddress(
                 mUser.goodsAddress == 0L,
                 it
             )
@@ -79,7 +79,7 @@ class AddressViewModel(mUser: UserBean) : BaseViewModel() {
      */
     fun requestGoodsAddress() {
         comRequest({
-            var address = ApiNetwork.requestGoodsAddress(mUser.goodsAddress)
+            var address = Repository.requestGoodsAddress(mUser.goodsAddress)
             if (ObjectUtils.isNotEmpty(address)) {
                 mAddressBean = address
                 addressDataComplete.value = mAddressBean

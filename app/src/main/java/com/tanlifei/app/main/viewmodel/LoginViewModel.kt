@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseViewModel
-import com.tanlifei.app.common.network.ApiNetwork
+import com.tanlifei.app.common.network.Repository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
@@ -77,7 +77,7 @@ class LoginViewModel : BaseViewModel() {
      * 请求短信码
      */
     fun requestSmsCode(phone: String) = comRequest({
-        ApiNetwork.requestSmsCode(phone)
+        Repository.requestSmsCode(phone)
         startInterval()
     })
 
@@ -85,7 +85,7 @@ class LoginViewModel : BaseViewModel() {
      * 请求登录
      */
     fun requestLogin(phone: String, code: String) = comRequest({
-        mToken = ApiNetwork.requestLogin(phone, code)
+        mToken = Repository.requestLogin(phone, code)
         isToken.value = ObjectUtils.isNotEmpty(mToken)
     })
 
