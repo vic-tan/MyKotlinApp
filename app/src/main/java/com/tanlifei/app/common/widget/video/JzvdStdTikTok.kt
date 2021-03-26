@@ -2,10 +2,8 @@ package com.tanlifei.app.common.widget.video
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.SeekBar
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
 import com.common.utils.extension.gone
@@ -92,6 +90,15 @@ class JzvdStdTikTok(context: Context, attrs: AttributeSet) : JzvdStd(context, at
                 startButton.setImageResource(R.mipmap.ic_play_pager)
                 replayTextView.gone()
             }
+        }
+    }
+
+    override fun showWifiDialog() {
+        Jzvd.WIFI_TIP_DIALOG_SHOWED = true
+        if (state == Jzvd.STATE_PAUSE) {
+            startButton.performClick()
+        } else {
+            startVideo()
         }
     }
 }
