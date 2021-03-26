@@ -61,7 +61,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         initAdapter()
         initHeaderView()
         initHFooterView()
-        mViewModel.homeHeaderDataChanged.observe(this, Observer {
+        mViewModel.mHomeHeaderDataChanged.observe(this, Observer {
             mBinding.refreshLayout.refreshLoadingLayout.showContent()
             mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
             addHeaderOrFooter()
@@ -127,13 +127,13 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
         //banner
         bannerAdapter =
-            HomeBannerAdapter(headerBinding.banner.viewPager2, mViewModel.bannerData)
+            HomeBannerAdapter(headerBinding.banner.viewPager2, mViewModel.mBannerData)
         headerBinding.banner.addBannerLifecycleObserver(this) //添加生命周期观察者
             .setAdapter(bannerAdapter).indicator = RectangleIndicator(context)
 
         //Menu
         menuAdapter = MenuAdapter()
-        menuAdapter.mData = mViewModel.menuData
+        menuAdapter.mData = mViewModel.mMenuData
         menuAdapter.setItemClickListener(object :
             OnItemClickListener<MenuBean> {
             override fun click(
@@ -190,9 +190,9 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         adapter.addHeaderView(header)
         useBanner()
         menuAdapter.notifyDataSetChanged()
-        if (ObjectUtils.isNotEmpty(mViewModel.adsnoviceData)) {
+        if (ObjectUtils.isNotEmpty(mViewModel.mAdsnoviceData)) {
             var headerBinding = header as HomeHeaderBinding
-            GlideUtils.load(context, mViewModel.adsnoviceData[0].image, headerBinding.ads)
+            GlideUtils.load(context, mViewModel.mAdsnoviceData[0].image, headerBinding.ads)
         }
         if (!isFirstLoad) {
             for (fragment in mFragments) {
@@ -206,7 +206,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun useBanner() {
         var headerBinding = header as HomeHeaderBinding
-        headerBinding.banner.setDatas(mViewModel.bannerData)
+        headerBinding.banner.setDatas(mViewModel.mBannerData)
         headerBinding.banner.currentItem = 1
         bannerAdapter.notifyDataSetChanged()
     }

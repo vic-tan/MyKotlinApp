@@ -41,14 +41,14 @@ class VideoPagerAdapter :
         val jzDataSource = JZDataSource(item.videoUrl)
         jzDataSource.looping = true
         holder.apply {
-            player.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaIjk::class.java)
+            player.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
             Glide.with(player.context).load(item.image?.url)
                 .into(player.posterImageView)
         }
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        val holder = holder as ItemManualBinding
-        return linkedSetOf(holder.item)
+        val holder = holder as ItemVideoPagerBinding
+        return linkedSetOf()
     }
 }
