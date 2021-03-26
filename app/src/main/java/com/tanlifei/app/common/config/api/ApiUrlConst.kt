@@ -35,7 +35,7 @@ object ApiUrlConst {
 
     /**—————————————————————————————————————————————————— 我的相关  ——————————————————————————————————————————————*/
 
-    private const val URL_USER = "major/api/entertainment/"
+    private const val URL_USER = "major/api/user/"
 
     /* 发送短信验证码 */
     const val URL_SEND_SMS = "auth/sendsms"
