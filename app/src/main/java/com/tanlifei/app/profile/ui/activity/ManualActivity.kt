@@ -6,7 +6,6 @@ import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
 import com.common.utils.extension.startActivity
-import com.tanlifei.app.databinding.ActivityManualBinding
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.adapter.ManualAdapter
 import com.tanlifei.app.profile.bean.ManualBean
