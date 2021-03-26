@@ -8,7 +8,7 @@ import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.common.repository.Repository
 
 /**
  * @desc:

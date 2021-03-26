@@ -1,4 +1,4 @@
-package com.tanlifei.app.common.network
+package com.tanlifei.app.common.repository
 
 import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
@@ -9,7 +9,7 @@ import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.classmatecircle.bean.ResponseCommentBean
 import com.tanlifei.app.classmatecircle.utils.CommentUrlType
-import com.tanlifei.app.common.config.api.ApiConst
+import com.tanlifei.app.common.config.api.ApiUrlConst
 import com.tanlifei.app.home.bean.HomeHeaderDataBean
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.profile.bean.AddressBean
@@ -31,14 +31,14 @@ object Repository {
     /**
      * 获取验证码
      */
-    suspend fun requestSmsCode(phone: String) = RxHttp.get(ApiConst.URL_SEND_SMS)
+    suspend fun requestSmsCode(phone: String) = RxHttp.get(ApiUrlConst.URL_SEND_SMS)
         .add("phone", phone)
         .toResponse<String>().await()
 
     /**
      * 登录
      */
-    suspend fun requestLogin(phone: String, code: String) = RxHttp.get(ApiConst.URL_LOGIN)
+    suspend fun requestLogin(phone: String, code: String) = RxHttp.get(ApiUrlConst.URL_LOGIN)
         .add("phone", phone)
         .add("code", code)
         .toResponse<String>().await()
@@ -47,19 +47,19 @@ object Repository {
     /**
      * 退出登录
      */
-    suspend fun requestLoginOut() = RxHttp.postJson(ApiConst.URL_LOGIN_OUT)
+    suspend fun requestLoginOut() = RxHttp.postJson(ApiUrlConst.URL_LOGIN_OUT)
         .toResponse<String>().await()
 
     /**
      * 获取用户资料
      */
-    suspend fun requestUserInfo() = RxHttp.postJson(ApiConst.URL_USER_INFO)
+    suspend fun requestUserInfo() = RxHttp.postJson(ApiUrlConst.URL_USER_INFO)
         .toResponse<UserBean>().await()
 
     /**
      * 操作手册列表
      */
-    suspend fun requestManualList(pageNum: Int) = RxHttp.postJson(ApiConst.URL_MANUAL_LIST)
+    suspend fun requestManualList(pageNum: Int) = RxHttp.postJson(ApiUrlConst.URL_MANUAL_LIST)
         .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
         .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
         .toResponse<MutableList<ManualBean>>().await()
@@ -67,28 +67,28 @@ object Repository {
     /**
      * 操作手册列表
      */
-    suspend fun requestManualDetail(manualId: Long) = RxHttp.postJson(ApiConst.URL_MANUAL_DETAIL)
+    suspend fun requestManualDetail(manualId: Long) = RxHttp.postJson(ApiUrlConst.URL_MANUAL_DETAIL)
         .add("manualId", manualId)
         .toResponse<ManualBean>().await()
 
     /**
      * 获取收货地址
      */
-    suspend fun requestGoodsAddress(id: Long) = RxHttp.postJson(ApiConst.URL_GOODS_ADDRESS)
+    suspend fun requestGoodsAddress(id: Long) = RxHttp.postJson(ApiUrlConst.URL_GOODS_ADDRESS)
         .add("id", id)
         .toResponse<AddressBean>().await()
 
     /**
      * 获取合作大学存在的省区
      */
-    suspend fun requestUniversityAreaList() = RxHttp.postJson(ApiConst.URL_UNIVERSITY_AREA_LIST)
+    suspend fun requestUniversityAreaList() = RxHttp.postJson(ApiUrlConst.URL_UNIVERSITY_AREA_LIST)
         .toResponse<MutableList<AreaJsonBean>>().await()
 
 
     /**
      * 根据地区获取大学列表
      */
-    suspend fun requestUniversity(id: Long) = RxHttp.postJson(ApiConst.URL_UNIVERSITY_List)
+    suspend fun requestUniversity(id: Long) = RxHttp.postJson(ApiUrlConst.URL_UNIVERSITY_List)
         .add("id", id)
         .toResponse<MutableList<UniversityBean>>().await()
 
@@ -96,7 +96,7 @@ object Repository {
     /**
      * 获取省市区JSON
      */
-    suspend fun requestAreaJsonList() = RxHttp.postJson(ApiConst.URL_AREA_JSON)
+    suspend fun requestAreaJsonList() = RxHttp.postJson(ApiUrlConst.URL_AREA_JSON)
         .toResponse<MutableList<AreaJsonBean>>().await()
 
 
@@ -105,7 +105,7 @@ object Repository {
      *
      */
     suspend fun requestEidtGoodsAddress(add: Boolean, addressBean: AddressBean) =
-        RxHttp.postJson(if (add) ApiConst.URL_ADD_GOODS_ADDRESS else ApiConst.URL_UPDATE_GOODS_ADDRESS)
+        RxHttp.postJson(if (add) ApiUrlConst.URL_ADD_GOODS_ADDRESS else ApiUrlConst.URL_UPDATE_GOODS_ADDRESS)
             .add("id", addressBean.id)
             .add("username", addressBean.username)
             .add("mobile", addressBean.mobile)
@@ -120,7 +120,7 @@ object Repository {
     /**
      * 更新个人信息
      */
-    suspend fun requestUpdateUser(userBean: UserBean) = RxHttp.postJson(ApiConst.URL_UPDATE_USER)
+    suspend fun requestUpdateUser(userBean: UserBean) = RxHttp.postJson(ApiUrlConst.URL_UPDATE_USER)
         .add("id", userBean.uid)
         .add("avatar", userBean.avatar)
         .add("nickname", userBean.nickname)
@@ -144,7 +144,7 @@ object Repository {
      * 首页顶部信息，banner,icon,新人礼包
      */
     suspend fun requestHomeBanner() =
-        RxHttp.postJson(ApiConst.URL_HOME_BANNER)
+        RxHttp.postJson(ApiUrlConst.URL_HOME_BANNER)
             .toResponse<HomeHeaderDataBean>().await()
 
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
@@ -153,7 +153,7 @@ object Repository {
      * 请求关注列表
      */
     suspend fun requestFriendsEntertainmentList(pageNum: Int) =
-        RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_LIST)
+        RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_LIST)
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .toResponse<MutableList<ClassmateCircleBean>>().await()
@@ -162,7 +162,7 @@ object Repository {
      * 文娱推荐列表
      */
     suspend fun requestFriendsEntertainmentListByType(pageNum: Int, categoryId: Long) =
-        RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_LIST_BY_TYPE)
+        RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_LIST_BY_TYPE)
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .add("categoryId", categoryId)
@@ -172,14 +172,14 @@ object Repository {
      * 请求推荐分类列表
      */
     suspend fun requestEntertainmentCategoryList() =
-        RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_CATEGORY_LIST)
+        RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_CATEGORY_LIST)
             .toResponse<MutableList<CategoryBean>>().await()
 
     /**
      * 文娱详情
      */
     suspend fun requestEntertainmentDetail(id: Long) =
-        RxHttp.postJson(ApiConst.URL_ENTERTAINMENT_DETAIL)
+        RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_DETAIL)
             .add("publishId", id)
             .toResponse<ClassmateCircleBean>().await()
 
@@ -194,7 +194,7 @@ object Repository {
     ) =
         RxHttp.postJson(
             when (urlType) {
-                CommentUrlType.CLASSMATE_CIRCLE -> ApiConst.URL_ENTERTAINMENT_COMMENT_LIST
+                CommentUrlType.CLASSMATE_CIRCLE -> ApiUrlConst.URL_ENTERTAINMENT_COMMENT_LIST
             }
         )
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
@@ -212,7 +212,7 @@ object Repository {
     ) =
         RxHttp.postJson(
             when (urlType) {
-                CommentUrlType.CLASSMATE_CIRCLE -> ApiConst.URL_ENTERTAINMENT_SEND_COMMENT
+                CommentUrlType.CLASSMATE_CIRCLE -> ApiUrlConst.URL_ENTERTAINMENT_SEND_COMMENT
             }
         )
             .add("publishId", id)
@@ -228,7 +228,7 @@ object Repository {
     ) =
         RxHttp.postJson(
             when (urlType) {
-                CommentUrlType.CLASSMATE_CIRCLE -> ApiConst.URL_ENTERTAINMENT_DELETE_COMMENT
+                CommentUrlType.CLASSMATE_CIRCLE -> ApiUrlConst.URL_ENTERTAINMENT_DELETE_COMMENT
             }
         )
             .add("commentId", id)
@@ -240,13 +240,13 @@ object Repository {
     /**
      * 广告接口请求
      */
-    suspend fun requestAds() = RxHttp.postJson(ApiConst.URL_ADS)
+    suspend fun requestAds() = RxHttp.postJson(ApiUrlConst.URL_ADS)
         .toResponse<AdsBean>().await()
 
     /**
      * 获取用户资料
      */
-    suspend fun requestVersion() = RxHttp.postJson(ApiConst.URL_VERSION)
+    suspend fun requestVersion() = RxHttp.postJson(ApiUrlConst.URL_VERSION)
         .add("systemType", 1)
         .add("appId", "com.onlineaginguniversity")
         .add("clientVersion", AppUtils.getAppVersionName())

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.bean.UpdateAppBean
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.common.repository.Repository
 
 
 /**

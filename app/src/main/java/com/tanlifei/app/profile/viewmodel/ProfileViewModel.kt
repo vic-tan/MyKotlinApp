@@ -8,7 +8,7 @@ import com.common.core.base.bean.UserBean
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.utils.extension.toast
 import com.obs.services.model.PutObjectResult
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.HuaweiUploadManager
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.profile.bean.AreaBean

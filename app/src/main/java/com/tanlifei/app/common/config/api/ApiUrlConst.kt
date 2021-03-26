@@ -7,7 +7,7 @@ import com.common.cofing.constant.ApiEnvironmentConst
  * @author: tanlifei
  * @date: 2021/1/29 16:13
  */
-object ApiConst {
+object ApiUrlConst {
 
     /**—————————————————————————————————————————————————— H5地址  ——————————————————————————————————————————————*/
 
@@ -35,6 +35,8 @@ object ApiConst {
 
     /**—————————————————————————————————————————————————— 我的相关  ——————————————————————————————————————————————*/
 
+    private const val URL_USER = "major/api/entertainment/"
+
     /* 发送短信验证码 */
     const val URL_SEND_SMS = "auth/sendsms"
 
@@ -44,38 +46,36 @@ object ApiConst {
     /* 退出登录 */
     const val URL_LOGIN_OUT = "auth/loginOut"
 
-    /* 获取用户资料 */
-    const val URL_USER_INFO = "major/api/user/getUser"
-
     /* 操作手册列表 */
     const val URL_MANUAL_LIST = "major/api/manual/list"
 
     /* 操作手册详情 */
     const val URL_MANUAL_DETAIL = "major/api/manual/detail"
 
+    /* 获取用户资料 */
+    const val URL_USER_INFO = "${URL_USER}getUser"
+
     /* 获取合作大学存在的省区 */
-    const val URL_UNIVERSITY_AREA_LIST = "major/api/user/getAreaListByUniversity"
+    const val URL_UNIVERSITY_AREA_LIST = "${URL_USER}getAreaListByUniversity"
 
     /* 根据地区获取大学列表 */
-    const val URL_UNIVERSITY_List = "major/api/user/getUniversityList"
+    const val URL_UNIVERSITY_List = "${URL_USER}getUniversityList"
 
 
     /* 获取省市区JSON */
-    const val URL_AREA_JSON = "major/api/user/getAreaJson"
+    const val URL_AREA_JSON = "${URL_USER}getAreaJson"
 
     /* 获取收货地址 */
-    const val URL_GOODS_ADDRESS = "major/api/user/getGoodsAddress"
+    const val URL_GOODS_ADDRESS = "${URL_USER}getGoodsAddress"
 
     /* 新增收货地址 */
-    const val URL_ADD_GOODS_ADDRESS = "major/api/user/setGoodsAddress"
+    const val URL_ADD_GOODS_ADDRESS = "${URL_USER}setGoodsAddress"
 
     /* 更新收货地址 */
-    const val URL_UPDATE_GOODS_ADDRESS = "major/api/user/updateGoodsAddress"
+    const val URL_UPDATE_GOODS_ADDRESS = "${URL_USER}updateGoodsAddress"
 
     /* 更新个人信息 */
-    const val URL_UPDATE_USER = "major/api/user/updateUser"
-
-
+    const val URL_UPDATE_USER = "${URL_USER}updateUser"
 
 
     /**—————————————————————————————————————————————————— 首页相关  ——————————————————————————————————————————————*/
@@ -86,27 +86,28 @@ object ApiConst {
 
     /**—————————————————————————————————————————————————— 同学圈相关  ——————————————————————————————————————————————*/
 
+    private const val URL_ENTERTAINMENT = "major/api/entertainment/"
+
     /* 关注人文娱列表 */
-    const val URL_ENTERTAINMENT_LIST = "major/api/entertainment/getFriendsEntertainmentList"
+    const val URL_ENTERTAINMENT_LIST = "${URL_ENTERTAINMENT}getFriendsEntertainmentList"
 
     /* 文娱推荐列表 */
-    const val URL_ENTERTAINMENT_LIST_BY_TYPE = "major/api/entertainment/getEntertainmentListByType"
+    const val URL_ENTERTAINMENT_LIST_BY_TYPE = "${URL_ENTERTAINMENT}getEntertainmentListByType"
 
     /* 获取文娱类型列表 */
-    const val URL_ENTERTAINMENT_CATEGORY_LIST =
-        "major/api/entertainment/getEntertainmentCategoryList"
+    const val URL_ENTERTAINMENT_CATEGORY_LIST = "${URL_ENTERTAINMENT}getEntertainmentCategoryList"
 
     /* 文娱详情 */
-    const val URL_ENTERTAINMENT_DETAIL = "major/api/entertainment/getEntertainmentDetail"
+    const val URL_ENTERTAINMENT_DETAIL = "${URL_ENTERTAINMENT}getEntertainmentDetail"
 
     /* 评论列表 */
-    const val URL_ENTERTAINMENT_COMMENT_LIST = "major/api/entertainment/getCommentList"
+    const val URL_ENTERTAINMENT_COMMENT_LIST = "${URL_ENTERTAINMENT}getCommentList"
 
     /* 发送评论回复 */
-    const val URL_ENTERTAINMENT_SEND_COMMENT = "major/api/entertainment/comment"
+    const val URL_ENTERTAINMENT_SEND_COMMENT = "${URL_ENTERTAINMENT}comment"
 
     /* 删除评论 */
-    const val URL_ENTERTAINMENT_DELETE_COMMENT = "major/api/entertainment/deleteComment"
+    const val URL_ENTERTAINMENT_DELETE_COMMENT = "${URL_ENTERTAINMENT}deleteComment"
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 

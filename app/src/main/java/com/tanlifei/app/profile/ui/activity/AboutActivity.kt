@@ -7,7 +7,7 @@ import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.extension.clickListener
 import com.common.utils.extension.startActivity
-import com.tanlifei.app.common.config.api.ApiConst
+import com.tanlifei.app.common.config.api.ApiUrlConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
 import com.tanlifei.app.profile.viewmodel.AboutViewModel
 
@@ -45,32 +45,32 @@ class AboutActivity : BaseToolBarActivity<ActivityAboutBinding, AboutViewModel>(
                     /*学校领导*/
                     mBinding.schoolLeaders -> {
                         title = mBinding.schoolLeadersTitle.text.toString()
-                        url = ApiConst.URL_SCHOOL_LEADERS_AGREEMENT
+                        url = ApiUrlConst.URL_SCHOOL_LEADERS_AGREEMENT
                     }
                     /*用户协议*/
                     mBinding.userAgreement -> {
                         title = mBinding.userAgreementTitle.text.toString()
-                        url = ApiConst.URL_USER_AGREEMENT
+                        url = ApiUrlConst.URL_USER_AGREEMENT
                     }
                     /*隐私政策*/
                     mBinding.privateAgreement -> {
                         title = mBinding.privateAgreementTitle.text.toString()
-                        url = ApiConst.URL_PRIVATE_AGREEMENT
+                        url = ApiUrlConst.URL_PRIVATE_AGREEMENT
                     }
                     /*隐私权限*/
                     mBinding.privacyRights -> {
                         title = mBinding.privacyRightsTitle.text.toString()
-                        url = ApiConst.URL_PRIVATE_AGREEMENT
+                        url = ApiUrlConst.URL_PRIVATE_AGREEMENT
                     }
                     /*充值购买协议*/
                     mBinding.rechargeAgreement -> {
                         title = mBinding.rechargeAgreementTitle.text.toString()
-                        url = ApiConst.URL_RECHARGE_AGREEMENT
+                        url = ApiUrlConst.URL_RECHARGE_AGREEMENT
                     }
                     /*讲师入驻协议*/
                     mBinding.lecturerAgreement -> {
                         title = mBinding.lecturerAgreementTitle.text.toString()
-                        url = ApiConst.URL_LECTURER_AGREEMENT
+                        url = ApiUrlConst.URL_LECTURER_AGREEMENT
                     }
                 }
                 url?.let { gotoWeb(title, it) }

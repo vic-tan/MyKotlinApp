@@ -12,7 +12,7 @@ import com.common.core.base.navigator.NavigatorFragmentManager
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.ui.fragment.ClassmateCircleFragment
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
