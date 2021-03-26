@@ -1,6 +1,5 @@
 package com.tanlifei.app.classmatecircle.ui.fragment
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.BarUtils
 import com.common.core.base.adapter.BasePagerAdapter

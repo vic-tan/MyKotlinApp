@@ -14,8 +14,6 @@ import com.common.cofing.enumconst.UiType
 import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.common.core.base.viewmodel.BaseViewModel
-import com.common.utils.extension.clickEnable
-import com.common.utils.extension.log
 import com.common.utils.extension.toast
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout

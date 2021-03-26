@@ -1,6 +1,5 @@
 package com.example.httpsender.parser
 
-import com.common.cofing.constant.GlobalConst
 import com.common.core.http.PageList
 import com.common.core.http.Response
 import rxhttp.wrapper.annotation.Parser

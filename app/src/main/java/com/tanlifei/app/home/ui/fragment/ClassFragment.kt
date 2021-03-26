@@ -1,6 +1,5 @@
 package com.tanlifei.app.home.ui.fragment
 
-import android.os.Bundle
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.tanlifei.app.databinding.FragmentStudyBinding
 
