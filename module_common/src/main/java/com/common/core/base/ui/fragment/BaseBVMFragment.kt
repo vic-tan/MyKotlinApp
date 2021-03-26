@@ -13,7 +13,7 @@ import com.common.core.base.viewmodel.BaseViewModel
  * @author: tanlifei
  * @date: 2021/2/7 18:17
  */
-abstract class BaseBVMFragment<T : ViewBinding, VM : BaseViewModel> : BaseLazyFragment<T>() {
+abstract class BaseBVMFragment<V : ViewBinding, VM : BaseViewModel> : BaseLazyFragment<V>() {
     protected lateinit var mViewModel: VM
         private set
 

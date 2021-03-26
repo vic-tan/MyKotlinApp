@@ -9,7 +9,7 @@ import com.common.core.base.viewmodel.BaseViewModel
  * @author: tanlifei
  * @date: 2021/2/7 17:14
  */
-abstract class BaseBVMActivity<T : ViewBinding, VM : BaseViewModel> : BaseActivity<T>() {
+abstract class BaseBVMActivity<V : ViewBinding, VM : BaseViewModel> : BaseActivity<V>() {
     lateinit var mViewModel: VM
     protected abstract fun createViewModel(): VM
 

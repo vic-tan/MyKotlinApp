@@ -4,6 +4,7 @@ import android.view.View
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.ui.activity.BaseRecyclerBVMActivity
+import com.common.databinding.LayoutRecyclerRefreshBinding
 import com.common.utils.extension.startActivity
 import com.tanlifei.app.databinding.ActivityManualBinding
 import com.tanlifei.app.databinding.ItemManualBinding
@@ -18,7 +19,7 @@ import com.tanlifei.app.profile.viewmodel.ManualViewModel
  * @date: 2021/2/5 10:15
  */
 class ManualActivity :
-    BaseRecyclerBVMActivity<ActivityManualBinding, ManualBean, ManualViewModel>() {
+    BaseRecyclerBVMActivity<LayoutRecyclerRefreshBinding, ManualBean, ManualViewModel>() {
 
 
     companion object {
@@ -33,9 +34,9 @@ class ManualActivity :
 
     override fun init() {
         initRefreshView(
-            mBinding.refreshLayout.smartRefreshLayout,
-            mBinding.refreshLayout.refreshRecycler,
-            mBinding.refreshLayout.refreshLoadingLayout
+            mBinding.smartRefreshLayout,
+            mBinding.refreshRecycler,
+            mBinding.refreshLoadingLayout
         )
     }
 

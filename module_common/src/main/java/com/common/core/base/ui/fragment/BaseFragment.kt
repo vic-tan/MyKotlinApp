@@ -15,8 +15,8 @@ import java.lang.reflect.ParameterizedType
  * @author: tanlifei
  * @date: 2021/1/27 14:49
  */
-open abstract class BaseFragment<T : ViewBinding> : Fragment() {
-    private var binding: T? = null
+open abstract class BaseFragment<V : ViewBinding> : Fragment() {
+    private var binding: V? = null
     protected val mBinding get() = binding!!
 
     override fun onCreateView(
@@ -34,7 +34,7 @@ open abstract class BaseFragment<T : ViewBinding> : Fragment() {
                 ViewGroup::class.java,
                 Boolean::class.javaPrimitiveType
             )
-            binding = inflate.invoke(null, inflater, container, false) as T
+            binding = inflate.invoke(null, inflater, container, false) as V
         } catch (e: NoSuchMethodException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {

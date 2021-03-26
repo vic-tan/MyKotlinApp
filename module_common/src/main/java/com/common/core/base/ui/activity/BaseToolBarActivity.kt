@@ -14,8 +14,8 @@ import com.hjq.bar.OnTitleBarListener
 /**
  * 需要ActionBar的activity都必须继承本类
  */
-open abstract class BaseToolBarActivity<T : ViewBinding, VM : BaseViewModel> :
-    BaseBVMActivity<T, VM>() {
+open abstract class BaseToolBarActivity<V : ViewBinding, VM : BaseViewModel> :
+    BaseBVMActivity<V, VM>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
  * @author: tanlifei
  * @date: 2021/1/27 15:05
  */
-open abstract class BaseLazyFragment<T : ViewBinding> : BaseFragment<T>() {
+open abstract class BaseLazyFragment<V : ViewBinding> : BaseFragment<V>() {
 
     private var mIsFirstVisible: Boolean = true
     private var mIsPrepared: Boolean = false

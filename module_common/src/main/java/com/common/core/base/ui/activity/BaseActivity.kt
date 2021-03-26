@@ -34,11 +34,11 @@ import java.lang.reflect.ParameterizedType
  * 这是activity基类
  * open 表示该类可以被继承 ,kotlin中默认类是不可以被继承
  */
-open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
+open abstract class BaseActivity<V : ViewBinding> : AppCompatActivity(),
     Observer<UiType> {
 
     protected lateinit var mBaseBinding: ActivityBaseBinding
-    protected lateinit var mBinding: T
+    protected lateinit var mBinding: V
     protected lateinit var mTitleBar: TitleBar
 
 
@@ -163,7 +163,7 @@ open abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(),
         val cls = type.actualTypeArguments[0] as Class<*>
         try {
             val inflate: Method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java)
-            mBinding = inflate.invoke(null, layoutInflater) as T
+            mBinding = inflate.invoke(null, layoutInflater) as V
             mBaseBinding.baseContainer.addView(mBinding.root)
         } catch (e: NoSuchMethodException) {
             e.printStackTrace()

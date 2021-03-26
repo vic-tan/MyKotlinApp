@@ -12,8 +12,8 @@ import com.common.core.base.viewmodel.BaseViewModel
  * @author: tanlifei
  * @date: 2021/1/28 13:51
  */
-open abstract class BaseFormActivity<T : ViewBinding, VM : BaseViewModel> :
-    BaseToolBarActivity<T, VM>() {
+open abstract class BaseFormActivity<V : ViewBinding, VM : BaseViewModel> :
+    BaseToolBarActivity<V, VM>() {
 
     //region软键盘的处理
     /**
