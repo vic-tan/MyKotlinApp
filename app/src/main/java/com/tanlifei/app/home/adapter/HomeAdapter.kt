@@ -8,7 +8,7 @@ import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
 import com.common.utils.extension.setVisible
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.ItemHomeBinding
 import java.util.*
 
@@ -18,7 +18,7 @@ import java.util.*
  * @date: 2021/2/24 16:02
  */
 class HomeAdapter :
-    CommonRvAdapter<ClassmateCircleBean>() {
+    CommonRvAdapter<CircleBean>() {
 
 
     override fun onCreateViewHolder(
@@ -37,7 +37,7 @@ class HomeAdapter :
     override fun onBindViewHolder(
         holder: ViewBinding,
         position: Int,
-        bean: ClassmateCircleBean
+        bean: CircleBean
     ) {
         val holder = holder as ItemHomeBinding
         holder.apply {

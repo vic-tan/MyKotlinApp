@@ -25,6 +25,7 @@ interface GlobalConst {
     interface Extras {
         companion object {
             const val ID = "id"//传ID的Key
+            const val UID = "uid"//传ID的Key
             const val DATA = "data"//传数据的Key
             const val BEAN = "bean"//传实体的Key
             const val POSITION = "position"//传下标的Key
@@ -33,6 +34,7 @@ interface GlobalConst {
             const val URL = "url"//传json的Key
             const val NAME = "name"//传json的Key
             const val TITLE = "title"//传json的Key
+            const val TYPE = "type"//传json的Key
             const val CONTENT = "content"//传json的Key
         }
     }

@@ -10,8 +10,9 @@ import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.ui.activity.CircleDetailActivity
+import com.tanlifei.app.classmatecircle.ui.activity.CircleVideoPagerActivity
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
 import com.tanlifei.app.databinding.FragmentRecommendBinding
 import com.tanlifei.app.databinding.ItemRecommendBinding
@@ -23,12 +24,12 @@ import com.tanlifei.app.databinding.ItemRecommendBinding
  * @date: 2021/1/23 17:41
  */
 class RecommendFragment :
-    BaseRecyclerBVMFragment<FragmentRecommendBinding, ClassmateCircleBean, RecommendViewModel>() {
+    BaseRecyclerBVMFragment<FragmentRecommendBinding, CircleBean, RecommendViewModel>() {
 
 
     companion object {
-
-        fun newInstance(id: Long)=RecommendFragment().apply{
+        const val TYPE_HOME = 1//从首页
+        fun newInstance(id: Long) = RecommendFragment().apply {
             arguments?.apply {
                 putLong(GlobalConst.Extras.ID, id)
             }
@@ -65,19 +66,29 @@ class RecommendFragment :
         return StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    override fun setAdapter(): CommonRvAdapter<ClassmateCircleBean> {
+    override fun setAdapter(): CommonRvAdapter<CircleBean> {
         return RecommendAdapter()
     }
 
     override fun itemClick(
         holder: ViewBinding,
-        itemBean: ClassmateCircleBean,
+        itemBean: CircleBean,
         v: View,
         position: Int
     ) {
         holder as ItemRecommendBinding
         when (v) {
-            holder.item -> CircleDetailActivity.actionStart(itemBean.publishId)
+            holder.item -> {
+                if (itemBean.mediaType == 1) {
+                    CircleVideoPagerActivity.actionStart(
+                        itemBean.publishId, itemBean.uid,
+                        TYPE_HOME
+                    )
+                } else {
+                    CircleDetailActivity.actionStart(itemBean.publishId)
+                }
+
+            }
         }
     }
 

@@ -35,7 +35,7 @@ object ApiUrlConst {
 
     /**—————————————————————————————————————————————————— 我的相关  ——————————————————————————————————————————————*/
 
-    private const val URL_USER = "major/api/entertainment/"
+    private const val URL_USER = "major/api/user/"
 
     /* 发送短信验证码 */
     const val URL_SEND_SMS = "auth/sendsms"
@@ -110,7 +110,7 @@ object ApiUrlConst {
     const val URL_ENTERTAINMENT_DELETE_COMMENT = "${URL_ENTERTAINMENT}deleteComment"
 
     /* 获取文娱视频列表 */
-    const val URL_ENTERTAINMENT_VIDEO = "${URL_ENTERTAINMENT}getEntertainmentVideo"
+    const val URL_ENTERTAINMENT_VIDEO_LIST = "${URL_ENTERTAINMENT}getEntertainmentVideo"
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 

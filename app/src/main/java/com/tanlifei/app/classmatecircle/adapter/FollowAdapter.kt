@@ -14,7 +14,7 @@ import com.common.utils.extension.screenWidth
 import com.common.utils.extension.setVisible
 import com.common.widget.ExpandTextView
 import com.tanlifei.app.R
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ItemFollowBinding
@@ -26,7 +26,7 @@ import java.util.*
  * @date: 2021/2/24 16:02
  */
 class FollowAdapter :
-    CommonRvAdapter<ClassmateCircleBean>() {
+    CommonRvAdapter<CircleBean>() {
     private var mTextViewWidth = screenWidth - ConvertUtils.dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
 
@@ -47,7 +47,7 @@ class FollowAdapter :
     override fun onBindViewHolder(
         holder: ViewBinding,
         position: Int,
-        bean: ClassmateCircleBean
+        bean: CircleBean
     ) {
         holder as ItemFollowBinding
         holder.apply {

@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.enumconst.UiType
 import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.repository.Repository
 
@@ -17,7 +17,7 @@ import com.tanlifei.app.common.repository.Repository
  */
 class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
 
-    var mBean: ClassmateCircleBean? = null
+    var mBean: CircleBean? = null
 
     /**
      * 列表数据改变的LveData
@@ -28,8 +28,8 @@ class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
     /**
      * 列表数据改变的LveData
      */
-    val mBeanChanged: LiveData<ClassmateCircleBean> get() = beanChanged
-    private var beanChanged = MutableLiveData<ClassmateCircleBean>()
+    val mBeanChanged: LiveData<CircleBean> get() = beanChanged
+    private var beanChanged = MutableLiveData<CircleBean>()
 
     private fun requestDetail() =
         comRequest({

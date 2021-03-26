@@ -13,7 +13,7 @@ import com.common.utils.extension.drawable
 import com.common.utils.extension.screenWidth
 import com.common.utils.extension.setVisible
 import com.tanlifei.app.R
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.common.utils.UserInfoUtils
@@ -26,7 +26,7 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class RecommendAdapter :
-    CommonRvAdapter<ClassmateCircleBean>() {
+    CommonRvAdapter<CircleBean>() {
     private val mCoverWidth =
         ((screenWidth - ConvertUtils.dp2px(20f)) * 0.5).toInt()//左右及中间边距为20
     private val mSource = 0 // 0、主页同学圈推荐 1、为人个中心作品
@@ -42,7 +42,7 @@ class RecommendAdapter :
     override fun onBindViewHolder(
         holder: ViewBinding,
         position: Int,
-        bean: ClassmateCircleBean
+        bean: CircleBean
     ) {
         holder as ItemRecommendBinding
         holder.apply {

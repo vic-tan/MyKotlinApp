@@ -7,7 +7,7 @@ import java.io.Serializable
  * @author: tanlifei
  * @date: 2021/2/8 10:32
  */
-class ClassmateCircleBean : Serializable {
+class CircleBean : Serializable {
 
     var uid: Long = 0
     var publishId: Long = 0

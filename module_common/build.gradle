@@ -162,8 +162,9 @@ dependencies {
     api rootProject.ext.dependencies.spotlight
 
     //视频播放器库
-    //https://github.com/CarGuo/GSYVideoPlayer
-    api rootProject.ext.dependencies.GSYVideoPlayer
+    //https://github.com/Jzvd/JZVideo
+    api rootProject.ext.dependencies.jiaozivideoplayer
+    api rootProject.ext.dependencies.ijkplayer
 
     //最新Bugly收库
     //https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20200622202242

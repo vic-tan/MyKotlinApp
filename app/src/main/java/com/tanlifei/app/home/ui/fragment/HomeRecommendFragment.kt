@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.common.utils.extension.toast
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemHomeRecommentBinding
 import com.tanlifei.app.home.adapter.HomeRecommentAdapter
@@ -22,7 +22,7 @@ import com.tanlifei.app.home.viewmodel.HomeRecommendViewModel
  * @date: 2021/1/23 17:41
  */
 class HomeRecommendFragment :
-    BaseRecyclerBVMFragment<FragmentFollowBinding, ClassmateCircleBean, HomeRecommendViewModel>() {
+    BaseRecyclerBVMFragment<FragmentFollowBinding, CircleBean, HomeRecommendViewModel>() {
 
 
     companion object {
@@ -57,13 +57,13 @@ class HomeRecommendFragment :
         return GridLayoutManager(context, 2)
     }
 
-    override fun setAdapter(): CommonRvAdapter<ClassmateCircleBean> {
+    override fun setAdapter(): CommonRvAdapter<CircleBean> {
         return HomeRecommentAdapter()
     }
 
     override fun itemClick(
         holder: ViewBinding,
-        itemBean: ClassmateCircleBean,
+        itemBean: CircleBean,
         v: View,
         position: Int
     ) {

@@ -22,13 +22,12 @@ import com.common.widget.popup.BottomInputEditView
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.classmatecircle.viewmodel.CircleDetailViewModel
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ActivityCircleDetailBinding
-import com.tanlifei.app.databinding.ActivityClassmateCircleDetailBinding
 import com.tanlifei.app.databinding.ItemCommentBinding
 import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
 
@@ -137,7 +136,7 @@ class CircleDetailActivity :
 
     private fun refreshHeaderData() {
         val headerBinding = mHeader as ItemHeaderClassmateCircleDetailBinding
-        var bean: ClassmateCircleBean? = mViewModel.mBean
+        var bean: CircleBean? = mViewModel.mBean
         headerBinding.banner.layoutParams.width = screenWidth
         headerBinding.banner.layoutParams.height =
             AutoHeightUtils.getHeightParams(screenWidth, bean?.image)

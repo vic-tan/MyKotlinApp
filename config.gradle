@@ -63,7 +63,6 @@ ext {
             "rxHttp_rxlife_coroutine": "com.ljx.rxlife:rxlife-coroutine:2.0.1",
 
 
-
             //okhttp3
             //https://github.com/square/okhttp
             "okhttp3"                : "com.squareup.okhttp3:okhttp:4.9.1",
@@ -171,8 +170,11 @@ ext {
 
 
             //视频播放器库
-            //https://github.com/CarGuo/GSYVideoPlayer
-            "GSYVideoPlayer"              : "com.shuyu:GSYVideoPlayer:8.1.1",
+            //https://github.com/Jzvd/JZVideo
+            "jiaozivideoplayer"      : "cn.jzvd:jiaozivideoplayer:7.6.0",
+            //视频播放器库 引入了B站内核
+            //https://github.com/bilibili/ijkplayer
+            "ijkplayer"              : "tv.danmaku.ijk.media:ijkplayer-java:0.8.8",
 
 
             //最新Bugly收库

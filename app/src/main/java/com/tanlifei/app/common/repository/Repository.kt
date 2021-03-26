@@ -5,7 +5,7 @@ import com.common.cofing.constant.GlobalConst
 import com.common.core.base.bean.UserBean
 import com.common.core.bean.UpdateAppBean
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.classmatecircle.bean.ResponseCommentBean
 import com.tanlifei.app.classmatecircle.utils.CommentUrlType
@@ -156,7 +156,7 @@ object Repository {
         RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_LIST)
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
-            .toResponse<MutableList<ClassmateCircleBean>>().await()
+            .toResponse<MutableList<CircleBean>>().await()
 
     /**
      * 文娱推荐列表
@@ -166,7 +166,7 @@ object Repository {
             .add(GlobalConst.Http.PAGE_NUM_KEY, pageNum)
             .add(GlobalConst.Http.PAGE_SIZE_kEY, GlobalConst.Http.PAGE_SIZE_VALUE)
             .add("categoryId", categoryId)
-            .toResponse<MutableList<ClassmateCircleBean>>().await()
+            .toResponse<MutableList<CircleBean>>().await()
 
     /**
      * 请求推荐分类列表
@@ -181,7 +181,7 @@ object Repository {
     suspend fun requestEntertainmentDetail(id: Long) =
         RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_DETAIL)
             .add("publishId", id)
-            .toResponse<ClassmateCircleBean>().await()
+            .toResponse<CircleBean>().await()
 
 
     /**
@@ -238,8 +238,22 @@ object Repository {
     /**
      * 获取文娱视频列表
      */
-    @POST("major/api/entertainment/getEntertainmentVideo")
-    fun getEntertainmentVideo(@Body bean: Map<String?, Any?>?): Call<BaseResponse<List<RecommendBean?>?>?>?
+    suspend fun requestVideoList(
+        publishId: Long,
+        mUserId: Long,
+        pageNum: Int
+    ): MutableList<CircleBean> {
+        var map = HashMap<String, Any>()
+        map[GlobalConst.Http.PAGE_NUM_KEY] = pageNum
+        map[GlobalConst.Http.PAGE_SIZE_kEY] = GlobalConst.Http.PAGE_SIZE_VALUE
+        if (publishId != -1L) {
+            map["publishId"] = publishId
+        }
+        map["mUserId"] = mUserId
+        return RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_VIDEO_LIST)
+            .addAll(map)
+            .toResponse<MutableList<CircleBean>>().await()
+    }
 
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/

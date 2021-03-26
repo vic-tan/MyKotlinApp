@@ -7,7 +7,7 @@ import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.ItemHomeRecommentBinding
 import java.util.*
 
@@ -17,7 +17,7 @@ import java.util.*
  * @date: 2021/2/24 16:02
  */
 class HomeRecommentAdapter :
-    CommonRvAdapter<ClassmateCircleBean>() {
+    CommonRvAdapter<CircleBean>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
@@ -36,7 +36,7 @@ class HomeRecommentAdapter :
     override fun onBindViewHolder(
         holder: ViewBinding,
         position: Int,
-        bean: ClassmateCircleBean
+        bean: CircleBean
     ) {
         holder as ItemHomeRecommentBinding
         holder.apply {

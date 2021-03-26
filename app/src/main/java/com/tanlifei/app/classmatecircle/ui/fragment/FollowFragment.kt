@@ -11,7 +11,7 @@ import com.common.utils.PhotoUtils
 import com.common.utils.extension.toast
 import com.lxj.xpopup.XPopup
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.viewmodel.FollowViewModel
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemFollowBinding
@@ -23,7 +23,7 @@ import com.tanlifei.app.databinding.ItemFollowBinding
  * @date: 2021/1/23 17:41
  */
 class FollowFragment :
-    BaseRecyclerBVMFragment<FragmentFollowBinding, ClassmateCircleBean, FollowViewModel>() {
+    BaseRecyclerBVMFragment<FragmentFollowBinding, CircleBean, FollowViewModel>() {
 
 
     companion object {
@@ -47,13 +47,13 @@ class FollowFragment :
         super.initView()
     }
 
-    override fun setAdapter(): CommonRvAdapter<ClassmateCircleBean> {
+    override fun setAdapter(): CommonRvAdapter<CircleBean> {
         return FollowAdapter()
     }
 
     override fun itemClick(
         holder: ViewBinding,
-        itemBean: ClassmateCircleBean,
+        itemBean: CircleBean,
         v: View,
         position: Int
     ) {

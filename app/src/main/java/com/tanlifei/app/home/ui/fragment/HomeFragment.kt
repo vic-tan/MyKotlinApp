@@ -15,7 +15,7 @@ import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.common.utils.extension.click
 import com.common.utils.extension.toast
-import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
+import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.*
 import com.tanlifei.app.home.adapter.HomeAdapter
 import com.tanlifei.app.home.adapter.HomeBannerAdapter
@@ -80,10 +80,10 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun initAdapter() {
         adapter = HomeAdapter()
         adapter.mData = mViewModel.mData
-        adapter.setItemClickListener(object : OnItemClickListener<ClassmateCircleBean> {
+        adapter.setItemClickListener(object : OnItemClickListener<CircleBean> {
             override fun click(
                 holder: ViewBinding,
-                itemBean: ClassmateCircleBean,
+                itemBean: CircleBean,
                 v: View,
                 position: Int
             ) {
