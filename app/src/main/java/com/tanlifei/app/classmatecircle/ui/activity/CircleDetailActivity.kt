@@ -30,6 +30,9 @@ import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ActivityCircleDetailBinding
 import com.tanlifei.app.databinding.ItemCommentBinding
 import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
+import com.tanlifei.app.home.adapter.HomeBannerAdapter
+import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.indicator.RectangleIndicator
 
 
 /**
@@ -39,9 +42,11 @@ import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
  */
 class CircleDetailActivity :
     BaseToolBarActivity<ActivityCircleDetailBinding, CircleDetailViewModel>() {
+
     private lateinit var mAdapter: CommentAdapter
-    private lateinit var mHeader: ViewBinding
-    private lateinit var mEmptyView: ViewBinding
+    private lateinit var mHeader: ItemHeaderClassmateCircleDetailBinding
+    private lateinit var mEmptyView: LayoutLoadingEmptyBinding
+    private lateinit var bannerAdapter: HomeBannerAdapter
 
     companion object {
         fun actionStart(id: Long) {
@@ -69,6 +74,14 @@ class CircleDetailActivity :
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+        //banner
+        bannerAdapter =
+            HomeBannerAdapter(mHeader.banner.viewPager2, mViewModel.mBannerData)
+        mHeader.banner.addBannerLifecycleObserver(this) //添加生命周期观察者
+            .setAdapter(bannerAdapter).indicator = CircleIndicator(this)
+
+
+
         mEmptyView = LayoutLoadingEmptyBinding.inflate(layoutInflater)
         mEmptyView.root.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -135,38 +148,36 @@ class CircleDetailActivity :
     }
 
     private fun refreshHeaderData() {
-        val headerBinding = mHeader as ItemHeaderClassmateCircleDetailBinding
         var bean: CircleBean? = mViewModel.mBean
-        headerBinding.banner.layoutParams.width = screenWidth
-        headerBinding.banner.layoutParams.height =
+        mHeader.banner.layoutParams.width = screenWidth
+        mHeader.banner.layoutParams.height =
             AutoHeightUtils.getHeightParams(screenWidth, bean?.image)
-        GlideUtils.load(ComFun.mContext, bean?.image?.url, headerBinding.banner)
         GlideUtils.loadAvatar(
             ComFun.mContext,
             bean?.avatar,
-            headerBinding.userHead
+            mHeader.userHead
         )
-        headerBinding.name.text = bean?.nickName
-        headerBinding.school.text = bean?.universityName
-        headerBinding.school.setVisible(ObjectUtils.isNotEmpty(bean?.universityName))
-        headerBinding.content.text = bean?.content
-        headerBinding.commentTime.text = bean?.createtimeStr + ""
+        mHeader.name.text = bean?.nickName
+        mHeader.school.text = bean?.universityName
+        mHeader.school.setVisible(ObjectUtils.isNotEmpty(bean?.universityName))
+        mHeader.content.text = bean?.content
+        mHeader.commentTime.text = bean?.createtimeStr + ""
         if (bean?.isFollower === 1) {
             if (bean.isFollower === 1) {
-                headerBinding.attention.text = "相互关注"
+                mHeader.attention.text = "相互关注"
             } else {
-                headerBinding.attention.text = "已关注"
+                mHeader.attention.text = "已关注"
             }
         } else {
-            headerBinding.attention.text = "  关注  "
+            mHeader.attention.text = "  关注  "
         }
-        headerBinding.topicLayout.setVisible(ObjectUtils.isNotEmpty(bean?.entertainmentTopicName))
-        headerBinding.topicTxt.text = bean?.entertainmentTopicName + ""
-        headerBinding.totalCommentCount.text =
+        mHeader.topicLayout.setVisible(ObjectUtils.isNotEmpty(bean?.entertainmentTopicName))
+        mHeader.topicTxt.text = bean?.entertainmentTopicName + ""
+        mHeader.totalCommentCount.text =
             bean?.comment?.let { "共${NumberUtils.setCommentCount("0", it)}条评论" }
-        headerBinding.banner.click {
-            PhotoUtils.showSinglePhoto(this, headerBinding.banner, bean?.image?.url)
-        }
+        mHeader.banner.setDatas(mViewModel.mBannerData)
+        mHeader.banner.currentItem = 1
+        bannerAdapter.notifyDataSetChanged()
         mBinding.commentBtn.text = bean?.comment?.let { NumberUtils.setCommentCount("评论", it) }
         mBinding.praiseBtn.text = bean?.star?.let { NumberUtils.setPraiseCount(it) }
         mBinding.praiseIcon.setImageResource(if (ObjectUtils.isNotEmpty(bean) && bean?.isStar!!) R.mipmap.ic_praise_white_pre else R.mipmap.ic_praise_white)

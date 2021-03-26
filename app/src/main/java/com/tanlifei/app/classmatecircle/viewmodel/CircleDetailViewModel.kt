@@ -9,6 +9,7 @@ import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.repository.Repository
+import com.tanlifei.app.home.bean.BannerBean
 
 /**
  * @desc:
@@ -18,6 +19,8 @@ import com.tanlifei.app.common.repository.Repository
 class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
 
     var mBean: CircleBean? = null
+
+    var mBannerData: MutableList<BannerBean> = mutableListOf()
 
     /**
      * 列表数据改变的LveData
@@ -37,6 +40,12 @@ class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
                 var requestBean = Repository.requestEntertainmentDetail(id)
                 if (ObjectUtils.isNotEmpty(requestBean)) {
                     mBean = requestBean
+                    mBannerData.clear()
+                    if (ObjectUtils.isNotEmpty(mBean!!.imagesUrlList)) {
+                        for (b in mBean!!.imagesUrlList!!) {
+                            mBannerData.add(BannerBean(0, "", b.url))
+                        }
+                    }
                 }
             }
             complete(

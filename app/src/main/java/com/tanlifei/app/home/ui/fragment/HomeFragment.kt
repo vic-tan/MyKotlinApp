@@ -35,8 +35,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private val mTitleData = mutableListOf("免费直播", "精品课程", "高校直播")
     private lateinit var homeViewModel: MainViewModel
-    private lateinit var header: ViewBinding
-    private lateinit var footer: ViewBinding
+    private lateinit var header: HomeHeaderBinding
+    private lateinit var footer: HomeFooterBinding
     private lateinit var adapter: HomeAdapter
     private lateinit var bannerAdapter: HomeBannerAdapter
     private lateinit var menuAdapter: MenuAdapter
@@ -123,12 +123,11 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        var headerBinding = header as HomeHeaderBinding
 
         //banner
         bannerAdapter =
-            HomeBannerAdapter(headerBinding.banner.viewPager2, mViewModel.mBannerData)
-        headerBinding.banner.addBannerLifecycleObserver(this) //添加生命周期观察者
+            HomeBannerAdapter(header.banner.viewPager2, mViewModel.mBannerData)
+        header.banner.addBannerLifecycleObserver(this) //添加生命周期观察者
             .setAdapter(bannerAdapter).indicator = RectangleIndicator(context)
 
         //Menu
@@ -148,9 +147,9 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
                 }
             }
         })
-        headerBinding.recycler.adapter = menuAdapter
-        headerBinding.recycler.layoutManager = GridLayoutManager(context, 4)
-        headerBinding.recycler.itemAnimator = null
+        header.recycler.adapter = menuAdapter
+        header.recycler.layoutManager = GridLayoutManager(context, 4)
+        header.recycler.itemAnimator = null
 
 
         //ViewPager 推荐
@@ -158,16 +157,16 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
         mFragments.add(HomeRecommendFragment.newInstance())
         mFragments.add(HomeRecommendFragment.newInstance())
         fragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
-        headerBinding.viewPager.adapter = fragmentAdapter
-        headerBinding.viewPager.offscreenPageLimit = 3
+        header.viewPager.adapter = fragmentAdapter
+        header.viewPager.offscreenPageLimit = 3
         MagicIndicatorUtils.initComMagicIndicator(
             activity,
-            headerBinding.tabIndicator,
-            headerBinding.viewPager,
+            header.tabIndicator,
+            header.viewPager,
             mTitleData
         )
 
-        headerBinding.more.click {
+        header.more.click {
             toast(it.text.toString())
         }
 
@@ -179,8 +178,7 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        var footerBinding = footer as HomeFooterBinding
-        footerBinding.adjustment.click {
+        footer.adjustment.click {
             toast(it.text.toString())
         }
     }
@@ -205,9 +203,8 @@ class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
     private fun useBanner() {
-        var headerBinding = header as HomeHeaderBinding
-        headerBinding.banner.setDatas(mViewModel.mBannerData)
-        headerBinding.banner.currentItem = 1
+        header.banner.setDatas(mViewModel.mBannerData)
+        header.banner.currentItem = 1
         bannerAdapter.notifyDataSetChanged()
     }
 }

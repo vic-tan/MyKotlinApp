@@ -44,7 +44,7 @@ class HomeBannerAdapter(
         holder.binding.image.click {
             val photoList: MutableList<String> = mutableListOf()
             for (banerBean in mDatas) {
-                photoList.add(banerBean.image)
+                banerBean.image?.let { it1 -> photoList.add(it1) }
             }
             PhotoUtils.showBannerPhoto(
                 mContext,
