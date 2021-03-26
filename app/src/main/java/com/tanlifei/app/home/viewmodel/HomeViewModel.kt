@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.viewmodel.BaseViewModel
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.home.bean.AdsnoviceBean
 import com.tanlifei.app.home.bean.BannerBean
 import com.tanlifei.app.home.bean.HomeHeaderDataBean

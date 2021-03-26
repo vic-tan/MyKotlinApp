@@ -8,14 +8,14 @@ import com.common.core.base.bean.ListDataChangePrams
 import com.common.core.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.common.repository.Repository
 
 /**
  * @desc:
  * @author: tanlifei
  * @date: 2021/2/7 15:41
  */
-class ClassmateCircleDetailViewModel(val id: Long) : BaseListViewModel() {
+class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
 
     var mBean: ClassmateCircleBean? = null
 

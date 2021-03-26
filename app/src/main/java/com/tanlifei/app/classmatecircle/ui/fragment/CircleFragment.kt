@@ -13,13 +13,13 @@ import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class ClassmateCircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>() {
+class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>() {
     private val mTitleData = mutableListOf("关注", "推荐")
     private lateinit var mFragmentAdapter: BasePagerAdapter
     private var mFragments: MutableList<Fragment> = ArrayList()
 
     companion object {
-        fun newInstance() = ClassmateCircleFragment()
+        fun newInstance() = CircleFragment()
     }
 
 

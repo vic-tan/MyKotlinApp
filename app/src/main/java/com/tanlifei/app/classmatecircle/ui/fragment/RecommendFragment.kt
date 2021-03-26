@@ -11,7 +11,7 @@ import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
-import com.tanlifei.app.classmatecircle.ui.activity.ClassmateCircleDetailActivity
+import com.tanlifei.app.classmatecircle.ui.activity.CircleDetailActivity
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendViewModel
 import com.tanlifei.app.databinding.FragmentRecommendBinding
 import com.tanlifei.app.databinding.ItemRecommendBinding
@@ -77,7 +77,7 @@ class RecommendFragment :
     ) {
         holder as ItemRecommendBinding
         when (v) {
-            holder.item -> ClassmateCircleDetailActivity.actionStart(itemBean.publishId)
+            holder.item -> CircleDetailActivity.actionStart(itemBean.publishId)
         }
     }
 

@@ -7,7 +7,7 @@ import com.blankj.utilcode.util.SPUtils
 import com.common.ComFun
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.config.Const
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.main.bean.AdsBean
 import com.tanlifei.app.main.utils.AdsUtils

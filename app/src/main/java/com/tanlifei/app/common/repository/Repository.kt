@@ -1,4 +1,4 @@
-package com.tanlifei.app.common.network
+package com.tanlifei.app.common.repository
 
 import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
@@ -233,6 +233,13 @@ object Repository {
         )
             .add("commentId", id)
             .toResponse<String>().await()
+
+
+    /**
+     * 获取文娱视频列表
+     */
+    @POST("major/api/entertainment/getEntertainmentVideo")
+    fun getEntertainmentVideo(@Body bean: Map<String?, Any?>?): Call<BaseResponse<List<RecommendBean?>?>?>?
 
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/

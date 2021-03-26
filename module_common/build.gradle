@@ -161,6 +161,9 @@ dependencies {
     //https://github.com/TakuSemba/Spotlight
     api rootProject.ext.dependencies.spotlight
 
+    //视频播放器库
+    //https://github.com/CarGuo/GSYVideoPlayer
+    api rootProject.ext.dependencies.GSYVideoPlayer
 
     //最新Bugly收库
     //https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20200622202242

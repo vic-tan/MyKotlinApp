@@ -159,13 +159,21 @@ ext {
             //https://github.com/youth5201314/banner
             "banner"                 : "com.youth.banner:banner:2.1.0",
 
+
             //省市区三级联动库
             //https://github.com/Bigkoo/Android-PickerView
             "pickerView"             : "com.contrarywind:Android-PickerView:4.1.9",
 
+
             //引导操作库
             //https://github.com/TakuSemba/Spotlight
             "spotlight"              : "com.github.takusemba:spotlight:2.0.3",
+
+
+            //视频播放器库
+            //https://github.com/CarGuo/GSYVideoPlayer
+            "GSYVideoPlayer"              : "com.shuyu:GSYVideoPlayer:8.1.1",
+
 
             //最新Bugly收库
             //https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20200622202242

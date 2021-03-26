@@ -24,9 +24,10 @@ import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.ClassmateCircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
-import com.tanlifei.app.classmatecircle.viewmodel.ClassmateCircleDetailViewModel
+import com.tanlifei.app.classmatecircle.viewmodel.CircleDetailViewModel
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
+import com.tanlifei.app.databinding.ActivityCircleDetailBinding
 import com.tanlifei.app.databinding.ActivityClassmateCircleDetailBinding
 import com.tanlifei.app.databinding.ItemCommentBinding
 import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
@@ -37,22 +38,22 @@ import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class ClassmateCircleDetailActivity :
-    BaseToolBarActivity<ActivityClassmateCircleDetailBinding, ClassmateCircleDetailViewModel>() {
+class CircleDetailActivity :
+    BaseToolBarActivity<ActivityCircleDetailBinding, CircleDetailViewModel>() {
     private lateinit var mAdapter: CommentAdapter
     private lateinit var mHeader: ViewBinding
     private lateinit var mEmptyView: ViewBinding
 
     companion object {
         fun actionStart(id: Long) {
-            startActivity<ClassmateCircleDetailActivity> {
+            startActivity<CircleDetailActivity> {
                 putExtra(GlobalConst.Extras.ID, id)
             }
         }
     }
 
-    override fun createViewModel(): ClassmateCircleDetailViewModel {
-        return ClassmateCircleDetailViewModel(intent.getLongExtra(GlobalConst.Extras.ID, 0))
+    override fun createViewModel(): CircleDetailViewModel {
+        return CircleDetailViewModel(intent.getLongExtra(GlobalConst.Extras.ID, 0))
     }
 
     override fun init() {
@@ -209,7 +210,7 @@ class ClassmateCircleDetailActivity :
                     is ItemCommentBinding -> {
                         when (v) {
                             holder.delete -> {
-                                ComDialogUtils.comConfirm(this@ClassmateCircleDetailActivity,
+                                ComDialogUtils.comConfirm(this@CircleDetailActivity,
                                     "确定删除些评论?",
                                     OnConfirmListener { mViewModel.requestDeleteComment(itemBean) })
                             }

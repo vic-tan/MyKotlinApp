@@ -1,7 +1,7 @@
 package com.tanlifei.app.home.viewmodel
 
 import com.common.core.base.viewmodel.BaseListViewModel
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.common.repository.Repository
 
 /**
  * @desc:

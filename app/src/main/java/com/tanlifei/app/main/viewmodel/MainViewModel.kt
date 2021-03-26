@@ -11,8 +11,8 @@ import com.common.core.base.navigator.NavigatorAdapter
 import com.common.core.base.navigator.NavigatorFragmentManager
 import com.common.core.base.viewmodel.BaseViewModel
 import com.tanlifei.app.R
-import com.tanlifei.app.classmatecircle.ui.fragment.ClassmateCircleFragment
-import com.tanlifei.app.common.network.Repository
+import com.tanlifei.app.classmatecircle.ui.fragment.CircleFragment
+import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
@@ -115,7 +115,7 @@ class MainViewModel : BaseViewModel() {
     fun bindFragments() {
         mFragments.add(HomeFragment.newInstance())
         mFragments.add(ClassFragment.newInstance())
-        mFragments.add(ClassmateCircleFragment.newInstance())
+        mFragments.add(CircleFragment.newInstance())
         mFragments.add(StudyFragment.newInstance())
         mFragments.add(ProfileFragment.newInstance())
     }

@@ -82,7 +82,7 @@
         <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->
 
         <activity
-            android:name=".classmatecircle.ui.activity.ClassmateCircleDetailActivity"
+            android:name=".classmatecircle.ui.activity.CircleDetailActivity"
             android:label="同学圈详情" />
 
         <!--—————————————————————————————————————————————————— 我的 ——————————————————————————————————————————————————-->
