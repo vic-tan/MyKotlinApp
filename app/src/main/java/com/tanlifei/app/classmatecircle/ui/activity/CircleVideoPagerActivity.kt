@@ -57,6 +57,7 @@ class CircleVideoPagerActivity :
             mBinding.refreshRecycler,
             mBinding.refreshLoadingLayout
         )
+        mBinding.smartRefreshLayout.setEnableOverScrollDrag(false)//是否启用越界拖动（仿苹果效果）
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.arrowBack)
         mViewPagerLayoutManager?.setOnViewPagerListener(object : OnViewPagerListener {
             override fun onInitComplete() {

@@ -198,6 +198,7 @@ object RecyclerUtils {
 
     private fun initSmartRefreshLayoutConfig(smartRefreshLayout: SmartRefreshLayout) {
         smartRefreshLayout.setEnableLoadMoreWhenContentNotFull(false)//是否在列表不满一页时候开启上拉加载功能
+        smartRefreshLayout.setEnableOverScrollDrag(true)//是否启用越界拖动（仿苹果效果）
     }
 
     fun getLoadCount(layoutManager: RecyclerView.LayoutManager): Int {
