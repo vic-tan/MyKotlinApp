@@ -3,7 +3,7 @@ package com.common.base.viewmodel
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
-import com.common.cofing.enumconst.UiType
+import com.common.constant.EnumConst
 import com.common.core.http.code
 import com.common.core.http.msg
 import com.common.core.http.show
@@ -20,8 +20,8 @@ open class BaseViewModel : ViewModel() {
     /**
      * 请求网络是否正在加载的LveData
      */
-    val mUiChange: LiveData<UiType> get() = uIChange
-    private val uIChange = MutableLiveData<UiType>()
+    val mUiChange: LiveData<EnumConst.UiType> get() = uIChange
+    private val uIChange = MutableLiveData<EnumConst.UiType>()
 
     @SuppressLint("StaticFieldLeak")
     lateinit var mApplication: Application
@@ -46,10 +46,10 @@ open class BaseViewModel : ViewModel() {
         showToast: Boolean = true,
         uiLiveData: Boolean = true,
         refreshState: Boolean = false,
-        uiType: UiType = UiType.REFRESH
+        uiType: EnumConst.UiType = EnumConst.UiType.REFRESH
     ) = rxLifeScope.launch(block, {
         if (uiLiveData) {
-            uIChange.value = UiType.ERROR
+            uIChange.value = EnumConst.UiType.ERROR
         }
         if (showToast) {
             it.show(it.code, it.msg)
@@ -59,22 +59,22 @@ open class BaseViewModel : ViewModel() {
             mRefreshState = RefreshState.LoadFinish
         }
     }, {
-        if (uiLiveData && uiType == UiType.REFRESH) {
-            uIChange.value = UiType.LOADING
+        if (uiLiveData && uiType == EnumConst.UiType.REFRESH) {
+            uIChange.value = EnumConst.UiType.LOADING
         }
         if (refreshState) {
             mRefreshState = RefreshState.Loading
         }
     }, {
         if (uiLiveData) {
-            uIChange.value = UiType.COMPLETE
+            uIChange.value = EnumConst.UiType.COMPLETE
         }
     })
 
     /**
      * 改变UI类型
      */
-    fun setUI(uiType: UiType) {
+    fun setUI(uiType: EnumConst.UiType) {
         uIChange.value = uiType
     }
 

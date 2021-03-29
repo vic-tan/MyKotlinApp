@@ -4,7 +4,7 @@ import android.graphics.drawable.Drawable
 import android.text.Html
 import android.text.Html.ImageGetter
 import androidx.lifecycle.Observer
-import com.common.cofing.constant.GlobalConst
+import com.common.constant.GlobalConst
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.widget.component.extension.startActivity
 import com.tanlifei.app.databinding.ActivityManualDetailBinding

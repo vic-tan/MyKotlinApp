@@ -3,7 +3,6 @@ package com.common.core.environment.utils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.BuildConfig
 import com.common.R
-import com.common.cofing.constant.ApiEnvironmentConst
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.core.environment.bean.ModuleBean
 

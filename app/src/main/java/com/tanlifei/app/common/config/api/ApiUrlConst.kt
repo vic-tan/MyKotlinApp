@@ -1,6 +1,6 @@
 package com.tanlifei.app.common.config.api
 
-import com.common.cofing.constant.ApiEnvironmentConst
+import com.common.core.environment.utils.ApiEnvironmentConst
 
 /**
  * @desc:接口定义

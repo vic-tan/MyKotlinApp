@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.base.bean.UpdateAppBean
+import com.common.constant.EnumConst
 import com.common.core.environment.utils.EnvironmentChangeManager
 import com.common.widget.component.extension.toast
 import com.hjq.toast.ToastUtils

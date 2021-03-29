@@ -1,4 +1,4 @@
-package com.common.cofing.constant
+package com.common.constant
 
 /**
  * 项目所有全局通用常量的管理类。

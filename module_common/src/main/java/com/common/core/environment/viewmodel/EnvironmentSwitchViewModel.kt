@@ -1,9 +1,9 @@
 package com.common.core.environment.viewmodel
 
-import com.common.cofing.constant.ApiEnvironmentConst
-import com.common.cofing.enumconst.UiType
+import com.common.core.environment.utils.ApiEnvironmentConst
 import com.common.base.bean.ListDataChangePrams
 import com.common.base.viewmodel.BaseListViewModel
+import com.common.constant.EnumConst
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.core.environment.bean.ModuleBean
 import com.common.core.environment.event.EnvironmentEvent
@@ -50,7 +50,7 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
             }
         }
         (mData as MutableList<EnvironmentBean>)[pos].defaultCheck = true
-        setDataChange(ListDataChangePrams(UiType.NOTIFY))
+        setDataChange(ListDataChangePrams(EnumConst.UiType.NOTIFY))
     }
 
 

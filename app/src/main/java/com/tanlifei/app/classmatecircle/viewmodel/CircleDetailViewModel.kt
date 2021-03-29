@@ -3,9 +3,9 @@ package com.tanlifei.app.classmatecircle.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.cofing.enumconst.UiType
 import com.common.base.bean.ListDataChangePrams
 import com.common.base.viewmodel.BaseListViewModel
+import com.common.constant.EnumConst
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.repository.Repository
@@ -36,7 +36,7 @@ class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
 
     private fun requestDetail() =
         comRequest({
-            if (mRefreshType == UiType.REFRESH) {
+            if (mRefreshType == EnumConst.UiType.REFRESH) {
                 var requestBean = Repository.requestEntertainmentDetail(id)
                 if (ObjectUtils.isNotEmpty(requestBean)) {
                     mBean = requestBean
@@ -72,7 +72,7 @@ class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
         Repository.requestDeleteComment(commentBean.id)
         mData.remove(commentBean)
         mBean?.comment = mBean?.comment?.minus(1)!!
-        setDataChange(ListDataChangePrams(UiType.NOTIFY))
+        setDataChange(ListDataChangePrams(EnumConst.UiType.NOTIFY))
         beanChanged.value = mBean
     }, uiLiveData = false)
 

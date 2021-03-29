@@ -6,8 +6,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import com.common.cofing.enumconst.UiType
 import com.common.base.ui.fragment.BaseLazyFragment
+import com.common.constant.EnumConst
 import com.common.utils.GlideUtils
 import com.common.widget.component.extension.color
 import com.common.widget.component.extension.setVisible
@@ -53,9 +53,9 @@ class RecommendTabFragment :
         })
         mViewModel.mUiChange.observe(this, Observer {
             when (it) {
-                UiType.LOADING -> mBinding.loadingLayout.showLoading()
-                UiType.COMPLETE -> mBinding.loadingLayout.showContent()
-                UiType.ERROR -> mBinding.loadingLayout.showError()
+                EnumConst.UiType.LOADING -> mBinding.loadingLayout.showLoading()
+                EnumConst.UiType.COMPLETE -> mBinding.loadingLayout.showContent()
+                EnumConst.UiType.ERROR -> mBinding.loadingLayout.showError()
             }
         })
     }

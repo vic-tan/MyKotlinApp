@@ -1,4 +1,4 @@
-package com.common.cofing.constant
+package com.common.core.environment.utils
 
 import com.common.BuildConfig
 import rxhttp.wrapper.annotation.DefaultDomain
@@ -16,7 +16,8 @@ object ApiEnvironmentConst {
     var BASE_URL = BuildConfig.BASE_URL_PRO
 
     /* H5地址 */
-    val URL_BASE_HELPER = getBaseHelperUrl()
+    val URL_BASE_HELPER =
+        getBaseHelperUrl()
 
 
     /**————————————————————————————————————————————————— 开发（DEV）环境  —————————————————————————————————————————*/

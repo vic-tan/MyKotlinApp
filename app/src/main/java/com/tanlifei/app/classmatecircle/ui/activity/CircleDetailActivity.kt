@@ -8,10 +8,10 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
-import com.common.cofing.constant.GlobalConst
-import com.common.cofing.enumconst.UiType
+import com.common.constant.GlobalConst
 import com.common.base.listener.OnItemClickListener
 import com.common.base.ui.activity.BaseToolBarActivity
+import com.common.constant.EnumConst
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.ComDialogUtils
 import com.common.utils.GlideUtils
@@ -106,7 +106,7 @@ class CircleDetailActivity :
             this
         ) {
             when (it.uiType) {
-                UiType.REFRESH -> {
+                EnumConst.UiType.REFRESH -> {
                     addHeader()
                 }
                 else -> {

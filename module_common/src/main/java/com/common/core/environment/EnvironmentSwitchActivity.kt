@@ -5,7 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.cofing.constant.GlobalConst
+import com.common.constant.GlobalConst
 import com.common.base.listener.OnItemClickListener
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter

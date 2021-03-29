@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListene
 import cn.jzvd.Jzvd
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.BarUtils
-import com.common.cofing.constant.GlobalConst
+import com.common.constant.GlobalConst
 import com.common.base.adapter.CommonRvAdapter
 import com.common.base.ui.activity.BaseRvActivity
 import com.common.widget.component.extension.clickListener

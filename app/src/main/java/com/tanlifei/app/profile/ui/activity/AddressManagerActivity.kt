@@ -12,8 +12,8 @@ import com.bigkoo.pickerview.view.OptionsPickerView
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.RegexUtils
-import com.common.cofing.constant.GlobalConst
-import com.common.cofing.constant.GlobalConst.ActivityResult
+import com.common.constant.GlobalConst
+import com.common.constant.GlobalConst.ActivityResult
 import com.common.base.bean.UserBean
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.widget.component.extension.click
