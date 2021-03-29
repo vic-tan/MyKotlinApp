@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.BarUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.ui.activity.BaseRecyclerActivity
+import com.common.core.base.ui.activity.BaseRvActivity
 import com.common.utils.extension.clickListener
 import com.common.utils.extension.startActivity
 import com.gyf.immersionbar.ktx.immersionBar
@@ -28,7 +28,7 @@ import com.tanlifei.app.databinding.ActivityCircleVideoPagerBinding
  * @date: 2021/3/26 10:27
  */
 class CircleVideoPagerActivity :
-    BaseRecyclerActivity<ActivityCircleVideoPagerBinding, CircleBean, CircleVideoPagerViewModel>() {
+    BaseRvActivity<ActivityCircleVideoPagerBinding, CircleBean, CircleVideoPagerViewModel>() {
     private var mViewPagerLayoutManager: ViewPagerLayoutManager? = null
     private var mCurrentPosition = 0
 

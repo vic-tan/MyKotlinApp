@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.ui.fragment.BaseRecyclerFragment
+import com.common.core.base.ui.fragment.BaseRvFragment
 import com.common.utils.extension.toast
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.FragmentFollowBinding
@@ -22,7 +22,7 @@ import com.tanlifei.app.home.viewmodel.HomeRecommendViewModel
  * @date: 2021/1/23 17:41
  */
 class HomeRecommendFragment :
-    BaseRecyclerFragment<FragmentFollowBinding, HomeRecommendViewModel, CircleBean>() {
+    BaseRvFragment<FragmentFollowBinding, HomeRecommendViewModel, CircleBean>() {
 
 
     companion object {

@@ -23,7 +23,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  * @author: tanlifei
  * @date: 2021/2/7 18:17
  */
-abstract class BaseRecyclerFragment<V : ViewBinding, VM : BaseListViewModel, T> :
+abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
     BaseLazyFragment<V, VM>() {
     var mAdapter: CommonRvAdapter<T>
 

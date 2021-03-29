@@ -7,7 +7,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.ui.fragment.BaseRecyclerFragment
+import com.common.core.base.ui.fragment.BaseRvFragment
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.classmatecircle.bean.CircleBean
@@ -24,7 +24,7 @@ import com.tanlifei.app.databinding.ItemRecommendBinding
  * @date: 2021/1/23 17:41
  */
 class RecommendFragment :
-    BaseRecyclerFragment<FragmentRecommendBinding, RecommendViewModel, CircleBean>() {
+    BaseRvFragment<FragmentRecommendBinding, RecommendViewModel, CircleBean>() {
 
 
     companion object {
