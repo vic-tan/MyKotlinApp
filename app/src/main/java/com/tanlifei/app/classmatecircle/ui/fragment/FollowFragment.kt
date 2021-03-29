@@ -78,12 +78,12 @@ class FollowFragment :
                     ).show()
                 }
             }
-            holder.banner -> {
+          /*  holder.banner -> {
                 var list = mutableListOf<String>()
                 var url = itemBean.image?.url
                 url?.let { list.add(it) }
                 PhotoUtils.showListPhoto(context, holder.banner, position, list)
-            }
+            }*/
         }
     }
 

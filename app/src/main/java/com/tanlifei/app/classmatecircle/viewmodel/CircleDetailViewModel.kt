@@ -8,6 +8,7 @@ import com.common.base.viewmodel.BaseListViewModel
 import com.common.constant.EnumConst
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
+import com.tanlifei.app.classmatecircle.bean.ImageBean
 import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.home.bean.BannerBean
 
@@ -20,7 +21,7 @@ class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
 
     var mBean: CircleBean? = null
 
-    var mBannerData: MutableList<BannerBean> = mutableListOf()
+    var mBannerData: MutableList<ImageBean> = mutableListOf()
 
     /**
      * 列表数据改变的LveData
@@ -41,10 +42,8 @@ class CircleDetailViewModel(val id: Long) : BaseListViewModel() {
                 if (ObjectUtils.isNotEmpty(requestBean)) {
                     mBean = requestBean
                     mBannerData.clear()
-                    if (ObjectUtils.isNotEmpty(mBean!!.imagesUrlList)) {
-                        for (b in mBean!!.imagesUrlList!!) {
-                            mBannerData.add(BannerBean(0, "", b.url))
-                        }
+                    if (ObjectUtils.isNotEmpty(mBean)) {
+                        mBean!!.imagesUrlList?.let { mBannerData.addAll(it) }
                     }
                 }
             }

@@ -14,7 +14,7 @@ class CircleBean : Serializable {
     var nickName: String? = null
     var avatar: String? = null
     var universityName: String? = null
-    var mediaType = 0
+    var mediaType = 0// 0是图文，1、是视频
     var videoImage: String? = null
     var imageUrl: String? = null
     var image: ImageBean? = null
@@ -41,7 +41,4 @@ class CircleBean : Serializable {
             : String? = null
     var goodsParam: String? = null
     var goodsId: Int = 0
-    override fun toString(): String {
-        return "ClassmateCircleBean(uid=$uid, publishId=$publishId, nickName=$nickName, avatar=$avatar, universityName=$universityName, mediaType=$mediaType, videoImage=$videoImage, imageUrl=$imageUrl, image=$image, imagesUrlList=$imagesUrlList, videoUrl=$videoUrl, content=$content, checkStatus=$checkStatus, star=$star, share=$share, comment=$comment, isStar=$isStar, isFollowing=$isFollowing, isFollower=$isFollower, createtimeStr=$createtimeStr, collapseState=$collapseState, maxLines=$maxLines, entertainmentTopicName=$entertainmentTopicName, entertainmentTagName=$entertainmentTagName, entertainmentTopicId=$entertainmentTopicId, goodsImage=$goodsImage, goodsTitle=$goodsTitle, goodsPrice=$goodsPrice, jumpCode=$jumpCode, goodsParam=$goodsParam, goodsId=$goodsId)"
-    }
 }

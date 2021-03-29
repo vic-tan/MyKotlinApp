@@ -20,6 +20,7 @@ import com.common.widget.component.extension.*
 import com.common.widget.component.popup.BottomInputEditView
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.R
+import com.tanlifei.app.classmatecircle.adapter.CircleBannerAdapter
 import com.tanlifei.app.classmatecircle.adapter.CommentAdapter
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
@@ -29,7 +30,6 @@ import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ActivityCircleDetailBinding
 import com.tanlifei.app.databinding.ItemCommentBinding
 import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
-import com.tanlifei.app.home.adapter.HomeBannerAdapter
 import com.youth.banner.indicator.CircleIndicator
 
 
@@ -44,7 +44,7 @@ class CircleDetailActivity :
     private lateinit var mAdapter: CommentAdapter
     private lateinit var mHeader: ItemHeaderClassmateCircleDetailBinding
     private lateinit var mEmptyView: LayoutLoadingEmptyBinding
-    private lateinit var bannerAdapter: HomeBannerAdapter
+    private lateinit var bannerAdapter: CircleBannerAdapter
 
     companion object {
         fun actionStart(id: Long) {
@@ -74,7 +74,7 @@ class CircleDetailActivity :
         )
         //banner
         bannerAdapter =
-            HomeBannerAdapter(mHeader.banner.viewPager2, mViewModel.mBannerData)
+            CircleBannerAdapter(mHeader.banner.viewPager2, mViewModel.mBannerData)
         mHeader.banner.addBannerLifecycleObserver(this) //添加生命周期观察者
             .setAdapter(bannerAdapter).indicator = CircleIndicator(this)
 
