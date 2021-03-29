@@ -70,10 +70,10 @@ abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
         uiObserve(mSmartRefreshLayout, mLoadingLayout)
         RecyclerUtils.initListener(
             mSmartRefreshLayout,
-            mRefreshRecycler,
             mLoadingLayout,
             mViewModel
         )
+        addOnScrollListener(mRefreshRecycler)
         setSmartRefreshLayoutConfig(mSmartRefreshLayout)
         initRecyclerView(mRefreshRecycler)
         requestData()
@@ -84,6 +84,10 @@ abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
 
     open fun requestData() {
         RecyclerUtils.initData(mViewModel)
+    }
+
+    open fun addOnScrollListener(mRefreshRecycler: RecyclerView) {
+        RecyclerUtils.initAddOnScrollListenerListener(mRefreshRecycler, mViewModel)
     }
 
 

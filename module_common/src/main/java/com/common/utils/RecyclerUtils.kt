@@ -141,6 +141,33 @@ object RecyclerUtils {
     /**
      * 初始化加载中控件监听
      */
+    fun initAddOnScrollListenerListener(
+        refreshRecycler: RecyclerView,
+        viewModel: BaseListViewModel
+    ) {
+        refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (!NetworkUtils.isConnected())//没有网不加载，让用户手动加载
+                    return
+                // 获取 LayoutManger
+                val layoutManager = recyclerView.layoutManager
+                if (ObjectUtils.isNotEmpty(layoutManager)) {
+                    // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
+                    if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
+                        && getOutLast(layoutManager) >= getLoadCount(layoutManager)
+                        && viewModel.mRefreshState == RefreshState.None
+                    ) {
+                        viewModel.loadMore()
+                    }
+                }
+            }
+        })
+    }
+
+    /**
+     * 初始化加载中控件监听
+     */
     fun initLoadingLayoutListener(
         refreshLoadingLayout: LoadingLayout,
         viewModel: BaseListViewModel
@@ -172,30 +199,11 @@ object RecyclerUtils {
      */
     fun initListener(
         smartRefreshLayout: SmartRefreshLayout,
-        refreshRecycler: RecyclerView,
         refreshLoadingLayout: LoadingLayout,
         viewModel: BaseListViewModel
     ) {
         initRefreshLayoutListener(smartRefreshLayout, viewModel)
         initLoadingLayoutListener(refreshLoadingLayout, viewModel)
-        refreshRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (!NetworkUtils.isConnected())//没有网不加载，让用户手动加载
-                    return
-                // 获取 LayoutManger
-                val layoutManager = recyclerView.layoutManager
-                if (ObjectUtils.isNotEmpty(layoutManager)) {
-                    // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
-                    if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
-                        && getOutLast(layoutManager) >= getLoadCount(layoutManager)
-                        && viewModel.mRefreshState == RefreshState.None
-                    ) {
-                        viewModel.loadMore()
-                    }
-                }
-            }
-        })
     }
 
     fun initSmartRefreshLayoutConfig(smartRefreshLayout: SmartRefreshLayout) {

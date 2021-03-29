@@ -117,6 +117,7 @@ class FollowAdapter :
                         )
                     banner.indicator = CircleIndicator(mContext)
                     banner.currentItem = 1
+                    banner.isAutoLoop(false)
                     banner.adapter.notifyDataSetChanged()
                     banner.visible()
                 }

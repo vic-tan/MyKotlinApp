@@ -41,10 +41,10 @@ abstract class BaseRvActivity<V : ViewBinding, T, VM : BaseListViewModel> :
         uiObserve(mSmartRefreshLayout, mLoadingLayout)
         RecyclerUtils.initListener(
             mSmartRefreshLayout,
-            mRefreshRecycler,
             mLoadingLayout,
             mViewModel
         )
+        addOnScrollListener(mRefreshRecycler)
         setSmartRefreshLayoutConfig(mSmartRefreshLayout)
         initRecyclerView(mRefreshRecycler)
         RecyclerUtils.initData(mViewModel)
@@ -73,6 +73,10 @@ abstract class BaseRvActivity<V : ViewBinding, T, VM : BaseListViewModel> :
 
     open fun requestData() {
         RecyclerUtils.initData(mViewModel)
+    }
+
+    open fun addOnScrollListener(mRefreshRecycler: RecyclerView) {
+        RecyclerUtils.initAddOnScrollListenerListener(mRefreshRecycler, mViewModel)
     }
 
 
