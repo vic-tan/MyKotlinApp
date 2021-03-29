@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.common.cofing.enumconst.UiType
-import com.common.core.base.ui.fragment.BaseBVMFragment
+import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.utils.GlideUtils
 import com.common.utils.extension.color
 import com.common.utils.extension.setVisible
@@ -28,7 +28,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Common
  * @date: 2021/1/23 17:41
  */
 class RecommendTabFragment :
-    BaseBVMFragment<FragmentClassmatecircleRecommendBinding, RecommendTabViewModel>() {
+    BaseLazyFragment<FragmentClassmatecircleRecommendBinding, RecommendTabViewModel>() {
 
     companion object {
         fun newInstance() = RecommendTabFragment()

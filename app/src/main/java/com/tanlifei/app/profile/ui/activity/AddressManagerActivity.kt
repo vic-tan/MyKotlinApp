@@ -15,7 +15,7 @@ import com.blankj.utilcode.util.RegexUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.cofing.constant.GlobalConst.ActivityResult
 import com.common.core.base.bean.UserBean
-import com.common.core.base.ui.activity.BaseFormActivity
+import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.extension.click
 import com.common.utils.extension.clickListener
 import com.common.utils.extension.startActivityForResult
@@ -32,7 +32,7 @@ import com.tanlifei.app.profile.viewmodel.AddressViewModel
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class AddressManagerActivity : BaseFormActivity<ActivityAddressManngerBinding, AddressViewModel>() {
+class AddressManagerActivity : BaseToolBarActivity<ActivityAddressManngerBinding, AddressViewModel>() {
 
 
     private lateinit var mInputHelper: TextInputHelper

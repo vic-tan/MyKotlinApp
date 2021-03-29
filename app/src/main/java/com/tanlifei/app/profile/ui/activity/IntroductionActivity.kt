@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.cofing.constant.GlobalConst.ActivityResult
-import com.common.core.base.ui.activity.BaseFormActivity
+import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.utils.extension.click
 import com.common.utils.extension.startActivityForResult
@@ -20,7 +20,7 @@ import com.tanlifei.app.databinding.ActivityIntroductionBinding
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class IntroductionActivity : BaseFormActivity<ActivityIntroductionBinding, EmptyViewModel>() {
+class IntroductionActivity : BaseToolBarActivity<ActivityIntroductionBinding, EmptyViewModel>() {
     private lateinit var mInputHelper: TextInputHelper
 
     companion object {

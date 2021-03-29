@@ -2,13 +2,14 @@ package com.common.core.base.ui.fragment
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
+import com.common.core.base.viewmodel.BaseViewModel
 
 /**
  * @desc: 懒加载Fragment
  * @author: tanlifei
  * @date: 2021/1/27 15:05
  */
-open abstract class BaseLazyFragment<V : ViewBinding> : BaseFragment<V>() {
+open abstract class BaseLazyFragment<V : ViewBinding, VM : BaseViewModel> : BaseFragment<V,VM>() {
 
     private var mIsFirstVisible: Boolean = true
     private var mIsPrepared: Boolean = false

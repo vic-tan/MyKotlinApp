@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.common.core.base.viewmodel.BaseViewModel
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
@@ -15,15 +17,18 @@ import java.lang.reflect.ParameterizedType
  * @author: tanlifei
  * @date: 2021/1/27 14:49
  */
-open abstract class BaseFragment<V : ViewBinding> : Fragment() {
+open abstract class BaseFragment<V : ViewBinding, VM : BaseViewModel> : Fragment() {
     private var binding: V? = null
     protected val mBinding get() = binding!!
+    protected lateinit var mViewModel: VM
+    protected abstract fun createViewModel(): VM
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val type =
             javaClass.genericSuperclass as ParameterizedType
         val cls = type.actualTypeArguments[0] as Class<*>
@@ -42,6 +47,7 @@ open abstract class BaseFragment<V : ViewBinding> : Fragment() {
         } catch (e: InvocationTargetException) {
             e.printStackTrace()
         }
+        injectViewModel()
         initBefore()
         return mBinding.root
     }
@@ -56,6 +62,13 @@ open abstract class BaseFragment<V : ViewBinding> : Fragment() {
         initView()
     }
 
+    private fun injectViewModel() {
+        val vm = createViewModel()
+        mViewModel =
+            ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
+                .get(vm::class.java)
+        mViewModel.mApplication = requireActivity().application
+    }
 
     abstract fun initView()
 

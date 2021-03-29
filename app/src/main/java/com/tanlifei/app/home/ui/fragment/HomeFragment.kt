@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.listener.OnItemClickListener
-import com.common.core.base.ui.fragment.BaseBVMFragment
+import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
@@ -31,7 +31,7 @@ import com.youth.banner.indicator.RectangleIndicator
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class HomeFragment : BaseBVMFragment<FragmentHomeBinding, HomeViewModel>() {
+class HomeFragment : BaseLazyFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private val mTitleData = mutableListOf("免费直播", "精品课程", "高校直播")
     private lateinit var homeViewModel: MainViewModel

@@ -13,7 +13,7 @@ import cn.iwgang.simplifyspan.unit.SpecialTextUnit
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.ComFun
-import com.common.core.base.ui.activity.BaseFormActivity
+import com.common.core.base.ui.activity.BaseActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
@@ -34,7 +34,7 @@ import com.tanlifei.app.main.viewmodel.LoginViewModel
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>(), TextWatcher {
+open class LoginAtivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), TextWatcher {
 
     private lateinit var mInputHelper: TextInputHelper
 
@@ -49,9 +49,6 @@ open class LoginAtivity : BaseFormActivity<ActivityLoginBinding, LoginViewModel>
         return LoginViewModel()
     }
 
-    override fun visibleToolbar(): Boolean {
-        return false
-    }
 
     override fun init() {
         setProtocolTxt()

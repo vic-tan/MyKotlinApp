@@ -23,13 +23,9 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  * @author: tanlifei
  * @date: 2021/2/7 18:17
  */
-abstract class BaseRecyclerBVMFragment<V : ViewBinding, T, VM : BaseListViewModel> :
-    BaseLazyFragment<V>() {
-    protected lateinit var mViewModel: VM
-
-    protected abstract fun createViewModel(): VM
-
-    protected var mAdapter: CommonRvAdapter<T>
+abstract class BaseRecyclerFragment<V : ViewBinding, VM : BaseListViewModel, T> :
+    BaseLazyFragment<V, VM>() {
+    var mAdapter: CommonRvAdapter<T>
 
     init {
         mAdapter = setAdapter()

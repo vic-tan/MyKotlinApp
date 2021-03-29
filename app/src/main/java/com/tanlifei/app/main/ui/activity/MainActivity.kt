@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.common.core.base.event.BaseEvent
 import com.common.core.base.navigator.NavigatorView
-import com.common.core.base.ui.activity.BaseBVMActivity
+import com.common.core.base.ui.activity.BaseActivity
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
@@ -25,7 +25,7 @@ import org.greenrobot.eventbus.ThreadMode
  * @author: tanlifei
  * @date: 2021/1/23 16:07
  */
-open class MainActivity : BaseBVMActivity<ActivityMainBinding, MainViewModel>(),
+open class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     NavigatorView.NavigatorListener {
 
     lateinit var mUpdateAppViewModel: UpdateAppViewModel

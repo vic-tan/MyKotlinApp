@@ -15,7 +15,7 @@ import com.common.utils.extension.setVisible
 import com.common.utils.extension.startActivity
 
 /**
- * @desc:公用的WebView
+ * @desc:公用的H5显示基类
  * @author: tanlifei
  * @date: 2021/1/27 16:14
  */

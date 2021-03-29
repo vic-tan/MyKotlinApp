@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.BarUtils
 import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.ui.fragment.BaseLazyFragment
+import com.common.core.base.ui.viewmodel.EmptyViewModel
 import com.common.core.magicindicator.MagicIndicatorUtils
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
 
@@ -13,7 +14,7 @@ import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>() {
+class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding, EmptyViewModel>() {
     private val mTitleData = mutableListOf("关注", "推荐")
     private lateinit var mFragmentAdapter: BasePagerAdapter
     private var mFragments: MutableList<Fragment> = ArrayList()
@@ -22,6 +23,9 @@ class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding>() {
         fun newInstance() = CircleFragment()
     }
 
+    override fun createViewModel(): EmptyViewModel {
+        return EmptyViewModel()
+    }
 
     override fun onFirstVisibleToUser() {
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.tabIndicator)//为 view 增加 MarginTop 为状态栏高度

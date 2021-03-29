@@ -12,7 +12,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.cofing.constant.GlobalConst.ActivityResult
-import com.common.core.base.ui.activity.BaseFormActivity
+import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils
 import com.common.utils.PictureSelectorUtils
@@ -40,7 +40,7 @@ import org.greenrobot.eventbus.EventBus
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class ProfileManagerActivity : BaseFormActivity<ActivityProfileManagerBinding, ProfileViewModel>() {
+class ProfileManagerActivity : BaseToolBarActivity<ActivityProfileManagerBinding, ProfileViewModel>() {
 
     var saveUrl = ""
     var areaOptions: OptionsPickerView<AreaBean>? = null

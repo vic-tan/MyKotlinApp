@@ -3,7 +3,7 @@ package com.tanlifei.app.classmatecircle.ui.fragment
 import android.view.View
 import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.ui.fragment.BaseRecyclerBVMFragment
+import com.common.core.base.ui.fragment.BaseRecyclerFragment
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
@@ -23,7 +23,7 @@ import com.tanlifei.app.databinding.ItemFollowBinding
  * @date: 2021/1/23 17:41
  */
 class FollowFragment :
-    BaseRecyclerBVMFragment<FragmentFollowBinding, CircleBean, FollowViewModel>() {
+    BaseRecyclerFragment<FragmentFollowBinding, FollowViewModel, CircleBean>() {
 
 
     companion object {
