@@ -1,7 +1,7 @@
 package com.tanlifei.app.home.ui.fragment
 
 import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.core.base.ui.viewmodel.EmptyViewModel
+import com.common.core.base.viewmodel.EmptyViewModel
 import com.tanlifei.app.databinding.FragmentStudyBinding
 
 /**
@@ -9,7 +9,7 @@ import com.tanlifei.app.databinding.FragmentStudyBinding
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class ClassFragment : BaseLazyFragment<FragmentStudyBinding,EmptyViewModel>() {
+class ClassFragment : BaseLazyFragment<FragmentStudyBinding, EmptyViewModel>() {
 
     companion object {
         fun newInstance() = ClassFragment()

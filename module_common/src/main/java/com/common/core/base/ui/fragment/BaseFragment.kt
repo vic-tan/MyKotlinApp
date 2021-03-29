@@ -13,7 +13,7 @@ import java.lang.reflect.ParameterizedType
 
 
 /**
- * @desc:
+ * @desc:Fragment 基类，所以fragment 将继承该类
  * @author: tanlifei
  * @date: 2021/1/27 14:49
  */
@@ -28,7 +28,6 @@ open abstract class BaseFragment<V : ViewBinding, VM : BaseViewModel> : Fragment
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val type =
             javaClass.genericSuperclass as ParameterizedType
         val cls = type.actualTypeArguments[0] as Class<*>
@@ -52,7 +51,7 @@ open abstract class BaseFragment<V : ViewBinding, VM : BaseViewModel> : Fragment
         return mBinding.root
     }
 
-    open fun initBefore(){}
+    open fun initBefore() {}
 
     override fun onViewCreated(
         view: View,

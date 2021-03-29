@@ -6,7 +6,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.core.base.ui.viewmodel.EmptyViewModel
+import com.common.core.base.viewmodel.EmptyViewModel
 import com.common.utils.GlideUtils
 import com.common.utils.extension.clickListener
 import com.tanlifei.app.R
@@ -24,7 +24,7 @@ import com.tanlifei.app.profile.ui.activity.SettingActivity
  * @author: tanlifei
  * @date: 2021/1/23 17:41
  */
-class ProfileFragment : BaseLazyFragment<FragmentProfileBinding,EmptyViewModel>() {
+class ProfileFragment : BaseLazyFragment<FragmentProfileBinding, EmptyViewModel>() {
 
     private lateinit var mHomeViewModel: MainViewModel
 

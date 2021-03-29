@@ -9,7 +9,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.ui.viewmodel.EmptyViewModel
+import com.common.core.base.viewmodel.EmptyViewModel
 import com.common.databinding.ActivityBaseWebBinding
 import com.common.utils.extension.setVisible
 import com.common.utils.extension.startActivity

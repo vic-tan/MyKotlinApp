@@ -1,7 +1,7 @@
 package com.tanlifei.app.main.ui.activity
 
 import com.common.core.base.ui.activity.BaseActivity
-import com.common.core.base.ui.viewmodel.EmptyViewModel
+import com.common.core.base.viewmodel.EmptyViewModel
 import com.common.utils.extension.startActivity
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityGuideBinding
@@ -14,7 +14,7 @@ import com.youth.banner.indicator.CircleIndicator
  * @author: tanlifei
  * @date: 2021/1/22 16:26
  */
-class GuideActivity : BaseActivity<ActivityGuideBinding,EmptyViewModel>() {
+class GuideActivity : BaseActivity<ActivityGuideBinding, EmptyViewModel>() {
 
     var mGuideList: MutableList<Int> = ArrayList()
 

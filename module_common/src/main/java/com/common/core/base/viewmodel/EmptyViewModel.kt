@@ -1,4 +1,4 @@
-package com.common.core.base.ui.viewmodel
+package com.common.core.base.viewmodel
 
 import com.common.core.base.viewmodel.BaseViewModel
 
