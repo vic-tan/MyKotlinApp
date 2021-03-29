@@ -3,6 +3,7 @@ package com.tanlifei.app.main.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.ComFun
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.bean.UpdateAppBean
 import com.tanlifei.app.common.repository.Repository
@@ -29,7 +30,9 @@ class UpdateAppViewModel : BaseViewModel() {
     fun requestVersion() = comRequest({
         val updateAppBean = Repository.requestVersion()
         if (ObjectUtils.isNotEmpty(updateAppBean)) {
-            updateApp.value = updateAppBean
+            ComFun.mHandler.postDelayed({
+                updateApp.value = updateAppBean
+            }, 2000)
         }
     }, uiLiveData = false)
 }
