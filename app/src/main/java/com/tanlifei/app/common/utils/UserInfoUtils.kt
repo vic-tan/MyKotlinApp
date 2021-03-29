@@ -2,7 +2,7 @@ package com.tanlifei.app.common.utils
 
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
-import com.common.core.base.bean.UserBean
+import com.common.base.bean.UserBean
 import org.litepal.LitePal
 
 /**

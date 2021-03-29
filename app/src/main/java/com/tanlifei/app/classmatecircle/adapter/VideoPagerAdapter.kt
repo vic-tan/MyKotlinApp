@@ -7,11 +7,9 @@ import androidx.viewbinding.ViewBinding
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
 import com.bumptech.glide.Glide
-import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.adapter.CommonRvHolder
+import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.CommonRvHolder
 import com.tanlifei.app.classmatecircle.bean.CircleBean
-import com.tanlifei.app.common.widget.video.JZMediaIjk
-import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.databinding.ItemVideoPagerBinding
 import java.util.*
 

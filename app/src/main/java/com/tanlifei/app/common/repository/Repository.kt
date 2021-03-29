@@ -2,8 +2,8 @@ package com.tanlifei.app.common.repository
 
 import com.blankj.utilcode.util.AppUtils
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.bean.UserBean
-import com.common.core.bean.UpdateAppBean
+import com.common.base.bean.UserBean
+import com.common.base.bean.UpdateAppBean
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean

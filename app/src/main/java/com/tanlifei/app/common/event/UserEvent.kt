@@ -1,7 +1,7 @@
 package com.tanlifei.app.common.event
 
-import com.common.core.base.bean.UserBean
-import com.common.core.base.event.BaseEvent
+import com.common.base.bean.UserBean
+import com.common.core.event.BaseEvent
 
 /**
  * @desc:用户数据刷新

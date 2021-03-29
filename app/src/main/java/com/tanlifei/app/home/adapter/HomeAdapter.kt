@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.adapter.CommonRvHolder
+import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
-import com.common.widget.extension.setVisible
+import com.common.widget.component.extension.setVisible
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.ItemHomeBinding
 import java.util.*

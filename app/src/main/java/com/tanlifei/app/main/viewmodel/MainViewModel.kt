@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
-import com.common.core.base.bean.UserBean
-import com.common.core.base.navigator.NavigatorAdapter
-import com.common.core.base.navigator.NavigatorFragmentManager
-import com.common.core.base.viewmodel.BaseViewModel
+import com.common.base.bean.UserBean
+import com.common.core.navigator.NavigatorAdapter
+import com.common.core.navigator.NavigatorFragmentManager
+import com.common.base.viewmodel.BaseViewModel
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.ui.fragment.CircleFragment
 import com.tanlifei.app.common.repository.Repository

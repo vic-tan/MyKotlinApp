@@ -2,13 +2,13 @@ package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.view.View
 import androidx.viewbinding.ViewBinding
-import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.ui.fragment.BaseRvFragment
-import com.common.widget.share.ShareBean
-import com.common.widget.share.listener.OnShareListener
-import com.common.widget.share.ui.ShareView
+import com.common.base.adapter.CommonRvAdapter
+import com.common.base.ui.fragment.BaseRvFragment
+import com.common.core.share.ShareBean
+import com.common.core.share.listener.OnShareListener
+import com.common.core.share.ui.ShareView
 import com.common.utils.PhotoUtils
-import com.common.widget.extension.toast
+import com.common.widget.component.extension.toast
 import com.lxj.xpopup.XPopup
 import com.tanlifei.app.classmatecircle.adapter.FollowAdapter
 import com.tanlifei.app.classmatecircle.bean.CircleBean

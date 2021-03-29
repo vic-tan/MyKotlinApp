@@ -1,6 +1,6 @@
 package com.common.core.http
 
-import com.common.widget.extension.toast
+import com.common.widget.component.extension.toast
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.TimeoutCancellationException
 import rxhttp.wrapper.exception.HttpStatusCodeException

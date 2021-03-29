@@ -6,8 +6,8 @@ import android.view.View
 import android.widget.ImageView
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
-import com.common.widget.extension.gone
-import com.common.widget.extension.visible
+import com.common.widget.component.extension.gone
+import com.common.widget.component.extension.visible
 import com.tanlifei.app.R
 
 /**

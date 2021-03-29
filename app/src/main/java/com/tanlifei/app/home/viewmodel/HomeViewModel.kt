@@ -3,7 +3,7 @@ package com.tanlifei.app.home.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.viewmodel.BaseListViewModel
+import com.common.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.home.bean.AdsnoviceBean
 import com.tanlifei.app.home.bean.BannerBean

@@ -1,6 +1,6 @@
 package com.tanlifei.app.profile.viewmodel
 
-import com.common.core.base.viewmodel.BaseViewModel
+import com.common.base.viewmodel.BaseViewModel
 
 
 /**

@@ -6,11 +6,11 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.cofing.constant.GlobalConst.ActivityResult
-import com.common.core.base.ui.activity.BaseToolBarActivity
-import com.common.core.base.viewmodel.EmptyViewModel
-import com.common.widget.extension.click
-import com.common.widget.extension.startActivityForResult
-import com.common.widget.extension.toast
+import com.common.base.ui.activity.BaseToolBarActivity
+import com.common.base.viewmodel.EmptyViewModel
+import com.common.widget.component.extension.click
+import com.common.widget.component.extension.startActivityForResult
+import com.common.widget.component.extension.toast
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.databinding.ActivityIntroductionBinding
 

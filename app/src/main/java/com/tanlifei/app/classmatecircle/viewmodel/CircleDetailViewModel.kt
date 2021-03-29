@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.enumconst.UiType
-import com.common.core.base.bean.ListDataChangePrams
-import com.common.core.base.viewmodel.BaseListViewModel
+import com.common.base.bean.ListDataChangePrams
+import com.common.base.viewmodel.BaseListViewModel
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.repository.Repository

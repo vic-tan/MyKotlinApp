@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.adapter.CommonRvHolder
+import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.CommonRvHolder
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.bean.ManualBean
 import java.util.*

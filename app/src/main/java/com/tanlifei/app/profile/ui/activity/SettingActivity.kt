@@ -5,10 +5,10 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.ComFun
-import com.common.core.base.ui.activity.BaseToolBarActivity
+import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.utils.ComDialogUtils
-import com.common.widget.extension.clickListener
-import com.common.widget.extension.startActivity
+import com.common.widget.component.extension.clickListener
+import com.common.widget.component.extension.startActivity
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding

@@ -2,10 +2,10 @@ package com.tanlifei.app.classmatecircle.ui.fragment
 
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.BarUtils
-import com.common.core.base.adapter.BasePagerAdapter
-import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.core.base.viewmodel.EmptyViewModel
-import com.common.widget.magicindicator.MagicIndicatorUtils
+import com.common.base.adapter.BasePagerAdapter
+import com.common.base.ui.fragment.BaseLazyFragment
+import com.common.base.viewmodel.EmptyViewModel
+import com.common.widget.component.magicindicator.MagicIndicatorUtils
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
 
 

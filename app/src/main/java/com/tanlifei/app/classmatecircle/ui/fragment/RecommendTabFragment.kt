@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.common.cofing.enumconst.UiType
-import com.common.core.base.ui.fragment.BaseLazyFragment
+import com.common.base.ui.fragment.BaseLazyFragment
 import com.common.utils.GlideUtils
-import com.common.widget.extension.color
-import com.common.widget.extension.setVisible
+import com.common.widget.component.extension.color
+import com.common.widget.component.extension.setVisible
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.databinding.FragmentClassmatecircleRecommendBinding

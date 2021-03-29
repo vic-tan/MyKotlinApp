@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.listener.OnItemClickListener
-import com.common.core.base.ui.activity.BaseToolBarActivity
+import com.common.base.listener.OnItemClickListener
+import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.core.environment.adapter.EnvironmentAdapter
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.core.environment.bean.ModuleBean
@@ -15,7 +15,7 @@ import com.common.core.environment.utils.EnvironmentUtils
 import com.common.core.environment.viewmodel.EnvironmentSwitchViewModel
 import com.common.databinding.ActivityEnvironmentSwitchBinding
 import com.common.databinding.ItemEnvironmentContentBinding
-import com.common.widget.extension.startActivity
+import com.common.widget.component.extension.startActivity
 import com.google.gson.Gson
 import com.hjq.bar.OnTitleBarListener
 

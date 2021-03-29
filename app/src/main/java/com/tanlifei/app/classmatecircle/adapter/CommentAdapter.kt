@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
-import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.adapter.CommonRvHolder
+import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
-import com.common.widget.extension.setVisible
+import com.common.widget.component.extension.setVisible
 import com.tanlifei.app.classmatecircle.bean.CommentBean
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ItemCommentBinding

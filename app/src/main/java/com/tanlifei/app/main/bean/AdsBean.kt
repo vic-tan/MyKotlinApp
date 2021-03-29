@@ -2,7 +2,7 @@ package com.tanlifei.app.main.bean
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.common.core.base.bean.BaseLitePalBean
+import com.common.base.bean.BaseLitePalBean
 
 /**
  * @desc:广告实体

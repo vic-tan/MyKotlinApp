@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComFun
-import com.common.core.base.viewmodel.BaseViewModel
+import com.common.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.UserInfoUtils

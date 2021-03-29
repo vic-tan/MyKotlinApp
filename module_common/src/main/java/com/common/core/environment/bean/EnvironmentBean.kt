@@ -1,7 +1,7 @@
 package com.common.core.environment.bean
 
 
-import com.common.core.base.bean.BaseLitePalBean
+import com.common.base.bean.BaseLitePalBean
 import org.litepal.annotation.Column
 import java.io.Serializable
 

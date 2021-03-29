@@ -1,6 +1,6 @@
 package com.common.core.environment.event
 
-import com.common.core.base.event.BaseEvent
+import com.common.core.event.BaseEvent
 import com.common.core.environment.bean.EnvironmentBean
 
 /**

@@ -17,7 +17,7 @@
     <application android:maxAspectRatio="2.4">
 
         <activity
-            android:name="com.common.core.base.ui.activity.BaseWebViewActivity"
+            android:name="com.common.base.ui.activity.BaseWebViewActivity"
             android:label="加载中.." />
         <activity
             android:name="com.common.core.environment.EnvironmentSwitchActivity"

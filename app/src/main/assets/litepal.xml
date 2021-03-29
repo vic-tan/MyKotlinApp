@@ -31,7 +31,7 @@
     -->
     <list>
         <mapping class="com.common.core.environment.bean.EnvironmentBean" />
-        <mapping class="com.common.core.base.bean.UserBean" />
+        <mapping class="com.common.base.bean.UserBean" />
         <mapping class="com.tanlifei.app.main.bean.AdsBean" />
     </list>
 

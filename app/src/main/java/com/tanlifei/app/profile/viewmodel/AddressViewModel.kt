@@ -3,8 +3,8 @@ package com.tanlifei.app.profile.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.bean.UserBean
-import com.common.core.base.viewmodel.BaseViewModel
+import com.common.base.bean.UserBean
+import com.common.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.profile.bean.AddressBean
 import com.tanlifei.app.profile.bean.AreaBean

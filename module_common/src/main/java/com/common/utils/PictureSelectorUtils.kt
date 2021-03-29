@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.ConvertUtils
 import com.common.R
-import com.common.widget.extension.color
+import com.common.widget.component.extension.color
 import com.luck.picture.lib.PictureSelectionModel
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig

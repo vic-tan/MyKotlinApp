@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.enumconst.UiType
-import com.common.core.base.bean.UserBean
-import com.common.core.base.viewmodel.BaseViewModel
-import com.common.widget.extension.toast
+import com.common.base.bean.UserBean
+import com.common.base.viewmodel.BaseViewModel
+import com.common.widget.component.extension.toast
 import com.obs.services.model.PutObjectResult
 import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.HuaweiUploadManager

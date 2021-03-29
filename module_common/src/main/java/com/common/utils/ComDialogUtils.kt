@@ -2,7 +2,7 @@ package com.common.utils
 
 import android.content.Context
 import com.blankj.utilcode.util.ConvertUtils
-import com.common.widget.popup.BottomInputEditView
+import com.common.widget.component.popup.BottomInputEditView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.enums.PopupAnimation

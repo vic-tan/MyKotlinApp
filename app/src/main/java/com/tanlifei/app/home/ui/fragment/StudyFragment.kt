@@ -1,7 +1,7 @@
 package com.tanlifei.app.home.ui.fragment
 
-import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.core.base.viewmodel.EmptyViewModel
+import com.common.base.ui.fragment.BaseLazyFragment
+import com.common.base.viewmodel.EmptyViewModel
 import com.tanlifei.app.databinding.FragmentStudyBinding
 
 /**

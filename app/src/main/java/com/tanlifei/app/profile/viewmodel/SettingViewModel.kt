@@ -2,7 +2,7 @@ package com.tanlifei.app.profile.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.common.core.base.viewmodel.BaseViewModel
+import com.common.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.repository.Repository
 
 

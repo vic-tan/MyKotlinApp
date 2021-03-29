@@ -4,11 +4,11 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.lifecycle.Observer
-import com.common.core.base.ui.activity.BaseWebViewActivity
-import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.core.base.viewmodel.EmptyViewModel
+import com.common.base.ui.activity.BaseWebViewActivity
+import com.common.base.ui.fragment.BaseLazyFragment
+import com.common.base.viewmodel.EmptyViewModel
 import com.common.utils.GlideUtils
-import com.common.widget.extension.clickListener
+import com.common.widget.component.extension.clickListener
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiUrlConst
 import com.tanlifei.app.databinding.FragmentProfileBinding

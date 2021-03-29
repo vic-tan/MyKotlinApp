@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
-import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.ui.fragment.BaseRvFragment
+import com.common.base.adapter.CommonRvAdapter
+import com.common.base.ui.fragment.BaseRvFragment
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.classmatecircle.bean.CircleBean

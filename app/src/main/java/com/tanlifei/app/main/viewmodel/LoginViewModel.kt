@@ -4,7 +4,7 @@ import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.viewmodel.BaseViewModel
+import com.common.base.viewmodel.BaseViewModel
 import com.tanlifei.app.common.repository.Repository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable

@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.enumconst.UiType
-import com.common.core.base.bean.ListDataChangePrams
-import com.common.core.base.viewmodel.BaseListViewModel
-import com.common.widget.extension.toast
+import com.common.base.bean.ListDataChangePrams
+import com.common.base.viewmodel.BaseListViewModel
+import com.common.widget.component.extension.toast
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState

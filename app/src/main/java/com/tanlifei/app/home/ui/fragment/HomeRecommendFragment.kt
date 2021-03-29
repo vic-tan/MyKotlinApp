@@ -5,9 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.base.adapter.CommonRvAdapter
-import com.common.core.base.ui.fragment.BaseRvFragment
-import com.common.widget.extension.toast
+import com.common.base.adapter.CommonRvAdapter
+import com.common.base.ui.fragment.BaseRvFragment
+import com.common.widget.component.extension.toast
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemHomeRecommentBinding

@@ -2,8 +2,8 @@ package com.common.core.environment.viewmodel
 
 import com.common.cofing.constant.ApiEnvironmentConst
 import com.common.cofing.enumconst.UiType
-import com.common.core.base.bean.ListDataChangePrams
-import com.common.core.base.viewmodel.BaseListViewModel
+import com.common.base.bean.ListDataChangePrams
+import com.common.base.viewmodel.BaseListViewModel
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.core.environment.bean.ModuleBean
 import com.common.core.environment.event.EnvironmentEvent

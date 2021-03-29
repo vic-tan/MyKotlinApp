@@ -9,9 +9,9 @@ import android.widget.TextView
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
-import com.common.core.bean.UpdateAppBean
+import com.common.base.bean.UpdateAppBean
 import com.common.core.environment.utils.EnvironmentChangeManager
-import com.common.widget.extension.toast
+import com.common.widget.component.extension.toast
 import com.hjq.toast.ToastUtils
 import constant.UiType
 import listener.OnBtnClickListener

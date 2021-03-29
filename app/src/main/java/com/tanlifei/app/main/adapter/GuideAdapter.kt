@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.SPUtils
-import com.common.widget.extension.setVisible
-import com.common.widget.extension.startActivity
+import com.common.widget.component.extension.setVisible
+import com.common.widget.component.extension.startActivity
 import com.tanlifei.app.common.config.Const
 import com.tanlifei.app.databinding.ItemGuideBinding
 import com.tanlifei.app.main.ui.activity.LoginAtivity

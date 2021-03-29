@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.enumconst.UiType
-import com.common.core.base.viewmodel.BaseViewModel
+import com.common.base.viewmodel.BaseViewModel
 import com.tanlifei.app.classmatecircle.adapter.RecommendTabAdapter
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.common.repository.Repository
