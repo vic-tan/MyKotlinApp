@@ -9,9 +9,9 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.adapter.CommonRvHolder
 import com.common.utils.GlideUtils
-import com.common.utils.extension.drawable
-import com.common.utils.extension.screenWidth
-import com.common.utils.extension.setVisible
+import com.common.widget.extension.drawable
+import com.common.widget.extension.screenWidth
+import com.common.widget.extension.setVisible
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils

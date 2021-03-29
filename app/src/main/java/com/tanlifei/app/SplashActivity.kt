@@ -8,8 +8,8 @@ import com.common.core.base.ui.activity.BaseActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.GlideUtils
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.gone
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.gone
 import com.tanlifei.app.databinding.ActivitySplashBinding
 import com.tanlifei.app.main.ui.activity.GuideActivity
 import com.tanlifei.app.main.ui.activity.LoginAtivity

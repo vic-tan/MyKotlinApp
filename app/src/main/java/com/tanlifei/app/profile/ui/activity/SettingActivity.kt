@@ -7,8 +7,8 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.ComFun
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.ComDialogUtils
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.startActivity
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.startActivity
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ActivitySettingBinding

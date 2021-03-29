@@ -1,4 +1,4 @@
-package com.common.utils.extension
+package com.common.widget.extension
 
 import android.content.Intent
 import com.blankj.utilcode.util.ActivityUtils

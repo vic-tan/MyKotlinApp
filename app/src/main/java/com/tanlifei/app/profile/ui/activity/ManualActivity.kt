@@ -5,7 +5,7 @@ import androidx.viewbinding.ViewBinding
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.ui.activity.BaseRvActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
-import com.common.utils.extension.startActivity
+import com.common.widget.extension.startActivity
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.adapter.ManualAdapter
 import com.tanlifei.app.profile.bean.ManualBean

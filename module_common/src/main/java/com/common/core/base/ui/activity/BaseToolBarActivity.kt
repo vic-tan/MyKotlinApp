@@ -6,7 +6,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.R
 import com.common.core.base.viewmodel.BaseViewModel
-import com.common.utils.extension.visible
+import com.common.widget.extension.visible
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.OnTitleBarListener
 

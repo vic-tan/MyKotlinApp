@@ -1,4 +1,4 @@
-package com.common.utils.extension
+package com.common.widget.extension
 
 import android.graphics.drawable.Drawable
 import android.util.Log

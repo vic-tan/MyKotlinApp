@@ -2,7 +2,7 @@ package com.tanlifei.app.main.ui.activity
 
 import com.common.core.base.ui.activity.BaseActivity
 import com.common.core.base.viewmodel.EmptyViewModel
-import com.common.utils.extension.startActivity
+import com.common.widget.extension.startActivity
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityGuideBinding
 import com.tanlifei.app.main.adapter.GuideAdapter

@@ -16,9 +16,9 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import com.common.R
-import com.common.utils.extension.gone
-import com.common.utils.extension.setVisible
-import com.common.utils.extension.visible
+import com.common.widget.extension.gone
+import com.common.widget.extension.setVisible
+import com.common.widget.extension.visible
 import java.util.*
 
 /**

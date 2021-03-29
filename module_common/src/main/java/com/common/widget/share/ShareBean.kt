@@ -1,4 +1,4 @@
-package com.common.core.share
+package com.common.widget.share
 
 /**
  * @desc:分享实体

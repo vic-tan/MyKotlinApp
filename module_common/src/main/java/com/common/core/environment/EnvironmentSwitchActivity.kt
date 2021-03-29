@@ -15,7 +15,7 @@ import com.common.core.environment.utils.EnvironmentUtils
 import com.common.core.environment.viewmodel.EnvironmentSwitchViewModel
 import com.common.databinding.ActivityEnvironmentSwitchBinding
 import com.common.databinding.ItemEnvironmentContentBinding
-import com.common.utils.extension.startActivity
+import com.common.widget.extension.startActivity
 import com.google.gson.Gson
 import com.hjq.bar.OnTitleBarListener
 

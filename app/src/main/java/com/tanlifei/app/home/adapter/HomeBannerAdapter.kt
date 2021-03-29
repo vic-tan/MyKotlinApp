@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.common.utils.GlideUtils
 import com.common.utils.PhotoUtils
-import com.common.utils.extension.click
+import com.common.widget.extension.click
 import com.tanlifei.app.databinding.ItemHomeBannerBinding
 import com.tanlifei.app.home.bean.BannerBean
 import com.youth.banner.adapter.BannerAdapter

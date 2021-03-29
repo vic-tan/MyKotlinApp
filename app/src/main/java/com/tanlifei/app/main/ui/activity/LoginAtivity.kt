@@ -18,7 +18,7 @@ import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.utils.ComUtils
-import com.common.utils.extension.*
+import com.common.widget.extension.*
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
 import com.tanlifei.app.common.config.api.ApiUrlConst.URL_PRIVATE_AGREEMENT

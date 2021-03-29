@@ -6,7 +6,7 @@ import android.text.TextWatcher
 import android.widget.TextView
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
-import com.common.utils.extension.color
+import com.common.widget.extension.color
 import com.ruffian.library.widget.RTextView
 import java.util.*
 

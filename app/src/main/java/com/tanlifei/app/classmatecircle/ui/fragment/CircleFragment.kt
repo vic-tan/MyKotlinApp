@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.core.base.viewmodel.EmptyViewModel
-import com.common.core.magicindicator.MagicIndicatorUtils
+import com.common.widget.magicindicator.MagicIndicatorUtils
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
 
 

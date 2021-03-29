@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import com.common.cofing.enumconst.UiType
 import com.common.core.base.ui.fragment.BaseLazyFragment
 import com.common.utils.GlideUtils
-import com.common.utils.extension.color
-import com.common.utils.extension.setVisible
+import com.common.widget.extension.color
+import com.common.widget.extension.setVisible
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.databinding.FragmentClassmatecircleRecommendBinding

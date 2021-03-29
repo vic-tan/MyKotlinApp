@@ -16,8 +16,8 @@ import com.common.cofing.enumconst.UiType
 import com.common.core.base.event.BaseEvent
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.databinding.ActivityBaseBinding
-import com.common.utils.extension.gone
-import com.common.utils.extension.setVisible
+import com.common.widget.extension.gone
+import com.common.widget.extension.setVisible
 import com.common.widget.popup.CustomLoadingView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar

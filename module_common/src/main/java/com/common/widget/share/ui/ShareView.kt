@@ -1,13 +1,13 @@
-package com.common.core.share.ui
+package com.common.widget.share.ui
 
 import android.content.Context
 import android.view.View.OnClickListener
 import com.common.R
-import com.common.core.share.ShareBean
-import com.common.core.share.listener.OnShareListener
+import com.common.widget.share.ShareBean
+import com.common.widget.share.listener.OnShareListener
 import com.common.databinding.LayoutShareBinding
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.toast
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.toast
 import com.lxj.xpopup.core.BottomPopupView
 
 /**

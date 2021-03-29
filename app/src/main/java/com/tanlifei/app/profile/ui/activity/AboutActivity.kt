@@ -5,8 +5,8 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.core.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.startActivity
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.startActivity
 import com.tanlifei.app.common.config.api.ApiUrlConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
 import com.tanlifei.app.profile.viewmodel.AboutViewModel

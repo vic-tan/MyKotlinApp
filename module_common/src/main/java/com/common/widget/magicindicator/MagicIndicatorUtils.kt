@@ -1,4 +1,4 @@
-package com.common.core.magicindicator
+package com.common.widget.magicindicator
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import androidx.viewpager.widget.ViewPager
 import com.blankj.utilcode.util.ConvertUtils
 import com.common.R
-import com.common.utils.extension.color
+import com.common.widget.extension.color
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
@@ -19,7 +19,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView
 
 /**
- * @desc:
+ * @desc: tab 指示器工具类
  * @author: tanlifei
  * @date: 2021/2/7 14:02
  */
@@ -74,7 +74,7 @@ object MagicIndicatorUtils {
         var commonNavigator = CommonNavigator(context)
         commonNavigator.adapter = initComNavigatorAdapter(viewPager, mTitleData)
         magicIndicator.navigator = commonNavigator
-        ViewPagerHelper.bind(magicIndicator,viewPager)
+        ViewPagerHelper.bind(magicIndicator, viewPager)
         val titleContainer =
             commonNavigator.titleContainer // must after setNavigator
         titleContainer.showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE

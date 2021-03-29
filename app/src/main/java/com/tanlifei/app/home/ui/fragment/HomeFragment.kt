@@ -10,11 +10,11 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.base.adapter.BasePagerAdapter
 import com.common.core.base.listener.OnItemClickListener
 import com.common.core.base.ui.fragment.BaseLazyFragment
-import com.common.core.magicindicator.MagicIndicatorUtils
+import com.common.widget.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
-import com.common.utils.extension.click
-import com.common.utils.extension.toast
+import com.common.widget.extension.click
+import com.common.widget.extension.toast
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.*
 import com.tanlifei.app.home.adapter.HomeAdapter

@@ -16,10 +16,10 @@ import com.common.cofing.constant.GlobalConst
 import com.common.cofing.constant.GlobalConst.ActivityResult
 import com.common.core.base.bean.UserBean
 import com.common.core.base.ui.activity.BaseToolBarActivity
-import com.common.utils.extension.click
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.startActivityForResult
-import com.common.utils.extension.toast
+import com.common.widget.extension.click
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.startActivityForResult
+import com.common.widget.extension.toast
 import com.common.widget.TextInputHelper
 import com.tanlifei.app.R
 import com.tanlifei.app.databinding.ActivityAddressManngerBinding

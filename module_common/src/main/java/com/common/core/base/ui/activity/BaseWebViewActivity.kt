@@ -11,8 +11,8 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.viewmodel.EmptyViewModel
 import com.common.databinding.ActivityBaseWebBinding
-import com.common.utils.extension.setVisible
-import com.common.utils.extension.startActivity
+import com.common.widget.extension.setVisible
+import com.common.widget.extension.startActivity
 
 /**
  * @desc:公用的H5显示基类

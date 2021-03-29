@@ -16,10 +16,10 @@ import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils
 import com.common.utils.PictureSelectorUtils
-import com.common.utils.extension.click
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.startActivity
-import com.common.utils.extension.toast
+import com.common.widget.extension.click
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.startActivity
+import com.common.widget.extension.toast
 import com.common.widget.popup.BottomOptionsView
 import com.hjq.bar.OnTitleBarListener
 import com.luck.picture.lib.entity.LocalMedia

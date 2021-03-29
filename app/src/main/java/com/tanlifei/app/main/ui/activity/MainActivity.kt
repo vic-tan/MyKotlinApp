@@ -10,8 +10,8 @@ import com.common.core.base.ui.activity.BaseActivity
 import com.common.core.base.viewmodel.BaseViewModel
 import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
-import com.common.utils.extension.setVisible
-import com.common.utils.extension.startActivity
+import com.common.widget.extension.setVisible
+import com.common.widget.extension.startActivity
 import com.tanlifei.app.common.event.UserEvent
 import com.tanlifei.app.databinding.ActivityMainBinding
 import com.tanlifei.app.main.viewmodel.MainViewModel

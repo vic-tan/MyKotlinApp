@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.core.bean.UpdateAppBean
 import com.common.core.environment.utils.EnvironmentChangeManager
-import com.common.utils.extension.toast
+import com.common.widget.extension.toast
 import com.hjq.toast.ToastUtils
 import constant.UiType
 import listener.OnBtnClickListener

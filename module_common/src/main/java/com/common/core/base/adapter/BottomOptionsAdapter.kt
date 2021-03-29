@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.common.R
 import com.common.databinding.ItemOptionBinding
-import com.common.utils.extension.dimen
+import com.common.widget.extension.dimen
 import java.util.*
 
 /**

@@ -1,7 +1,7 @@
-package com.common.core.share.listener
+package com.common.widget.share.listener
 
 import android.view.View
-import com.common.core.share.ui.ShareView
+import com.common.widget.share.ui.ShareView
 
 /**
  * @desc: 分享监听

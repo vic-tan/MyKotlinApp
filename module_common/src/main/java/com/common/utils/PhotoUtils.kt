@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
-import com.common.utils.extension.color
+import com.common.widget.extension.color
 import com.common.widget.popup.ImageViewerPopup
 import com.lxj.xpopup.XPopup
 

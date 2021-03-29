@@ -15,9 +15,8 @@ import com.common.core.base.ui.activity.BaseToolBarActivity
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.ComDialogUtils
 import com.common.utils.GlideUtils
-import com.common.utils.PhotoUtils
 import com.common.utils.RecyclerUtils
-import com.common.utils.extension.*
+import com.common.widget.extension.*
 import com.common.widget.popup.BottomInputEditView
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tanlifei.app.R
@@ -32,7 +31,6 @@ import com.tanlifei.app.databinding.ItemCommentBinding
 import com.tanlifei.app.databinding.ItemHeaderClassmateCircleDetailBinding
 import com.tanlifei.app.home.adapter.HomeBannerAdapter
 import com.youth.banner.indicator.CircleIndicator
-import com.youth.banner.indicator.RectangleIndicator
 
 
 /**

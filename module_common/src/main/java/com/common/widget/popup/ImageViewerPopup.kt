@@ -8,8 +8,8 @@ import com.blankj.utilcode.util.BarUtils
 import com.common.R
 import com.common.databinding.LayoutImageViewerPopupBinding
 import com.common.utils.PermissionUtils
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.setVisible
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.setVisible
 import com.lxj.xpopup.core.ImageViewerPopupView
 
 /**

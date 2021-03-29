@@ -10,8 +10,8 @@ import com.common.core.base.listener.OnItemClickListener
 import com.common.databinding.ItemOptionBinding
 import com.common.databinding.LayoutOptionBinding
 import com.common.utils.RecyclerUtils
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.setVisible
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.setVisible
 import com.lxj.xpopup.core.BottomPopupView
 import com.lxj.xpopup.interfaces.OnSelectListener
 

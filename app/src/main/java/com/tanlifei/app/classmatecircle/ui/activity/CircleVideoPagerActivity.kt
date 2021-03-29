@@ -10,8 +10,8 @@ import com.blankj.utilcode.util.BarUtils
 import com.common.cofing.constant.GlobalConst
 import com.common.core.base.adapter.CommonRvAdapter
 import com.common.core.base.ui.activity.BaseRvActivity
-import com.common.utils.extension.clickListener
-import com.common.utils.extension.startActivity
+import com.common.widget.extension.clickListener
+import com.common.widget.extension.startActivity
 import com.gyf.immersionbar.ktx.immersionBar
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.adapter.VideoPagerAdapter
