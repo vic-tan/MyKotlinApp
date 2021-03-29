@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -29,15 +30,6 @@ abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
 
     init {
         mAdapter = setAdapter()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        injectViewModel()
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun initBefore() {
@@ -78,19 +70,15 @@ abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
         mRefreshRecycler: RecyclerView,
         mLoadingLayout: LoadingLayout
     ) {
-        RecyclerUtils.initViewModelObserve(
-            mSmartRefreshLayout,
-            mLoadingLayout,
-            mViewModel,
-            this,
-            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
-        )
+        dataChangeObserve()
+        uiObserve(mSmartRefreshLayout, mLoadingLayout)
         RecyclerUtils.initListener(
             mSmartRefreshLayout,
             mRefreshRecycler,
             mLoadingLayout,
             mViewModel
         )
+        setSmartRefreshLayoutConfig(mSmartRefreshLayout)
         initRecyclerView(mRefreshRecycler)
         requestData()
         mLoadingLayout.setRetryListener(View.OnClickListener {
@@ -100,6 +88,27 @@ abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
 
     open fun requestData() {
         RecyclerUtils.initData(mViewModel)
+    }
+
+
+    open fun dataChangeObserve(
+    ) {
+        RecyclerUtils.dataChangeObserve(
+            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>,
+            mViewModel,
+            this
+        )
+    }
+
+    open fun uiObserve(
+        smartRefreshLayout: SmartRefreshLayout,
+        refreshLoadingLayout: LoadingLayout
+    ) {
+        RecyclerUtils.uiObserve(smartRefreshLayout, refreshLoadingLayout, mViewModel, this)
+    }
+
+    open fun setSmartRefreshLayoutConfig(mSmartRefreshLayout: SmartRefreshLayout) {
+        RecyclerUtils.initSmartRefreshLayoutConfig(mSmartRefreshLayout)
     }
 
     /**

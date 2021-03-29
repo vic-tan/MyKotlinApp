@@ -37,7 +37,7 @@ class HomeViewModel : BaseListViewModel() {
             if (ObjectUtils.isNotEmpty(homeHeaderData.adsnovice)) {
                 mAdsnoviceData.addAll(homeHeaderData.adsnovice)
             }
-            complete(listData)
+            complete(listData, false)
             homeHeaderDataChanged.value = homeHeaderData
         })
     }

@@ -37,7 +37,7 @@ object ComFun {
      * Context参数，注意这里要传入的是Application的Context，千万不能传入Activity或者Service的Context。
      */
     fun init() {
-//设置全局默认配置（优先级最低，会被其他设置覆盖）
+        //设置全局默认配置（优先级最低，会被其他设置覆盖）
         SmartRefreshLayout.setDefaultRefreshInitializer { _, layout -> //开始设置全局的基本参数（可以被下面的DefaultRefreshHeaderCreator覆盖）
             //全局设置（优先级最低）
             layout.setEnableOverScrollDrag(false)

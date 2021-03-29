@@ -37,19 +37,15 @@ abstract class BaseRvActivity<V : ViewBinding, T, VM : BaseListViewModel> :
         mLoadingLayout: LoadingLayout
     ) {
         initAdapter()
-        RecyclerUtils.initViewModelObserve(
-            mSmartRefreshLayout,
-            mLoadingLayout,
-            mViewModel,
-            this,
-            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
-        )
+        dataChangeObserve()
+        uiObserve(mSmartRefreshLayout, mLoadingLayout)
         RecyclerUtils.initListener(
             mSmartRefreshLayout,
             mRefreshRecycler,
             mLoadingLayout,
             mViewModel
         )
+        setSmartRefreshLayoutConfig(mSmartRefreshLayout)
         initRecyclerView(mRefreshRecycler)
         RecyclerUtils.initData(mViewModel)
     }
@@ -73,6 +69,33 @@ abstract class BaseRvActivity<V : ViewBinding, T, VM : BaseListViewModel> :
         mRefreshRecycler.layoutManager = setLinearLayoutManager()
         mRefreshRecycler.adapter = mAdapter
         mRefreshRecycler.itemAnimator = null
+    }
+
+    open fun requestData() {
+        RecyclerUtils.initData(mViewModel)
+    }
+
+
+    open fun dataChangeObserve(
+    ) {
+        RecyclerUtils.dataChangeObserve(
+            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>,
+            mViewModel,
+            this
+        )
+    }
+
+
+    open fun uiObserve(
+        smartRefreshLayout: SmartRefreshLayout,
+        refreshLoadingLayout: LoadingLayout
+    ) {
+        RecyclerUtils.uiObserve(smartRefreshLayout, refreshLoadingLayout, mViewModel, this)
+    }
+
+
+    open fun setSmartRefreshLayoutConfig(mSmartRefreshLayout: SmartRefreshLayout) {
+        RecyclerUtils.initSmartRefreshLayoutConfig(mSmartRefreshLayout)
     }
 
     /**

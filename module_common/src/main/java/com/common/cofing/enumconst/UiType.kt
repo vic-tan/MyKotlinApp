@@ -14,6 +14,7 @@ enum class UiType {
     LOADMORE,//上拉刷新（列表中用）
     NOTIFY,//刷新列表（列表中用）
     CONTENT,//有数据（列表中用）
+    REFRESH_CONTENT,//关闭上拉刷新但只有下拉时显示数据（列表中用）
     EMPTY,//无数据（列表中用）
     NO_NEXT,//没有一下页数据（列表中用）
 }

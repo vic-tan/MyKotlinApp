@@ -86,14 +86,15 @@ open abstract class BaseListViewModel : BaseViewModel() {
 
     /**
      * 加载完成
+     * @isMoreRefresh 是否开启上拉加载更多，默认是可以上拉刷新的
      */
-    fun complete(resultList: List<Any>) {
+    fun complete(resultList: List<Any>, isMoreRefresh: Boolean = true) {
         when (mRefreshType) {
             UiType.REFRESH -> {//下拉刷新
                 mData.clear()
                 if (resultList.isNotEmpty()) {
                     mData.addAll(resultList)
-                    setUI(UiType.CONTENT)//有数据
+                    setUI(if (isMoreRefresh) UiType.CONTENT else UiType.REFRESH_CONTENT)//有数据
                     dataChange.value = ListDataChangePrams(mRefreshType, resultList.size)
                     mRefreshState = RefreshState.None
                 } else {
