@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.constant.GlobalConst
-import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.tanlifei.app.classmatecircle.adapter.RecommendAdapter
 import com.tanlifei.app.classmatecircle.adapter.itemdecoration.GridItemDecoration
@@ -66,7 +66,7 @@ class RecommendFragment :
         return StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    override fun setAdapter(): CommonRvAdapter<CircleBean> {
+    override fun setAdapter(): BaseRvAdapter<CircleBean> {
         return RecommendAdapter()
     }
 

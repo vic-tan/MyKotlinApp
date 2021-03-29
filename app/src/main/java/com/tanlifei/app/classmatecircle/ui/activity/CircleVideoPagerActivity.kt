@@ -8,7 +8,7 @@ import cn.jzvd.Jzvd
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.BarUtils
 import com.common.constant.GlobalConst
-import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.activity.BaseRvActivity
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.startActivity
@@ -120,7 +120,7 @@ class CircleVideoPagerActivity :
     }
 
 
-    override fun setAdapter(): CommonRvAdapter<CircleBean> {
+    override fun setAdapter(): BaseRvAdapter<CircleBean> {
         return VideoPagerAdapter()
     }
 

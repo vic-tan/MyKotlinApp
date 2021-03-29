@@ -2,7 +2,7 @@ package com.tanlifei.app.profile.ui.activity
 
 import android.view.View
 import androidx.viewbinding.ViewBinding
-import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.activity.BaseRvActivity
 import com.common.databinding.LayoutRecyclerRefreshBinding
 import com.common.widget.component.extension.startActivity
@@ -39,7 +39,7 @@ class ManualActivity :
         )
     }
 
-    override fun setAdapter(): CommonRvAdapter<ManualBean> {
+    override fun setAdapter(): BaseRvAdapter<ManualBean> {
         return ManualAdapter()
     }
 

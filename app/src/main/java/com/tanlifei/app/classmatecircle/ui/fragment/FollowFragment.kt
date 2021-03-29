@@ -2,7 +2,7 @@ package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.view.View
 import androidx.viewbinding.ViewBinding
-import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
@@ -42,12 +42,11 @@ class FollowFragment :
         )
     }
 
-
     override fun initView() {
         super.initView()
     }
 
-    override fun setAdapter(): CommonRvAdapter<CircleBean> {
+    override fun setAdapter(): BaseRvAdapter<CircleBean> {
         return FollowAdapter()
     }
 

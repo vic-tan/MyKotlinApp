@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.base.adapter.CommonRvAdapter
-import com.common.base.adapter.CommonRvHolder
+import com.common.base.adapter.BaseRvAdapter
+import com.common.base.adapter.BaseRvHolder
 import com.common.utils.GlideUtils
 import com.common.widget.component.extension.screenWidth
 import com.common.widget.component.extension.setVisible
@@ -21,12 +21,12 @@ import com.tanlifei.app.databinding.ItemFollowBinding
 import java.util.*
 
 /**
- * @desc:
+ * @desc:关注
  * @author: tanlifei
  * @date: 2021/2/24 16:02
  */
 class FollowAdapter :
-    CommonRvAdapter<CircleBean>() {
+    BaseRvAdapter<CircleBean>() {
     private var mTextViewWidth = screenWidth - ConvertUtils.dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
 
@@ -34,8 +34,8 @@ class FollowAdapter :
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ViewBinding> {
-        return CommonRvHolder(
+    ): BaseRvHolder<ViewBinding> {
+        return BaseRvHolder(
             ItemFollowBinding.inflate(
                 inflater,
                 parent,

@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.common.base.adapter.CommonRvAdapter
-import com.common.base.adapter.CommonRvHolder
+import com.common.base.adapter.BaseRvAdapter
+import com.common.base.adapter.BaseRvHolder
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.databinding.ItemEnvironmentContentBinding
 import com.common.databinding.ItemEnvironmentTitleBinding
@@ -18,23 +18,23 @@ import java.util.*
  * @date: 2021/2/2 17:58
  */
 class EnvironmentAdapter :
-    CommonRvAdapter<EnvironmentBean>() {
+    BaseRvAdapter<EnvironmentBean>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ViewBinding> {
+    ): BaseRvHolder<ViewBinding> {
         return when (viewType) {
             EnvironmentBean.TITLE ->
-                CommonRvHolder(
+                BaseRvHolder(
                     ItemEnvironmentTitleBinding.inflate(
                         inflater,
                         parent,
                         false
                     )
                 )
-            else -> CommonRvHolder(
+            else -> BaseRvHolder(
                 ItemEnvironmentContentBinding.inflate(
                     inflater, parent, false
                 )

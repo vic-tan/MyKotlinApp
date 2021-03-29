@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.common.base.adapter.CommonRvAdapter
-import com.common.base.adapter.CommonRvHolder
+import com.common.base.adapter.BaseRvAdapter
+import com.common.base.adapter.BaseRvHolder
 import com.common.utils.GlideUtils
 import com.tanlifei.app.databinding.ItemHomeMenuBinding
 import com.tanlifei.app.home.bean.MenuBean
@@ -17,13 +17,13 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class MenuAdapter :
-    CommonRvAdapter<MenuBean>() {
+    BaseRvAdapter<MenuBean>() {
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ViewBinding> {
-        return CommonRvHolder(ItemHomeMenuBinding.inflate(inflater, parent, false))
+    ): BaseRvHolder<ViewBinding> {
+        return BaseRvHolder(ItemHomeMenuBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(

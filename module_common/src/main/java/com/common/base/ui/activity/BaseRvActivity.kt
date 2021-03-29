@@ -3,7 +3,7 @@ package com.common.base.ui.activity
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.BaseRvAdapter
 import com.common.base.listener.OnItemClickListener
 import com.common.base.viewmodel.BaseListViewModel
 import com.common.utils.RecyclerUtils
@@ -21,7 +21,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 abstract class BaseRvActivity<V : ViewBinding, T, VM : BaseListViewModel> :
     BaseToolBarActivity<V, VM>() {
 
-    var mAdapter: CommonRvAdapter<T>
+    var mAdapter: BaseRvAdapter<T>
 
     init {
         mAdapter = setAdapter()
@@ -108,7 +108,7 @@ abstract class BaseRvActivity<V : ViewBinding, T, VM : BaseListViewModel> :
     /**
      * 子类设置Adapter
      */
-    protected abstract fun setAdapter(): CommonRvAdapter<T>
+    protected abstract fun setAdapter(): BaseRvAdapter<T>
 
     /**
      * item 点击事件

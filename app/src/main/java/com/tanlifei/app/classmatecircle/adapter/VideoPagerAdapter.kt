@@ -7,8 +7,8 @@ import androidx.viewbinding.ViewBinding
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
 import com.bumptech.glide.Glide
-import com.common.base.adapter.CommonRvAdapter
-import com.common.base.adapter.CommonRvHolder
+import com.common.base.adapter.BaseRvAdapter
+import com.common.base.adapter.BaseRvHolder
 import com.tanlifei.app.classmatecircle.bean.CircleBean
 import com.tanlifei.app.databinding.ItemVideoPagerBinding
 import java.util.*
@@ -19,15 +19,15 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class VideoPagerAdapter :
-    CommonRvAdapter<CircleBean>() {
+    BaseRvAdapter<CircleBean>() {
 
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ViewBinding> {
-        return CommonRvHolder(ItemVideoPagerBinding.inflate(inflater, parent, false))
+    ): BaseRvHolder<ViewBinding> {
+        return BaseRvHolder(ItemVideoPagerBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(

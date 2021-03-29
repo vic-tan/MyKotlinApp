@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.widget.component.extension.toast
 import com.tanlifei.app.classmatecircle.bean.CircleBean
@@ -57,7 +57,7 @@ class HomeRecommendFragment :
         return GridLayoutManager(context, 2)
     }
 
-    override fun setAdapter(): CommonRvAdapter<CircleBean> {
+    override fun setAdapter(): BaseRvAdapter<CircleBean> {
         return HomeRecommentAdapter()
     }
 

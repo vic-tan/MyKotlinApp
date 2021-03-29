@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.base.adapter.CommonRvAdapter
-import com.common.base.adapter.CommonRvHolder
+import com.common.base.adapter.BaseRvAdapter
+import com.common.base.adapter.BaseRvHolder
 import com.common.utils.GlideUtils
 import com.common.widget.component.extension.drawable
 import com.common.widget.component.extension.screenWidth
@@ -26,7 +26,7 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class RecommendAdapter :
-    CommonRvAdapter<CircleBean>() {
+    BaseRvAdapter<CircleBean>() {
     private val mCoverWidth =
         ((screenWidth - ConvertUtils.dp2px(20f)) * 0.5).toInt()//左右及中间边距为20
     private val mSource = 0 // 0、主页同学圈推荐 1、为人个中心作品
@@ -35,8 +35,8 @@ class RecommendAdapter :
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ViewBinding> {
-        return CommonRvHolder(ItemRecommendBinding.inflate(inflater, parent, false))
+    ): BaseRvHolder<ViewBinding> {
+        return BaseRvHolder(ItemRecommendBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(

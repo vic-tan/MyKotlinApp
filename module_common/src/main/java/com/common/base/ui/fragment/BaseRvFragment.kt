@@ -4,7 +4,7 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.common.base.adapter.CommonRvAdapter
+import com.common.base.adapter.BaseRvAdapter
 import com.common.base.listener.OnItemClickListener
 import com.common.base.viewmodel.BaseListViewModel
 import com.common.base.viewmodel.BaseViewModel
@@ -22,7 +22,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
  */
 abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
     BaseLazyFragment<V, VM>() {
-    var mAdapter: CommonRvAdapter<T>
+    var mAdapter: BaseRvAdapter<T>
 
     init {
         mAdapter = setAdapter()
@@ -128,7 +128,7 @@ abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
     /**
      * 子类设置Adapter
      */
-    protected abstract fun setAdapter(): CommonRvAdapter<T>
+    protected abstract fun setAdapter(): BaseRvAdapter<T>
 
     /**
      * item 点击事件

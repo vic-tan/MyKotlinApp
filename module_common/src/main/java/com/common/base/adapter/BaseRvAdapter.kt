@@ -17,8 +17,8 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/24 15:50
  */
-abstract class CommonRvAdapter<T> :
-    RecyclerView.Adapter<CommonRvHolder<ViewBinding>>() {
+abstract class BaseRvAdapter<T> :
+    RecyclerView.Adapter<BaseRvHolder<ViewBinding>>() {
 
     /** item 布局类型框状态显示**/
     enum class ItemViewType(val value: Int) {
@@ -47,14 +47,14 @@ abstract class CommonRvAdapter<T> :
     private var mOnItemClickListener: OnItemClickListener<T>? = null
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonRvHolder<ViewBinding> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRvHolder<ViewBinding> {
         mContext = parent.context
         return when {
             viewType >= ItemViewType.HEADER.value && viewType < ItemViewType.FOOTER.value -> {
-                CommonRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
+                BaseRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
             }
             viewType >= ItemViewType.FOOTER.value -> {
-                CommonRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size - 1])
+                BaseRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size - 1])
             }
             else -> {
                 onCreateViewHolder(
@@ -153,7 +153,7 @@ abstract class CommonRvAdapter<T> :
     }
 
 
-    override fun onBindViewHolder(holder: CommonRvHolder<ViewBinding>, position: Int) {
+    override fun onBindViewHolder(holder: BaseRvHolder<ViewBinding>, position: Int) {
         //是头部或者尾部
         if (isHeaderPosition(position) || isFooterPosition(position)) {
             return
@@ -192,7 +192,7 @@ abstract class CommonRvAdapter<T> :
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ViewBinding>
+    ): BaseRvHolder<ViewBinding>
 
 
     abstract fun onBindViewHolder(holder: ViewBinding, position: Int, bean: T)
@@ -243,5 +243,5 @@ abstract class CommonRvAdapter<T> :
 /**
  * 适配器Holder 基本类
  */
-open class CommonRvHolder<V : ViewBinding>(val binding: V) :
+open class BaseRvHolder<V : ViewBinding>(val binding: V) :
     RecyclerView.ViewHolder(binding.root) {}

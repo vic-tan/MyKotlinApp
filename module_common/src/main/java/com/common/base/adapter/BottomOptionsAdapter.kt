@@ -15,14 +15,14 @@ import java.util.*
  * @date: 2021/2/8 10:41
  */
 class BottomOptionsAdapter(private val mHasTitleView: Boolean) :
-    CommonRvAdapter<String>() {
+    BaseRvAdapter<String>() {
 
     override fun onCreateViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): CommonRvHolder<ViewBinding> {
-        return CommonRvHolder(ItemOptionBinding.inflate(inflater, parent, false))
+    ): BaseRvHolder<ViewBinding> {
+        return BaseRvHolder(ItemOptionBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(
