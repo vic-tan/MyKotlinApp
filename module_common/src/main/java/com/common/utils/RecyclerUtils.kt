@@ -54,7 +54,7 @@ object RecyclerUtils {
         viewModel.mDataChange.observe(owner, Observer {
             block(it)
             when (it.uiType) {
-                /**上拉刷新**/
+                /**下拉刷新**/
                 GlobalEnumConst.UiType.REFRESH -> {
                     if (it.size == -1) {
                         adapter.notifyDataSetChanged()
@@ -62,7 +62,7 @@ object RecyclerUtils {
                         adapter.notifyItemRangeChanged(0, viewModel.mData.size - 1)
                     }
                 }
-                /**下接刷新**/
+                /**上接加载更多**/
                 GlobalEnumConst.UiType.LOADMORE -> {
                     adapter.notifyItemRangeInserted(
                         viewModel.mData.size - it.size - 1,
@@ -88,9 +88,12 @@ object RecyclerUtils {
         viewModel: BaseListViewModel,
         owner: LifecycleOwner,
         isHeaderOrFooter: Boolean = false,
-        isMoreWithNoMoreData: Boolean = true
+        isMoreWithNoMoreData: Boolean = true,
+        block: (uiType: GlobalEnumConst.UiType) -> Unit = { null }
     ) {
+
         viewModel.mUiChange.observe(owner, Observer {
+            block(it)
             when (it) {
                 /**请求完成**/
                 GlobalEnumConst.UiType.COMPLETE -> {

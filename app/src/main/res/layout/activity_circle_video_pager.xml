@@ -7,9 +7,10 @@
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/smartRefreshLayout"
-        style="@style/match_match"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/input"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,28 +26,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/refreshRecycler"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@id/input"
+                    android:layout_height="match_parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/input"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/black"
-                    android:gravity="center_vertical"
-                    android:paddingStart="15dp"
-                    android:paddingBottom="2dp"
-                    android:text="写点评论，鼓励一下作者"
-                    android:textColor="@color/txt_help"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.common.widget.LoadingLayout>
@@ -69,5 +54,23 @@
             android:layout_centerInParent="true"
             android:src="@mipmap/ic_arrow_left_white" />
     </com.ruffian.library.widget.RRelativeLayout>
+
+    <TextView
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="12dp"
+        android:background="@color/black"
+        android:gravity="center_vertical"
+        android:paddingStart="15dp"
+        android:paddingBottom="2dp"
+        android:text="写点评论，鼓励一下作者"
+        android:textColor="@color/txt_help"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

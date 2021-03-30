@@ -16,58 +16,52 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.ruffian.library.widget.RTextView
+    <TextView
         android:id="@+id/praise"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="30dp"
         android:drawablePadding="5dp"
         android:shadowColor="#40000000"
         android:shadowDx="5"
         android:shadowDy="5"
+        android:gravity="center"
         android:shadowRadius="1"
         android:text="点赞"
         android:textColor="@color/white"
-        app:icon_direction="top"
-        app:icon_height="40dp"
-        app:icon_src_normal="@mipmap/ic_praise_video_normal"
-        app:icon_width="40dp"
-        app:icon_with_text="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/comment"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:drawableTop="@mipmap/ic_praise_video_normal" />
 
 
-    <com.ruffian.library.widget.RTextView
+    <TextView
         android:id="@+id/comment"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="30dp"
         android:drawablePadding="5dp"
+        android:gravity="center"
         android:shadowColor="#40000000"
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="1"
         android:text="评论"
         android:textColor="@color/white"
-        app:icon_direction="top"
-        app:icon_height="40dp"
-        app:icon_src_normal="@mipmap/ic_comment"
-        app:icon_width="40dp"
-        app:icon_with_text="true"
+        app:layout_constraintBottom_toTopOf="@id/share_layout"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/praise" />
+        tools:drawableTop="@mipmap/ic_comment" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/share_layout"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/comment">
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@id/type_layout"
+        app:layout_constraintRight_toRightOf="parent">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/share"
@@ -95,6 +89,47 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.ruffian.library.widget.RConstraintLayout
+        android:id="@+id/type_layout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="30dp"
+        android:visibility="gone"
+        app:background_normal="@array/com_theme"
+        app:corner_radius="20dp"
+        app:gradient_orientation="BOTTOM_TOP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/type_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="旅游"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/type_icon"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:src="@mipmap/ic_video_type"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </com.ruffian.library.widget.RConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

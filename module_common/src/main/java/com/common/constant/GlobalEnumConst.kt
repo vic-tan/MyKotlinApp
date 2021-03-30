@@ -24,4 +24,15 @@ interface GlobalEnumConst {
         NO_NEXT,//没有一下页数据（列表中用）
     }
 
+    /**
+     * TextView 设置图片方向常量
+     */
+    enum class DrawableDirection {
+        LEFT,//左
+        TOP,//上
+        RIGHT,//右
+        BOTTOM,//下
+
+    }
+
 }

@@ -9,7 +9,11 @@ import cn.jzvd.Jzvd
 import com.bumptech.glide.Glide
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
+import com.common.constant.GlobalEnumConst
+import com.common.widget.component.extension.drawableText
+import com.tanlifei.app.R
 import com.tanlifei.app.circle.bean.CircleBean
+import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ItemVideoPagerBinding
 import java.util.*
 
@@ -46,11 +50,16 @@ class VideoPagerAdapter :
             share.setAnimation("anim/share.json")
             share.repeatCount = Int.MAX_VALUE
             share.playAnimation()
+            praise.drawableText(R.mipmap.ic_praise_video_normal,40f,40f,GlobalEnumConst.DrawableDirection.TOP)
+            comment.drawableText(R.mipmap.ic_comment,40f,40f,GlobalEnumConst.DrawableDirection.TOP)
+            praise.text = NumberUtils.setPraiseCount(item.star)
+//            praise.setImageResource(if (item.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+            comment.text = NumberUtils.setCommentCount(item.comment)
         }
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         val holder = holder as ItemVideoPagerBinding
-        return linkedSetOf()
+        return linkedSetOf(holder.praise, holder.comment, holder.share,holder.typeLayout)
     }
 }
