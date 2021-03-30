@@ -7,7 +7,7 @@ import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.startActivity
-import com.tanlifei.app.common.config.api.ApiUrlConst
+import com.tanlifei.app.common.constant.ApiUrlConst
 import com.tanlifei.app.databinding.ActivityAboutBinding
 import com.tanlifei.app.profile.viewmodel.AboutViewModel
 

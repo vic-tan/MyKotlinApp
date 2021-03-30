@@ -10,7 +10,7 @@ import com.common.base.viewmodel.EmptyViewModel
 import com.common.utils.GlideUtils
 import com.common.widget.component.extension.clickListener
 import com.tanlifei.app.R
-import com.tanlifei.app.common.config.api.ApiUrlConst
+import com.tanlifei.app.common.constant.ApiUrlConst
 import com.tanlifei.app.databinding.FragmentProfileBinding
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel

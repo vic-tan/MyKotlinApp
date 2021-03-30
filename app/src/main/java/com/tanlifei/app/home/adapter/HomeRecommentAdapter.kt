@@ -7,7 +7,7 @@ import androidx.viewbinding.ViewBinding
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
 import com.common.utils.GlideUtils
-import com.tanlifei.app.classmatecircle.bean.CircleBean
+import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.databinding.ItemHomeRecommentBinding
 import java.util.*
 

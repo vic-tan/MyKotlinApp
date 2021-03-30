@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComFun
 import com.common.base.viewmodel.BaseViewModel
-import com.tanlifei.app.common.config.Const
+import com.tanlifei.app.common.constant.ComConst
 import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.main.bean.AdsBean
@@ -16,7 +16,6 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import org.litepal.LitePal
-import org.reactivestreams.Subscription
 import java.util.concurrent.TimeUnit
 
 
@@ -99,7 +98,7 @@ class SplashViewModel : BaseViewModel() {
      * 跳转到指定activity
      */
     fun doJump() {
-        var guide = SPUtils.getInstance().getBoolean(Const.SPKey.GUIDE, true)
+        var guide = SPUtils.getInstance().getBoolean(ComConst.SPKey.GUIDE, true)
         if (guide) {
             jump.value = JumpType.GUIDE
         } else {

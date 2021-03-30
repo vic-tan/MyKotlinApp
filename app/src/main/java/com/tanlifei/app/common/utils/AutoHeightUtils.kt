@@ -1,7 +1,7 @@
 package com.tanlifei.app.common.utils
 
 import com.blankj.utilcode.util.ObjectUtils
-import com.tanlifei.app.classmatecircle.bean.ImageBean
+import com.tanlifei.app.circle.bean.ImageBean
 import java.math.BigDecimal
 
 /**

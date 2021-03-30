@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.widget.component.extension.toast
-import com.tanlifei.app.classmatecircle.bean.CircleBean
+import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemHomeRecommentBinding
 import com.tanlifei.app.home.adapter.HomeRecommentAdapter

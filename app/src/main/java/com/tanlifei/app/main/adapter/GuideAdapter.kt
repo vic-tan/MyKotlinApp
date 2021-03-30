@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.startActivity
-import com.tanlifei.app.common.config.Const
+import com.tanlifei.app.common.constant.ComConst
 import com.tanlifei.app.databinding.ItemGuideBinding
 import com.tanlifei.app.main.ui.activity.LoginAtivity
 import com.youth.banner.adapter.BannerAdapter
@@ -37,7 +37,7 @@ open class GuideAdapter(private val mActivity: Activity, mList: MutableList<Int>
         holder.binding.image.setImageResource(data)
         holder.binding.startBtn.setVisible(position == mDatas.size - 1)
         holder.binding.startBtn.setOnClickListener {
-            SPUtils.getInstance().put(Const.SPKey.GUIDE, false)
+            SPUtils.getInstance().put(ComConst.SPKey.GUIDE, false)
             startActivity<LoginAtivity> { }
             ActivityUtils.finishActivity(mActivity)
         }

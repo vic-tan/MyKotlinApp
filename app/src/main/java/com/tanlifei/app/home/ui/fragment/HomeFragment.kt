@@ -15,7 +15,7 @@ import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.common.widget.component.extension.click
 import com.common.widget.component.extension.toast
-import com.tanlifei.app.classmatecircle.bean.CircleBean
+import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.databinding.*
 import com.tanlifei.app.home.adapter.HomeAdapter
 import com.tanlifei.app.home.adapter.HomeBannerAdapter

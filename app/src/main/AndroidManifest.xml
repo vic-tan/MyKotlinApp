@@ -83,11 +83,11 @@
         <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->
 
         <activity
-            android:name=".classmatecircle.ui.activity.CircleDetailActivity"
+            android:name=".circle.ui.activity.CircleDetailActivity"
             android:label="同学圈详情" />
 
         <activity
-            android:name=".classmatecircle.ui.activity.CircleVideoPagerActivity"
+            android:name=".circle.ui.activity.CircleVideoPagerActivity"
             android:label="同学圈视频" />
 
         <!--—————————————————————————————————————————————————— 我的 ——————————————————————————————————————————————————-->
