@@ -68,8 +68,8 @@ class FollowAdapter :
             banner.layoutParams.height =
                 AutoHeightUtils.getHeightParams(screenWidth, bean.image)
 
-            player.layoutParams.width = screenWidth
-            player.layoutParams.height =
+            playerLayout.layoutParams.width = screenWidth
+            playerLayout.layoutParams.height =
                 AutoHeightUtils.getHeightParams(screenWidth, bean.image)
 
             name.text = bean.nickName
@@ -126,7 +126,7 @@ class FollowAdapter :
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         holder as ItemFollowBinding
-        return linkedSetOf(holder.more, holder.shareLayout, holder.banner)
+        return linkedSetOf(holder.more, holder.shareLayout, holder.playerControl)
     }
 
 }

@@ -12,6 +12,7 @@ import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
 import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.startActivity
+import com.tanlifei.app.common.constant.EnumConst
 import com.tanlifei.app.common.event.UserEvent
 import com.tanlifei.app.databinding.ActivityMainBinding
 import com.tanlifei.app.main.viewmodel.MainViewModel
@@ -43,7 +44,9 @@ open class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     override fun onResume() {
         super.onResume()
         //当前选中为同学圈，且同学圈选择关注Tab时，自动播放视频
-        if (mViewModel.mHomeCurrentTabPosition == 2 && mViewModel.mCircleCurrentTabPosition == 0) {
+        if (mViewModel.mHomeCurrentTabPosition == EnumConst.HomeTabTag.CIRCLE.value
+            && mViewModel.mCircleCurrentTabPosition == EnumConst.CircleTabTag.CIRCLE.value
+        ) {
             mViewModel.postLiveDataRecommendPageFragment(mViewModel.mCircleCurrentTabPosition)
         }
     }
@@ -80,11 +83,11 @@ open class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         mViewModel.mCurrentTabPosition.observe(this, Observer {
             mBinding.navigatorTab.select(it)
             when (it) {
-                2 -> {
+                EnumConst.HomeTabTag.CIRCLE.value -> {
                     mViewModel.postLiveDataRecommendPageFragment(mViewModel.mCircleCurrentTabPosition)
                 }
                 else -> {
-                    mViewModel.postLiveDataRecommendPageFragment(-1)
+                    mViewModel.postLiveDataRecommendPageFragment(EnumConst.CircleTabTag.RECOMMEND.value)
                 }
             }
         })

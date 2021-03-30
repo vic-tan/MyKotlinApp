@@ -23,7 +23,9 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.tanlifei.app.R
 import com.tanlifei.app.circle.adapter.FollowAdapter
 import com.tanlifei.app.circle.bean.CircleBean
+import com.tanlifei.app.circle.ui.activity.CircleVideoPagerActivity
 import com.tanlifei.app.circle.viewmodel.FollowViewModel
+import com.tanlifei.app.common.constant.EnumConst
 import com.tanlifei.app.common.widget.video.AutoPlayUtils
 import com.tanlifei.app.common.widget.video.JzvdStdList
 import com.tanlifei.app.databinding.FragmentFollowBinding
@@ -60,9 +62,9 @@ class FollowFragment :
         )
         initListener()
         mHomeViewModel.mShowFollowFragment.observe(this, Observer {
-            when(it) {
-                0 -> {
-                    if(mViewModel.mData.isNotEmpty()){
+            when (it) {
+                EnumConst.CircleTabTag.CIRCLE.value -> {
+                    if (mViewModel.mData.isNotEmpty()) {
                         autoPlay()
                     }
                 }
@@ -214,6 +216,13 @@ class FollowFragment :
                             })
                     ).show()
                 }
+            }
+            holder.playerControl -> {
+                Jzvd.releaseAllVideos()
+                CircleVideoPagerActivity.actionStart(
+                    itemBean.publishId, -1,
+                    CircleVideoPagerActivity.TYPE_RECOMMEND
+                )
             }
         }
     }

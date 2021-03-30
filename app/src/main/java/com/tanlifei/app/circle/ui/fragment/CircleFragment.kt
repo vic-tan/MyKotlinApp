@@ -7,6 +7,7 @@ import com.common.base.adapter.BasePagerAdapter
 import com.common.base.ui.fragment.BaseLazyFragment
 import com.common.base.viewmodel.EmptyViewModel
 import com.common.widget.component.magicindicator.MagicIndicatorUtils
+import com.tanlifei.app.common.constant.EnumConst
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel
@@ -18,7 +19,8 @@ import com.tanlifei.app.main.viewmodel.MainViewModel
  * @date: 2021/1/23 17:41
  */
 class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding, EmptyViewModel>() {
-    private val mTitleData = mutableListOf("关注", "推荐")
+    private val mTitleData =
+        mutableListOf(EnumConst.CircleTabTag.CIRCLE.title, EnumConst.CircleTabTag.RECOMMEND.title)
     private lateinit var mFragmentAdapter: BasePagerAdapter
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mHomeViewModel: MainViewModel
@@ -68,7 +70,7 @@ class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding, EmptyVie
         mFragments.add(RecommendTabFragment.newInstance())
         mFragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
         mBinding.viewPager.adapter = mFragmentAdapter
-        mBinding.viewPager.currentItem = 1
+        mBinding.viewPager.currentItem = EnumConst.CircleTabTag.RECOMMEND.value
     }
 }
 

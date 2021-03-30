@@ -28,7 +28,6 @@ class RecommendFragment :
 
 
     companion object {
-        const val TYPE_HOME = 1//从首页
         fun newInstance(id: Long) = RecommendFragment().apply {
             arguments?.apply {
                 putLong(GlobalConst.Extras.ID, id)
@@ -82,7 +81,7 @@ class RecommendFragment :
                 if (itemBean.mediaType == 1) {
                     CircleVideoPagerActivity.actionStart(
                         itemBean.publishId, -1,
-                        TYPE_HOME
+                        CircleVideoPagerActivity.TYPE_RECOMMEND
                     )
                 } else {
                     CircleDetailActivity.actionStart(itemBean.publishId)

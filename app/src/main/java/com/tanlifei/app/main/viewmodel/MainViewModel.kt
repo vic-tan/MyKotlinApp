@@ -12,6 +12,7 @@ import com.common.core.navigator.NavigatorFragmentManager
 import com.common.base.viewmodel.BaseViewModel
 import com.tanlifei.app.R
 import com.tanlifei.app.circle.ui.fragment.CircleFragment
+import com.tanlifei.app.common.constant.EnumConst
 import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.fragment.ClassFragment
@@ -34,14 +35,14 @@ class MainViewModel : BaseViewModel() {
     /**
      * 点击TAB时LveData
      */
-    var mHomeCurrentTabPosition = 0
-    val mCurrentTabPosition: LiveData<Int> get() = currTabPosition
-    private val currTabPosition = MutableLiveData<Int>()
+    var mHomeCurrentTabPosition = EnumConst.HomeTabTag.HOME.value
+    val mCurrentTabPosition: LiveData<Int> get() = currentTabPosition
+    private val currentTabPosition = MutableLiveData<Int>()
 
     /**
      * 同学圈关注/推荐tab监听，子类视频
      */
-    var mCircleCurrentTabPosition = 1//默认选择推荐
+    var mCircleCurrentTabPosition = EnumConst.CircleTabTag.RECOMMEND.value//默认选择推荐
     val mShowFollowFragment: LiveData<Int> get() = showfollowFragment
     private val showfollowFragment = MutableLiveData<Int>()
 
@@ -55,7 +56,8 @@ class MainViewModel : BaseViewModel() {
     var mUserBean: UserBean? = null
 
     init {
-        currTabPosition.value = 0
+        mHomeCurrentTabPosition = EnumConst.HomeTabTag.HOME.value
+        currentTabPosition.value = EnumConst.HomeTabTag.HOME.value
     }
 
     /**
@@ -67,12 +69,12 @@ class MainViewModel : BaseViewModel() {
             NavigatorAdapter(mFragments),
             R.id.tabContainer
         )
-        showFragment(0)
+        showFragment(EnumConst.HomeTabTag.HOME.value)
     }
 
 
     fun showFragment(position: Int) {
-        currTabPosition.value = position
+        currentTabPosition.value = position
         mNavigator.showFragment(position) //显示点击Fargment
     }
 

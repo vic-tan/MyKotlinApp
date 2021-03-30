@@ -88,15 +88,32 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.tanlifei.app.common.widget.video.JzvdStdList
-            android:id="@+id/player"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/player_layout"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
             android:background="@color/com_image_bg"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.tanlifei.app.common.widget.video.JzvdStdList
+                android:id="@+id/player"
+                style="@style/match_match"
+                android:background="@color/com_image_bg"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/player_control"
+                style="@style/match_match"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

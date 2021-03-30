@@ -33,6 +33,9 @@ class CircleVideoPagerActivity :
     private var mCurrentPosition = 0
 
     companion object {
+        const val TYPE_RECOMMEND = 1//从首页,智能随机推荐作品列表
+        const val TYPE_ONESELF = 2//从个人中心进入,只查看自己作品列表
+        const val TYPE_CURRENT = 3//从消息进入,只查看当前作品列表
         fun actionStart(id: Long, uid: Long, type: Int) {
             startActivity<CircleVideoPagerActivity> {
                 putExtra(GlobalConst.Extras.ID, id)
