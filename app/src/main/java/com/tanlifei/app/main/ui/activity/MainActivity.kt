@@ -40,6 +40,14 @@ open class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         return MainViewModel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        //当前选中为同学圈，且同学圈选择关注Tab时，自动播放视频
+        if (mViewModel.mHomeCurrentTabPosition == 2 && mViewModel.mCircleCurrentTabPosition == 0) {
+            mViewModel.postLiveDataRecommendPageFragment(mViewModel.mCircleCurrentTabPosition)
+        }
+    }
+
 
     override fun init() {
         RxHttpManager.addToken()
@@ -69,11 +77,11 @@ open class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        mViewModel.mCurrTabPosition.observe(this, Observer {
+        mViewModel.mCurrentTabPosition.observe(this, Observer {
             mBinding.navigatorTab.select(it)
             when (it) {
                 2 -> {
-                    mViewModel.postLiveDataRecommendPageFragment(mViewModel.recommendPageCurrTabPosition)
+                    mViewModel.postLiveDataRecommendPageFragment(mViewModel.mCircleCurrentTabPosition)
                 }
                 else -> {
                     mViewModel.postLiveDataRecommendPageFragment(-1)

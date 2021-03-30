@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.bean.UserBean
 import com.common.base.viewmodel.BaseViewModel
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 import com.common.widget.component.extension.toast
 import com.obs.services.model.PutObjectResult
 import com.tanlifei.app.common.repository.Repository
@@ -60,7 +60,7 @@ class ProfileViewModel : BaseViewModel() {
         if (url.isNotEmpty()) {
             var uploadList: MutableList<String> = mutableListOf()
             uploadList.add(url)
-            setUI(EnumConst.UiType.LOADING)
+            setUI(GlobalEnumConst.UiType.LOADING)
             HuaweiUploadManager().statJob(
                 HuaweiUploadManager.EnterType.ENTER_TYPE_CLASSMATE,
                 uploadList,
@@ -72,7 +72,7 @@ class ProfileViewModel : BaseViewModel() {
 
                     override fun onFail(errorType: HuaweiUploadManager.UploadType) {
                         toast("上传图片失败了")
-                        setUI(EnumConst.UiType.ERROR)
+                        setUI(GlobalEnumConst.UiType.ERROR)
                     }
 
                 }

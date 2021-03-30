@@ -5,7 +5,7 @@ package com.common.constant
  * @author: tanlifei
  * @date: 2021/3/29 16:26
  */
-interface EnumConst {
+interface GlobalEnumConst {
 
     /**
      * 网络请求常用字段 KEY 常量

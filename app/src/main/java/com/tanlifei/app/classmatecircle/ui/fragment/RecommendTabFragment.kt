@@ -7,15 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.common.base.ui.fragment.BaseLazyFragment
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 import com.common.utils.GlideUtils
 import com.common.widget.component.extension.color
 import com.common.widget.component.extension.setVisible
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.databinding.FragmentClassmatecircleRecommendBinding
-import com.tanlifei.app.main.ui.activity.MainActivity
-import com.tanlifei.app.main.viewmodel.MainViewModel
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
@@ -58,9 +56,9 @@ class RecommendTabFragment :
         })
         mViewModel.mUiChange.observe(this, Observer {
             when (it) {
-                EnumConst.UiType.LOADING -> mBinding.loadingLayout.showLoading()
-                EnumConst.UiType.COMPLETE -> mBinding.loadingLayout.showContent()
-                EnumConst.UiType.ERROR -> mBinding.loadingLayout.showError()
+                GlobalEnumConst.UiType.LOADING -> mBinding.loadingLayout.showLoading()
+                GlobalEnumConst.UiType.COMPLETE -> mBinding.loadingLayout.showContent()
+                GlobalEnumConst.UiType.ERROR -> mBinding.loadingLayout.showError()
             }
         })
     }

@@ -3,7 +3,7 @@ package com.common.base.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.common.base.bean.ListDataChangePrams
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -28,7 +28,7 @@ open abstract class BaseListViewModel : BaseViewModel() {
     /**
      * 请求过程状态 (列表中用，滚动过程中加载下一页，当正在加载时，防止重复加载)
      */
-    var mRefreshType: EnumConst.UiType = EnumConst.UiType.REFRESH
+    var mRefreshType: GlobalEnumConst.UiType = GlobalEnumConst.UiType.REFRESH
 
     /**
      * 请求列表接口
@@ -45,7 +45,7 @@ open abstract class BaseListViewModel : BaseViewModel() {
         showToast: Boolean,
         uiLiveData: Boolean,
         refreshState: Boolean,
-        uiType: EnumConst.UiType
+        uiType: GlobalEnumConst.UiType
     ): Job {
         return super.comRequest(
             block,
@@ -62,7 +62,7 @@ open abstract class BaseListViewModel : BaseViewModel() {
      */
     fun setDataChange(listDataChangePrams: ListDataChangePrams) {
         if (mData.isEmpty()) {
-            setUI(EnumConst.UiType.EMPTY)
+            setUI(GlobalEnumConst.UiType.EMPTY)
         }
         dataChange.value = listDataChangePrams
     }
@@ -72,7 +72,7 @@ open abstract class BaseListViewModel : BaseViewModel() {
      */
     fun refresh() {
         mPageNum = 1
-        mRefreshType = EnumConst.UiType.REFRESH
+        mRefreshType = GlobalEnumConst.UiType.REFRESH
         requestList()
     }
 
@@ -80,7 +80,7 @@ open abstract class BaseListViewModel : BaseViewModel() {
      * 加载更多
      */
     fun loadMore() {
-        mRefreshType = EnumConst.UiType.LOADMORE
+        mRefreshType = GlobalEnumConst.UiType.LOADMORE
         requestList()
     }
 
@@ -90,28 +90,28 @@ open abstract class BaseListViewModel : BaseViewModel() {
      */
     fun complete(resultList: List<Any>, isMoreRefresh: Boolean = true) {
         when (mRefreshType) {
-            EnumConst.UiType.REFRESH -> {//下拉刷新
+            GlobalEnumConst.UiType.REFRESH -> {//下拉刷新
                 mData.clear()
                 if (resultList.isNotEmpty()) {
                     mData.addAll(resultList)
-                    setUI(if (isMoreRefresh) EnumConst.UiType.CONTENT else EnumConst.UiType.REFRESH_CONTENT)//有数据
+                    setUI(if (isMoreRefresh) GlobalEnumConst.UiType.CONTENT else GlobalEnumConst.UiType.REFRESH_CONTENT)//有数据
                     dataChange.value = ListDataChangePrams(mRefreshType, resultList.size)
                     mRefreshState = RefreshState.None
                 } else {
-                    setUI(EnumConst.UiType.EMPTY)//无数据
+                    setUI(GlobalEnumConst.UiType.EMPTY)//无数据
                     dataChange.value = ListDataChangePrams(mRefreshType)
                 }
             }
-            EnumConst.UiType.LOADMORE -> {//上拉加载更多
+            GlobalEnumConst.UiType.LOADMORE -> {//上拉加载更多
                 if (resultList.isNotEmpty()) {
                     mData.addAll(resultList)
-                    setUI(EnumConst.UiType.COMPLETE)//加载
+                    setUI(GlobalEnumConst.UiType.COMPLETE)//加载
                     dataChange.value = ListDataChangePrams(mRefreshType, resultList.size)
                 } else {
                     if (mData.isEmpty()) {
-                        setUI(EnumConst.UiType.EMPTY)//无数据
+                        setUI(GlobalEnumConst.UiType.EMPTY)//无数据
                     } else {
-                        setUI(EnumConst.UiType.NO_NEXT)//没有一下页数据
+                        setUI(GlobalEnumConst.UiType.NO_NEXT)//没有一下页数据
                     }
                 }
             }

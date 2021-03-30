@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.viewmodel.BaseViewModel
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 import com.tanlifei.app.classmatecircle.adapter.RecommendTabAdapter
 import com.tanlifei.app.classmatecircle.bean.CategoryBean
 import com.tanlifei.app.common.repository.Repository
@@ -35,7 +35,7 @@ class RecommendTabViewModel(private val mManager: FragmentManager) : BaseViewMod
                 mData.addAll(categoryList)
                 addFragment()
             } else {
-                setUI(EnumConst.UiType.ERROR)
+                setUI(GlobalEnumConst.UiType.ERROR)
             }
         })
     }

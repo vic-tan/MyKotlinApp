@@ -34,13 +34,14 @@ class MainViewModel : BaseViewModel() {
     /**
      * 点击TAB时LveData
      */
-    val mCurrTabPosition: LiveData<Int> get() = currTabPosition
+    var mHomeCurrentTabPosition = 0
+    val mCurrentTabPosition: LiveData<Int> get() = currTabPosition
     private val currTabPosition = MutableLiveData<Int>()
 
     /**
      * 同学圈关注/推荐tab监听，子类视频
      */
-    var recommendPageCurrTabPosition = 1//默认选择推荐
+    var mCircleCurrentTabPosition = 1//默认选择推荐
     val mShowFollowFragment: LiveData<Int> get() = showfollowFragment
     private val showfollowFragment = MutableLiveData<Int>()
 
@@ -79,8 +80,8 @@ class MainViewModel : BaseViewModel() {
      * 同学圈关注/推荐tab监听，子类视频
      */
     fun showRecommendPageFragment(position: Int) {
-        recommendPageCurrTabPosition = position
-        postLiveDataRecommendPageFragment(recommendPageCurrTabPosition)
+        mCircleCurrentTabPosition = position
+        postLiveDataRecommendPageFragment(mCircleCurrentTabPosition)
     }
 
     fun postLiveDataRecommendPageFragment(type: Int) {

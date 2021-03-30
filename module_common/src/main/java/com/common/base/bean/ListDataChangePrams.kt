@@ -1,6 +1,6 @@
 package com.common.base.bean
 
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 
 
 /**
@@ -8,5 +8,5 @@ import com.common.constant.EnumConst
  * @author: tanlifei
  * @date: 2021/3/24 15:54
  */
-data class ListDataChangePrams(val uiType: EnumConst.UiType, val size: Int = -1 ) {
+data class ListDataChangePrams(val uiType: GlobalEnumConst.UiType, val size: Int = -1 ) {
 }

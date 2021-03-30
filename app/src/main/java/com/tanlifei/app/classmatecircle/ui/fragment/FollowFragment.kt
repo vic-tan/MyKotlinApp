@@ -12,12 +12,11 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.RecyclerUtils
-import com.common.widget.component.extension.log
 import com.common.widget.component.extension.toast
 import com.lxj.xpopup.XPopup
 import com.scwang.smart.refresh.layout.constant.RefreshState
@@ -84,7 +83,7 @@ class FollowFragment :
         ) {
             when (it.uiType) {
                 /**上拉刷新**/
-                EnumConst.UiType.REFRESH -> {
+                GlobalEnumConst.UiType.REFRESH -> {
                     if (mViewModel.mData.isNotEmpty()) {
                         ComFun.mHandler.postDelayed({
                             autoPlay()

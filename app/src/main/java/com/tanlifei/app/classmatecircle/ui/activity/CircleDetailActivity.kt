@@ -11,7 +11,7 @@ import com.common.ComFun
 import com.common.constant.GlobalConst
 import com.common.base.listener.OnItemClickListener
 import com.common.base.ui.activity.BaseToolBarActivity
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 import com.common.databinding.LayoutLoadingEmptyBinding
 import com.common.utils.ComDialogUtils
 import com.common.utils.GlideUtils
@@ -106,7 +106,7 @@ class CircleDetailActivity :
             this
         ) {
             when (it.uiType) {
-                EnumConst.UiType.REFRESH -> {
+                GlobalEnumConst.UiType.REFRESH -> {
                     addHeader()
                 }
                 else -> {

@@ -12,7 +12,7 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.bean.ListDataChangePrams
 import com.common.base.viewmodel.BaseListViewModel
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 import com.common.widget.component.extension.toast
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -55,7 +55,7 @@ object RecyclerUtils {
             block(it)
             when (it.uiType) {
                 /**上拉刷新**/
-                EnumConst.UiType.REFRESH -> {
+                GlobalEnumConst.UiType.REFRESH -> {
                     if (it.size == -1) {
                         adapter.notifyDataSetChanged()
                     } else {
@@ -63,7 +63,7 @@ object RecyclerUtils {
                     }
                 }
                 /**下接刷新**/
-                EnumConst.UiType.LOADMORE -> {
+                GlobalEnumConst.UiType.LOADMORE -> {
                     adapter.notifyItemRangeInserted(
                         viewModel.mData.size - it.size - 1,
                         viewModel.mData.size - 1
@@ -71,7 +71,7 @@ object RecyclerUtils {
 
                 }
                 /**更新刷新**/
-                EnumConst.UiType.NOTIFY -> {
+                GlobalEnumConst.UiType.NOTIFY -> {
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -93,22 +93,22 @@ object RecyclerUtils {
         viewModel.mUiChange.observe(owner, Observer {
             when (it) {
                 /**请求完成**/
-                EnumConst.UiType.COMPLETE -> {
+                GlobalEnumConst.UiType.COMPLETE -> {
                     smartRefreshLayout.finishRefresh()
                     smartRefreshLayout.finishLoadMore()
                 }
                 /**有数据**/
-                EnumConst.UiType.CONTENT -> {
+                GlobalEnumConst.UiType.CONTENT -> {
                     refreshLoadingLayout.showContent()
                     smartRefreshLayout.setEnableLoadMore(true)
                 }
                 /**关闭上拉刷新但只有下拉时显示数据**/
-                EnumConst.UiType.REFRESH_CONTENT -> {
+                GlobalEnumConst.UiType.REFRESH_CONTENT -> {
                     refreshLoadingLayout.showContent()
                     smartRefreshLayout.setEnableLoadMore(false)
                 }
                 /**无数据**/
-                EnumConst.UiType.EMPTY -> {
+                GlobalEnumConst.UiType.EMPTY -> {
                     //是否存在头部或者尾部，存在不用显示布局，要显示头部或者尾部
                     if (isHeaderOrFooter) {
                         refreshLoadingLayout.showContent()
@@ -119,7 +119,7 @@ object RecyclerUtils {
                     }
                 }
                 /**没有一下页数据**/
-                EnumConst.UiType.NO_NEXT -> {
+                GlobalEnumConst.UiType.NO_NEXT -> {
                     if (isMoreWithNoMoreData) {
                         smartRefreshLayout.finishLoadMoreWithNoMoreData() //将不会再次触发加载更多事件
                     } else {
@@ -128,7 +128,7 @@ object RecyclerUtils {
                     }
                 }
                 /**报错界面**/
-                EnumConst.UiType.ERROR -> {
+                GlobalEnumConst.UiType.ERROR -> {
                     if (viewModel.mData.isEmpty()) {
                         refreshLoadingLayout.showError()
                     }

@@ -14,7 +14,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
 import com.common.core.event.BaseEvent
 import com.common.base.viewmodel.BaseViewModel
-import com.common.constant.EnumConst
+import com.common.constant.GlobalEnumConst
 import com.common.databinding.ActivityBaseBinding
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.setVisible
@@ -37,7 +37,7 @@ import java.lang.reflect.ParameterizedType
  * open 表示该类可以被继承 ,kotlin中默认类是不可以被继承
  */
 open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompatActivity(),
-    Observer<EnumConst.UiType> {
+    Observer<GlobalEnumConst.UiType> {
 
     lateinit var mBaseBinding: ActivityBaseBinding
     lateinit var mBinding: V
@@ -344,7 +344,7 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
     /**
      * 加载框显示
      */
-    override fun onChanged(uiType: EnumConst.UiType) {
+    override fun onChanged(uiType: GlobalEnumConst.UiType) {
         loadingView(uiType)
     }
 
@@ -352,11 +352,11 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
     /**
      * 是否显示加载框
      */
-    open fun loadingView(uiType: EnumConst.UiType) {
+    open fun loadingView(uiType: GlobalEnumConst.UiType) {
         if (ObjectUtils.isNotEmpty(mHud)) {
             when (uiType) {
-                EnumConst.UiType.LOADING -> if (mHud.isDismiss) mHud.show()
-                EnumConst.UiType.COMPLETE -> if (mHud.isShow) mHud.dismiss()
+                GlobalEnumConst.UiType.LOADING -> if (mHud.isDismiss) mHud.show()
+                GlobalEnumConst.UiType.COMPLETE -> if (mHud.isShow) mHud.dismiss()
                 else -> {
                 }
             }
