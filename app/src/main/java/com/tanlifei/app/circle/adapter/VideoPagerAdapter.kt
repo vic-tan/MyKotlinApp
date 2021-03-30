@@ -42,6 +42,10 @@ class VideoPagerAdapter :
             player.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
             Glide.with(player.context).load(item.image?.url)
                 .into(player.posterImageView)
+            share.imageAssetsFolder = "anim/shareimages/"
+            share.setAnimation("anim/share.json")
+            share.repeatCount = Int.MAX_VALUE
+            share.playAnimation()
         }
     }
 

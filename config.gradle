@@ -112,6 +112,10 @@ ext {
             //https://github.com/JessYanCoding/AndroidAutoSize
             "autosize"               : "me.jessyan:autosize:1.2.1",
 
+            //动画库
+            //https://github.com/airbnb/lottie-android
+            "lottie"               : "com.airbnb.android:lottie:3.6.1",
+
             //图片选择库
             //https://github.com/LuckSiege/PictureSelector
             "picture_selector"       : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",

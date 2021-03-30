@@ -108,6 +108,10 @@ dependencies {
     //https://github.com/JessYanCoding/AndroidAutoSize
     api rootProject.ext.dependencies.autosize
 
+    //动画库
+    //https://github.com/airbnb/lottie-android
+    api rootProject.ext.dependencies.lottie
+
     //图片选择库
     //https://github.com/LuckSiege/PictureSelector
     api rootProject.ext.dependencies.picture_selector

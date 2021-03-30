@@ -4,6 +4,7 @@ package com.tanlifei.app.main.ui.activity
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import cn.jzvd.Jzvd
 import com.common.core.event.BaseEvent
 import com.common.core.navigator.NavigatorView
 import com.common.base.ui.activity.BaseActivity
@@ -44,14 +45,26 @@ open class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
     override fun onResume() {
         super.onResume()
-        //当前选中为同学圈，且同学圈选择关注Tab时，自动播放视频
-        if (mViewModel.mHomeCurrentTabPosition == EnumConst.HomeTabTag.CIRCLE.value
-            && mViewModel.mCircleCurrentTabPosition == EnumConst.CircleTabTag.CIRCLE.value
-        ) {
+        if (isCircleFollowTab()) {
             mViewModel.postLiveDataRecommendPageFragment(mViewModel.mCircleCurrentTabPosition)
         }
     }
 
+
+    override fun onPause() {
+        super.onPause()
+        if (isCircleFollowTab()) {
+            Jzvd.releaseAllVideos()
+        }
+    }
+
+    /**
+     * 当前选中为同学圈，且同学圈选择关注Tab时，自动播放视频
+     */
+    private fun isCircleFollowTab(): Boolean {
+        return mViewModel.mHomeCurrentTabPosition == EnumConst.HomeTabTag.CIRCLE.value
+                && mViewModel.mCircleCurrentTabPosition == EnumConst.CircleTabTag.CIRCLE.value
+    }
 
     override fun init() {
         RxHttpManager.addToken()
