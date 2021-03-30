@@ -10,6 +10,7 @@ import com.common.base.ui.activity.BaseActivity
 import com.common.base.viewmodel.BaseViewModel
 import com.common.core.http.RxHttpManager
 import com.common.utils.ComUtils
+import com.common.widget.component.extension.log
 import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.startActivity
 import com.tanlifei.app.common.constant.EnumConst

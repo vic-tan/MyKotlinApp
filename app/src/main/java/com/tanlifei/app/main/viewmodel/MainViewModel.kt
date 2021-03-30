@@ -75,6 +75,7 @@ class MainViewModel : BaseViewModel() {
 
     fun showFragment(position: Int) {
         currentTabPosition.value = position
+        mHomeCurrentTabPosition = position
         mNavigator.showFragment(position) //显示点击Fargment
     }
 
