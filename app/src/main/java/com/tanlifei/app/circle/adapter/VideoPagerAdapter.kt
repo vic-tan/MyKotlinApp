@@ -151,6 +151,6 @@ class VideoPagerAdapter :
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         val holder = holder as ItemVideoPagerBinding
-        return linkedSetOf(holder.praise, holder.comment, holder.share, holder.typeLayout)
+        return linkedSetOf(holder.praise, holder.comment, holder.share, holder.typeLayout,holder.expandTextView)
     }
 }
