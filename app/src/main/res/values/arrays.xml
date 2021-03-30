@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string-array name="persenal_study_bg" tools:ignore="ExtraTranslation">
+    <string-array name="persenal_study_bg">
         <item>#FFF5DE</item>
         <item>#FCD89A</item>
+    </string-array>
+
+    <string-array name="circle_shadow">
+        <item>#00ffffff</item>
+        <item>#FF000000</item>
     </string-array>
 </resources>

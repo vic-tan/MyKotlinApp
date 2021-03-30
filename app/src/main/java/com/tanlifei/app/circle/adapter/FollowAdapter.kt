@@ -14,10 +14,7 @@ import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
 import com.common.utils.GlideUtils
 import com.common.widget.ExpandTextView
-import com.common.widget.component.extension.gone
-import com.common.widget.component.extension.screenWidth
-import com.common.widget.component.extension.setVisible
-import com.common.widget.component.extension.visible
+import com.common.widget.component.extension.*
 import com.tanlifei.app.R
 import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
@@ -33,7 +30,7 @@ import java.util.*
  */
 class FollowAdapter :
     BaseRvAdapter<CircleBean>() {
-    private var mTextViewWidth = screenWidth - ConvertUtils.dp2px(30f)
+    private var mTextViewWidth = screenWidth - dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
 
     override fun setItemViewType(itemBean: CircleBean): Int {
