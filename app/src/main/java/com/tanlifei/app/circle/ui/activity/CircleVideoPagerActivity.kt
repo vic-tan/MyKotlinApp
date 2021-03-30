@@ -54,6 +54,7 @@ class CircleVideoPagerActivity :
     }
 
     override fun init() {
+        BarUtils.addMarginTopEqualStatusBarHeight(mBinding.smartRefreshLayout)//为 view 增加 MarginTop 为状态栏高度
         initRefreshView(
             mBinding.smartRefreshLayout,
             mBinding.refreshRecycler,
