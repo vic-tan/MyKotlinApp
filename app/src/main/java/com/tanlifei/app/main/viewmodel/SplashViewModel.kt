@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import org.litepal.LitePal
+import org.reactivestreams.Subscription
 import java.util.concurrent.TimeUnit
 
 
@@ -50,7 +51,6 @@ class SplashViewModel : BaseViewModel() {
 
     var mAdsBean: AdsBean? = null
 
-
     /**
      * 请求广告图片
      */
@@ -81,8 +81,8 @@ class SplashViewModel : BaseViewModel() {
      * 启动页3s倒计时
      */
     fun startInterval(count: Long = 3) {
-        Observable.interval(0, 1, TimeUnit.SECONDS)
-            .take((count + 1).toLong())
+         Observable.interval(0, 1, TimeUnit.SECONDS)
+            .take((count + 1))
             .map { aLong -> count - aLong }
             .observeOn(AndroidSchedulers.mainThread()) //ui线程中进行控件更新
             .doOnSubscribe {}.subscribe(object : Observer<Long> {

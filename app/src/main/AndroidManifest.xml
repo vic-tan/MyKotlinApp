@@ -74,6 +74,7 @@
             android:label="引导页" />
         <activity
             android:name="com.tanlifei.app.main.ui.activity.MainActivity"
+            android:launchMode="singleTask"
             android:label="首页" />
         <activity
             android:name="com.tanlifei.app.main.ui.activity.LoginAtivity"
