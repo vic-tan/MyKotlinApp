@@ -1,6 +1,7 @@
 package com.tanlifei.app.classmatecircle.ui.fragment
 
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
@@ -8,12 +9,15 @@ import androidx.viewbinding.ViewBinding
 import cn.jzvd.Jzvd
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.ComFun
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
+import com.common.constant.EnumConst
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.RecyclerUtils
+import com.common.widget.component.extension.log
 import com.common.widget.component.extension.toast
 import com.lxj.xpopup.XPopup
 import com.scwang.smart.refresh.layout.constant.RefreshState
@@ -25,6 +29,8 @@ import com.tanlifei.app.common.widget.video.AutoPlayUtils
 import com.tanlifei.app.common.widget.video.JzvdStdList
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemFollowBinding
+import com.tanlifei.app.main.ui.activity.MainActivity
+import com.tanlifei.app.main.viewmodel.MainViewModel
 
 
 /**
@@ -35,6 +41,8 @@ import com.tanlifei.app.databinding.ItemFollowBinding
 class FollowFragment :
     BaseRvFragment<FragmentFollowBinding, FollowViewModel, CircleBean>() {
 
+    lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var mHomeViewModel: MainViewModel
 
     companion object {
         fun newInstance() = FollowFragment()
@@ -45,12 +53,55 @@ class FollowFragment :
     }
 
     override fun onFirstVisibleToUser() {
+        mHomeViewModel = (activity as MainActivity).mViewModel
         initRecycler(
             mBinding.refreshLayout.smartRefreshLayout,
             mBinding.refreshLayout.refreshRecycler,
             mBinding.refreshLayout.refreshLoadingLayout
         )
         initListener()
+        mHomeViewModel.mShowFollowFragment.observe(this, Observer {
+            when(it) {
+                0 -> {
+                    if(mViewModel.mData.isNotEmpty()){
+                        autoPlay()
+                    }
+                }
+                else -> {//其它TAB 关闭视频
+                    Jzvd.releaseAllVideos()
+                }
+            }
+
+        })
+    }
+
+
+    override fun dataChangeObserve() {
+        RecyclerUtils.dataChangeObserve(
+            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>,
+            mViewModel,
+            this
+        ) {
+            when (it.uiType) {
+                /**上拉刷新**/
+                EnumConst.UiType.REFRESH -> {
+                    if (mViewModel.mData.isNotEmpty()) {
+                        ComFun.mHandler.postDelayed({
+                            autoPlay()
+                        }, 1000)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun autoPlay() {
+        AutoPlayUtils.onScrollPlayVideo(
+            mBinding.refreshLayout.refreshRecycler,
+            R.id.player,
+            linearLayoutManager.findFirstVisibleItemPosition(),
+            linearLayoutManager.findLastVisibleItemPosition()
+        )
     }
 
     override fun addOnScrollListener(mRefreshRecycler: RecyclerView) {
@@ -63,8 +114,8 @@ class FollowFragment :
                         AutoPlayUtils.onScrollPlayVideo(
                             recyclerView,
                             R.id.player,
-                            (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition(),
-                            (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                            linearLayoutManager.findFirstVisibleItemPosition(),
+                            linearLayoutManager.findLastVisibleItemPosition()
                         )
                     }
                 } catch (e: Exception) {
@@ -77,20 +128,19 @@ class FollowFragment :
                 try {
                     if (dy != 0) {
                         AutoPlayUtils.onScrollReleaseAllVideos(
-                            (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition(),
-                            (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition(),
+                            linearLayoutManager.findFirstVisibleItemPosition(),
+                            linearLayoutManager.findLastVisibleItemPosition(),
                             0.2f
                         )
                     }
                     if (!NetworkUtils.isConnected())//没有网不加载，让用户手动加载
                         return
                     // 获取 LayoutManger
-                    val layoutManager = recyclerView.layoutManager
-                    if (ObjectUtils.isNotEmpty(layoutManager)) {
+                    if (ObjectUtils.isNotEmpty(linearLayoutManager)) {
                         // 如果列表正在往上滚动，并且表项最后可见表项索引值 等于 预加载阈值
-                        if (dy > 0 && ObjectUtils.isNotEmpty(layoutManager!!.itemCount)
-                            && RecyclerUtils.getOutLast(layoutManager) >= RecyclerUtils.getLoadCount(
-                                layoutManager
+                        if (dy > 0 && ObjectUtils.isNotEmpty(linearLayoutManager!!.itemCount)
+                            && RecyclerUtils.getOutLast(linearLayoutManager) >= RecyclerUtils.getLoadCount(
+                                linearLayoutManager
                             )
                             && mViewModel.mRefreshState == RefreshState.None
                         ) {
@@ -109,7 +159,12 @@ class FollowFragment :
 
     }
 
-    private fun initListener(){
+    override fun setLinearLayoutManager(): RecyclerView.LayoutManager {
+        linearLayoutManager = LinearLayoutManager(context)
+        return linearLayoutManager
+    }
+
+    private fun initListener() {
         //添加OnScrollListener 监听 ，循环遍历 可见区域
         mBinding.refreshLayout.refreshRecycler.addOnChildAttachStateChangeListener(object :
             OnChildAttachStateChangeListener {
@@ -161,13 +216,6 @@ class FollowFragment :
                     ).show()
                 }
             }
-            /*  holder.banner -> {
-                  var list = mutableListOf<String>()
-                  var url = itemBean.image?.url
-                  url?.let { list.add(it) }
-                  PhotoUtils.showListPhoto(context, holder.banner, position, list)
-              }*/
         }
     }
-
 }

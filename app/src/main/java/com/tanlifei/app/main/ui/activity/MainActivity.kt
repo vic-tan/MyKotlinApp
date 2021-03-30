@@ -71,6 +71,14 @@ open class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     private fun initViewModelObserve() {
         mViewModel.mCurrTabPosition.observe(this, Observer {
             mBinding.navigatorTab.select(it)
+            when (it) {
+                2 -> {
+                    mViewModel.postLiveDataRecommendPageFragment(mViewModel.recommendPageCurrTabPosition)
+                }
+                else -> {
+                    mViewModel.postLiveDataRecommendPageFragment(-1)
+                }
+            }
         })
 
         mUpdateAppViewModel.mUpdateApp.observe(this, Observer {

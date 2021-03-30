@@ -14,6 +14,8 @@ import com.common.widget.component.extension.setVisible
 import com.tanlifei.app.R
 import com.tanlifei.app.classmatecircle.viewmodel.RecommendTabViewModel
 import com.tanlifei.app.databinding.FragmentClassmatecircleRecommendBinding
+import com.tanlifei.app.main.ui.activity.MainActivity
+import com.tanlifei.app.main.viewmodel.MainViewModel
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
@@ -30,9 +32,12 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Common
 class RecommendTabFragment :
     BaseLazyFragment<FragmentClassmatecircleRecommendBinding, RecommendTabViewModel>() {
 
+
+
     companion object {
         fun newInstance() = RecommendTabFragment()
     }
+
 
     override fun createViewModel(): RecommendTabViewModel {
         return RecommendTabViewModel(childFragmentManager)
