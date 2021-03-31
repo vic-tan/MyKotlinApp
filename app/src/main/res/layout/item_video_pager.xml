@@ -15,10 +15,175 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.ruffian.library.widget.RView
+
+    <com.ruffian.library.widget.RConstraintLayout
+        android:id="@+id/bottom_content"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
         app:background_normal="@array/circle_shadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:id="@+id/topic_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:background_normal="#26F0F1F7"
+            app:corner_radius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:text="#"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:background_normal="@color/theme"
+                app:corner_radius="8dp" />
+
+            <TextView
+                android:id="@+id/topic_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical|left"
+                android:lines="1"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#CCCCCC"
+                android:textSize="15sp"
+                tools:text="左奇葩奇葩" />
+
+        </com.ruffian.library.widget.RLinearLayout>
+
+
+        <com.common.widget.ExpandTextView
+            android:id="@+id/expand_text_view"
+            style="@style/match_wrap"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="15dp"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="1"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:etv_MaxLinesOnShrink="1"
+            app:etv_ToExpandHintColor="@color/txt_help"
+            app:etv_ToExpandHintColorBgPressed="#00000000"
+            app:etv_ToShrinkHintColor="@color/txt_help"
+            app:etv_ToShrinkHintColorBgPressed="#00000000"
+            app:layout_constraintBottom_toTopOf="@id/topic_layout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+        <com.ruffian.library.widget.RImageView
+            android:id="@+id/avatar"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@mipmap/ic_default_avatar"
+            android:scaleType="centerCrop"
+            app:border_color="@color/white"
+            app:border_width="0.5dp"
+            app:corner_radius="27dp"
+            app:is_circle="true"
+            app:layout_constraintBottom_toTopOf="@id/expand_text_view"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="100dp"
+            app:layout_constraintBottom_toBottomOf="@id/avatar"
+            app:layout_constraintLeft_toRightOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@id/avatar">
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/wrap_wrap"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLength="8"
+                android:maxLines="1"
+                android:shadowColor="#40000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="作者：古月" />
+
+            <TextView
+                android:id="@+id/school"
+                style="@style/wrap_wrap"
+                android:ellipsize="end"
+                android:lines="1"
+                android:shadowColor="#40000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="深圳老年大学" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/attention"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:paddingStart="9dp"
+                android:paddingEnd="9dp"
+                android:paddingBottom="1dp"
+                android:text="关注"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:background_normal="@color/theme"
+                app:border_width_normal="0.3dp"
+                app:corner_radius="12dp"
+                app:layout_constraintLeft_toRightOf="@id/name"
+                app:layout_constraintTop_toTopOf="@id/name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.ruffian.library.widget.RConstraintLayout>
+
+
+    <View
+        android:id="@+id/bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.01px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -138,158 +303,6 @@
 
 
     </com.ruffian.library.widget.RConstraintLayout>
-
-
-    <com.ruffian.library.widget.RLinearLayout
-        android:id="@+id/topic_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:background_normal="#26F0F1F7"
-        app:corner_radius="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-
-        <com.ruffian.library.widget.RTextView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:text="#"
-            android:textColor="@color/black"
-            android:textSize="11sp"
-            app:background_normal="@color/theme"
-            app:corner_radius="8dp" />
-
-        <TextView
-            android:id="@+id/topic_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:gravity="center_vertical|left"
-            android:lines="1"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="1"
-            android:singleLine="true"
-            android:text=""
-            android:textColor="#CCCCCC"
-            android:textSize="15sp"
-            tools:text="左奇葩奇葩" />
-
-    </com.ruffian.library.widget.RLinearLayout>
-
-
-    <com.common.widget.ExpandTextView
-        android:id="@+id/expand_text_view"
-        style="@style/match_wrap"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="15dp"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="1"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        app:etv_MaxLinesOnShrink="1"
-        app:etv_ToExpandHintColor="@color/txt_help"
-        app:etv_ToExpandHintColorBgPressed="#00000000"
-        app:etv_ToShrinkHintColor="@color/txt_help"
-        app:etv_ToShrinkHintColorBgPressed="#00000000"
-        app:layout_constraintBottom_toTopOf="@id/topic_layout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-
-    <com.ruffian.library.widget.RImageView
-        android:id="@+id/avatar"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@mipmap/ic_default_avatar"
-        android:scaleType="centerCrop"
-        app:border_color="@color/white"
-        app:border_width="0.5dp"
-        app:corner_radius="27dp"
-        app:is_circle="true"
-        app:layout_constraintBottom_toTopOf="@id/expand_text_view"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="100dp"
-        app:layout_constraintBottom_toBottomOf="@id/avatar"
-        app:layout_constraintLeft_toRightOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@id/avatar">
-
-        <TextView
-            android:id="@+id/name"
-            style="@style/wrap_wrap"
-            android:ellipsize="end"
-            android:lines="1"
-            android:maxLength="8"
-            android:maxLines="1"
-            android:shadowColor="#40000000"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="1"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="作者：古月" />
-
-        <TextView
-            android:id="@+id/school"
-            style="@style/wrap_wrap"
-            android:ellipsize="end"
-            android:lines="1"
-            android:shadowColor="#40000000"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="1"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            tools:text="深圳老年大学" />
-
-        <com.ruffian.library.widget.RTextView
-            android:id="@+id/attention"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginStart="6dp"
-            android:gravity="center"
-            android:paddingStart="9dp"
-            android:paddingEnd="9dp"
-            android:paddingBottom="1dp"
-            android:text="关注"
-            android:textColor="@color/white"
-            android:textSize="13sp"
-            app:background_normal="@color/theme"
-            app:border_width_normal="0.3dp"
-            app:corner_radius="12dp"
-            app:layout_constraintLeft_toRightOf="@id/name"
-            app:layout_constraintTop_toTopOf="@id/name" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

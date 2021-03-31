@@ -93,7 +93,7 @@ class VideoPagerAdapter :
                     EnumConst.LinkJumpType.TYPE_SHOP_JIUJIU.value
                 )
             ) { //0,表示没有，1，表示来源于商品，2，表示来源于课程3.表示来源来旅游
-                holder.typeIcon.visible()
+                typeIcon.visible()
             } else if (StringUtils.equals(
                     item.jumpCode,
                     EnumConst.LinkJumpType.TYPE_LIVE_COLUMN_FREE.value
@@ -103,15 +103,15 @@ class VideoPagerAdapter :
                     EnumConst.LinkJumpType.TYPE_LIVE_COLUMN_CHARGE.value
                 )
             ) { //精品课程
-                holder.typeTxt.visible()
-                holder.typeTxt.text = "课程"
+                typeTxt.visible()
+                typeTxt.text = "课程"
             } else if (StringUtils.equals(
                     item.jumpCode,
                     EnumConst.LinkJumpType.TYPE_SHOP_TRAVEL.value
                 )
             ) {
-                holder.typeTxt.visible()
-                holder.typeTxt.text = "旅游"
+                typeTxt.visible()
+                typeTxt.text = "旅游"
             }
 
 
@@ -122,12 +122,12 @@ class VideoPagerAdapter :
 
             if (item.isFollowing == 1) {
                 if (item.isFollowing == 1) {
-                    holder.attention.text = "相互关注"
+                    attention.text = "相互关注"
                 } else {
-                    holder.attention.text = "已关注"
+                    attention.text = "已关注"
                 }
             } else {
-                holder.attention.text = "关注"
+                attention.text = "关注"
             }
             expandTextView.setVisible(ObjectUtils.isNotEmpty(item.content))
             expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {

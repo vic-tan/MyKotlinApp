@@ -8,31 +8,32 @@ import androidx.viewbinding.ViewBinding
 import cn.jzvd.Jzvd
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.BarUtils
-import com.common.constant.GlobalConst
+import com.common.ComFun
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.activity.BaseRvActivity
+import com.common.constant.GlobalConst
 import com.common.constant.GlobalEnumConst
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.RecyclerUtils
-import com.common.widget.LoadingLayout
-import com.common.widget.component.extension.clickListener
-import com.common.widget.component.extension.startActivity
-import com.common.widget.component.extension.toast
-import com.common.widget.component.extension.visible
+import com.common.widget.component.extension.*
 import com.gyf.immersionbar.ktx.immersionBar
 import com.lxj.xpopup.XPopup
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.enums.PopupPosition
+import com.lxj.xpopup.interfaces.SimpleCallback
 import com.tanlifei.app.R
 import com.tanlifei.app.circle.adapter.VideoPagerAdapter
 import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.circle.viewmodel.CircleVideoPagerViewModel
+import com.tanlifei.app.circle.widget.VideoShadowPopupView
 import com.tanlifei.app.common.widget.video.JzvdStdTikTok
 import com.tanlifei.app.common.widget.video.OnViewPagerListener
 import com.tanlifei.app.common.widget.video.ViewPagerLayoutManager
 import com.tanlifei.app.databinding.ActivityCircleVideoPagerBinding
 import com.tanlifei.app.databinding.ItemVideoPagerBinding
+
 
 /**
  * @desc: 同学圈抖音效果
@@ -161,8 +162,8 @@ class CircleVideoPagerActivity :
     override fun itemClick(holder: ViewBinding, itemBean: CircleBean, v: View, position: Int) {
         holder as ItemVideoPagerBinding
         when (v) {
-            holder.praise -> {
-            }
+            /*  holder.praise -> {
+              }*/
             holder.comment -> {
             }
             holder.share -> {
@@ -181,6 +182,33 @@ class CircleVideoPagerActivity :
 
                         })
                 ).show()
+            }
+            holder.expandTextView,
+            holder.praise -> {
+                var popup = XPopup.Builder(mActivity)
+                    .atView(holder.bottomLine)
+                    .popupPosition(PopupPosition.Top)
+                    .setPopupCallback(object : SimpleCallback() {
+
+                        override fun beforeShow(popupView: BasePopupView?) {
+                            super.beforeShow(popupView)
+                            ComFun.mHandler.postDelayed({
+                                holder.bottomContent.gone()
+                            }, 200)
+                        }
+
+                        override fun beforeDismiss(popupView: BasePopupView?) {
+                            super.beforeDismiss(popupView)
+                            ComFun.mHandler.postDelayed({
+                                holder.bottomContent.visible()
+                            }, 200)
+                        }
+
+
+                    })
+                    .asCustom(VideoShadowPopupView(mActivity, itemBean))
+                popup.show()
+
             }
         }
     }
