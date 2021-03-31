@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.common.widget.component.extension.drawable
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.visible
 import com.tanlifei.app.R
@@ -21,6 +22,7 @@ class JzvdStdList(context: Context, attrs: AttributeSet) : JzvdStd(context, attr
         super.init(context)
         bottomContainer.gone()
         topContainer.gone()
+        loadingProgressBar.indeterminateDrawable = drawable(R.drawable.video_progress)
         posterImageView.scaleType = ImageView.ScaleType.FIT_CENTER
     }
 

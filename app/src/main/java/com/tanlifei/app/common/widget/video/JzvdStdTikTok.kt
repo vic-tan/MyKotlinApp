@@ -8,6 +8,7 @@ import android.widget.SeekBar
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.widget.component.extension.drawable
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.visible
 import com.tanlifei.app.R
@@ -24,6 +25,7 @@ class JzvdStdTikTok(context: Context, attrs: AttributeSet) : JzvdStd(context, at
 
     override fun init(context: Context?) {
         super.init(context)
+        loadingProgressBar.indeterminateDrawable = drawable(R.drawable.video_progress)
         bottomContainer.gone()
         topContainer.gone()
         bottomProgressBar.gone()
