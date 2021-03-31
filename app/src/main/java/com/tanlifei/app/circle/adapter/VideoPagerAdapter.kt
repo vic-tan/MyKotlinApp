@@ -60,6 +60,7 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
             school.setVisible(ObjectUtils.isNotEmpty(item.universityName))
 
             player.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
+            seekBar.progress = 0
             player.seekBar = seekBar
             Glide.with(player.context).load(item.image?.url)
                 .into(player.posterImageView)
