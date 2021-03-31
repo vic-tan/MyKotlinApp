@@ -59,16 +59,7 @@ class FollowAdapter :
         holder as ItemFollowBinding
         holder.apply {
             banner.gone()
-            player.gone()
-
-            banner.layoutParams.width = screenWidth
-            banner.layoutParams.height =
-                AutoHeightUtils.getHeightParams(screenWidth, bean.image)
-
-            playerLayout.layoutParams.width = screenWidth
-            playerLayout.layoutParams.height =
-                AutoHeightUtils.getHeightParams(screenWidth, bean.image)
-
+            playerLayout.gone()
             name.text = bean.nickName
             school.text =
                 if (ObjectUtils.isEmpty(bean.createtimeStr)) bean.universityName else "${bean.createtimeStr}  ${bean.universityName}"
@@ -94,22 +85,27 @@ class FollowAdapter :
             praiseCount.text = NumberUtils.setPraiseCount(bean.star)
             praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
             commentCount.text = NumberUtils.setCommentCount(bean.comment)
-
             when (bean.mediaType) {
                 1 -> {//视频
+                    playerLayout.layoutParams.width = screenWidth
+                    playerLayout.layoutParams.height =
+                        AutoHeightUtils.getHeightParams(screenWidth, bean.image)
                     val jzDataSource = JZDataSource(bean.videoUrl)
                     jzDataSource.looping = false
                     player.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
                     Glide.with(player.context).load(bean.image?.url)
                         .into(player.posterImageView)
-                    player.visible()
+                    playerLayout.visible()
                 }
                 else -> {
+                    banner.layoutParams.width = screenWidth
+                    banner.layoutParams.height =
+                        AutoHeightUtils.getHeightParams(screenWidth, bean.image)
                     //banner
                     banner.adapter =
                         CircleBannerAdapter(
                             banner.viewPager2,
-                            if (ObjectUtils.isNotEmpty(bean.imagesUrlList)) bean.imagesUrlList!! else mutableListOf()
+                            bean.imagesUrlList
                         )
                     banner.indicator = CircleIndicator(mContext)
                     banner.currentItem = 1

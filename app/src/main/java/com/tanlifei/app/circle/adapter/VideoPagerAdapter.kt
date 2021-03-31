@@ -13,6 +13,7 @@ import com.blankj.utilcode.util.StringUtils
 import com.bumptech.glide.Glide
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
+import com.common.base.listener.ComListener
 import com.common.constant.GlobalEnumConst
 import com.common.utils.GlideUtils
 import com.common.widget.ExpandTextView
@@ -29,7 +30,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class VideoPagerAdapter() :
+class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
     BaseRvAdapter<CircleBean>() {
     private var mTextViewWidth = screenWidth - dp2px(120f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
@@ -134,10 +135,12 @@ class VideoPagerAdapter() :
             expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
                 override fun onExpand(view: ExpandTextView) {
                     mPositionsAndStates.put(position, view.getExpandState())
+                    backCall?.call(holder, item)
                 }
 
                 override fun onShrink(view: ExpandTextView) {
                     mPositionsAndStates.put(position, view.getExpandState())
+                    backCall?.call(holder, item)
                 }
 
             })
@@ -152,6 +155,11 @@ class VideoPagerAdapter() :
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         val holder = holder as ItemVideoPagerBinding
-        return linkedSetOf(holder.praise, holder.comment, holder.share, holder.typeLayout,holder.expandTextView)
+        return linkedSetOf(
+            holder.praise,
+            holder.comment,
+            holder.share,
+            holder.typeLayout
+        )
     }
 }

@@ -1,5 +1,6 @@
 package com.example.httpsender.parser
 
+import com.blankj.utilcode.util.LogUtils
 import com.common.core.http.PageList
 import com.common.core.http.Response
 import rxhttp.wrapper.annotation.Parser
@@ -9,6 +10,7 @@ import rxhttp.wrapper.parse.AbstractParser
 import rxhttp.wrapper.utils.convert
 import java.io.IOException
 import java.lang.reflect.Type
+import kotlin.jvm.Throws
 
 /**
  * 输入T,输出T,并对code统一判断
@@ -44,7 +46,7 @@ open class ResponseParser<T> : AbstractParser<T> {
     override fun onParse(response: okhttp3.Response): T {
         val type: Type = ParameterizedTypeImpl[Response::class.java, mType] //获取泛型类型
         val data: Response<T> = response.convert(type)
-//        LogUtils.json("RxHttp", data)
+        LogUtils.json("RxHttp", data)
         var t = data.data //获取data字段
         if (t == null && mType === String::class.java) {
             /*

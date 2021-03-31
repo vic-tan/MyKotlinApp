@@ -15,6 +15,6 @@ interface ComListener {
     }
 
     interface BackCall {
-        fun call(any: Any)
+        fun call(any: Any? = null, any2: Any? = null)
     }
 }

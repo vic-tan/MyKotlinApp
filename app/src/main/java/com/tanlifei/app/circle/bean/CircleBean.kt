@@ -18,7 +18,7 @@ class CircleBean : Serializable {
     var videoImage: String? = null
     var imageUrl: String? = null
     var image: ImageBean? = null
-    var imagesUrlList: List<ImageBean>? = null
+    var imagesUrlList: List<ImageBean> = mutableListOf()
     var videoUrl: String? = null
     var content: String? = null
     var checkStatus = 1 //审核状态:0=无效,1=有效 ,2 审核中

@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.BarUtils
 import com.common.ComFun
 import com.common.base.adapter.BaseRvAdapter
+import com.common.base.listener.ComListener
 import com.common.base.ui.activity.BaseRvActivity
 import com.common.constant.GlobalConst
 import com.common.constant.GlobalEnumConst
@@ -41,7 +42,8 @@ import com.tanlifei.app.databinding.ItemVideoPagerBinding
  * @date: 2021/3/26 10:27
  */
 class CircleVideoPagerActivity :
-    BaseRvActivity<ActivityCircleVideoPagerBinding, CircleBean, CircleVideoPagerViewModel>() {
+    BaseRvActivity<ActivityCircleVideoPagerBinding, CircleBean, CircleVideoPagerViewModel>(),
+    ComListener.BackCall {
     private var mViewPagerLayoutManager: ViewPagerLayoutManager? = null
     private var mCurrentPosition = 0
 
@@ -156,7 +158,7 @@ class CircleVideoPagerActivity :
 
 
     override fun setAdapter(): BaseRvAdapter<CircleBean> {
-        return VideoPagerAdapter()
+        return VideoPagerAdapter(this)
     }
 
     override fun itemClick(holder: ViewBinding, itemBean: CircleBean, v: View, position: Int) {
@@ -183,32 +185,6 @@ class CircleVideoPagerActivity :
                         })
                 ).show()
             }
-            holder.expandTextView -> {
-                var popup = XPopup.Builder(mActivity)
-                    .atView(holder.bottomLine)
-                    .popupPosition(PopupPosition.Top)
-                    .setPopupCallback(object : SimpleCallback() {
-
-                        override fun beforeShow(popupView: BasePopupView?) {
-                            super.beforeShow(popupView)
-                            ComFun.mHandler.postDelayed({
-                                holder.bottomContent.gone()
-                            }, 200)
-                        }
-
-                        override fun beforeDismiss(popupView: BasePopupView?) {
-                            super.beforeDismiss(popupView)
-                            ComFun.mHandler.postDelayed({
-                                holder.bottomContent.visible()
-                            }, 200)
-                        }
-
-
-                    })
-                    .asCustom(VideoShadowPopupView(mActivity, itemBean))
-                popup.show()
-
-            }
         }
     }
 
@@ -233,6 +209,33 @@ class CircleVideoPagerActivity :
     override fun onPause() {
         super.onPause()
         Jzvd.releaseAllVideos()
+    }
+
+    override fun call(any: Any?, any2: Any?) {
+        val holder = any as ItemVideoPagerBinding
+        var popup = XPopup.Builder(mActivity)
+            .atView(holder.bottomLine)
+            .popupPosition(PopupPosition.Top)
+            .setPopupCallback(object : SimpleCallback() {
+
+                override fun beforeShow(popupView: BasePopupView?) {
+                    super.beforeShow(popupView)
+                    ComFun.mHandler.postDelayed({
+                        holder.bottomContent.gone()
+                    }, 200)
+                }
+
+                override fun beforeDismiss(popupView: BasePopupView?) {
+                    super.beforeDismiss(popupView)
+                    ComFun.mHandler.postDelayed({
+                        holder.bottomContent.visible()
+                    }, 200)
+                }
+
+
+            })
+            .asCustom(VideoShadowPopupView(mActivity, any2 as CircleBean))
+        popup.show()
     }
 
 }
