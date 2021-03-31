@@ -16,8 +16,8 @@
         android:scaleType="centerCrop"
         app:corner_radius_top_left="5dp"
         app:corner_radius_top_right="5dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.ruffian.library.widget.RTextView
@@ -35,7 +35,7 @@
         app:corner_radius_bottom_right="5dp"
         app:corner_radius_top_left="5dp"
         app:gradient_orientation="TL_BR"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="活动" />
 
@@ -65,7 +65,7 @@
         android:layout_marginRight="10dp"
         android:src="@mipmap/ic_play"
         android:visibility="gone"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.ruffian.library.widget.RLinearLayout
@@ -77,8 +77,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cover">
 
         <com.ruffian.library.widget.RLinearLayout
@@ -128,7 +128,7 @@
         android:maxLines="1"
         android:textColor="#333333"
         android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topic_layout"
         tools:text="致敬中国空军" />
 
@@ -142,7 +142,7 @@
         android:src="@mipmap/ic_default_avatar"
         app:corner_radius="13dp"
         app:is_circle="true"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content" />
 
     <TextView
@@ -154,8 +154,8 @@
         android:maxLines="1"
         android:textColor="@color/txt_help"
         android:textSize="14sp"
-        app:layout_constraintLeft_toRightOf="@id/user_head"
-        app:layout_constraintRight_toLeftOf="@id/praise_count"
+        app:layout_constraintStart_toEndOf="@id/user_head"
+        app:layout_constraintEnd_toStartOf="@id/praise_count"
         app:layout_constraintTop_toBottomOf="@id/content"
         tools:text="致敬中国空军" />
 
@@ -179,7 +179,7 @@
         app:icon_with_text="true"
         app:layout_constraintBaseline_toBaselineOf="@id/user_name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content" />
 
     <com.ruffian.library.widget.RTextView
@@ -187,7 +187,7 @@
         android:layout_height="10dp"
         app:corner_radius_bottom_left="5dp"
         app:corner_radius_bottom_right="5dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_head" />
 
 

@@ -10,8 +10,8 @@
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.ruffian.library.widget.RImageView
@@ -24,7 +24,7 @@
             app:border_width="1.5dp"
             app:is_circle="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.ruffian.library.widget.RTextView
@@ -48,7 +48,7 @@
             app:icon_width="25dp"
             app:is_circle="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.ruffian.library.widget.RConstraintLayout
@@ -59,8 +59,8 @@
             app:background_normal="@color/white"
             app:corner_radius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/userCover"
-            app:layout_constraintRight_toLeftOf="@id/customerService"
+            app:layout_constraintStart_toEndOf="@id/userCover"
+            app:layout_constraintEnd_toStartOf="@id/customerService"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -71,7 +71,7 @@
                 android:layout_marginStart="10dp"
                 android:background="@mipmap/ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:textColor="@color/txt_help"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/search"
+                app:layout_constraintStart_toEndOf="@id/search"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -97,8 +97,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_layout" />
 
 

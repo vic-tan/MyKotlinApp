@@ -15,8 +15,8 @@
             android:layout_height="180dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/bg_profile_default"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -26,8 +26,8 @@
             android:layout_height="0dp"
             app:background_normal="@color/com_shadow"
             app:layout_constraintBottom_toBottomOf="@id/persenalBg"
-            app:layout_constraintLeft_toLeftOf="@id/persenalBg"
-            app:layout_constraintRight_toRightOf="@id/persenalBg"
+            app:layout_constraintStart_toStartOf="@id/persenalBg"
+            app:layout_constraintEnd_toEndOf="@id/persenalBg"
             app:layout_constraintTop_toTopOf="@id/persenalBg" />
 
         <com.ruffian.library.widget.RImageView
@@ -40,7 +40,7 @@
             app:border_color="@color/white"
             android:src="@mipmap/ic_default_avatar"
             app:is_circle="true"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
@@ -50,8 +50,8 @@
             android:layout_marginEnd="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@id/userCover"
-            app:layout_constraintLeft_toRightOf="@id/userCover"
-            app:layout_constraintRight_toLeftOf="@id/arrow"
+            app:layout_constraintStart_toEndOf="@id/userCover"
+            app:layout_constraintEnd_toStartOf="@id/arrow"
             app:layout_constraintTop_toTopOf="@id/userCover">
 
             <TextView
@@ -92,7 +92,7 @@
             app:icon_src_normal="@mipmap/ic_arrow_right_white"
             app:icon_width="7dp"
             app:layout_constraintBottom_toBottomOf="@id/userCover"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/userCover" />
 
         <com.ruffian.library.widget.RConstraintLayout
@@ -105,8 +105,8 @@
             app:background_normal="@array/persenal_study_bg"
             app:corner_radius="8dp"
             app:gradient_orientation="LEFT_RIGHT"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/persenalBg">
 
             <ImageView
@@ -116,7 +116,7 @@
                 android:layout_marginStart="15dp"
                 android:src="@mipmap/ic_study"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -127,7 +127,7 @@
                 android:textColor="#804C14"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/studyIcon"
+                app:layout_constraintStart_toEndOf="@id/studyIcon"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.ruffian.library.widget.RTextView
@@ -146,7 +146,7 @@
                 app:border_width_normal="0.4dp"
                 app:corner_radius="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </com.ruffian.library.widget.RConstraintLayout>
@@ -160,8 +160,8 @@
             android:layout_marginEnd="10dp"
             app:background_normal="@color/white"
             app:corner_radius="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/studyLayout">
 
             <com.ruffian.library.widget.RTextView
@@ -176,8 +176,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_msg"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/friend"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/friend"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.ruffian.library.widget.RTextView
@@ -194,8 +194,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_friend"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/msg"
-                app:layout_constraintRight_toLeftOf="@id/credit"
+                app:layout_constraintStart_toEndOf="@id/msg"
+                app:layout_constraintEnd_toStartOf="@id/credit"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="RtlSymmetry" />
 
@@ -211,8 +211,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_credit"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/friend"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@id/friend"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -228,8 +228,8 @@
             android:layout_marginEnd="10dp"
             app:background_normal="@color/white"
             app:corner_radius="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/infoLayout">
 
             <com.ruffian.library.widget.RTextView
@@ -241,8 +241,8 @@
                 android:text="我的账户"
                 android:textColor="@color/txt_help"
                 android:textSize="16sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/wallet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/wallet"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.ruffian.library.widget.RTextView
@@ -257,8 +257,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_order"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/wallet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/wallet"
                 app:layout_constraintTop_toBottomOf="@id/accountTitle" />
 
             <com.ruffian.library.widget.RTextView
@@ -275,8 +275,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_wallet"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/order"
-                app:layout_constraintRight_toLeftOf="@id/discountCenter"
+                app:layout_constraintStart_toEndOf="@id/order"
+                app:layout_constraintEnd_toStartOf="@id/discountCenter"
                 app:layout_constraintTop_toBottomOf="@id/accountTitle"
                 tools:ignore="RtlSymmetry" />
 
@@ -292,8 +292,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_discount_center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/wallet"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@id/wallet"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/accountTitle" />
 
 
@@ -309,8 +309,8 @@
             android:layout_marginEnd="10dp"
             app:background_normal="@color/white"
             app:corner_radius="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/accountLayout">
 
             <com.ruffian.library.widget.RTextView
@@ -322,8 +322,8 @@
                 android:text="我的服务"
                 android:textColor="@color/txt_help"
                 android:textSize="16sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/wallet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/wallet"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.ruffian.library.widget.RTextView
@@ -338,8 +338,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_digame_center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/collect"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/collect"
                 app:layout_constraintTop_toBottomOf="@id/serviceTitle" />
 
             <com.ruffian.library.widget.RTextView
@@ -356,8 +356,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_collect"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/gameCenter"
-                app:layout_constraintRight_toLeftOf="@id/customerService"
+                app:layout_constraintStart_toEndOf="@id/gameCenter"
+                app:layout_constraintEnd_toStartOf="@id/customerService"
                 app:layout_constraintTop_toBottomOf="@id/serviceTitle"
                 tools:ignore="RtlSymmetry" />
 
@@ -373,8 +373,8 @@
                 app:icon_direction="top"
                 app:icon_src_normal="@mipmap/ic_customer_service"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/collect"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@id/collect"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/serviceTitle" />
 
 
@@ -389,8 +389,8 @@
             android:orientation="vertical"
             app:background_normal="@color/white"
             app:corner_radius="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/serviceLayout">
 
             <com.ruffian.library.widget.RConstraintLayout
@@ -477,8 +477,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/settingLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

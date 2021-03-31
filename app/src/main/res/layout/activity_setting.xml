@@ -78,8 +78,8 @@
         <TextView
             android:id="@+id/versionName"
             style="@style/setting_list_item_arrow_text_style"
-            app:layout_constraintLeft_toRightOf="@id/versionTitle"
-            app:layout_constraintRight_toLeftOf="@id/versionArrow" />
+            app:layout_constraintStart_toEndOf="@id/versionTitle"
+            app:layout_constraintEnd_toStartOf="@id/versionArrow" />
 
         <ImageView
             android:id="@+id/versionArrow"

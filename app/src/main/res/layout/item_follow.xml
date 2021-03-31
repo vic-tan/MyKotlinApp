@@ -18,7 +18,7 @@
         android:scaleType="centerCrop"
         app:corner_radius="27dp"
         app:is_circle="true"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -32,7 +32,7 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_more"
         app:layout_constraintBottom_toBottomOf="@id/userHead"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/userHead" />
 
     <LinearLayout
@@ -43,8 +43,8 @@
         android:layout_marginEnd="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/userHead"
-        app:layout_constraintLeft_toRightOf="@id/userHead"
-        app:layout_constraintRight_toLeftOf="@id/more"
+        app:layout_constraintStart_toEndOf="@id/userHead"
+        app:layout_constraintEnd_toStartOf="@id/more"
         app:layout_constraintTop_toTopOf="@id/userHead">
 
         <TextView
@@ -73,8 +73,8 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userInfo">
 
         <com.youth.banner.Banner
@@ -84,8 +84,8 @@
             android:layout_marginTop="20dp"
             android:background="@color/com_image_bg"
             android:scaleType="centerCrop"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,23 +94,23 @@
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
             android:background="@color/com_image_bg"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.tanlifei.app.common.widget.video.JzvdStdList
                 android:id="@+id/player"
                 style="@style/match_match"
                 android:background="@color/com_image_bg"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/player_control"
                 style="@style/match_match"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -132,16 +132,16 @@
         app:etv_ToShrinkHintColor="@color/txt_help"
         app:etv_ToShrinkHintColorBgPressed="@color/white"
         app:layout_constraintBottom_toTopOf="@id/line"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout" />
 
     <View
         android:id="@+id/margin_view"
         android:layout_width="match_parent"
         android:layout_height="15dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/expand_text_view" />
 
     <View
@@ -149,8 +149,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
         android:background="@color/com_line"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/margin_view" />
 
     <com.ruffian.library.widget.RConstraintLayout
@@ -159,8 +159,8 @@
         android:layout_height="55dp"
         app:background_normal="@color/white"
         app:corner_radius="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line">
 
         <LinearLayout
@@ -171,8 +171,8 @@
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/comment_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/comment_layout"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -200,8 +200,8 @@
             android:layout_height="20dp"
             android:layout_marginTop="17dp"
             android:background="@color/com_line"
-            app:layout_constraintLeft_toLeftOf="@id/praise_layout"
-            app:layout_constraintRight_toRightOf="@id/comment_layout"
+            app:layout_constraintStart_toStartOf="@id/praise_layout"
+            app:layout_constraintEnd_toEndOf="@id/comment_layout"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
@@ -212,8 +212,8 @@
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/praise_layout"
-            app:layout_constraintRight_toLeftOf="@id/share_layout"
+            app:layout_constraintStart_toEndOf="@id/praise_layout"
+            app:layout_constraintEnd_toStartOf="@id/share_layout"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -239,8 +239,8 @@
             android:layout_height="20dp"
             android:layout_marginTop="17dp"
             android:background="@color/com_line"
-            app:layout_constraintLeft_toLeftOf="@id/comment_layout"
-            app:layout_constraintRight_toRightOf="@id/share_layout"
+            app:layout_constraintStart_toStartOf="@id/comment_layout"
+            app:layout_constraintEnd_toEndOf="@id/share_layout"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -252,8 +252,8 @@
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/comment_layout"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@id/comment_layout"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView

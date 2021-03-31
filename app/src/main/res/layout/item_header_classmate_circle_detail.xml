@@ -18,8 +18,8 @@
         app:banner_indicator_normal_color="#99FFFFFF"
         app:banner_indicator_selected_color="@color/theme"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -32,8 +32,8 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:visibility="gone"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -72,7 +72,7 @@
         android:scaleType="centerCrop"
         app:corner_radius="27dp"
         app:is_circle="true"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner" />
 
 
@@ -97,7 +97,7 @@
         app:border_width_selected="0.5dp"
         app:corner_radius="15dp"
         app:layout_constraintBottom_toBottomOf="@id/userHead"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/userHead"
         app:text_color_normal="@color/theme"
         app:text_color_selected="@color/txt_help" />
@@ -111,8 +111,8 @@
         android:layout_marginEnd="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/userHead"
-        app:layout_constraintLeft_toRightOf="@id/userHead"
-        app:layout_constraintRight_toLeftOf="@id/attention"
+        app:layout_constraintStart_toEndOf="@id/userHead"
+        app:layout_constraintEnd_toStartOf="@id/attention"
         app:layout_constraintTop_toTopOf="@id/userHead">
 
         <TextView
@@ -145,8 +145,8 @@
         android:paddingEnd="16dp"
         android:textColor="@color/txt_basic"
         android:textSize="17sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userInfo"
         tools:text="今年是。" />
 
@@ -162,7 +162,7 @@
         android:orientation="horizontal"
         app:background_normal="#FFF5F5"
         app:corner_radius="5dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content">
 
 
@@ -205,7 +205,7 @@
         android:layout_marginBottom="6dp"
         android:textColor="@color/txt_help"
         android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topic_layout"
         tools:text="2021-01-23" />
 
@@ -215,8 +215,8 @@
         android:layout_height="0.4dp"
         android:layout_marginTop="10dp"
         android:background="@color/com_line"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comment_time" />
 
     <TextView
@@ -229,7 +229,7 @@
         android:text="100条评论"
         android:textColor="@color/txt_help"
         android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content_line" />
 
 

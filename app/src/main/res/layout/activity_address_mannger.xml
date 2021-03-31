@@ -14,8 +14,8 @@
         android:orientation="vertical"
         android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@id/enter"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -51,8 +51,8 @@
                     style="@style/setting_list_item_arrow_eidt_style"
                     android:paddingEnd="23dp"
                     android:maxLength="8"
-                    app:layout_constraintLeft_toRightOf="@id/name_title"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/name_title"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </com.ruffian.library.widget.RConstraintLayout>
 
@@ -77,8 +77,8 @@
                     android:inputType="number"
                     android:paddingEnd="23dp"
                     android:maxLength="11"
-                    app:layout_constraintLeft_toRightOf="@id/phone_title"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/phone_title"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </com.ruffian.library.widget.RConstraintLayout>
 
@@ -100,8 +100,8 @@
                     android:id="@+id/email"
                     style="@style/setting_list_item_arrow_eidt_style"
                     android:paddingEnd="23dp"
-                    app:layout_constraintLeft_toRightOf="@id/email_title"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/email_title"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
             </com.ruffian.library.widget.RConstraintLayout>
@@ -123,8 +123,8 @@
                     android:id="@+id/area"
                     style="@style/setting_list_item_arrow_text_style"
                     android:hint="请选择"
-                    app:layout_constraintLeft_toRightOf="@id/area_title"
-                    app:layout_constraintRight_toLeftOf="@id/area_arrow" />
+                    app:layout_constraintStart_toEndOf="@id/area_title"
+                    app:layout_constraintEnd_toStartOf="@id/area_arrow" />
 
 
                 <ImageView
@@ -149,7 +149,7 @@
                     android:text="详情地址*"
                     android:textColor="@color/txt_basic"
                     android:textSize="18sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
@@ -163,8 +163,8 @@
                     android:maxLength="30"
                     android:paddingTop="15dp"
                     android:paddingEnd="23dp"
-                    app:layout_constraintLeft_toRightOf="@id/area_details_title"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/area_details_title"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
             </com.ruffian.library.widget.RConstraintLayout>
@@ -188,7 +188,7 @@
         android:layout_marginBottom="20dp"
         android:text="确认"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

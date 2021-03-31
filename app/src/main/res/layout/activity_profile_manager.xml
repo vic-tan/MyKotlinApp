@@ -24,8 +24,8 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_default_avatar"
                 app:is_circle="true"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -37,8 +37,8 @@
                 android:textColor="@color/txt_basic"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_head" />
 
             <ImageView
@@ -47,8 +47,8 @@
                 android:layout_marginStart="48dp"
                 android:src="@mipmap/ic_photo"
                 app:layout_constraintBottom_toBottomOf="@+id/user_head"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -71,8 +71,8 @@
                 style="@style/setting_list_item_arrow_eidt_style"
                 android:paddingEnd="23dp"
                 android:maxLength="8"
-                app:layout_constraintLeft_toRightOf="@id/nickname_title"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/nickname_title"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
         </com.ruffian.library.widget.RConstraintLayout>
@@ -93,8 +93,8 @@
                 android:id="@+id/introduction"
                 style="@style/setting_list_item_arrow_text_style"
                 android:hint="请填写"
-                app:layout_constraintLeft_toRightOf="@id/introduction_title"
-                app:layout_constraintRight_toLeftOf="@id/introduction_arrow" />
+                app:layout_constraintStart_toEndOf="@id/introduction_title"
+                app:layout_constraintEnd_toStartOf="@id/introduction_arrow" />
 
 
             <ImageView
@@ -118,8 +118,8 @@
                 android:id="@+id/area"
                 style="@style/setting_list_item_arrow_text_style"
                 android:hint="请选择"
-                app:layout_constraintLeft_toRightOf="@id/area_title"
-                app:layout_constraintRight_toLeftOf="@id/area_arrow" />
+                app:layout_constraintStart_toEndOf="@id/area_title"
+                app:layout_constraintEnd_toStartOf="@id/area_arrow" />
 
 
             <ImageView
@@ -144,8 +144,8 @@
                 android:id="@+id/school"
                 style="@style/setting_list_item_arrow_text_style"
                 android:hint="请选择"
-                app:layout_constraintLeft_toRightOf="@id/school_title"
-                app:layout_constraintRight_toLeftOf="@id/school_arrow" />
+                app:layout_constraintStart_toEndOf="@id/school_title"
+                app:layout_constraintEnd_toStartOf="@id/school_arrow" />
 
 
             <ImageView
@@ -170,8 +170,8 @@
                 android:id="@+id/sex"
                 style="@style/setting_list_item_arrow_text_style"
                 android:hint="请选择"
-                app:layout_constraintLeft_toRightOf="@id/sex_title"
-                app:layout_constraintRight_toLeftOf="@id/sex_arrow" />
+                app:layout_constraintStart_toEndOf="@id/sex_title"
+                app:layout_constraintEnd_toStartOf="@id/sex_arrow" />
 
 
             <ImageView
@@ -196,8 +196,8 @@
                 android:id="@+id/age"
                 style="@style/setting_list_item_arrow_text_style"
                 android:hint="请选择"
-                app:layout_constraintLeft_toRightOf="@id/age_title"
-                app:layout_constraintRight_toLeftOf="@id/age_arrow" />
+                app:layout_constraintStart_toEndOf="@id/age_title"
+                app:layout_constraintEnd_toStartOf="@id/age_arrow" />
 
 
             <ImageView
@@ -222,8 +222,8 @@
                 android:id="@+id/address"
                 style="@style/setting_list_item_arrow_text_style"
                 android:hint="请补充"
-                app:layout_constraintLeft_toRightOf="@id/address_title"
-                app:layout_constraintRight_toLeftOf="@id/address_arrow" />
+                app:layout_constraintStart_toEndOf="@id/address_title"
+                app:layout_constraintEnd_toStartOf="@id/address_arrow" />
 
 
             <ImageView

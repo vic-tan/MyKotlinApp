@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="@color/com_root_bg"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -27,8 +27,8 @@
         android:textColor="@color/txt_basic"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_title_split" />
 
     <View
@@ -36,8 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
         android:background="@color/com_line"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_title" />
 
     <com.ruffian.library.widget.RImageView
@@ -49,7 +49,7 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/bg_default_img"
         app:corner_radius="5dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_title_line" />
 
     <TextView
@@ -63,8 +63,8 @@
         android:lines="1"
         android:textColor="@color/txt_basic"
         android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@id/cover"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cover"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/cover"
         tools:text="天飞丽谭" />
 
@@ -79,8 +79,8 @@
         android:lines="1"
         android:textColor="@color/txt_help"
         android:textSize="15sp"
-        app:layout_constraintLeft_toRightOf="@id/cover"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cover"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title"
         tools:text="天飞丽谭" />
 
@@ -96,8 +96,8 @@
         android:textColor="@color/txt_help"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/cover"
-        app:layout_constraintLeft_toRightOf="@id/cover"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cover"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/desc"
         tools:text="天飞丽谭" />
 
@@ -109,8 +109,8 @@
         android:layout_marginEnd="13dp"
         android:background="@color/com_line"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cover" />
 
 

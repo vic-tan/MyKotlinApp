@@ -13,16 +13,16 @@
         app:banner_indicator_normal_width="13dp"
         app:banner_indicator_selected_color="@color/theme"
         app:banner_indicator_selected_width="13dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/banner" />
 
     <com.ruffian.library.widget.RImageView
@@ -35,8 +35,8 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/bg_default_img"
         app:corner_radius="50dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recycler" />
 
 
@@ -46,8 +46,8 @@
         android:layout_marginTop="10dp"
         android:background="@color/white"
         android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ads">
 
         <net.lucode.hackware.magicindicator.MagicIndicator
@@ -66,8 +66,8 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="730dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabIndicatorSupper" />
 
     <View
@@ -78,8 +78,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="18dp"
         android:background="@color/com_line"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_pager" />
 
     <TextView
@@ -93,8 +93,8 @@
         android:text="查看更多"
         android:textColor="#2CC17B"
         android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

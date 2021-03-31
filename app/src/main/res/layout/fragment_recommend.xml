@@ -11,8 +11,8 @@
         android:paddingStart="4dp"
         android:paddingEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srlEnableFooterFollowWhenLoadFinished="true">
 
@@ -24,8 +24,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/refreshRecycler"
                 style="@style/match_match"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </com.common.widget.LoadingLayout>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>

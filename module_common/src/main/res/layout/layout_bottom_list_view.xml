@@ -19,8 +19,8 @@
         android:textSize="19sp"
         app:corner_radius_top_left="@dimen/dialog_corner_radius"
         app:corner_radius_top_right="@dimen/dialog_corner_radius"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -29,8 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
         android:background="@color/com_line"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -41,8 +41,8 @@
         android:id="@+id/share_type_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_line">
 
 
@@ -54,8 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
         android:background="@color/com_line"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/share_type_layout" />
 
     <com.ruffian.library.widget.RTextView
@@ -69,8 +69,8 @@
         android:textSize="18sp"
         app:corner_radius_top_left="@dimen/dialog_corner_radius"
         app:corner_radius_top_right="@dimen/dialog_corner_radius"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cancel_line"
         app:ripple="true"
         app:ripple_color="@color/com_ripple" />
