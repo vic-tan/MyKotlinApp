@@ -4,8 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
+import android.widget.SeekBar
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.visible
 import com.tanlifei.app.R
@@ -16,6 +18,9 @@ import com.tanlifei.app.R
  * @date: 2021/3/26 14:42
  */
 class JzvdStdTikTok(context: Context, attrs: AttributeSet) : JzvdStd(context, attrs) {
+
+    var seekBar: SeekBar? = null
+
 
     override fun init(context: Context?) {
         super.init(context)
@@ -100,5 +105,10 @@ class JzvdStdTikTok(context: Context, attrs: AttributeSet) : JzvdStd(context, at
         } else {
             startVideo()
         }
+    }
+
+    override fun onProgress(progress: Int, position: Long, duration: Long) {
+        super.onProgress(progress, position, duration)
+        seekBar?.progress = progress
     }
 }

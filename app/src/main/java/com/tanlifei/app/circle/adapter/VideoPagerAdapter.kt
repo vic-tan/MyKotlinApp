@@ -4,10 +4,10 @@ import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.viewbinding.ViewBinding
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
-import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.StringUtils
 import com.bumptech.glide.Glide
@@ -60,6 +60,7 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
             school.setVisible(ObjectUtils.isNotEmpty(item.universityName))
 
             player.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
+            player.seekBar = seekBar
             Glide.with(player.context).load(item.image?.url)
                 .into(player.posterImageView)
             share.imageAssetsFolder = "anim/shareimages/"
@@ -150,6 +151,26 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
                 mTextViewWidth,
                 state ?: 0
             )
+
+            seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar) {
+                    //总时间长度
+                    val duration: Long =
+                        player.duration / 100L * seekBar.progress * 1L
+                    player.mediaInterface.seekTo(duration)
+                }
+
+            })
         }
     }
 

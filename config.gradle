@@ -178,6 +178,7 @@ ext {
             //视频播放器库 引入了B站内核
             //https://github.com/bilibili/ijkplayer
             "ijkplayer"              : "tv.danmaku.ijk.media:ijkplayer-java:0.8.8",
+            "ijkplayer_armv7a"       : "tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8",
 
 
             //最新Bugly收库
