@@ -67,6 +67,7 @@ class ExpandTextView @JvmOverloads constructor(
     private var mTextLineCount = -1
     private var mLayoutWidth = 0
     private var mFutureTextViewWidth = 0
+    private var mIsExpand: Boolean = true
 
     //  the original text of this view
     private var mOrigText: CharSequence? = null
@@ -437,6 +438,10 @@ class ExpandTextView @JvmOverloads constructor(
         mOnExpandListener = listener
     }
 
+    fun setIsExpand(isExpand: Boolean) {
+        mIsExpand = isExpand
+    }
+
     private fun getValidLayout(): Layout {
         return if (mLayout1 != null) mLayout1!! else layout
     }
@@ -456,7 +461,8 @@ class ExpandTextView @JvmOverloads constructor(
                 }
             }
         }
-        setTextInternal(getNewTextByConfig(), mBufferType)
+        if (mIsExpand)
+            setTextInternal(getNewTextByConfig(), mBufferType)
     }
 
     override fun setText(text: CharSequence, type: BufferType) {

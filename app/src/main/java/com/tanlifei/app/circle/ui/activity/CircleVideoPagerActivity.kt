@@ -162,8 +162,8 @@ class CircleVideoPagerActivity :
     override fun itemClick(holder: ViewBinding, itemBean: CircleBean, v: View, position: Int) {
         holder as ItemVideoPagerBinding
         when (v) {
-            /*  holder.praise -> {
-              }*/
+            holder.praise -> {
+            }
             holder.comment -> {
             }
             holder.share -> {
@@ -183,8 +183,7 @@ class CircleVideoPagerActivity :
                         })
                 ).show()
             }
-            holder.expandTextView,
-            holder.praise -> {
+            holder.expandTextView -> {
                 var popup = XPopup.Builder(mActivity)
                     .atView(holder.bottomLine)
                     .popupPosition(PopupPosition.Top)

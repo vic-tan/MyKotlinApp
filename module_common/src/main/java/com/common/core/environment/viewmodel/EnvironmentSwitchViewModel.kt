@@ -1,5 +1,6 @@
 package com.common.core.environment.viewmodel
 
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.core.environment.utils.ApiEnvironmentConst
 import com.common.base.bean.ListDataChangePrams
 import com.common.base.viewmodel.BaseListViewModel
@@ -91,8 +92,8 @@ class EnvironmentSwitchViewModel : BaseListViewModel() {
     /**
      * 设置列表数据
      */
-    fun initListData(mapJsonStr: String) {
-        if (mapJsonStr.isNotEmpty()) {
+    fun initListData(mapJsonStr: String?) {
+        if (ObjectUtils.isNotEmpty(mapJsonStr)) {
             val environmentModuleList: MutableList<ModuleBean> =
                 Gson().fromJson<Array<ModuleBean>>(mapJsonStr, Array<ModuleBean>::class.java)
                     .toMutableList()

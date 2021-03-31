@@ -29,7 +29,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/8 10:41
  */
-class VideoPagerAdapter :
+class VideoPagerAdapter() :
     BaseRvAdapter<CircleBean>() {
     private var mTextViewWidth = screenWidth - dp2px(120f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
@@ -130,6 +130,7 @@ class VideoPagerAdapter :
                 attention.text = "关注"
             }
             expandTextView.setVisible(ObjectUtils.isNotEmpty(item.content))
+            expandTextView.setIsExpand(false)
             expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
                 override fun onExpand(view: ExpandTextView) {
                     mPositionsAndStates.put(position, view.getExpandState())

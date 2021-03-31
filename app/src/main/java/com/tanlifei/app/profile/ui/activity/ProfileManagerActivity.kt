@@ -40,7 +40,8 @@ import org.greenrobot.eventbus.EventBus
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */
-class ProfileManagerActivity : BaseToolBarActivity<ActivityProfileManagerBinding, ProfileViewModel>() {
+class ProfileManagerActivity :
+    BaseToolBarActivity<ActivityProfileManagerBinding, ProfileViewModel>() {
 
     var saveUrl = ""
     var areaOptions: OptionsPickerView<AreaBean>? = null
@@ -329,8 +330,10 @@ class ProfileManagerActivity : BaseToolBarActivity<ActivityProfileManagerBinding
                 ActivityResult.REQUEST_CODE_1 ->//简介
                     if (ObjectUtils.isNotEmpty(data)) {
                         var introduction = data!!.getStringExtra(GlobalConst.Extras.CONTENT)
-                        mViewModel.mUserBean?.bio = introduction;
-                        mBinding.introduction.text = introduction
+                        if (ObjectUtils.isNotEmpty(introduction)) {
+                            mViewModel.mUserBean?.bio = introduction!!
+                            mBinding.introduction.text = introduction
+                        }
                     }
                 ActivityResult.REQUEST_CODE_2 -> {//收货地址
                     if (ObjectUtils.isNotEmpty(data)) {

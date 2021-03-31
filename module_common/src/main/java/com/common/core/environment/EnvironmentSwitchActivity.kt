@@ -65,7 +65,7 @@ class EnvironmentSwitchActivity :
     }
 
     override fun init() {
-        val mapJsonStr: String = intent.getStringExtra(GlobalConst.Extras.JSON)
+        val mapJsonStr: String? = intent.getStringExtra(GlobalConst.Extras.JSON)
         mViewModel.initListData(mapJsonStr)
         initRecyclerView()
         mViewModel.mDataChange.observe(this, Observer {
