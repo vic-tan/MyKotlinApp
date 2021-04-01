@@ -201,7 +201,7 @@ abstract class BaseRvAdapter<T> :
     /**
      * 子类
      */
-    abstract fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View>
+    abstract fun addChildClickView(holder: ViewBinding): LinkedHashSet<View>
 
 
     /**

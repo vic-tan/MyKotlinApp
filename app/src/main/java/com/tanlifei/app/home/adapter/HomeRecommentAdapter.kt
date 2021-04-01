@@ -48,7 +48,7 @@ class HomeRecommentAdapter :
 
     }
 
-    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         return when (holder) {
             is ItemHomeRecommentBinding -> linkedSetOf(
                 holder.item

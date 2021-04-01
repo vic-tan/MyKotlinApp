@@ -40,7 +40,7 @@ class MenuAdapter :
 
     }
 
-    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         return when (holder) {
             is ItemHomeMenuBinding -> linkedSetOf(
                 holder.item
