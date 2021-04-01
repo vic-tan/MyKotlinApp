@@ -1,6 +1,7 @@
 package com.tanlifei.app.circle.ui.activity
 
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
@@ -28,12 +29,16 @@ import com.tanlifei.app.R
 import com.tanlifei.app.circle.adapter.VideoPagerAdapter
 import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.circle.viewmodel.CircleVideoPagerViewModel
+import com.tanlifei.app.circle.viewmodel.CircleViewModel
 import com.tanlifei.app.circle.widget.VideoShadowPopupView
+import com.tanlifei.app.common.event.PraiseEvent
+import com.tanlifei.app.common.event.UserEvent
 import com.tanlifei.app.common.widget.video.JzvdStdTikTok
 import com.tanlifei.app.common.widget.video.OnViewPagerListener
 import com.tanlifei.app.common.widget.video.ViewPagerLayoutManager
 import com.tanlifei.app.databinding.ActivityCircleVideoPagerBinding
 import com.tanlifei.app.databinding.ItemVideoPagerBinding
+import org.greenrobot.eventbus.EventBus
 
 
 /**
@@ -46,6 +51,7 @@ class CircleVideoPagerActivity :
     ComListener.BackCall {
     private var mViewPagerLayoutManager: ViewPagerLayoutManager? = null
     private var mCurrentPosition = 0
+    lateinit var circleViewModel: CircleViewModel
 
     companion object {
         const val TYPE_RECOMMEND = 1//从首页,智能随机推荐作品列表
@@ -61,6 +67,7 @@ class CircleVideoPagerActivity :
     }
 
     override fun createViewModel(): CircleVideoPagerViewModel {
+        circleViewModel = CircleViewModel()
         return CircleVideoPagerViewModel(
             intent.getLongExtra(GlobalConst.Extras.ID, 0),
             intent.getLongExtra(GlobalConst.Extras.UID, 0),
@@ -140,6 +147,44 @@ class CircleVideoPagerActivity :
             }
         })
 
+        circleViewModel.mFollowChanged.observe(this, Observer { followResponse ->
+            followResponse.position?.let {
+                (mViewModel.mData[it] as CircleBean).apply {
+                    isFollower = followResponse.isFollower
+                    isFollowing = followResponse.isFollowing
+                }
+                notifyPartItemChanged(it)
+            }
+        })
+        circleViewModel.mPraiseChanged.observe(this, Observer { praiseResult ->
+            praiseResult.position?.let {
+                var cbean = mViewModel.mData[it] as CircleBean
+                cbean.apply {
+                    when {
+                        cbean.isStar -> {
+                            if (cbean.star > 0)
+                                cbean.star--
+                        }
+                        else -> {
+                            cbean.star++
+                        }
+                    }
+                    cbean.isStar = !cbean.isStar
+
+                }
+                notifyPartItemChanged(it)
+                EventBus.getDefault().post(
+                    PraiseEvent(cbean)
+                )
+            }
+        })
+    }
+
+    /**
+     * 局部修改,因为视频不用刷新
+     */
+    private fun notifyPartItemChanged(position: Int) {
+        mAdapter.notifyItemChanged(position, "partUpdate")
     }
 
     private fun autoPlayVideo() {
@@ -164,9 +209,22 @@ class CircleVideoPagerActivity :
     override fun itemClick(holder: ViewBinding, itemBean: CircleBean, v: View, position: Int) {
         holder as ItemVideoPagerBinding
         when (v) {
+            holder.attention -> {
+                circleViewModel.requestFollow(
+                    itemBean.publishId,
+                    itemBean.isFollowing == 0,
+                    position
+                )
+            }
             holder.praise -> {
+                circleViewModel.requestPraise(
+                    itemBean.publishId,
+                    itemBean.isStar,
+                    position
+                )
             }
             holder.comment -> {
+
             }
             holder.share -> {
                 XPopup.Builder(mActivity).asCustom(

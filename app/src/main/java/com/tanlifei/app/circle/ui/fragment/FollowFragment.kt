@@ -13,6 +13,7 @@ import com.common.ComFun
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.constant.GlobalEnumConst
+import com.common.core.event.BaseEvent
 import com.common.core.share.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
@@ -24,14 +25,18 @@ import com.tanlifei.app.R
 import com.tanlifei.app.circle.adapter.FollowAdapter
 import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.circle.ui.activity.CircleVideoPagerActivity
+import com.tanlifei.app.circle.utils.CircleComUtils
 import com.tanlifei.app.circle.viewmodel.FollowViewModel
 import com.tanlifei.app.common.constant.EnumConst
+import com.tanlifei.app.common.event.PraiseEvent
 import com.tanlifei.app.common.widget.video.AutoPlayUtils
 import com.tanlifei.app.common.widget.video.JzvdStdList
 import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemFollowBinding
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 /**
@@ -187,6 +192,21 @@ class FollowFragment :
 
     override fun setAdapter(): BaseRvAdapter<CircleBean> {
         return FollowAdapter()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    override fun onMessageEvent(event: BaseEvent) {
+        if (event is PraiseEvent) {
+            CircleComUtils.syncPraise(
+                event,
+                mViewModel.mData,
+                mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+            )
+        }
+    }
+
+    override fun registerEventBus(): Boolean {
+        return true
     }
 
     override fun itemClick(

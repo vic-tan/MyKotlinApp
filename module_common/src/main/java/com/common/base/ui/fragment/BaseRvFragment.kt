@@ -28,23 +28,11 @@ abstract class BaseRvFragment<V : ViewBinding, VM : BaseListViewModel, T> :
         mAdapter = setAdapter()
     }
 
-    override fun initBefore() {
-        injectViewModel()
-    }
-
-    private fun injectViewModel() {
-        val vm = createViewModel()
-        mViewModel =
-            ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
-                .get(vm::class.java)
-        mViewModel.mApplication = requireActivity().application
-    }
 
     override fun initView() {
         super.initView()
         initAdapter()
     }
-
 
     /**
      * 初始化initAdapter()

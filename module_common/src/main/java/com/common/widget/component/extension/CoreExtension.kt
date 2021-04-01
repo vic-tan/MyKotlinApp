@@ -43,7 +43,7 @@ fun clickListener(vararg views: View, clickListener: View.OnClickListener) {
  * 打印日志
  */
 fun log(content: String?) {
-    if (BuildConfig.DEBUG) Log.i("[tlf_log]", content ?: "")
+    if (BuildConfig.DEBUG) Log.i("tlf_log", content ?: "")
 }
 
 /**

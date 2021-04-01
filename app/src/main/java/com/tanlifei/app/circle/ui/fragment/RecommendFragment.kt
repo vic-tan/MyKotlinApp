@@ -5,17 +5,23 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.constant.GlobalConst
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
+import com.common.constant.GlobalConst
+import com.common.core.event.BaseEvent
+import com.common.widget.component.extension.log
 import com.tanlifei.app.circle.adapter.RecommendAdapter
 import com.tanlifei.app.circle.adapter.itemdecoration.GridItemDecoration
 import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.circle.ui.activity.CircleDetailActivity
 import com.tanlifei.app.circle.ui.activity.CircleVideoPagerActivity
+import com.tanlifei.app.circle.utils.CircleComUtils
 import com.tanlifei.app.circle.viewmodel.RecommendViewModel
+import com.tanlifei.app.common.event.PraiseEvent
 import com.tanlifei.app.databinding.FragmentRecommendBinding
 import com.tanlifei.app.databinding.ItemRecommendBinding
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 /**
@@ -26,16 +32,17 @@ import com.tanlifei.app.databinding.ItemRecommendBinding
 class RecommendFragment :
     BaseRvFragment<FragmentRecommendBinding, RecommendViewModel, CircleBean>() {
 
+    var id: Long? = null
 
-    companion object {
-        fun newInstance(id: Long) = RecommendFragment().apply {
-            arguments?.apply {
-                putLong(GlobalConst.Extras.ID, id)
-            }
-        }
-    }
 
     override fun createViewModel(): RecommendViewModel {
+        id = arguments?.getLong(
+            GlobalConst.Extras.ID,
+            0
+        )
+        log(
+            "${id}---->createViewModel"
+        )
         return RecommendViewModel(
             if (ObjectUtils.isEmpty(arguments)) 0 else arguments!!.getLong(
                 GlobalConst.Extras.ID,
@@ -45,6 +52,7 @@ class RecommendFragment :
     }
 
     override fun onFirstVisibleToUser() {
+
         initRecycler(
             mBinding.smartRefreshLayout,
             mBinding.refreshRecycler,
@@ -67,6 +75,24 @@ class RecommendFragment :
 
     override fun setAdapter(): BaseRvAdapter<CircleBean> {
         return RecommendAdapter()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    override fun onMessageEvent(event: BaseEvent) {
+        if (event is PraiseEvent) {
+            log(
+                "${event.circleBean.isStar},${id}---->onMessageEvent"
+            )
+            CircleComUtils.syncPraise(
+                event,
+                mViewModel.mData,
+                mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+            )
+        }
+    }
+
+    override fun registerEventBus(): Boolean {
+        return true
     }
 
     override fun itemClick(

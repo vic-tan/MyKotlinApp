@@ -31,7 +31,6 @@ class RecommendTabFragment :
     BaseLazyFragment<FragmentClassmatecircleRecommendBinding, RecommendTabViewModel>() {
 
 
-
     companion object {
         fun newInstance() = RecommendTabFragment()
     }
@@ -123,7 +122,7 @@ class RecommendTabFragment :
             }
         }
         mBinding.tabIndicator.navigator = commonNavigator
-        mBinding.viewPager.offscreenPageLimit = 10//有内存泄漏暂时先用这句处理内存泄漏
+        mBinding.viewPager.offscreenPageLimit = 5//有内存泄漏暂时先用这句处理内存泄漏
         ViewPagerHelper.bind(mBinding.tabIndicator, mBinding.viewPager)
     }
 }

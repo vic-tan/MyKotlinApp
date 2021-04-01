@@ -9,6 +9,8 @@ import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.circle.bean.CommentBean
 import com.tanlifei.app.circle.bean.ResponseCommentBean
 import com.tanlifei.app.circle.utils.CommentUrlType
+import com.tanlifei.app.common.bean.FollowResponse
+import com.tanlifei.app.common.bean.PraiseResponse
 import com.tanlifei.app.common.constant.ApiUrlConst
 import com.tanlifei.app.home.bean.HomeHeaderDataBean
 import com.tanlifei.app.main.bean.AdsBean
@@ -138,6 +140,15 @@ object Repository {
         .add("email", userBean.email)
         .toResponse<String>().await()
 
+
+    /**
+     * 关注/取消关注
+     */
+    suspend fun requestFollow(id: Long, isFollow: Boolean) =
+        RxHttp.postJson(if (isFollow) ApiUrlConst.URL_FOLLOW else ApiUrlConst.URL_CANCEL_FOLLOW)
+            .add("followerUid", id)
+            .toResponse<FollowResponse>().await()
+
     /**—————————————————————————————————————————————————— 首页相关  ——————————————————————————————————————————————*/
 
     /**
@@ -182,6 +193,16 @@ object Repository {
         RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_DETAIL)
             .add("publishId", id)
             .toResponse<CircleBean>().await()
+
+
+    /**
+     * 点赞或者取消
+     */
+    suspend fun requestPraise(id: Long, isPraise: Boolean) =
+        RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_PRAISE)
+            .add("publishId", id)
+            .add("type", if (isPraise) 2 else 1)
+            .toResponse<PraiseResponse>().await()
 
 
     /**

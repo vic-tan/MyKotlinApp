@@ -83,7 +83,8 @@ class FollowAdapter :
             expandTextView.setVisible(ObjectUtils.isNotEmpty(bean.content))
             marginView.setVisible(ObjectUtils.isNotEmpty(bean.content))
             praiseCount.text = NumberUtils.setPraiseCount(bean.star)
-            praiseIcon.setImageResource(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+            log("${bean.isStar}")
+            praiseIcon.setImageDrawable(drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray))
             commentCount.text = NumberUtils.setCommentCount(bean.comment)
             when (bean.mediaType) {
                 1 -> {//视频

@@ -77,6 +77,13 @@ object ApiUrlConst {
     /* 更新个人信息 */
     const val URL_UPDATE_USER = "${URL_USER}updateUser"
 
+    /* 关注 */
+    const val URL_FOLLOW = "${URL_USER}follow"
+
+    /* 取消关注 */
+    const val URL_CANCEL_FOLLOW = "${URL_USER}cancelFollow"
+
+
 
     /**—————————————————————————————————————————————————— 首页相关  ——————————————————————————————————————————————*/
 
@@ -111,6 +118,10 @@ object ApiUrlConst {
 
     /* 获取文娱视频列表 */
     const val URL_ENTERTAINMENT_VIDEO_LIST = "${URL_ENTERTAINMENT}getEntertainmentVideo"
+
+    /* 点赞或者取消 */
+    const val URL_ENTERTAINMENT_PRAISE = "${URL_ENTERTAINMENT}starOrCancel"
+
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 

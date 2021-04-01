@@ -44,13 +44,26 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
     }
 
     override fun onBindViewHolder(
+        holder: BaseRvHolder<ViewBinding>,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (ObjectUtils.isEmpty(payloads)) {
+            onBindViewHolder(holder, position)
+        } else {
+            val item = mData[position] as CircleBean
+            val holder = holder.binding as ItemVideoPagerBinding
+            partChange(holder, item)
+        }
+    }
+
+
+    override fun onBindViewHolder(
         holder: ViewBinding,
         position: Int,
         item: CircleBean
     ) {
         val holder = holder as ItemVideoPagerBinding
-
-
         val jzDataSource = JZDataSource(item.videoUrl)
         jzDataSource.looping = true
         holder.apply {
@@ -68,20 +81,6 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
             share.setAnimation("anim/share.json")
             share.repeatCount = Int.MAX_VALUE
             share.playAnimation()
-            praise.drawableText(
-                if (item.isStar) R.mipmap.ic_praise_video_pre else R.mipmap.ic_praise_video_normal,
-                if (item.isStar) 36f else 40f,
-                40f,
-                GlobalEnumConst.DrawableDirection.TOP
-            )
-            comment.drawableText(
-                R.mipmap.ic_comment,
-                40f,
-                40f,
-                GlobalEnumConst.DrawableDirection.TOP
-            )
-            praise.text = NumberUtils.setPraiseCount(item.star)
-            comment.text = NumberUtils.setCommentCount(item.comment)
 
             //商品分类
             topicLayout.setVisible(ObjectUtils.isNotEmpty(item.entertainmentTopicName))
@@ -118,20 +117,7 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
             }
 
 
-            attention.helper.backgroundColorNormal =
-                color(if (item.isFollowing == 1) R.color.color_33FFFFFF else R.color.theme)
-            attention.helper.borderColorNormal =
-                color(if (item.isFollowing == 1) R.color.color_99FFFFFF else R.color.theme)
 
-            if (item.isFollowing == 1) {
-                if (item.isFollowing == 1) {
-                    attention.text = "相互关注"
-                } else {
-                    attention.text = "已关注"
-                }
-            } else {
-                attention.text = "关注"
-            }
             expandTextView.setVisible(ObjectUtils.isNotEmpty(item.content))
             expandTextView.setIsExpand(false)
             expandTextView.setExpandListener(object : ExpandTextView.OnExpandListener {
@@ -173,12 +159,51 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
 
             })
         }
+        partChange(holder,item)
+    }
+
+    private fun partChange(holder: ItemVideoPagerBinding, item: CircleBean) {
+        holder.apply {
+            //评论,点赞
+            praise.drawableText(
+                if (item.isStar) R.mipmap.ic_praise_video_pre else R.mipmap.ic_praise_video_normal,
+                if (item.isStar) 36f else 40f,
+                40f,
+                GlobalEnumConst.DrawableDirection.TOP
+            )
+            comment.drawableText(
+                R.mipmap.ic_comment,
+                40f,
+                40f,
+                GlobalEnumConst.DrawableDirection.TOP
+            )
+            praise.text = NumberUtils.setPraiseCount(item.star)
+            comment.text = NumberUtils.setCommentCount(item.comment)
+
+
+            //关注
+            attention.helper.backgroundColorNormal =
+                color(if (item.isFollowing == 1) R.color.color_33FFFFFF else R.color.theme)
+            attention.helper.borderColorNormal =
+                color(if (item.isFollowing == 1) R.color.color_99FFFFFF else R.color.theme)
+
+            if (item.isFollowing == 1) {
+                if (item.isFollowing == 1) {
+                    attention.text = "相互关注"
+                } else {
+                    attention.text = "已关注"
+                }
+            } else {
+                attention.text = "关注"
+            }
+        }
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         val holder = holder as ItemVideoPagerBinding
         return linkedSetOf(
             holder.praise,
+            holder.attention,
             holder.comment,
             holder.share,
             holder.typeLayout

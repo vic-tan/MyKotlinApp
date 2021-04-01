@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.common.base.viewmodel.BaseViewModel
+import com.common.core.event.BaseEvent
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
@@ -28,6 +32,9 @@ open abstract class BaseFragment<V : ViewBinding, VM : BaseViewModel> : Fragment
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (registerEventBus()) {
+            EventBus.getDefault().register(this)  //事件总线注册
+        }
         val type =
             javaClass.genericSuperclass as ParameterizedType
         val cls = type.actualTypeArguments[0] as Class<*>
@@ -51,7 +58,6 @@ open abstract class BaseFragment<V : ViewBinding, VM : BaseViewModel> : Fragment
         return mBinding.root
     }
 
-    open fun initBefore() {}
 
     override fun onViewCreated(
         view: View,
@@ -64,15 +70,40 @@ open abstract class BaseFragment<V : ViewBinding, VM : BaseViewModel> : Fragment
     private fun injectViewModel() {
         val vm = createViewModel()
         mViewModel =
-            ViewModelProvider(this, BaseViewModel.createViewModelFactory(createViewModel()))
+            ViewModelProvider(this, BaseViewModel.createViewModelFactory(vm))
                 .get(vm::class.java)
         mViewModel.mApplication = requireActivity().application
     }
+
+
+    /** —————————————————————————————————————————— 子类可重写方法 ————————————————————————————————————————————————— **/
+
+    open fun initBefore() {}
+
+    /**
+     *  设置 registerEventBus 为true后重写该方法
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    open fun onMessageEvent(event: BaseEvent) {
+
+    }
+
+    /**
+     * 是否注册EventBus
+     */
+    open fun registerEventBus(): Boolean {
+        return false
+    }
+
+    /** —————————————————————————————————————————— 子类抽象方法 ————————————————————————————————————————————————— **/
 
     abstract fun initView()
 
     override fun onDestroyView() {
         super.onDestroyView()
+        if (registerEventBus()) {
+            EventBus.getDefault().unregister(this)
+        }
         binding = null
     }
 }

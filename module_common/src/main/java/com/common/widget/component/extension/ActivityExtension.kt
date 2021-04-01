@@ -1,7 +1,10 @@
 package com.common.widget.component.extension
 
 import android.content.Intent
+import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.ActivityUtils
+import com.common.base.ui.fragment.BaseFragment
 
 /**
  * @desc:actvity 跳转类
@@ -23,4 +26,5 @@ inline fun <reified T> startActivityForResult(requestCode: Int, block: Intent.()
         requestCode
     )
 }
+
 

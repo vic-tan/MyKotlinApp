@@ -8,7 +8,7 @@ import com.tanlifei.app.common.repository.Repository
  * @author: tanlifei
  * @date: 2021/2/7 15:41
  */
-class RecommendViewModel(private var mCategoryId: Long = 0) : BaseListViewModel() {
+class RecommendViewModel(private val mCategoryId: Long) : BaseListViewModel() {
 
 
     override fun requestList() {
