@@ -31,9 +31,6 @@ class RecommendTabFragment :
     BaseLazyFragment<FragmentClassmatecircleRecommendBinding, RecommendTabViewModel>() {
 
 
-    companion object {
-        fun newInstance() = RecommendTabFragment()
-    }
 
 
     override fun createViewModel(): RecommendTabViewModel {

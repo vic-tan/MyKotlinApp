@@ -25,10 +25,6 @@ class HomeRecommendFragment :
     BaseRvFragment<FragmentFollowBinding, HomeRecommendViewModel, CircleBean>() {
 
 
-    companion object {
-        fun newInstance() = HomeRecommendFragment()
-    }
-
     override fun createViewModel(): HomeRecommendViewModel {
         return HomeRecommendViewModel()
     }

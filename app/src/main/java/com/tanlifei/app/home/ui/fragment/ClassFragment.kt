@@ -11,9 +11,6 @@ import com.tanlifei.app.databinding.FragmentStudyBinding
  */
 class ClassFragment : BaseLazyFragment<FragmentStudyBinding, EmptyViewModel>() {
 
-    companion object {
-        fun newInstance() = ClassFragment()
-    }
 
     override fun createViewModel(): EmptyViewModel {
         return EmptyViewModel()

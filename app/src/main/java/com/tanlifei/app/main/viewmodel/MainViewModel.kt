@@ -10,6 +10,7 @@ import com.common.base.bean.UserBean
 import com.common.core.navigator.NavigatorAdapter
 import com.common.core.navigator.NavigatorFragmentManager
 import com.common.base.viewmodel.BaseViewModel
+import com.common.widget.component.extension.newInstanceFragment
 import com.tanlifei.app.R
 import com.tanlifei.app.circle.ui.fragment.CircleFragment
 import com.tanlifei.app.common.constant.EnumConst
@@ -17,6 +18,7 @@ import com.tanlifei.app.common.repository.Repository
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.home.ui.fragment.ClassFragment
 import com.tanlifei.app.home.ui.fragment.HomeFragment
+import com.tanlifei.app.home.ui.fragment.HomeRecommendFragment
 import com.tanlifei.app.home.ui.fragment.StudyFragment
 import com.tanlifei.app.profile.ui.fragment.ProfileFragment
 import org.litepal.LitePal
@@ -136,10 +138,10 @@ class MainViewModel : BaseViewModel() {
      * 绑定tab 中各对应的Fragment
      */
     fun bindFragments() {
-        mFragments.add(HomeFragment.newInstance())
-        mFragments.add(ClassFragment.newInstance())
-        mFragments.add(CircleFragment.newInstance())
-        mFragments.add(StudyFragment.newInstance())
-        mFragments.add(ProfileFragment.newInstance())
+        mFragments.add(newInstanceFragment<HomeFragment> {})
+        mFragments.add(newInstanceFragment<ClassFragment> {})
+        mFragments.add(newInstanceFragment<CircleFragment> {})
+        mFragments.add(newInstanceFragment<StudyFragment> {})
+        mFragments.add(newInstanceFragment<ProfileFragment> {})
     }
 }

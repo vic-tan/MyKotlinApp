@@ -41,7 +41,7 @@ class RecommendTabViewModel(private val mManager: FragmentManager) : BaseViewMod
     }
 
     private fun addFragment() {
-        mTabAdapter = RecommendTabAdapter(mApplication, mManager, mData)
+        mTabAdapter = RecommendTabAdapter(mManager, mData)
         dataChanged.value = true
     }
 }

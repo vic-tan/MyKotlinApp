@@ -50,9 +50,7 @@ class FollowFragment :
     lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var mHomeViewModel: MainViewModel
 
-    companion object {
-        fun newInstance() = FollowFragment()
-    }
+
 
     override fun createViewModel(): FollowViewModel {
         return FollowViewModel()

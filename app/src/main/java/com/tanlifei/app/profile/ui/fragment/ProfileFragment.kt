@@ -28,9 +28,6 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding, EmptyViewModel>
 
     private lateinit var mHomeViewModel: MainViewModel
 
-    companion object {
-        fun newInstance()=ProfileFragment()
-    }
 
     override fun createViewModel(): EmptyViewModel {
         return EmptyViewModel()

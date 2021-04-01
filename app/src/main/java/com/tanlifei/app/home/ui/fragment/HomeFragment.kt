@@ -14,8 +14,10 @@ import com.common.widget.component.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.common.widget.component.extension.click
+import com.common.widget.component.extension.newInstanceFragment
 import com.common.widget.component.extension.toast
 import com.tanlifei.app.circle.bean.CircleBean
+import com.tanlifei.app.circle.ui.fragment.RecommendTabFragment
 import com.tanlifei.app.databinding.*
 import com.tanlifei.app.home.adapter.HomeAdapter
 import com.tanlifei.app.home.adapter.HomeBannerAdapter
@@ -44,10 +46,6 @@ class HomeFragment : BaseLazyFragment<FragmentHomeBinding, HomeViewModel>() {
     private lateinit var fragmentAdapter: BasePagerAdapter
     private var mFragments: MutableList<HomeRecommendFragment> = ArrayList()
     private var isFirstLoad = true
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
 
 
     override fun createViewModel(): HomeViewModel {
@@ -153,9 +151,9 @@ class HomeFragment : BaseLazyFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
         //ViewPager 推荐
-        mFragments.add(HomeRecommendFragment.newInstance())
-        mFragments.add(HomeRecommendFragment.newInstance())
-        mFragments.add(HomeRecommendFragment.newInstance())
+        mFragments.add(newInstanceFragment {})
+        mFragments.add(newInstanceFragment {})
+        mFragments.add(newInstanceFragment {})
         fragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
         header.viewPager.adapter = fragmentAdapter
         header.viewPager.offscreenPageLimit = 3

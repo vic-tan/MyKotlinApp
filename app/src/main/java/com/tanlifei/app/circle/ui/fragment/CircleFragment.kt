@@ -6,6 +6,8 @@ import com.blankj.utilcode.util.BarUtils
 import com.common.base.adapter.BasePagerAdapter
 import com.common.base.ui.fragment.BaseLazyFragment
 import com.common.base.viewmodel.EmptyViewModel
+import com.common.constant.GlobalConst
+import com.common.widget.component.extension.newInstanceFragment
 import com.common.widget.component.magicindicator.MagicIndicatorUtils
 import com.tanlifei.app.common.constant.EnumConst
 import com.tanlifei.app.databinding.FragmentClassmatecircleBinding
@@ -25,9 +27,6 @@ class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding, EmptyVie
     private var mFragments: MutableList<Fragment> = ArrayList()
     private lateinit var mHomeViewModel: MainViewModel
 
-    companion object {
-        fun newInstance() = CircleFragment()
-    }
 
     override fun createViewModel(): EmptyViewModel {
         return EmptyViewModel()
@@ -66,8 +65,8 @@ class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding, EmptyVie
      * 绑定tab 中各对应的Fragment
      */
     private fun bindFragments() {
-        mFragments.add(FollowFragment.newInstance())
-        mFragments.add(RecommendTabFragment.newInstance())
+        mFragments.add(newInstanceFragment<FollowFragment> {})
+        mFragments.add(newInstanceFragment<RecommendTabFragment> {})
         mFragmentAdapter = BasePagerAdapter(childFragmentManager, mFragments)
         mBinding.viewPager.adapter = mFragmentAdapter
         mBinding.viewPager.currentItem = EnumConst.CircleTabTag.RECOMMEND.value
