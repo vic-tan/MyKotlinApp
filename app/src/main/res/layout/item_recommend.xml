@@ -16,8 +16,8 @@
         android:scaleType="centerCrop"
         app:corner_radius_top_left="5dp"
         app:corner_radius_top_right="5dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.ruffian.library.widget.RTextView
@@ -77,8 +77,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cover">
 
         <com.ruffian.library.widget.RLinearLayout
@@ -151,16 +151,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
+        android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/txt_help"
         android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/praise"
         app:layout_constraintStart_toEndOf="@id/user_head"
-        app:layout_constraintEnd_toStartOf="@id/praise_count"
         app:layout_constraintTop_toBottomOf="@id/content"
         tools:text="致敬中国空军" />
 
-    <com.ruffian.library.widget.RTextView
-        android:id="@+id/praise_count"
+    <TextView
+        android:id="@+id/praise"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
@@ -172,11 +174,6 @@
         android:text="点赞"
         android:textColor="@color/txt_help"
         android:textSize="14sp"
-        app:icon_direction="left"
-        app:icon_height="16dp"
-        app:icon_src_normal="@mipmap/ic_praise_gray"
-        app:icon_width="16dp"
-        app:icon_with_text="true"
         app:layout_constraintBaseline_toBaselineOf="@id/user_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

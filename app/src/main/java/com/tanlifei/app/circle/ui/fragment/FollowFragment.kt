@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
+import com.common.constant.GlobalConst
 import com.common.constant.GlobalEnumConst
 import com.common.core.event.BaseEvent
 import com.common.core.share.ShareBean
@@ -26,6 +27,7 @@ import com.tanlifei.app.circle.adapter.FollowAdapter
 import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.circle.ui.activity.CircleVideoPagerActivity
 import com.tanlifei.app.circle.utils.CircleComUtils
+import com.tanlifei.app.circle.viewmodel.CircleViewModel
 import com.tanlifei.app.circle.viewmodel.FollowViewModel
 import com.tanlifei.app.common.constant.EnumConst
 import com.tanlifei.app.common.event.PraiseEvent
@@ -35,6 +37,7 @@ import com.tanlifei.app.databinding.FragmentFollowBinding
 import com.tanlifei.app.databinding.ItemFollowBinding
 import com.tanlifei.app.main.ui.activity.MainActivity
 import com.tanlifei.app.main.viewmodel.MainViewModel
+import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -49,7 +52,7 @@ class FollowFragment :
 
     lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var mHomeViewModel: MainViewModel
-
+    private lateinit var circleViewModel: CircleViewModel
 
 
     override fun createViewModel(): FollowViewModel {
@@ -57,6 +60,7 @@ class FollowFragment :
     }
 
     override fun onFirstVisibleToUser() {
+        circleViewModel = CircleViewModel()
         mHomeViewModel = (activity as MainActivity).mViewModel
         initRecycler(
             mBinding.refreshLayout.smartRefreshLayout,
@@ -64,6 +68,13 @@ class FollowFragment :
             mBinding.refreshLayout.refreshLoadingLayout
         )
         initListener()
+        initViewModelObserve()
+    }
+
+    /**
+     * 设置ViewModel的observe
+     */
+    private fun initViewModelObserve() {
         mHomeViewModel.mShowFollowFragment.observe(this, Observer {
             when (it) {
                 EnumConst.CircleTabTag.CIRCLE.value -> {
@@ -77,7 +88,9 @@ class FollowFragment :
             }
 
         })
+        CircleComUtils.notifyPraiseObserve(circleViewModel, this, mViewModel.mData)
     }
+
 
 
     override fun dataChangeObserve() {
@@ -203,6 +216,7 @@ class FollowFragment :
         }
     }
 
+
     override fun registerEventBus(): Boolean {
         return true
     }
@@ -215,6 +229,13 @@ class FollowFragment :
     ) {
         holder as ItemFollowBinding
         when (v) {
+            holder.praiseLayout -> {
+                circleViewModel.requestPraise(
+                    itemBean.publishId,
+                    itemBean.isStar,
+                    position
+                )
+            }
             holder.more,
             holder.shareLayout -> {
                 context?.let {

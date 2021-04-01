@@ -1,6 +1,7 @@
 package com.tanlifei.app.circle.ui.fragment
 
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewbinding.ViewBinding
@@ -16,10 +17,12 @@ import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.circle.ui.activity.CircleDetailActivity
 import com.tanlifei.app.circle.ui.activity.CircleVideoPagerActivity
 import com.tanlifei.app.circle.utils.CircleComUtils
+import com.tanlifei.app.circle.viewmodel.CircleViewModel
 import com.tanlifei.app.circle.viewmodel.RecommendViewModel
 import com.tanlifei.app.common.event.PraiseEvent
 import com.tanlifei.app.databinding.FragmentRecommendBinding
 import com.tanlifei.app.databinding.ItemRecommendBinding
+import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -32,17 +35,9 @@ import org.greenrobot.eventbus.ThreadMode
 class RecommendFragment :
     BaseRvFragment<FragmentRecommendBinding, RecommendViewModel, CircleBean>() {
 
-    var id: Long? = null
-
+    private lateinit var circleViewModel: CircleViewModel
 
     override fun createViewModel(): RecommendViewModel {
-        id = arguments?.getLong(
-            GlobalConst.Extras.ID,
-            0
-        )
-        log(
-            "${id}---->createViewModel"
-        )
         return RecommendViewModel(
             if (ObjectUtils.isEmpty(arguments)) 0 else arguments!!.getLong(
                 GlobalConst.Extras.ID,
@@ -52,7 +47,7 @@ class RecommendFragment :
     }
 
     override fun onFirstVisibleToUser() {
-
+        circleViewModel = CircleViewModel()
         initRecycler(
             mBinding.smartRefreshLayout,
             mBinding.refreshRecycler,
@@ -63,7 +58,14 @@ class RecommendFragment :
                 8
             )
         )
+        initViewModelObserve()
+    }
 
+    /**
+     * 设置ViewModel的observe
+     */
+    private fun initViewModelObserve() {
+        CircleComUtils.notifyPraiseObserve(circleViewModel, this, mViewModel.mData)
     }
 
     /**
@@ -80,9 +82,6 @@ class RecommendFragment :
     @Subscribe(threadMode = ThreadMode.MAIN)
     override fun onMessageEvent(event: BaseEvent) {
         if (event is PraiseEvent) {
-            log(
-                "${event.circleBean.isStar},${id}---->onMessageEvent"
-            )
             CircleComUtils.syncPraise(
                 event,
                 mViewModel.mData,
@@ -103,6 +102,13 @@ class RecommendFragment :
     ) {
         holder as ItemRecommendBinding
         when (v) {
+            holder.praise -> {
+                circleViewModel.requestPraise(
+                    itemBean.publishId,
+                    itemBean.isStar,
+                    position
+                )
+            }
             holder.item -> {
                 if (itemBean.mediaType == 1) {
                     CircleVideoPagerActivity.actionStart(

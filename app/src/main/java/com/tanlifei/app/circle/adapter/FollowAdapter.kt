@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.bumptech.glide.Glide
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
+import com.common.constant.GlobalEnumConst
 import com.common.utils.GlideUtils
 import com.common.widget.ExpandTextView
 import com.common.widget.component.extension.*
@@ -20,6 +21,7 @@ import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.databinding.ItemFollowBinding
+import com.tanlifei.app.databinding.ItemVideoPagerBinding
 import com.youth.banner.indicator.CircleIndicator
 import java.util.*
 
@@ -49,6 +51,21 @@ class FollowAdapter :
                 false
             )
         )
+    }
+
+
+    override fun onBindViewHolder(
+        holder: BaseRvHolder<ViewBinding>,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (ObjectUtils.isEmpty(payloads)) {
+            onBindViewHolder(holder, position)
+        } else {
+            val item = mData[position] as CircleBean
+            val holder = holder.binding as ItemFollowBinding
+            partChange(holder, item)
+        }
     }
 
     override fun onBindViewHolder(
@@ -82,10 +99,7 @@ class FollowAdapter :
             )
             expandTextView.setVisible(ObjectUtils.isNotEmpty(bean.content))
             marginView.setVisible(ObjectUtils.isNotEmpty(bean.content))
-            praiseCount.text = NumberUtils.setPraiseCount(bean.star)
-            log("${bean.isStar}")
-            praiseIcon.setImageDrawable(drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray))
-            commentCount.text = NumberUtils.setCommentCount(bean.comment)
+
             when (bean.mediaType) {
                 1 -> {//视频
                     playerLayout.layoutParams.width = screenWidth
@@ -116,11 +130,25 @@ class FollowAdapter :
                 }
             }
         }
+        partChange(holder, bean)
+    }
+
+    private fun partChange(holder: ItemFollowBinding, bean: CircleBean) {
+        holder.apply {
+            praiseCount.text = NumberUtils.setPraiseCount(bean.star)
+            praiseIcon.setImageDrawable(drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray))
+            commentCount.text = NumberUtils.setCommentCount(bean.comment)
+        }
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         holder as ItemFollowBinding
-        return linkedSetOf(holder.more, holder.shareLayout, holder.playerControl)
+        return linkedSetOf(
+            holder.more,
+            holder.shareLayout,
+            holder.playerControl,
+            holder.praiseLayout
+        )
     }
 
 }

@@ -51,5 +51,14 @@ interface GlobalConst {
         }
     }
 
+    /**
+     * Adapter 刷新标识
+     */
+    interface Adapter {
+        companion object {
+            const val PAYLOAD = "part_update"
+        }
+    }
+
 
 }

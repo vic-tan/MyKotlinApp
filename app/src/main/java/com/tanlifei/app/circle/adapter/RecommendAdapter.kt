@@ -8,8 +8,10 @@ import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
+import com.common.constant.GlobalEnumConst
 import com.common.utils.GlideUtils
 import com.common.widget.component.extension.drawable
+import com.common.widget.component.extension.drawableText
 import com.common.widget.component.extension.screenWidth
 import com.common.widget.component.extension.setVisible
 import com.tanlifei.app.R
@@ -17,6 +19,7 @@ import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.common.utils.AutoHeightUtils
 import com.tanlifei.app.common.utils.NumberUtils
 import com.tanlifei.app.common.utils.UserInfoUtils
+import com.tanlifei.app.databinding.ItemFollowBinding
 import com.tanlifei.app.databinding.ItemRecommendBinding
 import java.util.*
 
@@ -40,6 +43,20 @@ class RecommendAdapter :
     }
 
     override fun onBindViewHolder(
+        holder: BaseRvHolder<ViewBinding>,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (ObjectUtils.isEmpty(payloads)) {
+            onBindViewHolder(holder, position)
+        } else {
+            val item = mData[position] as CircleBean
+            val holder = holder.binding as ItemRecommendBinding
+            partChange(holder, item)
+        }
+    }
+
+    override fun onBindViewHolder(
         holder: ViewBinding,
         position: Int,
         bean: CircleBean
@@ -50,30 +67,38 @@ class RecommendAdapter :
             caveat.setVisible(mSource == 1 && bean.checkStatus == 0 && bean.uid == UserInfoUtils.getUid())
             userName.text = bean.nickName
             GlideUtils.loadAvatar(mContext, bean.avatar, userHead)
-
             play.setVisible(bean.mediaType == 1)
-
             content.text = bean.content
             content.setVisible(ObjectUtils.isNotEmpty(bean.content))
             topicLayout.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTopicName))
             topicTxt.text = bean.entertainmentTopicName
             tag.text = bean.entertainmentTagName
             tag.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTagName))
-            praiseCount.text = NumberUtils.setPraiseCount(bean.star)
-            praiseCount.helper.iconNormalLeft =
-                drawable(if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray)
+
 
             GlideUtils.load(mContext, bean.image?.url, cover)
             cover.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
             cover.layoutParams.height =
                 AutoHeightUtils.getHeightParams(mCoverWidth, bean.image)
         }
+        partChange(holder, bean)
+    }
 
+    private fun partChange(holder: ItemRecommendBinding, bean: CircleBean) {
+        holder.apply {
+            praise.text = NumberUtils.setPraiseCount(bean.star)
+            praise.drawableText(
+                if (bean.isStar) R.mipmap.ic_praise_pre else R.mipmap.ic_praise_gray,
+                16f,
+                16f,
+                GlobalEnumConst.DrawableDirection.LEFT
+            )
+        }
     }
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         holder as ItemRecommendBinding
-        return linkedSetOf(holder.root)
+        return linkedSetOf(holder.root,holder.praise)
     }
 
 

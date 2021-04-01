@@ -28,6 +28,7 @@ import com.lxj.xpopup.interfaces.SimpleCallback
 import com.tanlifei.app.R
 import com.tanlifei.app.circle.adapter.VideoPagerAdapter
 import com.tanlifei.app.circle.bean.CircleBean
+import com.tanlifei.app.circle.utils.CircleComUtils
 import com.tanlifei.app.circle.viewmodel.CircleVideoPagerViewModel
 import com.tanlifei.app.circle.viewmodel.CircleViewModel
 import com.tanlifei.app.circle.widget.VideoShadowPopupView
@@ -102,6 +103,14 @@ class CircleVideoPagerActivity :
         )
         mBinding.smartRefreshLayout.setEnableOverScrollDrag(false)//是否启用越界拖动（仿苹果效果）
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.arrowBack)
+        initListener()
+        initViewModelObserve()
+    }
+
+    /**
+     * 初始化监听
+     */
+    private fun initListener() {
         mViewPagerLayoutManager?.setOnViewPagerListener(object : OnViewPagerListener {
             override fun onInitComplete() {
                 //自动播放第一条
@@ -146,7 +155,13 @@ class CircleVideoPagerActivity :
                 }
             }
         })
+    }
 
+
+    /**
+     * 设置ViewModel的observe
+     */
+    private fun initViewModelObserve() {
         circleViewModel.mFollowChanged.observe(this, Observer { followResponse ->
             followResponse.position?.let {
                 (mViewModel.mData[it] as CircleBean).apply {
@@ -156,35 +171,20 @@ class CircleVideoPagerActivity :
                 notifyPartItemChanged(it)
             }
         })
-        circleViewModel.mPraiseChanged.observe(this, Observer { praiseResult ->
-            praiseResult.position?.let {
-                var cbean = mViewModel.mData[it] as CircleBean
-                cbean.apply {
-                    when {
-                        cbean.isStar -> {
-                            if (cbean.star > 0)
-                                cbean.star--
-                        }
-                        else -> {
-                            cbean.star++
-                        }
-                    }
-                    cbean.isStar = !cbean.isStar
-
-                }
-                notifyPartItemChanged(it)
-                EventBus.getDefault().post(
-                    PraiseEvent(cbean)
-                )
-            }
-        })
+        CircleComUtils.notifyPraiseObserve(
+            circleViewModel,
+            this,
+            mViewModel.mData,
+            true,
+            mAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
+        )
     }
 
     /**
      * 局部修改,因为视频不用刷新
      */
     private fun notifyPartItemChanged(position: Int) {
-        mAdapter.notifyItemChanged(position, "partUpdate")
+        mAdapter.notifyItemChanged(position, GlobalConst.Adapter.PAYLOAD)
     }
 
     private fun autoPlayVideo() {

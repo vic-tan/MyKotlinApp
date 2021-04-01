@@ -13,6 +13,13 @@ import com.common.constant.GlobalEnumConst
  * @date: 2021/3/10 17:07
  */
 
+/**
+ * TextView 加drawable图片
+ * resId 图片
+ * width 图片宽度 单位（dp)
+ * height 图片高度 单位（dp)
+ * direction 图片位于文字的方向
+ */
 fun TextView.drawableText(
     resId: Int,
     width: Float,
