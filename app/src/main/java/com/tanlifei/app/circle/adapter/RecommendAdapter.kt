@@ -96,10 +96,13 @@ class RecommendAdapter :
         }
     }
 
-    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        holder as ItemRecommendBinding
-        return linkedSetOf(holder.root,holder.praise)
+    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+        return when (holder) {
+            is ItemRecommendBinding -> linkedSetOf(
+                holder.root,
+                holder.praise
+            )
+            else -> linkedSetOf()
+        }
     }
-
-
 }

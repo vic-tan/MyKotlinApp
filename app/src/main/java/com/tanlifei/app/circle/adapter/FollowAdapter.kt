@@ -141,14 +141,15 @@ class FollowAdapter :
         }
     }
 
-    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        holder as ItemFollowBinding
-        return linkedSetOf(
-            holder.more,
-            holder.shareLayout,
-            holder.playerControl,
-            holder.praiseLayout
-        )
+    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+        return when (holder) {
+            is ItemFollowBinding -> linkedSetOf(
+                holder.more,
+                holder.shareLayout,
+                holder.playerControl,
+                holder.praiseLayout
+            )
+            else -> linkedSetOf()
+        }
     }
-
 }

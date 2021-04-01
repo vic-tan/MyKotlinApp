@@ -197,10 +197,11 @@ abstract class BaseRvAdapter<T> :
 
     abstract fun onBindViewHolder(holder: ViewBinding, position: Int, bean: T)
 
+
     /**
      * 子类
      */
-    abstract fun addChildClickView(holder: ViewBinding): LinkedHashSet<View>
+    abstract fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View>
 
 
     /**

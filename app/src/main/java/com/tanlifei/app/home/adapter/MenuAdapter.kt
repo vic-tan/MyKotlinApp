@@ -7,6 +7,7 @@ import androidx.viewbinding.ViewBinding
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
 import com.common.utils.GlideUtils
+import com.tanlifei.app.databinding.ItemFollowBinding
 import com.tanlifei.app.databinding.ItemHomeMenuBinding
 import com.tanlifei.app.home.bean.MenuBean
 import java.util.*
@@ -39,10 +40,13 @@ class MenuAdapter :
 
     }
 
-    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        holder as ItemHomeMenuBinding
-        return linkedSetOf(holder.item)
+    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+        return when (holder) {
+            is ItemHomeMenuBinding -> linkedSetOf(
+                holder.item
+            )
+            else -> linkedSetOf()
+        }
     }
-
 
 }

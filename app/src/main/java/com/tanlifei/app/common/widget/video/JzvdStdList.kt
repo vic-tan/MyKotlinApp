@@ -73,7 +73,7 @@ class JzvdStdList(context: Context, attrs: AttributeSet) : JzvdStd(context, attr
             Jzvd.STATE_AUTO_COMPLETE -> {
                 startButton.visible()
                 startButton.setImageResource(R.mipmap.ic_restart)
-                replayTextView.visible()
+                replayTextView.gone()
             }
             else -> {
                 startButton.setImageResource(R.mipmap.ic_play_pager)

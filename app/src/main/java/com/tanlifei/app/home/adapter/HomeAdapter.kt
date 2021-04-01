@@ -9,6 +9,7 @@ import com.common.base.adapter.BaseRvHolder
 import com.common.utils.GlideUtils
 import com.common.widget.component.extension.setVisible
 import com.tanlifei.app.circle.bean.CircleBean
+import com.tanlifei.app.databinding.ItemFollowBinding
 import com.tanlifei.app.databinding.ItemHomeBinding
 import java.util.*
 
@@ -53,10 +54,13 @@ class HomeAdapter :
     }
 
 
-    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        val holder = holder as ItemHomeBinding
-        return linkedSetOf(holder.item)
+    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+        return when (holder) {
+            is ItemHomeBinding -> linkedSetOf(
+                holder.item
+            )
+            else -> linkedSetOf()
+        }
     }
-
 
 }

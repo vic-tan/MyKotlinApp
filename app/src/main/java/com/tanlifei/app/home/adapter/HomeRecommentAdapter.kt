@@ -8,6 +8,7 @@ import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
 import com.common.utils.GlideUtils
 import com.tanlifei.app.circle.bean.CircleBean
+import com.tanlifei.app.databinding.ItemFollowBinding
 import com.tanlifei.app.databinding.ItemHomeRecommentBinding
 import java.util.*
 
@@ -47,9 +48,13 @@ class HomeRecommentAdapter :
 
     }
 
-    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        holder as ItemHomeRecommentBinding
-        return linkedSetOf(holder.item)
+    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+        return when (holder) {
+            is ItemHomeRecommentBinding -> linkedSetOf(
+                holder.item
+            )
+            else -> linkedSetOf()
+        }
     }
 
 }

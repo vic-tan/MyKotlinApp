@@ -22,6 +22,7 @@ import com.tanlifei.app.R
 import com.tanlifei.app.circle.bean.CircleBean
 import com.tanlifei.app.common.constant.EnumConst
 import com.tanlifei.app.common.utils.NumberUtils
+import com.tanlifei.app.databinding.ItemFollowBinding
 import com.tanlifei.app.databinding.ItemVideoPagerBinding
 import java.util.*
 
@@ -159,7 +160,7 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
 
             })
         }
-        partChange(holder,item)
+        partChange(holder, item)
     }
 
     private fun partChange(holder: ItemVideoPagerBinding, item: CircleBean) {
@@ -199,14 +200,17 @@ class VideoPagerAdapter(var backCall: ComListener.BackCall?) :
         }
     }
 
-    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        val holder = holder as ItemVideoPagerBinding
-        return linkedSetOf(
-            holder.praise,
-            holder.attention,
-            holder.comment,
-            holder.share,
-            holder.typeLayout
-        )
+    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+        return when (holder) {
+            is ItemVideoPagerBinding -> linkedSetOf(
+                holder.praise,
+                holder.attention,
+                holder.comment,
+                holder.share,
+                holder.typeLayout
+            )
+            else -> linkedSetOf()
+        }
     }
+
 }

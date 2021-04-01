@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
+import com.tanlifei.app.databinding.ItemHomeMenuBinding
 import com.tanlifei.app.databinding.ItemManualBinding
 import com.tanlifei.app.profile.bean.ManualBean
 import java.util.*
@@ -37,8 +38,12 @@ class ManualAdapter :
         }
     }
 
-    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        val holder = holder as ItemManualBinding
-        return linkedSetOf(holder.item)
+    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+        return when (holder) {
+            is ItemManualBinding -> linkedSetOf(
+                holder.item
+            )
+            else -> linkedSetOf()
+        }
     }
 }

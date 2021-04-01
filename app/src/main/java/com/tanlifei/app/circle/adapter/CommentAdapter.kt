@@ -13,6 +13,7 @@ import com.common.widget.component.extension.setVisible
 import com.tanlifei.app.circle.bean.CommentBean
 import com.tanlifei.app.common.utils.UserInfoUtils
 import com.tanlifei.app.databinding.ItemCommentBinding
+import com.tanlifei.app.databinding.ItemFollowBinding
 import java.util.*
 
 /**
@@ -54,11 +55,13 @@ class CommentAdapter :
 
     }
 
-
-    override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
-        val holder = holder as ItemCommentBinding
-        return linkedSetOf(holder.delete)
+    override fun <V : ViewBinding> addChildClickView(holder: V): LinkedHashSet<View> {
+        return when (holder) {
+            is ItemCommentBinding -> linkedSetOf(
+                holder.delete,
+            )
+            else -> linkedSetOf()
+        }
     }
-
 
 }
