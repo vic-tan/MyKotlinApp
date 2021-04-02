@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.lifecycle.Observer
+import com.blankj.utilcode.util.AppUtils
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.base.ui.fragment.BaseLazyFragment
 import com.common.base.viewmodel.EmptyViewModel
@@ -53,7 +54,10 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding, EmptyViewModel>
                 when (it) {
                     mBinding.arrow -> ProfileManagerActivity.actionStart()
                     mBinding.setting -> SettingActivity.actionStart()
-                    mBinding.recruitingLecturers -> gotoWeb("讲师入驻入口", ApiUrlConst.URL_LECTURER_ASKFOR)
+                    mBinding.recruitingLecturers -> gotoWeb(
+                        "讲师入驻入口",
+                        ApiUrlConst.URL_LECTURER_ASKFOR
+                    )
                     mBinding.score -> launchAppDetail()
                     mBinding.optManual -> ManualActivity.actionStart()
                 }
@@ -94,7 +98,7 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding, EmptyViewModel>
      */
     private fun launchAppDetail() {
         try {
-            val uri: Uri = Uri.parse("market://details?id=com.onlineaginguniversity")
+            val uri: Uri = Uri.parse("market://details?id=${AppUtils.getAppPackageName()}")
             val intent = Intent(Intent.ACTION_VIEW, uri)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)

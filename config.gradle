@@ -1,6 +1,6 @@
 ext {
     android = [
-            applicationId    : "com.tanlifei.app",
+            applicationId    : "com.onlineaginguniversity",
             compileSdkVersion: 30,//11
             targetSdkVersion : 30,//11
             minSdkVersion    : 21,//5.0

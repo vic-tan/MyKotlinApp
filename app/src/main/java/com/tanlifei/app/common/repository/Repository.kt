@@ -293,7 +293,7 @@ object Repository {
      */
     suspend fun requestVersion() = RxHttp.postJson(ApiUrlConst.URL_VERSION)
         .add("systemType", 1)
-        .add("appId", "com.onlineaginguniversity")
+        .add("appId", AppUtils.getAppPackageName())
         .add("clientVersion", AppUtils.getAppVersionName())
         .toResponse<UpdateAppBean>().await()
 
