@@ -74,7 +74,6 @@ open class LoginAtivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), 
      */
     private fun initViewModelObserve() {
         mViewModel.mUiChange.observe(this, this)
-
         mViewModel.mIsToken.observe(this, Observer {
             if (it) {
                 ComFun.mToken = mViewModel.mToken
@@ -82,7 +81,6 @@ open class LoginAtivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), 
                 MainActivity.actionStart()
             }
         })
-
         mViewModel.mSmsCodeInterval.observe(this, Observer {
             when (it) {
                 -1L -> onIntervalStart()
@@ -90,11 +88,9 @@ open class LoginAtivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), 
                 else -> onIntervalChanged(it)
             }
         })
-
         mViewModel.mIsContinuousClick.observe(this, Observer {
             mBinding.changeEnvironment.setVisible(it)
         })
-
     }
 
     /**
@@ -281,7 +277,6 @@ open class LoginAtivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         LoginUtils.phoneFormatTextChanged(mBinding.phone, s, count)
     }
-
 
 }
 

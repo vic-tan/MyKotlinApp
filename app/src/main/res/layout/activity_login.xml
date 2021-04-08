@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/match_wrap"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.ruffian.library.widget.RImageView
@@ -19,8 +19,8 @@
             android:layout_height="75dp"
             android:src="@mipmap/ic_launcher"
             app:corner_radius="15dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -32,8 +32,8 @@
             android:textColor="@color/txt_basic"
             android:textSize="21sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logo" />
 
         <com.common.widget.ClearEditText
@@ -58,18 +58,18 @@
             android:textSize="18sp"
             app:background_normal="@color/com_input_bg"
             app:corner_radius="25dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appName" />
 
         <ImageView
             android:layout_width="15dp"
             android:layout_height="22dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="54dp"
+            android:layout_marginStart="15dp"
             android:background="@mipmap/ic_phone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appName" />
+            app:layout_constraintBottom_toBottomOf="@id/phone"
+            app:layout_constraintStart_toStartOf="@id/phone"
+            app:layout_constraintTop_toTopOf="@id/phone" />
 
         <com.common.widget.ClearEditText
             android:id="@+id/code"
@@ -92,41 +92,40 @@
             android:textSize="18sp"
             app:background_normal="@color/com_input_bg"
             app:corner_radius="25dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phone" />
 
         <ImageView
             android:layout_width="17dp"
             android:layout_height="20dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="15dp"
             android:background="@mipmap/ic_code"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/phone" />
+            app:layout_constraintBottom_toBottomOf="@id/code"
+            app:layout_constraintStart_toStartOf="@id/code"
+            app:layout_constraintTop_toTopOf="@id/code" />
 
         <TextView
             android:id="@+id/codeBtn"
             android:layout_width="60dp"
             android:layout_height="40dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:text="点击获取"
             android:textColor="@color/theme"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/phone" />
+            app:layout_constraintBottom_toBottomOf="@id/code"
+            app:layout_constraintEnd_toEndOf="@id/code"
+            app:layout_constraintTop_toTopOf="@id/code" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="20dp"
-            android:layout_marginTop="30dp"
             android:layout_marginEnd="15dp"
             android:background="@color/com_line_split_view"
+            app:layout_constraintBottom_toBottomOf="@id/code"
             app:layout_constraintEnd_toStartOf="@id/codeBtn"
-            app:layout_constraintTop_toBottomOf="@id/phone" />
+            app:layout_constraintTop_toTopOf="@id/code" />
 
         <com.ruffian.library.widget.RTextView
             android:id="@+id/login"
@@ -151,8 +150,8 @@
         android:textColor="@color/txt_sub"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.ruffian.library.widget.RTextView
         android:id="@+id/changeEnvironment"
