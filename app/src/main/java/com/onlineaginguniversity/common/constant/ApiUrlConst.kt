@@ -40,8 +40,11 @@ object ApiUrlConst {
     /* 发送短信验证码 */
     const val URL_SEND_SMS = "auth/sendsms"
 
+    /* 发送语音验证码 */
+    const val URL_SEND_VOICE_SMS = "auth/sendVoiceSms"
+
     /* 验证验证码登录 */
-    const val URL_LOGIN = "auth/login"
+    const val URL_SMS_LOGIN = "auth/login"
 
     /* 退出登录 */
     const val URL_LOGIN_OUT = "auth/loginOut"
@@ -82,7 +85,6 @@ object ApiUrlConst {
 
     /* 取消关注 */
     const val URL_CANCEL_FOLLOW = "${URL_USER}cancelFollow"
-
 
 
     /**—————————————————————————————————————————————————— 首页相关  ——————————————————————————————————————————————*/

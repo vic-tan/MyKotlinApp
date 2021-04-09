@@ -9,7 +9,7 @@
     </item>
 
     <item>
-        <bitmap android:src="@mipmap/splash_bg" />
+        <bitmap android:src="@mipmap/bg_splash" />
     </item>
 
 

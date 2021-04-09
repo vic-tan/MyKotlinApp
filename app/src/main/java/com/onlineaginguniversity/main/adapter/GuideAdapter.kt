@@ -10,7 +10,7 @@ import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.startActivity
 import com.onlineaginguniversity.common.constant.ComConst
 import com.onlineaginguniversity.databinding.ItemGuideBinding
-import com.onlineaginguniversity.login.ui.activity.LoginAtivity
+import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
 import com.youth.banner.adapter.BannerAdapter
 
 
@@ -38,7 +38,7 @@ open class GuideAdapter(private val mActivity: Activity, mList: MutableList<Int>
         holder.binding.startBtn.setVisible(position == mDatas.size - 1)
         holder.binding.startBtn.setOnClickListener {
             SPUtils.getInstance().put(ComConst.SPKey.GUIDE, false)
-            startActivity<LoginAtivity> { }
+            startActivity<LoginEntranceAtivity> { }
             ActivityUtils.finishActivity(mActivity)
         }
     }

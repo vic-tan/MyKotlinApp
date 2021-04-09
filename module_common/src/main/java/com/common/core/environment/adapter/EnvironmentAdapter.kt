@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.common.R
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
 import com.common.core.environment.bean.EnvironmentBean
@@ -58,7 +59,7 @@ class EnvironmentAdapter :
                 holder.apply {
                     title.text = itemBean.alias
                     url.text = itemBean.url
-                    radio.setImageResource(if (itemBean.defaultCheck) com.common.R.mipmap.ic_select_pre else com.common.R.mipmap.ic_select)
+                    radio.setImageResource(if (itemBean.defaultCheck) R.mipmap.ic_select_pre else R.mipmap.ic_select)
                 }
             }
         }

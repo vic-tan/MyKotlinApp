@@ -42,10 +42,10 @@ open abstract class BaseToolBarActivity<V : ViewBinding, VM : BaseViewModel> :
      * 沉浸式
      */
     override fun initImmersionBar() {
-        mBaseBinding.statusBarView.visible()
+        baseBinding.statusBarView.visible()
         immersionBar() {
             statusBarDarkFont(true, 0.2f)
-            statusBarView(mBaseBinding.statusBarView)
+            statusBarView(baseBinding.statusBarView)
             statusBarColor(R.color.white)
         }
     }

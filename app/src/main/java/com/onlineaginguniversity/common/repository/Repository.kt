@@ -31,16 +31,25 @@ object Repository {
     /**—————————————————————————————————————————————————— 我的相关  ——————————————————————————————————————————————*/
 
     /**
-     * 获取验证码
+     * 获取短信验证码
      */
-    suspend fun requestSmsCode(phone: String) = RxHttp.get(ApiUrlConst.URL_SEND_SMS)
+    suspend fun requestSMSCode(phone: String) = RxHttp.get(ApiUrlConst.URL_SEND_SMS)
         .add("phone", phone)
         .toResponse<String>().await()
 
+
     /**
-     * 登录
+     * 发送语音验证码
      */
-    suspend fun requestLogin(phone: String, code: String) = RxHttp.get(ApiUrlConst.URL_LOGIN)
+    suspend fun requestVoiceCode(phone: String) = RxHttp.get(ApiUrlConst.URL_SEND_VOICE_SMS)
+        .add("phone", phone)
+        .toResponse<String>().await()
+
+
+    /**
+     * 验证码登录
+     */
+    suspend fun requestSMSLogin(phone: String, code: String) = RxHttp.get(ApiUrlConst.URL_SMS_LOGIN)
         .add("phone", phone)
         .add("code", code)
         .toResponse<String>().await()

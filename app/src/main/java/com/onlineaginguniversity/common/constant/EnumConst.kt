@@ -40,8 +40,14 @@ interface EnumConst {
         TYPE_LIVE_COLUMN_CHARGE("live_column_charge"),//付费课程
         TYPE_LIVE_NOT_JUMP("not_jump"),//不跳转
         TYPE_WECHAT_MINI_JIUJIU_BBS("wechat_mini_jiujiu_bbs"),//论坛
+    }
 
-
+    /**
+     * 定时器 常量
+     */
+    enum class TimerConst(val value: Long) {
+        START(-1L),//开始
+        COMPLETE(-2L)//完成
     }
 
 }

@@ -11,8 +11,8 @@ import com.common.utils.GlideUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.gone
 import com.onlineaginguniversity.databinding.ActivitySplashBinding
+import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
 import com.onlineaginguniversity.main.ui.activity.GuideActivity
-import com.onlineaginguniversity.login.ui.activity.LoginAtivity
 import com.onlineaginguniversity.main.ui.activity.MainActivity
 import com.onlineaginguniversity.main.viewmodel.SplashViewModel
 import com.onlineaginguniversity.main.viewmodel.SplashViewModel.JumpType.*
@@ -69,7 +69,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
                     ActivityUtils.finishActivity(this)
                 }
                 LOGIN -> {
-                    LoginAtivity.actionStart()
+                    LoginEntranceAtivity.actionStart()
                     ActivityUtils.finishActivity(this)
                 }
                 HOME -> {

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match"
+    android:background="@color/white">
+
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="45dp"
+        android:src="@mipmap/ic_launcher"
+        app:corner_radius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="手机号登录"
+        android:textColor="@color/txt_basic"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/logo"
+        app:layout_constraintTop_toTopOf="@id/logo" />
+
+
+    <TextView
+        android:id="@+id/prompt"
+        style="@style/match_wrap"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/txt_sub"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        tools:text="短信验证码已发送至 138 0010 0500" />
+
+
+    <com.common.widget.ClearEditText
+        android:id="@+id/code"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="30dp"
+        android:background="@null"
+        android:digits="1234567890"
+        android:hint="请输入验证码"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:maxLength="4"
+        android:maxLines="1"
+        android:paddingStart="40dp"
+        android:paddingEnd="100dp"
+        android:textColor="@color/txt_basic"
+        android:textColorHint="@color/txt_help"
+        android:textSize="18sp"
+        app:background_normal="@color/com_input_bg"
+        app:corner_radius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/prompt" />
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="15dp"
+        android:background="@mipmap/ic_code"
+        app:layout_constraintBottom_toBottomOf="@id/code"
+        app:layout_constraintStart_toStartOf="@id/code"
+        app:layout_constraintTop_toTopOf="@id/code" />
+
+    <TextView
+        android:id="@+id/codeBtn"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="点击获取"
+        android:textColor="@color/theme"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/code"
+        app:layout_constraintEnd_toEndOf="@id/code"
+        app:layout_constraintTop_toTopOf="@id/code" />
+
+    <View
+        android:layout_width="0.5dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/com_line_split_view"
+        app:layout_constraintBottom_toBottomOf="@id/code"
+        app:layout_constraintEnd_toStartOf="@id/codeBtn"
+        app:layout_constraintTop_toTopOf="@id/code" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/login"
+        style="@style/com_btn_match_parent_style"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:text="登录"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/code" />
+
+    <TextView
+        android:id="@+id/not_received_code"
+        style="@style/wrap_wrap"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:text="收不到验证码?"
+        android:textColor="@color/txt_basic"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/line"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="1dp"
+        android:layout_height="15dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/txt_basic"
+        app:layout_constraintEnd_toStartOf="@id/voice_code"
+        app:layout_constraintStart_toEndOf="@id/not_received_code"
+        app:layout_constraintTop_toBottomOf="@id/login" />
+
+    <TextView
+        android:id="@+id/voice_code"
+        style="@style/wrap_wrap"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:text="语音验证码"
+        android:textColor="@color/txt_basic"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/line"
+        app:layout_constraintTop_toBottomOf="@id/login" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

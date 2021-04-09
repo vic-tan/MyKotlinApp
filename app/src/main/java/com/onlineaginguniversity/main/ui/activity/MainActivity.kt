@@ -5,11 +5,12 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cn.jzvd.Jzvd
-import com.common.core.event.BaseEvent
-import com.common.core.navigator.NavigatorView
+import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseActivity
 import com.common.base.viewmodel.BaseViewModel
+import com.common.core.event.BaseEvent
 import com.common.core.http.RxHttpManager
+import com.common.core.navigator.NavigatorView
 import com.common.utils.ComUtils
 import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.startActivity
@@ -35,6 +36,7 @@ open class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     companion object {
         fun actionStart() {
             startActivity<MainActivity> { }
+            ActivityUtils.finishOtherActivities(MainActivity::class.java)
         }
     }
 

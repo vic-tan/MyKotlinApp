@@ -39,7 +39,7 @@ import java.lang.reflect.ParameterizedType
 open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompatActivity(),
     Observer<GlobalEnumConst.UiType> {
 
-    lateinit var mBaseBinding: ActivityBaseBinding
+    lateinit var baseBinding: ActivityBaseBinding
     lateinit var mBinding: V
     lateinit var mTitleBar: TitleBar
 
@@ -58,8 +58,8 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity = this
-        mBaseBinding = ActivityBaseBinding.inflate(layoutInflater)
-        mTitleBar = mBaseBinding.toolbar
+        baseBinding = ActivityBaseBinding.inflate(layoutInflater)
+        mTitleBar = baseBinding.toolbar
         mTitleBar.setLeftIcon(R.mipmap.ic_arrow_left_black)
         mHud = XPopup.Builder(this)
             .popupAnimation(PopupAnimation.NoAnimation)
@@ -82,7 +82,7 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
         if (showFullScreen()) {
             setFullScreen()
         }
-        setContentView(mBaseBinding.root)
+        setContentView(baseBinding.root)
         initLayout()
         setToolbar(false)
         setOrientation()
@@ -114,7 +114,7 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
         try {
             val inflate: Method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java)
             mBinding = inflate.invoke(null, layoutInflater) as V
-            mBaseBinding.baseContainer.addView(mBinding.root)
+            baseBinding.baseContainer.addView(mBinding.root)
         } catch (e: NoSuchMethodException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {
@@ -296,7 +296,7 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
      * 沉浸式
      */
     open fun initImmersionBar() {
-        mBaseBinding.statusBarView.gone()
+        baseBinding.statusBarView.gone()
         immersionBar() {
             statusBarDarkFont(true, 0.2f)
         }

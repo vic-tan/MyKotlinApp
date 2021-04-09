@@ -1,4 +1,4 @@
-package com.onlineaginguniversity.main.viewmodel
+package com.onlineaginguniversity.login.viewmodel
 
 import android.os.SystemClock
 import androidx.lifecycle.LiveData
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
  * @author: tanlifei
  * @date: 2021/1/28 15:50
  */
-class LoginViewModel : BaseViewModel() {
+class LoginTestViewModel : BaseViewModel() {
 
     /* 永远暴露不可变LiveData给外部，防止外部可以修改LoginViewModel，保证LoginViewModel独立性 */
 
@@ -77,7 +77,7 @@ class LoginViewModel : BaseViewModel() {
      * 请求短信码
      */
     fun requestSmsCode(phone: String) = comRequest({
-        Repository.requestSmsCode(phone)
+        Repository.requestSMSCode(phone)
         startInterval()
     })
 
@@ -85,7 +85,7 @@ class LoginViewModel : BaseViewModel() {
      * 请求登录
      */
     fun requestLogin(phone: String, code: String) = comRequest({
-        mToken = Repository.requestLogin(phone, code)
+        mToken = Repository.requestSMSLogin(phone, code)
         isToken.value = ObjectUtils.isNotEmpty(mToken)
     })
 

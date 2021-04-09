@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginBinding"
+    style="@style/match_match"
+    android:background="@color/white">
+
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/logo"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="120dp"
+        android:src="@mipmap/ic_launcher"
+        app:corner_radius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/appName"
+        style="@style/wrap_wrap"
+        android:layout_marginTop="15dp"
+        android:text="@string/app_name"
+        android:textColor="@color/txt_basic"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/login"
+        style="@style/com_btn_match_parent_style"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="30dp"
+        android:text="手机号登录"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appName" />
+
+
+    <LinearLayout
+        android:id="@+id/protocol_layout"
+        style="@style/wrap_wrap"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/login">
+
+        <com.ruffian.library.widget.RCheckBox
+            android:id="@+id/protocol_checkbox"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_gravity="center_vertical"
+            android:button="@null"
+            android:checked="false"
+            app:background_checked="@mipmap/ic_select_pre"
+            app:border_color_checked="@color/theme"
+            app:border_color_normal="@color/txt_help"
+            app:border_width_checked="1dp"
+            app:border_width_normal="1dp"
+            app:corner_radius="10dp" />
+
+        <TextView
+            android:id="@+id/protocol_txt"
+            style="@style/wrap_wrap"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/txt_sub"
+            android:textSize="12sp"
+            tools:text="勾选表示已阅读并同意《用户协议》和《隐私政策》" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/protocol_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="5dp"
+        android:src="@mipmap/ic_protocol_prompt"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/protocol_layout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/wx_login_title"
+        style="@style/match_wrap"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_horizontal"
+        android:text="其它登录方式"
+        android:textColor="@color/txt_help"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/wx_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/wx_login"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="25dp"
+        android:src="@mipmap/ic_wx_login"
+        app:corner_radius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/changeEnvironment"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:text="切换\n环境"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:background_normal="@array/com_theme"
+        app:corner_radius="35dp"
+        app:gradient_orientation="TOP_BOTTOM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shadow_color="#EE1E26"
+        app:shadow_radius="4dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

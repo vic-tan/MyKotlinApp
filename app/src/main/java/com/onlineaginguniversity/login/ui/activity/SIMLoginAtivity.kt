@@ -26,28 +26,28 @@ import com.onlineaginguniversity.common.constant.ApiUrlConst.URL_USER_AGREEMENT
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivityLoginBinding
 import com.onlineaginguniversity.main.ui.activity.MainActivity
-import com.onlineaginguniversity.main.utils.LoginUtils
-import com.onlineaginguniversity.main.viewmodel.LoginViewModel
+import com.onlineaginguniversity.login.utils.LoginUtils
+import com.onlineaginguniversity.login.viewmodel.LoginTestViewModel
 
 
 /**
- * @desc:登录界面
+ * @desc:一键登录界面
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-open class LoginAtivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), TextWatcher {
+open class SIMLoginAtivity : BaseActivity<ActivityLoginBinding, LoginTestViewModel>(), TextWatcher {
 
     private lateinit var mInputHelper: TextInputHelper
 
     companion object {
         fun actionStart() {
-            startActivity<LoginAtivity> { }
-            ActivityUtils.finishOtherActivities(LoginAtivity::class.java)
+            startActivity<SIMLoginAtivity> { }
+            ActivityUtils.finishOtherActivities(SIMLoginAtivity::class.java)
         }
     }
 
-    override fun createViewModel(): LoginViewModel {
-        return LoginViewModel()
+    override fun createViewModel(): LoginTestViewModel {
+        return LoginTestViewModel()
     }
 
 
@@ -108,20 +108,20 @@ open class LoginAtivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), 
                 when (it) {
                     mBinding.codeBtn -> {
                         if (checkPhone(
-                                LoginUtils.getPhone(mBinding.phone.text.toString())
+                                LoginUtils.getPhoneNumber(mBinding.phone.text.toString())
                             )
                         ) {
-                            mViewModel.requestSmsCode(LoginUtils.getPhone(mBinding.phone.text.toString()))
+                            mViewModel.requestSmsCode(LoginUtils.getPhoneNumber(mBinding.phone.text.toString()))
                         }
                     }
                     mBinding.login -> {
                         if (checkFormInfo(
-                                LoginUtils.getPhone(mBinding.phone.text.toString()),
+                                LoginUtils.getPhoneNumber(mBinding.phone.text.toString()),
                                 mBinding.code.text.toString()
                             )
                         ) {
                             mViewModel.requestLogin(
-                                LoginUtils.getPhone(mBinding.phone.text.toString()),
+                                LoginUtils.getPhoneNumber(mBinding.phone.text.toString()),
                                 mBinding.code.text.toString()
                             )
                         }
