@@ -1,4 +1,4 @@
-package com.onlineaginguniversity.main.ui.activity
+package com.onlineaginguniversity.login.ui.activity
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -25,6 +25,7 @@ import com.onlineaginguniversity.common.constant.ApiUrlConst.URL_PRIVATE_AGREEME
 import com.onlineaginguniversity.common.constant.ApiUrlConst.URL_USER_AGREEMENT
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivityLoginBinding
+import com.onlineaginguniversity.main.ui.activity.MainActivity
 import com.onlineaginguniversity.main.utils.LoginUtils
 import com.onlineaginguniversity.main.viewmodel.LoginViewModel
 

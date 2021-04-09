@@ -31,7 +31,7 @@ import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.circle.utils.CircleComUtils
 import com.onlineaginguniversity.circle.viewmodel.CircleVideoPagerViewModel
 import com.onlineaginguniversity.circle.viewmodel.CircleViewModel
-import com.onlineaginguniversity.circle.widget.VideoShadowPopupView
+import com.onlineaginguniversity.circle.ui.widget.VideoShadowPopupView
 import com.onlineaginguniversity.common.widget.video.JzvdStdTikTok
 import com.onlineaginguniversity.common.widget.video.OnViewPagerListener
 import com.onlineaginguniversity.common.widget.video.ViewPagerLayoutManager

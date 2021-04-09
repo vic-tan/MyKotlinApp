@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.onlineaginguniversity.main.view.MainNavigatorView
+    <com.onlineaginguniversity.main.ui.widget.MainNavigatorView
         android:id="@+id/navigatorTab"
         android:layout_width="match_parent"
         android:layout_height="50dp"

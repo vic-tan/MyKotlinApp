@@ -1,4 +1,4 @@
-package com.onlineaginguniversity.home.view
+package com.onlineaginguniversity.home.ui.widget
 
 import android.graphics.Rect
 import android.view.View

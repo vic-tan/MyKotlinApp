@@ -1,4 +1,4 @@
-package com.onlineaginguniversity.circle.widget
+package com.onlineaginguniversity.circle.ui.widget
 
 import android.content.Context
 import com.common.widget.component.extension.clickListener

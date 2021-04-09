@@ -10,7 +10,7 @@ import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.startActivity
 import com.onlineaginguniversity.common.constant.ComConst
 import com.onlineaginguniversity.databinding.ItemGuideBinding
-import com.onlineaginguniversity.main.ui.activity.LoginAtivity
+import com.onlineaginguniversity.login.ui.activity.LoginAtivity
 import com.youth.banner.adapter.BannerAdapter
 
 

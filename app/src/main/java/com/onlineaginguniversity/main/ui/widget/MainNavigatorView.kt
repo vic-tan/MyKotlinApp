@@ -1,4 +1,4 @@
-package com.onlineaginguniversity.main.view
+package com.onlineaginguniversity.main.ui.widget
 
 import android.content.Context
 import android.util.AttributeSet

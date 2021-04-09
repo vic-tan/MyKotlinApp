@@ -12,7 +12,7 @@ import com.common.widget.component.extension.startActivity
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivitySettingBinding
-import com.onlineaginguniversity.main.ui.activity.LoginAtivity
+import com.onlineaginguniversity.login.ui.activity.LoginAtivity
 import com.onlineaginguniversity.profile.viewmodel.SettingViewModel
 
 

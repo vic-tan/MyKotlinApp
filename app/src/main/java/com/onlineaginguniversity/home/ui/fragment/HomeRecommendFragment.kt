@@ -12,7 +12,7 @@ import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.databinding.FragmentFollowBinding
 import com.onlineaginguniversity.databinding.ItemHomeRecommentBinding
 import com.onlineaginguniversity.home.adapter.HomeRecommentAdapter
-import com.onlineaginguniversity.home.view.GridHomeRecommentItemDecoration
+import com.onlineaginguniversity.home.ui.widget.GridHomeRecommentItemDecoration
 import com.onlineaginguniversity.home.viewmodel.HomeRecommendViewModel
 
 
