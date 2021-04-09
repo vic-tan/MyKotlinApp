@@ -5,7 +5,7 @@
     style="@style/match_match"
     android:orientation="vertical">
 
-    <com.tanlifei.app.common.widget.video.JzvdStdTikTok
+    <com.onlineaginguniversity.common.widget.video.JzvdStdTikTok
         android:id="@+id/player"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

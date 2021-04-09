@@ -98,7 +98,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.tanlifei.app.common.widget.video.JzvdStdList
+            <com.onlineaginguniversity.common.widget.video.JzvdStdList
                 android:id="@+id/player"
                 style="@style/match_match"
                 android:background="@color/com_image_bg"

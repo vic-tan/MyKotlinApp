@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.tanlifei.app">
+    package="com.onlineaginguniversity">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
@@ -70,14 +70,14 @@
         </activity-alias>
         <!--—————————————————————————————————————————————————— Main ——————————————————————————————————————————————————-->
         <activity
-            android:name="com.tanlifei.app.main.ui.activity.GuideActivity"
+            android:name=".main.ui.activity.GuideActivity"
             android:label="引导页" />
         <activity
-            android:name="com.tanlifei.app.main.ui.activity.MainActivity"
+            android:name=".main.ui.activity.MainActivity"
             android:launchMode="singleTask"
             android:label="首页" />
         <activity
-            android:name="com.tanlifei.app.main.ui.activity.LoginAtivity"
+            android:name=".main.ui.activity.LoginAtivity"
             android:label="登录" />
 
         <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->
@@ -92,27 +92,27 @@
 
         <!--—————————————————————————————————————————————————— 我的 ——————————————————————————————————————————————————-->
         <activity
-            android:name="com.tanlifei.app.profile.ui.activity.SettingActivity"
+            android:name=".profile.ui.activity.SettingActivity"
             android:label="个人设置" />
         <activity
-            android:name="com.tanlifei.app.profile.ui.activity.ProfileManagerActivity"
+            android:name=".profile.ui.activity.ProfileManagerActivity"
             android:label="个人资料" />
         <activity
-            android:name="com.tanlifei.app.profile.ui.activity.IntroductionActivity"
+            android:name=".profile.ui.activity.IntroductionActivity"
             android:label="修改人个简介" />
 
         <activity
-            android:name="com.tanlifei.app.profile.ui.activity.AddressManagerActivity"
+            android:name=".profile.ui.activity.AddressManagerActivity"
             android:label="收货地址" />
 
         <activity
-            android:name="com.tanlifei.app.profile.ui.activity.AboutActivity"
+            android:name=".profile.ui.activity.AboutActivity"
             android:label="关于网上老年大学" />
         <activity
-            android:name="com.tanlifei.app.profile.ui.activity.ManualActivity"
+            android:name=".profile.ui.activity.ManualActivity"
             android:label="操作手册" />
         <activity
-            android:name="com.tanlifei.app.profile.ui.activity.ManualDetailActivity"
+            android:name=".profile.ui.activity.ManualDetailActivity"
             android:label="操作手册" />
 
 
