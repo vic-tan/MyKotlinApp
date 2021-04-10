@@ -1,10 +1,12 @@
 package com.onlineaginguniversity.login.viewmodel
 
 import android.os.SystemClock
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.viewmodel.BaseViewModel
+import com.common.widget.component.extension.toast
 import com.onlineaginguniversity.common.repository.Repository
 import com.onlineaginguniversity.login.utils.LoginUtils
 
@@ -53,6 +55,7 @@ class LoginViewModel : BaseViewModel() {
      */
     fun requestVoiceCode(phone: String) = comRequest({
         Repository.requestVoiceCode(phone)
+        toast("请注意接听电话")
     })
 
     /**

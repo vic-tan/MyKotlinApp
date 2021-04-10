@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/match_wrap"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    app:background_normal="@color/white"
+    app:corner_radius="10dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/match_wrap"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center_horizontal"
+        android:text="收不到验证码?"
+        android:textColor="@color/txt_basic"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="1.手机号码是否输入正确\n2.检查手机是否停机\n3.请使用其他账号登录"
+        android:textColor="@color/txt_sub"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/tv_cancel"
+        style="@style/com_btn_match_parent_style"
+        android:text="取消"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_content" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/tv_confirm"
+        style="@style/com_btn_match_parent_style"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="我知道了"
+        app:corner_radius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_content" />
+
+
+</com.ruffian.library.widget.RConstraintLayout>

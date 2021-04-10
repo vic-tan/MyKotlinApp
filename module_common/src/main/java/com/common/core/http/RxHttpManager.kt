@@ -26,10 +26,10 @@ object RxHttpManager {
         RxHttp.setDebug(true)
         //设置公共参数，非必须
         RxHttp.setOnParamAssembly { p: Param<*>? ->
-            p!!.add("versionName", AppUtils.getAppVersionName()) //添加公共参数
-                .addHeader("Authorization", "Bearer " + ComFun.mToken)
+            p!!.addHeader("Authorization", "Bearer " + ComFun.mToken)
                 .addHeader("channel_code", "" + ComUtils.getDefaultChannel(context))
-                .addHeader("deviceType", "android") //添加公共请求头
+                .addHeader("app-version", "" + AppUtils.getAppVersionName())
+                .addHeader("source-type", "android") //添加公共请求头
         }
     }
 

@@ -26,10 +26,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'jiubao'
-            keyPassword 'qweqwe123'
-            storeFile file('./jiubaozhibo.jks')
-            storePassword 'qweqwe123'
+            keyAlias 'kuangdeyin'
+            keyPassword 'kuangdeyin'
+            storeFile file('kuangdeyin.keystore')
+            storePassword 'kuangdeyin'
         }
     }
 

@@ -218,7 +218,7 @@ class CircleDetailActivity :
                     is ItemCommentBinding -> {
                         when (v) {
                             holder.delete -> {
-                                ComDialogUtils.comConfirm(this@CircleDetailActivity,
+                                ComDialogUtils.showMultDialog(this@CircleDetailActivity,
                                     "确定删除些评论?",
                                     OnConfirmListener { mViewModel.requestDeleteComment(itemBean) })
                             }

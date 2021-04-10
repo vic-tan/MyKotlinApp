@@ -2,19 +2,21 @@ package com.onlineaginguniversity.login.ui.activity
 
 import android.view.View
 import androidx.lifecycle.Observer
-import com.common.ComFun
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.constant.GlobalConst
+import com.common.utils.ComDialogUtils
 import com.common.widget.TextInputHelper
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.startActivity
+import com.common.widget.component.extension.toast
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnConfirmListener
+import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.EnumConst
-import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivityPhoneLoginBinding
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
-import com.onlineaginguniversity.main.ui.activity.MainActivity
 
 
 /**
@@ -92,6 +94,8 @@ class PhoneLoginAtivity :
     private fun initListener() {
         clickListener(
             mBinding.login,
+            mBinding.codeBtn,
+            mBinding.notReceivedCode,
             mBinding.voiceCode,
             clickListener = View.OnClickListener {
                 when (it) {
@@ -102,6 +106,16 @@ class PhoneLoginAtivity :
                                 mBinding.code.text.toString()
                             )
                         }
+                    }
+                    mBinding.codeBtn -> {
+                        mViewModel.requestSmsCode(LoginUtils.getPhoneNumber(phoneNumber))
+                    }
+                    mBinding.notReceivedCode -> {
+                        ComDialogUtils.showComPrompt(
+                            this@PhoneLoginAtivity,
+                            "收不到验证码?",
+                            "1.手机号码是否输入正确\n2.检查手机是否停机\n3.请使用其他账号登录"
+                        )
                     }
                     mBinding.voiceCode -> {
                         mViewModel.requestVoiceCode(LoginUtils.getPhoneNumber(phoneNumber))

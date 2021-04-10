@@ -13,7 +13,6 @@ import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivitySettingBinding
 import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
-import com.onlineaginguniversity.login.ui.activity.LoginTestAtivity
 import com.onlineaginguniversity.profile.viewmodel.SettingViewModel
 
 
@@ -63,8 +62,8 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
                 when (it) {
                     mBinding.about -> AboutActivity.actionStart()
                     mBinding.exit -> {
-                        ComDialogUtils.comConfirm(
-                            this,
+                        ComDialogUtils.showMultDialog(
+                            this@SettingActivity,
                             "您确定要退出应用吗?",
                             OnConfirmListener {
                                 mViewModel.requestLogin()
