@@ -38,7 +38,7 @@ object Repository {
         var url: String = ApiUrlConst.URL_SEND_SMS
         var map = HashMap<String, Any>()
         map["phone"] = phone
-        //后台未做统一，应该统一用上面URL_SEND_SMS接，后台问题
+        //后台未做统一，统一后应该都为URL_SEND_SMS接，后台问题
         when (type) {
             EnumConst.SMSType.MOBILE_LOGIN -> {
                 url = ApiUrlConst.URL_LOGIN_SEND_SMS
@@ -60,7 +60,7 @@ object Repository {
         var url: String = ApiUrlConst.URL_VOICE_SMS
         var map = HashMap<String, Any>()
         map["phone"] = phone
-        //后台未做统一，应该统一用上面URL_SEND_SMS接，后台问题
+        //后台未做统一，统一后应该都为URL_VOICE_SMS，后台问题
         when (type) {
             EnumConst.SMSType.MOBILE_LOGIN -> {
                 url = ApiUrlConst.URL_LOGIN_VOICE_SMS

@@ -44,10 +44,10 @@ object ApiUrlConst {
     const val URL_VOICE_SMS = "${URL_USER}sendVoiceSms"
 
     /* 发送登录短信验证码 */
-    const val URL_LOGIN_SEND_SMS = "auth/sendsms"//后台未做统一，应该统一用上面URL_SEND_SMS接，后台问题
+    const val URL_LOGIN_SEND_SMS = "auth/sendsms"//后台未做统一，应该统一用上面URL_SEND_SMS接口，后台问题
 
     /* 发送登录语音验证码 */
-    const val URL_LOGIN_VOICE_SMS = "auth/sendVoiceSms"//后台未做统一，URL_VOICE_SMS，后台问题
+    const val URL_LOGIN_VOICE_SMS = "auth/sendVoiceSms"//后台未做统一，应该统一用上面URL_VOICE_SMS口，后台问题
 
     /* 验证验证码登录 */
     const val URL_SMS_LOGIN = "auth/login"
