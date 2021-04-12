@@ -1,10 +1,9 @@
 package com.onlineaginguniversity.common.repository
 
-import android.util.Base64
 import com.blankj.utilcode.util.AppUtils
-import com.common.constant.GlobalConst
-import com.common.base.bean.UserBean
 import com.common.base.bean.UpdateAppBean
+import com.common.base.bean.UserBean
+import com.common.constant.GlobalConst
 import com.onlineaginguniversity.circle.bean.CategoryBean
 import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.circle.bean.CommentBean
@@ -25,7 +24,6 @@ import com.onlineaginguniversity.profile.bean.UniversityBean
 import okio.Buffer
 import rxhttp.RxHttp
 import rxhttp.toResponse
-import kotlin.collections.HashMap
 
 /**
  * @desc:接口请求
@@ -40,21 +38,23 @@ object Repository {
      * 获取短信验证码
      */
     suspend fun requestSMSCode(phone: String, type: EnumConst.SMSType): String {
-        var url: String = ApiUrlConst.URL_SEND_SMS
         var map = HashMap<String, Any>()
         map["phone"] = phone
         //后台未做统一，统一后应该都为URL_SEND_SMS接，后台问题
-        when (type) {
+        return when (type) {
             EnumConst.SMSType.MOBILE_LOGIN -> {
-                url = ApiUrlConst.URL_LOGIN_SEND_SMS
+                RxHttp.get(ApiUrlConst.URL_LOGIN_SEND_SMS)
+                    .addAll(map)
+                    .toResponse<String>().await()
             }
             else -> {
                 map["type"] = type.value
+                RxHttp.postJson(ApiUrlConst.URL_SEND_SMS)
+                    .addAll(map)
+                    .toResponse<String>().await()
             }
         }
-        return RxHttp.get(url)
-            .addAll(map)
-            .toResponse<String>().await()
+
     }
 
 
@@ -62,22 +62,47 @@ object Repository {
      * 发送语音验证码
      */
     suspend fun requestVoiceCode(phone: String, type: EnumConst.SMSType): String {
-        var url: String = ApiUrlConst.URL_VOICE_SMS
         var map = HashMap<String, Any>()
         map["phone"] = phone
         //后台未做统一，统一后应该都为URL_VOICE_SMS，后台问题
-        when (type) {
+        return when (type) {
             EnumConst.SMSType.MOBILE_LOGIN -> {
-                url = ApiUrlConst.URL_LOGIN_VOICE_SMS
+                RxHttp.get(ApiUrlConst.URL_LOGIN_VOICE_SMS)
+                    .addAll(map)
+                    .toResponse<String>().await()
             }
             else -> {
                 map["type"] = type.value
+                RxHttp.postJson(ApiUrlConst.URL_VOICE_SMS)
+                    .addAll(map)
+                    .toResponse<String>().await()
             }
         }
-        return RxHttp.get(url)
-            .addAll(map)
+
+    }
+
+    /**
+     * 找回密码
+     */
+    suspend fun requestSetPwd(
+        phone: String,
+        code: String,
+        pwd: String,
+        type: EnumConst.SMSType
+    ): String {
+        //OKio base64
+        val utf8Sink = Buffer().writeUtf8(pwd)
+        val base64Buffer = Buffer()
+        val base64Sink = Base64Sink(base64Buffer)
+        base64Sink.write(utf8Sink, Long.MAX_VALUE)
+        return RxHttp.get(ApiUrlConst.URL_RETRIEVE_PASSWORD)
+            .add("phone", phone)
+            .add("code", code)
+            .add("password", base64Buffer.readUtf8())
+            .add("type", type.value)
             .toResponse<String>().await()
     }
+
 
     /**
      * 验证码登录

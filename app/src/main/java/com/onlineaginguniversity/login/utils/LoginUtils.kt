@@ -11,7 +11,6 @@ import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
 import cn.iwgang.simplifyspan.unit.SpecialClickableUnit
 import cn.iwgang.simplifyspan.unit.SpecialTextUnit
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.ComFun
 import com.common.base.ui.activity.BaseWebViewActivity
@@ -30,6 +29,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.concurrent.TimeUnit
+import java.util.regex.Pattern
 
 /**
  * @desc: 登录工具类
@@ -271,4 +271,13 @@ object LoginUtils {
     fun getPhoneNumber(str: String): String {
         return str.replace(12288.toChar(), ' ').replace(" ", "").trim { it <= ' ' }
     }
+
+    /**
+     * 检验密码 需要8-20位，且含字母/数字
+     */
+    fun regexPwd(input: CharSequence?): Boolean {
+        val regex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$"
+        return input != null && input.isNotEmpty() && Pattern.matches(regex, input)
+    }
+
 }

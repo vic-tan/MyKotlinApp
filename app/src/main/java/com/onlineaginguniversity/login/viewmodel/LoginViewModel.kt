@@ -74,12 +74,25 @@ class LoginViewModel : BaseViewModel() {
         isToken.value = ObjectUtils.isNotEmpty(mToken)
     })
 
+    /**
+     * 找回密码
+     */
+    fun requestSetPwd(
+        phone: String,
+        code: String,
+        pwd: String,
+        type: EnumConst.SMSType
+    ) = comRequest({
+        Repository.requestSetPwd(phone, code, pwd, type)
+        pwdLoginResult.value = Repository.requestPwdLogin(phone,pwd)
+    })
+
 
     /**
      * 请求密码登录
      */
     fun requestPwdLogin(phone: String, pwd: String) = comRequest({
-        pwdLoginResult.value =  Repository.requestPwdLogin(phone, pwd)
+        pwdLoginResult.value = Repository.requestPwdLogin(phone, pwd)
     })
 
     /**

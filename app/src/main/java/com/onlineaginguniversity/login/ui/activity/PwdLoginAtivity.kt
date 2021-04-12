@@ -1,5 +1,6 @@
 package com.onlineaginguniversity.login.ui.activity
 
+import android.text.TextWatcher
 import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ObjectUtils
@@ -13,8 +14,6 @@ import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivityPwdLoginBinding
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
-import com.onlineaginguniversity.login.utils.Base64Sink
-import okio.Buffer
 
 
 /**
@@ -76,7 +75,7 @@ class PwdLoginAtivity :
             if (ObjectUtils.isNotEmpty(it)) {
                 if (it.status == 0) {
                     it.token?.let { token -> LoginUtils.loginSuccess(token) }
-                } else if (it.status == 1) {
+                } else if (it.status == -1) {
                     when (it.count) {
                         1 -> {
                             mBinding.errorText.text = "账号或密码错误"
@@ -94,11 +93,16 @@ class PwdLoginAtivity :
                                 content,
                                 "忘记密码",
                                 OnConfirmListener {
-
+                                    SetPasswordAtivity.actionStart(
+                                        mBinding.phone.text.toString(),
+                                        EnumConst.SMSType.RETRIEVE_PASSWORD
+                                    )
                                 })
                         }
                     }
                 }
+            } else {
+                toast("登录失败")
             }
         })
     }

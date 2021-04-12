@@ -49,6 +49,10 @@ object ApiUrlConst {
     /* 发送登录语音验证码 */
     const val URL_LOGIN_VOICE_SMS = "auth/sendVoiceSms"//后台未做统一，应该统一用上面URL_VOICE_SMS口，后台问题
 
+    /* 找回密码 */
+    const val URL_RETRIEVE_PASSWORD = "${URL_USER}retrievePassword"
+
+
     /* 验证验证码登录 */
     const val URL_SMS_LOGIN = "auth/login"
 

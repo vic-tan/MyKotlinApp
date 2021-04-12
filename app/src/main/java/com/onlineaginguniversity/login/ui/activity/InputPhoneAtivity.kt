@@ -114,7 +114,7 @@ class InputPhoneAtivity :
             }
             //找回密码
             EnumConst.SMSType.RETRIEVE_PASSWORD -> {
-
+                SetPasswordAtivity.actionStart(mBinding.phone.text.toString(), type)
             }
         }
     }
