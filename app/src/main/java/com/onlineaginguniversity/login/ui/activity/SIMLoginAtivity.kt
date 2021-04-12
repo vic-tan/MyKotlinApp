@@ -28,7 +28,6 @@ import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivityLoginBinding
 import com.onlineaginguniversity.main.ui.activity.MainActivity
 import com.onlineaginguniversity.login.utils.LoginUtils
-import com.onlineaginguniversity.login.viewmodel.LoginTestViewModel
 
 
 /**

@@ -95,7 +95,7 @@ object Repository {
         val base64Buffer = Buffer()
         val base64Sink = Base64Sink(base64Buffer)
         base64Sink.write(utf8Sink, Long.MAX_VALUE)
-        return RxHttp.get(ApiUrlConst.URL_RETRIEVE_PASSWORD)
+        return RxHttp.postJson(ApiUrlConst.URL_RETRIEVE_PASSWORD)
             .add("phone", phone)
             .add("code", code)
             .add("password", base64Buffer.readUtf8())

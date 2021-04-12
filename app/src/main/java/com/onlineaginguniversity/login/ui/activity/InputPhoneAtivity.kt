@@ -117,6 +117,7 @@ class InputPhoneAtivity :
                 SetPasswordAtivity.actionStart(mBinding.phone.text.toString(), type)
             }
         }
+        ActivityUtils.finishActivity(this@InputPhoneAtivity)
     }
 
     /**
