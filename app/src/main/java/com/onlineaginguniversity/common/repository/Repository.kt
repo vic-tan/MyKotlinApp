@@ -14,6 +14,7 @@ import com.onlineaginguniversity.common.bean.PraiseResponse
 import com.onlineaginguniversity.common.constant.ApiUrlConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.home.bean.HomeHeaderDataBean
+import com.onlineaginguniversity.login.bean.PwdLoginResultBean
 import com.onlineaginguniversity.main.bean.AdsBean
 import com.onlineaginguniversity.profile.bean.AddressBean
 import com.onlineaginguniversity.profile.bean.AreaJsonBean
@@ -81,6 +82,15 @@ object Repository {
         .add("phone", phone)
         .add("code", code)
         .toResponse<String>().await()
+
+
+    /**
+     * 密码登录
+     */
+    suspend fun requestPwdLogin(phone: String, pwd: String) = RxHttp.get(ApiUrlConst.URL_PWD_LOGIN)
+        .add("phone", phone)
+        .add("password", pwd)
+        .toResponse<PwdLoginResultBean>().await()
 
 
     /**

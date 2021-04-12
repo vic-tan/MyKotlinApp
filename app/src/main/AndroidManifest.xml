@@ -85,6 +85,7 @@
             android:label="登录入口" />
         <activity android:name=".login.ui.activity.InputPhoneAtivity" />
         <activity android:name=".login.ui.activity.PhoneLoginAtivity" />
+        <activity android:name=".login.ui.activity.PwdLoginAtivity" />
 
         <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->
 

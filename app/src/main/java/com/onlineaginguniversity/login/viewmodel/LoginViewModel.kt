@@ -9,6 +9,7 @@ import com.common.base.viewmodel.BaseViewModel
 import com.common.widget.component.extension.toast
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.repository.Repository
+import com.onlineaginguniversity.login.bean.PwdLoginResultBean
 import com.onlineaginguniversity.login.utils.LoginUtils
 
 
@@ -32,9 +33,15 @@ class LoginViewModel : BaseViewModel() {
     val mIsLogoContinuousClick: LiveData<Boolean> get() = isLogoContinuousClick
     private val isLogoContinuousClick = MutableLiveData<Boolean>()
 
+    /**
+     * 密码登录结果
+     */
+    val mPwdLoginResult: LiveData<PwdLoginResultBean> get() = pwdLoginResult
+    private val pwdLoginResult = MutableLiveData<PwdLoginResultBean>()
+
     private val mCounts = 10 // 点击次数
     private val mTotalDuration: Long = 10000 // 规定有效时间
-    var mHits: LongArray = LongArray(mCounts)
+    private var mHits: LongArray = LongArray(mCounts)
 
     /**
      * 倒计时LveData
@@ -60,11 +67,19 @@ class LoginViewModel : BaseViewModel() {
     })
 
     /**
-     * 请求登录
+     * 请求短信验证码登录
      */
     fun requestCodeLogin(phone: String, code: String) = comRequest({
         mToken = Repository.requestSMSLogin(phone, code)
         isToken.value = ObjectUtils.isNotEmpty(mToken)
+    })
+
+
+    /**
+     * 请求密码登录
+     */
+    fun requestPwdLogin(phone: String, pwd: String) = comRequest({
+        pwdLoginResult.value =  Repository.requestPwdLogin(phone, pwd)
     })
 
     /**

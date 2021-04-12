@@ -18,34 +18,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:ellipsize="end"
         android:lines="1"
-        android:text="手机号登录"
+        android:text="密码登录"
         android:textColor="@color/txt_basic"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@id/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/logo"
         app:layout_constraintTop_toTopOf="@id/logo" />
-
-
-    <TextView
-        android:id="@+id/hint"
-        style="@style/match_wrap"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="25dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="首页登录将自动注册"
-        android:textColor="@color/txt_sub"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo" />
 
 
     <com.common.widget.ClearEditText
@@ -64,7 +48,6 @@
         android:maxLines="1"
         android:paddingStart="40dp"
         android:paddingEnd="15dp"
-        android:text="138 0010 0500"
         android:textColor="@color/txt_basic"
         android:textColorHint="@color/txt_help"
         android:textSize="18sp"
@@ -72,7 +55,9 @@
         app:corner_radius="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hint" />
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        tools:background="@color/com_input_bg"
+        tools:text="138 0010 0500" />
 
 
     <ImageView
@@ -84,34 +69,93 @@
         app:layout_constraintStart_toStartOf="@id/phone"
         app:layout_constraintTop_toTopOf="@id/phone" />
 
-    <com.ruffian.library.widget.RTextView
-        android:id="@+id/code"
+
+    <com.common.widget.ClearEditText
+        android:id="@+id/pwd"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:background="@null"
+        android:hint="请输入密码"
+        android:imeOptions="actionNext"
+        android:inputType="textPassword"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:paddingStart="40dp"
+        android:paddingEnd="15dp"
+        android:textColor="@color/txt_basic"
+        android:textColorHint="@color/txt_help"
+        android:textSize="18sp"
+        app:background_normal="@color/com_input_bg"
+        app:corner_radius="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phone"
+        tools:background="@color/com_input_bg" />
+
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="15dp"
+        android:background="@mipmap/ic_pwd"
+        app:layout_constraintBottom_toBottomOf="@id/pwd"
+        app:layout_constraintStart_toStartOf="@id/pwd"
+        app:layout_constraintTop_toTopOf="@id/pwd" />
+
+    <View
+        android:id="@+id/margin_top"
+        style="@style/wrap_wrap"
+        android:layout_height="10dp"
+        android:layout_gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pwd" />
+
+    <TextView
+        android:id="@+id/error_text"
+        style="@style/wrap_wrap"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="30dp"
+        android:text="账号或密码错误"
+        android:textColor="@color/theme"
+        android:textSize="15sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/margin_top" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:gravity="center"
-        android:text="获取验证码"
+        android:text="登录"
         android:textColor="@color/white"
         android:textSize="21sp"
         app:background_normal="@color/theme"
         app:corner_radius="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone" />
+        app:layout_constraintTop_toBottomOf="@id/error_text" />
 
 
     <TextView
-        android:id="@+id/pwd_login"
+        android:id="@+id/forget_pwd"
         style="@style/wrap_wrap"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="20dp"
-        android:text="使用密码登录 >"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:text="忘记密码?  找回密码"
         android:textColor="@color/txt_basic"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/code" />
+        app:layout_constraintTop_toBottomOf="@id/login" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

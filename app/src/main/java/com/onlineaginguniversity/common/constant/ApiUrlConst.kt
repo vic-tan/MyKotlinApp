@@ -52,6 +52,9 @@ object ApiUrlConst {
     /* 验证验证码登录 */
     const val URL_SMS_LOGIN = "auth/login"
 
+    /* 密码登录 */
+    const val URL_PWD_LOGIN = "auth/passwordLogin"
+
     /* 退出登录 */
     const val URL_LOGIN_OUT = "auth/loginOut"
 

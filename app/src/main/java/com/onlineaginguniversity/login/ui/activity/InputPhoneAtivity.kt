@@ -3,11 +3,11 @@ package com.onlineaginguniversity.login.ui.activity
 import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseToolBarActivity
+import com.common.constant.GlobalConst
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.widget.TextInputHelper
-import com.common.widget.component.extension.clickListener
-import com.common.widget.component.extension.gone
-import com.common.widget.component.extension.startActivity
+import com.common.widget.component.extension.*
+import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivityInputPhoneBinding
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
@@ -22,10 +22,13 @@ class InputPhoneAtivity :
     BaseToolBarActivity<ActivityInputPhoneBinding, LoginViewModel>() {
 
     private lateinit var mInputHelper: TextInputHelper
+    private lateinit var type: EnumConst.SMSType
 
     companion object {
-        fun actionStart() {
-            startActivity<InputPhoneAtivity> { }
+        fun actionStart(type: EnumConst.SMSType) {
+            startActivity<InputPhoneAtivity> {
+                putExtra(GlobalConst.Extras.TYPE, type)
+            }
         }
     }
 
@@ -35,7 +38,21 @@ class InputPhoneAtivity :
 
 
     override fun init() {
+        type = intent.getSerializableExtra(GlobalConst.Extras.TYPE) as EnumConst.SMSType
         mTitleBar.lineView.gone()
+        mBinding.pwdLogin.setVisible(type == EnumConst.SMSType.MOBILE_LOGIN)
+        when (type) {
+            //登录
+            EnumConst.SMSType.MOBILE_LOGIN -> {
+                mBinding.title.text = "手机号登录"
+                mBinding.hint.text = "首页登录将自动注册"
+            }
+            //找回密码
+            EnumConst.SMSType.RETRIEVE_PASSWORD -> {
+                mBinding.title.text = "手机验证"
+                mBinding.hint.text = "验证手机号码后，设置新密码"
+            }
+        }
         initViewModelObserve()
         initListener()
         initData()
@@ -77,15 +94,29 @@ class InputPhoneAtivity :
             clickListener = View.OnClickListener {
                 when (it) {
                     mBinding.code -> {
-                        if (LoginUtils.checkPhone(mBinding.phone)) {
-                            PhoneLoginAtivity.actionStart(mBinding.phone.text.toString())
-                            ActivityUtils.finishActivity(mActivity)
-                        }
+                        startCode()
                     }
-                    mBinding.pwdLogin -> EnvironmentSwitchActivity.actionStart()
+                    mBinding.pwdLogin -> PwdLoginAtivity.actionStart()
                 }
             }
         )
+    }
+
+    fun startCode() {
+        if (!LoginUtils.checkPhone(mBinding.phone)) {
+            return
+        }
+        when (type) {
+            //登录
+            EnumConst.SMSType.MOBILE_LOGIN -> {
+                PhoneLoginAtivity.actionStart(mBinding.phone.text.toString())
+                ActivityUtils.finishActivity(mActivity)
+            }
+            //找回密码
+            EnumConst.SMSType.RETRIEVE_PASSWORD -> {
+
+            }
+        }
     }
 
     /**

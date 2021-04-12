@@ -6,6 +6,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseActivity
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.widget.component.extension.*
+import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivityLoginEntranceBinding
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
@@ -72,8 +73,8 @@ class LoginEntranceAtivity :
                 when (it) {
                     mBinding.login -> {
                         when {
-                            mBinding.protocolCheckbox.isChecked ->{
-                                InputPhoneAtivity.actionStart()
+                            mBinding.protocolCheckbox.isChecked -> {
+                                InputPhoneAtivity.actionStart(EnumConst.SMSType.MOBILE_LOGIN)
                             }
                             else ->
                                 LoginUtils.delayedProtocolPrompt(mBinding.protocolPrompt)
