@@ -102,7 +102,7 @@ class InputPhoneAtivity :
         )
     }
 
-    fun startCode() {
+    private fun startCode() {
         if (!LoginUtils.checkPhone(mBinding.phone)) {
             return
         }
