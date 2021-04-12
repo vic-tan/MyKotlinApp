@@ -13,6 +13,8 @@ import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivityPwdLoginBinding
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
+import com.onlineaginguniversity.login.utils.Base64Sink
+import okio.Buffer
 
 
 /**
@@ -51,6 +53,7 @@ class PwdLoginAtivity :
 
     private fun initData() {
         initTextInputHelper()
+        LoginUtils.phoneFormat(mBinding.phone)
     }
 
     /**

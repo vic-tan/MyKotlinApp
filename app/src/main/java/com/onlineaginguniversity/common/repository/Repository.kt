@@ -1,5 +1,6 @@
 package com.onlineaginguniversity.common.repository
 
+import android.util.Base64
 import com.blankj.utilcode.util.AppUtils
 import com.common.constant.GlobalConst
 import com.common.base.bean.UserBean
@@ -15,13 +16,16 @@ import com.onlineaginguniversity.common.constant.ApiUrlConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.home.bean.HomeHeaderDataBean
 import com.onlineaginguniversity.login.bean.PwdLoginResultBean
+import com.onlineaginguniversity.login.utils.Base64Sink
 import com.onlineaginguniversity.main.bean.AdsBean
 import com.onlineaginguniversity.profile.bean.AddressBean
 import com.onlineaginguniversity.profile.bean.AreaJsonBean
 import com.onlineaginguniversity.profile.bean.ManualBean
 import com.onlineaginguniversity.profile.bean.UniversityBean
+import okio.Buffer
 import rxhttp.RxHttp
 import rxhttp.toResponse
+import kotlin.collections.HashMap
 
 /**
  * @desc:接口请求
@@ -87,10 +91,18 @@ object Repository {
     /**
      * 密码登录
      */
-    suspend fun requestPwdLogin(phone: String, pwd: String) = RxHttp.get(ApiUrlConst.URL_PWD_LOGIN)
-        .add("phone", phone)
-        .add("password", pwd)
-        .toResponse<PwdLoginResultBean>().await()
+    suspend fun requestPwdLogin(phone: String, pwd: String): PwdLoginResultBean {
+        //OKio base64
+        val utf8Sink = Buffer().writeUtf8(pwd)
+        val base64Buffer = Buffer()
+        val base64Sink = Base64Sink(base64Buffer)
+        base64Sink.write(utf8Sink, Long.MAX_VALUE)
+
+        return RxHttp.get(ApiUrlConst.URL_PWD_LOGIN)
+            .add("phone", phone)
+            .add("password", base64Buffer.readUtf8())
+            .toResponse<PwdLoginResultBean>().await()
+    }
 
 
     /**
