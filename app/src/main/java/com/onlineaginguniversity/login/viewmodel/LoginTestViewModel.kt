@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.viewmodel.BaseViewModel
+import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.repository.Repository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -76,8 +77,8 @@ class LoginTestViewModel : BaseViewModel() {
     /**
      * 请求短信码
      */
-    fun requestSmsCode(phone: String) = comRequest({
-        Repository.requestSMSCode(phone)
+    fun requestSmsCode(phone: String, type: EnumConst.SMSType) = comRequest({
+        Repository.requestSMSCode(phone,type)
         startInterval()
     })
 

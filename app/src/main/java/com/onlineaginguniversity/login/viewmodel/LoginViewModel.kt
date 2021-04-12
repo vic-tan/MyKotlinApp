@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.viewmodel.BaseViewModel
 import com.common.widget.component.extension.toast
+import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.repository.Repository
 import com.onlineaginguniversity.login.utils.LoginUtils
 
@@ -44,8 +45,8 @@ class LoginViewModel : BaseViewModel() {
     /**
      * 请求短信验证码
      */
-    fun requestSmsCode(phone: String) = comRequest({
-        Repository.requestSMSCode(phone)
+    fun requestSmsCode(phone: String, type: EnumConst.SMSType) = comRequest({
+        Repository.requestSMSCode(phone, type)
         LoginUtils.startTimer(codeTimer)
     })
 
@@ -53,8 +54,8 @@ class LoginViewModel : BaseViewModel() {
     /**
      * 请求发送语音验证码
      */
-    fun requestVoiceCode(phone: String) = comRequest({
-        Repository.requestVoiceCode(phone)
+    fun requestVoiceCode(phone: String, type: EnumConst.SMSType) = comRequest({
+        Repository.requestVoiceCode(phone, type)
         toast("请注意接听电话")
     })
 

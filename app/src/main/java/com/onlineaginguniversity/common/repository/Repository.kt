@@ -12,6 +12,7 @@ import com.onlineaginguniversity.circle.utils.CommentUrlType
 import com.onlineaginguniversity.common.bean.FollowResponse
 import com.onlineaginguniversity.common.bean.PraiseResponse
 import com.onlineaginguniversity.common.constant.ApiUrlConst
+import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.home.bean.HomeHeaderDataBean
 import com.onlineaginguniversity.main.bean.AdsBean
 import com.onlineaginguniversity.profile.bean.AddressBean
@@ -33,18 +34,45 @@ object Repository {
     /**
      * 获取短信验证码
      */
-    suspend fun requestSMSCode(phone: String) = RxHttp.get(ApiUrlConst.URL_SEND_SMS)
-        .add("phone", phone)
-        .toResponse<String>().await()
+    suspend fun requestSMSCode(phone: String, type: EnumConst.SMSType): String {
+        var url: String = ApiUrlConst.URL_SEND_SMS
+        var map = HashMap<String, Any>()
+        map["phone"] = phone
+        //后台未做统一，应该统一用上面URL_SEND_SMS接，后台问题
+        when (type) {
+            EnumConst.SMSType.MOBILE_LOGIN -> {
+                url = ApiUrlConst.URL_LOGIN_SEND_SMS
+            }
+            else -> {
+                map["type"] = type.value
+            }
+        }
+        return RxHttp.get(url)
+            .addAll(map)
+            .toResponse<String>().await()
+    }
 
 
     /**
      * 发送语音验证码
      */
-    suspend fun requestVoiceCode(phone: String) = RxHttp.get(ApiUrlConst.URL_SEND_VOICE_SMS)
-        .add("phone", phone)
-        .toResponse<String>().await()
-
+    suspend fun requestVoiceCode(phone: String, type: EnumConst.SMSType): String {
+        var url: String = ApiUrlConst.URL_VOICE_SMS
+        var map = HashMap<String, Any>()
+        map["phone"] = phone
+        //后台未做统一，应该统一用上面URL_SEND_SMS接，后台问题
+        when (type) {
+            EnumConst.SMSType.MOBILE_LOGIN -> {
+                url = ApiUrlConst.URL_LOGIN_VOICE_SMS
+            }
+            else -> {
+                map["type"] = type.value
+            }
+        }
+        return RxHttp.get(url)
+            .addAll(map)
+            .toResponse<String>().await()
+    }
 
     /**
      * 验证码登录

@@ -56,7 +56,7 @@ object LoginUtils {
         if (phoneEdit.text.toString().isEmpty()) {
             toast("请输入手机号")
             return false
-        } else if (!RegexUtils.isMobileSimple(getPhoneNumber(phoneEdit.text.toString()))) {
+        } else if (!RegexUtils.isMobileExact(getPhoneNumber(phoneEdit.text.toString()))) {
             toast("请输入正确的手机号码")
             return false
         }

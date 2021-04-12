@@ -23,6 +23,7 @@ import com.common.widget.TextInputHelper
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.ApiUrlConst.URL_PRIVATE_AGREEMENT
 import com.onlineaginguniversity.common.constant.ApiUrlConst.URL_USER_AGREEMENT
+import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivityLoginBinding
 import com.onlineaginguniversity.main.ui.activity.MainActivity
@@ -111,7 +112,10 @@ open class SIMLoginAtivity : BaseActivity<ActivityLoginBinding, LoginTestViewMod
                                 LoginUtils.getPhoneNumber(mBinding.phone.text.toString())
                             )
                         ) {
-                            mViewModel.requestSmsCode(LoginUtils.getPhoneNumber(mBinding.phone.text.toString()))
+                            mViewModel.requestSmsCode(
+                                LoginUtils.getPhoneNumber(mBinding.phone.text.toString()),
+                                EnumConst.SMSType.MOBILE_LOGIN
+                            )
                         }
                     }
                     mBinding.login -> {

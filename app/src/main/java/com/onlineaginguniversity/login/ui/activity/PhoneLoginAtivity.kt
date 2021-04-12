@@ -59,7 +59,7 @@ class PhoneLoginAtivity :
 
     private fun initData() {
         mBinding.prompt.text = "短信验证码已发送至 $phoneNumber"
-        mViewModel.requestSmsCode(LoginUtils.getPhoneNumber(phoneNumber))
+        mViewModel.requestSmsCode(LoginUtils.getPhoneNumber(phoneNumber),EnumConst.SMSType.MOBILE_LOGIN)
         initTextInputHelper()
     }
 
@@ -108,7 +108,10 @@ class PhoneLoginAtivity :
                         }
                     }
                     mBinding.codeBtn -> {
-                        mViewModel.requestSmsCode(LoginUtils.getPhoneNumber(phoneNumber))
+                        mViewModel.requestSmsCode(
+                            LoginUtils.getPhoneNumber(phoneNumber),
+                            EnumConst.SMSType.MOBILE_LOGIN
+                        )
                     }
                     mBinding.notReceivedCode -> {
                         ComDialogUtils.showComPrompt(
@@ -118,7 +121,10 @@ class PhoneLoginAtivity :
                         )
                     }
                     mBinding.voiceCode -> {
-                        mViewModel.requestVoiceCode(LoginUtils.getPhoneNumber(phoneNumber))
+                        mViewModel.requestVoiceCode(
+                            LoginUtils.getPhoneNumber(phoneNumber),
+                            EnumConst.SMSType.MOBILE_LOGIN
+                        )
                     }
                 }
             }

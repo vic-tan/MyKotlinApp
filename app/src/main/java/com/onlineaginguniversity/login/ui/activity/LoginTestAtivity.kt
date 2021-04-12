@@ -113,7 +113,7 @@ open class LoginTestAtivity : BaseActivity<ActivityLoginBinding, LoginTestViewMo
                                 LoginUtils.getPhoneNumber(mBinding.phone.text.toString())
                             )
                         ) {
-                            mViewModel.requestSmsCode(LoginUtils.getPhoneNumber(mBinding.phone.text.toString()))
+                            mViewModel.requestSmsCode(LoginUtils.getPhoneNumber(mBinding.phone.text.toString()),EnumConst.SMSType.MOBILE_LOGIN)
                         }
                     }
                     mBinding.login -> {

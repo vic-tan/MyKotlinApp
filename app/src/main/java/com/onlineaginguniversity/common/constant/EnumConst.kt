@@ -50,4 +50,20 @@ interface EnumConst {
         COMPLETE(-2L)//完成
     }
 
+    /**
+     * 获取验证码类型枚举
+     * mobilelogin:手机登录；
+     * updatePassword:修改密码；
+     * retrievePassword:找回密码
+     * unbindPhone:解除绑定
+     * modifyPhone:重新绑定
+     */
+    enum class SMSType(val value: String) {
+        MOBILE_LOGIN("mobilelogin"),//手机登录
+        UPDATE_PASSWORD("updatePassword"),//修改密码
+        RETRIEVE_PASSWORD("retrievePassword"),//找回密码
+        UNBIND_PHONE("unbindPhone"),//解除绑定
+        MODIFY_PHONE("modifyPhone"),//重新绑定
+    }
+
 }
