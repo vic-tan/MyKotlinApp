@@ -76,9 +76,6 @@
             android:name=".main.ui.activity.MainActivity"
             android:label="首页"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".login.ui.activity.LoginTestAtivity"
-            android:label="登录" />
 
         <activity
             android:name=".login.ui.activity.LoginEntranceAtivity"
@@ -87,6 +84,7 @@
         <activity android:name=".login.ui.activity.PhoneLoginAtivity" />
         <activity android:name=".login.ui.activity.PwdLoginAtivity" />
         <activity android:name=".login.ui.activity.SetPasswordAtivity" />
+        <activity android:name=".login.ui.activity.BindPhoneAtivity" />
 
         <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->
 

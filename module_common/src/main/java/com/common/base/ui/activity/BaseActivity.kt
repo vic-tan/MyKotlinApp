@@ -340,6 +340,12 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
 
     }
 
+    /**
+     * 加载框监听
+     */
+    open fun uiChangeObserve() {
+        mViewModel.mUiChange.observe(this, this)
+    }
 
     /**
      * 加载框显示

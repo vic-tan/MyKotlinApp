@@ -7,10 +7,14 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.viewmodel.BaseViewModel
 import com.common.widget.component.extension.toast
+import com.onlineaginguniversity.common.constant.ApiUrlConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.repository.Repository
 import com.onlineaginguniversity.login.bean.PwdLoginResultBean
+import com.onlineaginguniversity.login.bean.WxLoginResultBean
 import com.onlineaginguniversity.login.utils.LoginUtils
+import rxhttp.RxHttp
+import rxhttp.toResponse
 
 
 /**
@@ -38,6 +42,20 @@ class LoginViewModel : BaseViewModel() {
      */
     val mPwdLoginResult: LiveData<PwdLoginResultBean> get() = pwdLoginResult
     private val pwdLoginResult = MutableLiveData<PwdLoginResultBean>()
+
+    /**
+     * 微信授权登录结果
+     */
+    val mWxLoginResult: LiveData<WxLoginResultBean> get() = wxLoginResult
+    private val wxLoginResult = MutableLiveData<WxLoginResultBean>()
+
+
+    /**
+     * 微信绑定手机
+     */
+    val mWxBindPhone: LiveData<Boolean> get() = wxBindPhone
+    private val wxBindPhone = MutableLiveData<Boolean>()
+
 
     private val mCounts = 10 // 点击次数
     private val mTotalDuration: Long = 10000 // 规定有效时间
@@ -75,6 +93,22 @@ class LoginViewModel : BaseViewModel() {
     })
 
     /**
+     * 微信授权登录
+     */
+    fun requestWechatLogin(openid: String) = comRequest({
+        wxLoginResult.value = Repository.requestWechatLogin(openid)
+    })
+
+    /**
+     * 微信绑定用户关系
+     */
+    fun requestBindPhoneLogin(openid: String) = comRequest({
+        Repository.requestBindPhoneLogin(openid)
+        wxBindPhone.value = true
+    })
+
+
+    /**
      * 找回密码
      */
     fun requestSetPwd(
@@ -84,7 +118,7 @@ class LoginViewModel : BaseViewModel() {
         type: EnumConst.SMSType
     ) = comRequest({
         Repository.requestSetPwd(phone, code, pwd, type)
-        pwdLoginResult.value = Repository.requestPwdLogin(phone,pwd)
+        pwdLoginResult.value = Repository.requestPwdLogin(phone, pwd)
     })
 
 

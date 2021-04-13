@@ -76,7 +76,7 @@ class AddressManagerActivity : BaseToolBarActivity<ActivityAddressManngerBinding
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        mViewModel.mUiChange.observe(this, this)
+        uiChangeObserve()
         mViewModel.mAddressDataComplete.observe(this, Observer {
             mBinding.name.setText(mViewModel.mUser.nickname)
             mBinding.name.setSelection(mBinding.name.text.length)

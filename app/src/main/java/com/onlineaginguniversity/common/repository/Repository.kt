@@ -15,6 +15,7 @@ import com.onlineaginguniversity.common.constant.ApiUrlConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.home.bean.HomeHeaderDataBean
 import com.onlineaginguniversity.login.bean.PwdLoginResultBean
+import com.onlineaginguniversity.login.bean.WxLoginResultBean
 import com.onlineaginguniversity.login.utils.Base64Sink
 import com.onlineaginguniversity.main.bean.AdsBean
 import com.onlineaginguniversity.profile.bean.AddressBean
@@ -102,6 +103,24 @@ object Repository {
             .add("type", type.value)
             .toResponse<String>().await()
     }
+
+
+    /**
+     * 微信授权登录
+     */
+    suspend fun requestWechatLogin(openid: String) =
+        RxHttp.postJson(ApiUrlConst.URL_WECHAT_LOGIN)
+            .add("openid", openid)
+            .toResponse<WxLoginResultBean>().await()
+
+
+    /**
+     * 微信绑定用户关系
+     */
+    suspend fun requestBindPhoneLogin(openid: String) =
+        RxHttp.postJson(ApiUrlConst.URL_BIND_PHONE_LOGIN)
+            .add("openid", openid)
+            .toResponse<String>().await()
 
 
     /**

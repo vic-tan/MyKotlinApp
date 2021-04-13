@@ -115,7 +115,7 @@ class ProfileManagerActivity :
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        mViewModel.mUiChange.observe(this, this)
+        uiChangeObserve()
         mViewModel.mRefreshUserInfo.observe(this, Observer { it ->
             GlideUtils.loadAvatar(mActivity, it.avatar, mBinding.userHead)
             mBinding.nickname.setText(it.nickname)

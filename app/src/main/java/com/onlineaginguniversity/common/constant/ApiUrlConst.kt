@@ -52,6 +52,11 @@ object ApiUrlConst {
     /* 找回密码 */
     const val URL_RETRIEVE_PASSWORD = "${URL_USER}retrievePassword"
 
+    /* 微信授权登录 */
+    const val URL_WECHAT_LOGIN = "${URL_USER}wxLogin"
+
+    /* 微信绑定用户关系 */
+    const val URL_BIND_PHONE_LOGIN = "${URL_USER}bindPhoneLogin"
 
     /* 验证验证码登录 */
     const val URL_SMS_LOGIN = "auth/login"

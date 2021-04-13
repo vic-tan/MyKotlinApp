@@ -237,7 +237,7 @@ class CircleVideoPagerActivity :
                             OnShareListener {
                             override fun onItemClick(
                                 v: View,
-                                type: ShareView.ShareType
+                                type: GlobalEnumConst.ShareType
                             ) {
                                 toast(type.name)
                             }
