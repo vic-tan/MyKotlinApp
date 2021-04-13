@@ -1,6 +1,7 @@
 package com.common.core.share.listener
 
 import android.view.View
+import com.common.constant.GlobalEnumConst
 import com.common.core.share.ui.ShareView
 
 /**
@@ -11,7 +12,7 @@ import com.common.core.share.ui.ShareView
 interface OnShareListener {
     fun onItemClick(
         v: View,
-        type: ShareView.ShareType
+        type: GlobalEnumConst.ShareType
     ) {
     }
 }

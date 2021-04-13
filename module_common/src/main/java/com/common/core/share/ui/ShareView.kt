@@ -3,7 +3,8 @@ package com.common.core.share.ui
 import android.content.Context
 import android.view.View.OnClickListener
 import com.common.R
-import com.common.core.share.ShareBean
+import com.common.constant.GlobalEnumConst
+import com.common.core.share.bean.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.databinding.LayoutShareBinding
 import com.common.widget.component.extension.clickListener
@@ -19,12 +20,6 @@ class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener
     BottomPopupView(mContext) {
     lateinit var mBinding: LayoutShareBinding
 
-    enum class ShareType {
-        WX,//微信
-        WX_CIRCLE,//朋友圈
-        REPORT,//举报
-        CREDIT,//删除
-    }
 
     var mlistener: OnShareListener = mListener
     var share: ShareBean = mShare
@@ -48,7 +43,7 @@ class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener
                             dismiss()
                             mlistener.onItemClick(
                                 it,
-                                ShareType.WX
+                                GlobalEnumConst.ShareType.WECHAT
                             )
                         }
                     }
@@ -56,7 +51,7 @@ class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener
                         if (isWeixinAvilible()) {
                             mlistener.onItemClick(
                                 it,
-                                ShareType.WX_CIRCLE
+                                GlobalEnumConst.ShareType.WECHATMOMENTS
                             )
                             dismiss()
                         }
@@ -65,14 +60,14 @@ class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener
                         dismiss()
                         mlistener.onItemClick(
                             it,
-                            ShareType.REPORT
+                            GlobalEnumConst.ShareType.REPORT
                         )
                     }
                     mBinding.credit -> {
                         dismiss()
                         mlistener.onItemClick(
                             it,
-                            ShareType.CREDIT
+                            GlobalEnumConst.ShareType.CREDIT
                         )
                     }
                     mBinding.cancel -> dismiss()

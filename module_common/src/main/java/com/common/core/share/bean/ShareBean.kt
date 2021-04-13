@@ -1,4 +1,4 @@
-package com.common.core.share
+package com.common.core.share.bean
 
 /**
  * @desc:分享实体

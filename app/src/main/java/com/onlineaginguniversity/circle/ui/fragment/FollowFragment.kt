@@ -14,7 +14,7 @@ import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.constant.GlobalEnumConst
 import com.common.core.event.BaseEvent
-import com.common.core.share.ShareBean
+import com.common.core.share.bean.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.RecyclerUtils
@@ -240,7 +240,12 @@ class FollowFragment :
                     XPopup.Builder(it).asCustom(
                         ShareView(
                             it,
-                            ShareBean("网上老年大学", "https://www.baidu.com", "test 分享", ""),
+                            ShareBean(
+                                "网上老年大学",
+                                "https://www.baidu.com",
+                                "test 分享",
+                                ""
+                            ),
                             object :
                                 OnShareListener {
                                 override fun onItemClick(

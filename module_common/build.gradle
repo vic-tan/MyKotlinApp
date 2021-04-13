@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'//使用kapt依赖rxhttp-compiler，需要导入kapt插件
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -46,6 +47,24 @@ android {
 
     buildFeatures {
         viewBinding = true
+    }
+
+    MobSDK {
+        appKey "77990c6ec68"
+        appSecret "caf75f5e33a12967956d4be6c887f00a"
+        ShareSDK {
+            version '3.8.5'
+            devInfo {
+                Wechat {
+                    appId "wxe8619c288cd7270e"
+                    appSecret "5ffcdcd0faee85938631d5d56c0086f8"
+                }
+                WechatMoments {
+                    appId "wxe8619c288cd7270e"
+                    appSecret "5ffcdcd0faee85938631d5d56c0086f8"
+                }
+            }
+        }
     }
 }
 
@@ -184,7 +203,6 @@ dependencies {
 
     //Sophix 未开源，商业收费，实时生效/冷启动修复(50000人)
     api rootProject.ext.dependencies.hotfix
-
 
 
     //<----------------------------  以上为基本第三方开源库 EDN ----------------------------------->

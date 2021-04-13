@@ -1,5 +1,7 @@
 package com.common.constant
 
+import cn.sharesdk.wechat.moments.WechatMoments
+
 /**
  * @desc:
  * @author: tanlifei
@@ -32,7 +34,16 @@ interface GlobalEnumConst {
         TOP,//上
         RIGHT,//右
         BOTTOM,//下
+    }
 
+    /**
+     * 授权类型
+     */
+    enum class ShareType {
+        WECHAT,//微信
+        WECHATMOMENTS,//微信朋友圈
+        REPORT,//举报
+        CREDIT,//删除
     }
 
 }

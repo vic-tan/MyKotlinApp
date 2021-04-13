@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -42,6 +43,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
     }
 
     flavorDimensions "default"
@@ -79,7 +85,6 @@ android {
     }
 
 
-
     repositories {
         flatDir {
             dirs 'libs'
@@ -89,6 +94,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 
 }
 

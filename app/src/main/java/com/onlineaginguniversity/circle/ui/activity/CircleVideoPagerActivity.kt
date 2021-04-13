@@ -15,7 +15,7 @@ import com.common.base.listener.ComListener
 import com.common.base.ui.activity.BaseRvActivity
 import com.common.constant.GlobalConst
 import com.common.constant.GlobalEnumConst
-import com.common.core.share.ShareBean
+import com.common.core.share.bean.ShareBean
 import com.common.core.share.listener.OnShareListener
 import com.common.core.share.ui.ShareView
 import com.common.utils.RecyclerUtils
@@ -227,7 +227,12 @@ class CircleVideoPagerActivity :
                 XPopup.Builder(mActivity).asCustom(
                     ShareView(
                         mActivity,
-                        ShareBean("网上老年大学", "https://www.baidu.com", "test 分享", ""),
+                        ShareBean(
+                            "网上老年大学",
+                            "https://www.baidu.com",
+                            "test 分享",
+                            ""
+                        ),
                         object :
                             OnShareListener {
                             override fun onItemClick(
