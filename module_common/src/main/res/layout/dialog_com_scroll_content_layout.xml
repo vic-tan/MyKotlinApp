@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_wrap"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    app:background_normal="@color/white"
+    app:corner_radius="10dp">
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/match_wrap"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center_horizontal"
+        android:text="温馨提示"
+        android:textColor="@color/txt_basic"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/content_layout"
+        style="@style/match_wrap"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/match_wrap"
+            android:maxHeight="260dp"
+            android:textColor="@color/txt_sub"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="取消后将无法兑换到商品,是否继续填写信息？是否继续填写信息" />
+
+    </ScrollView>
+
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/com_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content_layout" />
+
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/txt_help"
+        android:textSize="18sp"
+        app:corner_radius_bottom_left="10dp"
+        app:layout_constraintEnd_toStartOf="@id/vertical_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line"
+        app:ripple="true"
+        app:ripple_color="@color/com_ripple" />
+
+    <View
+        android:id="@+id/vertical_line"
+        android:layout_width="0.5dp"
+        android:layout_height="45dp"
+        android:background="@color/com_line"
+        app:layout_constraintEnd_toStartOf="@id/tv_confirm"
+        app:layout_constraintStart_toEndOf="@id/tv_cancel"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/theme"
+        android:textSize="18sp"
+        app:corner_radius_bottom_right="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vertical_line"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line"
+        app:ripple="true"
+        app:ripple_color="@color/com_ripple" />
+
+
+</com.ruffian.library.widget.RConstraintLayout>

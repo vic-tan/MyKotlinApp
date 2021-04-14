@@ -3,7 +3,7 @@ package com.onlineaginguniversity.login.ui.activity
 import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.ObjectUtils
+import com.common.ComFun
 import com.common.base.ui.activity.BaseActivity
 import com.common.constant.GlobalEnumConst
 import com.common.core.environment.EnvironmentSwitchActivity
@@ -12,10 +12,10 @@ import com.common.core.share.utils.AuthUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.startActivity
-import com.common.widget.component.extension.toast
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivityLoginEntranceBinding
 import com.onlineaginguniversity.login.utils.LoginUtils
+import com.onlineaginguniversity.login.utils.ProtocolTxtUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
 import java.util.*
 
@@ -42,11 +42,12 @@ class LoginEntranceAtivity :
 
 
     override fun init() {
-        LoginUtils.showProtocolTxt(mBinding.protocolTxt)
+        ProtocolTxtUtils.loginProtocolTxt(mBinding.protocolTxt)
         LoginUtils.protocolCheck(mBinding.protocolCheckbox, mBinding.protocolPrompt)
         initViewModelObserve()
         initListener()
         initData()
+        LoginUtils.privacyDialog(this@LoginEntranceAtivity)
     }
 
     override fun onResume() {

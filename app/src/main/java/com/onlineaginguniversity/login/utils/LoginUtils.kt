@@ -1,5 +1,6 @@
 package com.onlineaginguniversity.login.utils
 
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.CheckBox
@@ -11,17 +12,20 @@ import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
 import cn.iwgang.simplifyspan.unit.SpecialClickableUnit
 import cn.iwgang.simplifyspan.unit.SpecialTextUnit
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.RegexUtils
+import com.blankj.utilcode.util.SPUtils
 import com.common.ComFun
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
-import com.common.widget.component.extension.color
-import com.common.widget.component.extension.gone
-import com.common.widget.component.extension.toast
-import com.common.widget.component.extension.visible
+import com.common.utils.ComDialogUtils
+import com.common.widget.component.extension.*
+import com.lxj.xpopup.interfaces.OnCancelListener
+import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.ApiUrlConst
+import com.onlineaginguniversity.common.constant.ComConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.login.bean.WxLoginResultBean
@@ -120,49 +124,28 @@ object LoginUtils {
         })
     }
 
+
     /**
-     * 显示协议
+     * 提示隐私协议
      */
-    fun showProtocolTxt(protocolView: TextView) {
-        val titleBuild = SimplifySpanBuild()
-        titleBuild.apply {
-            append(
-                SpecialTextUnit("勾选表示已阅读并同意").setTextColor(
-                    color(R.color.txt_sub)
+    fun privacyDialog(context: Context) {
+        var privacy = SPUtils.getInstance().getBoolean(ComConst.SPKey.PRIVACY, true)
+        if (privacy) {
+            ComFun.mHandler.postDelayed({
+                ComDialogUtils.baseScrollContentDialog(
+                    mContext = context,
+                    content = string(R.string.privacy_txt),
+                    cancelBtnText = "不同意并退出",
+                    confirmBtnText = "我同意",
+                    confirmListener = OnConfirmListener {
+                        SPUtils.getInstance().put(ComConst.SPKey.PRIVACY, false)
+                    },
+                    cancelListener = OnCancelListener {
+                        ActivityUtils.finishAllActivities()
+                    }
                 )
-            )
-            append(
-                SpecialTextUnit("《用户协议》", color(R.color.color_A47E68))
-                    .setClickableUnit(
-                        SpecialClickableUnit(
-                            protocolView,
-                            OnClickableSpanListener { _, _ ->
-                                BaseWebViewActivity.actionStart(
-                                    "用户协议",
-                                    ApiUrlConst.URL_USER_AGREEMENT
-                                )
-                            }
-                        )
-                            .setPressBgColor(color(R.color.white))
-                    )
-            )
-            append("和")
-            append(
-                SpecialTextUnit("《隐私政策》", color(R.color.color_A47E68))
-                    .setClickableUnit(
-                        SpecialClickableUnit(
-                            protocolView,
-                            OnClickableSpanListener { _, _ ->
-                                BaseWebViewActivity.actionStart(
-                                    "隐私政策",
-                                    ApiUrlConst.URL_PRIVATE_AGREEMENT
-                                )
-                            }
-                        ).setPressBgColor(color(R.color.white))
-                    )
-            )
+            }, 1500)
         }
-        protocolView.text = titleBuild.build()
     }
 
 

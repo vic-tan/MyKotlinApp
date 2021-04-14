@@ -12,7 +12,8 @@ interface ComConst {
      */
     interface SPKey {
         companion object {
-            const val GUIDE = "sp_guide"
+            const val GUIDE = "sp_guide"//引导页
+            const val PRIVACY = "sp_privacy"//隐私协议弹框
         }
     }
 
