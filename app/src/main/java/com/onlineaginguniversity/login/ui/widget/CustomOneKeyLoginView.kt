@@ -33,7 +33,8 @@ class CustomOneKeyLoginView(
     var listener: OnKeyLoginListener.UIClickListener
 ) {
 
-    private lateinit var protocolHint: ImageView
+    private var protocolPrompt: ImageView? = null
+    private var avatar: ImageView? = null
     private var isChecked = false
 
     fun configAuthPage() {
@@ -49,11 +50,7 @@ class CustomOneKeyLoginView(
             isChecked = jsonObj!!.optBoolean("isChecked")
             log(isChecked)
             when (code) {
-                ResultCode.CODE_ERROR_USER_LOGIN_BTN -> if (isChecked) {
-                    protocolHint.gone()
-                } else {
-                    LoginUtils.delayedProtocolPrompt(protocolHint)
-                }
+                ResultCode.CODE_ERROR_USER_LOGIN_BTN -> setProtocolPromptVisible(!isChecked)
             }
         }
         mAuthHelper.removeAuthRegisterXmlConfig()
@@ -62,19 +59,21 @@ class CustomOneKeyLoginView(
             AuthRegisterXmlConfig.Builder()
                 .setLayout(R.layout.activity_one_key_login, object : AbstractPnsViewDelegate() {
                     override fun onViewCreated(view: View) {
-                        protocolHint = findViewById(R.id.protocol_hint) as ImageView
+                        avatar = findViewById(R.id.avatar) as ImageView
+                        updateLogo()
+                        protocolPrompt = findViewById(R.id.protocol_prompt) as ImageView
                         val wxLogin =
                             findViewById(R.id.wx_login) as ImageView
                         findViewById(R.id.change_environment).setOnClickListener {
                             listener.clickEnvironment()
                         }
                         findViewById(R.id.other_login).setOnClickListener {
-                            protocolHint.gone()
+                            setProtocolPromptVisible(false)
                             InputPhoneAtivity.actionStart(EnumConst.SMSType.MOBILE_LOGIN)
                         }
                         wxLogin.setOnClickListener {
                             if (!isChecked) {
-                                LoginUtils.delayedProtocolPrompt(protocolHint)
+                                setProtocolPromptVisible(true)
                             } else {
                                 listener.clickWxBtn()
                             }
@@ -86,6 +85,7 @@ class CustomOneKeyLoginView(
         //图片路径一定要放到drawable 下面，否则无效果
         mAuthHelper.setAuthUIConfig(loginCreate())
     }
+
 
     private fun loginCreate(): AuthUIConfig? {
         var authPageOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
@@ -99,8 +99,8 @@ class CustomOneKeyLoginView(
                 Color.parseColor("#A47E68")
             )
             .setPrivacyOffsetY(420)
-            .setCheckedImgPath("icon_group_checked")
-            .setUncheckedImgPath("icon_group_normal")
+            .setCheckedImgPath("ic_onkey_checked")
+            .setUncheckedImgPath("ic_one_key_checked_normal")
             .setLogoHidden(true)
             .setNavHidden(true)
             .setLightColor(true)
@@ -110,11 +110,9 @@ class CustomOneKeyLoginView(
             .setPrivacyState(false)
             .setCheckboxHidden(false)
             .setNavReturnHidden(false)
-            .setNavReturnImgHeight(23)
-            .setNavReturnImgWidth(15)
             .setStatusBarColor(Color.WHITE)
             .setStatusBarUIFlag(View.SYSTEM_UI_FLAG_LOW_PROFILE)
-            .setWebNavReturnImgPath("ic_arrow_web_back")
+            .setWebNavReturnImgPath("ic_arrow_web")
             .setWebNavTextSize(17)
             .setWebNavColor(Color.WHITE)
             .setWebNavTextColor(color(R.color.txt_basic))
@@ -122,12 +120,29 @@ class CustomOneKeyLoginView(
             .setLogBtnText("本机号码一键登录")
             .setLogBtnTextSize(18)
             .setNumberColor(Color.BLACK)
-            .setAuthPageActIn("in_activity", "out_activity")
-            .setAuthPageActOut("in_activity", "out_activity")
             .setVendorPrivacyPrefix("《")
             .setVendorPrivacySuffix("》")
-            .setLogoImgPath("ic_launcher")
             .setLogBtnBackgroundPath("login_btn_bg")
             .setScreenOrientation(authPageOrientation).create()
+    }
+
+    /**
+     * 显示提示协议view
+     */
+    private fun setProtocolPromptVisible(isVisible: Boolean) {
+        when {
+            isVisible -> protocolPrompt?.let { LoginUtils.delayedProtocolPrompt(it) }
+            else -> protocolPrompt?.let { it.gone() }
+        }
+    }
+
+
+    /**
+     * 更改环境变更logo
+     */
+    fun updateLogo() {
+        avatar?.let {
+            LoginUtils.synchEnvironmentLogo(it)
+        }
     }
 }

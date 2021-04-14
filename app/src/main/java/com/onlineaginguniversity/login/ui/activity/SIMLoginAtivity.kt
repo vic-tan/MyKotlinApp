@@ -1,17 +1,24 @@
 package com.onlineaginguniversity.login.ui.activity
 
+import android.os.Environment
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.ComFun
 import com.common.base.ui.activity.BaseActivity
+import com.common.core.environment.EnvironmentSwitchActivity
+import com.common.core.environment.event.EnvironmentEvent
+import com.common.core.event.BaseEvent
 import com.common.widget.component.extension.startActivity
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
+import com.onlineaginguniversity.common.event.UserEvent
 import com.onlineaginguniversity.databinding.ActivitySimLoginBinding
 import com.onlineaginguniversity.login.listener.OnKeyLoginListener
 import com.onlineaginguniversity.login.ui.widget.CustomOneKeyLoginView
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.login.utils.OnKeyLoginUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 /**
@@ -39,6 +46,10 @@ class SIMLoginAtivity :
         return LoginViewModel()
     }
 
+
+    override fun registerEventBus(): Boolean {
+        return true
+    }
 
     override fun init() {
         initOneKey()
@@ -71,7 +82,11 @@ class SIMLoginAtivity :
 
         })
         oneKeyView =
-            CustomOneKeyLoginView(mAuthHelper, object : OnKeyLoginListener.UIClickListener {})
+            CustomOneKeyLoginView(mAuthHelper, object : OnKeyLoginListener.UIClickListener {
+                override fun clickEnvironment() {
+                    EnvironmentSwitchActivity.actionStart()
+                }
+            })
         oneKeyView.configAuthPage()
         mAuthHelper.getLoginToken(ComFun.mContext, 5000)
     }
@@ -91,6 +106,15 @@ class SIMLoginAtivity :
      */
     private fun initListener() {
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    override fun onMessageEvent(event: BaseEvent) {
+        if (event is EnvironmentEvent) {
+            oneKeyView?.let {
+                it.updateLogo()
+            }
+        }
     }
 
     override fun onBackPressed() {

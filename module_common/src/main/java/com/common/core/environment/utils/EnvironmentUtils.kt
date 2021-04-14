@@ -118,6 +118,8 @@ object EnvironmentUtils {
     fun appLogo(): Int = when (ApiEnvironmentConst.BASE_URL) {
         BuildConfig.BASE_URL_DEV -> R.mipmap.ic_launcher_dev
         BuildConfig.BASE_URL_TEST -> R.mipmap.ic_launcher_test
-        else -> R.mipmap.ic_launcher_pro
+        else -> R.mipmap.ic_launcher
     }
+
+
 }
