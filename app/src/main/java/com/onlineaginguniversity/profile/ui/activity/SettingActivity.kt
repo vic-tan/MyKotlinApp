@@ -2,7 +2,6 @@ package com.onlineaginguniversity.profile.ui.activity
 
 import android.view.View
 import androidx.lifecycle.Observer
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.common.ComFun
 import com.common.base.ui.activity.BaseToolBarActivity
@@ -12,7 +11,6 @@ import com.common.widget.component.extension.startActivity
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivitySettingBinding
-import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.profile.viewmodel.SettingViewModel
 

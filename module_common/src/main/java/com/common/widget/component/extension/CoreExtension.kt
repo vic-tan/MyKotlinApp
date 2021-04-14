@@ -17,7 +17,6 @@ import com.hjq.toast.ToastUtils
  */
 
 
-
 /**
  * 全局context
  */
@@ -37,13 +36,11 @@ fun clickListener(vararg views: View, clickListener: View.OnClickListener) {
     }
 }
 
-
-
 /**
  * 打印日志
  */
-fun log(content: String?) {
-    if (BuildConfig.DEBUG) Log.i("tlf_log", content ?: "")
+fun log(content: Any) {
+    if (BuildConfig.DEBUG) Log.i("tlf_log", "-------->${content}")
 }
 
 /**

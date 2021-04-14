@@ -2,6 +2,7 @@ package com.onlineaginguniversity.login.ui.activity
 
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
+import com.common.ComFun
 import com.common.base.ui.activity.BaseActivity
 import com.common.widget.component.extension.startActivity
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
@@ -25,7 +26,7 @@ class SIMLoginAtivity :
     private val mAuthHelper: PhoneNumberAuthHelper get() = authHelper!!
 
     private lateinit var oneKeyView: CustomOneKeyLoginView
-    private var tokenResult: OnKeyLoginListener.TokenResult? = null
+
 
     companion object {
         fun actionStart() {
@@ -52,7 +53,7 @@ class SIMLoginAtivity :
     }
 
     private fun initOneKey() {
-        tokenResult = object : OnKeyLoginListener.TokenResult {
+        authHelper = OnKeyLoginUtils.getAuthHelper(object : OnKeyLoginListener.TokenResult {
             override fun success(token: String) {
                 mViewModel.requestOneKeyLogin(token)
                 authHelper = null
@@ -68,14 +69,11 @@ class SIMLoginAtivity :
                 ActivityUtils.finishActivity(this@SIMLoginAtivity)
             }
 
-        }
-        authHelper = OnKeyLoginUtils.getAuthHelper(
-            tokenResult as OnKeyLoginListener.TokenResult
-        )
+        })
         oneKeyView =
             CustomOneKeyLoginView(mAuthHelper, object : OnKeyLoginListener.UIClickListener {})
         oneKeyView.configAuthPage()
-        mAuthHelper.getLoginToken(this, 5000)
+        mAuthHelper.getLoginToken(ComFun.mContext, 5000)
     }
 
 
@@ -102,7 +100,7 @@ class SIMLoginAtivity :
 
     override fun onDestroy() {
         super.onDestroy()
-        tokenResult = null
+        authHelper = null
     }
 
 }

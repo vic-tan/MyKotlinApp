@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import com.common.widget.component.extension.color
 import com.common.widget.component.extension.gone
-import com.common.widget.component.extension.visible
+import com.common.widget.component.extension.log
 import com.mobile.auth.gatewayauth.AuthRegisterXmlConfig
 import com.mobile.auth.gatewayauth.AuthUIConfig
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
@@ -19,6 +19,7 @@ import com.onlineaginguniversity.common.constant.ApiUrlConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.login.listener.OnKeyLoginListener
 import com.onlineaginguniversity.login.ui.activity.InputPhoneAtivity
+import com.onlineaginguniversity.login.utils.LoginUtils
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -33,6 +34,7 @@ class CustomOneKeyLoginView(
 ) {
 
     private lateinit var protocolHint: ImageView
+    private var isChecked = false
 
     fun configAuthPage() {
         mAuthHelper.setUIClickListener { code: String?, _, jsonString: String? ->
@@ -44,14 +46,13 @@ class CustomOneKeyLoginView(
             } catch (e: JSONException) {
                 jsonObj = JSONObject()
             }
+            isChecked = jsonObj!!.optBoolean("isChecked")
+            log(isChecked)
             when (code) {
-                ResultCode.CODE_ERROR_USER_LOGIN_BTN, ResultCode.CODE_ERROR_USER_CHECKBOX -> if (!jsonObj!!.optBoolean(
-                        "isChecked"
-                    )
-                ) {
-                    protocolHint.visible()
-                } else {
+                ResultCode.CODE_ERROR_USER_LOGIN_BTN -> if (isChecked) {
                     protocolHint.gone()
+                } else {
+                    LoginUtils.delayedProtocolPrompt(protocolHint)
                 }
             }
         }
@@ -72,8 +73,11 @@ class CustomOneKeyLoginView(
                             InputPhoneAtivity.actionStart(EnumConst.SMSType.MOBILE_LOGIN)
                         }
                         wxLogin.setOnClickListener {
-                            protocolHint.gone()
-                            listener.clickWxBtn()
+                            if (!isChecked) {
+                                LoginUtils.delayedProtocolPrompt(protocolHint)
+                            } else {
+                                listener.clickWxBtn()
+                            }
                         }
                     }
                 })
