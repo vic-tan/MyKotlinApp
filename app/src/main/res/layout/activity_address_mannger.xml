@@ -183,8 +183,8 @@
     <com.ruffian.library.widget.RTextView
         android:id="@+id/enter"
         style="@style/com_btn_match_parent_style"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="20dp"
         android:text="确认"
         app:layout_constraintBottom_toBottomOf="parent"

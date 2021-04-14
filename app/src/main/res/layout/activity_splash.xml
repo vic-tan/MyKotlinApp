@@ -18,7 +18,7 @@
         android:layout_height="33dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="35dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
         android:gravity="center"
         android:text="跳过 3"
         android:textColor="@color/white"

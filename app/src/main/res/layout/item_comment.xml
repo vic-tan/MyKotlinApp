@@ -61,7 +61,7 @@
     <TextView
         android:id="@+id/content"
         style="@style/match_wrap"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/txt_basic"
         android:textSize="17sp"
@@ -74,7 +74,7 @@
     <TextView
         android:id="@+id/time"
         style="@style/wrap_wrap"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/txt_sub"
         android:textSize="14sp"
