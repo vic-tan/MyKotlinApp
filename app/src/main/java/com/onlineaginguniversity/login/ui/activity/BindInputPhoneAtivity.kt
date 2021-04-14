@@ -4,8 +4,10 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.ComFun
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.constant.GlobalConst
+import com.common.core.http.RxHttpManager
 import com.common.widget.TextInputHelper
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.gone
@@ -90,6 +92,8 @@ class BindInputPhoneAtivity :
 
         mViewModel.mIsToken.observe(this, Observer {
             mViewModel.mToken?.let {
+                ComFun.mToken = it
+                RxHttpManager.addToken()
                 mViewModel.requestBindPhoneLogin(openId)
             }
         })

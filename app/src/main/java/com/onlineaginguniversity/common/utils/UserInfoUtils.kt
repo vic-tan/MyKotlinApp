@@ -54,8 +54,7 @@ object UserInfoUtils {
      */
     fun saveToken(token: String) {
         LitePal.deleteAll(UserBean::class.java)
-        var user: UserBean =
-            UserBean()
+        var user = UserBean()
         user.token = token
         user.save()
     }

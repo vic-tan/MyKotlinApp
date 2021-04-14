@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.ComFun
 import com.common.base.ui.activity.BaseActivity
 import com.common.constant.GlobalConst
+import com.common.core.http.RxHttpManager
 import com.common.widget.component.extension.startActivity
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
 import com.onlineaginguniversity.common.constant.EnumConst
@@ -91,6 +92,8 @@ class BindSIMPhoneAtivity :
 
         mViewModel.mIsToken.observe(this, Observer {
             mViewModel.mToken?.let {
+                ComFun.mToken = it
+                RxHttpManager.addToken()
                 mViewModel.requestBindPhoneLogin(openId)
             }
         })

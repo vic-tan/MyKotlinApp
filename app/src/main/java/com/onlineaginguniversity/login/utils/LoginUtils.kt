@@ -200,12 +200,12 @@ object LoginUtils {
                 OnKeyLoginUtils.checkEnvAvailable(object : OnKeyLoginListener.CheckEnvAvailable {
                     override fun success() {
                         //一键绑定
-                        resultBean.token?.let { token -> BindSIMPhoneAtivity.actionStart(token) }
+                        resultBean.openid?.let { BindSIMPhoneAtivity.actionStart(it) }
                     }
 
                     override fun failure() {
                         //手机绑定
-                        resultBean.token?.let { token -> BindInputPhoneAtivity.actionStart(token) }
+                        resultBean.openid?.let { BindInputPhoneAtivity.actionStart(it) }
                     }
                 })
             }
