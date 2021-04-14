@@ -7,7 +7,10 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.constant.GlobalConst
 import com.common.widget.TextInputHelper
-import com.common.widget.component.extension.*
+import com.common.widget.component.extension.clickListener
+import com.common.widget.component.extension.gone
+import com.common.widget.component.extension.startActivity
+import com.common.widget.component.extension.toast
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivityBindPhoneBinding
 import com.onlineaginguniversity.login.utils.LoginUtils

@@ -4,14 +4,14 @@ import android.content.Intent
 import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.constant.GlobalConst
-import com.common.constant.GlobalConst.ActivityResult
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.base.viewmodel.EmptyViewModel
-import com.common.widget.component.extension.startActivityForResult
-import com.common.widget.component.extension.toast
+import com.common.constant.GlobalConst
+import com.common.constant.GlobalConst.ActivityResult
 import com.common.widget.TextInputHelper
 import com.common.widget.component.extension.click
+import com.common.widget.component.extension.startActivityForResult
+import com.common.widget.component.extension.toast
 import com.onlineaginguniversity.databinding.ActivityIntroductionBinding
 
 

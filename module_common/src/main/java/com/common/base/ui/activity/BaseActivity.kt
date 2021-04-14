@@ -12,9 +12,9 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.R
-import com.common.core.event.BaseEvent
 import com.common.base.viewmodel.BaseViewModel
 import com.common.constant.GlobalEnumConst
+import com.common.core.event.BaseEvent
 import com.common.databinding.ActivityBaseBinding
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.setVisible

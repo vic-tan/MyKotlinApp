@@ -1,6 +1,5 @@
 package com.onlineaginguniversity.login.utils
 
-import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.CheckBox

@@ -1,6 +1,5 @@
 package com.common.widget.component.extension
 
-import android.R
 import android.graphics.drawable.Drawable
 import android.widget.TextView
 import com.blankj.utilcode.util.ObjectUtils

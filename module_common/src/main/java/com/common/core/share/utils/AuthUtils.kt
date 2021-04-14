@@ -1,14 +1,14 @@
 package com.common.core.share.utils
 
-import cn.sharesdk.wechat.friends.Wechat
 import cn.sharesdk.framework.Platform
 import cn.sharesdk.framework.PlatformActionListener
 import cn.sharesdk.framework.ShareSDK
+import cn.sharesdk.wechat.friends.Wechat
 import com.common.ComFun
 import com.common.constant.GlobalEnumConst
 import com.common.core.share.listener.OnAuthListener
 import com.common.widget.component.extension.toast
-import java.util.HashMap
+import java.util.*
 
 /**
  * @desc:第三方登录授权

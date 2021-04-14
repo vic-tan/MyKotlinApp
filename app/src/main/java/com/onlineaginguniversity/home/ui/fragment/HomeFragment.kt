@@ -10,12 +10,12 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.adapter.BasePagerAdapter
 import com.common.base.listener.OnItemClickListener
 import com.common.base.ui.fragment.BaseLazyFragment
-import com.common.widget.component.magicindicator.MagicIndicatorUtils
 import com.common.utils.GlideUtils
 import com.common.utils.RecyclerUtils
 import com.common.widget.component.extension.click
 import com.common.widget.component.extension.newInstanceFragment
 import com.common.widget.component.extension.toast
+import com.common.widget.component.magicindicator.MagicIndicatorUtils
 import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.databinding.*
 import com.onlineaginguniversity.home.adapter.HomeAdapter

@@ -1,7 +1,7 @@
 package com.common.core.environment.event
 
-import com.common.core.event.BaseEvent
 import com.common.core.environment.bean.EnvironmentBean
+import com.common.core.event.BaseEvent
 
 /**
  * @desc:切换了环境通知调用者

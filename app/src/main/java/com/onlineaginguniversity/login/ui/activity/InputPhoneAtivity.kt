@@ -4,9 +4,11 @@ import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.constant.GlobalConst
-import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.widget.TextInputHelper
-import com.common.widget.component.extension.*
+import com.common.widget.component.extension.clickListener
+import com.common.widget.component.extension.gone
+import com.common.widget.component.extension.setVisible
+import com.common.widget.component.extension.startActivity
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivityInputPhoneBinding
 import com.onlineaginguniversity.login.utils.LoginUtils

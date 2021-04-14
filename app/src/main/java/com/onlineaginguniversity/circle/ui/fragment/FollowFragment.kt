@@ -20,7 +20,6 @@ import com.common.core.share.ui.ShareView
 import com.common.utils.RecyclerUtils
 import com.common.widget.component.extension.toast
 import com.lxj.xpopup.XPopup
-import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.circle.adapter.FollowAdapter
 import com.onlineaginguniversity.circle.bean.CircleBean
@@ -36,6 +35,7 @@ import com.onlineaginguniversity.databinding.FragmentFollowBinding
 import com.onlineaginguniversity.databinding.ItemFollowBinding
 import com.onlineaginguniversity.main.ui.activity.MainActivity
 import com.onlineaginguniversity.main.viewmodel.MainViewModel
+import com.scwang.smart.refresh.layout.constant.RefreshState
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 

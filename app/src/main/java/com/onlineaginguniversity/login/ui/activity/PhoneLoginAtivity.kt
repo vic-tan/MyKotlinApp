@@ -9,10 +9,6 @@ import com.common.widget.TextInputHelper
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.startActivity
-import com.common.widget.component.extension.toast
-import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.interfaces.OnConfirmListener
-import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivityPhoneLoginBinding
 import com.onlineaginguniversity.login.utils.LoginUtils

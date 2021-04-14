@@ -10,7 +10,6 @@ import rxhttp.wrapper.parse.AbstractParser
 import rxhttp.wrapper.utils.convert
 import java.io.IOException
 import java.lang.reflect.Type
-import kotlin.jvm.Throws
 
 /**
  * 输入T,输出T,并对code统一判断

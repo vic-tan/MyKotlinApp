@@ -1,13 +1,13 @@
 package com.common.core.environment.viewmodel
 
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.core.environment.utils.ApiEnvironmentConst
 import com.common.base.bean.ListDataChangePrams
 import com.common.base.viewmodel.BaseListViewModel
 import com.common.constant.GlobalEnumConst
 import com.common.core.environment.bean.EnvironmentBean
 import com.common.core.environment.bean.ModuleBean
 import com.common.core.environment.event.EnvironmentEvent
+import com.common.core.environment.utils.ApiEnvironmentConst
 import com.common.core.environment.utils.EnvironmentUtils
 import com.google.gson.Gson
 import org.greenrobot.eventbus.EventBus

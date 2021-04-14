@@ -1,7 +1,5 @@
 package com.common.constant
 
-import cn.sharesdk.wechat.moments.WechatMoments
-
 /**
  * @desc:
  * @author: tanlifei

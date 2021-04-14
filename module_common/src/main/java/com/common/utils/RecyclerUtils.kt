@@ -13,8 +13,8 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.bean.ListDataChangePrams
 import com.common.base.viewmodel.BaseListViewModel
 import com.common.constant.GlobalEnumConst
-import com.common.widget.component.extension.toast
 import com.common.widget.LoadingLayout
+import com.common.widget.component.extension.toast
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import java.util.*

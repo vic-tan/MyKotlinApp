@@ -2,7 +2,6 @@ package com.common.core.share.listener
 
 import android.view.View
 import com.common.constant.GlobalEnumConst
-import com.common.core.share.ui.ShareView
 
 /**
  * @desc: 分享监听

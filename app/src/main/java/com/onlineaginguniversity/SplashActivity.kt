@@ -11,7 +11,6 @@ import com.common.utils.GlideUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.gone
 import com.onlineaginguniversity.databinding.ActivitySplashBinding
-import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.main.ui.activity.GuideActivity
 import com.onlineaginguniversity.main.ui.activity.MainActivity

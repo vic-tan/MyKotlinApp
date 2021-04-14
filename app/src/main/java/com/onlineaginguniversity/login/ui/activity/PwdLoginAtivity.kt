@@ -1,6 +1,5 @@
 package com.onlineaginguniversity.login.ui.activity
 
-import android.text.TextWatcher
 import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ObjectUtils

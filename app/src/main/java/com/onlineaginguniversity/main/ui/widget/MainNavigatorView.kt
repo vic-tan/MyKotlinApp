@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import com.common.core.navigator.NavigatorView
-import com.ruffian.library.widget.RTextView
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.databinding.NavigatorMainTabBinding
+import com.ruffian.library.widget.RTextView
 
 /**
  * @desc:

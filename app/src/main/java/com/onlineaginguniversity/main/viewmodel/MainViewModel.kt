@@ -7,9 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.ComFun
 import com.common.base.bean.UserBean
+import com.common.base.viewmodel.BaseViewModel
 import com.common.core.navigator.NavigatorAdapter
 import com.common.core.navigator.NavigatorFragmentManager
-import com.common.base.viewmodel.BaseViewModel
 import com.common.widget.component.extension.newInstanceFragment
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.circle.ui.fragment.CircleFragment

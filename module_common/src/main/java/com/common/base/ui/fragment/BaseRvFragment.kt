@@ -1,13 +1,11 @@
 package com.common.base.ui.fragment
 
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.listener.OnItemClickListener
 import com.common.base.viewmodel.BaseListViewModel
-import com.common.base.viewmodel.BaseViewModel
 import com.common.utils.RecyclerUtils
 import com.common.widget.LoadingLayout
 import com.scwang.smart.refresh.layout.SmartRefreshLayout

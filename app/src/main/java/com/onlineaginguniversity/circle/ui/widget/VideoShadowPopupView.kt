@@ -1,6 +1,7 @@
 package com.onlineaginguniversity.circle.ui.widget
 
 import android.content.Context
+import android.view.View.OnClickListener
 import com.common.widget.component.extension.clickListener
 import com.lxj.xpopup.impl.PartShadowPopupView
 import com.onlineaginguniversity.R

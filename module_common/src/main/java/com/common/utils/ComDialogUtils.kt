@@ -1,12 +1,10 @@
 package com.common.utils
 
 import android.content.Context
-import com.blankj.utilcode.util.ConvertUtils
 import com.common.R
 import com.common.widget.component.popup.BottomInputEditView
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
-import com.lxj.xpopup.enums.PopupAnimation
 import com.lxj.xpopup.interfaces.OnCancelListener
 import com.lxj.xpopup.interfaces.OnConfirmListener
 

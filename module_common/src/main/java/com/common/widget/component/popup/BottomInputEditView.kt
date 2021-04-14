@@ -9,8 +9,8 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.common.R
 import com.common.databinding.LayoutBottomEditViewBinding
-import com.common.widget.component.extension.clickListener
 import com.common.widget.TextInputHelper
+import com.common.widget.component.extension.clickListener
 import com.lxj.xpopup.core.BottomPopupView
 
 /**
