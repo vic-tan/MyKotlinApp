@@ -13,13 +13,11 @@
         android:layout_height="250dp"
         android:background="@color/com_image_bg"
         android:scaleType="centerCrop"
-        app:banner_auto_loop="true"
+        app:banner_auto_loop="false"
         app:banner_indicator_marginBottom="16dp"
-        app:banner_indicator_normal_color="#99FFFFFF"
-        app:banner_indicator_selected_color="@color/theme"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -32,8 +30,8 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -111,8 +109,8 @@
         android:layout_marginEnd="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/userHead"
-        app:layout_constraintStart_toEndOf="@id/userHead"
         app:layout_constraintEnd_toStartOf="@id/attention"
+        app:layout_constraintStart_toEndOf="@id/userHead"
         app:layout_constraintTop_toTopOf="@id/userHead">
 
         <TextView
@@ -145,8 +143,8 @@
         android:paddingEnd="16dp"
         android:textColor="@color/txt_basic"
         android:textSize="17sp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userInfo"
         tools:text="今年是。" />
 
@@ -215,8 +213,8 @@
         android:layout_height="0.4dp"
         android:layout_marginTop="10dp"
         android:background="@color/com_line"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comment_time" />
 
     <TextView
