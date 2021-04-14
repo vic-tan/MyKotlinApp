@@ -11,6 +11,7 @@ import cn.iwgang.simplifyspan.SimplifySpanBuild
 import cn.iwgang.simplifyspan.other.OnClickableSpanListener
 import cn.iwgang.simplifyspan.unit.SpecialClickableUnit
 import cn.iwgang.simplifyspan.unit.SpecialTextUnit
+import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.common.ComFun
 import com.common.base.ui.activity.BaseWebViewActivity
@@ -23,8 +24,11 @@ import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.ApiUrlConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.utils.UserInfoUtils
+import com.onlineaginguniversity.login.bean.WxLoginResultBean
 import com.onlineaginguniversity.login.listener.OnKeyLoginListener
+import com.onlineaginguniversity.login.ui.activity.BindInputPhoneAtivity
 import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
+import com.onlineaginguniversity.login.ui.activity.BindSIMPhoneAtivity
 import com.onlineaginguniversity.login.ui.activity.SIMLoginAtivity
 import com.onlineaginguniversity.main.ui.activity.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -184,8 +188,34 @@ object LoginUtils {
     }
 
     /**
+     * 微信登录结果
+     */
+    fun wxBind(resultBean: WxLoginResultBean) {
+        //授权状态1=已授权2=已绑定手机号
+        if (ObjectUtils.isNotEmpty(resultBean)) {
+            //已绑定过手机,直接登录成功
+            if (resultBean.status == 2) {
+                resultBean.token?.let { token -> loginSuccess(token) }
+            } else { //去绑定手机
+                OnKeyLoginUtils.checkEnvAvailable(object : OnKeyLoginListener.CheckEnvAvailable {
+                    override fun success() {
+                        //一键绑定
+                        resultBean.token?.let { token -> BindSIMPhoneAtivity.actionStart(token) }
+                    }
+
+                    override fun failure() {
+                        //手机绑定
+                        resultBean.token?.let { token -> BindInputPhoneAtivity.actionStart(token) }
+                    }
+                })
+            }
+        } else {
+            toast("微信登录失败")
+        }
+    }
+
+    /**
      * 计时器
-     * @param codeTimer
      * @return
      */
     fun startTimer(smsCodeInterval: MutableLiveData<Long>, count: Long = 60) {

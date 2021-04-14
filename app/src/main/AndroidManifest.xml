@@ -84,8 +84,9 @@
         <activity android:name=".login.ui.activity.PhoneLoginAtivity" />
         <activity android:name=".login.ui.activity.PwdLoginAtivity" />
         <activity android:name=".login.ui.activity.SetPasswordAtivity" />
-        <activity android:name=".login.ui.activity.BindPhoneAtivity" />
+        <activity android:name=".login.ui.activity.BindInputPhoneAtivity" />
         <activity android:name=".login.ui.activity.SIMLoginAtivity" />
+        <activity android:name=".login.ui.activity.BindSIMPhoneAtivity" />
 
         <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->
 

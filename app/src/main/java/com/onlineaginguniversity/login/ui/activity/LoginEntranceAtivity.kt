@@ -69,22 +69,7 @@ class LoginEntranceAtivity :
             mBinding.changeEnvironment.setVisible(it)
         })
         mViewModel.mWxLoginResult.observe(this, Observer {
-            //授权状态1=已授权2=已绑定手机号
-            if (ObjectUtils.isNotEmpty(it)) {
-                //已绑定过手机,直接登录成功
-                if (it.status == 2) {
-                    it.token?.let { token -> LoginUtils.loginSuccess(token) }
-                } else { //去绑定手机
-                    //一键绑定
-//                    if (isOnkeyLogin) {
-//                        OnKeyBindPhoneActivity.startActivity(this@LoginActivity, result.getOpenid())
-//                    } else { //手机号绑定
-                    it.token?.let { it1 -> BindPhoneAtivity.actionStart(it1) }
-//                    }
-                }
-            } else {
-                toast("微信登录失败")
-            }
+            LoginUtils.wxBind(it)
         })
     }
 

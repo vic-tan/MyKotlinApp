@@ -19,7 +19,7 @@ interface OnKeyLoginListener {
      * SIM 卡验证回调
      */
     interface TokenResult {
-        fun success(token:String)
+        fun success(token: String)
 
         fun failure()
 
@@ -32,5 +32,6 @@ interface OnKeyLoginListener {
     interface UIClickListener {
         fun clickWxBtn() {}
         fun clickEnvironment() {}
+        fun clickOtherBtn() {}
     }
 }

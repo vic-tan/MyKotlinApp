@@ -4,12 +4,7 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.common.ComFun
 import com.common.base.ui.activity.BaseActivity
-import com.common.constant.GlobalEnumConst
-import com.common.core.environment.EnvironmentSwitchActivity
-import com.common.core.environment.event.EnvironmentEvent
-import com.common.core.event.BaseEvent
-import com.common.core.share.listener.OnAuthListener
-import com.common.core.share.utils.AuthUtils
+import com.common.constant.GlobalConst
 import com.common.widget.component.extension.startActivity
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
 import com.onlineaginguniversity.common.constant.EnumConst
@@ -19,29 +14,28 @@ import com.onlineaginguniversity.login.ui.widget.OneKeyView
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.login.utils.OnKeyLoginUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
-import java.util.HashMap
 
 
 /**
- * @desc:阿里一键登录界面
+ * @desc:一键绑定SIM手机号界面
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-class SIMLoginAtivity :
+class BindSIMPhoneAtivity :
     BaseActivity<ActivitySimLoginBinding, LoginViewModel>() {
 
     private var authHelper: PhoneNumberAuthHelper? = null
     private val mAuthHelper: PhoneNumberAuthHelper get() = authHelper!!
 
     private lateinit var oneKeyView: OneKeyView
-
+    private var openId: String = ""
 
     companion object {
-        fun actionStart() {
-            startActivity<SIMLoginAtivity> {}
-            ActivityUtils.finishOtherActivities(SIMLoginAtivity::class.java)
+        fun actionStart(openId: String) {
+            startActivity<BindSIMPhoneAtivity> {
+                putExtra(GlobalConst.Extras.ID, openId)
+            }
+            ActivityUtils.finishOtherActivities(BindSIMPhoneAtivity::class.java)
         }
     }
 
@@ -49,12 +43,8 @@ class SIMLoginAtivity :
         return LoginViewModel()
     }
 
-
-    override fun registerEventBus(): Boolean {
-        return true
-    }
-
     override fun init() {
+        openId = intent.getStringExtra(GlobalConst.Extras.ID).toString()
         initOneKey()
         initViewModelObserve()
     }
@@ -74,31 +64,16 @@ class SIMLoginAtivity :
             override fun backPressed() {
                 authHelper = null
                 ActivityUtils.finishAllActivities()
-                ActivityUtils.finishActivity(this@SIMLoginAtivity)
+                ActivityUtils.finishActivity(this@BindSIMPhoneAtivity)
             }
 
         })
         oneKeyView =
             OneKeyView(mAuthHelper, object : OnKeyLoginListener.UIClickListener {
-                override fun clickEnvironment() {
-                    EnvironmentSwitchActivity.actionStart()
-                }
-
-                override fun clickWxBtn() {
-                    AuthUtils.wechatAuth(object : OnAuthListener {
-                        override fun onComplete(
-                            type: GlobalEnumConst.ShareType,
-                            prams: HashMap<String, Any>?
-                        ) {
-                            mViewModel.requestWechatLogin(prams?.get("openid") as String)
-                        }
-                    })
-                }
-
                 override fun clickOtherBtn() {
-                    InputPhoneAtivity.actionStart(EnumConst.SMSType.MOBILE_LOGIN)
+                    BindInputPhoneAtivity.actionStart(openId)
                 }
-            })
+            }, isLogin = false)
         oneKeyView.configAuthPage()
         mAuthHelper.getLoginToken(ComFun.mContext, 5000)
     }
@@ -108,27 +83,23 @@ class SIMLoginAtivity :
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        mViewModel.mIsToken.observe(this, Observer {
-            mViewModel.mToken?.let { it -> LoginUtils.loginSuccess(it) }
-        })
-        mViewModel.mWxLoginResult.observe(this, Observer {
-            LoginUtils.wxBind(it)
-        })
-    }
-
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    override fun onMessageEvent(event: BaseEvent) {
-        if (event is EnvironmentEvent) {
-            oneKeyView?.let {
-                it.updateLogo()
+        mViewModel.mWxBindPhone.observe(this, Observer {
+            mViewModel.mToken?.let { token ->
+                LoginUtils.loginSuccess(token)
             }
-        }
+        })
+
+        mViewModel.mIsToken.observe(this, Observer {
+            mViewModel.mToken?.let {
+                mViewModel.requestBindPhoneLogin(openId)
+            }
+        })
     }
+
 
     override fun onBackPressed() {
         ActivityUtils.finishAllActivities()
-        ActivityUtils.finishActivity(this@SIMLoginAtivity)
+        ActivityUtils.finishActivity(this@BindSIMPhoneAtivity)
     }
 
     override fun onDestroy() {

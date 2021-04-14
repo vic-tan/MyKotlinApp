@@ -6,9 +6,12 @@ import android.os.Build
 import android.text.TextUtils
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.constraintlayout.widget.Group
 import com.common.widget.component.extension.color
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.log
+import com.common.widget.component.extension.setVisible
 import com.mobile.auth.gatewayauth.AuthRegisterXmlConfig
 import com.mobile.auth.gatewayauth.AuthUIConfig
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
@@ -18,6 +21,7 @@ import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.ApiUrlConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.login.listener.OnKeyLoginListener
+import com.onlineaginguniversity.login.ui.activity.BindInputPhoneAtivity
 import com.onlineaginguniversity.login.ui.activity.InputPhoneAtivity
 import com.onlineaginguniversity.login.utils.LoginUtils
 import org.json.JSONException
@@ -28,9 +32,10 @@ import org.json.JSONObject
  * @author: tanlifei
  * @date: 2021/4/13 18:22
  */
-class CustomOneKeyLoginView(
+class OneKeyView(
     var mAuthHelper: PhoneNumberAuthHelper,
-    var listener: OnKeyLoginListener.UIClickListener
+    var listener: OnKeyLoginListener.UIClickListener,
+    var isLogin: Boolean = true
 ) {
 
     private var protocolPrompt: ImageView? = null
@@ -60,6 +65,12 @@ class CustomOneKeyLoginView(
                 .setLayout(R.layout.activity_one_key_login, object : AbstractPnsViewDelegate() {
                     override fun onViewCreated(view: View) {
                         avatar = findViewById(R.id.avatar) as ImageView
+                        var otherLogin = findViewById(R.id.other_login) as TextView
+                        var groupView = findViewById(R.id.group_view) as Group
+                        groupView.setVisible(isLogin)
+                        if (!isLogin){
+                            otherLogin.text = "其他手机号绑定"
+                        }
                         updateLogo()
                         protocolPrompt = findViewById(R.id.protocol_prompt) as ImageView
                         val wxLogin =
@@ -67,9 +78,9 @@ class CustomOneKeyLoginView(
                         findViewById(R.id.change_environment).setOnClickListener {
                             listener.clickEnvironment()
                         }
-                        findViewById(R.id.other_login).setOnClickListener {
+                        otherLogin.setOnClickListener {
                             setProtocolPromptVisible(false)
-                            InputPhoneAtivity.actionStart(EnumConst.SMSType.MOBILE_LOGIN)
+                            listener.clickOtherBtn()
                         }
                         wxLogin.setOnClickListener {
                             if (!isChecked) {
@@ -117,7 +128,7 @@ class CustomOneKeyLoginView(
             .setWebNavColor(Color.WHITE)
             .setWebNavTextColor(color(R.color.txt_basic))
             .setNumberSize(17)
-            .setLogBtnText("本机号码一键登录")
+            .setLogBtnText(if (isLogin) "本机号码一键登录" else "本机号码一键绑定")
             .setLogBtnTextSize(18)
             .setNumberColor(Color.BLACK)
             .setVendorPrivacyPrefix("《")

@@ -18,11 +18,11 @@ import com.onlineaginguniversity.login.viewmodel.LoginViewModel
 
 
 /**
- * @desc:绑定手机号界面
+ * @desc:绑定输入手机界面
  * @author: tanlifei
  * @date: 2021/1/26 17:37
  */
-class BindPhoneAtivity :
+class BindInputPhoneAtivity :
     BaseToolBarActivity<ActivityBindPhoneBinding, LoginViewModel>() {
 
     private lateinit var mInputHelper: TextInputHelper
@@ -30,10 +30,10 @@ class BindPhoneAtivity :
 
     companion object {
         fun actionStart(openId: String) {
-            startActivity<BindPhoneAtivity> {
+            startActivity<BindInputPhoneAtivity> {
                 putExtra(GlobalConst.Extras.ID, openId)
             }
-            ActivityUtils.finishOtherActivities(BindPhoneAtivity::class.java)
+            ActivityUtils.finishOtherActivities(BindInputPhoneAtivity::class.java)
         }
     }
 
