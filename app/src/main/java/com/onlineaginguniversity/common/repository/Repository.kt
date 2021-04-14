@@ -106,6 +106,15 @@ object Repository {
 
 
     /**
+     * 一键登陆
+     */
+    suspend fun requestOneKeyLogin(accessToken: String) =
+        RxHttp.get(ApiUrlConst.URL_ONE_KEY_LOGIN)
+            .add("accessToken", accessToken)
+            .toResponse<String>().await()
+
+
+    /**
      * 微信授权登录
      */
     suspend fun requestWechatLogin(openid: String) =

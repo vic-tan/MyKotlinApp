@@ -55,6 +55,9 @@ object ApiUrlConst {
     /* 微信授权登录 */
     const val URL_WECHAT_LOGIN = "${URL_USER}wxLogin"
 
+    /* 一键登陆 */
+    const val URL_ONE_KEY_LOGIN = "auth/clickLogin"
+
     /* 微信绑定用户关系 */
     const val URL_BIND_PHONE_LOGIN = "${URL_USER}bindPhoneLogin"
 

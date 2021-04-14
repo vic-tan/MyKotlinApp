@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/avatar"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="120dp"
+        android:src="@mipmap/ic_launcher"
+        app:corner_radius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nickname"
+        style="@style/wrap_wrap"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="网上老年大学"
+        android:textColor="@color/txt_basic"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/avatar" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/other_login"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:text="其他手机号登录"
+        android:textColor="@color/txt_basic"
+        android:textSize="18sp"
+        app:background_normal="#F5F6FA"
+        app:corner_radius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/nickname" />
+
+    <ImageView
+        android:id="@+id/protocol_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="410dp"
+        android:layout_marginBottom="5dp"
+        android:src="@mipmap/ic_protocol_prompt"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/wx_login_title"
+        style="@style/match_wrap"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:text="其它登录方式"
+        android:textColor="@color/txt_help"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/wx_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/wx_login"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="25dp"
+        android:src="@mipmap/ic_wx_login"
+        app:corner_radius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/change_environment"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:text="切换\n环境"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="visible"
+        app:background_normal="@array/com_theme"
+        app:corner_radius="35dp"
+        app:gradient_orientation="TOP_BOTTOM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shadow_color="#EE1E26"
+        app:shadow_radius="4dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

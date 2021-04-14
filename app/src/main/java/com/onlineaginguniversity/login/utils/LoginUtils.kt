@@ -1,5 +1,6 @@
 package com.onlineaginguniversity.login.utils
 
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.CheckBox
@@ -23,6 +24,9 @@ import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.ApiUrlConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.utils.UserInfoUtils
+import com.onlineaginguniversity.login.listener.OnKeyLoginListener
+import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
+import com.onlineaginguniversity.login.ui.activity.SIMLoginAtivity
 import com.onlineaginguniversity.main.ui.activity.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -37,6 +41,21 @@ import java.util.regex.Pattern
  * @date: 2021/4/9 13:52
  */
 object LoginUtils {
+
+    /**
+     * 去登录界面
+     */
+    fun gotoLoginActivity() {
+        OnKeyLoginUtils.checkEnvAvailable(object : OnKeyLoginListener.CheckEnvAvailable {
+            override fun success() {
+                SIMLoginAtivity.actionStart()
+            }
+
+            override fun failure() {
+                LoginEntranceAtivity.actionStart()
+            }
+        })
+    }
 
     /**
      * 登录完成

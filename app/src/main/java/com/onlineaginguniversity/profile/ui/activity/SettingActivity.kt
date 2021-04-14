@@ -13,6 +13,7 @@ import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.databinding.ActivitySettingBinding
 import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
+import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.profile.viewmodel.SettingViewModel
 
 
@@ -48,8 +49,7 @@ class SettingActivity : BaseToolBarActivity<ActivitySettingBinding, SettingViewM
         mViewModel.mIsToken.observe(this, Observer {
             ComFun.mToken = null
             UserInfoUtils.clear()
-            LoginEntranceAtivity.actionStart()
-            ActivityUtils.finishActivity(this)
+            LoginUtils.gotoLoginActivity()
         })
     }
 

@@ -100,6 +100,14 @@ class LoginViewModel : BaseViewModel() {
     })
 
     /**
+     * 一键登陆
+     */
+    fun requestOneKeyLogin(accessToken: String) = comRequest({
+        mToken = Repository.requestOneKeyLogin(accessToken)
+        isToken.value = ObjectUtils.isNotEmpty(mToken)
+    })
+
+    /**
      * 微信绑定用户关系
      */
     fun requestBindPhoneLogin(openid: String) = comRequest({

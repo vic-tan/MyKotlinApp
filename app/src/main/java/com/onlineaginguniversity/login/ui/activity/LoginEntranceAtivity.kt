@@ -4,7 +4,6 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.ComFun
 import com.common.base.ui.activity.BaseActivity
 import com.common.constant.GlobalEnumConst
 import com.common.core.environment.EnvironmentSwitchActivity

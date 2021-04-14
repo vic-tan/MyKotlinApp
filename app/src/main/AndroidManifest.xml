@@ -85,6 +85,7 @@
         <activity android:name=".login.ui.activity.PwdLoginAtivity" />
         <activity android:name=".login.ui.activity.SetPasswordAtivity" />
         <activity android:name=".login.ui.activity.BindPhoneAtivity" />
+        <activity android:name=".login.ui.activity.SIMLoginAtivity" />
 
         <!--—————————————————————————————————————————————————— 同学圈 ——————————————————————————————————————————————————-->
 
@@ -121,6 +122,29 @@
             android:name=".profile.ui.activity.ManualDetailActivity"
             android:label="操作手册" />
 
+        <!--—————————————————————————————————————————————————— 阿里一键登录 ——————————————————————————————————————————————————-->
+        <!--联通电信授权页-->
+        <activity
+            android:name="com.mobile.auth.gatewayauth.LoginAuthActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/authsdk_activity_dialog" />
+
+        <!--协议页面webview-->
+        <activity
+            android:name="com.mobile.auth.gatewayauth.activity.AuthWebVeiwActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+
+        <!--移动授权页-->
+        <activity
+            android:name="com.cmic.sso.sdk.activity.LoginAuthActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:launchMode="singleTop" />
 
     </application>
 
