@@ -97,14 +97,21 @@ class LoginEntranceAtivity :
                     mBinding.changeEnvironment -> EnvironmentSwitchActivity.actionStart()
                     mBinding.logo -> mViewModel.continuousClick()
                     mBinding.wxLogin -> {
-                        AuthUtils.wechatAuth(object : OnAuthListener {
-                            override fun onComplete(
-                                type: GlobalEnumConst.ShareType,
-                                prams: HashMap<String, Any>?
-                            ) {
-                                mViewModel.requestWechatLogin(prams?.get("openid") as String)
+                        when {
+                            mBinding.protocolCheckbox.isChecked -> {
+                                AuthUtils.wechatAuth(object : OnAuthListener {
+                                    override fun onComplete(
+                                        type: GlobalEnumConst.ShareType,
+                                        prams: HashMap<String, Any>?
+                                    ) {
+                                        mViewModel.requestWechatLogin(prams?.get("openid") as String)
+                                    }
+                                })
                             }
-                        })
+                            else ->
+                                LoginUtils.delayedProtocolPrompt(mBinding.protocolPrompt)
+                        }
+
                     }
                 }
             }
