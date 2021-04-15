@@ -1,4 +1,4 @@
-package com.common.core.share.utils
+package com.onlineaginguniversity.common.widget.component.share.utils
 
 import cn.sharesdk.framework.Platform
 import cn.sharesdk.framework.PlatformActionListener
@@ -6,7 +6,7 @@ import cn.sharesdk.framework.ShareSDK
 import cn.sharesdk.wechat.friends.Wechat
 import com.common.ComFun
 import com.common.constant.GlobalEnumConst
-import com.common.core.share.listener.OnAuthListener
+import com.onlineaginguniversity.common.widget.component.share.listener.OnAuthListener
 import com.common.widget.component.extension.toast
 import java.util.*
 

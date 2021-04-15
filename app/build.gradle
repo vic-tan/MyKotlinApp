@@ -95,6 +95,24 @@ android {
         viewBinding = true
     }
 
+    MobSDK {
+        appKey "77990c6ec68"
+        appSecret "caf75f5e33a12967956d4be6c887f00a"
+        ShareSDK {
+            gui false
+            version '3.8.5'
+            devInfo {
+                Wechat {
+                    appId "wxe8619c288cd7270e"
+                    appSecret "5ffcdcd0faee85938631d5d56c0086f8"
+                }
+                WechatMoments {
+                    appId "wxe8619c288cd7270e"
+                    appSecret "5ffcdcd0faee85938631d5d56c0086f8"
+                }
+            }
+        }
+    }
 
 }
 

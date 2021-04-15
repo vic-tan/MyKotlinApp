@@ -7,7 +7,6 @@ import cn.iwgang.simplifyspan.unit.SpecialClickableUnit
 import cn.iwgang.simplifyspan.unit.SpecialTextUnit
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.widget.component.extension.color
-import com.common.widget.component.extension.string
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.ApiUrlConst
 

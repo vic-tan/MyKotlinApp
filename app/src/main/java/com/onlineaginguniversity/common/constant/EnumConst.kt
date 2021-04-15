@@ -66,4 +66,29 @@ interface EnumConst {
         MODIFY_PHONE("modifyPhone"),//重新绑定
     }
 
+
+    /**
+     * 分享请求接口的模块CODE类型
+     * 模块code
+     * 1话题分享2直播专栏分享3文娱图片分享4课程分享5文娱视频分享6自己作业分享7名师分享8直播分享9回播分享10同学的作业
+     * 11邀请好友12结课证书13专题分享14电台音频分享15学习周报
+     */
+    enum class ShareModuleCode(val value: Int) {
+        TOPIC(1),//话题分享
+        LIVE_COLUMN(2),//直播专栏分享
+        CIRCLE_IMAGE(3),//文娱图片分享
+        COURSE(4),//课程分享
+        CIRCLE_VIDEO(5),//文娱视频分享
+        ONESELF_HOMEWORK(6),//自己作业分享
+        TEACHER(7),//名师分享
+        LIVE(8),//直播分享
+        PLAYBACK(9),//回播分享
+        CLASSMATE_HOMEWORK(10),//同学的作业
+        INVITE_FRIENDS(11),//邀请好友
+        CERTIFICATE_COMPLETION(12),//结课证书
+        SPECIAL_TOPIC(13),//专题分享
+        FM(14),//电台音频分享
+        STUDY_WEEKLY(15)//学习周报
+    }
+
 }

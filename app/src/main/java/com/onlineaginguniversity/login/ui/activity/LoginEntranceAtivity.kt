@@ -3,12 +3,11 @@ package com.onlineaginguniversity.login.ui.activity
 import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
-import com.common.ComFun
 import com.common.base.ui.activity.BaseActivity
 import com.common.constant.GlobalEnumConst
 import com.common.core.environment.EnvironmentSwitchActivity
-import com.common.core.share.listener.OnAuthListener
-import com.common.core.share.utils.AuthUtils
+import com.onlineaginguniversity.common.widget.component.share.listener.OnAuthListener
+import com.onlineaginguniversity.common.widget.component.share.utils.AuthUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.startActivity

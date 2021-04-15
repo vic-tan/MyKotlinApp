@@ -1,4 +1,4 @@
-package com.common.core.share.listener
+package com.onlineaginguniversity.common.widget.component.share.listener
 
 import com.common.constant.GlobalEnumConst
 import java.util.*

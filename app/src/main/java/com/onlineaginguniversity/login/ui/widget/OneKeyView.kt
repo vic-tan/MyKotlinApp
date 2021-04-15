@@ -19,10 +19,7 @@ import com.mobile.auth.gatewayauth.ResultCode
 import com.mobile.auth.gatewayauth.ui.AbstractPnsViewDelegate
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.ApiUrlConst
-import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.login.listener.OnKeyLoginListener
-import com.onlineaginguniversity.login.ui.activity.BindInputPhoneAtivity
-import com.onlineaginguniversity.login.ui.activity.InputPhoneAtivity
 import com.onlineaginguniversity.login.utils.LoginUtils
 import org.json.JSONException
 import org.json.JSONObject

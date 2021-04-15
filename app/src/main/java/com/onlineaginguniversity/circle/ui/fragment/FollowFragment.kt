@@ -14,9 +14,9 @@ import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.constant.GlobalEnumConst
 import com.common.core.event.BaseEvent
-import com.common.core.share.bean.ShareBean
-import com.common.core.share.listener.OnShareListener
-import com.common.core.share.ui.ShareView
+import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
+import com.onlineaginguniversity.common.widget.component.share.listener.OnShareListener
+import com.onlineaginguniversity.common.widget.component.share.ui.ShareView
 import com.common.utils.RecyclerUtils
 import com.common.widget.component.extension.toast
 import com.lxj.xpopup.XPopup
@@ -29,6 +29,8 @@ import com.onlineaginguniversity.circle.viewmodel.CircleViewModel
 import com.onlineaginguniversity.circle.viewmodel.FollowViewModel
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.event.PraiseEvent
+import com.onlineaginguniversity.common.utils.UserInfoUtils
+import com.onlineaginguniversity.common.widget.component.share.utils.ShareUtils
 import com.onlineaginguniversity.common.widget.video.AutoPlayUtils
 import com.onlineaginguniversity.common.widget.video.JzvdStdList
 import com.onlineaginguniversity.databinding.FragmentFollowBinding
@@ -88,7 +90,6 @@ class FollowFragment :
         })
         CircleComUtils.notifyPraiseObserve(circleViewModel, this, mViewModel.mData)
     }
-
 
 
     override fun dataChangeObserve() {
@@ -236,28 +237,24 @@ class FollowFragment :
             }
             holder.more,
             holder.shareLayout -> {
-                context?.let {
-                    XPopup.Builder(it).asCustom(
-                        ShareView(
-                            it,
-                            ShareBean(
-                                "网上老年大学",
-                                "https://www.baidu.com",
-                                "test 分享",
-                                ""
-                            ),
-                            object :
-                                OnShareListener {
-                                override fun onItemClick(
-                                    v: View,
-                                    type: GlobalEnumConst.ShareType
-                                ) {
-                                    toast(type.name)
-                                }
+                ShareUtils.showView(context = context,
+                    owner = this,
+                    uiType = if (itemBean.uid == UserInfoUtils.getUid()) GlobalEnumConst.ShareUIType.CIRCLE_AUTHOR
+                    else GlobalEnumConst.ShareUIType.CIRCLE,
+                    id = itemBean.publishId,
+                    moduleCode = if (itemBean.mediaType == 0) EnumConst.ShareModuleCode.CIRCLE_IMAGE
+                    else EnumConst.ShareModuleCode.CIRCLE_VIDEO,
+                    listener = object :
+                        OnShareListener {
+                        override fun onItemClick(
+                            v: View,
+                            type: GlobalEnumConst.ShareType
+                        ) {
+                            toast(type.name)
+                        }
 
-                            })
-                    ).show()
-                }
+                    })
+
             }
             holder.playerControl -> {
                 Jzvd.releaseAllVideos()

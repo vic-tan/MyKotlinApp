@@ -1,5 +1,6 @@
 package com.common.widget.component.extension
 
+import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
@@ -101,6 +102,11 @@ val screenHeight
  * dp转px
  */
 fun dp2px(value: Float) = (value * globalContext().resources.displayMetrics.density).toInt()
+
+/**
+ * px转dp
+ */
+fun px2dp(value: Float) = (value / globalContext().resources.displayMetrics.density + 0.5f).toInt()
 
 /**
  * sp转px

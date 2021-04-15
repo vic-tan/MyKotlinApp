@@ -40,8 +40,16 @@ interface GlobalEnumConst {
     enum class ShareType {
         WECHAT,//微信
         WECHATMOMENTS,//微信朋友圈
+        IMAGE,//生成分享举报
         REPORT,//举报
-        CREDIT,//删除
+        DELETE,//删除
     }
 
+    /**
+     * 分享UI显示类型
+     */
+    enum class ShareUIType {
+        CIRCLE,//同学圈分享UI（显示举报，隐藏删除）
+        CIRCLE_AUTHOR//同学圈分享作者UI（显示生成分享图）
+    }
 }

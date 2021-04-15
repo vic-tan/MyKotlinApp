@@ -1,40 +1,61 @@
-package com.common.core.share.ui
+package com.onlineaginguniversity.common.widget.component.share.ui
 
 import android.content.Context
 import android.view.View.OnClickListener
-import com.common.R
-import com.common.constant.GlobalEnumConst
-import com.common.core.share.bean.ShareBean
-import com.common.core.share.listener.OnShareListener
-import com.common.databinding.LayoutShareBinding
+import androidx.lifecycle.*
+import com.common.constant.GlobalEnumConst.ShareType
+import com.common.constant.GlobalEnumConst.ShareUIType
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.toast
+import com.common.widget.component.extension.visible
 import com.lxj.xpopup.core.BottomPopupView
+import com.onlineaginguniversity.R
+import com.onlineaginguniversity.common.constant.EnumConst
+import com.onlineaginguniversity.common.viewmodel.ShareViewModel
+import com.onlineaginguniversity.common.widget.component.share.listener.OnShareListener
+import com.onlineaginguniversity.databinding.LayoutShareBinding
+
 
 /**
  * @desc:分享
  * @author: tanlifei
  * @date: 2021/2/24 14:43
  */
-class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener) :
+class ShareView(
+    private val mContext: Context,
+    private val owner: LifecycleOwner,
+    private val uiType: ShareUIType,
+    private val moduleId: Long?,
+    private val moduleCode: EnumConst.ShareModuleCode?,
+    mListener: OnShareListener
+) :
     BottomPopupView(mContext) {
     lateinit var mBinding: LayoutShareBinding
-
+    lateinit var mViewModel: ShareViewModel
 
     var mlistener: OnShareListener = mListener
-    var share: ShareBean = mShare
     override fun getImplLayoutId(): Int {
         return R.layout.layout_share
     }
 
     override fun onCreate() {
         super.onCreate()
+        //将ReportFragment注册到Activity中
         mBinding = LayoutShareBinding.bind(popupImplView)
+        mViewModel = ShareViewModel()
+        moduleId?.let {
+            moduleCode?.let {
+                mViewModel.requestShare(moduleId, it)
+            }
+        }
+        initViewModelObserve()
+        showUiTypeView()
         clickListener(
             mBinding.wx,
             mBinding.wxCircle,
+            mBinding.image,
             mBinding.report,
-            mBinding.credit,
+            mBinding.delete,
             mBinding.cancel,
             clickListener = OnClickListener {
                 when (it) {
@@ -43,7 +64,7 @@ class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener
                             dismiss()
                             mlistener.onItemClick(
                                 it,
-                                GlobalEnumConst.ShareType.WECHAT
+                                ShareType.WECHAT
                             )
                         }
                     }
@@ -51,23 +72,30 @@ class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener
                         if (isWeixinAvilible()) {
                             mlistener.onItemClick(
                                 it,
-                                GlobalEnumConst.ShareType.WECHATMOMENTS
+                                ShareType.WECHATMOMENTS
                             )
                             dismiss()
                         }
+                    }
+                    mBinding.image -> {
+                        dismiss()
+                        mlistener.onItemClick(
+                            it,
+                            ShareType.IMAGE
+                        )
                     }
                     mBinding.report -> {
                         dismiss()
                         mlistener.onItemClick(
                             it,
-                            GlobalEnumConst.ShareType.REPORT
+                            ShareType.REPORT
                         )
                     }
-                    mBinding.credit -> {
+                    mBinding.delete -> {
                         dismiss()
                         mlistener.onItemClick(
                             it,
-                            GlobalEnumConst.ShareType.CREDIT
+                            ShareType.DELETE
                         )
                     }
                     mBinding.cancel -> dismiss()
@@ -76,9 +104,32 @@ class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener
         )
     }
 
+
+    /**
+     * 设置ViewModel的observe
+     */
+    private fun initViewModelObserve() {
+        
+    }
+
+    /**
+     * 根据显示类型显示不同的分享按钮
+     */
+    private fun showUiTypeView() {
+        when (uiType) {
+            ShareUIType.CIRCLE -> {//同学圈分享UI（显示举报，隐藏删除）
+                mBinding.image.visible()
+                mBinding.report.visible()
+            }
+            ShareUIType.CIRCLE_AUTHOR -> {//同学圈分享作者UI（显示删除，隐藏举报）
+                mBinding.image.visible()
+                mBinding.delete.visible()
+            }
+        }
+    }
+
     /**
      * 检测是否安装微信
-     * @param activity
      * @return
      */
     private fun isWeixinAvilible(): Boolean {
@@ -96,6 +147,10 @@ class ShareView(mContext: Context, mShare: ShareBean, mListener: OnShareListener
         toast("请求先安装微信客户端再分享")
         return false
     }
+
+//    override fun getLifecycle(): Lifecycle {
+//        return mLifecycleRegistry
+//    }
 
 
 }

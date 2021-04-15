@@ -103,7 +103,7 @@ class FollowAdapter :
                     playerLayout.layoutParams.height =
                         AutoHeightUtils.getHeightParams(screenWidth, bean.image)
                     val jzDataSource = JZDataSource(bean.videoUrl)
-                    jzDataSource.looping = false
+                    jzDataSource.looping = true
                     player.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
                     Glide.with(player.context).load(bean.image?.url)
                         .into(player.posterImageView)

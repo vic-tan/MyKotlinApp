@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.base.bean.UpdateAppBean
 import com.common.base.bean.UserBean
 import com.common.constant.GlobalConst
+import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
 import com.onlineaginguniversity.circle.bean.CategoryBean
 import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.circle.bean.CommentBean
@@ -408,6 +409,18 @@ object Repository {
         .add("appId", AppUtils.getAppPackageName())
         .add("clientVersion", AppUtils.getAppVersionName())
         .toResponse<UpdateAppBean>().await()
+
+    /**
+     * 分享接口
+     * 模块code
+     * 1话题分享2直播专栏分享3文娱图片分享4课程分享5文娱视频分享6自己作业分享7名师分享8直播分享9回播分享10同学的作业
+     * 11邀请好友12结课证书13专题分享14电台音频分享15学习周报
+     */
+    suspend fun requestShare(id: Long, moduleCode: EnumConst.ShareModuleCode) =
+        RxHttp.postJson(ApiUrlConst.URL_SHARE)
+            .add("code", moduleCode.value)
+            .add("id", id)
+            .toResponse<ShareBean>().await()
 
 
 }

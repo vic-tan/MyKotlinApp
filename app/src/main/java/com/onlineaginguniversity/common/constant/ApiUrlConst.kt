@@ -11,7 +11,7 @@ object ApiUrlConst {
 
     /**—————————————————————————————————————————————————— H5地址  ——————————————————————————————————————————————*/
 
-    /* 固定地址（各环境都一样） */
+    /* H5固定地址（各环境都一样） */
     private const val URL_AGREEMENT = "https://appoffice.jinlingkeji.cn/#/"
 
     /* 用户协议 */
@@ -153,5 +153,9 @@ object ApiUrlConst {
 
     /* 版本管理控制器 */
     const val URL_VERSION = "major/api/version/getVersion"
+
+    /* 分享接口 */
+    const val URL_SHARE = "message/api/share"
+
 
 }
