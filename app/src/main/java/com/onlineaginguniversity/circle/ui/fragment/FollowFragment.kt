@@ -14,12 +14,9 @@ import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.constant.GlobalEnumConst
 import com.common.core.event.BaseEvent
-import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
-import com.onlineaginguniversity.common.widget.component.share.listener.OnShareListener
-import com.onlineaginguniversity.common.widget.component.share.ui.ShareView
+import com.onlineaginguniversity.common.widget.component.share.listener.ShareListener
 import com.common.utils.RecyclerUtils
 import com.common.widget.component.extension.toast
-import com.lxj.xpopup.XPopup
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.circle.adapter.FollowAdapter
 import com.onlineaginguniversity.circle.bean.CircleBean
@@ -245,8 +242,8 @@ class FollowFragment :
                     moduleCode = if (itemBean.mediaType == 0) EnumConst.ShareModuleCode.CIRCLE_IMAGE
                     else EnumConst.ShareModuleCode.CIRCLE_VIDEO,
                     listener = object :
-                        OnShareListener {
-                        override fun onItemClick(
+                        ShareListener {
+                        override fun onClick(
                             v: View,
                             type: GlobalEnumConst.ShareType
                         ) {

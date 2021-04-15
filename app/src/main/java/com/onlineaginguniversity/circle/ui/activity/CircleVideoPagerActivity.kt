@@ -15,9 +15,7 @@ import com.common.base.listener.ComListener
 import com.common.base.ui.activity.BaseRvActivity
 import com.common.constant.GlobalConst
 import com.common.constant.GlobalEnumConst
-import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
-import com.onlineaginguniversity.common.widget.component.share.listener.OnShareListener
-import com.onlineaginguniversity.common.widget.component.share.ui.ShareView
+import com.onlineaginguniversity.common.widget.component.share.listener.ShareListener
 import com.common.utils.RecyclerUtils
 import com.common.widget.component.extension.*
 import com.gyf.immersionbar.ktx.immersionBar
@@ -234,8 +232,8 @@ class CircleVideoPagerActivity :
                     id = itemBean.publishId,
                     moduleCode = EnumConst.ShareModuleCode.CIRCLE_VIDEO,
                     listener = object :
-                        OnShareListener {
-                        override fun onItemClick(
+                        ShareListener {
+                        override fun onClick(
                             v: View,
                             type: GlobalEnumConst.ShareType
                         ) {

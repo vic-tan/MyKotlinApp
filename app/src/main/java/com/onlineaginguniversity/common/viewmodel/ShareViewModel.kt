@@ -16,6 +16,8 @@ import com.onlineaginguniversity.common.repository.Repository
 class ShareViewModel : BaseViewModel() {
 
 
+    var shareBean: ShareBean? = null
+
     /**
      * 密码登录结果
      */
@@ -30,7 +32,8 @@ class ShareViewModel : BaseViewModel() {
      * 11邀请好友12结课证书13专题分享14电台音频分享15学习周报
      */
     fun requestShare(id: Long, moduleCode: EnumConst.ShareModuleCode) = comRequest({
-        shareResult.value = Repository.requestShare(id, moduleCode)
+        shareBean = Repository.requestShare(id, moduleCode)
+        shareResult.value = shareBean
     }, uiLiveData = false)
 
 }

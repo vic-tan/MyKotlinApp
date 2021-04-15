@@ -3,6 +3,7 @@ package com.onlineaginguniversity.common.widget.component.share.ui
 import android.content.Context
 import android.view.View.OnClickListener
 import androidx.lifecycle.*
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.constant.GlobalEnumConst.ShareType
 import com.common.constant.GlobalEnumConst.ShareUIType
 import com.common.widget.component.extension.clickListener
@@ -12,7 +13,8 @@ import com.lxj.xpopup.core.BottomPopupView
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.viewmodel.ShareViewModel
-import com.onlineaginguniversity.common.widget.component.share.listener.OnShareListener
+import com.onlineaginguniversity.common.widget.component.share.listener.ShareListener
+import com.onlineaginguniversity.common.widget.component.share.utils.ShareSdkUtils
 import com.onlineaginguniversity.databinding.LayoutShareBinding
 
 
@@ -27,13 +29,13 @@ class ShareView(
     private val uiType: ShareUIType,
     private val moduleId: Long?,
     private val moduleCode: EnumConst.ShareModuleCode?,
-    mListener: OnShareListener
+    private val mListener: ShareListener
 ) :
     BottomPopupView(mContext) {
     lateinit var mBinding: LayoutShareBinding
     lateinit var mViewModel: ShareViewModel
 
-    var mlistener: OnShareListener = mListener
+    var mlistener: ShareListener = mListener
     override fun getImplLayoutId(): Int {
         return R.layout.layout_share
     }
@@ -60,46 +62,35 @@ class ShareView(
             clickListener = OnClickListener {
                 when (it) {
                     mBinding.wx -> {
-                        if (isWeixinAvilible()) {
-                            dismiss()
-                            mlistener.onItemClick(
-                                it,
-                                ShareType.WECHAT
-                            )
+                        if (isWeixinAvilible() && ObjectUtils.isNotEmpty(mViewModel.shareBean)) {
+                            ShareSdkUtils.wx(mViewModel.shareBean!!, mListener)
                         }
                     }
                     mBinding.wxCircle -> {
-                        if (isWeixinAvilible()) {
-                            mlistener.onItemClick(
-                                it,
-                                ShareType.WECHATMOMENTS
-                            )
-                            dismiss()
+                        if (isWeixinAvilible() && ObjectUtils.isNotEmpty(mViewModel.shareBean)) {
+                            ShareSdkUtils.wxMoments(mViewModel.shareBean!!, mListener)
                         }
                     }
                     mBinding.image -> {
-                        dismiss()
-                        mlistener.onItemClick(
+                        mlistener.onClick(
                             it,
                             ShareType.IMAGE
                         )
                     }
                     mBinding.report -> {
-                        dismiss()
-                        mlistener.onItemClick(
+                        mlistener.onClick(
                             it,
                             ShareType.REPORT
                         )
                     }
                     mBinding.delete -> {
-                        dismiss()
-                        mlistener.onItemClick(
+                        mlistener.onClick(
                             it,
                             ShareType.DELETE
                         )
                     }
-                    mBinding.cancel -> dismiss()
                 }
+                dismiss()
             }
         )
     }
@@ -109,7 +100,7 @@ class ShareView(
      * 设置ViewModel的observe
      */
     private fun initViewModelObserve() {
-        
+
     }
 
     /**

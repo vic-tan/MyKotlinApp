@@ -5,7 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.common.constant.GlobalEnumConst
 import com.lxj.xpopup.XPopup
 import com.onlineaginguniversity.common.constant.EnumConst
-import com.onlineaginguniversity.common.widget.component.share.listener.OnShareListener
+import com.onlineaginguniversity.common.widget.component.share.listener.ShareListener
 import com.onlineaginguniversity.common.widget.component.share.ui.ShareView
 
 /**
@@ -24,10 +24,8 @@ object ShareUtils {
         uiType: GlobalEnumConst.ShareUIType,
         id: Long?,
         moduleCode: EnumConst.ShareModuleCode?,
-        listener: OnShareListener
+        listener: ShareListener
     ) {
-
-
         context?.let {
             XPopup.Builder(it).asCustom(
                 ShareView(

@@ -8,7 +8,7 @@ import java.util.*
  * @author: tanlifei
  * @date: 2021/2/25 15:01
  */
-interface OnAuthListener {
+interface AuthListener {
 
     fun onComplete(
         type: GlobalEnumConst.ShareType,

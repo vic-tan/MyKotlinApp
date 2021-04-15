@@ -6,7 +6,7 @@ import cn.sharesdk.framework.ShareSDK
 import cn.sharesdk.wechat.friends.Wechat
 import com.common.ComFun
 import com.common.constant.GlobalEnumConst
-import com.onlineaginguniversity.common.widget.component.share.listener.OnAuthListener
+import com.onlineaginguniversity.common.widget.component.share.listener.AuthListener
 import com.common.widget.component.extension.toast
 import java.util.*
 
@@ -20,7 +20,7 @@ object AuthUtils {
     /**
      * 微信授权
      */
-    fun wechatAuth(authListener: OnAuthListener) {
+    fun wechatAuth(authListener: AuthListener) {
         val plat: Platform = ShareSDK.getPlatform(Wechat.NAME)
         //移除授权状态和本地缓存，下次授权会重新授权
         plat.removeAccount(true)

@@ -43,6 +43,7 @@ interface GlobalEnumConst {
         IMAGE,//生成分享举报
         REPORT,//举报
         DELETE,//删除
+        OTHER,//其它
     }
 
     /**

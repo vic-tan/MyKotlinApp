@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.common.base.ui.activity.BaseActivity
 import com.common.constant.GlobalEnumConst
 import com.common.core.environment.EnvironmentSwitchActivity
-import com.onlineaginguniversity.common.widget.component.share.listener.OnAuthListener
+import com.onlineaginguniversity.common.widget.component.share.listener.AuthListener
 import com.onlineaginguniversity.common.widget.component.share.utils.AuthUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.setVisible
@@ -99,7 +99,7 @@ class LoginEntranceAtivity :
                     mBinding.wxLogin -> {
                         when {
                             mBinding.protocolCheckbox.isChecked -> {
-                                AuthUtils.wechatAuth(object : OnAuthListener {
+                                AuthUtils.wechatAuth(object : AuthListener {
                                     override fun onComplete(
                                         type: GlobalEnumConst.ShareType,
                                         prams: HashMap<String, Any>?

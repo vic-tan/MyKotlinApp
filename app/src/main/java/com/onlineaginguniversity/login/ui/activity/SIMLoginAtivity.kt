@@ -8,7 +8,7 @@ import com.common.constant.GlobalEnumConst
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.event.EnvironmentEvent
 import com.common.core.event.BaseEvent
-import com.onlineaginguniversity.common.widget.component.share.listener.OnAuthListener
+import com.onlineaginguniversity.common.widget.component.share.listener.AuthListener
 import com.onlineaginguniversity.common.widget.component.share.utils.AuthUtils
 import com.common.widget.component.extension.startActivity
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
@@ -85,7 +85,7 @@ class SIMLoginAtivity :
                 }
 
                 override fun clickWxBtn() {
-                    AuthUtils.wechatAuth(object : OnAuthListener {
+                    AuthUtils.wechatAuth(object : AuthListener {
                         override fun onComplete(
                             type: GlobalEnumConst.ShareType,
                             prams: HashMap<String, Any>?
