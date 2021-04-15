@@ -15,6 +15,7 @@ import com.common.widget.component.extension.screenWidth
 import com.common.widget.component.extension.setVisible
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.circle.bean.CircleBean
+import com.onlineaginguniversity.circle.utils.ImageUrlUtils
 import com.onlineaginguniversity.common.utils.AutoHeightUtils
 import com.onlineaginguniversity.common.utils.NumberUtils
 import com.onlineaginguniversity.common.utils.UserInfoUtils
@@ -73,11 +74,15 @@ class RecommendAdapter :
             tag.text = bean.entertainmentTagName
             tag.setVisible(ObjectUtils.isNotEmpty(bean.entertainmentTagName))
 
-
-            GlideUtils.load(mContext, bean.image?.url, cover)
+            var height = AutoHeightUtils.getHeightParams(mCoverWidth, bean.image)
+            GlideUtils.load(
+                mContext,
+                ImageUrlUtils.getUrl(bean.image?.url, mCoverWidth),
+                cover
+            )
             cover.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-            cover.layoutParams.height =
-                AutoHeightUtils.getHeightParams(mCoverWidth, bean.image)
+            cover.layoutParams.height = height
+
         }
         partChange(holder, bean)
     }

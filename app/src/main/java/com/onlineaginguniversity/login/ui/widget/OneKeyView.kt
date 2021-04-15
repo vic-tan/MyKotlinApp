@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.Group
 import com.common.widget.component.extension.color
 import com.common.widget.component.extension.gone
-import com.common.widget.component.extension.log
 import com.common.widget.component.extension.setVisible
 import com.mobile.auth.gatewayauth.AuthRegisterXmlConfig
 import com.mobile.auth.gatewayauth.AuthUIConfig
@@ -50,7 +49,6 @@ class OneKeyView(
                 jsonObj = JSONObject()
             }
             isChecked = jsonObj!!.optBoolean("isChecked")
-            log(isChecked)
             when (code) {
                 ResultCode.CODE_ERROR_USER_LOGIN_BTN -> setProtocolPromptVisible(!isChecked)
             }

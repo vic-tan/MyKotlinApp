@@ -26,6 +26,8 @@ object ShareUtils {
         moduleCode: EnumConst.ShareModuleCode?,
         listener: OnShareListener
     ) {
+
+
         context?.let {
             XPopup.Builder(it).asCustom(
                 ShareView(
