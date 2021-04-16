@@ -1,6 +1,7 @@
 package com.onlineaginguniversity.main.viewmodel
 
 import android.graphics.drawable.Drawable
+import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
@@ -42,7 +43,7 @@ class SplashViewModel : BaseViewModel() {
      */
     val mJump: LiveData<JumpType> get() = jump
     private val jump = MutableLiveData<JumpType>()
-
+    var splashTimer: CountDownTimer? = null
 
     /**
      * 广告倒计时LveData
@@ -86,7 +87,7 @@ class SplashViewModel : BaseViewModel() {
     fun stopSplashTimerAdsDrawable(drawable: Drawable?) {
         if (ObjectUtils.isNotEmpty(drawable)) {
             adsDrawable = drawable
-            log("广告页加载完成--->")
+            stopSplashTimer()
         }
     }
 
@@ -94,23 +95,16 @@ class SplashViewModel : BaseViewModel() {
      * 启动页3s倒计时
      */
     fun splashTimer(count: Long = 3) {
-        Observable.interval(0, 1, TimeUnit.SECONDS)
-            .take((count + 1))
-            .takeWhile { startTimerWhree() }//开始倒计时条件
-            .map { aLong -> count - aLong }
-            .observeOn(AndroidSchedulers.mainThread()) //ui线程中进行控件更新
-            .doOnSubscribe {}.subscribe(object : Observer<Long> {
-                override fun onSubscribe(d: Disposable?) {}
-                override fun onNext(t: Long) {
-                    log("onNext--->${t}")
-                }
-
-                override fun onError(e: Throwable?) {}
-                override fun onComplete() {
-                    log("startSplashTimer--->onComplete")
+        if (ObjectUtils.isEmpty(splashTimer)) {
+            splashTimer = object : CountDownTimer(count * 1000, 1000) {
+                override fun onFinish() {
                     doJump()
                 }
-            })
+
+                override fun onTick(millisUntilFinished: Long) {}
+            }
+        }
+        splashTimer?.start()
     }
 
 
@@ -118,11 +112,19 @@ class SplashViewModel : BaseViewModel() {
      * 启动页倒计时条件
      * 不是第一次启动app，且广告图片加载完成
      */
-    private fun startTimerWhree(): Boolean {
-        val a = ObjectUtils.isEmpty(adsDrawable)
-        val b = SPUtils.getInstance().getBoolean(ComConst.SPKey.GUIDE, true)
-        log("${a},${b},${a || b}")
-        return a || b
+    private fun stopSplashTimer() {
+        val a = !ObjectUtils.isEmpty(adsDrawable)
+        val b = !SPUtils.getInstance()
+            .getBoolean(ComConst.SPKey.GUIDE, true)
+        log("${a},${b},${a && b}")
+        if (!ObjectUtils.isEmpty(adsDrawable) && !SPUtils.getInstance()
+                .getBoolean(ComConst.SPKey.GUIDE, true)
+        ) {
+            splashTimer?.let {
+                it.cancel()
+            }
+            doJump()
+        }
     }
 
 

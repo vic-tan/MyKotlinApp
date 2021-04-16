@@ -8,11 +8,13 @@ import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.DrawableImageViewTarget
+import com.bumptech.glide.request.transition.Transition
 import com.common.base.ui.activity.BaseActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.gone
+import com.common.widget.component.extension.log
 import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.onlineaginguniversity.common.constant.ComConst
 import com.onlineaginguniversity.databinding.ActivitySplashBinding
@@ -103,7 +105,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
                             .load(mViewModel.mAdsBean!!.poster)
                             .dontAnimate()
                             .into(object : DrawableImageViewTarget(mBinding.adsImg) {
-                                override fun setDrawable(drawable: Drawable?) {
+                                override fun onResourceReady(
+                                    drawable: Drawable,
+                                    transition: Transition<in Drawable>?
+                                ) {
                                     mBinding.adsImg.setImageDrawable(drawable)
                                     mViewModel.stopSplashTimerAdsDrawable(drawable)
                                 }
@@ -111,10 +116,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
                     }
                 }
                 ADS -> {
-                    mViewModel.mAdsBean?.let {
-                        mBinding.splash.gone()
-                        mViewModel.startAdsTimer()
-                    }
+                    mBinding.splash.gone()
+                    mViewModel.startAdsTimer()
                 }
             }
         })
@@ -155,6 +158,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
 
     private fun onIntervalChanged(second: Long) {
         mBinding.into.text = "跳过 ${second}s"
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mViewModel.adsDrawable = null
+        mViewModel.splashTimer?.cancel()
     }
 
     /**

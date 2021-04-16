@@ -71,11 +71,10 @@ class GenerateShareBitmapView(context: Context, var bean: CircleBean) :
             .apply(RequestOptions.placeholderOf(R.mipmap.bg_profile_default))
             .dontAnimate()
             .into(object : BitmapImageViewTarget(mBinding.blurBg) {
-                override fun setResource(resource: Bitmap?) {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     bitmap = resource
                     mBinding.blurBg.setImageBitmap(bitmap)
                 }
-
             })
         mBinding.name.text = bean.nickName
         mBinding.school.text = bean.universityName

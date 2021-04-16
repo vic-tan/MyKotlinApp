@@ -27,7 +27,7 @@ class ShareView(
     private val mContext: Context,
     private val owner: LifecycleOwner,
     private val uiType: ShareUIType,
-    private val moduleId: Long?,
+    private val moduleId: Long? = null,
     private val moduleCode: EnumConst.ShareModuleCode?,
     private val mListener: ShareListener?
 ) :
@@ -43,11 +43,7 @@ class ShareView(
         super.onCreate()
         mBinding = LayoutShareBinding.bind(popupImplView)
         mViewModel = ShareViewModel()
-        moduleId?.let {
-            moduleCode?.let {
-                mViewModel.requestShare(moduleId, it)
-            }
-        }
+        mViewModel.requestShare(moduleId, moduleCode)
         initViewModelObserve()
         showUiTypeView()
         clickListener(
@@ -70,19 +66,18 @@ class ShareView(
                         }
                     }
                     mBinding.image -> {
-                        mListener?.let {
-                            it.onClick(
-                                v,
-                                ShareType.GENERATE_BITMAP,
-                                mViewModel.shareBean
-                            )
-                        }
+                        mListener?.onClick(
+                            v,
+                            ShareType.GENERATE_BITMAP,
+                            mViewModel.shareBean
+                        )
+
                     }
                     mBinding.report -> {
-                        mListener?.let { it.onClick(v, ShareType.REPORT, mViewModel.shareBean) }
+                        mListener?.onClick(v, ShareType.REPORT, mViewModel.shareBean)
                     }
                     mBinding.delete -> {
-                        mListener?.let { it.onClick(v, ShareType.DELETE, mViewModel.shareBean) }
+                        mListener?.onClick(v, ShareType.DELETE, mViewModel.shareBean)
                     }
                 }
                 dismiss()

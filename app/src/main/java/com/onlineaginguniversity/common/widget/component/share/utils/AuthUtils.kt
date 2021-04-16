@@ -48,7 +48,7 @@ object AuthUtils {
             override fun onError(platform: Platform?, p1: Int, throws: Throwable?) {
                 ComFun.mHandler.post {
                     authListener.onError(GlobalEnumConst.ShareType.WECHAT, throws)
-                    toast("授权失败")
+                    toast("微信登录失败，请切换网络重试或选择手机号登录")
                 }
             }
 
