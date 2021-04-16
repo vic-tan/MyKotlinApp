@@ -29,20 +29,18 @@ class ShareView(
     private val uiType: ShareUIType,
     private val moduleId: Long?,
     private val moduleCode: EnumConst.ShareModuleCode?,
-    private val mListener: ShareListener
+    private val mListener: ShareListener?
 ) :
     BottomPopupView(mContext) {
     lateinit var mBinding: LayoutShareBinding
     lateinit var mViewModel: ShareViewModel
 
-    var mlistener: ShareListener = mListener
     override fun getImplLayoutId(): Int {
         return R.layout.layout_share
     }
 
     override fun onCreate() {
         super.onCreate()
-        //将ReportFragment注册到Activity中
         mBinding = LayoutShareBinding.bind(popupImplView)
         mViewModel = ShareViewModel()
         moduleId?.let {
@@ -59,8 +57,8 @@ class ShareView(
             mBinding.report,
             mBinding.delete,
             mBinding.cancel,
-            clickListener = OnClickListener {
-                when (it) {
+            clickListener = OnClickListener { v ->
+                when (v) {
                     mBinding.wx -> {
                         if (isWeixinAvilible() && ObjectUtils.isNotEmpty(mViewModel.shareBean)) {
                             ShareSdkUtils.wx(mViewModel.shareBean!!, mListener)
@@ -72,22 +70,19 @@ class ShareView(
                         }
                     }
                     mBinding.image -> {
-                        mlistener.onClick(
-                            it,
-                            ShareType.IMAGE
-                        )
+                        mListener?.let {
+                            it.onClick(
+                                v,
+                                ShareType.GENERATE_BITMAP,
+                                mViewModel.shareBean
+                            )
+                        }
                     }
                     mBinding.report -> {
-                        mlistener.onClick(
-                            it,
-                            ShareType.REPORT
-                        )
+                        mListener?.let { it.onClick(v, ShareType.REPORT, mViewModel.shareBean) }
                     }
                     mBinding.delete -> {
-                        mlistener.onClick(
-                            it,
-                            ShareType.DELETE
-                        )
+                        mListener?.let { it.onClick(v, ShareType.DELETE, mViewModel.shareBean) }
                     }
                 }
                 dismiss()
@@ -138,10 +133,6 @@ class ShareView(
         toast("请求先安装微信客户端再分享")
         return false
     }
-
-//    override fun getLifecycle(): Lifecycle {
-//        return mLifecycleRegistry
-//    }
 
 
 }

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match"
+    android:background="@color/com_translucent">
+
+    <ImageView
+        android:id="@+id/blur_bg"
+        style="@style/match_match"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.ruffian.library.widget.RConstraintLayout
+        android:id="@+id/content_layout"
+        style="@style/match_wrap"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:padding="15dp"
+        app:background_normal="@color/white"
+        app:corner_radius="15dp"
+        app:layout_constraintBottom_toTopOf="@id/code_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.ruffian.library.widget.RImageView
+            android:id="@+id/cover"
+            style="@style/match_wrap"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/bg_default_img"
+            app:corner_radius="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_height="200dp" />
+
+        <com.ruffian.library.widget.RImageView
+            android:id="@+id/avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/ic_default_avatar"
+            android:scaleType="centerCrop"
+            app:corner_radius="27dp"
+            app:is_circle="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cover" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/user_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@id/avatar">
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/match_wrap"
+                android:ellipsize="end"
+                android:lines="1"
+                android:singleLine="true"
+                android:textColor="@color/txt_basic"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="作者：古月" />
+
+            <TextView
+                android:id="@+id/school"
+                style="@style/match_wrap"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/txt_help"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="深圳老年大学" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/content"
+            style="@style/match_wrap"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:maxLines="2"
+            android:textColor="@color/txt_basic"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_layout"
+            tools:text="今年是中华人民共和国成立七十周年" />
+
+
+    </com.ruffian.library.widget.RConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/code_layout"
+        style="@style/match_wrap"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/code_view"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="10dp"
+            app:background_normal="@color/white"
+            app:corner_radius="5dp"
+            app:layout_constraintBottom_toTopOf="@id/code_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/code"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@mipmap/bg_default_img"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </com.ruffian.library.widget.RConstraintLayout>
+
+        <TextView
+            android:id="@+id/code_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="长按识别二维码查看作品"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.ruffian.library.widget.RConstraintLayout
+        style="@style/match_wrap"
+        android:paddingTop="15dp"
+        app:background_normal="@color/white"
+        app:corner_radius_top_left="20dp"
+        app:corner_radius_top_right="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/share_type_layout"
+            android:layout_width="match_parent"
+            android:layout_height="85dp">
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/wx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="微信"
+                android:textColor="@color/txt_help"
+                android:textSize="14sp"
+                app:icon_direction="top"
+                app:icon_height="40dp"
+                app:icon_src_normal="@mipmap/ic_wx"
+                app:icon_width="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/wx_circle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/wx_circle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="朋友圈"
+                android:textColor="@color/txt_help"
+                android:textSize="14sp"
+                app:icon_direction="top"
+                app:icon_height="40dp"
+                app:icon_src_normal="@mipmap/ic_wx_circle"
+                app:icon_width="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/download"
+                app:layout_constraintStart_toEndOf="@id/wx"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/download"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="保存到相册"
+                android:textColor="@color/txt_help"
+                android:textSize="14sp"
+                app:icon_direction="top"
+                app:icon_height="40dp"
+                app:icon_src_normal="@mipmap/ic_download"
+                app:icon_width="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/wx_circle"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </com.ruffian.library.widget.RConstraintLayout>
+
+
+        <View
+            android:id="@+id/cancel_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.4dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/com_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/share_type_layout" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/txt_basic"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cancel_line"
+            app:ripple="true"
+            app:ripple_color="@color/com_ripple" />
+
+
+    </com.ruffian.library.widget.RConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

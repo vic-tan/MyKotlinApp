@@ -3,6 +3,7 @@ package com.onlineaginguniversity.common.widget.component.share.listener
 import android.view.View
 import com.common.constant.GlobalEnumConst
 import com.common.widget.component.extension.toast
+import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
 
 /**
  * @desc: 分享监听
@@ -13,7 +14,8 @@ interface ShareListener {
 
     fun onClick(
         v: View,
-        type: GlobalEnumConst.ShareType
+        type: GlobalEnumConst.ShareType,
+        shareBean: ShareBean?
     ) {
     }
 

@@ -41,4 +41,5 @@ class CircleBean : Serializable {
             : String? = null
     var goodsParam: String? = null
     var goodsId: Int = 0
+    var qrURL: String? = null
 }

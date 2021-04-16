@@ -13,7 +13,7 @@ import com.onlineaginguniversity.common.widget.component.share.listener.ShareLis
 import java.util.*
 
 /**
- * @desc:
+ * @desc:ShareSdk 分享配置
  * @author: tanlifei
  * @date: 2021/4/15 14:35
  */
@@ -25,7 +25,7 @@ object ShareSdkUtils {
      */
     fun wx(
         shareBean: ShareBean,
-        listener: ShareListener
+        listener: ShareListener?
     ) {
         var sp = shareContent(shareBean)
         sp.shareType = Platform.SHARE_WEBPAGE
@@ -37,7 +37,7 @@ object ShareSdkUtils {
      */
     fun wxMoments(
         shareBean: ShareBean,
-        listener: ShareListener
+        listener: ShareListener?
     ) {
         var sp = shareContent(shareBean)
         sp.shareType = Platform.SHARE_WEBPAGE
@@ -71,7 +71,7 @@ object ShareSdkUtils {
     private fun share(
         sp: ShareParams,
         name: String,
-        listener: ShareListener
+        listener: ShareListener?
     ) {
         val platform = ShareSDK.getPlatform(name)
         var type = when (name) {
@@ -86,7 +86,7 @@ object ShareSdkUtils {
                 i: Int,
                 hashMap: HashMap<String, Any>
             ) {
-                listener.onComplete(type)
+                listener?.let { it.onComplete(type) }
             }
 
             override fun onError(
@@ -94,11 +94,11 @@ object ShareSdkUtils {
                 i: Int,
                 throwable: Throwable
             ) {
-                listener.onError(type, throwable)
+                listener?.let { it.onError(type, throwable) }
             }
 
             override fun onCancel(platform: Platform, i: Int) {
-                listener.onCancel(type)
+                listener?.let { it.onCancel(type) }
             }
         }
         platform.share(sp)

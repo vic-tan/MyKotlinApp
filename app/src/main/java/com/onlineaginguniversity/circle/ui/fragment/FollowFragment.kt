@@ -16,7 +16,6 @@ import com.common.constant.GlobalEnumConst
 import com.common.core.event.BaseEvent
 import com.onlineaginguniversity.common.widget.component.share.listener.ShareListener
 import com.common.utils.RecyclerUtils
-import com.common.widget.component.extension.toast
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.circle.adapter.FollowAdapter
 import com.onlineaginguniversity.circle.bean.CircleBean
@@ -27,6 +26,7 @@ import com.onlineaginguniversity.circle.viewmodel.FollowViewModel
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.event.PraiseEvent
 import com.onlineaginguniversity.common.utils.UserInfoUtils
+import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
 import com.onlineaginguniversity.common.widget.component.share.utils.ShareUtils
 import com.onlineaginguniversity.common.widget.video.AutoPlayUtils
 import com.onlineaginguniversity.common.widget.video.JzvdStdList
@@ -245,9 +245,17 @@ class FollowFragment :
                         ShareListener {
                         override fun onClick(
                             v: View,
-                            type: GlobalEnumConst.ShareType
+                            type: GlobalEnumConst.ShareType,
+                            shareBean: ShareBean?
                         ) {
-                            toast(type.name)
+                            when (type) {
+                                GlobalEnumConst.ShareType.GENERATE_BITMAP -> {
+                                    shareBean?.let {
+                                        itemBean.qrURL = it.targetUrl
+                                    }
+                                    ShareUtils.showGenerateShareBitmapView(context, itemBean)
+                                }
+                            }
                         }
 
                     })

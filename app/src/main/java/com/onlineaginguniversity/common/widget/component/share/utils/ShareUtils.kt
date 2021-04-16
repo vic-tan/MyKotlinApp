@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import com.common.constant.GlobalEnumConst
 import com.lxj.xpopup.XPopup
+import com.onlineaginguniversity.circle.bean.CircleBean
+import com.onlineaginguniversity.circle.ui.widget.GenerateShareBitmapView
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.widget.component.share.listener.ShareListener
 import com.onlineaginguniversity.common.widget.component.share.ui.ShareView
@@ -37,6 +39,23 @@ object ShareUtils {
                     mListener = listener
                 )
             ).show()
+        }
+    }
+
+    /**
+     * 显示生成分享图分享View
+     */
+    fun showGenerateShareBitmapView(
+        context: Context?,
+        bean: CircleBean
+    ) {
+        context?.let {
+            XPopup.Builder(context)
+                .hasStatusBarShadow(false)
+                .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
+                .dismissOnTouchOutside(false)
+                .asCustom(GenerateShareBitmapView(context, bean))
+                .show()
         }
     }
 }

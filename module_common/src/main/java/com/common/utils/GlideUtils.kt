@@ -57,7 +57,7 @@ object GlideUtils {
      */
     fun loadBlur(
         mContext: Context?,
-        url: String,
+        url: String?,
         view: ImageView,
         defaultBlurId: Int,
         radius: Int = 24,

@@ -162,6 +162,10 @@ dependencies {
     //https://github.com/youth5201314/banner
     api rootProject.ext.dependencies.banner
 
+    //zxing 二维码库
+    //https://github.com/zxing/zxing
+    api rootProject.ext.dependencies.zxing
+
 
     //省市区三级联动库
     //https://github.com/Bigkoo/Android-PickerView

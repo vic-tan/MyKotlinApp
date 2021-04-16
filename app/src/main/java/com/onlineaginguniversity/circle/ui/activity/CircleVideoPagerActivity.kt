@@ -32,6 +32,7 @@ import com.onlineaginguniversity.circle.viewmodel.CircleVideoPagerViewModel
 import com.onlineaginguniversity.circle.viewmodel.CircleViewModel
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.utils.UserInfoUtils
+import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
 import com.onlineaginguniversity.common.widget.component.share.utils.ShareUtils
 import com.onlineaginguniversity.common.widget.video.JzvdStdTikTok
 import com.onlineaginguniversity.common.widget.video.OnViewPagerListener
@@ -235,7 +236,8 @@ class CircleVideoPagerActivity :
                         ShareListener {
                         override fun onClick(
                             v: View,
-                            type: GlobalEnumConst.ShareType
+                            type: GlobalEnumConst.ShareType,
+                            shareBean: ShareBean?
                         ) {
                             toast(type.name)
                         }

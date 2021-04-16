@@ -40,7 +40,7 @@ interface GlobalEnumConst {
     enum class ShareType {
         WECHAT,//微信
         WECHATMOMENTS,//微信朋友圈
-        IMAGE,//生成分享举报
+        GENERATE_BITMAP,//生成分享图片
         REPORT,//举报
         DELETE,//删除
         OTHER,//其它
