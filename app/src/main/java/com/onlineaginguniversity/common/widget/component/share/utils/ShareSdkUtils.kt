@@ -1,6 +1,5 @@
 package com.onlineaginguniversity.common.widget.component.share.utils
 
-import android.content.Context
 import cn.sharesdk.framework.Platform
 import cn.sharesdk.framework.Platform.ShareParams
 import cn.sharesdk.framework.PlatformActionListener
@@ -19,30 +18,64 @@ import java.util.*
  */
 object ShareSdkUtils {
 
-
-    /**
-     * 微信好友分享
-     */
-    fun wx(
+    /** ------------------------------------ 微信分享 -------------------------------------*/
+    private fun comWx(
         shareBean: ShareBean,
+        shareType: Int,
+        name: String,
         listener: ShareListener?
     ) {
         var sp = shareContent(shareBean)
-        sp.shareType = Platform.SHARE_WEBPAGE
-        share(sp, Wechat.NAME, listener)
+        sp.shareType = shareType
+        share(sp, name, listener)
     }
 
     /**
-     * 微信朋友圈分享
+     * 分享微信好友文案链接
      */
-    fun wxMoments(
+    fun wechat(
         shareBean: ShareBean,
         listener: ShareListener?
     ) {
-        var sp = shareContent(shareBean)
-        sp.shareType = Platform.SHARE_WEBPAGE
+        comWx(shareBean, Platform.SHARE_WEBPAGE, Wechat.NAME, listener)
+    }
+
+    /**
+     * 分享微信朋友圈文案链接
+     */
+    fun wechatMoments(
+        shareBean: ShareBean,
+        listener: ShareListener?
+    ) {
+
+        comWx(shareBean, Platform.SHARE_WEBPAGE, WechatMoments.NAME, listener)
+    }
+
+
+    /**
+     * 分享微信好友图片
+     */
+    fun wechatImage(
+        shareBean: ShareBean,
+
+        listener: ShareListener?
+    ) {
+        val sp = ShareParams()
+        sp.imagePath =""
+        sp.shareType = Platform.SHARE_IMAGE
         share(sp, WechatMoments.NAME, listener)
     }
+
+    /**
+     * 分享微信朋友圈图片
+     */
+    fun wechatMomentsImage(
+        shareBean: ShareBean,
+        listener: ShareListener?
+    ) {
+        comWx(shareBean, Platform.SHARE_IMAGE, WechatMoments.NAME, listener)
+    }
+
 
     private fun shareContent(bean: ShareBean): ShareParams {
         val sp = ShareParams()

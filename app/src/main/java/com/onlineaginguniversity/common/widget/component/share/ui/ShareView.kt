@@ -61,12 +61,12 @@ class ShareView(
                 when (v) {
                     mBinding.wx -> {
                         if (isWeixinAvilible() && ObjectUtils.isNotEmpty(mViewModel.shareBean)) {
-                            ShareSdkUtils.wx(mViewModel.shareBean!!, mListener)
+                            ShareSdkUtils.wechat(mViewModel.shareBean!!, mListener)
                         }
                     }
                     mBinding.wxCircle -> {
                         if (isWeixinAvilible() && ObjectUtils.isNotEmpty(mViewModel.shareBean)) {
-                            ShareSdkUtils.wxMoments(mViewModel.shareBean!!, mListener)
+                            ShareSdkUtils.wechatMoments(mViewModel.shareBean!!, mListener)
                         }
                     }
                     mBinding.image -> {

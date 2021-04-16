@@ -8,12 +8,15 @@ import android.graphics.Matrix
 import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import cn.sharesdk.framework.utils.QRCodeUtil.WriterException
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.BitmapImageViewTarget
+import com.bumptech.glide.request.target.ImageViewTarget
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.common.utils.GlideUtils
@@ -28,6 +31,7 @@ import com.onlineaginguniversity.R
 import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.circle.utils.AlbumUtils
 import com.onlineaginguniversity.common.utils.AutoHeightUtils
+import com.onlineaginguniversity.common.widget.component.share.utils.ShareSdkUtils
 import com.onlineaginguniversity.databinding.LayoutGenerateImageBinding
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.CoroutineScope
@@ -66,14 +70,12 @@ class GenerateShareBitmapView(context: Context, var bean: CircleBean) :
             .apply(RequestOptions.bitmapTransform(BlurTransformation(24, 5)))
             .apply(RequestOptions.placeholderOf(R.mipmap.bg_profile_default))
             .dontAnimate()
-            .into(object : SimpleTarget<Bitmap?>() {
-                override fun onResourceReady(
-                    resource: Bitmap,
-                    transition: Transition<in Bitmap?>?
-                ) {
+            .into(object : BitmapImageViewTarget(mBinding.blurBg) {
+                override fun setResource(resource: Bitmap?) {
                     bitmap = resource
                     mBinding.blurBg.setImageBitmap(bitmap)
                 }
+
             })
         mBinding.name.text = bean.nickName
         mBinding.school.text = bean.universityName
@@ -87,58 +89,71 @@ class GenerateShareBitmapView(context: Context, var bean: CircleBean) :
             mBinding.download,
             mBinding.cancel,
             clickListener = OnClickListener { v ->
-                when (v) {
-                    mBinding.wx -> {
-                        if (isWeixinAvilible()) {
+                PermissionUtils.requestSDCardPermission(
+                    context,
+                    callback = object : PermissionUtils.PermissionCallback {
+                        override fun allGranted() {
+                            when (v) {
+                                mBinding.wx -> {
+                                    if (isWeixinAvilible()) {
+                                    }
+                                }
+                                mBinding.wxCircle -> {
+                                    if (isWeixinAvilible()) {
+                                        val downloadBitmap = generateBitmap()
+                                        if (ObjectUtils.isNotEmpty(downloadBitmap)) {
+//                                            ShareSdkUtils.wechatImage(downloadBitmap)
+                                        } else {
+                                            toast("分享失败")
+                                        }
+                                    }
+                                }
+
+                                mBinding.download -> {
+                                    saveGenerateBitmap()
+                                }
+
+                                mBinding.cancel -> {
+                                    dismiss()
+                                }
+
+                            }
                         }
                     }
-                    mBinding.wxCircle -> {
-                        if (isWeixinAvilible()) {
-                        }
-                    }
+                )
 
-                    mBinding.download -> {
-                        requestSDCardPermission()
-                    }
 
-                    mBinding.cancel -> {
-                        dismiss()
-                    }
-
-                }
-                dismiss()
             }
         )
     }
 
-    private fun requestSDCardPermission() {
-        PermissionUtils.requestSDCardPermission(
-            context,
-            callback = object : PermissionUtils.PermissionCallback {
-                override fun allGranted() {
-                    generateBitmap()
-                }
-            }
-        )
+
+    /**
+     * 合成图片
+     */
+    private fun generateBitmap(): Bitmap? {
+        val contentLayoutBitmap = createBitmap(mBinding.contentLayout)
+        val codeLayoutBitmap = createBitmap(mBinding.codeLayout)
+        return if (ObjectUtils.isNotEmpty(contentLayoutBitmap) && ObjectUtils.isNotEmpty(
+                codeLayoutBitmap
+            )
+        ) {
+            mergeBitmap(contentLayoutBitmap!!, codeLayoutBitmap!!)
+        } else {
+            null
+        }
     }
 
     /**
-     * 生成图片
+     * 保存合成的新图片
      */
-    private fun generateBitmap() {
-        val contentLayoutBitmap = createBitmap(mBinding.contentLayout)
-        val codeLayoutBitmap = createBitmap(mBinding.codeLayout)
-        if (ObjectUtils.isNotEmpty(contentLayoutBitmap) && ObjectUtils.isNotEmpty(codeLayoutBitmap)) {
-            val downloadBitmap = mergeBitmap(contentLayoutBitmap!!, codeLayoutBitmap!!)
-            if (ObjectUtils.isNotEmpty(downloadBitmap)) {
-                saveBmpToAlbum(downloadBitmap!!)
-            } else {
-                toast("保存失败")
-            }
+    private fun saveGenerateBitmap() {
+        val downloadBitmap = generateBitmap()
+        if (ObjectUtils.isNotEmpty(downloadBitmap)) {
+            saveBmpToAlbum(downloadBitmap!!)
         } else {
             toast("保存失败")
         }
-
     }
 
     override fun onDismiss() {

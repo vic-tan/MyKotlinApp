@@ -1,11 +1,13 @@
 package com.onlineaginguniversity.main.viewmodel
 
+import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.SPUtils
 import com.common.ComFun
 import com.common.base.viewmodel.BaseViewModel
+import com.common.widget.component.extension.log
 import com.onlineaginguniversity.common.constant.ComConst
 import com.onlineaginguniversity.common.repository.Repository
 import com.onlineaginguniversity.common.utils.UserInfoUtils
@@ -51,6 +53,11 @@ class SplashViewModel : BaseViewModel() {
     var mAdsBean: AdsBean? = null
 
     /**
+     * 广告图片加载完成
+     */
+    var adsDrawable: Drawable? = null
+
+    /**
      * 请求广告图片
      */
     fun requestAds() = comRequest({
@@ -76,23 +83,48 @@ class SplashViewModel : BaseViewModel() {
         }
     }
 
+    fun stopSplashTimerAdsDrawable(drawable: Drawable?) {
+        if (ObjectUtils.isNotEmpty(drawable)) {
+            adsDrawable = drawable
+            log("广告页加载完成--->")
+        }
+    }
+
     /**
      * 启动页3s倒计时
      */
-    fun startInterval(count: Long = 3) {
-         Observable.interval(0, 1, TimeUnit.SECONDS)
+    fun splashTimer(count: Long = 3) {
+        Observable.interval(0, 1, TimeUnit.SECONDS)
             .take((count + 1))
+            .takeWhile { startTimerWhree() }//开始倒计时条件
             .map { aLong -> count - aLong }
             .observeOn(AndroidSchedulers.mainThread()) //ui线程中进行控件更新
             .doOnSubscribe {}.subscribe(object : Observer<Long> {
                 override fun onSubscribe(d: Disposable?) {}
-                override fun onNext(t: Long) {}
+                override fun onNext(t: Long) {
+                    log("onNext--->${t}")
+                }
+
                 override fun onError(e: Throwable?) {}
                 override fun onComplete() {
+                    log("startSplashTimer--->onComplete")
                     doJump()
                 }
             })
     }
+
+
+    /**
+     * 启动页倒计时条件
+     * 不是第一次启动app，且广告图片加载完成
+     */
+    private fun startTimerWhree(): Boolean {
+        val a = ObjectUtils.isEmpty(adsDrawable)
+        val b = SPUtils.getInstance().getBoolean(ComConst.SPKey.GUIDE, true)
+        log("${a},${b},${a || b}")
+        return a || b
+    }
+
 
     /**
      * 跳转到指定activity
@@ -122,7 +154,7 @@ class SplashViewModel : BaseViewModel() {
     /**
      * 启动页3s倒计时
      */
-    fun startAdsInterval() {
+    fun startAdsTimer() {
         var count = 3
         if (ObjectUtils.isNotEmpty(mAdsBean)) {
             count = mAdsBean!!.duration

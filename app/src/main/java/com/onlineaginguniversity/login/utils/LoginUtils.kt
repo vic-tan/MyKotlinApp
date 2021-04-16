@@ -122,24 +122,19 @@ object LoginUtils {
     /**
      * 提示隐私协议
      */
-    fun privacyDialog(context: Context) {
-        var privacy = SPUtils.getInstance().getBoolean(ComConst.SPKey.PRIVACY, true)
-        if (privacy) {
-            ComFun.mHandler.postDelayed({
-                ComDialogUtils.baseScrollContentDialog(
-                    mContext = context,
-                    content = string(R.string.privacy_txt),
-                    cancelBtnText = "不同意并退出",
-                    confirmBtnText = "我同意",
-                    confirmListener = OnConfirmListener {
-                        SPUtils.getInstance().put(ComConst.SPKey.PRIVACY, false)
-                    },
-                    cancelListener = OnCancelListener {
-                        ActivityUtils.finishAllActivities()
-                    }
-                )
-            }, 1500)
-        }
+    fun privacyDialog(context: Context, confirmListener: OnConfirmListener) {
+        ComFun.mHandler.postDelayed({
+            ComDialogUtils.baseScrollContentDialog(
+                mContext = context,
+                content = string(R.string.privacy_txt),
+                cancelBtnText = "不同意并退出",
+                confirmBtnText = "我同意",
+                confirmListener = confirmListener,
+                cancelListener = OnCancelListener {
+                    ActivityUtils.finishAllActivities()
+                }
+            )
+        }, 1500)
     }
 
 

@@ -3,6 +3,7 @@ package com.onlineaginguniversity.common.widget.component.share.utils
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import com.common.constant.GlobalEnumConst
+import com.common.utils.PermissionUtils
 import com.lxj.xpopup.XPopup
 import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.circle.ui.widget.GenerateShareBitmapView

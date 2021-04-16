@@ -1,15 +1,20 @@
 package com.onlineaginguniversity
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.blankj.utilcode.util.SPUtils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.common.base.ui.activity.BaseActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
-import com.common.utils.GlideUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.gone
+import com.lxj.xpopup.interfaces.OnConfirmListener
+import com.onlineaginguniversity.common.constant.ComConst
 import com.onlineaginguniversity.databinding.ActivitySplashBinding
 import com.onlineaginguniversity.login.utils.LoginUtils
 import com.onlineaginguniversity.main.ui.activity.GuideActivity
@@ -38,6 +43,24 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
         EnvironmentUtils.initBaseApiUrl(BuildConfig.CURRENT_URL)
         initViewModel()
         initViewModelObserve()
+        //是否已经显示过隐私协议弹出框过
+        if (SPUtils.getInstance().getBoolean(ComConst.SPKey.PRIVACY, true)) {
+            LoginUtils.privacyDialog(this@SplashActivity,
+                OnConfirmListener {
+                    SPUtils.getInstance().put(ComConst.SPKey.PRIVACY, false)
+                    startInIt()
+                })
+        } else {
+            startInIt()
+        }
+
+    }
+
+    /**
+     * 点击隐私弹框同意后在初始化
+     */
+    private fun startInIt() {
+        mViewModel.splashTimer()
         initListener()
         initSophixManager()
     }
@@ -54,7 +77,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        mViewModel.startInterval()
         mViewModel.requestAds()
     }
 
@@ -77,13 +99,21 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
                 }
                 REQUEST_ADS -> {
                     if (ObjectUtils.isNotEmpty(mViewModel.mAdsBean)) {
-                        GlideUtils.load(this@SplashActivity, mViewModel.mAdsBean!!.poster, mBinding.adsImg)
+                        Glide.with(this@SplashActivity)
+                            .load(mViewModel.mAdsBean!!.poster)
+                            .dontAnimate()
+                            .into(object : DrawableImageViewTarget(mBinding.adsImg) {
+                                override fun setDrawable(drawable: Drawable?) {
+                                    mBinding.adsImg.setImageDrawable(drawable)
+                                    mViewModel.stopSplashTimerAdsDrawable(drawable)
+                                }
+                            })
                     }
                 }
                 ADS -> {
                     mViewModel.mAdsBean?.let {
                         mBinding.splash.gone()
-                        mViewModel.startAdsInterval()
+                        mViewModel.startAdsTimer()
                     }
                 }
             }

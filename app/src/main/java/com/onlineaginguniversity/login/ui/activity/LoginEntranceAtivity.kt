@@ -46,7 +46,6 @@ class LoginEntranceAtivity :
         initViewModelObserve()
         initListener()
         initData()
-        LoginUtils.privacyDialog(this@LoginEntranceAtivity)
     }
 
     override fun onResume() {

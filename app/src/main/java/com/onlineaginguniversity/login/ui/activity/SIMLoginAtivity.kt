@@ -62,12 +62,17 @@ class SIMLoginAtivity :
 
     private fun initOneKey() {
         authHelper = OnKeyLoginUtils.getAuthHelper(object : OnKeyLoginListener.TokenResult {
-            override fun success(token: String) {
+            override fun authPageSuccess(token: String) {
                 mViewModel.requestOneKeyLogin(token)
                 authHelper = null
             }
 
-            override fun failure() {
+            override fun authPageFail() {
+                LoginEntranceAtivity.actionStart()
+                authHelper = null
+            }
+
+            override fun fail() {
                 authHelper = null
             }
 
@@ -76,8 +81,8 @@ class SIMLoginAtivity :
                 ActivityUtils.finishAllActivities()
                 ActivityUtils.finishActivity(this@SIMLoginAtivity)
             }
-
         })
+
         oneKeyView =
             OneKeyView(mAuthHelper, object : OnKeyLoginListener.UIClickListener {
                 override fun clickEnvironment() {

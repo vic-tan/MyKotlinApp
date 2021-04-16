@@ -69,17 +69,23 @@ object OnKeyLoginUtils {
                         try {
                             tokenRet = TokenRet.fromJson(s)
                             if (ObjectUtils.isNotEmpty(tokenRet)) {
-                                if (ResultCode.CODE_SUCCESS == tokenRet.code) {
-                                    listener.success(tokenRet.token)
-                                } else {
-                                    listener.failure()
+                                when {
+                                    ResultCode.CODE_SUCCESS == tokenRet.code -> {
+                                        listener.authPageSuccess(tokenRet.token)
+                                    }
+                                    ResultCode.CODE_ERROR_START_AUTHPAGE_FAIL == tokenRet.code -> {
+                                        listener.authPageFail()
+                                    }
+                                    else -> {
+                                        listener.fail()
+                                    }
                                 }
                             } else {
-                                listener.failure()
+                                listener.fail()
                             }
                         } catch (e: Exception) {
                             e.printStackTrace()
-                            listener.failure()
+                            listener.fail()
                         }
                     }
                 }
@@ -90,18 +96,24 @@ object OnKeyLoginUtils {
                         try {
                             tokenRet = TokenRet.fromJson(s)
                             if (ObjectUtils.isNotEmpty(tokenRet)) {
-                                if (ResultCode.CODE_ERROR_USER_CANCEL == tokenRet!!.code) {
-                                    //模拟的是必须登录 否则直接退出app的场景
-                                    listener.backPressed()
-                                } else {
-                                    listener.failure()
+                                when {
+                                    ResultCode.CODE_ERROR_USER_CANCEL == tokenRet!!.code -> {
+                                        //模拟的是必须登录 否则直接退出app的场景
+                                        listener.backPressed()
+                                    }
+                                    ResultCode.CODE_ERROR_START_AUTHPAGE_FAIL == tokenRet!!.code -> {
+                                        listener.authPageFail()
+                                    }
+                                    else -> {
+                                        listener.fail()
+                                    }
                                 }
                             } else {
-                                listener.failure()
+                                listener.fail()
                             }
                         } catch (e: java.lang.Exception) {
                             e.printStackTrace()
-                            listener.failure()
+                            listener.fail()
                         }
                     }
                 }

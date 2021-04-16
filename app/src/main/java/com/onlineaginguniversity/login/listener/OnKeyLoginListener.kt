@@ -19,11 +19,13 @@ interface OnKeyLoginListener {
      * SIM 卡验证回调
      */
     interface TokenResult {
-        fun success(token: String)
+        fun authPageSuccess(token: String)//唤起授权页成功
 
-        fun failure()
+        fun fail()
 
         fun backPressed()
+
+        fun authPageFail()//唤起授权页失败
     }
 
     /**
