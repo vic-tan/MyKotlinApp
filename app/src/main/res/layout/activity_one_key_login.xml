@@ -33,17 +33,13 @@
 
     <com.ruffian.library.widget.RTextView
         android:id="@+id/other_login"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        style="@style/com_btn_match_parent_style"
         android:layout_marginStart="30dp"
         android:layout_marginTop="180dp"
         android:layout_marginEnd="30dp"
-        android:gravity="center"
         android:text="其他手机号登录"
         android:textColor="@color/txt_basic"
-        android:textSize="18sp"
         app:background_normal="#F5F6FA"
-        app:corner_radius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/nickname" />

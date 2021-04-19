@@ -9,6 +9,7 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.listener.OnItemClickListener
 import com.common.widget.component.extension.clickEnable
+import com.common.widget.component.extension.log
 import java.util.*
 
 
@@ -22,9 +23,10 @@ abstract class BaseRvAdapter<T> :
 
     /** item 布局类型框状态显示**/
     enum class ItemViewType(val value: Int) {
-        HEADER(1000),//头部布局类型
-        FOOTER(2000),//尾部布局类型
-        CONTEN(3000),//其它布局类型
+        CONTEN(1000000),//其它布局类型
+        HEADER(2000000),//头部布局类型
+        FOOTER(3000000),//尾部布局类型
+
     }
 
     /**上下文* */
@@ -49,6 +51,7 @@ abstract class BaseRvAdapter<T> :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRvHolder<ViewBinding> {
         mContext = parent.context
+        log(viewType)
         return when {
             viewType >= ItemViewType.HEADER.value && viewType < ItemViewType.FOOTER.value -> {
                 BaseRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])

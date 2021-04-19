@@ -144,17 +144,11 @@
 
     <com.ruffian.library.widget.RTextView
         android:id="@+id/enter"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
+        style="@style/com_btn_match_parent_style"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
-        android:gravity="center"
         android:text="确认绑定"
-        android:textColor="@color/white"
-        android:textSize="21sp"
-        app:background_normal="@color/theme"
-        app:corner_radius="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/code" />

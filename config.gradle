@@ -117,7 +117,7 @@ ext {
 
             //图片选择库
             //https://github.com/LuckSiege/PictureSelector
-            "picture_selector"       : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
+            "picture_selector"       : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.1",
 
             //动态申请权限库
             //https://github.com/guolindev/PermissionX

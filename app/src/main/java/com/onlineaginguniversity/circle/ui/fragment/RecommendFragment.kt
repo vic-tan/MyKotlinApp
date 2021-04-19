@@ -10,7 +10,12 @@ import com.common.base.ui.fragment.BaseRvFragment
 import com.common.constant.GlobalConst
 import com.common.core.event.BaseEvent
 import com.common.utils.ComDialogUtils
+import com.common.utils.GlideUtils
+import com.common.utils.PermissionUtils
+import com.common.utils.PictureSelectorUtils
 import com.common.widget.component.extension.clickListener
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.onlineaginguniversity.circle.adapter.RecommendAdapter
 import com.onlineaginguniversity.circle.adapter.itemdecoration.GridItemDecoration
 import com.onlineaginguniversity.circle.bean.CircleBean
@@ -63,7 +68,24 @@ class RecommendFragment :
         clickListener(mBinding.circleRelease, clickListener = View.OnClickListener {
             when (it) {
                 mBinding.circleRelease -> {
-                    CircleReleaseActivity.actionStart()
+                    activity?.let { activity ->
+                        PermissionUtils.requestCameraPermission(
+                            activity,
+                            callback = object : PermissionUtils.PermissionCallback {
+                                override fun allGranted() {
+                                    PictureSelectorUtils.createCircle(activity)
+                                        .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                                            override fun onResult(result: List<LocalMedia?>) {
+                                                CircleReleaseActivity.actionStart(result,false)
+                                            }
+
+                                            override fun onCancel() {
+                                            }
+                                        })
+                                }
+                            })
+                    }
+
                 }
             }
 

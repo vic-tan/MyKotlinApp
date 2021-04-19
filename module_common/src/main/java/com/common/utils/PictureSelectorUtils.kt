@@ -55,6 +55,17 @@ object PictureSelectorUtils {
             .showCropGrid(false)//是否显示裁剪矩形网格 圆形裁剪时建议设为false
     }
 
+    /**
+     * 同学圈选择发布
+     */
+    fun createCircle(mContext: Context): PictureSelectionModel {
+        return create(mContext, PictureMimeType.ofAll())
+            .isWithVideoImage(false)// 图片和视频是否可以同选,只在ofAll模式下有效
+            .maxSelectNum(9)//图片为9张
+            .maxVideoSelectNum(1)//视频为一个
+            .isCamera(false)
+    }
+
 
     private fun initSelectionModel(
         selector: PictureSelector,

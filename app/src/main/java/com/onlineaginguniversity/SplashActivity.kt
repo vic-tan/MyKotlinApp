@@ -15,8 +15,6 @@ import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
 import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.gone
-import com.common.widget.component.extension.log
-import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.onlineaginguniversity.common.constant.ComConst
 import com.onlineaginguniversity.databinding.ActivitySplashBinding
 import com.onlineaginguniversity.login.utils.LoginUtils

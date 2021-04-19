@@ -113,10 +113,6 @@ class SplashViewModel : BaseViewModel() {
      * 不是第一次启动app，且广告图片加载完成
      */
     private fun stopSplashTimer() {
-        val a = !ObjectUtils.isEmpty(adsDrawable)
-        val b = !SPUtils.getInstance()
-            .getBoolean(ComConst.SPKey.GUIDE, true)
-        log("${a},${b},${a && b}")
         if (!ObjectUtils.isEmpty(adsDrawable) && !SPUtils.getInstance()
                 .getBoolean(ComConst.SPKey.GUIDE, true)
         ) {
