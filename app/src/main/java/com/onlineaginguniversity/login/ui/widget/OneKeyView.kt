@@ -63,7 +63,7 @@ class OneKeyView(
                         var otherLogin = findViewById(R.id.other_login) as TextView
                         var groupView = findViewById(R.id.group_view) as Group
                         groupView.setVisible(isLogin)
-                        if (!isLogin){
+                        if (!isLogin) {
                             otherLogin.text = "其他手机号绑定"
                         }
                         updateLogo()
@@ -100,6 +100,7 @@ class OneKeyView(
         }
         return AuthUIConfig.Builder().setAppPrivacyOne("《用户协议》", ApiUrlConst.URL_USER_AGREEMENT)
             .setAppPrivacyTwo("《隐私政策》", ApiUrlConst.URL_PRIVATE_AGREEMENT)
+            .setPrivacyBefore("勾选表示已阅读并同意")
             .setAppPrivacyColor(
                 Color.GRAY,
                 Color.parseColor("#A47E68")

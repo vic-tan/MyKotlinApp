@@ -21,6 +21,7 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+
     <!-- 首页底部tabs 布局公用样式 -->
     <style name="navigator_tab_style">
         <item name="android:layout_width">0dp</item>

@@ -6,7 +6,7 @@ import com.lxj.xpopup.core.CenterPopupView
 
 
 /**
- * @desc:
+ * @desc:请求接口是加载中提示框
  * @author: tanlifei
  * @date: 2021/2/1 17:40
  */

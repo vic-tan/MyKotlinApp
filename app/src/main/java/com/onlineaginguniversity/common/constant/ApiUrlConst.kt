@@ -14,6 +14,9 @@ object ApiUrlConst {
     /* H5固定地址（各环境都一样） */
     private const val URL_AGREEMENT = "https://appoffice.jinlingkeji.cn/#/"
 
+    /* 第三方SDK收集使用信息说明 */
+    const val URL_USER_SDK = "https://appoffice.jinlingkeji.cn/#/sdkpage"
+
     /* 用户协议 */
     const val URL_USER_AGREEMENT = "${URL_AGREEMENT}xieyi"
 

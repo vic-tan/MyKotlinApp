@@ -53,6 +53,7 @@ object ShareUtils {
         context?.let {
             XPopup.Builder(context)
                 .hasStatusBarShadow(false)
+                .dismissOnBackPressed(false)
                 .isDestroyOnDismiss(true) //对于只使用一次的弹窗，推荐设置这个
                 .dismissOnTouchOutside(false)
                 .asCustom(GenerateShareBitmapView(context, bean))

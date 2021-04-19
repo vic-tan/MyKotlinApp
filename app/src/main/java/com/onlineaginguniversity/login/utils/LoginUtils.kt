@@ -8,18 +8,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.RegexUtils
-import com.blankj.utilcode.util.SPUtils
 import com.common.ComFun
+import com.common.base.listener.ComListener
 import com.common.core.environment.utils.EnvironmentUtils
-import com.common.utils.ComDialogUtils
 import com.common.widget.component.extension.*
-import com.lxj.xpopup.interfaces.OnCancelListener
-import com.lxj.xpopup.interfaces.OnConfirmListener
+import com.lxj.xpopup.XPopup
 import com.onlineaginguniversity.R
-import com.onlineaginguniversity.common.constant.ComConst
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.common.utils.UserInfoUtils
 import com.onlineaginguniversity.login.bean.WxLoginResultBean
@@ -28,6 +24,7 @@ import com.onlineaginguniversity.login.ui.activity.BindInputPhoneAtivity
 import com.onlineaginguniversity.login.ui.activity.LoginEntranceAtivity
 import com.onlineaginguniversity.login.ui.activity.BindSIMPhoneAtivity
 import com.onlineaginguniversity.login.ui.activity.SIMLoginAtivity
+import com.onlineaginguniversity.login.ui.widget.PrivacyProtocolView
 import com.onlineaginguniversity.main.ui.activity.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -122,18 +119,14 @@ object LoginUtils {
     /**
      * 提示隐私协议
      */
-    fun privacyDialog(context: Context, confirmListener: OnConfirmListener) {
+    fun privacyDialog(context: Context, listener: ComListener.ViewClick) {
         ComFun.mHandler.postDelayed({
-            ComDialogUtils.baseScrollContentDialog(
-                mContext = context,
-                content = string(R.string.privacy_txt),
-                cancelBtnText = "不同意并退出",
-                confirmBtnText = "我同意",
-                confirmListener = confirmListener,
-                cancelListener = OnCancelListener {
-                    ActivityUtils.finishAllActivities()
-                }
-            )
+            XPopup.Builder(context)
+                .dismissOnTouchOutside(false)
+                .dismissOnBackPressed(false)
+                .asCustom(
+                    PrivacyProtocolView(context, listener)
+                ).show()
         }, 1500)
     }
 

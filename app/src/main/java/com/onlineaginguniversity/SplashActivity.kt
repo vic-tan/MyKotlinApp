@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.SPUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.bumptech.glide.request.transition.Transition
+import com.common.base.listener.ComListener
 import com.common.base.ui.activity.BaseActivity
 import com.common.base.ui.activity.BaseWebViewActivity
 import com.common.core.environment.utils.EnvironmentUtils
@@ -48,9 +49,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
         //是否已经显示过隐私协议弹出框过
         if (SPUtils.getInstance().getBoolean(ComConst.SPKey.PRIVACY, true)) {
             LoginUtils.privacyDialog(this@SplashActivity,
-                OnConfirmListener {
-                    SPUtils.getInstance().put(ComConst.SPKey.PRIVACY, false)
-                    startInIt()
+                object : ComListener.ViewClick {
+                    override fun click(v: View) {
+                        SPUtils.getInstance().put(ComConst.SPKey.PRIVACY, false)
+                        startInIt()
+                    }
+
                 })
         } else {
             startInIt()

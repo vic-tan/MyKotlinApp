@@ -8,7 +8,6 @@ import android.graphics.Matrix
 import android.text.TextUtils
 import android.view.View
 import android.view.View.OnClickListener
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import cn.sharesdk.framework.utils.QRCodeUtil.WriterException
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ObjectUtils
@@ -16,8 +15,6 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
-import com.bumptech.glide.request.target.ImageViewTarget
-import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils

@@ -284,30 +284,5 @@ object ComDialogUtils {
             ).show()
     }
 
-    /**
-     * 公用两个按钮滚动内容提示框
-     */
-    fun baseScrollContentDialog(
-        mContext: Context,
-        title: String? = "温馨提示",
-        content: String,
-        cancelBtnText: String = "取消",
-        confirmBtnText: String = "确定",
-        confirmListener: OnConfirmListener? = null,
-        cancelListener: OnCancelListener? = null,
-        isDismissOnTouchOutside: Boolean = false
-    ): BasePopupView {
-        return XPopup.Builder(mContext)
-            .dismissOnTouchOutside(isDismissOnTouchOutside)
-            .asConfirm(
-                title,
-                content,
-                cancelBtnText,
-                confirmBtnText,
-                confirmListener,
-                cancelListener,
-                false,
-                R.layout.dialog_com_scroll_content_layout
-            ).show()
-    }
+
 }
