@@ -10,30 +10,38 @@ import android.view.View
 import android.view.View.OnClickListener
 import cn.sharesdk.framework.utils.QRCodeUtil.WriterException
 import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.ObjectUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.request.transition.Transition
+import com.common.constant.GlobalConst
 import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils
-import com.common.widget.component.extension.*
+import com.common.widget.component.extension.clickListener
+import com.common.widget.component.extension.dp2px
+import com.common.widget.component.extension.setVisible
+import com.common.widget.component.extension.toast
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
+import com.luck.picture.lib.tools.BitmapUtils
 import com.lxj.xpopup.impl.FullScreenPopupView
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.circle.utils.AlbumUtils
 import com.onlineaginguniversity.common.utils.AutoHeightUtils
+import com.onlineaginguniversity.common.widget.component.share.listener.ShareListener
 import com.onlineaginguniversity.common.widget.component.share.utils.ShareSdkUtils
 import com.onlineaginguniversity.databinding.LayoutGenerateImageBinding
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.io.File
 import java.util.*
 
 /**
@@ -80,7 +88,7 @@ class GenerateShareBitmapView(context: Context, var bean: CircleBean) :
         mBinding.school.setVisible(ObjectUtils.isNotEmpty(bean.universityName))
         mBinding.code.setImageBitmap(createQRCodeBitmap(bean.qrURL))
         clickListener(
-            mBinding.cancel,
+            mBinding.wx,
             mBinding.wxCircle,
             mBinding.download,
             mBinding.cancel,
@@ -92,13 +100,41 @@ class GenerateShareBitmapView(context: Context, var bean: CircleBean) :
                             when (v) {
                                 mBinding.wx -> {
                                     if (isWeixinAvilible()) {
+                                        val downloadBitmap = generateBitmap()
+                                        if (ObjectUtils.isNotEmpty(downloadBitmap)) {
+                                            FileUtils.createOrExistsDir("${GlobalConst.FilesUrl.PICTURES}")
+                                            val file = File(
+                                                "${GlobalConst.FilesUrl.PICTURES}/${System.currentTimeMillis()}.jpg"
+                                            )
+                                            BitmapUtils.saveBitmapFile(downloadBitmap, file)
+                                            if (FileUtils.isFileExists(file)) {
+                                                ShareSdkUtils.wechatImage(file.absolutePath,
+                                                    object :
+                                                        ShareListener {
+
+                                                    })
+                                            }
+                                        } else {
+                                            toast("分享失败")
+                                        }
                                     }
                                 }
                                 mBinding.wxCircle -> {
                                     if (isWeixinAvilible()) {
                                         val downloadBitmap = generateBitmap()
                                         if (ObjectUtils.isNotEmpty(downloadBitmap)) {
-//                                            ShareSdkUtils.wechatImage(downloadBitmap)
+                                            FileUtils.createOrExistsDir("${GlobalConst.FilesUrl.PICTURES}")
+                                            val file = File(
+                                                    "${GlobalConst.FilesUrl.PICTURES}/${System.currentTimeMillis()}.jpg"
+                                                )
+                                            BitmapUtils.saveBitmapFile(downloadBitmap, file)
+                                            if (FileUtils.isFileExists(file)) {
+                                                ShareSdkUtils.wechatMomentsImage(file.absolutePath,
+                                                    object :
+                                                        ShareListener {
+
+                                                    })
+                                            }
                                         } else {
                                             toast("分享失败")
                                         }

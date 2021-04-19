@@ -1,5 +1,9 @@
 package com.common.constant
 
+import android.os.Environment
+import com.common.ComFun
+import com.luck.picture.lib.engine.ImageEngine
+
 /**
  * 项目所有全局通用常量的管理类。
  *
@@ -15,6 +19,23 @@ interface GlobalConst {
             const val PAGE_NUM_KEY = "pageNum"//分码
             const val PAGE_SIZE_kEY = "pageSize"//分页每页显示数
             const val PAGE_SIZE_VALUE = 20//分页每页显示数
+        }
+    }
+
+    /**
+     * 文件夹路径  KEY 常量
+     */
+    interface FilesUrl {
+        companion object {
+            //图片路径
+            val PICTURES = "${ComFun.mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES)}/"
+
+            //相机拍照或录像文件的存储目录
+            val DCIM =
+                "${ComFun.mContext.getExternalFilesDir(Environment.DIRECTORY_DCIM)}/"
+
+            //临时路径
+            val TEMP = "${ComFun.mContext.getExternalFilesDir(null)}/temp/"
         }
     }
 

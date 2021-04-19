@@ -56,24 +56,26 @@ object ShareSdkUtils {
      * 分享微信好友图片
      */
     fun wechatImage(
-        shareBean: ShareBean,
-
+        imagePath: String,
         listener: ShareListener?
     ) {
         val sp = ShareParams()
-        sp.imagePath =""
+        sp.imagePath = imagePath
         sp.shareType = Platform.SHARE_IMAGE
-        share(sp, WechatMoments.NAME, listener)
+        share(sp, Wechat.NAME, listener)
     }
 
     /**
      * 分享微信朋友圈图片
      */
     fun wechatMomentsImage(
-        shareBean: ShareBean,
+        imagePath: String,
         listener: ShareListener?
     ) {
-        comWx(shareBean, Platform.SHARE_IMAGE, WechatMoments.NAME, listener)
+        val sp = ShareParams()
+        sp.imagePath = imagePath
+        sp.shareType = Platform.SHARE_IMAGE
+        share(sp, WechatMoments.NAME, listener)
     }
 
 
