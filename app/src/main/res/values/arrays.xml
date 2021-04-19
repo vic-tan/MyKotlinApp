@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string-array name="circle_release">
+        <item>#FF5259</item>
+        <item>#EE1E26</item>
+    </string-array>
+
     <string-array name="persenal_study_bg">
         <item>#FFF5DE</item>
         <item>#FCD89A</item>

@@ -9,10 +9,13 @@ import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.constant.GlobalConst
 import com.common.core.event.BaseEvent
+import com.common.utils.ComDialogUtils
+import com.common.widget.component.extension.clickListener
 import com.onlineaginguniversity.circle.adapter.RecommendAdapter
 import com.onlineaginguniversity.circle.adapter.itemdecoration.GridItemDecoration
 import com.onlineaginguniversity.circle.bean.CircleBean
 import com.onlineaginguniversity.circle.ui.activity.CircleDetailActivity
+import com.onlineaginguniversity.circle.ui.activity.CircleReleaseActivity
 import com.onlineaginguniversity.circle.ui.activity.CircleVideoPagerActivity
 import com.onlineaginguniversity.circle.utils.CircleComUtils
 import com.onlineaginguniversity.circle.viewmodel.CircleViewModel
@@ -20,6 +23,7 @@ import com.onlineaginguniversity.circle.viewmodel.RecommendViewModel
 import com.onlineaginguniversity.common.event.PraiseEvent
 import com.onlineaginguniversity.databinding.FragmentRecommendBinding
 import com.onlineaginguniversity.databinding.ItemRecommendBinding
+import com.onlineaginguniversity.profile.ui.activity.AboutActivity
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -56,6 +60,14 @@ class RecommendFragment :
             )
         )
         initViewModelObserve()
+        clickListener(mBinding.circleRelease, clickListener = View.OnClickListener {
+            when (it) {
+                mBinding.circleRelease -> {
+                    CircleReleaseActivity.actionStart()
+                }
+            }
+
+        })
     }
 
     /**

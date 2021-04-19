@@ -41,6 +41,7 @@ class PhoneLoginAtivity :
 
     override fun init() {
         mTitleBar.lineView.gone()
+        mTitleBar.titleView.gone()
         phoneNumber = intent.getStringExtra(GlobalConst.Extras.NAME).toString()
         initViewModelObserve()
         initListener()

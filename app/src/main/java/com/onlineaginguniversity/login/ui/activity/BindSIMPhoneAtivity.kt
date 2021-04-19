@@ -6,6 +6,7 @@ import com.common.ComFun
 import com.common.base.ui.activity.BaseActivity
 import com.common.constant.GlobalConst
 import com.common.core.http.RxHttpManager
+import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.startActivity
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
 import com.onlineaginguniversity.common.constant.EnumConst
@@ -45,6 +46,7 @@ class BindSIMPhoneAtivity :
     }
 
     override fun init() {
+        mTitleBar.titleView.gone()
         openId = intent.getStringExtra(GlobalConst.Extras.ID).toString()
         initOneKey()
         initViewModelObserve()

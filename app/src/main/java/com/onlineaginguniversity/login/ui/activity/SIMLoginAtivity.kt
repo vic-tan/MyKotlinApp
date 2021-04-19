@@ -8,6 +8,7 @@ import com.common.constant.GlobalEnumConst
 import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.event.EnvironmentEvent
 import com.common.core.event.BaseEvent
+import com.common.widget.component.extension.gone
 import com.onlineaginguniversity.common.widget.component.share.listener.AuthListener
 import com.onlineaginguniversity.common.widget.component.share.utils.AuthUtils
 import com.common.widget.component.extension.startActivity
@@ -55,6 +56,7 @@ class SIMLoginAtivity :
     }
 
     override fun init() {
+        mTitleBar.titleView.gone()
         initOneKey()
         initViewModelObserve()
     }

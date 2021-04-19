@@ -40,6 +40,7 @@ class InputPhoneAtivity :
 
 
     override fun init() {
+        mTitleBar.titleView.gone()
         type = intent.getSerializableExtra(GlobalConst.Extras.TYPE) as EnumConst.SMSType
         mTitleBar.lineView.gone()
         mBinding.pwdLogin.setVisible(type == EnumConst.SMSType.MOBILE_LOGIN)

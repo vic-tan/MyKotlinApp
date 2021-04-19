@@ -44,10 +44,11 @@ class SetPasswordAtivity :
 
 
     override fun init() {
+        mTitleBar.lineView.gone()
+        mTitleBar.titleView.gone()
         phoneNumber = intent.getStringExtra(GlobalConst.Extras.NAME).toString()
         type = intent.getSerializableExtra(GlobalConst.Extras.TYPE) as EnumConst.SMSType
         mBinding.hint.text = "短信验证码已发送至 ${phoneNumber}，新密码需要8-20位，至少含字母/数字"
-        mTitleBar.lineView.gone()
         mBinding.pwd.addTextChangedListener(this)
         initViewModelObserve()
         initListener()

@@ -38,6 +38,7 @@ class PwdLoginAtivity :
 
     override fun init() {
         mTitleBar.lineView.gone()
+        mTitleBar.titleView.gone()
         initViewModelObserve()
         initListener()
         initData()

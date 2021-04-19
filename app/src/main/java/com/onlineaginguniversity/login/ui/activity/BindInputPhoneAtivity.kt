@@ -45,9 +45,10 @@ class BindInputPhoneAtivity :
 
 
     override fun init() {
-        openId = intent.getStringExtra(GlobalConst.Extras.ID).toString()
+        mTitleBar.titleView.gone()
         mTitleBar.lineView.gone()
         mTitleBar.leftView.visibility = View.INVISIBLE
+        openId = intent.getStringExtra(GlobalConst.Extras.ID).toString()
         initViewModelObserve()
         initListener()
         initData()
