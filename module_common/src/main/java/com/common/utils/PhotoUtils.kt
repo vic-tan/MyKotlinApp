@@ -2,6 +2,7 @@ package com.common.utils
 
 import android.content.Context
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.ObjectUtils
@@ -9,6 +10,7 @@ import com.common.R
 import com.common.widget.component.extension.color
 import com.common.widget.component.popup.ImageViewerPopup
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnSrcViewUpdateListener
 
 /**
  * @desc:
@@ -36,16 +38,12 @@ object PhotoUtils {
         mContext: Context?,
         imageView: ImageView,
         position: Int,
-        list: List<String>
+        list: List<String>,
+        srcViewUpdateListener: OnSrcViewUpdateListener
     ) {
-
         if (ObjectUtils.isNotEmpty(list) && null != mContext) {
-            val viewerPopup = initImageViewerPopup(mContext, imageView, position, list)
-            viewerPopup.setSrcViewUpdateListener { popupView, _ ->
-                val rv =
-                    imageView.parent as RecyclerView
-                popupView.updateSrcView(rv.getChildAt(0) as ImageView)
-            }
+            val viewerPopup = initImageViewerPopup(mContext, imageView, position, list, false)
+            viewerPopup.setSrcViewUpdateListener(srcViewUpdateListener)
             showXPopup(mContext, viewerPopup)
         }
     }
@@ -90,7 +88,8 @@ object PhotoUtils {
         mContext: Context,
         imageView: ImageView,
         position: Int,
-        list: List<String>
+        list: List<String>,
+        showSaveBtn: Boolean = true
     ): ImageViewerPopup {
         val viewerPopup = ImageViewerPopup(mContext)
         //自定义的ImageViewer弹窗需要自己手动设置相应的属性，必须设置的有srcView，url和imageLoader。
@@ -104,6 +103,7 @@ object PhotoUtils {
         viewerPopup.isShowSaveButton(false)
         viewerPopup.isShowIndicator(false)
         viewerPopup.setBgColor(color(R.color.black))
+        viewerPopup.isShowSaveButton(showSaveBtn)
         viewerPopup.setXPopupImageLoader(ImageLoader())
         return viewerPopup
     }

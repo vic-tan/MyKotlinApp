@@ -57,7 +57,7 @@ class HomeFragment : BaseLazyFragment<FragmentHomeBinding, HomeViewModel>() {
         homeViewModel.getUser()
         initAdapter()
         initHeaderView()
-        initHFooterView()
+        initFooterView()
         mViewModel.mHomeHeaderDataChanged.observe(this, Observer {
             mBinding.refreshLayout.refreshLoadingLayout.showContent()
             mBinding.refreshLayout.smartRefreshLayout.finishRefresh()
@@ -169,7 +169,7 @@ class HomeFragment : BaseLazyFragment<FragmentHomeBinding, HomeViewModel>() {
 
     }
 
-    private fun initHFooterView() {
+    private fun initFooterView() {
         footer = HomeFooterBinding.inflate(layoutInflater)
         footer.root.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,

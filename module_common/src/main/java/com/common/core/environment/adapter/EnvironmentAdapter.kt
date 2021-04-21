@@ -65,7 +65,7 @@ class EnvironmentAdapter :
         }
     }
 
-    override fun setItemViewType(itemBean: EnvironmentBean): Int {
+    override fun setItemViewType(position: Int,itemBean: EnvironmentBean): Int {
         return itemBean.itemType
     }
 

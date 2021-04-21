@@ -9,7 +9,6 @@ import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.constant.GlobalConst
 import com.common.core.event.BaseEvent
-import com.common.utils.ComDialogUtils
 import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils
 import com.common.utils.PictureSelectorUtils

@@ -51,13 +51,12 @@ abstract class BaseRvAdapter<T> :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRvHolder<ViewBinding> {
         mContext = parent.context
-        log(viewType)
         return when {
             viewType >= ItemViewType.HEADER.value && viewType < ItemViewType.FOOTER.value -> {
                 BaseRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
             }
             viewType >= ItemViewType.FOOTER.value -> {
-                BaseRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size - 1])
+                BaseRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size])
             }
             else -> {
                 onCreateViewHolder(
@@ -91,7 +90,7 @@ abstract class BaseRvAdapter<T> :
         if (isFooterPosition(position)) {
             return ItemViewType.FOOTER.value + position
         }
-        return setItemViewType(mData[position - mHeaderViews.size] as T)
+        return setItemViewType(position, mData[position - mHeaderViews.size] as T)
     }
 
 
@@ -210,7 +209,7 @@ abstract class BaseRvAdapter<T> :
     /**
      * 子类可以实现该方法实现多布局显示
      */
-    open fun setItemViewType(bean: T): Int {
+    open fun setItemViewType(position: Int, bean: T): Int {
         return ItemViewType.CONTEN.ordinal
     }
 

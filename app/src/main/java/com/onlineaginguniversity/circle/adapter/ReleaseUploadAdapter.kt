@@ -8,13 +8,20 @@ import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.common.base.adapter.BaseRvAdapter
 import com.common.base.adapter.BaseRvHolder
+import com.common.core.environment.bean.EnvironmentBean
+import com.common.databinding.ItemEnvironmentContentBinding
+import com.common.databinding.ItemEnvironmentTitleBinding
 import com.common.utils.GlideUtils
+import com.common.utils.PermissionUtils
+import com.common.utils.PictureSelectorUtils
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.log
 import com.common.widget.component.extension.setVisible
 import com.common.widget.component.extension.visible
 import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.onlineaginguniversity.R
+import com.onlineaginguniversity.databinding.ItemReleaseAddBinding
 import com.onlineaginguniversity.databinding.ItemReleaseUploadBinding
 import java.util.*
 
@@ -25,18 +32,8 @@ import java.util.*
  */
 class ReleaseUploadAdapter(var isVideo: Boolean) :
     BaseRvAdapter<LocalMedia>() {
-    private val cameraType = 1
-    private val pictureType = 2
     private var selectMax = 9
 
-
-    override fun getItemViewType(position: Int): Int {
-        return if (isShowAddItem(position)) {
-            cameraType
-        } else {
-            pictureType
-        }
-    }
 
     /**
      * 设置最大显示个数
@@ -60,23 +57,15 @@ class ReleaseUploadAdapter(var isVideo: Boolean) :
         }
     }
 
+
     fun remove(position: Int) {
         if (mData != null && position < mData.size) {
             mData.removeAt(position)
         }
     }
 
-    override fun getItemCount(): Int {
-        return if (mData.size < selectMax) {
-            mData.size + 1
-        } else {
-            mData.size
-        }
-    }
-
-    private fun isShowAddItem(position: Int): Boolean {
-        val size: Int = mData.size
-        return position == size
+    fun isShowAddItem(): Boolean {
+        return mData.size < selectMax
     }
 
     override fun onCreateViewHolder(
@@ -86,9 +75,7 @@ class ReleaseUploadAdapter(var isVideo: Boolean) :
     ): BaseRvHolder<ViewBinding> {
         return BaseRvHolder(
             ItemReleaseUploadBinding.inflate(
-                inflater,
-                parent,
-                false
+                inflater, parent, false
             )
         )
     }
@@ -99,27 +86,29 @@ class ReleaseUploadAdapter(var isVideo: Boolean) :
         bean: LocalMedia
     ) {
         holder as ItemReleaseUploadBinding
-
-        if (getItemViewType(position) == cameraType) {
-            holder.cover.setImageResource(R.mipmap.ic_add_image)
-            holder.delete.gone()
-            holder.coverMask.gone()
-        } else {
-            holder.apply {
-                coverMask.setVisible(isVideo)
-                holder.delete.visible()
-                GlideUtils.load(mContext, bean.compressPath, holder.cover)
-            }
+        holder.apply {
+            coverMask.setVisible(isVideo)
+            holder.delete.visible()
+            GlideUtils.load(mContext, bean.compressPath, holder.cover)
         }
     }
 
 
     override fun addChildClickView(holder: ViewBinding): LinkedHashSet<View> {
         return when (holder) {
-            is ItemReleaseUploadBinding -> linkedSetOf(
-                holder.cover
-            )
-            else -> linkedSetOf()
+            is ItemReleaseUploadBinding -> {
+                linkedSetOf(holder.delete, holder.cover)
+            }
+            else -> {
+                linkedSetOf()
+            }
         }
+    }
+
+    fun getViewHolder(rv: RecyclerView, position: Int): ItemReleaseUploadBinding {
+        var holderView = rv.getChildAt(position)
+        var baseRvHolder =
+            rv.getChildViewHolder(holderView) as BaseRvHolder<ViewBinding>
+        return baseRvHolder.binding as ItemReleaseUploadBinding
     }
 }

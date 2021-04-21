@@ -32,7 +32,7 @@ class FollowAdapter :
     private var mTextViewWidth = screenWidth - dp2px(30f)
     private var mPositionsAndStates: SparseArray<Int> = SparseArray()
 
-    override fun setItemViewType(itemBean: CircleBean): Int {
+    override fun setItemViewType(position: Int,itemBean: CircleBean): Int {
         return itemBean.mediaType
     }
 

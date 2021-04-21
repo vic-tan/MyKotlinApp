@@ -2,6 +2,7 @@ package com.common.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.ConvertUtils
 import com.common.R
@@ -10,6 +11,7 @@ import com.luck.picture.lib.PictureSelectionModel
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.style.PictureSelectorUIStyle
 import com.luck.picture.lib.style.PictureWindowAnimationStyle
 
@@ -58,12 +60,28 @@ object PictureSelectorUtils {
     /**
      * 同学圈选择发布
      */
-    fun createCircle(mContext: Context): PictureSelectionModel {
+    fun createCircle(
+        mContext: Context,
+        mutableList: MutableList<LocalMedia> = mutableListOf()
+    ): PictureSelectionModel {
         return create(mContext, PictureMimeType.ofAll())
             .isWithVideoImage(false)// 图片和视频是否可以同选,只在ofAll模式下有效
             .maxSelectNum(9)//图片为9张
+            .selectionData(mutableList)// 是否传入已选图片
             .maxVideoSelectNum(1)//视频为一个
             .isCamera(false)
+    }
+
+    /**
+     * 同学圈选择发布
+     */
+    fun createCircleOpenExternalPreview(
+        mContext: Activity,
+        position: Int,
+        mutableList: MutableList<LocalMedia> = mutableListOf()
+    ) {
+        create(mContext, PictureMimeType.ofAll())
+            .openExternalPreview(position, mutableList)
     }
 
 

@@ -17,7 +17,8 @@ import com.lxj.xpopup.core.ImageViewerPopupView
  * @author: tanlifei
  * @date: 2021/3/18 17:27
  */
-class ImageViewerPopup(mContext: Context) : ImageViewerPopupView(mContext) {
+class ImageViewerPopup(mContext: Context) :
+    ImageViewerPopupView(mContext) {
     lateinit var mBinding: LayoutImageViewerPopupBinding
     override fun getImplLayoutId(): Int {
         return R.layout.layout_image_viewer_popup
