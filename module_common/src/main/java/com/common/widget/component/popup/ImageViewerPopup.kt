@@ -9,6 +9,7 @@ import com.common.R
 import com.common.databinding.LayoutImageViewerPopupBinding
 import com.common.utils.PermissionUtils
 import com.common.widget.component.extension.clickListener
+import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.setVisible
 import com.lxj.xpopup.core.ImageViewerPopupView
 
@@ -74,7 +75,8 @@ class ImageViewerPopup(mContext: Context) :
             val selectPos = if (isInfinite) position % urls.size else position
             mBinding.tvPagerIndicator.text = (selectPos + 1).toString() + "/" + urls.size
         }
-        if (isShowSaveBtn) tv_save.visibility = View.VISIBLE
+        tv_save.gone()
+        mBinding.tvSave.visibility = if(isShowSaveBtn) View.VISIBLE else View.INVISIBLE
     }
 
 

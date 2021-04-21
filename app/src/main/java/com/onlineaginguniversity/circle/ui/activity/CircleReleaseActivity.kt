@@ -128,7 +128,7 @@ class CircleReleaseActivity :
                                 for (s in adapter.mData as MutableList<LocalMedia>) {
                                     photoList.add(s.compressPath)
                                 }
-                                PhotoUtils.showListPhoto(
+                                PhotoUtils.showLocalListPhoto(
                                     this@CircleReleaseActivity,
                                     holder.cover,
                                     position,

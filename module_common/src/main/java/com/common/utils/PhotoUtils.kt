@@ -42,6 +42,23 @@ object PhotoUtils {
         srcViewUpdateListener: OnSrcViewUpdateListener
     ) {
         if (ObjectUtils.isNotEmpty(list) && null != mContext) {
+            val viewerPopup = initImageViewerPopup(mContext, imageView, position, list)
+            viewerPopup.setSrcViewUpdateListener(srcViewUpdateListener)
+            showXPopup(mContext, viewerPopup)
+        }
+    }
+
+    /**
+     * 显示本地图片
+     */
+    fun showLocalListPhoto(
+        mContext: Context?,
+        imageView: ImageView,
+        position: Int,
+        list: List<String>,
+        srcViewUpdateListener: OnSrcViewUpdateListener
+    ) {
+        if (ObjectUtils.isNotEmpty(list) && null != mContext) {
             val viewerPopup = initImageViewerPopup(mContext, imageView, position, list, false)
             viewerPopup.setSrcViewUpdateListener(srcViewUpdateListener)
             showXPopup(mContext, viewerPopup)
