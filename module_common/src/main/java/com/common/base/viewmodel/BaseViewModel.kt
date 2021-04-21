@@ -51,13 +51,16 @@ open class BaseViewModel : ViewModel() {
         if (uiLiveData) {
             uIChange.value = GlobalEnumConst.UiType.ERROR
         }
-        if (showToast) {
-            it.show(it.code, it.msg)
-        }
-        onError
+
         if (refreshState) {
             mRefreshState = RefreshState.LoadFinish
         }
+        if (null == onError) {
+            if (showToast) {
+                it.show(it.code, it.msg)
+            }
+        }
+        onError
     }, {
         if (uiLiveData && uiType == GlobalEnumConst.UiType.REFRESH) {
             uIChange.value = GlobalEnumConst.UiType.LOADING

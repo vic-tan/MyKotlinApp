@@ -4,11 +4,8 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.base.bean.UpdateAppBean
 import com.common.base.bean.UserBean
 import com.common.constant.GlobalConst
+import com.onlineaginguniversity.circle.bean.*
 import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
-import com.onlineaginguniversity.circle.bean.CategoryBean
-import com.onlineaginguniversity.circle.bean.CircleBean
-import com.onlineaginguniversity.circle.bean.CommentBean
-import com.onlineaginguniversity.circle.bean.ResponseCommentBean
 import com.onlineaginguniversity.circle.utils.CommentUrlType
 import com.onlineaginguniversity.common.bean.FollowResponse
 import com.onlineaginguniversity.common.bean.PraiseResponse
@@ -392,6 +389,19 @@ object Repository {
             .toResponse<MutableList<CircleBean>>().await()
     }
 
+    /**
+     * 获取文娱类型列表
+     */
+    suspend fun requestEntertainmentCategory() =
+        RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_CATEGORY)
+            .toResponse<MutableList<CategoryBean>>().await()
+
+    /**
+     * 获取文娱话题标签列表
+     */
+    suspend fun requestEntertainmentTopic() =
+        RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_TOPIC)
+            .toResponse<MutableList<TopicTagBean>>().await()
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 
