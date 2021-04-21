@@ -36,7 +36,7 @@ class OneKeyView(
 
     private var protocolPrompt: ImageView? = null
     private var avatar: ImageView? = null
-    private var isChecked = false
+    private var isChecked = true
 
     fun configAuthPage() {
         mAuthHelper.setUIClickListener { code: String?, _, jsonString: String? ->
@@ -114,7 +114,7 @@ class OneKeyView(
             .setLogBtnToastHidden(true)
             .setSloganHidden(true)
             .setSwitchAccHidden(true)
-            .setPrivacyState(false)
+            .setPrivacyState(true)
             .setCheckboxHidden(false)
             .setNavReturnHidden(false)
             .setStatusBarColor(Color.WHITE)

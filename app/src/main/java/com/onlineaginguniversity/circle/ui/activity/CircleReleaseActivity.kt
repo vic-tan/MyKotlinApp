@@ -64,7 +64,6 @@ class CircleReleaseActivity :
 
     override fun init() {
         mTitleBar.titleView.gone()
-
         initViewModelObserve()
         initListener()
         initData()

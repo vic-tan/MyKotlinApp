@@ -48,26 +48,6 @@ abstract class BaseRvAdapter<T> :
     /**点击事件的监听器 **/
     private var mOnItemClickListener: OnItemClickListener<T>? = null
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRvHolder<ViewBinding> {
-        mContext = parent.context
-        return when {
-            viewType >= ItemViewType.HEADER.value && viewType < ItemViewType.FOOTER.value -> {
-                BaseRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
-            }
-            viewType >= ItemViewType.FOOTER.value -> {
-                BaseRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size])
-            }
-            else -> {
-                onCreateViewHolder(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    viewType
-                )
-            }
-        }
-    }
-
     /**
      * 设置需要点击事件的子view
      * @param views viewArray
@@ -80,6 +60,7 @@ abstract class BaseRvAdapter<T> :
 
     }
 
+
     /**
      * item 多布局实现
      */
@@ -91,6 +72,26 @@ abstract class BaseRvAdapter<T> :
             return ItemViewType.FOOTER.value + position
         }
         return setItemViewType(position, mData[position - mHeaderViews.size] as T)
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRvHolder<ViewBinding> {
+        mContext = parent.context
+        return when {
+            viewType >= ItemViewType.HEADER.value && viewType < ItemViewType.FOOTER.value -> {
+                BaseRvHolder(mHeaderViews[viewType - ItemViewType.HEADER.value])
+            }
+            viewType >= ItemViewType.FOOTER.value -> {
+                BaseRvHolder(mFooterViews[viewType - ItemViewType.FOOTER.value - mData.size - mHeaderViews.size])
+            }
+            else -> {
+                onCreateViewHolder(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    viewType
+                )
+            }
+        }
     }
 
 
