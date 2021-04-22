@@ -65,7 +65,7 @@ class SIMLoginAtivity :
     private fun initOneKey() {
         authHelper = OnKeyLoginUtils.getAuthHelper(object : OnKeyLoginListener.TokenResult {
             override fun authPageSuccess(token: String) {
-                mViewModel.requestOneKeyLogin(token)
+                mViewModel.setOneKeyAccessToken(token)
                 authHelper = null
             }
 
@@ -120,6 +120,11 @@ class SIMLoginAtivity :
         })
         mViewModel.mWxLoginResult.observe(this, Observer {
             LoginUtils.wxBind(it)
+        })
+        mViewModel.mOneKeyAccessToken.observe(this, Observer {
+            it?.let {
+                mViewModel.requestOneKeyLogin(it)
+            }
         })
     }
 

@@ -18,7 +18,7 @@ import com.lxj.xpopup.core.ImageViewerPopupView
  * @author: tanlifei
  * @date: 2021/3/18 17:27
  */
-class ImageViewerPopup(mContext: Context) :
+class ImageViewerPopup(mContext: Context,var showSaveBtn: Boolean = true) :
     ImageViewerPopupView(mContext) {
     lateinit var mBinding: LayoutImageViewerPopupBinding
     override fun getImplLayoutId(): Int {
@@ -75,8 +75,7 @@ class ImageViewerPopup(mContext: Context) :
             val selectPos = if (isInfinite) position % urls.size else position
             mBinding.tvPagerIndicator.text = (selectPos + 1).toString() + "/" + urls.size
         }
-        tv_save.gone()
-        mBinding.tvSave.visibility = if(isShowSaveBtn) View.VISIBLE else View.INVISIBLE
+        mBinding.tvSave.visibility = if(showSaveBtn) View.VISIBLE else View.INVISIBLE
     }
 
 

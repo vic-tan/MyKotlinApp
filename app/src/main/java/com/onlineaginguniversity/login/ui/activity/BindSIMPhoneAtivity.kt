@@ -56,7 +56,7 @@ class BindSIMPhoneAtivity :
     private fun initOneKey() {
         authHelper = OnKeyLoginUtils.getAuthHelper(object : OnKeyLoginListener.TokenResult {
             override fun authPageSuccess(token: String) {
-                mViewModel.requestOneKeyLogin(token)
+                mViewModel.setOneKeyAccessToken(token)
                 authHelper = null
             }
 
@@ -102,6 +102,11 @@ class BindSIMPhoneAtivity :
                 ComFun.mToken = it
                 RxHttpManager.addToken()
                 mViewModel.requestBindPhoneLogin(openId)
+            }
+        })
+        mViewModel.mOneKeyAccessToken.observe(this, Observer {
+            it?.let {
+                mViewModel.requestOneKeyLogin(it)
             }
         })
     }

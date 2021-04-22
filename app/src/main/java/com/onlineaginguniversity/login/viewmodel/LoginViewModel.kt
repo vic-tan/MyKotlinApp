@@ -52,6 +52,12 @@ class LoginViewModel : BaseViewModel() {
     val mWxBindPhone: LiveData<Boolean> get() = wxBindPhone
     private val wxBindPhone = MutableLiveData<Boolean>()
 
+    /**
+     * 一键登录成功LveData
+     */
+    val mOneKeyAccessToken: LiveData<String> get() = oneKeyAccessToken
+    private val oneKeyAccessToken = MutableLiveData<String>()
+
 
     private val mCounts = 10 // 点击次数
     private val mTotalDuration: Long = 10000 // 规定有效时间
@@ -110,6 +116,13 @@ class LoginViewModel : BaseViewModel() {
         Repository.requestBindPhoneLogin(openid)
         wxBindPhone.value = true
     })
+
+    /**
+     * 一键登录获取Token
+     */
+    fun setOneKeyAccessToken(accessToken: String) {
+        oneKeyAccessToken.value = accessToken
+    }
 
 
     /**

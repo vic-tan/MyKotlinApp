@@ -108,7 +108,7 @@ object PhotoUtils {
         list: List<String>,
         showSaveBtn: Boolean = true
     ): ImageViewerPopup {
-        val viewerPopup = ImageViewerPopup(mContext)
+        val viewerPopup = ImageViewerPopup(mContext,showSaveBtn)
         //自定义的ImageViewer弹窗需要自己手动设置相应的属性，必须设置的有srcView，url和imageLoader。
         viewerPopup.setSingleSrcView(imageView, if (list.size > 1) list else list[0])
         if (list.size > 1) {
@@ -120,7 +120,6 @@ object PhotoUtils {
         viewerPopup.isShowSaveButton(false)
         viewerPopup.isShowIndicator(false)
         viewerPopup.setBgColor(color(R.color.black))
-        viewerPopup.isShowSaveButton(showSaveBtn)
         viewerPopup.setXPopupImageLoader(ImageLoader())
         return viewerPopup
     }

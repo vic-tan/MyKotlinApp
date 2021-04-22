@@ -1,6 +1,5 @@
 package com.onlineaginguniversity.circle.ui.activity
 
-import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -14,7 +13,10 @@ import com.common.base.listener.OnItemClickListener
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.constant.GlobalConst
 import com.common.constant.GlobalEnumConst
-import com.common.utils.*
+import com.common.utils.FullyGridLayoutManager
+import com.common.utils.PermissionUtils
+import com.common.utils.PhotoUtils
+import com.common.utils.PictureSelectorUtils
 import com.common.widget.component.extension.*
 import com.luck.picture.lib.decoration.GridSpacingItemDecoration
 import com.luck.picture.lib.entity.LocalMedia
