@@ -13,6 +13,7 @@ interface GlobalEnumConst {
     enum class UiType {
         LOADING,//加载中
         COMPLETE,//完成
+        SUCCESS,//请求成功
         ERROR,//报错界面
 
         REFRESH,//下拉刷新（列表中用）

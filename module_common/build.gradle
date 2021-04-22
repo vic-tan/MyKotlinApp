@@ -188,8 +188,15 @@ dependencies {
     //华为云存储库
     api rootProject.ext.dependencies.huawei_obs
 
+
+
     //Sophix 未开源，商业收费，实时生效/冷启动修复(50000人)
     api rootProject.ext.dependencies.hotfix
+
+
+    //圆形进度库
+    //https://github.com/dinuscxj/CircleProgressBar
+    api rootProject.ext.dependencies.circle_progress
 
 
     //<----------------------------  以上为基本第三方开源库 EDN ----------------------------------->

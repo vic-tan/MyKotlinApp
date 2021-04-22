@@ -1,5 +1,6 @@
 package com.onlineaginguniversity.circle.ui.activity
 
+import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -7,17 +8,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.listener.OnItemClickListener
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.constant.GlobalConst
-import com.common.utils.FullyGridLayoutManager
-import com.common.utils.PermissionUtils
-import com.common.utils.PhotoUtils
-import com.common.utils.PictureSelectorUtils
-import com.common.widget.component.extension.click
-import com.common.widget.component.extension.dp2px
-import com.common.widget.component.extension.gone
-import com.common.widget.component.extension.startActivity
+import com.common.constant.GlobalEnumConst
+import com.common.utils.*
+import com.common.widget.component.extension.*
 import com.luck.picture.lib.decoration.GridSpacingItemDecoration
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
@@ -80,13 +78,67 @@ class CircleReleaseActivity :
             mTopicTagAdapter.mData = mViewModel.mTopicList.toMutableList()
             mTopicTagAdapter.notifyDataSetChanged()
         })
+
+        mViewModel.mUploadChange.observe(this, Observer {
+            if (ObjectUtils.isNotEmpty(mHud)) {
+                when (it) {
+                    GlobalEnumConst.UiType.LOADING -> {
+                        if (mHud.isDismiss) mHud.show()
+//                        mHud.setTitle("上传中..")
+                    }
+                    GlobalEnumConst.UiType.COMPLETE -> if (mHud.isShow) mHud.dismiss()
+                    GlobalEnumConst.UiType.ERROR -> {
+                        if (mHud.isShow) mHud.dismiss()
+                        toast("上传失败")
+                    }
+                    GlobalEnumConst.UiType.SUCCESS -> {
+                        if (mHud.isShow) mHud.dismiss()
+                        toast("发布成功")
+                        ActivityUtils.finishActivity(this@CircleReleaseActivity)
+                    }
+                    else -> {
+                    }
+                }
+            }
+        })
     }
 
     /**
      * 初始化监听
      */
     private fun initListener() {
+        clickListener(mBinding.release,
+            clickListener = View.OnClickListener {
+                when (it) {
+                    mBinding.release -> {
+                        if (ObjectUtils.isEmpty(mAdapter.mData.size)) {
+                            toast("请选择图片！")
+                            return@OnClickListener
+                        }
+                        if (mBinding.etInput.text.toString().isEmpty()) {
+                            toast("为您的作品添加一个标题吧！")
+                            return@OnClickListener
+                        }
+                        if (ObjectUtils.isEmpty(mCategoryTagAdapter.getCheck())) {
+                            toast("请选择分类")
+                            return@OnClickListener
+                        }
 
+                        if (ObjectUtils.isEmpty(mTopicTagAdapter.getCheck())) {
+                            toast("请选择参与话题")
+                            return@OnClickListener
+                        }
+                        mViewModel.startUpload(
+                            mBinding.etInput.text.toString(),
+                            mCategoryTagAdapter.getCheck()?.categoryId,
+                            null,
+                            "",
+                            mTopicTagAdapter.getCheck()?.id,
+                            mAdapter.mData as MutableList<LocalMedia>
+                        )
+                    }
+                }
+            })
     }
 
     private fun initData() {
@@ -96,13 +148,14 @@ class CircleReleaseActivity :
         mViewModel.requestData()
     }
 
+
     private fun initImageAdatper() {
         initFooterView()
-        mAdapter = ReleaseUploadAdapter(mViewModel.isVideo)
+        mAdapter = ReleaseUploadAdapter(mViewModel.isVideos)
         mViewModel.result?.let {
             mAdapter.mData = it.toMutableList()
         }
-        mAdapter.setSelectMax(if (mViewModel.isVideo) 1 else 9)
+        mAdapter.setSelectMax(if (mViewModel.isVideos) 1 else 9)
         val manager = FullyGridLayoutManager(
             this,
             3, GridLayoutManager.VERTICAL, false

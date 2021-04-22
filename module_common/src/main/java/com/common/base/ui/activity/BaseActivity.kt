@@ -52,7 +52,7 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
     protected val mActivity get() = activity!!
 
     //加载框
-    lateinit var mHud: BasePopupView
+    lateinit var mHud: CustomLoadingView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +66,7 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
             .hasShadowBg(false)
             .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
             .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true
-            .asCustom(CustomLoadingView(this))
+            .asCustom(CustomLoadingView(this)) as CustomLoadingView
         initSet()
     }
 

@@ -63,7 +63,6 @@ class HuaweiUploadManager() {
                         for (u in asyncList) {
                             resultList.add(u.await())
                         }
-
                     }
                     cancle()//上传完成取消息协程
                     if (resultList.isNotEmpty()) {

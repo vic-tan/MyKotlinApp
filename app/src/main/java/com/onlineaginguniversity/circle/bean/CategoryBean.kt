@@ -12,7 +12,7 @@ class CategoryBean(
     val iconDefault: String? = "",
     val iconSelect: String? = "",
     @SerializedName(value = "id", alternate = ["categoryId"])
-    val categoryId: Long = 0,
+    val categoryId: Long,
     val type: Int = 0,
     var check: Boolean = false
 )

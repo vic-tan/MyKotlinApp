@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.common.base.bean.UpdateAppBean
 import com.common.base.bean.UserBean
 import com.common.constant.GlobalConst
+import com.google.gson.Gson
 import com.onlineaginguniversity.circle.bean.*
 import com.onlineaginguniversity.common.widget.component.share.bean.ShareBean
 import com.onlineaginguniversity.circle.utils.CommentUrlType
@@ -402,6 +403,28 @@ object Repository {
     suspend fun requestEntertainmentTopic() =
         RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_TOPIC)
             .toResponse<MutableList<TopicTagBean>>().await()
+
+    /**
+     * 添加文娱
+     */
+    suspend fun requestEntertainmentAdd(
+        content: String,
+        mediaType: Int,
+        categoryId: Long?,
+        videoUrl: String?,
+        assetId: String?,
+        entertainmentTopicId: Long?,
+        uploadList: MutableList<ImageBean>
+    ) = RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_ADD)
+        .add("content", content)
+        .add("mediaType", mediaType)
+        .add("categoryId", categoryId)
+        .add("videoUrl", videoUrl)
+        .add("assetId", assetId)
+        .add("entertainmentTopicId", entertainmentTopicId)
+        .add("urls", uploadList)
+        .toResponse<String>().await()
+
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 

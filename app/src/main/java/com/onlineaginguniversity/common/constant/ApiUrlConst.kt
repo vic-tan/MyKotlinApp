@@ -148,16 +148,14 @@ object ApiUrlConst {
     /* 点赞或者取消 */
     const val URL_ENTERTAINMENT_PRAISE = "${URL_ENTERTAINMENT}starOrCancel"
 
-
     /* 获取文娱类型列表 */
     const val URL_ENTERTAINMENT_CATEGORY = "${URL_ENTERTAINMENT}getEntertainmentCategoryList"
-
 
     /* 获取文娱话题标签列表 */
     const val URL_ENTERTAINMENT_TOPIC = "${URL_ENTERTAINMENT}listEntertainmentTopic"
 
-
-
+    /* 添加文娱 */
+    const val URL_ENTERTAINMENT_ADD = "${URL_ENTERTAINMENT}addEntertainment"
 
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
