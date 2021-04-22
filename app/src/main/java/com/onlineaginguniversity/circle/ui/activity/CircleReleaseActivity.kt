@@ -27,6 +27,7 @@ import com.onlineaginguniversity.circle.adapter.TopicTagAdapter
 import com.onlineaginguniversity.circle.bean.CategoryBean
 import com.onlineaginguniversity.circle.bean.TopicTagBean
 import com.onlineaginguniversity.circle.viewmodel.CircleReleaseViewModel
+import com.onlineaginguniversity.common.utils.HuaweiUploadManager
 import com.onlineaginguniversity.databinding.*
 
 
@@ -323,5 +324,10 @@ class CircleReleaseActivity :
             }
 
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        HuaweiUploadManager().cancle()
     }
 }

@@ -106,7 +106,6 @@ class CircleReleaseViewModel(var result: List<LocalMedia>?, var isVideos: Boolea
 
                 }
             )
-
         } else {
             toast("上传图片不正确")
         }

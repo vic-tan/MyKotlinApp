@@ -28,6 +28,7 @@ import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.interfaces.OnSelectListener
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.common.event.UserEvent
+import com.onlineaginguniversity.common.utils.HuaweiUploadManager
 import com.onlineaginguniversity.databinding.ActivityProfileManagerBinding
 import com.onlineaginguniversity.profile.bean.AreaBean
 import com.onlineaginguniversity.profile.bean.UniversityBean
@@ -348,6 +349,11 @@ class ProfileManagerActivity :
 
     override fun showSoftByEditView(): MutableList<View> {
         return mutableListOf(mBinding.nickname, mBinding.introduction)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        HuaweiUploadManager().cancle()
     }
 
 }
