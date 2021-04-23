@@ -26,31 +26,43 @@ class UploadProgressView(mContext: Context) :
     override fun onCreate() {
         super.onCreate()
         mBinding = LayoutDailogUploadProgressBinding.bind(popupImplView)
-//        mBinding.progress.max = 100
-//        mBinding.progress.setProgressFormatter(this)
+        mBinding.progress.max = 100
+        mBinding.progress.setProgressFormatter(this)
     }
 
     /**
      * 设置进度
      */
     fun setProgress(progress: Int) {
-        format(progress, 100)
+        post {
+            format(progress, mBinding.progress.max)
+        }
+    }
+
+    /**
+     * 设置最大进度
+     */
+    fun setMaxProgress(max: Int = 100) {
+        post {
+            mBinding.progress.max = max
+        }
     }
 
     /**
      * 设置标题
      */
     fun setTitle(title: String) {
-        mBinding.tvTitle.text = title
+        post {
+            mBinding.tvTitle.text = title
+        }
     }
 
     @SuppressLint("DefaultLocale")
     override fun format(progress: Int, max: Int): CharSequence {
-//        mBinding.progress.max = max
-//        mBinding.progress.progress = progress
+        mBinding.progress.progress = progress
         return java.lang.String.format(
             mDefaultPattern,
-            (progress as Float / max as Float * 100).toInt()
+            (progress.toFloat() / max.toFloat() * 100).toInt()
         )
     }
 }

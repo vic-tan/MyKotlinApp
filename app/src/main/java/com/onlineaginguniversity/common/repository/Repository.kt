@@ -412,7 +412,6 @@ object Repository {
         mediaType: Int,
         categoryId: Long?,
         videoUrl: String?,
-        assetId: String?,
         entertainmentTopicId: Long?,
         uploadList: MutableList<ImageBean>
     ) = RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_ADD)
@@ -420,7 +419,7 @@ object Repository {
         .add("mediaType", mediaType)
         .add("categoryId", categoryId)
         .add("videoUrl", videoUrl)
-        .add("assetId", assetId)
+        .add("assetId", "")
         .add("entertainmentTopicId", entertainmentTopicId)
         .add("urls", uploadList)
         .toResponse<String>().await()

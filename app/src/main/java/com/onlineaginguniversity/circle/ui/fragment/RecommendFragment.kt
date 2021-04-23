@@ -13,6 +13,8 @@ import com.common.utils.GlideUtils
 import com.common.utils.PermissionUtils
 import com.common.utils.PictureSelectorUtils
 import com.common.widget.component.extension.clickListener
+import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.onlineaginguniversity.circle.adapter.RecommendAdapter
@@ -64,31 +66,7 @@ class RecommendFragment :
             )
         )
         initViewModelObserve()
-        clickListener(mBinding.circleRelease, clickListener = View.OnClickListener {
-            when (it) {
-                mBinding.circleRelease -> {
-                    activity?.let { activity ->
-                        PermissionUtils.requestCameraPermission(
-                            activity,
-                            callback = object : PermissionUtils.PermissionCallback {
-                                override fun allGranted() {
-                                    PictureSelectorUtils.createCircle(activity)
-                                        .forResult(object : OnResultCallbackListener<LocalMedia?> {
-                                            override fun onResult(result: List<LocalMedia?>) {
-                                                CircleReleaseActivity.actionStart(result,false)
-                                            }
 
-                                            override fun onCancel() {
-                                            }
-                                        })
-                                }
-                            })
-                    }
-
-                }
-            }
-
-        })
     }
 
     /**

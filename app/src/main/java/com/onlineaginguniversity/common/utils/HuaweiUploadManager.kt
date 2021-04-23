@@ -1,7 +1,9 @@
 package com.onlineaginguniversity.common.utils
 
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.widget.component.extension.log
 import com.obs.services.ObsClient
+import com.obs.services.model.ProgressListener
 import com.obs.services.model.PutObjectRequest
 import com.obs.services.model.PutObjectResult
 import kotlinx.coroutines.*
@@ -47,7 +49,8 @@ class HuaweiUploadManager() {
     fun statJob(
         enterType: EnterType,
         uploadList: MutableList<String>,
-        callback: HuaweiResultListener
+        callback: HuaweiResultListener,
+        progressListener: ProgressListener? = null
     ) {
         try {
             var resultList: MutableList<PutObjectResult> = mutableListOf()
@@ -56,7 +59,7 @@ class HuaweiUploadManager() {
                     var asyncList: MutableList<Deferred<PutObjectResult>> = mutableListOf()
                     for (u in uploadList) {
                         asyncList.add(async {
-                            upload(enterType, u)
+                            upload(enterType, u, progressListener)
                         })
                     }
                     if (ObjectUtils.isNotEmpty(asyncList)) {
@@ -64,7 +67,7 @@ class HuaweiUploadManager() {
                             resultList.add(u.await())
                         }
                     }
-                    cancle()//上传完成取消息协程
+                    cancleJob()//上传完成取消息协程
                     if (resultList.isNotEmpty()) {
                         if (resultList.size == uploadList.size) {
                             callback.onResult(resultList)
@@ -86,13 +89,17 @@ class HuaweiUploadManager() {
     /**
      * 界面关闭时最好调用此方法取消协程，防止上传过程中关闭了当前界面，应该调用些方法中止上传
      */
-    fun cancle() {
+    fun cancleJob() {
         if (ObjectUtils.isNotEmpty(job)) {
             job.cancel()
         }
     }
 
-    suspend fun upload(enterType: EnterType, filePath: String): PutObjectResult {
+    private fun upload(
+        enterType: EnterType,
+        filePath: String,
+        progressListener: ProgressListener? = null
+    ): PutObjectResult {
         val file = File(filePath)
         val buffer = StringBuffer()
         buffer.append(fileStorePath(enterType))
@@ -106,44 +113,43 @@ class HuaweiUploadManager() {
         )
         val request = PutObjectRequest(bucketName(enterType), buffer.toString())
         request.file = file // filePath为上传的本地文件路径，需要指定到具体的文件名
+        progressListener?.let {
+            request.progressListener = it
+        }
         // 每上传1MB数据反馈上传进度
         request.progressInterval = 1024 * 1024L
         return obsClient.putObject(request)
     }
 
     private fun fileStorePath(enterType: EnterType): String {
-        var fileStorePath = ""
-        when (enterType) {
+        return when (enterType) {
             EnterType.ENTER_TYPE_HOMEWORK,
             EnterType.ENTER_TYPE_CLASSMATE -> {
-                fileStorePath = "homework/android/"
+                "homework/android/"
             }
             EnterType.ENTER_TYPE_GROUP -> {
-                fileStorePath = "uploads/images/"
+                "uploads/images/"
             }
             EnterType.ENTER_TYPE_USER_ID_CARD_VERIFIED -> {
-                fileStorePath = "verify/android/" + getYear()
+                "verify/android/" + getYear()
                     .toString() + "/" + getDay().toString() + "/"
             }
         }
-        return fileStorePath
     }
 
     private fun bucketName(enterType: EnterType): String {
-        var bucketName = ""
-        when (enterType) {
+        return when (enterType) {
             EnterType.ENTER_TYPE_HOMEWORK,
             EnterType.ENTER_TYPE_CLASSMATE -> {
-                bucketName = "lndx-app"
+                "lndx-app"
             }
             EnterType.ENTER_TYPE_GROUP -> {
-                bucketName = "jinling-xcx-dev"
+                "jinling-xcx-dev"
             }
             EnterType.ENTER_TYPE_USER_ID_CARD_VERIFIED -> {
-                bucketName = "lndx-app"
+                "lndx-app"
             }
         }
-        return bucketName
     }
 
     /**

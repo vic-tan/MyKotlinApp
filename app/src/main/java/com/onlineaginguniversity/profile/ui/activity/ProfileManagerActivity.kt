@@ -353,7 +353,7 @@ class ProfileManagerActivity :
 
     override fun onDestroy() {
         super.onDestroy()
-        HuaweiUploadManager().cancle()
+        HuaweiUploadManager().cancleJob()
     }
 
 }

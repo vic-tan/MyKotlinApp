@@ -9,18 +9,20 @@
     app:background_normal="#C4000000"
     app:corner_radius="15dp">
 
-<!--    <com.dinuscxj.progressbar.CircleProgressBar-->
-<!--        android:id="@+id/progress"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        app:background_color="@color/holo_red_light"-->
-<!--        app:progress_text_color="@color/white"-->
-<!--        app:progress_text_size="12sp"-->
-<!--        app:progress_stroke_width="4dp"-->
-<!--        app:progress_start_color="@color/white"-->
-<!--        app:progress_end_color="@color/white"-->
-<!--        app:progress_background_color="#44777777"-->
-<!--        app:progress_start_degree="-90" />-->
+    <com.dinuscxj.progressbar.CircleProgressBar
+        android:id="@+id/progress"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:progress_text_color="@color/white"
+        app:progress_text_size="12sp"
+        app:progress_start_color="@color/white"
+        app:progress_end_color="@color/white"
+        app:progress_background_color="#44777777"
+        app:progress_start_degree="-90"
+        app:progress_stroke_cap="round"
+        app:progress_stroke_width="4dp"
+        app:progress_style="solid_line"
+     />
 
 
     <TextView

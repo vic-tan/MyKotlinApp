@@ -18,11 +18,10 @@ import com.common.core.event.BaseEvent
 import com.common.databinding.ActivityBaseBinding
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.setVisible
-import com.common.widget.component.popup.CustomLoadingView
+import com.common.widget.component.popup.ComLoadingDailogView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.core.BasePopupView
 import com.lxj.xpopup.enums.PopupAnimation
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -52,7 +51,7 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
     protected val mActivity get() = activity!!
 
     //加载框
-    lateinit var mHud: CustomLoadingView
+    lateinit var mHud: ComLoadingDailogView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +65,7 @@ open abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> : AppCompa
             .hasShadowBg(false)
             .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
             .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true
-            .asCustom(CustomLoadingView(this)) as CustomLoadingView
+            .asCustom(ComLoadingDailogView(this)) as ComLoadingDailogView
         initSet()
     }
 

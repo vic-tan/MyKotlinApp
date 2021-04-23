@@ -1,13 +1,23 @@
 package com.onlineaginguniversity.circle.ui.fragment
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ObjectUtils
 import com.common.base.adapter.BasePagerAdapter
 import com.common.base.ui.fragment.BaseLazyFragment
 import com.common.base.viewmodel.EmptyViewModel
+import com.common.utils.PermissionUtils
+import com.common.utils.PictureSelectorUtils
+import com.common.widget.component.extension.clickListener
 import com.common.widget.component.extension.newInstanceFragment
 import com.common.widget.component.magicindicator.MagicIndicatorUtils
+import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.listener.OnResultCallbackListener
+import com.onlineaginguniversity.circle.ui.activity.CircleReleaseActivity
 import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.FragmentClassmatecircleBinding
 import com.onlineaginguniversity.main.ui.activity.MainActivity
@@ -55,6 +65,39 @@ class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding, EmptyVie
 
             override fun onPageSelected(position: Int) {
                 mHomeViewModel.showRecommendPageFragment(position)
+            }
+
+        })
+        clickListener(mBinding.circleRelease, clickListener = View.OnClickListener {
+            when (it) {
+                mBinding.circleRelease -> {
+                    activity?.let { activity ->
+                        PermissionUtils.requestCameraPermission(
+                            activity,
+                            callback = object : PermissionUtils.PermissionCallback {
+                                override fun allGranted() {
+                                    PictureSelectorUtils.createCircle(activity)
+                                        .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                                            override fun onResult(result: List<LocalMedia?>) {
+                                                if (ObjectUtils.isNotEmpty(result)) {
+                                                    CircleReleaseActivity.actionStart(
+                                                        result,
+                                                        (result.size == 1 && PictureMimeType.getMimeType(
+                                                            result[0]?.mimeType
+                                                        ) == PictureConfig.TYPE_VIDEO)
+                                                    )
+                                                }
+
+                                            }
+
+                                            override fun onCancel() {
+                                            }
+                                        })
+                                }
+                            })
+                    }
+
+                }
             }
 
         })

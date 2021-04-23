@@ -13,7 +13,7 @@ import com.lxj.xpopup.core.CenterPopupView
  * @author: tanlifei
  * @date: 2021/2/1 17:40
  */
-class CustomLoadingView(mContext: Context) :
+class ComLoadingDailogView(mContext: Context) :
     CenterPopupView(mContext) {
 
     lateinit var mBinding: LayoutDailogLoadingBinding
@@ -31,6 +31,9 @@ class CustomLoadingView(mContext: Context) :
      * 设置标题
      */
     fun setTitle(title:String){
-        mBinding.tvTitle.text = title
+        post {
+            mBinding.tvTitle.text = title
+        }
+
     }
 }

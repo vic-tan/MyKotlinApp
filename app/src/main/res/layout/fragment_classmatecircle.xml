@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/match_match"
     android:orientation="vertical">
@@ -10,8 +10,8 @@
         style="@style/match_wrap"
         android:background="@color/white"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <net.lucode.hackware.magicindicator.MagicIndicator
@@ -28,11 +28,47 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
-        style="@style/match_match"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabIndicatorSupper" />
 
-</LinearLayout>
+    <com.ruffian.library.widget.RLinearLayout
+        android:id="@+id/circle_release"
+        android:layout_width="55dp"
+        android:layout_height="75dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:background_normal="@array/circle_release"
+        app:corner_radius="35dp"
+        app:gradient_orientation="TOP_BOTTOM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shadow_color="#EE1E26"
+        app:shadow_radius="4dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/ic_camera" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="发表"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </com.ruffian.library.widget.RLinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

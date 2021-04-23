@@ -88,8 +88,8 @@ class ReleaseUploadAdapter(var isVideo: Boolean) :
         holder as ItemReleaseUploadBinding
         holder.apply {
             coverMask.setVisible(isVideo)
-            holder.delete.visible()
-            GlideUtils.load(mContext, bean.compressPath, holder.cover)
+            holder.delete.setVisible(!isVideo)
+            GlideUtils.load(mContext, if (isVideo) bean.path else bean.compressPath, holder.cover)
         }
     }
 

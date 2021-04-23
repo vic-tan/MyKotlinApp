@@ -18,10 +18,13 @@ import com.common.utils.PermissionUtils
 import com.common.utils.PhotoUtils
 import com.common.utils.PictureSelectorUtils
 import com.common.widget.component.extension.*
+import com.common.widget.component.popup.UploadProgressView
 import com.luck.picture.lib.decoration.GridSpacingItemDecoration
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.luck.picture.lib.tools.ScreenUtils
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.enums.PopupAnimation
 import com.lxj.xpopup.interfaces.OnSrcViewUpdateListener
 import com.onlineaginguniversity.circle.adapter.CategoryTagAdapter
 import com.onlineaginguniversity.circle.adapter.ReleaseUploadAdapter
@@ -46,6 +49,9 @@ class CircleReleaseActivity :
     lateinit var mTopicTagAdapter: TopicTagAdapter
     private lateinit var mFooter: ItemReleaseAddBinding
 
+    //上传加载框
+    private lateinit var mUploadHud: UploadProgressView
+
     companion object {
         fun actionStart(result: List<LocalMedia?>, isVideo: Boolean) {
             startActivity<CircleReleaseActivity> {
@@ -63,10 +69,20 @@ class CircleReleaseActivity :
     }
 
     override fun init() {
+        initUploadHud()
         mTitleBar.titleView.gone()
         initViewModelObserve()
         initListener()
         initData()
+    }
+
+    private fun initUploadHud() {
+        mUploadHud = XPopup.Builder(this)
+            .popupAnimation(PopupAnimation.NoAnimation)
+            .hasShadowBg(false)
+            .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
+            .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true
+            .asCustom(UploadProgressView(this)) as UploadProgressView
     }
 
 
@@ -83,19 +99,19 @@ class CircleReleaseActivity :
         })
 
         mViewModel.mUploadChange.observe(this, Observer {
-            if (ObjectUtils.isNotEmpty(mHud)) {
+            if (ObjectUtils.isNotEmpty(mUploadHud)) {
                 when (it) {
                     GlobalEnumConst.UiType.LOADING -> {
-                        if (mHud.isDismiss) mHud.show()
-//                        mHud.setTitle("上传中..")
+                        if (mUploadHud.isDismiss) mUploadHud.show()
+                        mUploadHud.setTitle("上传中..")
                     }
-                    GlobalEnumConst.UiType.COMPLETE -> if (mHud.isShow) mHud.dismiss()
+                    GlobalEnumConst.UiType.COMPLETE -> if (mUploadHud.isShow) mUploadHud.dismiss()
                     GlobalEnumConst.UiType.ERROR -> {
-                        if (mHud.isShow) mHud.dismiss()
+                        if (mUploadHud.isShow) mUploadHud.dismiss()
                         toast("上传失败")
                     }
                     GlobalEnumConst.UiType.SUCCESS -> {
-                        if (mHud.isShow) mHud.dismiss()
+                        if (mUploadHud.isShow) mUploadHud.dismiss()
                         toast("发布成功")
                         ActivityUtils.finishActivity(this@CircleReleaseActivity)
                     }
@@ -103,6 +119,10 @@ class CircleReleaseActivity :
                     }
                 }
             }
+        })
+        mViewModel.mUploadProgress.observe(this, Observer {
+            if (mUploadHud.isShow)
+                mUploadHud.setProgress(it)
         })
     }
 
@@ -131,11 +151,16 @@ class CircleReleaseActivity :
                             toast("请选择参与话题")
                             return@OnClickListener
                         }
+                        if (mViewModel.isVideos) {
+                            //+2 是因为还要上传一张封面，请求一个接口
+                            mUploadHud.setMaxProgress(mAdapter.mData.size * 100 + 2)
+                        } else {
+                            //+1 是因为还要请求一个接口
+                            mUploadHud.setMaxProgress(mAdapter.mData.size * 100 + 1)
+                        }
                         mViewModel.startUpload(
                             mBinding.etInput.text.toString(),
                             mCategoryTagAdapter.getCheck()?.categoryId,
-                            null,
-                            "",
                             mTopicTagAdapter.getCheck()?.id,
                             mAdapter.mData as MutableList<LocalMedia>
                         )
@@ -188,24 +213,26 @@ class CircleReleaseActivity :
                                 }
                             }
                             holder.cover -> {
-                                var photoList = mutableListOf<String>()
-                                for (s in mAdapter.mData as MutableList<LocalMedia>) {
-                                    photoList.add(s.compressPath)
-                                }
-                                PhotoUtils.showLocalListPhoto(
-                                    this@CircleReleaseActivity,
-                                    holder.cover,
-                                    position,
-                                    photoList,
-                                    OnSrcViewUpdateListener { popupView, index ->
-                                        popupView.updateSrcView(
-                                            mAdapter.getViewHolder(
-                                                mBinding.uploadRecycler,
-                                                index
-                                            ).cover
-                                        )
+                                if (!mViewModel.isVideos) {
+                                    var photoList = mutableListOf<String>()
+                                    for (s in mAdapter.mData as MutableList<LocalMedia>) {
+                                        photoList.add(s.compressPath)
                                     }
-                                )
+                                    PhotoUtils.showLocalListPhoto(
+                                        this@CircleReleaseActivity,
+                                        holder.cover,
+                                        position,
+                                        photoList,
+                                        OnSrcViewUpdateListener { popupView, index ->
+                                            popupView.updateSrcView(
+                                                mAdapter.getViewHolder(
+                                                    mBinding.uploadRecycler,
+                                                    index
+                                                ).cover
+                                            )
+                                        }
+                                    )
+                                }
                             }
                         }
                     }
@@ -330,6 +357,13 @@ class CircleReleaseActivity :
 
     override fun onDestroy() {
         super.onDestroy()
-        HuaweiUploadManager().cancle()
+        HuaweiUploadManager().cancleJob()
+    }
+
+    /**
+     * 设置触摸不收起键盘控件
+     */
+    override fun showSoftByEditView(): MutableList<View> {
+        return mutableListOf(mBinding.etInput)
     }
 }
