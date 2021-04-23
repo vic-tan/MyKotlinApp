@@ -1,9 +1,10 @@
 package com.onlineaginguniversity.common.utils
 
 import com.blankj.utilcode.util.ObjectUtils
-import com.common.widget.component.extension.log
+import com.common.base.listener.ComListener
 import com.obs.services.ObsClient
 import com.obs.services.model.ProgressListener
+import com.obs.services.model.ProgressStatus
 import com.obs.services.model.PutObjectRequest
 import com.obs.services.model.PutObjectResult
 import kotlinx.coroutines.*
@@ -50,7 +51,7 @@ class HuaweiUploadManager() {
         enterType: EnterType,
         uploadList: MutableList<String>,
         callback: HuaweiResultListener,
-        progressListener: ProgressListener? = null
+        uploadListener: ComListener.UploadListener? = null
     ) {
         try {
             var resultList: MutableList<PutObjectResult> = mutableListOf()
@@ -59,7 +60,7 @@ class HuaweiUploadManager() {
                     var asyncList: MutableList<Deferred<PutObjectResult>> = mutableListOf()
                     for (u in uploadList) {
                         asyncList.add(async {
-                            upload(enterType, u, progressListener)
+                            upload(enterType, u, uploadListener)
                         })
                     }
                     if (ObjectUtils.isNotEmpty(asyncList)) {
@@ -98,7 +99,7 @@ class HuaweiUploadManager() {
     private fun upload(
         enterType: EnterType,
         filePath: String,
-        progressListener: ProgressListener? = null
+        progressListener: ComListener.UploadListener? = null
     ): PutObjectResult {
         val file = File(filePath)
         val buffer = StringBuffer()
@@ -114,7 +115,9 @@ class HuaweiUploadManager() {
         val request = PutObjectRequest(bucketName(enterType), buffer.toString())
         request.file = file // filePath为上传的本地文件路径，需要指定到具体的文件名
         progressListener?.let {
-            request.progressListener = it
+            request.progressListener = ProgressListener { progressStatus ->
+                it.progressChanged(filePath, progressStatus.transferPercentage)
+            }
         }
         // 每上传1MB数据反馈上传进度
         request.progressInterval = 1024 * 1024L

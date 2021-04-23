@@ -17,4 +17,8 @@ interface ComListener {
     interface BackCall {
         fun call(any: Any? = null, any2: Any? = null)
     }
+
+    interface UploadListener {
+        fun progressChanged(originalFileUrl: String, ptercentage: Int)
+    }
 }

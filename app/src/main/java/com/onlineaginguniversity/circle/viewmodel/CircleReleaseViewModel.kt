@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.rxLifeScope
 import com.blankj.utilcode.util.ObjectUtils
+import com.common.base.listener.ComListener
 import com.common.base.viewmodel.BaseViewModel
 import com.common.constant.GlobalEnumConst
 import com.common.widget.component.extension.log
@@ -88,6 +89,7 @@ class CircleReleaseViewModel(var result: List<LocalMedia>?, var isVideos: Boolea
                     uploadList.add(l.compressPath)
                 }
             }
+            var totalProgress = 0
             HuaweiUploadManager().statJob(
                 HuaweiUploadManager.EnterType.ENTER_TYPE_CLASSMATE,
                 uploadList,
@@ -131,9 +133,21 @@ class CircleReleaseViewModel(var result: List<LocalMedia>?, var isVideos: Boolea
                     }
 
                 },
-                ProgressListener {
-                    log(it.transferPercentage)
-                    uploadProgress.postValue(it.transferPercentage)
+                object : ComListener.UploadListener {
+                    override fun progressChanged(originalFileUrl: String, ptercentage: Int) {
+                        //上传图片进度完成时+1
+                        if (isVideos) {
+                            if (originalFileUrl == videoCover!!.path && ptercentage == 100) {
+                                totalProgress += 5
+                                uploadProgress.postValue(totalProgress)
+                            } else {
+                                uploadProgress.postValue(totalProgress + ptercentage)
+                            }
+                        } else {
+                            uploadProgress.postValue(ptercentage)
+                        }
+                    }
+
                 }
             )
         } else {

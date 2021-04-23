@@ -191,11 +191,11 @@ class CircleReleaseActivity :
                             return@OnClickListener
                         }
                         if (mViewModel.isVideos) {
-                            //+2 是因为还要上传一张封面，请求一个接口
-                            mUploadHud.setMaxProgress(mAdapter.mData.size * 100 + 2)
+                            // +10 是因为还要上传一张封面,和一接口
+                            mUploadHud.setMaxProgress(mAdapter.mData.size * 100 + 10)
                         } else {
-                            //+1 是因为还要请求一个接口
-                            mUploadHud.setMaxProgress(mAdapter.mData.size * 100 + 1)
+                            //+5 是因为还要请求一个接口
+                            mUploadHud.setMaxProgress(mAdapter.mData.size * 100 + 5)
                         }
 
                         mViewModel.startUpload(
