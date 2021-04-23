@@ -425,6 +425,17 @@ object Repository {
         .toResponse<String>().await()
 
 
+    /**
+     * 删除文娱
+     */
+    suspend fun requestEntertainmentDelete(
+        id: Long,
+    ) = RxHttp.postJson(ApiUrlConst.URL_ENTERTAINMENT_DEL)
+        .add("moduleId", 1)//文娱传1
+        .add("businessId", id)
+        .toResponse<String>().await()
+
+
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 
     /**

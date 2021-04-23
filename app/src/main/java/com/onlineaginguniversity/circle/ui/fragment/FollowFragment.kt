@@ -14,8 +14,10 @@ import com.common.base.adapter.BaseRvAdapter
 import com.common.base.ui.fragment.BaseRvFragment
 import com.common.constant.GlobalEnumConst
 import com.common.core.event.BaseEvent
+import com.common.utils.ComDialogUtils
 import com.onlineaginguniversity.common.widget.component.share.listener.ShareListener
 import com.common.utils.RecyclerUtils
+import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.onlineaginguniversity.R
 import com.onlineaginguniversity.circle.adapter.FollowAdapter
 import com.onlineaginguniversity.circle.bean.CircleBean
@@ -49,7 +51,7 @@ class FollowFragment :
 
     lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var mHomeViewModel: MainViewModel
-    private lateinit var circleViewModel: CircleViewModel
+    private lateinit var mCircleViewModel: CircleViewModel
 
 
     override fun createViewModel(): FollowViewModel {
@@ -57,7 +59,7 @@ class FollowFragment :
     }
 
     override fun onFirstVisibleToUser() {
-        circleViewModel = CircleViewModel()
+        mCircleViewModel = CircleViewModel()
         mHomeViewModel = (activity as MainActivity).mViewModel
         initRecycler(
             mBinding.refreshLayout.smartRefreshLayout,
@@ -85,7 +87,11 @@ class FollowFragment :
             }
 
         })
-        CircleComUtils.notifyPraiseObserve(circleViewModel, this, mViewModel.mData)
+        mCircleViewModel.mDeleteChanged.observe(this, Observer {
+            mAdapter.mData.removeAt(it)
+            mAdapter.notifyDataSetChanged()
+        })
+        CircleComUtils.notifyPraiseObserve(mCircleViewModel, this, mViewModel.mData)
     }
 
 
@@ -226,7 +232,7 @@ class FollowFragment :
         holder as ItemFollowBinding
         when (v) {
             holder.praiseLayout -> {
-                circleViewModel.requestPraise(
+                mCircleViewModel.requestPraise(
                     itemBean.publishId,
                     itemBean.isStar,
                     position
@@ -249,11 +255,21 @@ class FollowFragment :
                             shareBean: ShareBean?
                         ) {
                             when (type) {
-                                GlobalEnumConst.ShareType.GENERATE_BITMAP -> {
+                                GlobalEnumConst.ShareType.GENERATE_BITMAP -> {//生成分享图
                                     shareBean?.let {
                                         itemBean.qrURL = it.targetUrl
                                     }
                                     ShareUtils.showGenerateShareBitmapView(context, itemBean)
+                                }
+                                GlobalEnumConst.ShareType.DELETE -> {//删除
+                                    ComDialogUtils.showMultDialogByNoTitle(context, "确认要删除该作品?",
+                                        OnConfirmListener {
+                                            mCircleViewModel.requestDelete(
+                                                itemBean.publishId,
+                                                position
+                                            )
+                                        }
+                                    )
                                 }
                             }
                         }

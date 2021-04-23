@@ -75,7 +75,7 @@ object ComDialogUtils {
      * 没有标题且按钮默认的双按钮提示框
      */
     fun showMultDialogByNoTitle(
-        mContext: Context,
+        mContext: Context?,
         content: String,
         confirmListener: OnConfirmListener,
     ): BasePopupView {
@@ -104,7 +104,7 @@ object ComDialogUtils {
      * 公用两个按钮提示框
      */
     private fun baseMultDialog(
-        mContext: Context,
+        mContext: Context?,
         title: String? = null,
         content: String,
         cancelBtnText: String = "取消",

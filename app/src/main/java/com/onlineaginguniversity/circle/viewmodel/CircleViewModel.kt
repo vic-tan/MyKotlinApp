@@ -27,6 +27,12 @@ class CircleViewModel : BaseViewModel() {
     private var praiseChanged = MutableLiveData<PraiseResponse.PraiseResult>()
 
     /**
+     * 删除改变的LveData
+     */
+    val mDeleteChanged: LiveData<Int> get() = deleteChanged
+    private var deleteChanged = MutableLiveData<Int>()
+
+    /**
      * 关注/取消关注
      */
     fun requestFollow(id: Long, isFollow: Boolean, position: Int?) {
@@ -50,7 +56,15 @@ class CircleViewModel : BaseViewModel() {
                 }
             }
         })
+    }
 
-
+    /**
+     * 删除
+     */
+    fun requestDelete(id: Long,position: Int?) {
+        comRequest({
+            Repository.requestEntertainmentDelete(id)
+            deleteChanged.value = position
+        })
     }
 }

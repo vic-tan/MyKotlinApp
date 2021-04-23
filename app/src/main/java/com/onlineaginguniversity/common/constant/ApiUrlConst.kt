@@ -157,6 +157,9 @@ object ApiUrlConst {
     /* 添加文娱 */
     const val URL_ENTERTAINMENT_ADD = "${URL_ENTERTAINMENT}addEntertainment"
 
+    /* 删除文娱 */
+    const val URL_ENTERTAINMENT_DEL = "major/api/feedback/del"
+
 
     /**—————————————————————————————————————————————————— 其它相关  ——————————————————————————————————————————————*/
 
