@@ -1,5 +1,8 @@
 package com.onlineaginguniversity.circle.ui.activity
 
+import android.media.MediaMetadataRetriever
+import android.media.ThumbnailUtils
+import android.provider.MediaStore
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -8,7 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.ObjectUtils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.common.base.listener.OnItemClickListener
 import com.common.base.ui.activity.BaseToolBarActivity
 import com.common.constant.GlobalConst
@@ -22,6 +28,7 @@ import com.common.widget.component.popup.UploadProgressView
 import com.luck.picture.lib.decoration.GridSpacingItemDecoration
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
+import com.luck.picture.lib.tools.BitmapUtils
 import com.luck.picture.lib.tools.ScreenUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
@@ -34,6 +41,8 @@ import com.onlineaginguniversity.circle.bean.TopicTagBean
 import com.onlineaginguniversity.circle.viewmodel.CircleReleaseViewModel
 import com.onlineaginguniversity.common.utils.HuaweiUploadManager
 import com.onlineaginguniversity.databinding.*
+import java.io.File
+import java.io.IOException
 
 
 /**
@@ -127,6 +136,36 @@ class CircleReleaseActivity :
     }
 
     /**
+     * 获取视频第一帧
+     */
+    private fun getVideoCover(): LocalMedia? {
+        var cover: LocalMedia? = null
+        var video = mAdapter.mData[0] as LocalMedia
+        // 获取第一个关键帧
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(video.realPath)
+        var videoCover =
+            retriever.getFrameAtTime(0, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+        try {
+
+            FileUtils.createOrExistsDir("${GlobalConst.FilesUrl.PICTURES}")
+            val file = File(
+                "${GlobalConst.FilesUrl.PICTURES}/${System.currentTimeMillis()}.jpg"
+            )
+            BitmapUtils.saveBitmapFile(videoCover, file)
+            if (ObjectUtils.isNotEmpty(videoCover)) {
+                cover = LocalMedia()
+                cover.path = file.absolutePath
+                cover.width = videoCover!!.width
+                cover.height = videoCover!!.height
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return cover
+    }
+
+    /**
      * 初始化监听
      */
     private fun initListener() {
@@ -158,11 +197,13 @@ class CircleReleaseActivity :
                             //+1 是因为还要请求一个接口
                             mUploadHud.setMaxProgress(mAdapter.mData.size * 100 + 1)
                         }
+
                         mViewModel.startUpload(
                             mBinding.etInput.text.toString(),
                             mCategoryTagAdapter.getCheck()?.categoryId,
                             mTopicTagAdapter.getCheck()?.id,
-                            mAdapter.mData as MutableList<LocalMedia>
+                            mAdapter.mData as MutableList<LocalMedia>,
+                            getVideoCover()
                         )
                     }
                 }

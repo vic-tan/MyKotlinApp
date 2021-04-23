@@ -74,11 +74,13 @@ class CircleReleaseViewModel(var result: List<LocalMedia>?, var isVideos: Boolea
         content: String,
         categoryId: Long?,
         entertainmentTopicId: Long?,
-        originalList: MutableList<LocalMedia>
+        originalList: MutableList<LocalMedia>,
+        videoCover: LocalMedia?
     ) {
-        if (ObjectUtils.isNotEmpty(originalList)) {
+        if (ObjectUtils.isNotEmpty(originalList) && ObjectUtils.isNotEmpty(videoCover)) {
             uploadChange.value = GlobalEnumConst.UiType.LOADING
             var uploadList = mutableListOf<String>()
+            uploadList.add(videoCover!!.path)
             for (l in originalList) {
                 if (isVideos) {
                     uploadList.add(l.realPath)
@@ -96,7 +98,16 @@ class CircleReleaseViewModel(var result: List<LocalMedia>?, var isVideos: Boolea
                         var url: String? = null
                         for ((i, r) in resultList.withIndex()) {
                             if (isVideos) {
-                                url = r.objectUrl
+                                if (i == 0) {
+                                    imageBean = ImageBean(
+                                        r.objectUrl,
+                                        originalList[i].width,
+                                        originalList[i].height
+                                    )
+                                    requestList.add(imageBean)
+                                } else {
+                                    url = r.objectUrl
+                                }
                             } else {
                                 imageBean = ImageBean(
                                     r.objectUrl,
