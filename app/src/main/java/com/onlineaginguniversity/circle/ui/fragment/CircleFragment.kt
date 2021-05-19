@@ -44,13 +44,13 @@ class CircleFragment : BaseLazyFragment<FragmentClassmatecircleBinding, EmptyVie
     override fun onFirstVisibleToUser() {
         mHomeViewModel = (activity as MainActivity).mViewModel
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.tabIndicator)//为 view 增加 MarginTop 为状态栏高度
-        bindFragments()
         MagicIndicatorUtils.initComMagicIndicator(
             activity,
             mBinding.tabIndicator,
             mBinding.viewPager,
             mTitleData
         )
+        bindFragments()
         mBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
 

@@ -26,7 +26,7 @@
     	defined fis models will be mapped into columns.
     	For example:    
     	<list>
-    		<mapping class="com.test.model.Magazine"></mapping>
+    		<mapping class="com.test.txt.model.Magazine"></mapping>
     	</list>
     -->
     <list>

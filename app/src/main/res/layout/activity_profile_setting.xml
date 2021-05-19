@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/match_match"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        style="@style/match_wrap"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="25dp">
+
+            <com.ruffian.library.widget.RImageView
+                android:id="@+id/user_head"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="25dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_default_avatar"
+                app:is_circle="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="点击更换头像"
+                android:textColor="@color/txt_basic"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_head" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="48dp"
+                android:src="@mipmap/ic_photo"
+                app:layout_constraintBottom_toBottomOf="@+id/user_head"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/com_root_bg" />
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/nickname_layout"
+            style="@style/setting_list_style">
+
+            <TextView
+                android:id="@+id/nickname_title"
+                style="@style/setting_list_item_title_text_style"
+                android:text="昵称" />
+
+            <EditText
+                android:id="@+id/nickname"
+                style="@style/setting_list_item_arrow_eidt_style"
+                android:paddingEnd="23dp"
+                android:maxLength="8"
+                app:layout_constraintStart_toEndOf="@id/nickname_title"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+        </com.ruffian.library.widget.RConstraintLayout>
+
+        <include layout="@layout/layout_line_setting" />
+
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/introduction_layout"
+            style="@style/setting_list_style">
+
+            <TextView
+                android:id="@+id/introduction_title"
+                style="@style/setting_list_item_title_text_style"
+                android:text="简介" />
+
+            <TextView
+                android:id="@+id/introduction"
+                style="@style/setting_list_item_arrow_text_style"
+                android:hint="请填写"
+                app:layout_constraintStart_toEndOf="@id/introduction_title"
+                app:layout_constraintEnd_toStartOf="@id/introduction_arrow" />
+
+
+            <ImageView
+                android:id="@+id/introduction_arrow"
+                style="@style/setting_list_item_arrow_right_style"
+                android:background="@mipmap/ic_arrow_right_grey" />
+        </com.ruffian.library.widget.RConstraintLayout>
+
+        <include layout="@layout/layout_line_setting" />
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/area_layout"
+            style="@style/setting_list_style">
+
+            <TextView
+                android:id="@+id/area_title"
+                style="@style/setting_list_item_title_text_style"
+                android:text="地区" />
+
+            <TextView
+                android:id="@+id/area"
+                style="@style/setting_list_item_arrow_text_style"
+                android:hint="请选择"
+                app:layout_constraintStart_toEndOf="@id/area_title"
+                app:layout_constraintEnd_toStartOf="@id/area_arrow" />
+
+
+            <ImageView
+                android:id="@+id/area_arrow"
+                style="@style/setting_list_item_arrow_right_style"
+                android:background="@mipmap/ic_arrow_right_grey" />
+        </com.ruffian.library.widget.RConstraintLayout>
+
+
+        <include layout="@layout/layout_line_setting" />
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/school_layout"
+            style="@style/setting_list_style">
+
+            <TextView
+                android:id="@+id/school_title"
+                style="@style/setting_list_item_title_text_style"
+                android:text="学校" />
+
+            <TextView
+                android:id="@+id/school"
+                style="@style/setting_list_item_arrow_text_style"
+                android:hint="请选择"
+                app:layout_constraintStart_toEndOf="@id/school_title"
+                app:layout_constraintEnd_toStartOf="@id/school_arrow" />
+
+
+            <ImageView
+                android:id="@+id/school_arrow"
+                style="@style/setting_list_item_arrow_right_style"
+                android:background="@mipmap/ic_arrow_right_grey" />
+        </com.ruffian.library.widget.RConstraintLayout>
+
+
+        <include layout="@layout/layout_line_setting" />
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/sex_layout"
+            style="@style/setting_list_style">
+
+            <TextView
+                android:id="@+id/sex_title"
+                style="@style/setting_list_item_title_text_style"
+                android:text="性别" />
+
+            <TextView
+                android:id="@+id/sex"
+                style="@style/setting_list_item_arrow_text_style"
+                android:hint="请选择"
+                app:layout_constraintStart_toEndOf="@id/sex_title"
+                app:layout_constraintEnd_toStartOf="@id/sex_arrow" />
+
+
+            <ImageView
+                android:id="@+id/sex_arrow"
+                style="@style/setting_list_item_arrow_right_style"
+                android:background="@mipmap/ic_arrow_right_grey" />
+        </com.ruffian.library.widget.RConstraintLayout>
+
+
+        <include layout="@layout/layout_line_setting" />
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/age_layout"
+            style="@style/setting_list_style">
+
+            <TextView
+                android:id="@+id/age_title"
+                style="@style/setting_list_item_title_text_style"
+                android:text="年龄段" />
+
+            <TextView
+                android:id="@+id/age"
+                style="@style/setting_list_item_arrow_text_style"
+                android:hint="请选择"
+                app:layout_constraintStart_toEndOf="@id/age_title"
+                app:layout_constraintEnd_toStartOf="@id/age_arrow" />
+
+
+            <ImageView
+                android:id="@+id/age_arrow"
+                style="@style/setting_list_item_arrow_right_style"
+                android:background="@mipmap/ic_arrow_right_grey" />
+        </com.ruffian.library.widget.RConstraintLayout>
+
+
+        <include layout="@layout/layout_line_setting" />
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/address_layout"
+            style="@style/setting_list_style">
+
+            <TextView
+                android:id="@+id/address_title"
+                style="@style/setting_list_item_title_text_style"
+                android:text="收货地址" />
+
+            <TextView
+                android:id="@+id/address"
+                style="@style/setting_list_item_arrow_text_style"
+                android:hint="请补充"
+                app:layout_constraintStart_toEndOf="@id/address_title"
+                app:layout_constraintEnd_toStartOf="@id/address_arrow" />
+
+
+            <ImageView
+                android:id="@+id/address_arrow"
+                style="@style/setting_list_item_arrow_right_style"
+                android:background="@mipmap/ic_arrow_right_grey" />
+        </com.ruffian.library.widget.RConstraintLayout>
+
+    </LinearLayout>
+
+</ScrollView>

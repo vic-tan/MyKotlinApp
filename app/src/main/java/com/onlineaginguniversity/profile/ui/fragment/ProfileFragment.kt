@@ -16,7 +16,7 @@ import com.onlineaginguniversity.databinding.FragmentProfileBinding
 import com.onlineaginguniversity.main.ui.activity.MainActivity
 import com.onlineaginguniversity.main.viewmodel.MainViewModel
 import com.onlineaginguniversity.profile.ui.activity.ManualActivity
-import com.onlineaginguniversity.profile.ui.activity.ProfileManagerActivity
+import com.onlineaginguniversity.profile.ui.activity.ProfileSettingActivity
 import com.onlineaginguniversity.profile.ui.activity.SettingActivity
 
 
@@ -52,7 +52,7 @@ class ProfileFragment : BaseLazyFragment<FragmentProfileBinding, EmptyViewModel>
             mBinding.optManual,
             clickListener = View.OnClickListener {
                 when (it) {
-                    mBinding.arrow -> ProfileManagerActivity.actionStart()
+                    mBinding.arrow -> ProfileSettingActivity.actionStart()
                     mBinding.setting -> SettingActivity.actionStart()
                     mBinding.recruitingLecturers -> gotoWeb(
                         "讲师入驻入口",

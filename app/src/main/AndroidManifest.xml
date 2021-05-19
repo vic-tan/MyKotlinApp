@@ -115,7 +115,7 @@
             android:name=".profile.ui.activity.SettingActivity"
             android:label="个人设置" />
         <activity
-            android:name=".profile.ui.activity.ProfileManagerActivity"
+            android:name=".profile.ui.activity.ProfileSettingActivity"
             android:label="个人资料" />
         <activity
             android:name=".profile.ui.activity.IntroductionActivity"
