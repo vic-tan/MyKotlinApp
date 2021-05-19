@@ -47,7 +47,6 @@ object ShareSdkUtils {
         shareBean: ShareBean,
         listener: ShareListener?
     ) {
-
         comWx(shareBean, Platform.SHARE_WEBPAGE, WechatMoments.NAME, listener)
     }
 
@@ -121,7 +120,7 @@ object ShareSdkUtils {
                 i: Int,
                 hashMap: HashMap<String, Any>
             ) {
-                listener?.let { it.onComplete(type) }
+                listener?.onComplete(type)
             }
 
             override fun onError(
@@ -129,11 +128,11 @@ object ShareSdkUtils {
                 i: Int,
                 throwable: Throwable
             ) {
-                listener?.let { it.onError(type, throwable) }
+                listener?.onError(type, throwable)
             }
 
             override fun onCancel(platform: Platform, i: Int) {
-                listener?.let { it.onCancel(type) }
+                listener?.onCancel(type)
             }
         }
         platform.share(sp)

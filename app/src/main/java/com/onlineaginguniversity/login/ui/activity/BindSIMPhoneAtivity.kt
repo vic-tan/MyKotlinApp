@@ -26,9 +26,7 @@ import com.onlineaginguniversity.login.viewmodel.LoginViewModel
 class BindSIMPhoneAtivity :
     BaseActivity<ActivitySimLoginBinding, LoginViewModel>() {
 
-    private var authHelper: PhoneNumberAuthHelper? = null
-    private val mAuthHelper: PhoneNumberAuthHelper get() = authHelper!!
-
+    private lateinit var mAuthHelper: PhoneNumberAuthHelper
     private lateinit var oneKeyView: OneKeyView
     private var openId: String = ""
 
@@ -54,23 +52,19 @@ class BindSIMPhoneAtivity :
 
 
     private fun initOneKey() {
-        authHelper = OnKeyLoginUtils.getAuthHelper(object : OnKeyLoginListener.TokenResult {
+        mAuthHelper = OnKeyLoginUtils.getAuthHelper(object : OnKeyLoginListener.TokenResult {
             override fun authPageSuccess(token: String) {
                 mViewModel.setOneKeyAccessToken(token)
-                authHelper = null
             }
 
             override fun authPageFail() {
                 BindInputPhoneAtivity.actionStart(openId)
-                authHelper = null
             }
 
             override fun fail() {
-                authHelper = null
             }
 
             override fun backPressed() {
-                authHelper = null
                 ActivityUtils.finishAllActivities()
                 ActivityUtils.finishActivity(this@BindSIMPhoneAtivity)
             }
@@ -119,7 +113,6 @@ class BindSIMPhoneAtivity :
 
     override fun onDestroy() {
         super.onDestroy()
-        authHelper = null
     }
 
 }

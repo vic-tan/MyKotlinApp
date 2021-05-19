@@ -37,7 +37,7 @@ import org.greenrobot.eventbus.EventBus
 
 
 /**
- * @desc:个人资料
+ * @desc:个人中心
  * @author: tanlifei
  * @date: 2021/2/5 10:15
  */

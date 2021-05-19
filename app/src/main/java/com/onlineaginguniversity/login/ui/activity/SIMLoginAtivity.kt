@@ -9,11 +9,11 @@ import com.common.core.environment.EnvironmentSwitchActivity
 import com.common.core.environment.event.EnvironmentEvent
 import com.common.core.event.BaseEvent
 import com.common.widget.component.extension.gone
-import com.onlineaginguniversity.common.widget.component.share.listener.AuthListener
-import com.onlineaginguniversity.common.widget.component.share.utils.AuthUtils
 import com.common.widget.component.extension.startActivity
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
 import com.onlineaginguniversity.common.constant.EnumConst
+import com.onlineaginguniversity.common.widget.component.share.listener.AuthListener
+import com.onlineaginguniversity.common.widget.component.share.utils.AuthUtils
 import com.onlineaginguniversity.databinding.ActivitySimLoginBinding
 import com.onlineaginguniversity.login.listener.OnKeyLoginListener
 import com.onlineaginguniversity.login.ui.widget.OneKeyView
@@ -22,7 +22,7 @@ import com.onlineaginguniversity.login.utils.OnKeyLoginUtils
 import com.onlineaginguniversity.login.viewmodel.LoginViewModel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.util.HashMap
+import java.util.*
 
 
 /**
@@ -33,9 +33,7 @@ import java.util.HashMap
 class SIMLoginAtivity :
     BaseActivity<ActivitySimLoginBinding, LoginViewModel>() {
 
-    private var authHelper: PhoneNumberAuthHelper? = null
-    private val mAuthHelper: PhoneNumberAuthHelper get() = authHelper!!
-
+    private lateinit var mAuthHelper: PhoneNumberAuthHelper
     private lateinit var oneKeyView: OneKeyView
 
 
@@ -63,23 +61,19 @@ class SIMLoginAtivity :
 
 
     private fun initOneKey() {
-        authHelper = OnKeyLoginUtils.getAuthHelper(object : OnKeyLoginListener.TokenResult {
+        mAuthHelper = OnKeyLoginUtils.getAuthHelper(object : OnKeyLoginListener.TokenResult {
             override fun authPageSuccess(token: String) {
                 mViewModel.setOneKeyAccessToken(token)
-                authHelper = null
             }
 
             override fun authPageFail() {
                 LoginEntranceAtivity.actionStart()
-                authHelper = null
             }
 
             override fun fail() {
-                authHelper = null
             }
 
             override fun backPressed() {
-                authHelper = null
                 ActivityUtils.finishAllActivities()
                 ActivityUtils.finishActivity(this@SIMLoginAtivity)
             }
@@ -141,11 +135,6 @@ class SIMLoginAtivity :
     override fun onBackPressed() {
         ActivityUtils.finishAllActivities()
         ActivityUtils.finishActivity(this@SIMLoginAtivity)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        authHelper = null
     }
 
 }

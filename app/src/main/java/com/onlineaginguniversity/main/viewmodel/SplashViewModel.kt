@@ -94,7 +94,7 @@ class SplashViewModel : BaseViewModel() {
     /**
      * 启动页3s倒计时
      */
-    fun splashTimer(count: Long = 3) {
+    fun splashTimer(count: Long = 2) {
         if (ObjectUtils.isEmpty(splashTimer)) {
             splashTimer = object : CountDownTimer(count * 1000, 1000) {
                 override fun onFinish() {
