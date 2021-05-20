@@ -194,6 +194,7 @@ class ProfileManagerActivity :
                     }
                     mBinding.schoolLayout -> {
                         showUniversityDialog()
+
                     }
                     mBinding.sexLayout -> mViewModel.mUserBean?.let {
                         var optionView = BottomOptionsView(
