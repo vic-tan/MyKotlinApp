@@ -96,7 +96,7 @@ ext {
 
             //弹窗库XPopup
             //https://github.com/li-xiaojun/XPopup
-            "xpopup"                 : "com.lxj:xpopup:2.2.23",
+            "xpopup"                 : "com.github.li-xiaojun:XPopup:2.3.4",
             "material"               : "com.google.android.material:material:1.3.0-alpha02",
 
             //事件通知
@@ -145,6 +145,7 @@ ext {
 
             //应用升级
             //https://github.com/teprinciple/UpdateAppUtils
+            //https://github.com/azhon/AppUpdate(后面发现这个更好)
             "updateapputilsx"        : "com.teprinciple:updateapputilsx:2.3.0",
 
 

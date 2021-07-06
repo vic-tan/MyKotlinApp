@@ -9,7 +9,6 @@ import com.common.R
 import com.common.databinding.LayoutImageViewerPopupBinding
 import com.common.utils.PermissionUtils
 import com.common.widget.component.extension.clickListener
-import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.setVisible
 import com.lxj.xpopup.core.ImageViewerPopupView
 

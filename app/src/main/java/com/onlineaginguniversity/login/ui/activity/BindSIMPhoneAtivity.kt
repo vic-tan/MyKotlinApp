@@ -1,3 +1,4 @@
+
 package com.onlineaginguniversity.login.ui.activity
 
 import androidx.lifecycle.Observer
@@ -9,7 +10,6 @@ import com.common.core.http.RxHttpManager
 import com.common.widget.component.extension.gone
 import com.common.widget.component.extension.startActivity
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper
-import com.onlineaginguniversity.common.constant.EnumConst
 import com.onlineaginguniversity.databinding.ActivitySimLoginBinding
 import com.onlineaginguniversity.login.listener.OnKeyLoginListener
 import com.onlineaginguniversity.login.ui.widget.OneKeyView
